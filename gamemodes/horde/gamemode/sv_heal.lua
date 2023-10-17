@@ -88,7 +88,7 @@ function HORDE:OnPlayerHeal(ply, healinfo, silent)
     end
     ply:ScreenFade(SCREENFADE.IN, Color(50, 200, 50, 10), 0.3, 0)
     if healer ~= ply then
-        healer:Horde_AddMoney(1)
+        healer:Horde_AddMoney(math.min(healinfo:GetHealAmount()/2))
         healer:Horde_SyncEconomy()
         net.Start("Horde_RenderHealer")
             net.WriteString(healer:GetName())
