@@ -62,7 +62,7 @@ function Ready(ply)
         HORDE:SendNotification("You can't get ready when you are dead!", 1, ply)
         return
     end
-
+    
     HORDE.player_ready[ply] = 1
     local ready_count = 0
     local total_player = 0
@@ -72,7 +72,7 @@ function Ready(ply)
         end
         total_player = total_player + 1
     end
-
+    
     if ready_count >= total_player then
         HORDE.start_game = true
         HORDE.current_break_time = math.min(HORDE.current_break_time, 10)
@@ -107,13 +107,12 @@ function Shop(ply)
     if ply:Alive() then
         local res = hook.Run("Horde_OnPlayerOpenShop", ply)
         if res ~= true then
-            if HORDE.current_break_time <= 0 then
-                HORDE:SendNotification("You cannot shop after a wave has started.", 1, ply)
+            if HORDE.has_buy_zone and (not ply:Horde_GetInBuyZone()) then
                 return
             end
-
-            if HORDE.has_buy_zone and (not ply:Horde_GetInBuyZone()) then
-                HORDE:SendNotification("You are not in a buyzone, you can find buyzones usually indicated by green.", 1, ply)
+    
+            if HORDE.current_break_time <= 0 then
+                HORDE:SendNotification("You cannot shop after a wave has started.", 1, ply)
                 return
             end
         end
@@ -124,58 +123,23 @@ function Shop(ply)
 end
 
 function ItemConfig(ply)
-    if HORDE.start_game then
-        HORDE:SendNotification("You cannot open config after a game has started.", 1, ply)
-        return
-    end
-    if ply:IsSuperAdmin() then
-        net.Start("Horde_ToggleItemConfig")
-        net.Send(ply)
-    else
-        HORDE:SendNotificationDenyAccess(ply)
-    end
+    net.Start("Horde_ToggleItemConfig")
+    net.Send(ply)
 end
 
 function EnemyConfig(ply)
-    if HORDE.start_game then
-        HORDE:SendNotification("You cannot open config after a game has started.", 1, ply)
-        return
-    end
-    if ply:IsSuperAdmin() then
-        HORDE:SyncEnemiesTo(ply)
-        HORDE:SyncMutationsTo(ply)
-        net.Start("Horde_ToggleEnemyConfig")
-        net.Send(ply)
-    else
-        nHORDE:SendNotificationDenyAccess(ply)
-    end
+    net.Start("Horde_ToggleEnemyConfig")
+    net.Send(ply)
 end
 
 function ClassConfig(ply)
-    if HORDE.start_game then
-        HORDE:SendNotification("You cannot open config after a game has started.", 1, ply)
-        return
-    end
-    if ply:IsSuperAdmin() then
-        net.Start("Horde_ToggleClassConfig")
-        net.Send(ply)
-    else
-        HORDE:SendNotificationDenyAccess(ply)
-    end
+    net.Start("Horde_ToggleClassConfig")
+    net.Send(ply)
 end
 
 function MapConfig(ply)
-    if HORDE.start_game then
-        HORDE:SendNotification("You cannot open config after a game has started.", 1, ply)
-        return
-    end
-    if ply:IsSuperAdmin() then
-        HORDE:SyncMapsTo(ply)
-        net.Start("Horde_ToggleMapConfig")
-        net.Send(ply)
-    else
-        HORDE:SendNotificationDenyAccess(ply)
-    end
+    net.Start("Horde_ToggleMapConfig")
+    net.Send(ply)
 end
 
 function ConfigMenu(ply)
@@ -196,11 +160,11 @@ end
 hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
     if not ply:IsValid() then return end
     local text = {}
-
+	
     for str in string.gmatch(string.lower(input), "([^".."%s".."]+)") do -- splits and lowercases the input string
        table.insert(text, str)
     end
-
+	
     if text[1] == "!help" then
         ply:PrintMessage(HUD_PRINTTALK, "'!ready' - Get ready")
         ply:PrintMessage(HUD_PRINTTALK, "'!shop' - Open shop")
