@@ -123,23 +123,42 @@ function Shop(ply)
 end
 
 function ItemConfig(ply)
-    net.Start("Horde_ToggleItemConfig")
-    net.Send(ply)
+    if ply:IsSuperAdmin() then
+        net.Start("Horde_ToggleItemConfig")
+        net.Send(ply)
+    else
+        HORDE:SendNotificationDenyAccess(ply)
+    end
 end
 
 function EnemyConfig(ply)
-    net.Start("Horde_ToggleEnemyConfig")
-    net.Send(ply)
+    if ply:IsSuperAdmin() then
+        HORDE:SyncEnemiesTo(ply)
+        HORDE:SyncMutationsTo(ply)
+        net.Start("Horde_ToggleEnemyConfig")
+        net.Send(ply)
+    else
+        nHORDE:SendNotificationDenyAccess(ply)
+    end
 end
 
 function ClassConfig(ply)
-    net.Start("Horde_ToggleClassConfig")
-    net.Send(ply)
+    if ply:IsSuperAdmin() then
+        net.Start("Horde_ToggleClassConfig")
+        net.Send(ply)
+    else
+        HORDE:SendNotificationDenyAccess(ply)
+    end
 end
 
 function MapConfig(ply)
-    net.Start("Horde_ToggleMapConfig")
-    net.Send(ply)
+    if ply:IsSuperAdmin() then
+        HORDE:SyncMapsTo(ply)
+        net.Start("Horde_ToggleMapConfig")
+        net.Send(ply)
+    else
+        HORDE:SendNotificationDenyAccess(ply)
+    end
 end
 
 function ConfigMenu(ply)
