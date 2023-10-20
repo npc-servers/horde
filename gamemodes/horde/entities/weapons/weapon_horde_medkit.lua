@@ -30,7 +30,6 @@ SWEP.MaxAmmo = 100 -- Maxumum ammo
 
 local HealSound = Sound( "HealthKit.Touch" )
 local DenySound = Sound( "WallHealth.Deny" )
-local owner = self:GetOwner()
 function SWEP:Initialize()
 
 	self:SetHoldType( "slam" )
@@ -48,18 +47,18 @@ function SWEP:PrimaryAttack()
 
 	if ( CLIENT ) then return end
 
-	if ( owner:IsPlayer() ) then
-		owner:LagCompensation( true )
+	if ( self:GetOwner():IsPlayer() ) then
+		self:GetOwner():LagCompensation( true )
 	end
 
 	local tr = util.TraceLine( {
-		start = owner:GetShootPos(),
-		endpos = owner:GetShootPos() + owner:GetAimVector() * 100,
-		filter = owner
+		start = self:GetOwner():GetShootPos(),
+		endpos = self:GetOwner():GetShootPos() + self:GetOwner():GetAimVector() * 100,
+		filter = self:GetOwner()
 	} )
 
-	if ( owner:IsPlayer() ) then
-		owner:LagCompensation( false )
+	if ( self:GetOwner():IsPlayer() ) then
+		self:GetOwner():LagCompensation( false )
 	end
 
 	local ent = tr.Entity
@@ -68,7 +67,7 @@ function SWEP:PrimaryAttack()
 
 	local maxhealth,health = ent:GetMaxHealth(),ent:Health()
 
-	if owner:Horde_GetPerk("medic_painkillers") then
+	if self:GetOwner():Horde_GetPerk("medic_painkillers") then
 		maxhealth = maxhealth*1.20
 	end
 
@@ -84,7 +83,7 @@ function SWEP:PrimaryAttack()
 
 		self:TakePrimaryAmmo( need )
 
-        local healinfo = HealInfo:New({amount=need, healer=owner})
+        local healinfo = HealInfo:New({amount=need, healer=self:GetOwner()})
 		if ent:IsPlayer() then
 			HORDE:OnPlayerHeal(ent, healinfo)
 		else
@@ -101,11 +100,11 @@ function SWEP:SecondaryAttack()
 
 	if ( CLIENT ) then return end
 
-	local ent = owner
+	local ent = self:GetOwner()
 
 	local maxhealth,health = ent:GetMaxHealth(),ent:Health()
 
-	if owner:Horde_GetPerk("medic_painkillers") then
+	if self:GetOwner():Horde_GetPerk("medic_painkillers") then
 		maxhealth = maxhealth*1.20
 	end
 
@@ -121,7 +120,7 @@ function SWEP:SecondaryAttack()
 
 		self:TakePrimaryAmmo( need )
 
-        local healinfo = HealInfo:New({amount=need, healer=owner})
+        local healinfo = HealInfo:New({amount=need, healer=self:GetOwner()})
 
 		HORDE:OnPlayerHeal(ent, healinfo)
 
@@ -134,14 +133,14 @@ end
 
 function SWEP:HealSuccess(ent)
 
-	owner:EmitSound( HealSound )
+	self:GetOwner():EmitSound( HealSound )
 
 	self:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
 	local endtime = CurTime() + self:SequenceDuration()
 	endtime = endtime + 0.5
 	self:SetNextPrimaryFire( endtime )
 	self:SetNextSecondaryFire( endtime )
-	owner:SetAnimation( PLAYER_ATTACK1 )
+	self:GetOwner():SetAnimation( PLAYER_ATTACK1 )
 	
 	timer.Create( "weapon_idle" .. self:EntIndex(), self:SequenceDuration(), 1, function() if ( IsValid( self ) ) then self:SendWeaponAnim( ACT_VM_IDLE ) end end )
 
@@ -149,7 +148,7 @@ end
 
 function SWEP:HealFail(ent)
 
-	owner:EmitSound( DenySound )
+	self:GetOwner():EmitSound( DenySound )
 
 	local endtime = CurTime() + 1
 	self:SetNextPrimaryFire( endtime )
