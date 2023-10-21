@@ -1269,10 +1269,7 @@ function HORDE:WaveEnd()
 end
 
 -- Referenced some spawning mechanics from Zombie Invasion+
-local director_interval = 5
-if GetConVarNumber("horde_director_interval") then
-    director_interval = math.max(9, GetConVarNumber("horde_director_interval"))
-end
+local director_interval = 1
 
 -- Game Director. Executes at every given interval.
 -- The director is responsible for:
