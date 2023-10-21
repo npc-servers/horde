@@ -1270,7 +1270,7 @@ function HORDE:WaveEnd()
 end
 
 -- Referenced some spawning mechanics from Zombie Invasion+
-local director_interval = 1
+local director_interval = CreateConVar("horde_director_interval", 1, FCVAR_ARCHIVE, "Game director execution interval in seconds. Decreasing this increases spawn rate."):GetFloat()
 
 -- Game Director. Executes at every given interval.
 -- The director is responsible for:
