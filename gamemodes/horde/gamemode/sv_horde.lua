@@ -424,6 +424,7 @@ function HORDE:SpawnEnemy(enemy, pos)
 
     local spawned_enemy = ents.Create(enemy.class)
     spawned_enemy:SetPos(pos)
+    spawned_enemy:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
     timer.Simple(0, function() spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0)) end)
     spawned_enemy:Spawn()
 
