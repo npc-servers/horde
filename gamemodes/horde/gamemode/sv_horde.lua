@@ -424,6 +424,7 @@ function HORDE:SpawnEnemy(enemy, pos)
 
     local spawned_enemy = ents.Create(enemy.class)
     spawned_enemy:SetPos(pos)
+    spawned_enemy:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
     timer.Simple(0, function() spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0)) end)
     spawned_enemy:Spawn()
 
@@ -1269,9 +1270,9 @@ function HORDE:WaveEnd()
 end
 
 -- Referenced some spawning mechanics from Zombie Invasion+
-local director_interval = 5
+local director_interval = 1
 if GetConVarNumber("horde_director_interval") then
-    director_interval = math.max(9, GetConVarNumber("horde_director_interval"))
+    director_interval = 1
 end
 
 -- Game Director. Executes at every given interval.
