@@ -79,7 +79,8 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
 			if ent:IsPlayer() then
 				local Trace = util.TraceLine({
 		                    start = self:WorldSpaceCenter(),
-		                    endpos = ent:WorldSpaceCenter()
+		                    endpos = ent:WorldSpaceCenter(),
+				    MASK_SOLID_BRUSHONLY
 		                })
 				if not Trace.HitWorld() then
 					ent:Horde_AddDebuffBuildup(HORDE.Status_Necrosis, 8, self)
