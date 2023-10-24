@@ -70,30 +70,30 @@ hook.Add("PlayerUse", "PickUpWatchtower", function(ply, ent)
 	if not HORDE:IsWatchTower(ent) then return false end
 	if not ent:GetNWEntity("HordeOwner"):IsValid() then return false end
 	if not ent:GetNWEntity("HordeOwner") == ply then return false end
-		if not ent.Horde_WatchtowerPickupCd then
-			ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
+	if not ent.Horde_WatchtowerPickupCd then
+		ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
+	else
+		if ent.Horde_WatchtowerPickupCd > CurTime() then
+			return
 		else
-			if ent.Horde_WatchtowerPickupCd > CurTime() then
+			if ent.Horde_WatchtowerPickedUp then
+				ply:DropObject(ent)
+				ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
+				ent.Horde_WatchtowerPickedUp = nil
 				return
-			else
-				if ent.Horde_WatchtowerPickedUp then
-					ply:DropObject(ent)
-					ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
-					ent.Horde_WatchtowerPickedUp = nil
-					return
-				end
 			end
 		end
-		if not ply.IsHoldingObject then
-			local p = ent:GetPos()
-			p.z = ply:GetPos().z + 12
-			ent:SetPos(p)
-			local a = ply:GetAngles()
-			ent:SetAngles(Angle(0, a.y, 0))
-			ply:PickupObject(ent)
-		end
-		ent.Horde_WatchtowerPickedUp = ply
-		ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
+	end
+	if not ply.IsHoldingObject then
+		local p = ent:GetPos()
+		p.z = ply:GetPos().z + 12
+		ent:SetPos(p)
+		local a = ply:GetAngles()
+		ent:SetAngles(Angle(0, a.y, 0))
+		ply:PickupObject(ent)
+	end
+	ent.Horde_WatchtowerPickedUp = ply
+	ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
 end )
 
 hook.Add("OnPlayerPhysicsPickup","DetectPickup", function(ply, ent)
