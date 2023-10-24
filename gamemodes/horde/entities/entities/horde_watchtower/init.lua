@@ -101,6 +101,6 @@ hook.Add("OnPlayerPhysicsPickup","DetectPickup", function(ply, ent)
 end)
 
 hook.Add("OnPlayerPhysicsDrop","Detectdrop", function(ply, ent)
-	ply.IsHoldingObject = false
+	ply.IsHoldingObject = nil
 end)
 
