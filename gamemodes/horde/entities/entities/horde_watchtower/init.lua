@@ -9,7 +9,6 @@ function ENT:Initialize()
     self:SetSolid(SOLID_VPHYSICS)
     self:SetMoveType(MOVETYPE_VPHYSICS)
     self:SetCollisionGroup(COLLISION_GROUP_WORLD)
-
     local phys = self:GetPhysicsObject()
     if phys:IsValid() then
         phys:Wake()
@@ -68,7 +67,9 @@ function ENT:Think()
 end
 
 hook.Add("PlayerUse", "PickUpWatchtower", function(ply, ent)
-	if HORDE:IsWatchTower(ent) and ent:GetNWEntity("HordeOwner"):IsValid() and ent:GetNWEntity("HordeOwner") == ply then
+	if not HORDE:IsWatchTower(ent) then return false end
+    if not ent:GetNWEntity("HordeOwner"):IsValid() then return false end
+    if not ent:GetNWEntity("HordeOwner") == ply then return false end
         if not ent.Horde_WatchtowerPickupCd then
             ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
         else
@@ -83,13 +84,27 @@ hook.Add("PlayerUse", "PickUpWatchtower", function(ply, ent)
                 end
             end
         end
+        if not ply.IsHoldingObject then
         local p = ent:GetPos()
 		p.z = ply:GetPos().z + 12
         ent:SetPos(p)
         local a = ply:GetAngles()
         ent:SetAngles(Angle(0, a.y, 0))
         ply:PickupObject(ent)
+        end
         ent.Horde_WatchtowerPickedUp = ply
         ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
-    end
 end )
+
+hook.Add("OnPlayerPhysicsPickup","DetectPickup", function(ply, ent)
+
+    ply.IsHoldingObject = true
+
+end)
+
+hook.Add("OnPlayerPhysicsDrop","Detectdrop", function(ply, ent)
+
+    ply.IsHoldingObject = false
+
+end)
+
