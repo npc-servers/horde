@@ -14,15 +14,35 @@ PERK.Params = {
 }
 
 PERK.Hooks = {}
+
+local function getHealthColor( health )
+    local hue = math.Clamp(( health / 100 ) * 120, 0, 175)
+    return HSVToColor( hue, 1, 1 )
+end
+
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if SERVER and perk == "medic_base" then
         ply:Horde_SetHealthRegenPercentage(0.01)
     end
+    if perk == "medic_base" then
+        hook.Add("PreDrawHalos", "MedicHealthOutlines", function()
+            for _, user in ipairs(player.GetAll()) do
+                if user:Health() > 0 and user:Health() < user:GetMaxHealth() then
+                    halo.Add({user}, getHealthColor(user:Health()), 2, 2, 1, true, false)
+                end
+            end
+        end)
+    end
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
-    if SERVER and perk == "medic_base" then
-        ply:Horde_SetHealthRegenPercentage(0)
+    if perk == "medic_base" then
+        if SERVER then
+            print("SWAPPED OFF MEDIC")
+            ply:Horde_SetHealthRegenPercentage(0)
+        else
+            hook.Remove("PreDrawHalos", "MedicHealthOutlines")
+        end
     end
 end
 
