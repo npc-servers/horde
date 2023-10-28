@@ -38,7 +38,6 @@ end
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
     if perk == "medic_base" then
         if SERVER then
-            print("SWAPPED OFF MEDIC")
             ply:Horde_SetHealthRegenPercentage(0)
         else
             hook.Remove("PreDrawHalos", "MedicHealthOutlines")
