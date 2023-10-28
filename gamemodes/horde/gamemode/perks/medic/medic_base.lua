@@ -34,8 +34,9 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if perk == "medic_base" then
         hook.Add("PreDrawHalos", "MedicHealthOutlines", function()
             for _, user in ipairs(player.GetAll()) do
-                if user:Health() > 0 and user:Health() < user:GetMaxHealth() then
-                    halo.Add({user}, getHealthColor(user:Health()), 2, 2, 1, true, false)
+                local HealthPoints = user:Health()
+                if HealthPoints > 0 and HealthPoints < user:GetMaxHealth() then
+                    halo.Add({user}, getHealthColor(HealthPoints), 2, 2, 1, true, false)
                 end
             end
         end)
