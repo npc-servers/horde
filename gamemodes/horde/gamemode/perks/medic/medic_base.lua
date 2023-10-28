@@ -15,9 +15,16 @@ PERK.Params = {
 
 PERK.Hooks = {}
 
+local healthColorCache = {}
+
 local function getHealthColor( health )
+    local cached = healthColorCache[health]
+    if cached then return cached end
+
     local hue = math.Clamp(( health / 100 ) * 120, 0, 175)
-    return HSVToColor( hue, 1, 1 )
+    local color = HSVToColor( hue, 1, 1 )
+    healthColorCache[health] = color
+    return color
 end
 
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
