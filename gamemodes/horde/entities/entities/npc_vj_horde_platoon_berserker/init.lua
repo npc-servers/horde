@@ -132,7 +132,7 @@ function ENT:CustomOnThink()
 		if self.Critical then
 			self:SetLocalVelocity(self:GetMoveVelocity() * 1.35)
 		else
-			self:SetLocalVelocity(self:GetMoveVelocity() * 1.15)
+			self:SetLocalVelocity(self:GetMoveVelocity() * 1.175)
 		end
 	else
 	end
