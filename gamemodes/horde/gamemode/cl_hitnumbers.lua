@@ -76,7 +76,7 @@ net.Receive("Horde_HitnumbersSpawn", function()
     local col = HORDE.DMG_COLOR[horde_type]
     local icon = Material(HORDE.DMG_TYPE_ICON[horde_type], "mips smooth")
 
-    spawnIndicator(0, tostring(dmg), col, icon, pos, VectorRand(), ttl)
+    spawnIndicator(0, tostring(dmg), col, icon, pos+Vector(0,0,15), VectorRand(), ttl)
 end)
 
 net.Receive("Horde_HitnumbersDebuffSpawn", function()
