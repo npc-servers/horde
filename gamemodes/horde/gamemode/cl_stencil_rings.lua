@@ -50,21 +50,23 @@ function rings.DrawRings( cam_normal, Color )
 	render.DrawQuadEasy(cam_pos + cam_normal*10, -cam_normal, 100, 200, Color, 0)
 end
 
-function rings.RenderRings( zones )
+function rings.RenderRings( zones, col )
 
 	if next(zones) == nil then return end
 	rings.StartStencils()
 	
 	rings.RenderSphere( zones )
-	rings.DrawRings( LocalPlayer():EyeAngles():Forward(), col )
+
+	rings.CamRendering( LocalPlayer():EyeAngles():Forward(), col )
+	
 	render.SetStencilEnable( false )
 end
 
 hook.Add("PostDrawOpaqueRenderables","RenderRings",function()
 	List = {}
-	Col = Color(255,255,255,255)
+	col = Color(255,255,255,255)
 	hook.Run("PreDrawRings")
 
 	if #List == 0 then end
-	rings.RenderRings(List)
+	rings.RenderRings(List, col)
 end)
