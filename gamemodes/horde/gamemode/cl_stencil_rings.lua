@@ -42,6 +42,9 @@ function rings.CamRendering( cam_normal, Color )
 end
 
 function rings.RenderRings( zones )
+
+	hook.Run("PreDrawRings")
+
 	if next(zones) == nil then return end
 	rings.StartStencils()
 	
