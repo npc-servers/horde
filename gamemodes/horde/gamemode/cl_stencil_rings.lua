@@ -3,8 +3,17 @@ local render_DrawSphere = render.DrawSphere
 
 rings = rings or {}
 
-function rings.Add(tbl, ent, outer, thickness, Detail, color)
-	tbl[ent:EntIndex()] = { pos = ent:GetPos(), inner_r = math.max(outer - thickness,0), outer_r = outer, detail = Detail}
+local List = {}
+local col = Color(255,255,255,255)
+
+function rings.SetColor(color)
+	col = color
+end
+
+function rings.Add(ent, outer, thickness, Detail, color)
+	t = { pos = ent:GetPos(), inner_r = math.max(outer - thickness,0), outer_r = outer, detail = Detail}
+
+	table.insert( List, t )
 end
 
 function rings.RenderSphere( tbl )
@@ -41,16 +50,23 @@ function rings.CamRendering( cam_normal, Color )
 	render.DrawQuadEasy(cam_pos + cam_normal*10, -cam_normal, 100, 200, Color, 0)
 end
 
-function rings.RenderRings( zones )
-
-	hook.Run("PreDrawRings")
+function rings.RenderRings( zones, col )
 
 	if next(zones) == nil then return end
 	rings.StartStencils()
 	
-	rings.Render_Sphere( zones )
+	rings.RenderSphere( zones )
 
 	rings.CamRendering( LocalPlayer():EyeAngles():Forward(), col )
 	
 	render.SetStencilEnable( false )
 end
+
+hook.Add("PostDrawOpaqueRenderables","RenderRings",function()
+	List = {}
+	col = Color(255,255,255,255)
+	hook.Run("PreDrawRings")
+
+	if #List == 0 then end
+	rings.RenderRings(List, col)
+end)
