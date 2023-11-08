@@ -34,9 +34,10 @@ function ENT:Initialize()
     end
     if self.Horde_Owner:Horde_GetPerk("warden_ex_machina") then
         self:Horde_AddWardenAura()
-        self.Horde_EnableShockwave = true
     end
-
+    if self.Horde_Owner:Horde_GetPerk("warden_rejection_pulse") then
+		self.Horde_EnableShockwave = true
+	end
     self.Horde_PlayersInZone = {}
 end
 

@@ -1,8 +1,11 @@
 local entmeta = FindMetaTable("Entity")
 local plymeta = FindMetaTable("Player")
 
+util.AddNetworkString("AddNewAuraRing")
+
+util.AddNetworkString("RemoveAuraRing")
 function entmeta:Horde_AddWardenAura()
-    self:Horde_RemoveWardenAura()
+    if self.Horde_WardenAura then return end
     local ent = ents.Create("horde_warden_aura")
     ent:SetPos(self:GetPos())
     ent:SetParent(self)
