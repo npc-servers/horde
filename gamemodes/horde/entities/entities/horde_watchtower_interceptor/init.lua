@@ -34,8 +34,8 @@ function ENT:Initialize()
         self:Horde_AddWardenAura()
     end
     if self.Horde_Owner:Horde_GetPerk("warden_rejection_pulse") then
-		self.Horde_EnableShockwave = true
-	end
+        self.Horde_EnableShockwave = true
+    end
 end
 
 function ENT:Think()
