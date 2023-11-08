@@ -3,8 +3,17 @@ local render_DrawSphere = render.DrawSphere
 
 rings = rings or {}
 
-function rings.Add(tbl, ent, outer, thickness, Detail, color)
-	tbl[ent:EntIndex()] = { pos = ent:GetPos(), inner_r = math.max(outer - thickness,0), outer_r = outer, detail = Detail}
+local List = {}
+local col = Color(255,255,255,255)
+
+function rings.SetColor(color)
+	col = color
+end
+
+function rings.Add(ent, outer, thickness, Detail, ringcolor)
+	t = { pos = ent:GetPos(), inner_r = math.max(outer - thickness,0), outer_r = outer, detail = Detail}
+
+	table.insert( List, t )
 end
 
 function rings.RenderSphere( tbl )
@@ -33,7 +42,7 @@ function rings.StartStencils()
 	render.SetColorMaterial()
 end
 
-function rings.CamRendering( cam_normal, Color )
+function rings.DrawRings( cam_normal, Color )
 
 	local cam_pos = EyePos( LocalPlayer() )
 	render.SetStencilCompareFunction( STENCIL_EQUAL )
@@ -43,14 +52,19 @@ end
 
 function rings.RenderRings( zones )
 
-	hook.Run("PreDrawRings")
-
 	if next(zones) == nil then return end
 	rings.StartStencils()
 	
-	rings.Render_Sphere( zones )
-
-	rings.CamRendering( LocalPlayer():EyeAngles():Forward(), col )
-	
+	rings.RenderSphere( zones )
+	rings.DrawRings( LocalPlayer():EyeAngles():Forward(), col )
 	render.SetStencilEnable( false )
 end
+
+hook.Add("PostDrawOpaqueRenderables","RenderRings",function()
+	List = {}
+	Col = Color(255,255,255,255)
+	hook.Run("PreDrawRings")
+
+	if #List == 0 then end
+	rings.RenderRings(List)
+end)
