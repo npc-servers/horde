@@ -6,7 +6,7 @@ rings = rings or {}
 local List = {}
 local col = Color(255,255,255,255)
 
-function rings.SetColor(color)
+function rings.SetColor(color) --this does not work for multiple colours right now
 	col = color
 end
 
@@ -52,7 +52,6 @@ end
 
 function rings.RenderRings( zones, col )
 
-	if next(zones) == nil then return end
 	rings.StartStencils()
 	
 	rings.RenderSphere( zones )
@@ -64,7 +63,6 @@ end
 
 hook.Add("PostDrawOpaqueRenderables","RenderRings",function()
 	List = {}
-	col = Color(255,255,255,255)
 	hook.Run("PreDrawRings")
 
 	if #List == 0 then end

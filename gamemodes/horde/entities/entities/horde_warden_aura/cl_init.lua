@@ -15,7 +15,7 @@ hook.Add( "PreDrawRings", "DrawWardenRings", function()
 	if next( auras ) == nil then return end
 	rings.SetColor(col)
 	for ent,bool in pairs( auras ) do
-		if !IsValid(ent) then continue end
+		if not IsValid(ent) then continue end
 		rings.Add(ent, ( ent.Horde_AuraRadius or 160 ), 5, 30)
 	end
 end)
