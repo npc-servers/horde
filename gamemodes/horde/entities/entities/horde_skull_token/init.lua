@@ -3,6 +3,10 @@ AddCSLuaFile("cl_init.lua")
 include("shared.lua")
 ENT.CleanupPriority = 2
 
+if SERVER then
+    util.AddNetworkString("PrintSkullNotify")
+end
+
 function ENT:Initialize()
     self:SetModel("models/horde/token/skull_2015.mdl")
     self:PhysicsInit(SOLID_VPHYSICS)
