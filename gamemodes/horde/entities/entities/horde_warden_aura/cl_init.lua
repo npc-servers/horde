@@ -11,13 +11,14 @@ function ENT:OnRemove()
 end
 
 local col = Color(0,255,100,100)
+local testcol = Color(255,0,0,100)
 hook.Add( "PreDrawRings", "DrawWardenRings", function()
 	if next( auras ) == nil then return end
-	rings.SetColor(col)
-	for ent,bool in pairs( auras ) do
-		if not IsValid(ent) then continue end
-		rings.Add(ent, ( ent:GetRadius() or 160 ), 5, 30)
+	local set = {}
+	for aura , _ in pairs(auras) do
+		table.insert(set,{aura, (aura:GetRadius() or 160), 5, 30})
 	end
+	rings.AddSet( set , col)
 end)
 
 function ENT:Draw()
