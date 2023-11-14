@@ -10,12 +10,6 @@ function rings.SetColor(color) --this does not work for multiple colours right n
 	col = color
 end
 
-function rings.Add(ent, outer, thickness, Detail, ringcolor)
-	local t = { pos = ent:GetPos(), inner_r = math.max(outer - thickness,0), outer_r = outer, detail = Detail}
-
-	table.insert( List, t )
-end
-
 function rings.AddSet(tbl, col)
 	local set = { zones = {}, color = col }
 	for _ , ring in ipairs(tbl) do
