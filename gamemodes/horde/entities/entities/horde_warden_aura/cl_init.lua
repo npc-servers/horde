@@ -11,12 +11,11 @@ function ENT:OnRemove()
 end
 
 local col = Color(0,255,100,100)
-local testcol = Color(255,0,0,100)
 hook.Add( "PreDrawRings", "DrawWardenRings", function()
 	if next( auras ) == nil then return end
 	local set = {}
-	for aura , _ in pairs(auras) do
-		table.insert(set,{aura, (aura:GetRadius() or 160), 5, 30})
+	for aura in pairs(auras) do
+		table.insert(set,{aura, aura:GetRadius() or 160, 5, 30})
 	end
 	rings.AddSet( set , col)
 end)
