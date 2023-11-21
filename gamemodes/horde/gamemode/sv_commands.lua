@@ -101,7 +101,7 @@ end
 
 local function nearBeacon(ply)
     local beacons = ents.FindByClass("horde_watchtower_beacon")
-    if #beacons == 0 then return false
+    if #beacons == 0 then return false end
     for i,v in pairs(beacons) do
         if v:GetPos():Distance(ply:GetPos()) <=  150 then
             return true
