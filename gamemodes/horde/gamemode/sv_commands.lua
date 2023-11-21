@@ -99,13 +99,12 @@ function End(ply)
     ply:PrintMessage(HUD_PRINTTALK, "Stopping game...")
 end
 
-function NearBeacon(ply)
+local function NearBeacon(ply)
     local beacons = ents.FindByClass("horde_watchtower_beacon")
-    if beacons and #beacons > 0 then
-        for i,v in pairs(beacons) do
-            if v:GetPos():Distance(ply:GetPos()) <=  150 then
-                return true
-            end
+    if beacons and #beacons > 0 then return false
+    for i,v in pairs(beacons) do
+        if v:GetPos():Distance(ply:GetPos()) <=  150 then
+            return true
         end
     end
     return false
