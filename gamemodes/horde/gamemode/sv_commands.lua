@@ -99,9 +99,9 @@ function End(ply)
     ply:PrintMessage(HUD_PRINTTALK, "Stopping game...")
 end
 
-local function NearBeacon(ply)
+local function nearBeacon(ply)
     local beacons = ents.FindByClass("horde_watchtower_beacon")
-    if beacons and #beacons > 0 then return false
+    if #beacons == 0 then return false
     for i,v in pairs(beacons) do
         if v:GetPos():Distance(ply:GetPos()) <=  150 then
             return true
@@ -118,7 +118,7 @@ function Shop(ply)
     if ply:Alive() then
         local res = hook.Run("Horde_OnPlayerOpenShop", ply)
         if res ~= true then
-            if HORDE.current_break_time <= 0 and not NearBeacon(ply) then
+            if HORDE.current_break_time <= 0 and not nearBeacon(ply) then
                 HORDE:SendNotification("You cannot shop after a wave has started.", 1, ply)
                 return
             end
