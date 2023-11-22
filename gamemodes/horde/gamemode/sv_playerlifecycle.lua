@@ -639,9 +639,7 @@ hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
         ply:ConCommand([[cl_showhints 0]])
         ply:SetMoveType(MOVETYPE_WALK)
 
-	if not system.HasFocus() then
-            ply:SendLua('system.FlashWindow()')
-        end
+	ply:SendLua('if not system.HasFocus() then system.FlashWindow() end')
 			
     end
 end)
