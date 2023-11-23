@@ -228,7 +228,7 @@ function plymeta:Horde_DropMoney(amount)
     end
 end
 
-function plymeta:canPayCD()
+local function canPayCD()
 	if self.nextPayTime and CurTime() >= self.nextPayTime then self.nextPayTime = CurTime() + 5 return true end
 	if self.nextPayTime and CurTime() < self.nextPayTime then return false end
 	self.nextPayTime = CurTime() + 5
