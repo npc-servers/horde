@@ -234,14 +234,13 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
     local amount = tonumber(amount)
     local plyForMoney
     local allPlys = player.GetAll()
-    for i=1, #allPlys do
-        local iterPly = allPlys[i]
-        local findString = string.find(string.lower(iterPly:GetName()), string.lower(plyToPay))
+    for _,v in ipairs(allPlys) do
+        local findString = string.find(string.lower(v:GetName()), string.lower(plyToPay))
         if findString then
-            plyForMoney = iterPly
+            plyForMoney = v
         end
     end
-    if plyForMoney == nil then return end
+    if plyForMoney == nil then self:ChatPrint("Invalid player.") return end
     if plyForMoney:SteamID() == self:SteamID() then return end -- Not that this really matters but it'd be a bit silly 
     local amount = math.floor(amount)
     if not amount or amount <= 0 or self:Horde_GetMoney() < amount then return end
@@ -249,6 +248,7 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
     self:Horde_SyncEconomy()
     plyForMoney:Horde_AddMoney(amount)
     plyForMoney:Horde_SyncEconomy()
+    plyForMoney:ChatPrint(self:GetName().." has given you "..amount.."$")
 end
 
 function plymeta:Horde_GetMaxWeight()
