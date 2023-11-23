@@ -228,9 +228,11 @@ function plymeta:Horde_DropMoney(amount)
     end
 end
 
-function plymeta:payCD()
-	if CurTime() >= self.nextPayTime then self.nextPayTime = CurTime() + 5 return true end
-	return false
+function plymeta:canPayCD()
+	if self.nextPayTime and CurTime() >= self.nextPayTime then self.nextPayTime = CurTime() + 5 return true end
+	if self.nextPayTime and CurTime() < self.nextPayTime then return false end
+	self.nextPayTime = CurTime() + 5
+	return true
 end
 
 function plymeta:Horde_PayPlayer(plyToPay, amount)
@@ -249,7 +251,7 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
     if plyForMoney:SteamID() == self:SteamID() then return end -- Not that this really matters but it'd be a bit silly 
     local amount = math.floor(amount)
     if not amount or amount <= 0 or self:Horde_GetMoney() < amount then return end
-    if not self:payCD() then self:ChatPrint("Please wait before using !pay again.") return end
+    if not self:canPayCD() then self:ChatPrint("Please wait before using !pay again.") return end
     self:Horde_AddMoney(-amount)
     self:Horde_SyncEconomy()
     plyForMoney:Horde_AddMoney(amount)
