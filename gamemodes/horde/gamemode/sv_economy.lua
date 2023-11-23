@@ -228,35 +228,27 @@ function plymeta:Horde_DropMoney(amount)
     end
 end
 
-function plymeta:Horde_PayPlayer(plyToPay, amount)
-
-    if not plyToPay or not amount then return end
-
-    local plyToPay = tostring(plyToPay)
-    local amount = tonumber(amount)
-
+function plymeta:Horde_PayPlayer(PlyToPay, Amount)
+    if not PlyToPay or not amount then return end
+    local PlyToPay = tostring(plyToPay)
+    local Amount = tonumber(amount)
     local Ply
-    local AllPlys = ents.FindByClass("player")
-
+    local AllPlys = player.GetAll()
     for i=1, #AllPlys do
         local IterPly = AllPlys[i]
-        local FindString = string.find(IterPly:GetName():lower(), plyToPay:lower())
+        local FindString = string.find(string.lower(IterPly:GetName()), string.lower(plyToPay))
         if FindString then
             Ply = IterPly
         end
     end
-
     if Ply == nil then return end
     if Ply:SteamID() == self:SteamID() then return end -- Not that this really matters but it'd be a bit silly 
-
-    local amount = math.floor(amount)
-    if not amount or amount <= 0 or self:Horde_GetMoney() < amount then return end
-
-    self:Horde_AddMoney(-amount)
+    local Amount = math.floor(amount)
+    if not Amount or Amount <= 0 or self:Horde_GetMoney() < Amount then return end
+    self:Horde_AddMoney(-Amount)
     self:Horde_SyncEconomy()
-    Ply:Horde_AddMoney(amount)
+    Ply:Horde_AddMoney(Amount)
     Ply:Horde_SyncEconomy()
-
 end
 
 function plymeta:Horde_GetMaxWeight()
