@@ -231,6 +231,7 @@ end
 function plymeta:Horde_PayPlayer(plyToPay, amount)
     if not plyToPay or not amount then return end
     if not self.nextPayTime then self.nextPayTime = CurTime() end
+    if self.nextPayTime and CurTime() < self.nextPayTime then self:ChatPrint("Please wait before using !pay again.") return end
     local plyToPay = tostring(plyToPay)
     local amount = tonumber(amount)
     local plyForMoney
@@ -245,7 +246,6 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
     if plyForMoney:SteamID() == self:SteamID() then return end -- Not that this really matters but it'd be a bit silly 
     local amount = math.floor(amount)
     if not amount or amount <= 0 or self:Horde_GetMoney() < amount then return end
-    if self.nextPayTime and CurTime() < self.nextPayTime then self:ChatPrint("Please wait before using !pay again.") return end
     self:Horde_AddMoney(-amount)
     self:Horde_SyncEconomy()
     plyForMoney:Horde_AddMoney(amount)
