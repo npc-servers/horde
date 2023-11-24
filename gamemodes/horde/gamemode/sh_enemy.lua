@@ -190,7 +190,7 @@ end
 function HORDE:GetDefaultEnemiesData ()
     -- name, class, weight, wave, elite, health_scale, damage_scale, reward_scale, model_scale, color
     
-    HORDE:CreateEnemy("Newborn", "npc_vj_gal_humanimal_newborn"             0.70,  1, false, 1, 1, 1, 1)
+    HORDE:CreateEnemy("Newborn", "npc_vj_gal_humanimal_newborn",            0.70,  1, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Walker", "npc_vj_horde_walker",                      1.00,  1, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter", "npc_vj_horde_sprinter",                  0.85,  1, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Headcrab Zombie Torso", "npc_zombie_torso",          0.30,  1, false, 1, 1, 1, 1)
