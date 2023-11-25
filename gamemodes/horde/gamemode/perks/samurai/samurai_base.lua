@@ -28,6 +28,11 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
         net.Send(ply)
 
         HORDE:CheckDemonStompCharges(ply)
+
+        hook.Add("Horde_PlayerMoveBonus", "Horde_SamuraiSpeed", function (ply, bonus_walk, bonus_run)
+            bonus_run.more = bonus_run.more * 1.4
+            bonus_walk.more = bonus_walk.more * 1.4 
+        end)
     end
 end
 
@@ -38,6 +43,7 @@ PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
             net.WriteUInt(0, 3)
         net.Send(ply)
         ply:Horde_SetPerkCharges(0)
+        hook.Remove("Horde_PlayerMoveBonus", "Horde_SamuraiSpeed")
     end
 end
 
@@ -48,6 +54,11 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
     end
 
     if ply:Horde_GetSpamPerkCooldown() > CurTime() then return true end
+
+    for debuff, buildup in pairs(ply.Horde_Debuff_Buildup) do
+        ply:Horde_ReduceDebuffBuildup(debuff, buildup*0.67)
+    end
+    
     ply:Horde_SetSpamPerkCooldown(CurTime() + 0.25)
     local id = ply:SteamID()
 
