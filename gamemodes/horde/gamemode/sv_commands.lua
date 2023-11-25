@@ -219,7 +219,8 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         ply:PrintMessage(HUD_PRINTTALK, "'!shop' - Open shop")
         ply:PrintMessage(HUD_PRINTTALK, "'!drop' - Drop weapon")
         ply:PrintMessage(HUD_PRINTTALK, "'!throwmoney <amount>' - Drop money")
-        ply:PrintMessage(HUD_PRINTTALK, "'!rtv' -Initiate a map change vote")
+        ply:PrintMessage(HUD_PRINTTALK, "'!rtv' - Initiate a map change vote")
+        ply:PrintMessage(HUD_PRINTTALK, "'!addons' - Prints a link to the addons for this server")
     elseif text[1] == "!start" then
         Start(ply)
     elseif text[1] == "!ready" then
@@ -253,6 +254,8 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         HORDE:SyncToServer(ply)]]--
     elseif text[1] == "!pay" then
         ply:Horde_PayPlayer(text[2], text[3])
+    elseif text[1] == "!addons" or text[1] == "!addon" then
+        ply:PrintMessage("https://steamcommunity.com/sharedfiles/filedetails/?id=3046821933")
     end
 end)
 
