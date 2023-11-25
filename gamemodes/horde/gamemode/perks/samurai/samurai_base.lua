@@ -7,7 +7,11 @@ Inflicts Bleeding buildup by {1} of base Melee damage. ({2} + {3} per level, up 
 
 SHIFT+E to activate Quickstep.
 Dashes torwards the input direction.
-Provides 100% evasion during Quickstep.]]
+Provides 100% evasion during Quickstep.
+Removes two thirds of current building for all active debuffs.
+
+Samurai's get a ninja speed boost of 40%.
+]]
 PERK.Icon = "materials/subclasses/samurai.png"
 PERK.Params = {
     [1] = {percent = true, base = 0.1, level = 0.01, max = 0.35, classname = "Samurai"},
