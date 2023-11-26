@@ -15,7 +15,9 @@ end
 
 MUTATION.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmg, bonus)
     if dmg:GetAttacker():IsNPC() and dmg:GetAttacker():Horde_HasMutation("shadow") then
-        ply:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg:GetDamage() * 2)
+        if not HORDE:IsColdDamage(dmg) then
+            ply:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg:GetDamage() * 2)
+        end
     end
 end
 
