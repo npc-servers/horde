@@ -670,7 +670,7 @@ function HORDE:GetDefaultItemsData()
         - Immune to Poison damage and Break.]],
     {Medic=true}, -1, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH, HORDE.DMG_POISON}, nil, {"Hatcher"}, true)
 
-    HORDE:CreateItem("Equipment",  "Medkit",         "weapon_horde_medkit",      50,   1, "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
+    HORDE:CreateItem("Equipment",  "Medkit",         "weapon_horde_medkit",      50,   0, "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
     nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, {"Survivor", "Psycho", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Cremator", "Artificer"})
     HORDE:CreateItem("Equipment",  "Health Vial",    "item_healthvial",    15,   0, "A capsule filled with sticky green liquid.\nHeals instantly when picked up.",
     {Medic=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=5}, nil)
