@@ -20,7 +20,7 @@ PERK.Params = {
     [5] = {percent = true, base = 0, level = 0.01, max = 0.25, classname = "Samurai"},
     [6] = {value = 0.01, percent = true},
     [7] = {value = 0.25, percent = true},
-	[8] = {value = 0.4, percent = true},
+    [8] = {value = 0.4, percent = true},
 }
 PERK.Hooks = {}
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
@@ -32,15 +32,14 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
         net.Send(ply)
 
         HORDE:CheckDemonStompCharges(ply)
-
     end
 end
 
 hook.Add("Horde_PlayerMoveBonus", "Horde_SamuraiSpeed", function (ply, bonus_walk, bonus_run)
-            if not ply:Horde_GetPerk("samurai_base") then return end
-            bonus_run.more = bonus_run.more * 1.4
-            bonus_walk.more = bonus_walk.more * 1.4 
-        end)
+    if not ply:Horde_GetPerk("samurai_base") then return end
+    bonus_walk.increase = bonus_walk.increase + 0.4
+    bonus_run.increase = bonus_run.increase + 0.4
+end)
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
     if SERVER and perk == "samurai_base" then
