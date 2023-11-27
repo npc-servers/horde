@@ -417,11 +417,11 @@ end)
 hook.Add("PlayerCanPickupWeapon", "Horde_Economy_Pickup", function (ply, wpn)
     if not ply:IsValid() then return false end
     if ply:IsNPC() then return true end
-    if not wpn.firstTaken then
-        wpn.fistTaken = true  
-        wpn.lastOwner = ply  
+    if not wpn.firstTimePickup then
+        wpn.fistTimePickup = true  
+        wpn.lastWeaponHolder = ply  
     end
-    if ply:GetInfo("horde_pickup_weapons") == 0 and wpn.lastOwner ~= ply then return false end
+    if ply:GetInfo("horde_pickup_weapons") == 0 and wpn.lastWeaponHolder ~= ply then return false end
     if HORDE.items[wpn:GetClass()] then
         local item = HORDE.items[wpn:GetClass()]
         if (ply:Horde_GetWeight() - item.weight < 0) then
