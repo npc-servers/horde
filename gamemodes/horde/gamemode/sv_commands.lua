@@ -241,7 +241,7 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         if Wep and Wep:IsValid() and Wep.Base == "horde_spell_weapon_base" then
             return
         end
-        Wep.newlyGainedWep = false
+        Wep.newlyGainedWep = nil
         ply:DropWeapon()
     elseif text[1] == "!throwmoney" then
         ply:Horde_DropMoney(text[2])
