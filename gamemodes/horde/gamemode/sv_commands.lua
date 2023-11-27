@@ -238,7 +238,7 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         MapConfig(ply)
     elseif text[1] == "!drop" then
         local Wep = ply:GetActiveWeapon()
-        if Wep and Wep:IsValid() and Wep:GetActiveWeapon().Base == "horde_spell_weapon_base" then
+        if Wep and Wep:IsValid() and Wep.Base == "horde_spell_weapon_base" then
             return
         end
         Wep.firstTimePickup = false
