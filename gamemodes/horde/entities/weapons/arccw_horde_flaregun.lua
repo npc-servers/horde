@@ -168,6 +168,6 @@ function SWEP:Hook_PostFireRocket(rocket)
     if self.Owner:IsValid() and self.Owner:GetAmmoCount("357") > 0 then
     --set clip1 to 2 to make the weapon have 1 ammo left after shooting
     self:SetClip1(2)
-	self.Owner:SetAmmo(self.Owner:GetAmmoCount("357") - 1, "357")
+	self:GetOwner():SetAmmo(self.Owner:GetAmmoCount("357") - 1, "357")
     end
 end
