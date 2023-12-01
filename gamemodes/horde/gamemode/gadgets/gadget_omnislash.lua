@@ -50,7 +50,8 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if not ent:IsValid() then
 	ply:EmitSound("items/suitchargeno1.wav")
 	ply:Horde_SetGadgetCooldown(1)
-	return end
+	return
+    end
 	
     if HORDE:IsEnemy(ent) then
         ply:Horde_SetGadgetCooldown(15)

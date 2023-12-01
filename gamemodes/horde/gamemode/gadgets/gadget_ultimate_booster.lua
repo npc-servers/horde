@@ -34,6 +34,6 @@ GADGET.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmginfo, bonus)
 end
 
 GADGET.Hooks.Horde_OnPlayerDebuffApply = function (ply, debuff, bonus, inflictor)
-    if ply:Horde_GetGadget() ~= "gadget_ultimate_booster" then return end
-        bonus.less = bonus.less * 0.75
+if ply:Horde_GetGadget() ~= "gadget_ultimate_booster" then return end
+    bonus.less = bonus.less * 0.75
 end

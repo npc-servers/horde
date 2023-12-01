@@ -33,12 +33,12 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                 return
             end
 			
-			if ply:Health() > (ply:GetMaxHealth() * 0.5) and ply:Armor() < (ply:GetMaxArmor() * 0.5) then
-			ply:SetHealth(ply:Health() - 1)
-			if ply:Armor() <= (ply:GetMaxArmor() * 0.5) then
-            ply:SetArmor(math.min(ply:GetMaxArmor() * 0.5, ply:Armor() + 1))
-			end
-			end
+        if ply:Health() > (ply:GetMaxHealth() * 0.5) and ply:Armor() < (ply:GetMaxArmor() * 0.5) then
+        ply:SetHealth(ply:Health() - 1)
+        if ply:Armor() <= (ply:GetMaxArmor() * 0.5) then
+        ply:SetArmor(math.min(ply:GetMaxArmor() * 0.5, ply:Armor() + 1))
+        end
+        end
         end)
     end
 end
