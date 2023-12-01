@@ -21,11 +21,11 @@ PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
             npc.Horde_Mutation["nemesis"] = nil
             npc.Horde_Mutation_Nemesis = nil
         end
-		if npc:Horde_HasMutation("fume") then
+        if npc:Horde_HasMutation("fume") then
             npc.Horde_Mutation["fume"] = nil
             npc.Horde_Mutation_Fume = nil
         end
-		if npc:Horde_HasMutation("decay") then
+        if npc:Horde_HasMutation("decay") then
             npc.Horde_Mutation["decay"] = nil
             npc.Horde_Mutation_Decay = nil
         end
