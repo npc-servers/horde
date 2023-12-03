@@ -94,7 +94,7 @@ function ENT:CustomRangeAttackCode()
 	local v = self:GetEnemy():OBBMaxs().z - self:GetEnemy():OBBMins().z
 	if v < 60 then v = 0 end
 	bullet.Num = 1
-	bullet.Src = gunPos
+ bullet.Src = gunPos
  local headPos = self:GetEnemy():GetAttachment(self:GetEnemy():LookupAttachment("eyes"))
 	local pos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter()
  if headPos then
