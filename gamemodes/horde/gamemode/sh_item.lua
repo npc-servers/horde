@@ -260,6 +260,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_akimbo_glock17"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_akimbo_m9"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_akimbo_deagle"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_apex_p2020"].infusions = ballistic_infusions_light
     --HORDE.items["arccw_horde_flaregun"].infusions = {HORDE.Infusion_Chrono, HORDE.Infusion_Quality}
 
     -- SMGs
@@ -406,6 +407,8 @@ function HORDE:GetDefaultItemsData()
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 5, -1, nil, nil, {Medic=1, Assault=1, Heavy=1, Demolition=1, Survivor=1, Engineer=1, Warden=1, Cremator=1}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "Tec-9",          "arccw_go_tec9",    1000,  3, "A Swedish-made semi-automatic pistol.\nLethal in close quarters.",
     {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 8, -1, nil, nil, {Survivor=2}, nil, {HORDE.DMG_BALLISTIC})
+    HORDE:CreateItem("Pistol",     "P2020",          "arccw_apex_p2020",    750,  2, "P2020 Description",
+    {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
 
     HORDE:CreateItem("Pistol",     "Dual Glock17",   "arccw_horde_akimbo_glock17",  1750,  5, "Dual Glock 17.\nWidely used by law enforcements.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
