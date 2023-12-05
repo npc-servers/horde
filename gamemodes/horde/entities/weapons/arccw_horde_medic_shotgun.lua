@@ -335,7 +335,7 @@ function SWEP:DoPrimaryFire(isent, data)
 end
 
 hook.Add("Hook_BulletHit", "Horde_MedicShotgunHeal", function(wpn, data)
-    if wpn:GetClass() == "arccw_horde_medic_shotgun" then
+    if not wpn:GetClass() == "arccw_horde_medic_shotgun" then return end
         if SERVER then
             if (data.tr.Entity:IsPlayer()) then
                 data.Damage = 0
@@ -361,7 +361,6 @@ hook.Add("Hook_BulletHit", "Horde_MedicShotgunHeal", function(wpn, data)
             smoke:SetBounce(0)
             emitter:Finish()
         end
-    end
 end)
 
 sound.Add({
