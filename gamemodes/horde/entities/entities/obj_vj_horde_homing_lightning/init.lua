@@ -3,12 +3,12 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
-local pb_vert = 2
-local pb_hor = 2
+local physMin = Vector( -2, -2, -2 )
+local physMax = Vector( 2, 2, 2 )
 
 function ENT:Initialize()	
 	self:SetModel("models/crossbow_bolt.mdl")
-	self:PhysicsInitBox( Vector(-pb_vert,-pb_hor,-pb_hor), Vector(pb_vert,pb_hor,pb_hor) )
+	self:PhysicsInitBox( physMin, physMax )
 	
 	self:SetMoveCollide(3)
 	self:DrawShadow(false)
