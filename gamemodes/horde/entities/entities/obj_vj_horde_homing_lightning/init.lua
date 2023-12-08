@@ -3,9 +3,10 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
+local pb_vert = 2
+local pb_hor = 2
+
 function ENT:Initialize()	
-	local pb_vert = 2
-	local pb_hor = 2
 	self:SetModel("models/crossbow_bolt.mdl")
 	self:PhysicsInitBox( Vector(-pb_vert,-pb_hor,-pb_hor), Vector(pb_vert,pb_hor,pb_hor) )
 	
@@ -56,7 +57,7 @@ function ENT:OnRemove()
 end
 
 function ENT:Think()
-    if SERVER and not self.entOwner:IsValid() then 
+    if SERVER and not IsValid(self.entOwner) then 
 	    self:Remove()
         return
     end
