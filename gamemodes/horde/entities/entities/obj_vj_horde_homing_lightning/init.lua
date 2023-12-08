@@ -15,8 +15,7 @@ function ENT:Initialize()
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_CUSTOM)
-	self:SetHealth(1)
-	
+	self:SetHealth(1)	
 	local phys = self:GetPhysicsObject()
 	if phys:IsValid() then
 		phys:SetMass(1)
