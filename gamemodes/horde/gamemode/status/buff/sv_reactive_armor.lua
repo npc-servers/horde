@@ -34,7 +34,7 @@ end
 
 hook.Add("Horde_OnPlayerDamageTaken", "Horde_ReactiveArmorDamage", function (ply, dmginfo, bonus, silent)
     if silent then return end
-    if ply:IsValid() and ply:Horde_GetReactiveArmorEnabled() and ply:Horde_GetReactiveArmor() == 1 and dmginfo:GetAttacker() ~= ply and dmginfo:GetDamage() >= 25 and ply:Health() < dmginfo:GetDamage() then
+    if not ply:IsValid() or not ply:Horde_GetReactiveArmorEnabled() or ply:Horde_GetReactiveArmor() == 0 or dmginfo:GetAttacker() == ply or dmginfo:GetDamage() < 25 or ply:Health() > dmginfo:GetDamage() or not ply:Alive() then return end
         bonus.resistance = 1
         local dmg = DamageInfo()
         dmg:SetAttacker(ply)
@@ -51,7 +51,6 @@ hook.Add("Horde_OnPlayerDamageTaken", "Horde_ReactiveArmorDamage", function (ply
         timer.Create("Horde_RestockReactiveArmor" .. ply:SteamID(), 6, 1, function ()
             ply:Horde_AddReactiveArmor()
         end)
-    end
 end)
 
 
