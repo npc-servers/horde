@@ -34,24 +34,19 @@ end
 
 hook.Add("Horde_OnPlayerDamageTaken", "Horde_ReactiveArmorDamage", function (ply, dmginfo, bonus, silent)
     if silent then return end
-    if ply.TakingReactiveArmorDamage then return end
-    if ply:IsValid() and ply:Horde_GetReactiveArmorEnabled() and ply:Horde_GetReactiveArmor() == 1 and dmginfo:GetAttacker() ~= ply then
+    if ply:IsValid() and ply:Horde_GetReactiveArmorEnabled() and ply:Horde_GetReactiveArmor() == 1 and dmginfo:GetAttacker() ~= ply and dmginfo:GetDamage() >= 25 and ply:Health() < dmginfo:GetDamage() then
         bonus.resistance = 1
         local dmg = DamageInfo()
         dmg:SetAttacker(ply)
         dmg:SetInflictor(ply)
         dmg:SetDamageType(DMG_BLAST)
         dmg:SetDamage(100)
-
-        ply.TakingReactiveArmorDamage = true
         util.BlastDamageInfo(dmg, ply:GetPos(), 150)
-        ply.TakingReactiveArmorDamage = nil
-
         local effectdata = EffectData()
         effectdata:SetOrigin( ply:GetPos() )
         util.Effect("Explosion", effectdata)
         ply:Horde_RemoveReactiveArmor()
-        ply:SetArmor(ply:Armor() * 0.75)
+        ply:SetArmor(math.max(0, ply:Armor() - ply:GetMaxArmor() * 0.25))
         timer.Remove("Horde_RestockReactiveArmor" .. ply:SteamID())
         timer.Create("Horde_RestockReactiveArmor" .. ply:SteamID(), 6, 1, function ()
             ply:Horde_AddReactiveArmor()
