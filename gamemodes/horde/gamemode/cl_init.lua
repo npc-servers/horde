@@ -338,8 +338,9 @@ net.Receive("Horde_ForceCloseShop", function ()
     end
 
     HORDE.TipPanel:SetVisible(false)
-    HORDE.leader_board:SetVisible(false)
-
+    if LocalPlayer():GetInfoNum("horde_show_leaderboard", 0) == 0 then   
+        HORDE.leader_board:SetVisible(false)
+    end
     gui.EnableScreenClicker(false)
 end)
 
