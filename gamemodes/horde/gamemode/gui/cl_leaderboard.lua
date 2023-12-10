@@ -99,7 +99,8 @@ end
 
 function HORDE:ShowLeaderboardThenFadeOut()
     HORDE.leader_board:SetVisible(true)
-    if LocalPlayer():GetInfoNum("horde_show_leaderboard", 0) == 0 then
+    local showLeaderboardToggle = GetConVar("horde_show_leaderboard"):GetBool()
+    if showLeaderboardToggle == false then 
         timer.Simple(10, function ()
             HORDE.leader_board:SetVisible(false)
         end)
