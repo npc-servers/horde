@@ -97,9 +97,10 @@ function PANEL:Paint()
 
 end
 
+local showLeaderboardToggle = GetConVar("horde_show_leaderboard"):GetBool()
+
 function HORDE:ShowLeaderboardThenFadeOut()
     HORDE.leader_board:SetVisible(true)
-    local showLeaderboardToggle = GetConVar("horde_show_leaderboard"):GetBool()
     if showLeaderboardToggle == false then 
         timer.Simple(10, function ()
             HORDE.leader_board:SetVisible(false)
