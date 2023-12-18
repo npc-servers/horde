@@ -67,7 +67,7 @@ function ENT:Explode()
 
     for _, e in pairs(ents.FindInSphere(self:GetPos(), 175)) do
         if IsValid(e) and HORDE:IsEnemy(e) then
-            for i = 1, 12 do
+            for i = 1, 13 do
                 local dmginfo = DamageInfo()
                 dmginfo:SetDamage(8)
                 dmginfo:SetDamageType(DMG_SHOCK)
