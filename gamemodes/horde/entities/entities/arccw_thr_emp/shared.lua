@@ -65,7 +65,7 @@ function ENT:Explode()
         attacker = self:GetOwner()
     end
 
-    for _, e in pairs(ents.FindInSphere(self:GetPos(), 175)) do
+    for _, e in pairs(ents.FindInSphere(self:GetPos(), 200)) do
         if IsValid(e) and HORDE:IsEnemy(e) then
             for i = 1, 13 do
                 local dmginfo = DamageInfo()
