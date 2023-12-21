@@ -154,6 +154,10 @@ SWEP.RejectAttachments = {
 }
 
 SWEP.Attachments = {
+    {
+        PrintName = "Ammo",
+        Slot = "horde_ammo"
+    },
     { --3
         PrintName = "Perk",
         Slot = "go_perk"

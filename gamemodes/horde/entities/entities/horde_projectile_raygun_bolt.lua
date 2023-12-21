@@ -4,8 +4,8 @@ ENT.Base 				= "horde_explosive_projectile_base"
 ENT.PrintName 			= "Raygun Bolt"
 ENT.Model = "models/props_phx/gibs/flakgib1.mdl"
 ENT.LifeTime = 10 -- Time to removal
-ENT.ProjectileDamage = 250 -- Projectile/explosion damage
-ENT.ProjectileDamageRadius = 100 -- Explosion radius
+ENT.ProjectileDamage = 150 -- Projectile/explosion damage
+ENT.ProjectileDamageRadius = 125 -- Explosion radius
 ENT.ArmDistance = 0.00001 -- Safety distance
 
 ENT.ProjectileUnarmedDamageType = DMG_SHOCK -- Damage type when hitting something unarmed
@@ -16,10 +16,6 @@ ENT.Ticks = 0
 
 ENT.RaygunEffect = "raygun_splash"
 ENT.RaygunSound = "ArcCW_BO1.RayGun_Splash"
-
-if CLIENT then
-    killicon.Add( "horde_raygun_bolt", "arccw/weaponicons/arccw_bo1_raygun", Color( 255, 255, 255, 255 ) )
-end
 
 DEFINE_BASECLASS( ENT.Base )
 
