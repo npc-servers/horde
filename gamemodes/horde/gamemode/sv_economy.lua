@@ -250,7 +250,7 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
             Names = Names.." "..v:GetName()..","
         end
         Names = string.TrimRight(Names, ",")
-        self:ChatPrint("Multiple players have given name: "..Names)
+        self:ChatPrint("Multiple players have given name:"..Names)
         return
     end
     if plyForMoney == nil then self:ChatPrint("Invalid player.") return end
