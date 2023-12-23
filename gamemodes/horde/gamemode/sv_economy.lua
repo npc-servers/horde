@@ -845,7 +845,7 @@ net.Receive("Horde_SelectClass", function (len, ply)
     end
 
     local PlyClass = ply:Horde_GetClass().name
-    if PlyClass == name or PlyClass == subclass_name then
+    if PlyClass == name then
         HORDE:SendNotification("You cannot change to your current class.", 1, ply)
         return
     end
