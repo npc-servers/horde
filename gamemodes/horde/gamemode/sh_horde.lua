@@ -105,7 +105,7 @@ HORDE.total_enemies_per_wave = {15, 19, 23, 27, 30, 33, 36, 39, 42, 45}
 --HORDE.total_enemies_per_wave = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 -- Director
-HORDE.difficulty = 1
+HORDE.CurrentDifficulty = 1
 HORDE.total_enemies_this_wave = 0
 HORDE.alive_enemies_this_wave = 0
 HORDE.killed_enemies_this_wave = 0

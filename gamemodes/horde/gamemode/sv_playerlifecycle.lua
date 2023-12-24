@@ -47,7 +47,7 @@ function HORDE:GiveStarterWeapons(ply)
 end
 
 local function setNextMapDifficulty()
-    local chosen_diff = HORDE.difficulty
+    local chosen_diff = HORDE.CurrentDifficulty
     local chosen_diff_count = 0
 
     local diff_collect = {}
@@ -119,7 +119,7 @@ function HORDE:GameEnd(status)
 
     local tokens = math.floor(HORDE.current_wave / 2)
     if status == "VICTORY" then
-        tokens = tokens + math.max(0, HORDE.difficulty - 1)
+        tokens = tokens + math.max(0, HORDE.CurrentDifficulty - 1)
     end
     for _, ply in pairs(player.GetHumans()) do
         ply:Horde_AddSkullTokens(tokens)
@@ -382,7 +382,7 @@ function HORDE:PlayerInit(ply)
     net.Send(ply)
 
     net.Start("Horde_SyncDifficulty")
-        net.WriteUInt(HORDE.difficulty,4)
+        net.WriteUInt(HORDE.CurrentDifficulty,4)
     net.Send(ply)
 
     net.Start("Horde_SyncGameInfo")

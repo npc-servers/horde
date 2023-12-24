@@ -1,0 +1,3 @@
+-- HORDE.Difficulty = {
+
+-- }
