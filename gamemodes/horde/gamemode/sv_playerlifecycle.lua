@@ -51,8 +51,8 @@ local function setNextMapDifficulty()
     local chosen_diff_count = 0
 
     local diff_collect = {}
-    for _, diff in ipairs(HORDE.difficulty_text) do
-        diff_collect[diff] = 0
+    for _, diff in ipairs( HORDE.Difficulty ) do
+        diff_collect[diff.name] = 0
     end
 
     for ply, diff_voted in pairs(diff_votes) do
@@ -70,20 +70,17 @@ local function setNextMapDifficulty()
         end
     end
 
-    if chosen_diff == "NORMAL" then
-        GetConVar("horde_difficulty"):SetInt(0)
-    elseif chosen_diff == "HARD" then
-        GetConVar("horde_difficulty"):SetInt(1)
-    elseif chosen_diff == "REALISM" then
-        GetConVar("horde_difficulty"):SetInt(2)
-    elseif chosen_diff == "NIGHTMARE" then
-        GetConVar("horde_difficulty"):SetInt(3)
-    elseif chosen_diff == "APOCALYPSE" then
-        GetConVar("horde_difficulty"):SetInt(4)
-    elseif chosen_diff == "HELL" then
-        GetConVar("horde_difficulty"):SetInt(5)
-    else
-        GetConVar("horde_difficulty"):SetInt(1)
+    local foundDiff = false
+    for id, diff in ipairs( HORDE.Difficulty ) do
+        if diff.name == chosen_diff then
+            GetConVar( "horde_difficulty" ):SetInt( id )
+            foundDiff = true
+            break
+        end
+    end
+
+    if not foundDiff then
+        GetConVar( "horde_difficulty" ):SetInt( 1 )
     end
 end
 
@@ -620,8 +617,8 @@ net.Receive("Horde_Votediff", function (len, ply)
     diff_votes[ply] = net.ReadString()
 
     local diff_collect = {}
-    for _, diff in ipairs(HORDE.difficulty_text) do
-        diff_collect[diff] = 0
+    for _, diff in ipairs( HORDE.Difficulty ) do
+        diff_collect[diff.name] = 0
     end
 
     for _, diff_voted in pairs(diff_votes) do
