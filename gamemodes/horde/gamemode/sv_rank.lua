@@ -149,7 +149,7 @@ if GetConVar("horde_enable_sandbox"):GetInt() == 0 and GetConVar("horde_enable_r
 		local ExpMulti = ExpMultiConvar:GetInt()
 			
 		if HORDE.CurrentDifficulty >= 5 and HORDE.current_wave >= 4 then
-			ExpMulti = 2 * ExpMultiConvar:GetInt()
+			ExpMulti = 2 * ExpMulti
 		end
 
 		if HORDE.current_wave <= 0 or GetConVar("sv_cheats"):GetInt() == 1 then return end
