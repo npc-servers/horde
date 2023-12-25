@@ -141,13 +141,13 @@ function HORDE:LoadRank(ply)
 	ply.Horde_Rank_Loaded = true
 end
 
+local ExpMultiConvar = GetConVar("horde_experience_multiplier")
+
 if GetConVar("horde_enable_sandbox"):GetInt() == 0 and GetConVar("horde_enable_rank"):GetInt() == 1 then
 	hook.Add("Horde_OnEnemyKilled", "Horde_GiveExp", function(victim, killer, wpn)
-
-		--For increasing xp on high difficulties
-		local ExpMulti = 1 
+		ExpMultiConvar:SetInt(2) -- We can delete this after christmas
 		if HORDE.CurrentDifficulty >= 5 and HORDE.current_wave >= 4 then
-			ExpMulti = 2
+			ExpMultiConvar:SetInt(2)
 		end
 
 		if HORDE.current_wave <= 0 or GetConVar("sv_cheats"):GetInt() == 1 then return end
