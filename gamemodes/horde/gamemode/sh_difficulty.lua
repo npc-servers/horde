@@ -23,8 +23,8 @@ HORDE.Difficulty = {
         additionalPack = 0,
         additionalAmmoBoxes = 2,
         hemorrhagePercentage = 0.3,
-        xpMultiStart = 1,
-        xpMultiEnd = 1,
+        xpMultiStart = 0.1,
+        xpMultiEnd = 0.2,
     },
     [2] = {
         name = "HARD",
@@ -47,8 +47,8 @@ HORDE.Difficulty = {
         additionalPack = 1,
         additionalAmmoBoxes = 1,
         hemorrhagePercentage = 0.35,
-        xpMultiStart = 1,
-        xpMultiEnd = 1,
+        xpMultiStart = 0.2,
+        xpMultiEnd = 0.3,
     },
     [3] = {
         name = "REALISM",
@@ -71,8 +71,8 @@ HORDE.Difficulty = {
         additionalPack = 0,
         additionalAmmoBoxes = 0,
         hemorrhagePercentage = 0.4,
-        xpMultiStart = 1,
-        xpMultiEnd = 1,
+        xpMultiStart = 0.3,
+        xpMultiEnd = 0.4,
     },
     [4] = {
         name = "NIGHTMARE",
@@ -95,8 +95,8 @@ HORDE.Difficulty = {
         additionalPack = 2,
         additionalAmmoBoxes = 0,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 1,
-        xpMultiEnd = 1,
+        xpMultiStart = 0.5,
+        xpMultiEnd = 0.6,
     },
     [5] = {
         name = "APOCALYPSE",
@@ -119,8 +119,8 @@ HORDE.Difficulty = {
         additionalPack = 3,
         additionalAmmoBoxes = 0,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 1,
-        xpMultiEnd = 1,
+        xpMultiStart = 0.6,
+        xpMultiEnd = 0.8,
     },
     [6] = {
         name = "HELL",
@@ -143,8 +143,8 @@ HORDE.Difficulty = {
         additionalPack = 4,
         additionalAmmoBoxes = 2,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 1,
-        xpMultiEnd = 2,
+        xpMultiStart = 0.8,
+        xpMultiEnd = 1.5,
     },
     [7] = {
         name = "CHAOS",
@@ -167,7 +167,7 @@ HORDE.Difficulty = {
         additionalPack = 4,
         additionalAmmoBoxes = 5,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 1.5,
+        xpMultiStart = 1,
         xpMultiEnd = 3,
     },
     [8] = {
@@ -191,8 +191,8 @@ HORDE.Difficulty = {
         additionalPack = 6,
         additionalAmmoBoxes = 10,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 1,
-        xpMultiEnd = 1.5,
+        xpMultiStart = 0.6,
+        xpMultiEnd = 0.8,
     },
 }
 
