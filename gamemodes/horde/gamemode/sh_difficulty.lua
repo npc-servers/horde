@@ -95,7 +95,7 @@ HORDE.Difficulty = {
         additionalPack = 2,
         additionalAmmoBoxes = 0,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 3,
+        xpMultiStart = 2,
         xpMultiEnd = 4,
     },
     [5] = {
@@ -119,7 +119,7 @@ HORDE.Difficulty = {
         additionalPack = 3,
         additionalAmmoBoxes = 0,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 4,
+        xpMultiStart = 3,
         xpMultiEnd = 5,
     },
     [6] = {
@@ -143,7 +143,7 @@ HORDE.Difficulty = {
         additionalPack = 4,
         additionalAmmoBoxes = 2,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 5,
+        xpMultiStart = 3,
         xpMultiEnd = 6,
     },
     [7] = {
@@ -167,7 +167,7 @@ HORDE.Difficulty = {
         additionalPack = 4,
         additionalAmmoBoxes = 5,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 6,
+        xpMultiStart = 4,
         xpMultiEnd = 7,
     },
     [8] = {
@@ -191,7 +191,7 @@ HORDE.Difficulty = {
         additionalPack = 6,
         additionalAmmoBoxes = 10,
         hemorrhagePercentage = 0.5,
-        xpMultiStart = 3,
+        xpMultiStart = 2,
         xpMultiEnd = 4,
     },
 }
