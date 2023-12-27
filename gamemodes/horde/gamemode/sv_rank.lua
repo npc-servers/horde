@@ -148,7 +148,7 @@ local EndXPMult = Horde.Difficulty[Horde.CurrentDifficulty].xpMultiEnd
 if GetConVar("horde_enable_sandbox"):GetInt() == 0 and GetConVar("horde_enable_rank"):GetInt() == 1 then
 	hook.Add("Horde_OnEnemyKilled", "Horde_GiveExp", function(victim, killer, wpn)
 			
-		local WavePercent = Horde.current_wave / 10 --If we ever change the max # of waves this will have to become dynamic instead of 10
+		local WavePercent = Horde.current_wave / HORDE.max_waves
 		local RoundXPMulti = StartXPMult+(WavePercent*(EndXPMult-StartXPMult)) --This gets the xp multi number between min and max multi based on round
 		local ExpMulti = RoundXPMulti * ExpMultiConvar:GetInt()
 
