@@ -141,29 +141,30 @@ function HORDE:LoadRank(ply)
 	ply.Horde_Rank_Loaded = true
 end
 
-local ExpMultiConvar = GetConVar("horde_experience_multiplier")
-local StartXPMult = Horde.Difficulty[Horde.CurrentDifficulty].xpMultiStart
-local EndXPMult = Horde.Difficulty[Horde.CurrentDifficulty].xpMultiEnd
+local expMultiConvar = GetConVar("horde_experience_multiplier")
+local startXpMult = Horde.Difficulty[Horde.CurrentDifficulty].xpMultiStart
+local endXpMult = Horde.Difficulty[Horde.CurrentDifficulty].xpMultiEnd
+local endMinusStartXp = endXPMult - startXpMult
 
 if GetConVar("horde_enable_sandbox"):GetInt() == 0 and GetConVar("horde_enable_rank"):GetInt() == 1 then
 	hook.Add("Horde_OnEnemyKilled", "Horde_GiveExp", function(victim, killer, wpn)
 			
-		local WavePercent = Horde.current_wave / HORDE.max_waves
-		local RoundXPMulti = StartXPMult+(WavePercent*(EndXPMult-StartXPMult)) --This gets the xp multi number between min and max multi based on round
-		local ExpMulti = RoundXPMulti * ExpMultiConvar:GetInt()
+		local wavePercent = Horde.current_wave / HORDE.max_waves
+		local roundXpMulti = startXpMult+(wavePercent*endMinusStartXp) --This gets the xp multi number between min and max multi based on round
+		local expMulti = roundXpMulti * expMultiConvar:GetInt()
 
 		if HORDE.current_wave <= 0 or GetConVar("sv_cheats"):GetInt() == 1 then return end
 		if killer:IsPlayer() and killer:IsValid() and killer:Horde_GetClass() then
 			local class_name = killer:Horde_GetCurrentSubclass()
 			if killer:Horde_GetLevel(class_name) >= HORDE.max_level then return end
 			if victim:Horde_IsElite() then
-				killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(2*ExpMulti) )
+				killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(2*expMulti) )
 				local p = math.random()
 				if p < 0.01 or (p < 0.1 and killer:Horde_GetGadget() == "gadget_corporate_mindset") then
                    			killer:Horde_AddSkullTokens(1)
 				end
 			else
-				killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(1*ExpMulti) )
+				killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(1*expMulti) )
 				HORDE:SaveRank(killer)
 			end
 		end
