@@ -154,18 +154,17 @@ if GetConVar("horde_enable_sandbox"):GetInt() == 0 and GetConVar("horde_enable_r
 		local expMulti = roundXpMulti * expMultiConvar:GetInt()
 
 		if HORDE.current_wave <= 0 or GetConVar("sv_cheats"):GetInt() == 1 then return end
-		if killer:IsPlayer() and killer:IsValid() and killer:Horde_GetClass() then
-			local class_name = killer:Horde_GetCurrentSubclass()
-			if killer:Horde_GetLevel(class_name) >= HORDE.max_level then return end
-			if victim:Horde_IsElite() then
-				expMulti = expMulti * 2
-				local p = math.random()
-				if p < 0.01 or (p < 0.1 and killer:Horde_GetGadget() == "gadget_corporate_mindset") then
-                   			killer:Horde_AddSkullTokens(1)
-				end
+		if not killer:IsPlayer() or not killer:IsValid() or not killer:Horde_GetClass() then return end
+		local class_name = killer:Horde_GetCurrentSubclass()
+		if killer:Horde_GetLevel(class_name) >= HORDE.max_level then return end
+		if victim:Horde_IsElite() then
+			expMulti = expMulti * 2
+			local p = math.random()
+			if p < 0.01 or (p < 0.1 and killer:Horde_GetGadget() == "gadget_corporate_mindset") then
+                   		killer:Horde_AddSkullTokens(1)
 			end
-			killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(expMulti) )
-			HORDE:SaveRank(killer)
 		end
+		killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(expMulti) )
+		HORDE:SaveRank(killer)
 	end)
 end
