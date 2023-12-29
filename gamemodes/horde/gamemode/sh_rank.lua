@@ -113,7 +113,7 @@ function plymeta:Horde_SyncExp()
 end
 
 function HORDE:GetExpToNextLevel(level)
-    return math.floor((50 + 2 * math.pow(1.1, level) + level * 25 + 100 * math.floor(level / 5))*10)
+    return math.floor((50 + 2 * math.pow(1.1, level) + level * 25 + 100 * math.floor(level / 5))*6)
 end
 
 function HORDE:LevelToRank(level)
