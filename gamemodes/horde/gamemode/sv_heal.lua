@@ -73,8 +73,8 @@ function HORDE:OnPlayerHeal(ply, healinfo, silent)
             end
         end
 		
-        if healer ~= ply and not HORDE:InBreak() and (ply:Health() < (ply:GetMaxHealth() * (1 + healinfo:GetOverHealPercentage() ) ) ) and HORDE.current_wave > 0 then
-            if ply:Horde_GetClass().name ~= "Psycho" then
+        if healer ~= ply and not HORDE:InBreak() and (ply:Health() < (ply:GetMaxHealth() * (1 + healinfo:GetOverHealPercentage() ) ) ) then
+            if not ply:Horde_GetPerk("psycho_base") then
                 healer:Horde_AddMoney(math.min(healinfo:GetHealAmount() * 0.75))
                 healer:Horde_SyncEconomy()
             end
