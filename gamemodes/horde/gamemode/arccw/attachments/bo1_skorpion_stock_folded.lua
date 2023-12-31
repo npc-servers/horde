@@ -1,7 +1,5 @@
 if not ArcCWInstalled then return end
 
-AddCSLuaFile()
-
 local att = {}
 
 att.PrintName = "Folded Stock"
