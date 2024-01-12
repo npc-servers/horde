@@ -122,6 +122,10 @@ function ENT:CustomOnKilled(dmginfo,hitgroup)
 		self.lion:Spawn()
 		self.lion:Activate() 
 		self.lion:SetOwner(self)
+		self.lion.Behavior = VJ_BEHAVIOR_PASSIVE_NATURE
+		self.lion.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
+		self.lion:AddRelationship("npc_headcrab_poison D_LI 99")
+		self.lion:AddRelationship("npc_headcrab_fast D_LI 99")
 	end
 	if IsValid(self.Manhack) then
 	self.lion = ents.Create("npc_manhack")
@@ -131,6 +135,10 @@ function ENT:CustomOnKilled(dmginfo,hitgroup)
 		self.lion:Activate() 
 		self.lion:SetOwner(self)
 		self.lion:SetHealth(self.Manhack:Health())
+		self.lion.Behavior = VJ_BEHAVIOR_PASSIVE_NATURE
+		self.lion.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
+		self.lion:AddRelationship("npc_headcrab_poison D_LI 99")
+		self.lion:AddRelationship("npc_headcrab_fast D_LI 99")
 end
 end
 /*-----------------------------------------------
