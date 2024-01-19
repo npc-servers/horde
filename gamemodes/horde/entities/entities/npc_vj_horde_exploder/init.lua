@@ -48,7 +48,10 @@ end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 
-    if hitgroup == 1 then return end -- 1 = Head
+    if hitgroup == HITGROUP_HEAD then 
+	self.HasDeathRagdoll = true
+	return
+    end 
 	
     local e = EffectData()
         e:SetOrigin(self:GetPos())
