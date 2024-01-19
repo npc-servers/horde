@@ -47,6 +47,9 @@ function ENT:CustomOnInitialize()
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
+
+    if hitgroup == 1 then return end -- 1 = Head
+	
     local e = EffectData()
         e:SetOrigin(self:GetPos())
     util.Effect("exploder_explosion", e, true, true)
