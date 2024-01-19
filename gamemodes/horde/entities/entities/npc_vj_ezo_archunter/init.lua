@@ -376,7 +376,7 @@ end
 
 function ENT:RangeAttackCode_GetShootPos(projectile)
 	local startPos = projectile:GetPos()
-	return self:CalculateProjectile("Line", startPos, self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 2000)
+	return self:CalculateProjectile("Line", startPos, self:GetEnemy():GetPos() + self:GetEnemy():WorldSpaceCenter(), 2000)
 end
 
 function ENT:CustomOnThink()
@@ -422,7 +422,7 @@ function ENT:CustomOnThink()
 
 		local trMove = util.TraceLine({
 			start = self:GetPos() + self:OBBCenter(),
-			endpos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(),
+			endpos = self:GetEnemy():GetPos() + self:GetEnemy():WorldSpaceCenter(),
 			filter = self
 		})
 
