@@ -373,7 +373,7 @@ function ENT:CustomOnThink()
 
 		local trMove = util.TraceLine({
 			start = self:GetPos() + self:OBBCenter(),
-			endpos = self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(),
+			endpos = self:GetEnemy():GetPos() + self:GetEnemy():WorldSpaceCenter(),
 			filter = self
 		})
 
