@@ -120,7 +120,7 @@ function SWEP:Deploy()
 end
 
 function SWEP:Holster()
-    self.RegenerationTimer = CurTime()
+    self.RegenerationTimer = ( CurTime() + .35 ) -- Should Regen while holstered, at a faster rate than equipped.
     self.Idle = 0
     self.IdleTimer = CurTime()
     return true
