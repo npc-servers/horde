@@ -120,7 +120,7 @@ function SWEP:Deploy()
     self.IdleTimer = CurTime() + owner:GetViewModel():SequenceDuration()
 
     if SERVER and self.HolsterTime then
-        local ammoCount = math.floor( ( CurTime() - self.HolsterTime ) * 0.5 )
+        local ammoCount = math.floor( ( CurTime() - self.HolsterTime ) * 2 )
         owner:SetAmmo( math.min( owner:GetAmmoCount( "Hornet" ) + ammoCount, self.Primary.MaxAmmo ), self.Primary.Ammo )
     end
 
