@@ -752,7 +752,7 @@ net.Receive("Horde_SellItem", function (len, ply)
     end
     if ply:HasWeapon(class) then
         local item = HORDE.items[class]
-        ply:Horde_AddMoney(item.price)
+        ply:Horde_AddMoney(math.floor(item.price * 0.75))
         ply:StripWeapon(class)
         ply:Horde_SyncEconomy()
     else
@@ -760,7 +760,7 @@ net.Receive("Horde_SellItem", function (len, ply)
         if item.entity_properties.type == HORDE.ENTITY_PROPERTY_DROP then
             local drop_entities = ply:Horde_GetDropEntities()
             if drop_entities and drop_entities[class] then
-                ply:Horde_AddMoney(math.floor(item.price * drop_entities[class]))
+                ply:Horde_AddMoney(math.floor(0.75 * item.price * drop_entities[class]))
                 -- Remove all the drop entiies of this player
                 for _, ent in pairs(HORDE.player_drop_entities[ply:SteamID()]) do
                     if ent:IsValid() and ent:GetClass() == class then
@@ -785,7 +785,7 @@ net.Receive("Horde_SellItem", function (len, ply)
         elseif item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET then
             if ply:Horde_GetGadget() == nil then return end
             ply:Horde_UnsetGadget()
-            ply:Horde_AddMoney(item.price)
+            ply:Horde_AddMoney(math.floor(0.75 * item.price))
             ply:Horde_SyncEconomy()
         end
     end
