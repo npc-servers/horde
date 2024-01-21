@@ -1,4 +1,4 @@
-SWEP.PrintName              = "M2 Health Thrower (Horde)"
+SWEP.PrintName              = "M2 Health Thrower"
 SWEP.Author					= "Sanikku, Syntax_Errorsanic, Gorlami"
 SWEP.Category				= "ArcCW - Horde (Custom)"
 SWEP.Purpose				= "Heal your enemies to death like god intended"
