@@ -1,9 +1,9 @@
 if not ArcCWInstalled then return end
 if (CLIENT) then
-	SWEP.WepSelectIcon = surface.GetTextureID("vgui/hud/arccw_horde_rpg7")
+    SWEP.WepSelectIcon = surface.GetTextureID("vgui/hud/arccw_horde_rpg7")
     SWEP.DrawWeaponInfoBox	= false
     SWEP.BounceWeaponIcon = false
-	killicon.Add("arccw_horde_rpg7", "vgui/hud/arccw_horde_rpg7", color_white)
+    killicon.Add("arccw_horde_rpg7", "vgui/hud/arccw_horde_rpg7", color_white)
     killicon.Add("horde_projectile_rpg", "vgui/hud/arccw_horde_rpg7", color_white)
 end
 SWEP.Base = "arccw_base"
@@ -180,7 +180,7 @@ SWEP.Animations = {
 }
 
 SWEP.ViewModelBoneMods = {
-	["missile"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) }
+    ["missile"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) }
 }
 function SWEP:SetupDataTables()
     self:NetworkVar("Int", 0, "NWState")
@@ -228,8 +228,9 @@ end
 
 if CLIENT then
 function SWEP:ViewModelDrawn()
-    local vm = self.Owner:GetViewModel()
-    if !IsValid(vm) then return end
+    local owner = self:GetOwner()
+    local vm = owner:GetViewModel()
+    if not IsValid(vm) then return end
     if self:GetRPGInstalled() == true then
         self.ViewModelBoneMods["missile"].scale = Vector(1,1,1)
     else
@@ -261,13 +262,11 @@ end
 
 function SWEP:UpdateBonePositions(vm)
     if self.ViewModelBoneMods then
-        if (!vm:GetBoneCount()) then return end
-        // !! WORKAROUND !! //
-        // We need to check all model names :/
+        if not (vm:GetBoneCount()) then return end
         local loopthrough = self.ViewModelBoneMods
-        if (!hasGarryFixedBoneScalingYet) then
+        if not hasGarryFixedBoneScalingYet then
             allbones = {}
-            for i=0, vm:GetBoneCount() do
+            for i = 0, vm:GetBoneCount() do
                 local bonename = vm:GetBoneName(i)
                 if (self.ViewModelBoneMods[bonename]) then
                     allbones[bonename] = self.ViewModelBoneMods[bonename]
@@ -282,19 +281,18 @@ function SWEP:UpdateBonePositions(vm)
 
             loopthrough = allbones
         end
-        // !! ----------- !! //
+
 
         for k, v in pairs( loopthrough ) do
             local bone = vm:LookupBone(k)
-            if (!bone) then continue end
+            if not bone then continue end
 
-            // !! WORKAROUND !! //
             local s = Vector(v.scale.x,v.scale.y,v.scale.z)
             local p = Vector(v.pos.x,v.pos.y,v.pos.z)
             local ms = Vector(1,1,1)
-            if (!hasGarryFixedBoneScalingYet) then
+            if not hasGarryFixedBoneScalingYet then
                 local cur = vm:GetBoneParent(bone)
-                while(cur >= 0) do
+                while (cur >= 0) do
                     local pscale = loopthrough[vm:GetBoneName(cur)].scale
                     ms = ms * pscale
                     cur = vm:GetBoneParent(cur)
@@ -302,7 +300,7 @@ function SWEP:UpdateBonePositions(vm)
             end
 
             s = s * ms
-            // !! ----------- !! //
+
 
             if vm:GetManipulateBoneScale(bone) != s then
                 vm:ManipulateBoneScale( bone, s )
@@ -321,8 +319,8 @@ end
 
 function SWEP:ResetBonePositions(vm)
 
-    if (!vm:GetBoneCount()) then return end
-    for i=0, vm:GetBoneCount() do
+    if not (vm:GetBoneCount()) then return end
+    for i = 0, vm:GetBoneCount() do
         vm:ManipulateBoneScale( i, Vector(1, 1, 1) )
         vm:ManipulateBoneAngles( i, Angle(0, 0, 0) )
         vm:ManipulateBonePosition( i, Vector(0, 0, 0) )
@@ -338,9 +336,9 @@ function SWEP:Think()
 
     local owner = self:GetOwner()
 
-    if !IsValid(owner) or owner:IsNPC() then return end
+    if not IsValid(owner) or owner:IsNPC() then return end
 
-    if self:GetState() == ArcCW.STATE_DISABLE and !self:GetPriorityAnim() then
+    if self:GetState() == ArcCW.STATE_DISABLE and not self:GetPriorityAnim() then
         self:SetState(ArcCW.STATE_IDLE)
     end
 
@@ -358,9 +356,9 @@ function SWEP:Think()
         end
     end
 
-    if CLIENT and (!game.SinglePlayer() and IsFirstTimePredicted() or true)
+    if CLIENT and not (game.SinglePlayer() and IsFirstTimePredicted() or true)
             and self:GetOwner() == LocalPlayer() and ArcCW.InvHUD
-            and !ArcCW.Inv_Hidden and ArcCW.Inv_Fade == 0 then
+            and not ArcCW.Inv_Hidden and ArcCW.Inv_Fade == 0 then
         ArcCW.InvHUD:Remove()
         ArcCW.Inv_Fade = 0.01
     end
@@ -378,8 +376,8 @@ function SWEP:Think()
 
     self:InBipod()
 
-    if self:GetNeedCycle() and !self.Throwing and !self:GetReloading() and self:GetWeaponOpDelay() < CurTime() and self:GetNextPrimaryFire() < CurTime() and -- Adding this delays bolting if the RPM is too low, but removing it may reintroduce the double pump bug. Increasing the RPM allows you to shoot twice on many multiplayer servers. Sure would be convenient if everything just worked nicely
-            (!GetConVar("arccw_clicktocycle"):GetBool() and (self:GetCurrentFiremode().Mode == 2 or !owner:KeyDown(IN_ATTACK))
+    if self:GetNeedCycle() and not self.Throwing and not self:GetReloading() and self:GetWeaponOpDelay() < CurTime() and self:GetNextPrimaryFire() < CurTime() and -- Adding this delays bolting if the RPM is too low, but removing it may reintroduce the double pump bug. Increasing the RPM allows you to shoot twice on many multiplayer servers. Sure would be convenient if everything just worked nicely
+            not (GetConVar("arccw_clicktocycle"):GetBool() and (self:GetCurrentFiremode().Mode == 2 or not owner:KeyDown(IN_ATTACK))
             or GetConVar("arccw_clicktocycle"):GetBool() and (self:GetCurrentFiremode().Mode == 2 or owner:KeyPressed(IN_ATTACK))) then
         local anim = self:SelectAnimation("cycle")
         anim = self:GetBuff_Hook("Hook_SelectCycleAnimation", anim) or anim
@@ -391,7 +389,7 @@ function SWEP:Think()
         end
     end
 
-    if self:GetGrenadePrimed() and !(owner:KeyDown(IN_ATTACK) or owner:KeyDown(IN_ATTACK2)) and (!game.SinglePlayer() or SERVER) then
+    if self:GetGrenadePrimed() and not (owner:KeyDown(IN_ATTACK) or owner:KeyDown(IN_ATTACK2)) and not (game.SinglePlayer() or SERVER) then
         self:Throw()
     end
 
@@ -400,7 +398,7 @@ function SWEP:Think()
 
         local ft = self:GetBuff_Override("Override_FuseTime") or self.FuseTime
 
-        if ft and (heldtime >= ft) and (!game.SinglePlayer() or SERVER) then
+        if ft and (heldtime >= ft) and not (game.SinglePlayer() or SERVER) then
             self:Throw()
         end
     end
@@ -413,7 +411,7 @@ function SWEP:Think()
         end
     end
 
-    if ((game.SinglePlayer() and SERVER) or (!game.SinglePlayer() and true)) and self:GetBuff_Override("Override_TriggerDelay", self.TriggerDelay) then
+    if ((game.SinglePlayer() and SERVER) or not (game.SinglePlayer() and true)) and self:GetBuff_Override("Override_TriggerDelay", self.TriggerDelay) then
         if owner:KeyReleased(IN_ATTACK) and self:GetBuff_Override("Override_TriggerCharge", self.TriggerCharge) and self:GetTriggerDelta(true) >= 1 then
             self:PrimaryAttack()
         else
@@ -423,13 +421,13 @@ function SWEP:Think()
 
     if self:GetCurrentFiremode().RunawayBurst then
 
-        if self:GetBurstCount() > 0 and ((game.SinglePlayer() and SERVER) or (!game.SinglePlayer() and true)) then
+        if self:GetBurstCount() > 0 and ((game.SinglePlayer() and SERVER) or not (game.SinglePlayer() and true)) then
             self:PrimaryAttack()
         end
 
         if self:Clip1() < self:GetBuff("AmmoPerShot") or self:GetBurstCount() == self:GetBurstLength() then
             self:SetBurstCount(0)
-            if !self:GetCurrentFiremode().AutoBurst then
+            if not self:GetCurrentFiremode().AutoBurst then
                 self.Primary.Automatic = false
             end
         end
@@ -437,13 +435,13 @@ function SWEP:Think()
 
     if owner:KeyReleased(IN_ATTACK) then
 
-        if !self:GetCurrentFiremode().RunawayBurst then
+        if not self:GetCurrentFiremode().RunawayBurst then
             self:SetBurstCount(0)
             self.LastTriggerTime = -1 -- Cannot fire again until trigger released
             self.LastTriggerDuration = 0
         end
 
-        if self:GetCurrentFiremode().Mode < 0 and !self:GetCurrentFiremode().RunawayBurst then
+        if self:GetCurrentFiremode().Mode < 0 and not self:GetCurrentFiremode().RunawayBurst then
             local postburst = self:GetCurrentFiremode().PostBurstDelay or 0
 
             if (CurTime() + postburst) > self:GetWeaponOpDelay() then
@@ -453,14 +451,13 @@ function SWEP:Think()
         end
     end
 
-    if owner and owner:GetInfoNum("arccw_automaticreload", 0) == 1 and self:Clip1() == 0 and !self:GetReloading() and CurTime() > self:GetNextPrimaryFire() + 0.2 then
+    if owner and owner:GetInfoNum("arccw_automaticreload", 0) == 1 and self:Clip1() == 0 and not self:GetReloading() and CurTime() > self:GetNextPrimaryFire() + 0.2 then
         self:Reload()
     end
 
-    if (!(self:GetBuff_Override("Override_ReloadInSights") or self.ReloadInSights) and (self:GetReloading() or owner:KeyDown(IN_RELOAD))) then
-        if !(self:GetBuff_Override("Override_ReloadInSights") or self.ReloadInSights) and self:GetReloading() then
+    if ( not (self:GetBuff_Override("Override_ReloadInSights") or self.ReloadInSights) and (self:GetReloading() or owner:KeyDown(IN_RELOAD)))
+        and not(self:GetBuff_Override("Override_ReloadInSights") or self.ReloadInSights) and self:GetReloading() then
             self:ExitSights()
-        end
     end
 
 
@@ -477,30 +474,30 @@ function SWEP:Think()
         local sp_cl = game.SinglePlayer() and CLIENT
 
         -- if in singleplayer, client realm should be completely ignored
-        if toggle and !sp_cl then
+        if toggle and not sp_cl then
             if owner:KeyPressed(IN_ATTACK2) then
                 if sighted then
                     self:ExitSights()
-                elseif !suitzoom then
+                elseif not suitzoom then
                     self:EnterSights()
                 end
             elseif suitzoom and sighted then
                 self:ExitSights()
             end
-        elseif !toggle then
-            if (owner:KeyDown(IN_ATTACK2) and !suitzoom) and !sighted then
+        elseif not toggle then
+            if (owner:KeyDown(IN_ATTACK2) and not suitzoom) and not sighted then
                 self:EnterSights()
-            elseif (!owner:KeyDown(IN_ATTACK2) or suitzoom) and sighted then
+            elseif (not owner:KeyDown(IN_ATTACK2) or suitzoom) and sighted then
                 self:ExitSights()
             end
         end
 
     end
 
-    if (!game.SinglePlayer() and IsFirstTimePredicted()) or (game.SinglePlayer() and true) then
+    if (not game.SinglePlayer() and IsFirstTimePredicted()) or (game.SinglePlayer() and true) then
         if self:InSprint() and (self:GetState() != ArcCW.STATE_SPRINT) then
             self:EnterSprint()
-        elseif !self:InSprint() and (self:GetState() == ArcCW.STATE_SPRINT) then
+        elseif not self:InSprint() and (self:GetState() == ArcCW.STATE_SPRINT) then
             self:ExitSprint()
         end
     end
@@ -531,7 +528,7 @@ function SWEP:Think()
     -- end
 
     for i, k in pairs(self.Attachments) do
-        if !k.Installed then continue end
+        if not k.Installed then continue end
         local atttbl = ArcCW.AttachmentTable[k.Installed]
 
         if atttbl.DamagePerSecond then
@@ -560,7 +557,7 @@ function SWEP:Think()
     if self:HasBottomlessClip() and self:Clip1() != ArcCW.BottomlessMagicNumber then
         self:Unload()
         self:SetClip1(ArcCW.BottomlessMagicNumber)
-    elseif !self:HasBottomlessClip() and self:Clip1() == ArcCW.BottomlessMagicNumber then
+    elseif not self:HasBottomlessClip() and self:Clip1() == ArcCW.BottomlessMagicNumber then
         self:SetClip1(0)
     end
 
@@ -578,7 +575,7 @@ function SWEP:Think()
     --end
 
     -- Only reset to idle if we don't need cycle. empty idle animation usually doesn't play nice
-    if self:GetNextIdle() != 0 and self:GetNextIdle() <= CurTime() and !self:GetNeedCycle()
+    if self:GetNextIdle() != 0 and self:GetNextIdle() <= CurTime() and not self:GetNeedCycle()
             and self:GetHolster_Time() == 0 and self:GetShotgunReloading() == 0 then
         self:SetNextIdle(0)
         self:PlayIdleAnimation(true)
