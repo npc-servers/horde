@@ -72,7 +72,9 @@ function ENT:Initialize()
         self:SetMoveType(MOVETYPE_VPHYSICS)
         self:SetSolid(SOLID_VPHYSICS)
         self:PhysicsInit(SOLID_VPHYSICS)
-        self:DrawShadow(true)
+        self:SetMoveCollide(COLLISION_GROUP_PLAYER_MOVEMENT)
+        self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
+        self:DrawShadow(false)
         self:SetCollisionBounds(Vector(-100,-100,-100), Vector(100,100,100))
         self:SetTrigger(true)
         self:UseTriggerBounds(true, 24)
@@ -146,7 +148,7 @@ function ENT:Think()
                 smoke:SetColor(50, 200, 50)
                 smoke:SetAirResistance(1000)
                 smoke:SetLighting( false )
-                smoke:SetCollide(true)
+                smoke:SetCollide(false)
                 smoke:SetBounce(0)
                 smoke:SetNextThink(CurTime() + FrameTime())
                 smoke:SetThinkFunction( function(pa)
@@ -186,23 +188,18 @@ function ENT:Detonate()
     if not self:IsValid() then return end
     if self:GetArmed() == true then return end
     self:SetArmed(true)
+    self.Armed = true
+    self:EmitSound("arccw_go/smokegrenade/smoke_emit.wav", 90, 100, 1, CHAN_AUTO)
+    timer.Simple(self.Duration, function()
+        if not IsValid(self) then return end
+
+        self:Remove()
+    end)
     timer.Simple(0, function()
         if not IsValid(self) then return end
         self:SetMoveType(MOVETYPE_NONE)
-        self:SetSolid(SOLID_NONE)
+      --  self:SetSolid(SOLID_NONE) --DO NOT change the solid type when SetTrigger is set to True, causes crazy origin on entity errors
     end)
-
-
-    self.Armed = true
-    self:EmitSound("arccw_go/smokegrenade/smoke_emit.wav", 90, 100, 1, CHAN_AUTO)
-
-    timer.Simple(self.Duration, function()
-        if not IsValid(self) then return end
-     --   self:SetMoveType(MOVETYPE_NONE)
-        self:Remove()
-    end)
-
-
 end
 
 function ENT:DrawTranslucent()

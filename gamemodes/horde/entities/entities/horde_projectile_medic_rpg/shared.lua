@@ -164,16 +164,15 @@ function ENT:Detonate()
 	local owner = self:GetOwner()
 	if not self:IsValid() then return end
 	if self:GetArmed() == true then return end
-    self:SetArmed(true)
-
-    self.Armed = true
-    self:EmitSound("arccw_go/smokegrenade/smoke_emit.wav", 160, 100, 1, CHAN_AUTO)
+	self:SetArmed(true)
+	 self.Armed = true
+	self:EmitSound("arccw_go/smokegrenade/smoke_emit.wav", 160, 100, 1, CHAN_AUTO)
 --	self:EmitSound( "Weapon_HLOF_Spore_Launcher.Impact", 90, 100, 1, CHAN_AUTO )
-    timer.Simple(self.Duration, function()
-        if not IsValid(self) then return end
-        self:Remove()
-    end)
-		timer.Simple(0, function()
+	timer.Simple(self.Duration, function()
+		if not IsValid(self) then return end
+		self:Remove()
+	end)
+	timer.Simple(0, function()
 			if not IsValid(self) then return end
 			self:SetMoveType(MOVETYPE_NONE)
 			self:SetSolid(SOLID_NONE)
