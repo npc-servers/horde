@@ -27,41 +27,42 @@ AddCSLuaFile()
 local entmeta = FindMetaTable("Entity")
 
 function entmeta:Horde_AddEffect_MedicGrenade(ent)
-    if self.horde_effect_medicgrenade then return end
-    self.horde_effect_medicgrenade = true
-    local id = self:GetCreationID()
-    timer.Create("Horde_MedicGrenadeEffect" .. id, 0.5, 0, function ()
-        if not self:IsValid() then timer.Remove("Horde_MedicGrenadeEffect" .. id) return end
-        if self:IsPlayer() then
-            local healinfo = HealInfo:New({amount = 7, healer = ent.Owner})
-            HORDE:OnPlayerHeal(self, healinfo)
-        elseif ent:GetClass() == "npc_vj_horde_antlion" then
-            local healinfo = HealInfo:New({amount = 7, healer = self.Owner})
-            HORDE:OnAntlionHeal(ent, healinfo)
-        elseif ent:IsValid() and ent.Owner:IsValid() and ent.Inflictor:IsValid() and self:IsNPC() and (not self:GetNWEntity("HordeOwner"):IsValid()) then
-            local d = DamageInfo()
-            d:SetDamage(50)
-            d:SetAttacker(ent.Owner)
-            d:SetInflictor(ent.Inflictor)
-            d:SetDamageType(DMG_NERVEGAS)
-            d:SetDamagePosition(self:GetPos())
-            self:TakeDamageInfo(d)
-        end
-    end)
+	local owner = self:GetOwner()
+	if self.horde_effect_medicgrenade then return end
+	self.horde_effect_medicgrenade = true
+	local id = self:GetCreationID()
+	timer.Create("Horde_MedicGrenadeEffect" .. id, 0.5, 0, function ()
+		if not self:IsValid() then timer.Remove("Horde_MedicGrenadeEffect" .. id) return end
+		if self:IsPlayer() then
+			local healinfo = HealInfo:New({amount = 7, healer = ent.Owner})
+			HORDE:OnPlayerHeal(self, healinfo)
+		elseif ent:GetClass() == "npc_vj_horde_antlion" then
+			local healinfo = HealInfo:New({amount = 7, healer = owner})
+			HORDE:OnAntlionHeal(ent, healinfo)
+		elseif ent:IsValid() and ent.Owner:IsValid() and ent.Inflictor:IsValid() and self:IsNPC() and (not self:GetNWEntity("HordeOwner"):IsValid()) then
+			local d = DamageInfo()
+			d:SetDamage(50)
+			d:SetAttacker(ent.Owner)
+			d:SetInflictor(ent.Inflictor)
+			d:SetDamageType(DMG_NERVEGAS)
+			d:SetDamagePosition(self:GetPos())
+			self:TakeDamageInfo(d)
+		end
+	end)
 end
 
 function entmeta:Horde_RemoveEffect_MedicGrenade()
-    if self.horde_effect_medicgrenade then
-        timer.Remove("Horde_MedicGrenadeEffect" .. self:GetCreationID())
-        self.horde_effect_medicgrenade = nil
-    end
+	if self.horde_effect_medicgrenade then
+		timer.Remove("Horde_MedicGrenadeEffect" .. self:GetCreationID())
+		self.horde_effect_medicgrenade = nil
+	end
 end
 
 function ENT:SetupDataTables()
-    self:NetworkVar( "Bool", 0, "Armed" )
-    if SERVER then
-        self:SetArmed(false)
-    end
+	self:NetworkVar( "Bool", 0, "Armed" )
+	if SERVER then
+		self:SetArmed(false)
+	end
 end
 
 function ENT:Initialize()
@@ -87,7 +88,7 @@ function ENT:Initialize()
 		self.SpawnTime = CurTime()
 
 		timer.Simple(0, function()
-			if !IsValid(self) then return end
+			if not IsValid(self) then return end
 			self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 		end)
 	end
@@ -106,7 +107,7 @@ end
 
 
 function ENT:Think()
-	if !self.SpawnTime then self.SpawnTime = CurTime() end
+	if not self.SpawnTime then self.SpawnTime = CurTime() end
 
 	if self:GetArmed() == true then
 		if SERVER then
@@ -122,57 +123,58 @@ function ENT:Think()
 				smoke:SetStartAlpha(10)
 				smoke:SetEndAlpha(0)
 				smoke:SetStartSize(10)
-                smoke:SetEndSize(150)
-                smoke:SetRoll( math.Rand(-180, 180) )
-                smoke:SetRollDelta( math.Rand(-0.2,0.2) )
-                smoke:SetColor(50, 200, 50)
-                smoke:SetAirResistance(1000)
-                smoke:SetLighting( false )
-                smoke:SetCollide(false)
-                smoke:SetBounce(0)
-                smoke:SetNextThink(CurTime() + FrameTime())
-                smoke:SetThinkFunction( function(pa)
-                    if !pa then return end
-                    local col1 = Color(105, 255, 50)
-                    local col2 = Color(50, 200, 50)
-                    local col3 = col1
-                    local d = pa:GetLifeTime() / pa:GetDieTime()
-                    col3.r = Lerp(d, col1.r, col2.r)
-                    col3.g = Lerp(d, col1.g, col2.g)
-                    col3.b = Lerp(d, col1.b, col2.b)
-                    pa:SetColor(col3.r, col3.g, col3.b)
-                    pa:SetNextThink(CurTime() + FrameTime())
-                end)
-            end
-            if !self:IsValid() or self:WaterLevel() > 2 then return end
-            if !IsValid(emitter) then return end
-            self.Ticks = self.Ticks + 1
-        end
-    end
+				smoke:SetEndSize(150)
+				smoke:SetRoll( math.Rand(-180, 180) )
+				smoke:SetRollDelta( math.Rand(-0.2,0.2) )
+				smoke:SetColor(50, 200, 50)
+				smoke:SetAirResistance(1000)
+				smoke:SetLighting( false )
+				smoke:SetCollide(false)
+				smoke:SetBounce(0)
+				smoke:SetNextThink(CurTime() + FrameTime())
+				smoke:SetThinkFunction( function(pa)
+				if not pa then return end
+					local col1 = Color(105, 255, 50)
+					local col2 = Color(50, 200, 50)
+					local col3 = col1
+					local d = pa:GetLifeTime() / pa:GetDieTime()
+					col3.r = Lerp(d, col1.r, col2.r)
+					col3.g = Lerp(d, col1.g, col2.g)
+					col3.b = Lerp(d, col1.b, col2.b)
+					pa:SetColor(col3.r, col3.g, col3.b)
+					pa:SetNextThink(CurTime() + FrameTime())
+				end)
+			end
+			if not self:IsValid() or self:WaterLevel() > 2 then return end
+			if not IsValid(emitter) then return end
+			self.Ticks = self.Ticks + 1
+		end
+	end
 end
 
 function ENT:OnRemove()
-    if SERVER then
-        for _, ent in pairs(self.TouchedEntities) do
-            if ent:IsValid() then ent:Horde_RemoveEffect_MedicGrenade() end
-        end
-    end
+	if SERVER then
+		for _, ent in pairs(self.TouchedEntities) do
+			if ent:IsValid() then ent:Horde_RemoveEffect_MedicGrenade() end
+		end
+	end
 end
 
 function ENT:Detonate()
-    if !self:IsValid() then return end
-    if self:GetArmed() == true then return end
+	local owner = self:GetOwner()
+	if not self:IsValid() then return end
+	if self:GetArmed() == true then return end
     self:SetArmed(true)
 
     self.Armed = true
     self:EmitSound("arccw_go/smokegrenade/smoke_emit.wav", 160, 100, 1, CHAN_AUTO)
 --	self:EmitSound( "Weapon_HLOF_Spore_Launcher.Impact", 90, 100, 1, CHAN_AUTO )
     timer.Simple(self.Duration, function()
-        if !IsValid(self) then return end
+        if not IsValid(self) then return end
         self:Remove()
     end)
 		timer.Simple(0, function()
-			if !IsValid(self) then return end
+			if not IsValid(self) then return end
 			self:SetMoveType(MOVETYPE_NONE)
 			self:SetSolid(SOLID_NONE)
 		end)
@@ -188,7 +190,7 @@ function ENT:Detonate()
 		util.Effect("spore_explosion", e1, true, true)
 		ParticleEffect("antlion_gib_02_floaters", self:GetPos(), Angle(0,0,0), nil)
 		local dmg = DamageInfo()
-		dmg:SetAttacker(self.Owner)
+		dmg:SetAttacker(owner)
 		dmg:SetInflictor(self)
 		dmg:SetDamageType(DMG_NERVEGAS)
 		dmg:SetDamage(300)
@@ -200,10 +202,10 @@ function ENT:Detonate()
 					self.TouchedEntities[ent:GetCreationID()] = ent
 					ent:Horde_AddEffect_MedicGrenade(self)
 			if ent:IsPlayer() then
-				local healinfo = HealInfo:New({amount=30, healer=self.Owner})
+				local healinfo = HealInfo:New({amount = 30, healer = owner})
 				HORDE:OnPlayerHeal(ent, healinfo)
 			elseif ent:GetClass() == "npc_vj_horde_antlion" then
-				local healinfo = HealInfo:New({amount=30, healer=self.Owner})
+				local healinfo = HealInfo:New({amount = 30, healer = owner})
 				HORDE:OnAntlionHeal(ent, healinfo)
 				end
 			end
@@ -218,6 +220,6 @@ end
 function ENT:Draw()
 	if CLIENT then
 		self:DrawModel()
-		if !self:GetArmed() then return end
+		if not self:GetArmed() then return end
 	end
 end

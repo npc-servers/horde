@@ -27,16 +27,17 @@ AddCSLuaFile()
 local entmeta = FindMetaTable("Entity")
 
 function entmeta:Horde_AddEffect_MedicGrenade(ent)
+    local owner = self:GetOwner()
     if self.horde_effect_medicgrenade then return end
     self.horde_effect_medicgrenade = true
     local id = self:GetCreationID()
     timer.Create("Horde_MedicGrenadeEffect" .. id, 0.5, 0, function ()
         if not self:IsValid() then timer.Remove("Horde_MedicGrenadeEffect" .. id) return end
         if self:IsPlayer() then
-            local healinfo = HealInfo:New({amount=4, healer=ent.Owner})
+            local healinfo = HealInfo:New({amount = 4, healer = ent.Owner})
             HORDE:OnPlayerHeal(self, healinfo)
         elseif ent:GetClass() == "npc_vj_horde_antlion" then
-            local healinfo = HealInfo:New({amount=4, healer=self.Owner})
+            local healinfo = HealInfo:New({amount = 4, healer = owner})
             HORDE:OnAntlionHeal(ent, healinfo)
         elseif ent:IsValid() and ent.Owner:IsValid() and ent.Inflictor:IsValid() and self:IsNPC() and (not self:GetNWEntity("HordeOwner"):IsValid()) then
             local d = DamageInfo()
@@ -86,7 +87,7 @@ function ENT:Initialize()
         self.SpawnTime = CurTime()
 
         timer.Simple(0, function()
-            if !IsValid(self) then return end
+            if not IsValid(self) then return end
             self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
         end)
     end
@@ -123,7 +124,7 @@ function ENT:EndTouch(ent)
 end
 
 function ENT:Think()
-    if !self.SpawnTime then self.SpawnTime = CurTime() end
+    if not self.SpawnTime then self.SpawnTime = CurTime() end
 
     if self:GetArmed() == true then
         if SERVER then
@@ -149,7 +150,7 @@ function ENT:Think()
                 smoke:SetBounce(0)
                 smoke:SetNextThink(CurTime() + FrameTime())
                 smoke:SetThinkFunction( function(pa)
-                    if !pa then return end
+                    if not pa then return end
                     local col1 = Color(105, 255, 50)
                     local col2 = Color(50, 200, 50)
 
@@ -164,8 +165,8 @@ function ENT:Think()
                 end)
             end
 
-            if !self:IsValid() or self:WaterLevel() > 2 then return end
-            if !IsValid(emitter) then return end
+            if not self:IsValid() or self:WaterLevel() > 2 then return end
+            if not IsValid(emitter) then return end
 
             self.Ticks = self.Ticks + 1
         end
@@ -182,20 +183,26 @@ function ENT:OnRemove()
 end
 
 function ENT:Detonate()
-    if !self:IsValid() then return end
+    if not self:IsValid() then return end
     if self:GetArmed() == true then return end
     self:SetArmed(true)
+    timer.Simple(0, function()
+        if not IsValid(self) then return end
+        self:SetMoveType(MOVETYPE_NONE)
+        self:SetSolid(SOLID_NONE)
+    end)
+
 
     self.Armed = true
     self:EmitSound("arccw_go/smokegrenade/smoke_emit.wav", 90, 100, 1, CHAN_AUTO)
 
     timer.Simple(self.Duration, function()
-        if !IsValid(self) then return end
-
+        if not IsValid(self) then return end
+     --   self:SetMoveType(MOVETYPE_NONE)
         self:Remove()
     end)
 
-    self:SetMoveType(MOVETYPE_NONE)
+
 end
 
 function ENT:DrawTranslucent()
@@ -206,6 +213,6 @@ function ENT:Draw()
     if CLIENT then
         self:DrawModel()
 
-        if !self:GetArmed() then return end
+        if not self:GetArmed() then return end
     end
 end
