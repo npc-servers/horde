@@ -68,7 +68,7 @@ function SWEP:PrimaryAttack()
     owner:MuzzleFlash()
     self:SetNextPrimaryFire( CurTime() + self.Delay )
     if SERVER then
-        local eyetrace = owner:GetEyeTrace()
+        --local eyetrace = owner:GetEyeTrace()
         local tracedata = {}
         tracedata.start = owner:GetShootPos()
         tracedata.endpos = owner:GetShootPos() + (owner:GetAimVector() * 500)
