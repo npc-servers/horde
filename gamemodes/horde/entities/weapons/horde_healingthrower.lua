@@ -14,8 +14,8 @@ SWEP.Slot = 3
 
 SWEP.HoldType = "smg"
 SWEP.Primary.Automatic = true
-SWEP.Primary.ClipSize = 100
-SWEP.Primary.DefaultClip = 100
+SWEP.Primary.ClipSize = 75
+SWEP.Primary.DefaultClip = 75
 SWEP.Primary.Ammo = "horde_m2_flamethrower"
 SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.DefaultClip = -1
@@ -68,7 +68,6 @@ function SWEP:PrimaryAttack()
     owner:MuzzleFlash()
     self:SetNextPrimaryFire( CurTime() + self.Delay )
     if SERVER then
-        local eyetrace = owner:GetEyeTrace()
         local tracedata = {}
         tracedata.start = owner:GetShootPos()
         tracedata.endpos = owner:GetShootPos() + (owner:GetAimVector() * 500)

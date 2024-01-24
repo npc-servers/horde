@@ -7,7 +7,7 @@ function EFFECT:Init(data)
 		has_burner = true
 	end
 
-	if data:GetEntity():IsValid() && Startpos && Hitpos then
+	if data:GetEntity():IsValid() and Startpos and Hitpos then
 		self.Emitter = ParticleEmitter(Startpos)
 
 
@@ -32,18 +32,18 @@ function EFFECT:Init(data)
 			end)
 		end
 
-		for i = 1, 2 do
-			local p = self.Emitter:Add("particles/smokey", Startpos)
-			p:SetDieTime(1.5)
-			p:SetStartAlpha(50)
-			p:SetEndAlpha(0)
-			p:SetStartSize(math.Rand(2, 4))
-			p:SetEndSize(math.random(70, 90))
-			p:SetRoll(math.random(-10, 10))
-			p:SetRollDelta(math.random(-10, 10))
-			p:SetVelocity(((Hitpos - Startpos):GetNormal() * math.random(500, 800)) + VectorRand() * math.random(1, 60) + Vector(0,0,20))
-			p:SetCollide(true)
-			p:SetColor(40, 40, 40)
+		for e = 1, 2 do
+			local g = self.Emitter:Add("particles/smokey", Startpos)
+			g:SetDieTime(1.5)
+			g:SetStartAlpha(50)
+			g:SetEndAlpha(0)
+			g:SetStartSize(math.Rand(2, 4))
+			g:SetEndSize(math.random(70, 90))
+			g:SetRoll(math.random(-10, 10))
+			g:SetRollDelta(math.random(-10, 10))
+			g:SetVelocity(((Hitpos - Startpos):GetNormal() * math.random(500, 800)) + VectorRand() * math.random(1, 60) + Vector(0,0,20))
+			g:SetCollide(true)
+			g:SetColor(40, 40, 40)
 		end
 
 		self.Emitter:Finish()

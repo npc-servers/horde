@@ -5,7 +5,7 @@ function EFFECT:Init(data)
 		has_burner = true
 	end
     local light = DynamicLight( math.random( 0, 9999999 ) )
-    if(light) then
+    if (light) then
         if has_burner then
             light.R = 0;
             light.G = 132;
@@ -19,7 +19,7 @@ function EFFECT:Init(data)
         light.Size = 128;
         light.Decay = 64;
         light.Brightness = 3;
-        light.DieTime = CurTime()+1;
+        light.DieTime = CurTime() + 1;
     end
 
     local DrawFlame = 1
@@ -28,7 +28,7 @@ function EFFECT:Init(data)
 
         local FlameEmitter = ParticleEmitter(data:GetOrigin())
 
-        for i=0, 16 do
+        for i = 0, 16 do
             if !FlameEmitter then return end
             local FlameParticle = FlameEmitter:Add("particles/flamelet1", data:GetOrigin() )
 
@@ -38,23 +38,16 @@ function EFFECT:Init(data)
                 else
                     FlameParticle:SetColor(105, 255, 50)
                 end
-
                 FlameParticle:SetVelocity( VectorRand() * 172 )
-
                 FlameParticle:SetLifeTime(0)
                 FlameParticle:SetDieTime(0.72)
-
-                FlameParticle:SetStartAlpha(210)
+                FlameParticle:SetStartAlpha(150)
                 FlameParticle:SetEndAlpha(0)
-
                 FlameParticle:SetStartSize(0)
                 FlameParticle:SetEndSize(64 * (data:GetScale() or 1))
-
                 FlameParticle:SetRoll(math.Rand(-210, 210))
                 FlameParticle:SetRollDelta(math.Rand(-3.2, 3.2))
-
                 FlameParticle:SetAirResistance(350)
-
                 FlameParticle:SetGravity(Vector(0, 0, 64))
 
             end
