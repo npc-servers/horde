@@ -154,6 +154,7 @@ hook.Add("EntityKeyValue", "Horde_EntityKeyValue", function(ent)
 end)
 
 function HORDE:OnEnemyKilled(victim, killer, weapon)
+    if not victim.createdNaturally then return end
     if IsValid(victim) and victim:IsNPC() and not victim:GetVar("horde_killed") then
         victim:SetVar("horde_killed", true)
         if IsValid(killer) and killer:IsPlayer() then
@@ -354,6 +355,7 @@ hook.Add("ScaleNPCDamage", "Horde_HeadshotCounter", function (npc, hitgroup, dmg
 end)
 
 hook.Add("EntityRemoved", "Horde_EntityRemoved", function(ent)
+    if not ent.createdNaturally then return end
     if (ent:IsNPC() or ent:IsNextBot()) and ent:Horde_GetMostRecentAttacker() then
         HORDE:OnEnemyKilled(ent, ent:Horde_GetMostRecentAttacker())
     else
@@ -456,6 +458,7 @@ function HORDE:SpawnEnemy(enemy, pos)
     end
 
     local spawned_enemy = ents.Create(enemy.class)
+    spawned_enemy.createdNaturally = true
     spawned_enemy:SetPos(pos)
     spawned_enemy:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
     timer.Simple(0, function() spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0)) end)
