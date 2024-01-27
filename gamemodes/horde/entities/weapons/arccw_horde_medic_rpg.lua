@@ -163,13 +163,11 @@ SWEP.Animations = {
         Time = 0.5,
         ShellEjectAt = 0,
         RestoreAmmo = 1,
-      --  SoundTable = { { s = "", p = 100, v = 75, t = 0.1, c = CHAN_ITEM, ind = 1, bg = 1, } },
     },
     ["fire_iron"] = {
         Source = "shoot",
         Time = 0.5,
         ShellEjectAt = 0,
-        --SoundTable = { {  s = "", p = 100, v = 75, t = 0.1, c = CHAN_ITEM, ind = 1, bg = 1, } },
     },
     ["reload"] = {
         Source = "reload",
@@ -179,13 +177,11 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.2,
-        --SoundTable = { { s = "", p = 100, v = 75, t = 1.8, c = CHAN_ITEM, ind = 1, bg = 0, }, },
     },
 }
 if CLIENT then
     SWEP.Hook_ModifyBodygroups = function(wep, data)
         local vm = data.vm
-       -- local wm = true
         if not IsValid(vm) then return end
         if wep:Clip1() > 0 then
             -- loaded
