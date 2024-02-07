@@ -43,7 +43,7 @@ function ENT:Initialize()
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
 	self.attack = {"npc/manhack/grind_flesh1.wav","npc/manhack/grind_flesh2.wav","npc/manhack/grind_flesh3.wav"}
-	//self:SetCollisionGroup(COLLISION_GROUP_NONE)
+	self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
 	self:SetUseType(SIMPLE_USE)
 	self:SetHealth(self.StartHealth)	
 	self.idlesd = VJ_CreateSound(self, self.IdleSd, 75, 100)
