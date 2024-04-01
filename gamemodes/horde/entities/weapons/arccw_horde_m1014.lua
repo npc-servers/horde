@@ -27,7 +27,7 @@ SWEP.ViewModelFOV = 60
 
 SWEP.DefaultBodygroups = "001000000000"
 
-SWEP.Damage = 18
+SWEP.Damage = 26
 SWEP.DamageMin = 13 -- damage done at maximum range
 SWEP.Num = 8
 SWEP.Range = 60 -- in METRES
@@ -47,6 +47,9 @@ SWEP.ShotgunReload = true
 SWEP.Delay = 60 / 300 -- 60 / RPM.
 SWEP.Firemodes = {
     {
+        Mode = 2,
+    },
+    {
         Mode = 1,
     },
     {
@@ -57,7 +60,7 @@ SWEP.Firemodes = {
 SWEP.NPCWeaponType = "weapon_shotgun"
 SWEP.NPCWeight = 100
 
-SWEP.AccuracyMOA = 50 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
+SWEP.AccuracyMOA = 75 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 150 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 25
 

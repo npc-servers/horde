@@ -4,24 +4,24 @@ MUTATION.Description = "Leaves behind poisonous clouds on death.\nClouds deal Po
 MUTATION.Hooks = {}
 
 MUTATION.Hooks.Horde_OnSetMutation = function(ent, mutation)
-    if mutation == "nemesis" then
-        if SERVER then
-            local e = ents.Create("obj_mutation_nemesis")
-            local col_min, col_max = ent:GetCollisionBounds()
-            local height = math.abs(col_min.z - col_max.z)
-            local p = ent:GetPos()
-            p.z = p.z + height / 2
-            e:SetPos(p)
-            e:SetParent(ent)
-            ent.Horde_Nemesis_Orb = e
-        end
+        if mutation == "nemesis" and SERVER then
+        local e = ents.Create("obj_mutation_nemesis")
+        local col_min, col_max = ent:GetCollisionBounds()
+        local height = math.abs(col_min.z - col_max.z)
+        local p = ent:GetPos()
+        p.z = p.z + height / 2
+        e:SetPos(p)
+        e:SetParent(ent)
+        ent.Horde_Nemesis_Orb = e
     end
 end
 
+
 MUTATION.Hooks.Horde_OnEnemyKilled = function(victim, killer, weapon)
     if victim:Horde_HasMutation("nemesis") then
+        local enty = ents.Create("obj_mutation_nemesis_ring")
         local victim_pos = victim:GetPos()
-        for i =0,10 do
+        for i = 0,10 do
             timer.Simple(0.5 + i * 0.2, function ()
                 local rand = VectorRand()
                 if rand.z < 0 then rand.z = -rand.z end
@@ -39,8 +39,12 @@ MUTATION.Hooks.Horde_OnEnemyKilled = function(victim, killer, weapon)
                 end
                 local e = EffectData()
                     e:SetOrigin(pos)
+                    enty:SetPos(pos)
                 util.Effect("corruption", e, true, true)
                 sound.Play("ambient/levels/canals/toxic_slime_sizzle2.wav", pos)
+            end)
+            timer.Simple(2.5, function ()
+                enty:Remove()
             end)
         end
     end

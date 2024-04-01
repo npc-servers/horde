@@ -27,8 +27,8 @@ SWEP.ViewModelFOV = 60
 
 SWEP.DefaultBodygroups = "00000000000"
 
-SWEP.Damage = 24 * 1.1
-SWEP.DamageMin = 19 * 1.1 -- damage done at maximum range
+SWEP.Damage = 54
+SWEP.DamageMin = 44  -- damage done at maximum range
 SWEP.Range = 100 -- in METRES
 SWEP.Penetration = 10
 SWEP.DamageType = DMG_BULLET
@@ -45,7 +45,7 @@ SWEP.PhysBulletMuzzleVelocity = 800
 SWEP.Recoil = 0.200
 SWEP.RecoilSide = 0.105
 SWEP.RecoilRise = 0.1
-SWEP.RecoilPunch = 2.5
+--SWEP.RecoilPunch = 2.5
 
 SWEP.Delay = 60 / 700 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.

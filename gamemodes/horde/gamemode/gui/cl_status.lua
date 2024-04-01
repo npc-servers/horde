@@ -277,6 +277,7 @@ hook.Add("HUDShouldDraw", "Horde_HideHUD", function(name)
 end)
 
 local hp = Material("status/hp.png", "smooth")
+local evade = Material("materials/status/evasion.png", "mips smooth")
 local armor = Material("status/armor.png", "mips smooth")
 local mind = Material("status/mind.png", "mips smooth")
 local weight = Material("weight.png")
@@ -372,7 +373,26 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         surface.DrawTexturedRect(icon_x, icon_y + ScreenScale(14), icon_s, icon_s)
 
         draw.SimpleText(tostring(math.Round(vhp)), font, icon_x + icon_s + ScreenScale(1), icon_y - ScreenScale(0.5), colhp)
+
+        --draw.SimpleText("Evasion:", 100, 250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER
+
+        --draw.SimpleText(tostring(HORDE:GetStat("evasion") * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 250, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+        --draw.SimpleText(HORDE:GetStat("block"), 'Heading', self:GetWide() / 3 - 10, 300, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+        HORDE:GetEvasionStat()
+        if HORDE:GetEvasion("evasion") > 0 then
+            draw.RoundedBox(10, ScreenScale(33) + airgap, ScrH() - ScreenScale(46) - airgap, airgap + ScreenScale(36), ScreenScale(6) + airgap, Color(40,40,40,150))
+        surface.SetMaterial(evade)
+        surface.SetDrawColor(color_white)
+        surface.DrawTexturedRect(icon_x, icon_y - ScreenScale(16), icon_s, icon_s)
+        draw.SimpleText(tostring(HORDE:GetEvasion("evasion") * 100) .. "%", font, icon_x + icon_s + ScreenScale(1), icon_y - ScreenScale(16), color_white)
+
+        timer.Create("Horde_PollEvasion", 1, 0, function ()
+
+            HORDE:GetEvasionStat()
+        end)
+        timer.Remove("Horde_PollEvasion")
     end
+end
 
     if GetConVarNumber("horde_enable_ammo_gui") == 1 then
         -- Draw Ammo

@@ -1,6 +1,8 @@
 if SERVER then
 util.AddNetworkString("Horde_GetStats")
 util.AddNetworkString("Horde_GiveStats")
+util.AddNetworkString("Horde_GetEvasionStat")
+util.AddNetworkString("Horde_GiveEvasionStat")
 end
 
 HORDE.DMG_PURE = 0
@@ -137,14 +139,21 @@ function HORDE:GetStats()
 if CLIENT and MySelf:Alive() then
     net.Start("Horde_GetStats")
     net.SendToServer()
+    end
 end
+
+function HORDE:GetEvasionStat()
+    if CLIENT and MySelf:Alive() then
+        net.Start("Horde_GetEvasionStat")
+        net.SendToServer()
+    end
 end
 
 if SERVER then
 function HORDE:CalcResistance(ply, stats, dmgtype, horde_dmgtype)
     local dmg = DamageInfo()
     dmg:SetDamageType(dmgtype)
-    local bonus = {resistance=0, less=1, evasion=0, block=0}
+    local bonus = {resistance = 0, less = 1, evasion = 0, block = 0}
     hook.Run("Horde_OnPlayerDamageTaken", ply, dmg, bonus, true)
     stats[horde_dmgtype] = 1 - bonus.less * (1 - bonus.resistance)
 end
@@ -159,7 +168,7 @@ net.Receive("Horde_GetStats", function (len, ply)
     local stats = {}
     local dmg = DamageInfo()
     dmg:SetDamageType(DMG_GENERIC)
-    local bonus = {resistance=0, less=1, evasion=0, block=0}
+    local bonus = {resistance = 0, less = 1, evasion = 0, block = 0}
     hook.Run("Horde_OnPlayerDamageTaken", ply, dmg, bonus, true)
     stats["evasion"] = bonus.evasion
     stats["block"] = bonus.block
@@ -190,7 +199,21 @@ net.Receive("Horde_GetStats", function (len, ply)
         net.WriteTable(stats)
     net.Send(ply)
 end)
+
+net.Receive("Horde_GetEvasionStat", function (len, ply)
+    local stats = {}
+    local dmg = DamageInfo()
+    dmg:SetDamageType(DMG_GENERIC)
+    local bonus = {resistance = 0, less = 1, evasion = 0, block = 0}
+    hook.Run("Horde_OnPlayerDamageTaken", ply, dmg, bonus, true)
+    stats["evasion"] = bonus.evasion
+
+    net.Start("Horde_GiveEvasionStat")
+        net.WriteTable(stats)
+    net.Send(ply)
+end)
 end
+
 
 if CLIENT then
 net.Receive("Horde_GiveStats", function ()
@@ -201,4 +224,13 @@ function HORDE:GetStat(stat)
     if not MySelf.Horde_Stats then return 0 end
     return MySelf.Horde_Stats[stat]
 end
+end
+if CLIENT then
+net.Receive("Horde_GiveEvasionStat", function ()
+    MySelf.Horde_Evasion = net.ReadTable()
+end)
+function HORDE:GetEvasion(stat)
+    if not MySelf.Horde_Evasion then return 0 end
+    return MySelf.Horde_Evasion[stat]
+    end
 end

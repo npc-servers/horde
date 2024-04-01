@@ -51,6 +51,7 @@ HORDE:RegisterStatus("Frenzy_Mode", "materials/subclasses/psycho.png")
 
 HORDE:RegisterStatus("Minion", "materials/status/minion.png", true)
 HORDE:RegisterStatus("Adrenaline", "materials/status/adrenaline.png", true)
+HORDE:RegisterStatus("Endorphins", "materials/perks/drain.png", true)
 HORDE:RegisterStatus("Headhunter", "materials/perks/headhunter.png", true)
 HORDE:RegisterStatus("Deadeye", "materials/perks/gunslinger/deadeye.png", true)
 --HORDE:RegisterStatus("Barrier", "materials/status/barrier.png", true)

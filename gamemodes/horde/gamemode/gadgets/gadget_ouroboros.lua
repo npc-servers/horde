@@ -5,7 +5,8 @@ Removes body regulations to increase combat capabilities.
 
 When you have more than 50% health, you lose 1 health per second.
 When you have less than 50% health, you gain 2 health per second.
-For each 1% health missing, increase your damage by 0.8%.]]
+The less health you have the more damage you'll deal]]
+--For each 1% health missing, increase your damage by %.]]
 GADGET.Icon = "items/gadgets/ouroboros.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 0
@@ -35,8 +36,8 @@ GADGET.Hooks.Horde_OnUnsetGadget = function (ply, gadget)
     local id = ply:SteamID()
     timer.Remove("Horde_Ouroboros_Effect" .. id)
 end
-
 GADGET.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
     if ply:Horde_GetGadget() ~= "gadget_ouroboros" then return end
-    bonus.increase = bonus.increase + 0.8 * ply:Health() / ply:GetMaxHealth()
+    local pain = ply:GetMaxHealth() - ply:Health() + 1
+    bonus.increase = bonus.increase + 0.03 * math.Round(pain)
 end

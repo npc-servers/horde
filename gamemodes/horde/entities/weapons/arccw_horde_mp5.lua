@@ -1,11 +1,6 @@
-if not ArcCWInstalled then return end
-if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_go_mp5")
-    killicon.Add("arccw_horde_mp5m", "arccw/weaponicons/arccw_go_mp5", Color(0, 0, 0, 255))
-end
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - GSO (SMGs)" -- edit this if you like
+SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "MP5A3"
@@ -27,8 +22,8 @@ SWEP.ViewModelFOV = 60
 
 SWEP.DefaultBodygroups = "000000000000"
 
-SWEP.Damage = 33 * 1.25
-SWEP.DamageMin = 21 * 1.25 -- damage done at maximum range
+SWEP.Damage = 33
+SWEP.DamageMin = 21 -- damage done at maximum range
 SWEP.Range = 50 -- in METRES
 SWEP.Penetration = 7
 SWEP.DamageType = DMG_BULLET
@@ -43,7 +38,7 @@ SWEP.PhysBulletMuzzleVelocity = 400
 SWEP.Recoil = 0.275
 SWEP.RecoilSide = 0.125
 SWEP.RecoilRise = 0.1
-SWEP.RecoilPunch = 2.5
+--SWEP.RecoilPunch = 2.5
 
 SWEP.Delay = 60 / 800 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
@@ -69,7 +64,7 @@ SWEP.MoveDispersion = 75
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 SWEP.MagID = "mp5" -- the magazine pool this gun draws from
 
-SWEP.ShootVol = 75 -- volume of shoot sound
+SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
 SWEP.ShootSound = "arccw_go/mp5/mp5_unsil.wav"
@@ -510,83 +505,3 @@ sound.Add({
     volume = 1.0,
     sound = "arccw_go/mp5/mp5_cliphit.wav"
 })
-
-
-function SWEP:ChangeFiremode(pred)
-    if self:GetNextSecondaryFire() > CurTime() then return end
-    if !self.CanBash and !self:GetBuff_Override("Override_CanBash") then return end
-    if CLIENT then return end
-    local ply = self:GetOwner()
-    local filter = {self:GetOwner()}
-    local tr = util.TraceHull({
-        start = self:GetOwner():GetShootPos(),
-        endpos = self:GetOwner():GetShootPos() + self:GetOwner():GetAimVector() * 5000,
-        filter = filter,
-        mins = Vector(-16, -16, -8),
-        maxs = Vector(16, 16, 8),
-        mask = MASK_SHOT_HULL
-    })
-    if tr.Hit then
-        local effectdata = EffectData()
-        effectdata:SetOrigin(tr.HitPos)
-        effectdata:SetRadius(50)
-        util.Effect("horde_heal_mist", effectdata)
-
-        for _, ent in pairs(ents.FindInSphere(tr.HitPos, 100)) do
-            if ent:IsPlayer() then
-                local healinfo = HealInfo:New({amount=10, healer=ply})
-                HORDE:OnPlayerHeal(ent, healinfo)
-            elseif ent:GetClass() == "npc_vj_horde_antlion" then
-                local healinfo = HealInfo:New({amount=10, healer=ply})
-                HORDE:OnAntlionHeal(ent, healinfo)
-            elseif ent:IsNPC() then
-                local dmg = DamageInfo()
-                dmg:SetDamage(25)
-                dmg:SetDamageType(DMG_NERVEGAS)
-                dmg:SetAttacker(ply)
-                dmg:SetInflictor(self)
-                dmg:SetDamagePosition(tr.HitPos)
-                ent:TakeDamageInfo(dmg)
-            end
-        end
-    end
-
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
-
-    self:SetNextSecondaryFire(CurTime() + 1.5)
-    return true
-end
-
-function SWEP:Hook_Think()
-    if SERVER then return end
-    local tr = util.TraceHull({
-        start = self:GetOwner():GetShootPos(),
-        endpos = self:GetOwner():GetShootPos() + self:GetOwner():GetAimVector() * 5000,
-        filter = filter,
-        mins = Vector(-20, -20, -8),
-        maxs = Vector(20, 20, 8),
-        mask = MASK_SHOT_HULL
-    })
-
-    if tr.Hit and tr.Entity and tr.Entity:IsPlayer()then
-        self.Horde_HealTarget = tr.Entity
-    else
-        self.Horde_HealTarget = nil
-    end
-end
-
-local function nv_center(ent)
-	return ent:LocalToWorld(ent:OBBCenter())
-end
-
-function SWEP:Hook_DrawHUD()
-    if self.Horde_HealTarget then
-        local pos = nv_center(self.Horde_HealTarget):ToScreen()
-		surface.SetDrawColor(Color(50, 200, 50))
-        surface.DrawCircle(pos.x, pos.y, 30)
-        --surface.DrawLine(pos.x, 0, pos.x, ScrH())
-        --surface.DrawLine(0, pos.y, ScrW(), pos.y)
-        draw.DrawText(self.Horde_HealTarget:Health(), "Trebuchet24",
-        pos.x - 15, pos.y - 15, Color(50, 200, 50), TEXT_ALIGN_LEFT)
-    end
-end
