@@ -11,15 +11,13 @@ AddCSLuaFile()
 ENT.Model = "models/effects/combineball.mdl"
 ENT.CollisionGroup = COLLISION_GROUP_PLAYER_MOVEMENT
 ENT.CollisionGroupType = COLLISION_GROUP_PLAYER_MOVEMENT
-ENT.Removing = nil
-ENT.StartPos = nil
 
-if !SERVER then
+if not SERVER then
 	function ENT:Initialize()
 		local Pos = self:GetPos()
 		local orb = ParticleEmitter(Pos)
 		self.ball = orb:Add("models/effects/hordeball_glow1", Pos)
-		if (self.ball) then
+		if self.ball then
 			self.ball:SetLifeTime(0)
 			self.ball:SetDieTime(100)
 			self.ball:SetStartSize(8)
@@ -31,18 +29,18 @@ if !SERVER then
 		orb:Finish()
 	end
 
-	function ENT:Think()
-		local Pos = self:GetPos()
-		self.ball:SetPos(Pos)
-	end
+function ENT:Think()
+	local Pos = self:GetPos()
+	self.ball:SetPos(Pos)
+end
 
-	function ENT:OnRemove()
-		self.ball:SetDieTime(0)
+function ENT:OnRemove()
+	self.ball:SetDieTime(0)
 	end
 end
 
 
-if !SERVER then return end
+if not SERVER then return end
 local sprunk = Color(255, 165, 0, 200)
 function ENT:Initialize()
 	self:SetModel(self.Model)
