@@ -1,5 +1,5 @@
 function EFFECT:Init(effect_data)
-	self.effect_data = effect_data
+    self.effect_data = effect_data
     local pos = effect_data:GetOrigin()
     self.emitter = ParticleEmitter(pos)
     local smoke = self.emitter:Add("particles/smokey", pos)
@@ -11,7 +11,7 @@ function EFFECT:Init(effect_data)
     smoke:SetEndSize(300)
     smoke:SetRoll( math.Rand(-180, 180) )
     smoke:SetRollDelta( math.Rand(-0.2,0.2) )
-    smoke:SetColor(200, 50, 200)
+    smoke:SetColor(200, 50, 200, 255)
     smoke:SetAirResistance(1000)
     smoke:SetPos(self:GetPos())
     smoke:SetLighting(false)
