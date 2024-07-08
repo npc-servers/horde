@@ -88,10 +88,6 @@ function ENT:PhysicsCollide(data, phys)
 
 	self:OnBounce(data,phys)
 
-	local dataF = EffectData()
-	dataF:SetOrigin(data.HitPos)
-
-
 	dataF = EffectData()
 	dataF:SetOrigin(data.HitPos)
 	dataF:SetNormal(data.HitNormal)
