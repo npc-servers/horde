@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
 
-	"$basetexture" "sprites\cancerball"
+	"$basetexture" "sprites\hordeball"
 	"$additive" 1
 	"$vertexcolor" 1
 	"$vertexalpha" 1

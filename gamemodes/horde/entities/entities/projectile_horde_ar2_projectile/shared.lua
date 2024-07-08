@@ -2,7 +2,7 @@ ENT.Type 				= "anim"
 ENT.Base 				= "base_entity"
 ENT.PrintName 			= "HE Round"
 ENT.Author 				= ""
-ENT.Information 		= "Gorlami Cancer Ball"
+ENT.Information 		= ""
 
 ENT.Spawnable 			= false
 
@@ -17,27 +17,27 @@ ENT.StartPos = nil
 if !SERVER then
 	function ENT:Initialize()
 		local Pos = self:GetPos()
-		local cancer = ParticleEmitter(Pos)
-		self.balls = cancer:Add("models/effects/cancerball_glow1", Pos)
-		if (self.balls) then
-			self.balls:SetLifeTime(0)
-			self.balls:SetDieTime(100)
-			self.balls:SetStartSize(8)
-			self.balls:SetStartAlpha(200)
-			self.balls:SetAngleVelocity(Angle(math.Rand(.15,2),0,0))
-			self.balls:SetRoll(math.Rand( 0, 360 ))
-			self.balls:SetCollide(false)
+		local orb = ParticleEmitter(Pos)
+		self.ball = orb:Add("models/effects/hordeball_glow1", Pos)
+		if (self.ball) then
+			self.ball:SetLifeTime(0)
+			self.ball:SetDieTime(100)
+			self.ball:SetStartSize(8)
+			self.ball:SetStartAlpha(200)
+			self.ball:SetAngleVelocity(Angle(math.Rand(.15,2),0,0))
+			self.ball:SetRoll(math.Rand( 0, 360 ))
+			self.ball:SetCollide(false)
 		end
-		cancer:Finish()
+		orb:Finish()
 	end
 
 	function ENT:Think()
 		local Pos = self:GetPos()
-		self.balls:SetPos(Pos)
+		self.ball:SetPos(Pos)
 	end
 
 	function ENT:OnRemove()
-		self.balls:SetDieTime(0)
+		self.ball:SetDieTime(0)
 	end
 end
 
@@ -92,7 +92,7 @@ function ENT:PhysicsCollide(data, phys)
 
 	local dataF = EffectData()
 	dataF:SetOrigin(data.HitPos)
-	--util.Effect("cball_bounce", dataF)
+
 
 	dataF = EffectData()
 	dataF:SetOrigin(data.HitPos)
