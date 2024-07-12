@@ -72,7 +72,7 @@ function ENT:FlashBang()
         attacker = self:GetOwner()
     end
 
-    util.BlastDamage(self, attacker, self:GetPos(), 150, 80)
+    util.BlastDamage(self, attacker, self:GetPos(), 370, 80)
 
     local effectdata = EffectData()
     effectdata:SetOrigin( self:GetPos() )
@@ -80,10 +80,10 @@ function ENT:FlashBang()
     util.Effect("stun_flash", effectdata)
 
     local flashorigin = self:GetPos()
-
-    local flashpower = 256
+    local flashpower = 325
     local targets = ents.FindInSphere(flashorigin, flashpower)
-    if not targets then return end
+    if ! targets then return end
+
     for _, k in pairs(targets) do
         if k:IsPlayer() then
             local dist = k:EyePos():Distance(flashorigin)
@@ -94,16 +94,22 @@ function ENT:FlashBang()
             time = Lerp( dist / flashpower, time, 0 )
 
             if k:VisibleVec( flashorigin ) then
-                k:ScreenFade( SCREENFADE.IN, Color( 255, 255, 255, 100 ), 2.5, time )
+                k:ScreenFade( SCREENFADE.IN, Color( 255, 255, 255, 20 ), 2.5, time )
             end
 
             k:SetDSP( 37, false )
-
-        elseif k:IsNPC() then
-            k:Horde_AddDebuffBuildup(HORDE.Status_Stun, 500, attacker, k:GetPos())
+        end
+        local stunpower = 350
+        local stuntargets = ents.FindInSphere(flashorigin, stunpower)
+        if ! stuntargets then return end
+        for _, q in pairs(stuntargets) do
+        if q:IsNPC() then
+            q:Horde_AddDebuffBuildup(HORDE.Status_Stun, 750, attacker, q:GetPos())
         end
     end
 end
+end
+
 
 function ENT:Detonate()
     if !self:IsValid() or self:WaterLevel() > 2 then return end

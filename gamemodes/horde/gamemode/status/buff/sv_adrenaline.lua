@@ -91,6 +91,7 @@ hook.Add("Horde_OnEnemyKilled", "Horde_AdrenalineApply", function(victim, killer
         for _, ent in pairs(ents.FindInSphere(killer:GetPos(), 200)) do
             if ent:IsValid() and ent:IsPlayer() and ent:Alive() and not (ent:IsBot()) and not (ent == killer) then
                 ent:Horde_AddAdrenalineStack(true)
+                ent:Horde_AddBarrierStack(10)
             end
         end
     end

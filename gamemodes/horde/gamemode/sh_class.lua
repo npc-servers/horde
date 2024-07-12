@@ -99,7 +99,7 @@ function HORDE:GetDefaultClassesData()
         GetConVar("horde_base_runspeed"):GetInt(),
         "survivor_base",
         {
-            [1] = {title = "Survival", choices = {"medic_antibiotics", "assault_charge"}},
+            [1] = {title = "Survival", choices = {"medic_antibiotics", "survivor_assault_charge"}},
             [2] = {title = "Improvise", choices = {"berserker_breathing_technique", "demolition_frag_cluster"}},
             [3] = {title = "Imprinting", choices = {"heavy_liquid_armor", "cremator_entropy_shield"}},
             [4] = {title = "Inspired Learning", choices = {"ghost_headhunter", "specops_flare"}},

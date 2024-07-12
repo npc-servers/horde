@@ -1,5 +1,5 @@
 GADGET.PrintName = "Cortex Stimulator"
-GADGET.Description = "For each enemy near you, gain 1 Adrenaline stack.\nElite enemies grant 2 stacks.\n+1 maximum Adrenaline stacks."
+GADGET.Description = "For each enemy near you, gain 1 Adrenaline stack.\nElite enemies grant 2 stacks.\n+2 maximum Adrenaline stacks."
 GADGET.Icon = "items/gadgets/cortex.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 20
@@ -24,12 +24,12 @@ end
 
 GADGET.Hooks.Horde_OnSetGadget = function(ply, gadget)
     if SERVER and gadget == "gadget_cortex" then
-        ply:Horde_SetMaxAdrenalineStack(ply:Horde_GetMaxAdrenalineStack() + 1)
+        ply:Horde_SetMaxAdrenalineStack(ply:Horde_GetMaxAdrenalineStack() + 2)
     end
 end
 
 GADGET.Hooks.Horde_OnUnsetGadget = function(ply, gadget)
     if SERVER and gadget == "gadget_cortex" then
-        ply:Horde_SetMaxAdrenalineStack(ply:Horde_GetMaxAdrenalineStack() - 1)
+        ply:Horde_SetMaxAdrenalineStack(ply:Horde_GetMaxAdrenalineStack() - 2)
     end
 end
