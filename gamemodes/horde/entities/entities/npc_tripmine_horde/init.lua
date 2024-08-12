@@ -136,7 +136,4 @@ function ENT:Use(ply)
     self:EmitSound(defuse, 60)
     self:Remove()
     ply:GiveAmmo(1, "slam", true)
-    if not IsValid(ply:GetWeapon(self.SWEP)) then
-        ply:Give(self.SWEP, true)
-    end
 end
