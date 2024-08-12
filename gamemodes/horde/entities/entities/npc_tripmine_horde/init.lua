@@ -124,6 +124,7 @@ end
 local defuse = Sound("ambient/machines/pneumatic_drill_3.wav")
 function ENT:Use(ply)
     local owner = self:GetHordeOwner()
+    if not ply:HasWeapon(self.SWEP) then return end
     if reuse:GetBool() == false then return end
     if self:GetTriggered() then return end
     if IsValid(owner) and owner ~= ply then return end    -- feel free to steal disconnected player mines
