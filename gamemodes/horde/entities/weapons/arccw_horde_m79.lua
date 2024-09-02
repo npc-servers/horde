@@ -20,8 +20,8 @@ SWEP.Spawnable = true
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/kf1/c_kf_m79.mdl"
-SWEP.WorldModel = "models/weapons/kf1/c_kf_m79.mdl"
+SWEP.ViewModel = "models/horde/weapons/c_kf_m79.mdl"
+SWEP.WorldModel = "models/horde/weapons/c_kf_m79.mdl"
 SWEP.MirrorVMWM = true
 --SWEP.WorldModelOffset = {
 --    pos        =    Vector(-8, 5, -8),
