@@ -20,8 +20,8 @@ SWEP.Spawnable = true
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/horde/weapons/c_m32.mdl"
-SWEP.WorldModel = "models/horde/weapons/w_m79.mdl"
+SWEP.ViewModel = "models/horde/weapons/arccw/c_bo1_chinalake.mdl"
+SWEP.WorldModel = "models/horde/weapons/arccw/c_bo1_chinalake.mdl"
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
     pos = Vector(-5, 5, 15),
@@ -44,7 +44,7 @@ SWEP.TracerNum = 1 -- tracer every X
 SWEP.TracerCol = Color(255, 25, 25)
 SWEP.TracerWidth = 3
 
-SWEP.ChamberSize = 1 -- how many rounds can be chambered.
+SWEP.ChamberSize = 0 -- how many rounds can be chambered.
 SWEP.Primary.ClipSize = 3 -- DefaultClip is automatically set.
 SWEP.ExtendedClipSize = 3
 SWEP.ReducedClipSize = 3
@@ -56,7 +56,7 @@ SWEP.MaxRecoilBlowback = 2
 SWEP.ShotgunReload = true
 SWEP.ManualAction = true
 
-SWEP.Delay = 60 / 300 -- 60 / RPM.
+-- SWEP.Delay = 60 / 300 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
     {
@@ -80,7 +80,7 @@ SWEP.Primary.Ammo = "SMG1_Grenade" -- what ammo type the gun uses
 SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "ArcCW_BO1.MK_Fire"
+SWEP.ShootSound = "ArcCW_BO1.CL_Fire"
 SWEP.ShootSoundSilenced = nil
 SWEP.DistantShootSound = nil
 
@@ -107,7 +107,7 @@ SWEP.CaseBones = {}
 SWEP.IronSightStruct = {
     Pos = Vector(-3.4, -3, 0.5),
     Ang = Angle(0.1, 0.05, 0),
-    Magnification = 1.3,
+    Magnification = 1.3
 }
 
 SWEP.HoldtypeHolstered = "normal"
@@ -147,6 +147,7 @@ SWEP.Attachments = {
         PrintName = "Perk",
         Slot = "go_perk"
     },
+	{
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
@@ -159,175 +160,168 @@ SWEP.Attachments = {
         },
     }, --6
 }
-}
 
 SWEP.Animations = {
     ["idle"] = {
         Source = "idle",
-        Time = 1 / 35,
+        Time = 1 / 30,
     },
     ["draw"] = {
         Source = "draw",
-        Time = 1,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Sight", t = 22 / 51}
+            {s = "ArcCW_BO1.CL_Sight", t = 22 / 30}
         },
     },
     ["holster"] = {
         Source = "holster",
-        Time = 1,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.1,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Sight", t = 20 / 41}
+            {s = "ArcCW_BO1.CL_Sight", t = 20 / 30}
         },
     },
     ["ready"] = {
         Source = "first_draw",
-        Time = 50 / 35,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.95,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Back", t = 28 / 35},
-            {s = "ArcCW_BO1.MK_Fwd", t = 30 / 35},
+            {s = "ArcCW_BO1.CL_Back", t = 28 / 30},
+            {s = "ArcCW_BO1.CL_Fwd", t = 30 / 30},
         },
     },
     ["fire"] = {
         Source = {
             "fire",
         },
-        Time = 30 / 35,
+        MinProgress = 0.5
     },
     ["fire_iron"] = {
         Source = {
             "fire",
         },
-        Time = 30 / 35,
+        MinProgress = 0.5
     },
     ["cycle"] = {
         Source = {
             "pump",
         },
-        Time = 1,
+        Time = 69 / 50,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Back", t = 26 / 69},
-            {s = "ArcCW_BO1.MK_Fwd", t = 38 / 69},
+            {s = "ArcCW_BO1.CL_Back", t = 26 / 50},
+            {s = "ArcCW_BO1.CL_Fwd", t = 38 / 50},
         },
     },
     ["cycle_iron"] = {
         Source = {
             "pump",
         },
-        Time = 1,
+        Time = 68 / 50,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Back", t = 26 / 69},
-            {s = "ArcCW_BO1.MK_Fwd", t = 38 / 69},
+            {s = "ArcCW_BO1.CL_Back", t = 26 / 50},
+            {s = "ArcCW_BO1.CL_Fwd", t = 38 / 50},
         },
     },
     ["sgreload_start"] = {
         Source = "reload_in",
-        Time = 1,
+        Time = 30 / 45,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Back", t = 4 / 35},
+            {s = "ArcCW_BO1.CL_Back", t = 4 / 45},
         },
     },
     ["sgreload_start_empty"] = {
         Source = "reload_in_empty",
-        Time = 2,
+        Time = 81 / 45,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Back", t = 4 / 35},
-            {s = "ArcCW_BO1.MK_Shell", t = 46 / 35},
+            {s = "ArcCW_BO1.CL_Back", t = 4 / 45},
+            {s = "ArcCW_BO1.CL_Shell", t = 46 / 45},
         },
     },
     ["sgreload_insert"] = {
         Source = "reload_loop",
-        Time = 1,
+        Time = 52 / 45,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Shell", t = 17 / 35},
+            {s = "ArcCW_BO1.CL_Shell", t = 17 / 45},
         },
     },
     ["sgreload_finish"] = {
         Source = "reload_out",
-        Time = 1,
+        Time = 36 / 45,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Fwd", t = 21 / 35},
+            {s = "ArcCW_BO1.CL_Fwd", t = 20 / 45},
         },
     },
     ["sgreload_finish_empty"] = {
         Source = "reload_out",
-        Time = 35 / 35,
+        Time = 36 / 45,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.MK_Fwd", t = 21 / 35},
+            {s = "ArcCW_BO1.CL_Fwd", t = 20 / 45},
         },
     },
     ["enter_sprint"] = {
         Source = "sprint_in",
-        Time = 10 / 30
     },
     ["idle_sprint"] = {
         Source = "sprint_loop",
-        Time = 30 / 30
     },
     ["exit_sprint"] = {
         Source = "sprint_out",
-        Time = 10 / 30
     },
 }
 
 sound.Add({
-    name = "ArcCW_BO1.MK_Fire",
+    name = "ArcCW_BO1.CL_Fire",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
     sound = "^weapons/arccw/bo1_chinalake/fire.wav"
 })
 sound.Add({
-    name = "ArcCW_BO1.MK_Back",
+    name = "ArcCW_BO1.CL_Back",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
     sound = "^weapons/arccw/bo1_chinalake/back.wav"
 })
 sound.Add({
-    name = "ArcCW_BO1.MK_Forward",
+    name = "ArcCW_BO1.CL_Fwd",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
     sound = "^weapons/arccw/bo1_chinalake/forward.wav"
 })
 sound.Add({
-    name = "ArcCW_BO1.MK_Sight",
+    name = "ArcCW_BO1.CL_Sight",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
     sound = "^weapons/arccw/bo1_chinalake/sight.wav"
 })
 sound.Add({
-    name = "ArcCW_BO1.MK_Shell",
+    name = "ArcCW_BO1.CL_Shell",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
