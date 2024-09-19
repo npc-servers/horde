@@ -56,6 +56,7 @@ SWEP.MaxRecoilBlowback = 2
 SWEP.ShotgunReload = true
 SWEP.ManualAction = true
 
+-- Function to prevent post-reload cycling
 SWEP.Hook_PostReload = function(wep)
     wep.SetNeedCycle(false)
 end
