@@ -18,7 +18,7 @@ ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-
+	local colorTrailblue = Color(0, 150, 255, 200)
 	local light = ents.Create( "env_sprite" )
 	light:SetKeyValue( "model","sprites/blueflare1.spr" )
 	light:SetKeyValue( "rendercolor","0 75 255" )
@@ -28,12 +28,8 @@ function ENT:CustomOnInitialize()
 	light:SetKeyValue( "rendermode","9" )
 	light:Spawn()
 	self:DeleteOnRemove(light)
-
 	self:DrawShadow(false)
-
-	ParticleEffectAttach("hunter_flechette_trail_striderbuster",PATTACH_ABSORIGIN_FOLLOW,self,0)
-
-
+	util.SpriteTrail(self, 0, colorTrailblue, false, 5, 20, 1.5, 5 / ((2 + 10) * 0.5), "trails/electric.vmt")
 end
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomPhysicsObjectOnInitialize(phys)
@@ -44,12 +40,6 @@ function ENT:CustomPhysicsObjectOnInitialize(phys)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
-
-	local parent = self:GetParent()
-	if parent:IsPlayer() && !parent:Alive() then
-		self:Remove()
-	end
-
 	if self:WaterLevel() > 0 then
 		self:GetPhysicsObject():EnableGravity(true)
 		self:Explode()
@@ -58,69 +48,38 @@ function ENT:CustomOnThink()
 end
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Explode()
-
 	local time_until_explode = 3
 	local blastradius = 100
-
-	sound.EmitHint(SOUND_DANGER,self:GetPos(),blastradius*1.5,time_until_explode,self)
-
-	timer.Simple(time_until_explode*0.5, function() if IsValid(self) then
+	sound.EmitHint(SOUND_DANGER,self:GetPos(),blastradius * 1.5,time_until_explode,self)
+	timer.Simple(time_until_explode * 0.5, function() if IsValid(self) then
 		self:EmitSound("snpc/hunterarc/hunter_flechette_preexplode" .. math.random(1, 2) .. ".wav" , 70, math.random(70, 90))
 	end end)
-
 	timer.Simple(time_until_explode, function() if IsValid(self) then
-
 		local realisticRadius = false
-
 		self:EmitSound("snpc/hunterarc/flechette_explode" .. math.random(1, 3) .. ".wav" , 100, math.random(110, 130), 0.66,  CHAN_WEAPON)
-
 		ParticleEffect("hunter_projectile_explosion_1", self:GetPos(), Angle(0,0,0))
-		self:DeathEffects()
-
 		local attacker = self:GetOwner()
 		if !IsValid(attacker) then attacker = self end
-
-    	util.VJ_SphereDamage(attacker, self, self:GetPos(), blastradius, self.DirectDamage, bit.bor(DMG_DISSOLVE, DMG_SHOCK), true, realisticRadius)
-
+		util.VJ_SphereDamage(attacker, self, self:GetPos(), blastradius, self.DirectDamage, bit.bor(DMG_DISSOLVE, DMG_SHOCK), true, realisticRadius)
 		self:Remove()
-
 	end end)
 
 end
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:IsAlly(ent)
-    if not ent.VJ_NPC_Class then return end
 
-    for _,npcclass in pairs(ent.VJ_NPC_Class) do
-        for _,mynpcclass in pairs(self.VJ_NPC_Class) do
-            if npcclass == mynpcclass then
-                return true
-            end
-        end
-    end
-
-end
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnCollideWithoutRemove(data, phys)
 
 	local hitent = data.HitEntity
 
-	if self:IsAlly(hitent) then
-        SafeRemoveEntityDelayed( self, 0 )
-		return
-	end
-
 	if hitent:IsWorld() then
 		self:EmitSound("snpc/hunterarc/flechette_impact_stick" .. math.random(1, 5) .. ".wav" , 85, math.random(90, 110))
-
 		self:SetPos(data.HitPos)
-        timer.Simple( 0, function()
-            self:SetMoveType(MOVETYPE_NONE)
-            self:SetSolid(SOLID_NONE)
-        end )
-
+		timer.Simple( 0, function()
+		if ! IsValid( self ) then return end
+			self:SetMoveType(MOVETYPE_NONE)
+			self:SetSolid(SOLID_NONE)
+		end )
 		self:Explode()
-
 		self:FireBullets({
 			Src = self:GetPos(),
 			Dir = self:GetForward(),
@@ -129,18 +88,11 @@ function ENT:CustomOnCollideWithoutRemove(data, phys)
 			Distance = 25,
 		})
 	else
-        self:EmitSound("snpc/hunterarc/flechette_flesh_impact" .. math.random(1, 4) .. ".wav" , 85, math.random(90, 110))
-
-        if hitent:GetClass() == "func_breakable_surf" then
-            hitent:Fire("Shatter")
-        end
-        self:DeathEffects()
-        SafeRemoveEntityDelayed( self, 0 )
+		self:EmitSound("snpc/hunterarc/flechette_flesh_impact" .. math.random(1, 4) .. ".wav" , 85, math.random(90, 110))
+		if hitent:GetClass() == "func_breakable_surf" then
+		hitent:Fire("Shatter")
+		end
+		self:Remove()
 	end
 end
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:DeathEffects()
-	ParticleEffect("Weapon_Combine_Ion_Cannon_i",self:GetPos(),Angle(0,0,0))
-end
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
