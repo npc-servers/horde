@@ -137,10 +137,12 @@ function SWEP:FindHullIntersection(VecSrc, tr, Mins, Maxs, pEntity)
     tracedata.mins   = Mins
     tracedata.maxs   = Maxs
     local tmpTrace = util.TraceLine( tracedata )
+
     if tmpTrace.Hit then
       tr = tmpTrace
       return tr
     end
+
     local Distance = 2000
     for i = 0, 1 do
       for j = 0, 1 do
@@ -184,11 +186,13 @@ function SWEP:DoAttack()
 
     local tr = util.TraceLine( tracedata )
     if not tr.Hit then tr = util.TraceHull( tracedata ) end
+
     if tr.Hit and ( not (IsValid(tr.Entity) and tr.Entity) or tr.HitWorld ) then
-      local HullDuckMins, HullDuckMaxs = Attacker:GetHullDuck()
-      tr = self:FindHullIntersection(AttackSrc, tr, HullDuckMins, HullDuckMaxs, Attacker)
-      AttackEnd = tr.HitPos
+        local HullDuckMins, HullDuckMaxs = Attacker:GetHullDuck()
+        tr = self:FindHullIntersection(AttackSrc, tr, HullDuckMins, HullDuckMaxs, Attacker)
+        AttackEnd = tr.HitPos
     end
+
     local HitEntity = IsValid(tr.Entity) and tr.Entity or Entity(0) -- Ugly hack to destroy glass surf. 0 is worldspawn.
     local DidHitPlrOrNPC = HitEntity and ( HitEntity:IsPlayer() or HitEntity:IsNPC() ) and IsValid( HitEntity )
     local Force = Forward:GetNormalized() * 300
@@ -201,16 +205,18 @@ function SWEP:DoAttack()
     damageinfo:SetDamagePosition( AttackEnd )
     HitEntity:DispatchTraceAttack( damageinfo, tr, Forward )
     Attacker:SetAnimation( PLAYER_ATTACK1 )
+
     local Act = ACT_VM_HITCENTER or ACT_VM_MISSCENTER
     if Act then
       self:SendWeaponAnim( Act )
     end
+
     if DidHitPlrOrNPC then
-     local Snd = Sound("physics/flesh/flesh_impact_bullet" .. math.random( 1,2,3,4,5 ) .. ".wav")
-    self:EmitSound( Snd )
+        local Snd = Sound("physics/flesh/flesh_impact_bullet" .. math.random( 1,2,3,4,5 ) .. ".wav")
+        self:EmitSound( Snd )
     end
     Attacker:LagCompensation(false) -- Don't forget to disable it!
-  end
+end
 
 --nuclear approach so i don't have to open blender and recompile a worldmodel
 
@@ -231,7 +237,6 @@ if CLIENT then
         if selfTbl.ShowWorldModel == nil or selfTbl.ShowWorldModel then
             self:DrawModel()
         end
-
         if not selfTbl.WElements then return end
 
         if not selfTbl.wRenderOrder then
