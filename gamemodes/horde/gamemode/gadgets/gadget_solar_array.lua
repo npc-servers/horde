@@ -12,16 +12,16 @@ GADGET.Hooks = {}
 GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_solar_array" then return end
-    local effectdata = EffectData()
-    effectdata:SetOrigin(ply:GetPos())
-    effectdata:SetRadius(225)
-    util.Effect("horde_solar_array", effectdata)
-    ply:EmitSound("horde/player/life_diffuser.ogg", 100, 100, 1, CHAN_AUTO)
+        local effectdata = EffectData()
+        effectdata:SetOrigin(ply:GetPos())
+        effectdata:SetRadius(225)
+        util.Effect("horde_solar_array", effectdata)
+        ply:EmitSound("horde/player/life_diffuser.ogg", 100, 100, 1, CHAN_AUTO)
 
     for _, ent in pairs(ents.FindInSphere(ply:GetPos(), 200)) do
         if ent:IsPlayer() then
-        ent:SetArmor(math.min (ent:GetMaxArmor(), ent:Armor() + 20))
-    elseif ent:IsNPC() and ent:GetClass() ~= "npc_vj_horde_antlion" then
+            ent:SetArmor(math.min (ent:GetMaxArmor(), ent:Armor() + 20))
+        elseif ent:IsNPC() and ent:GetClass() ~= "npc_vj_horde_antlion" then
             local dmg = DamageInfo()
             dmg:SetDamage(65)
             dmg:SetDamageType(DMG_SHOCK)
