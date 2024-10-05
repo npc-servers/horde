@@ -38,7 +38,7 @@ SWEP.Penetration = 16
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 
-
+SWEP.CanFireUnderwater = true --DO NOT SET THIS TO FALSE UNLESS YOU'RE FINE WITH PLAYERS POTENTIALLY BECOMING MOTORBOATS
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 2 -- DefaultClip is automatically set.
 SWEP.ExtendedClipSize = 2
