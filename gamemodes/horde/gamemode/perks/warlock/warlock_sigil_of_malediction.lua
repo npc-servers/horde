@@ -1,5 +1,6 @@
 PERK.PrintName              = "Sigil of Malediction"
-PERK.Description            = [[Enemies inside your Sigils take 20 Physical damage per second.
+PERK.Description            =
+[[Enemies inside your Sigils take 20 Physical damage per second.
 Adds {2} damage for each level of your Sigil.
 {1} increased maximum mind.]]
 PERK.Icon = "materials/perks/warlock/sigil_of_malediction.png"
