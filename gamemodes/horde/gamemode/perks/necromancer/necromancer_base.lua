@@ -47,6 +47,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 
         ply:Horde_SetMindRegenTick( 0.25 )
         ply:SetMaxArmor( 0 )
+        ply.Horde_Spectre_Max_Count = 1
 
         if ply:HasWeapon( "horde_void_projector" ) == true then return end
 
@@ -86,6 +87,7 @@ end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if SERVER and perk == "necromancer_base" then
+        ply.Horde_Spectre_Max_Count = 0
         ply:Horde_SetMaxMind( 0 )
         ply:Horde_SetMind( 0 )
         ply:Horde_SetMindRegenTick( 0 )
