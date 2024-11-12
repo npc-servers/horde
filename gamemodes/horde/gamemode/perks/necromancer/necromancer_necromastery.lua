@@ -20,6 +20,7 @@ end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if SERVER and perk == "necromancer_necromastery" then
+
         ply.Horde_Spectre_Max_Count = ply.Horde_Spectre_Max_Count - 1
         if ply.Horde_Spectre_Max_Count <= 0 then
             ply.Horde_Spectre_Max_Count = 1

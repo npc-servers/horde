@@ -9,6 +9,7 @@ Uses Mind instead of Armor.
 Has access to spells for Void Projector.]]
 PERK.Icon = "materials/subclasses/necromancer.png"
 
+
 PERK.Params = {
     [1] = { percent = true, base = 0.15, level = 0.01, max = 0.4, classname = "Necromancer" },
     [2] = { value = 0.15, percent = true },
