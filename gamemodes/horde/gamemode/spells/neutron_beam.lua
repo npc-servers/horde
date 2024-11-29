@@ -28,6 +28,7 @@ SPELL.Fire            = function ( ply, wpn, charge_stage )
             Callback = function(att, tr, dmg )
 				dmg:SetDamageType( DMG_SHOCK )
 				tr2 = tr
+
             end
         } )
 		if not tr2 then return src end
