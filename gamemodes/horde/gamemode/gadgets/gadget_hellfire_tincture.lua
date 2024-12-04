@@ -2,7 +2,7 @@ GADGET.PrintName = "Hellfire Tincture"
 GADGET.Icon = "items/gadgets/hellfire_tincture.png"
 GADGET.Description =
 [[Every second:
-- Deals {1} of your max health as Fire damage to you.
+- Deals {1} of your max health as Direct damage to you.
 - Deals {2} of your max health as Fire damage to EVERYTHING around you.]]
 
 GADGET.Active = true
