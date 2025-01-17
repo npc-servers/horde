@@ -304,27 +304,6 @@ concommand.Add("horde_testing_gorlami", function (ply, cmd, args)
     end
 end)
 
-concommand.Add( "horde_testing_jessipepsi", function ( ply, cmd, args )
-    if GetConVar( "horde_enable_sandbox" ):GetInt() == 0 then
-        Horde:SendNotificationSandboxOnly( ply )
-        return
-    end
-    if ply:IsAdmin() then
-        local amount = tonumber( args[1] )
-        if not amount then
-            amount = 15000
-        else
-            amount = math.floor( amount )
-        end
-        ply:Horde_AddSkullTokens( amount )
-        ply:Horde_AddMoney( amount )
-        ply:Horde_SyncEconomy()
-        RunConsoleCommand( "horde_testing_disable_level_restrictions" )
-        RunConsoleCommand( "horde_testing_free_perks", 0 )
-        RunConsoleCommand( "horde_testing_unlimited_class_change", 1 )
-    end
-end )
-
 concommand.Add("horde_testing_give_money", function (ply, cmd, args)
     if GetConVar("horde_enable_sandbox"):GetInt() == 0 then
         HORDE:SendNotificationSandboxOnly(ply)
