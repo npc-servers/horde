@@ -257,7 +257,7 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        MinProgress = 17 / 48
+        MinProgress = 17 / 48,
         SoundTable = {
             {s = "ArcCW_BO1.CL_Shell", t = 17 / 48}
         },

@@ -234,8 +234,6 @@ function SWEP:Hook_Think()
         self.Owner:DrawViewModel(false)
         self.Scoped = true
         self.SpeedMult = 0.5
-        local FOVofPlayer = self.Owner:GetFOV()
-        self.AdjustMouseSensitivity(25/FOVofPlayer)
 
         local tr = util.TraceLine({
             start = self.Owner:GetShootPos(),
