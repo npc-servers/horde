@@ -103,9 +103,9 @@ SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
 
 SWEP.SightTime = 0.175
 
-SWEP.SpeedMult = 0.90
+SWEP.SpeedMult = 0.95
 SWEP.SightedSpeedMult = 0.6
-SWEP.SightTime = 0.2
+SWEP.SightTime = 0.175
 
 SWEP.BarrelLength = 18
 
