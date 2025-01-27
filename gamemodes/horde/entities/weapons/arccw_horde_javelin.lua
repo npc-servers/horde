@@ -29,8 +29,8 @@ end
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/horde/weapons/arccw/c_javelin.mdl"
-SWEP.WorldModel = "models/horde/weapons/c_javelin.mdl"
+SWEP.ViewModel = "models/horde/weapons/c_javelin.mdl"
+SWEP.WorldModel = "models/weapons/c_javelin.mdl"
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
     pos = Vector(-15, 12, -10),
@@ -114,8 +114,7 @@ SWEP.CaseBones = {}
 SWEP.IronSightStruct = {
     Pos = Vector(-5, 0, 2),
     Ang = Angle(-0, 0, 0),
-    ViewModelFOV = 65 / 2.5,
-    Magnification = 2.5
+    Magnification = 1.3,
 }
 
 SWEP.HoldtypeHolstered = "rpg"
@@ -159,29 +158,19 @@ SWEP.Animations = {
     Source = "idle",
     Time = 10,
     },
-	["enter_sprint"] = {
-		Source = "sprint_in",
-	},
-	["idle_sprint"] = {
-		Source = "sprint_loop",
-	},
-	["exit_sprint"] = {
-		Source = "sprint_out",
-	},
-	["draw"] = {
-		Source = "pullout",
-		SoundTable = {
-			{s = "horde/weapons/javelin/wpfoly_at4_raise_v1.wav", 		t = 0/30},
-		},
-	},
-	["ready"] = {
-		Source = "pullout_first",
-		SoundTable = {
-			{s = "horde/weapons/javelin/wpfoly_javelin_pickup_lift_v1.wav", 		t = 0/30},
-			{s = "horde/weapons/javelin/wpfoly_javelin_pickup_removecap_v1.wav", 	t = 28/30},
-			{s = "horde/weapons/javelin/wpfoly_at4_raise_v1.wav", 				t = 46/30},
-		},
-	},
+    ["draw"] = {
+        Source = "draw",
+        Time = 1.5,
+        SoundTable = {
+            {
+            s = "horde/weapons/javelin/draw.ogg",
+            t = 0
+            }
+        },
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.25,
+    },
     ["fire"] = {
         Source = "shoot",
         Time = 0.5,
@@ -193,28 +182,44 @@ SWEP.Animations = {
         Time = 0.5,
         ShellEjectAt = 0,
     },
-	["reload"] = {
-		Source = "reload",
-		MinProgress = 1.169, -- temp
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-		SoundTable = {
-			{s = "horde/weapons/javelin/wpfoly_javelin_reload_lift_v1.wav", 		t = 0/30},
-			{s = "horde/weapons/javelin/wpfoly_javelin_reload_tube_v1.wav", 	t = 37/30},
-			{s = "horde/weapons/javelin/wpfoly_javelin_reload_tube_v1.wav", 	    t = 84/30},
-			{s = "horde/weapons/javelin/wpfoly_at4_raise_v1.wav", 	    t = 105/30},
-		},
-	},
+    ["reload"] = {
+        Source = "reload",
+        Time = 4,
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        FrameRate = 30,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.2,
+        SoundTable = {
+            {
+            s = "horde/weapons/javelin/reload.ogg",
+            t = 0
+            },
+            {
+                s = "horde/weapons/javelin/reload2.ogg",
+                t = 2
+                }
+        },
+    },
 }
 
 SWEP.Scoped = nil
 SWEP.LastLockSound = CurTime()
 SWEP.LockingTarget = nil
 
+function SWEP:ShouldDrawCrosshair()
+    return false
+end
+
 function SWEP:Hook_ShouldNotFire()
     if !IsValid(self:GetLocked_Target()) then return true end
 end
 
-SWEP.LockDuration = 0.4
+function SWEP:Hook_ShouldNotSight()
+    return true
+end
+
+SWEP.LockDuration = 0.5
 sound.Add({
     name = "JAVELIN_LOCK",
     channel = 16,
@@ -224,8 +229,12 @@ sound.Add({
 SWEP.LockSound = Sound("JAVELIN_LOCK")
 
 function SWEP:Hook_Think()
-    if self.Owner:KeyDown(IN_ATTACK2) then 
+    if self.Owner:KeyDown(IN_ATTACK2) then
+        self.Owner:SetFOV(25, 0)
+        self.Owner:DrawViewModel(false)
+        if CLIENT then function self:AdjustMouseSensitivity() return 25 / self.Owner:GetInfoNum("fov_desired", 25) end end
         self.Scoped = true
+        self.SpeedMult = 0.5
 
         local tr = util.TraceLine({
             start = self.Owner:GetShootPos(),
@@ -267,20 +276,15 @@ function SWEP:Hook_Think()
 			end
 		end
     else
-        self.Scoped = false
+        self.Owner:SetFOV(0, 0)
+        self.Scoped = nil
         self.LockingTarget = nil
         self:SetLocked_Target(NULL)
+        self.Owner:DrawViewModel(true)
+        self.SpeedMult = 0.9
+        if CLIENT then function self:AdjustMouseSensitivity() return 1 end end
     end
 end
-
--- function SWEP:Hook_Think()
---     if self.Owner:KeyPressed(IN_ATTACK2) then 
---         EnterADS()
---     elseif self.Owner:KeyReleased(IN_ATTACK2) or self:Holster( not self )
---         self.Scoped = false
---         self.LockingTarget = nil
---     end
--- end
 
 function SWEP:SetupDataTables()
     self:NetworkVar("Int", 0, "NWState")
