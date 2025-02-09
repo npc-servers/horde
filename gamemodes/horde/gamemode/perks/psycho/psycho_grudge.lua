@@ -14,7 +14,7 @@ PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerCriticalCheck = function (ply, npc, bonus, hitgroup, dmginfo, crit_bonus)
     if ply:Horde_GetPerk("psycho_grudge") then
-        crit_bonus.increase = crit_bonus.increase + 0.01 * (math.max(0, 1 - ply:Health() / ply:GetMaxHealth()))
+        crit_bonus.increase = crit_bonus.increase + (math.max(0, 1 - ply:Health() / ply:GetMaxHealth()))
     end
 end
 
