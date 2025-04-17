@@ -14,3 +14,8 @@ PERK.Hooks.Horde_OnAntlionHeal = function(npc, healinfo)
         healinfo:SetHealAmount(healinfo:GetHealAmount() * 2)
     end
 end
+
+PERK.Hooks.Horde_OnAntlionSelfEvolve = function(ply, npc, bonus)
+    if not ply:Horde_GetPerk("hatcher_growth_hormone") then return end
+    bonus.increase = 0.5
+end
