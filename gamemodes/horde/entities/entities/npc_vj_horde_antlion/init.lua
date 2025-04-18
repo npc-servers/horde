@@ -178,10 +178,13 @@ function ENT:Horde_Evolve(health)
 	if self.Owner:IsValid() and self.Owner:Horde_GetPerk("hatcher_metamorphosis") then
 		max_stage = 4
 	end
+	if self.Owner:IsValid() and self.Owner:Horde_GetPerk("hatcher_natural_selection") then
+		self.Base_Health = self.Base_Health * 1.2
+	end
 	self.Evolve_Stage = math.min(max_stage, self.Evolve_Stage + 1)
 	if self.Evolve_Stage == 2 then
 		self:SetSkin(1)
-		self:SetMaxHealth(self.Base_Health * 1.5 + self.level * 9)
+		self:SetMaxHealth(self.Base_Health * 1.5 + self.level * 10)
 		self:SetHealth(self:GetMaxHealth())
 		self:SetModelScale(0.75)
 		self.MeleeAttackDamage = 45 + self.level * 6
