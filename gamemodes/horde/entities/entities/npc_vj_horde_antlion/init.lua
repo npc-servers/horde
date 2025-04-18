@@ -178,8 +178,9 @@ function ENT:Horde_Evolve(health)
 	if self.Owner:IsValid() and self.Owner:Horde_GetPerk("hatcher_metamorphosis") then
 		max_stage = 4
 	end
+	local base_health = self.Base_Health
 	if self.Owner:IsValid() and self.Owner:Horde_GetPerk("hatcher_natural_selection") then
-		self.Base_Health = self.Base_Health * 1.2
+		self:SetMaxHealth( base_health * 2 + self.level * 25 )
 	end
 	self.Evolve_Stage = math.min(max_stage, self.Evolve_Stage + 1)
 	if self.Evolve_Stage == 2 then
