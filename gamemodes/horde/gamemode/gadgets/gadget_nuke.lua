@@ -1,9 +1,9 @@
 GADGET.PrintName = "Nuke"
 GADGET.Description =
-[[Drops a nuke at the target location after a 10 second delay.
-Bombards a huge area with numerous aftershocks.
+[[Bombards an area with 5 large explosions after a 10 second delay.
+Finishes off with a Nuke detonation dealing massive Blast damage.
 
-Leaves behind radioactive decay for 60 seconds.]]
+Leaves behind Decay for 60 seconds.]]
 GADGET.Icon = "items/gadgets/nuke.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 90
@@ -34,12 +34,9 @@ end
 GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_nuke" then return end
-
-    -- Cooldown check
     if ply.Horde_NukeCooldown and ply.Horde_NukeCooldown > CurTime() then
         local remaining_cooldown = math.ceil(ply.Horde_NukeCooldown - CurTime())
         HORDE:SendNotification("Nuke is still on cooldown! (" .. remaining_cooldown .. "s remaining)", 1, ply)
-        -- Send the cooldown to the client
         net.Start("Horde_GadgetStartCooldown")
             net.WriteUInt(remaining_cooldown, 8)
         net.Send(ply)
@@ -48,7 +45,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
 
     ply.Horde_NukeCooldown = CurTime() + 90
 
-    -- Nuke logic
     local ent = ents.Create("horde_nuke")
     ent:Spawn()
     local pos = ply:GetEyeTrace().HitPos
@@ -68,40 +64,33 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         local flashpower = 5000
         local targets = ents.FindInSphere(pos, flashpower)
         for _, k in pairs(targets) do
-            if k:IsPlayer() then
-                if k:VisibleVec( pos ) then
-                    k:ScreenFade(SCREENFADE.IN, Color( 255, 255, 255, 120), 1, 0.5)
-                end
+            if k:IsPlayer() and k:VisibleVec( pos ) then
+                k:ScreenFade(SCREENFADE.IN, Color( 255, 255, 255, 120), 1, 0.5)
             end
         end
-    end)
+    end )
     timer.Simple(10, function ()
         bs:Stop()
         local attacker = ply
         if not ply:IsValid() then attacker = Entity(0) end
 
-        -- Create 5 large blasts
         for i = 1, 5 do
             timer.Simple(0.2 * i, function ()
                 if not ply:IsValid() then attacker = Entity(0) end
-                local angle = math.random() * math.pi * 2 -- Random angle
-                local distance = math.random(300, 600) -- Increased random distance from the center
+                local angle = math.random() * math.pi * 2
+                local distance = math.random(300, 600)
                 local x = math.cos(angle) * distance
                 local y = math.sin(angle) * distance
                 local blast_pos = pos + Vector(x, y, 0)
-
-                -- Larger blast
                 Blast(attacker, ent, blast_pos, 1200, 800, "explosion_huge", "ambient/explosions/explode_" .. math.random(1, 9) .. ".wav")
-            end)
+            end )
         end
 
-        -- Final central blast
         timer.Simple(1.5, function ()
             if not ply:IsValid() then attacker = Entity(0) end
             Blast(attacker, ent, pos, 2000, 1500, "explosion_huge", "ambient/explosions/explode_1.wav")
-        end)
+        end )
 
-        -- Add radioactive decay effect
         HORDE:CreateTimer("NukeDecay", 1, 60, function ()
             if not ply:IsValid() or not ply:Alive() then HORDE:RemoveTimer("NukeDecay") return end
             for _, e in pairs(ents.FindInSphere(pos, 1000)) do
@@ -109,25 +98,22 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                     e:Horde_AddDebuffBuildup(HORDE.Status_Decay, 10, ply)
                 end
             end
-        end)
-    end)
+        end )
+    end )
 end
 
 hook.Add("Horde_OnUnsetGadget", "Horde_NukeCooldownPersistence", function(ply, gadget)
     if gadget ~= "gadget_nuke" then return end
-    -- Store the cooldown
     ply.Horde_NukeCooldown = ply.Horde_NukeCooldown or 0
-end)
+end )
 
 hook.Add("Horde_OnSetGadget", "Horde_NukeCooldownRestore", function(ply, gadget)
     if gadget ~= "gadget_nuke" then return end
-    -- Restore the cooldown
     if ply.Horde_NukeCooldown and ply.Horde_NukeCooldown > CurTime() then
         local remaining_cooldown = math.ceil(ply.Horde_NukeCooldown - CurTime())
         HORDE:SendNotification("Nuke is still on cooldown! (" .. remaining_cooldown .. "s remaining)", 1, ply)
-        -- Send the cooldown to the client
         net.Start("Horde_GadgetStartCooldown")
-            net.WriteUInt(remaining_cooldown, 8) -- Remaining cooldown time
+            net.WriteUInt(remaining_cooldown, 8)
         net.Send(ply)
     end
-end)
+end )
