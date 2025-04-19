@@ -3,11 +3,10 @@ GADGET.Description =
 [[Drops a nuke at the target location after a 10 second delay.
 Bombards a huge area with numerous aftershocks.
 
-Leaves behind radioactive waste for 60 seconds.]]
+Leaves behind radioactive decay for 60 seconds.]]
 GADGET.Icon = "items/gadgets/nuke.png"
 GADGET.Duration = 0
-GADGET.Cooldown = 0
-GADGET.Once = true
+GADGET.Cooldown = 90
 GADGET.Active = true
 GADGET.Params = {
 }
@@ -35,6 +34,21 @@ end
 GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_nuke" then return end
+
+    -- Cooldown check
+    if ply.Horde_NukeCooldown and ply.Horde_NukeCooldown > CurTime() then
+        local remaining_cooldown = math.ceil(ply.Horde_NukeCooldown - CurTime())
+        HORDE:SendNotification("Nuke is still on cooldown! (" .. remaining_cooldown .. "s remaining)", 1, ply)
+        -- Send the cooldown to the client
+        net.Start("Horde_GadgetStartCooldown")
+            net.WriteUInt(remaining_cooldown, 8)
+        net.Send(ply)
+        return
+    end
+
+    ply.Horde_NukeCooldown = CurTime() + 90
+
+    -- Nuke logic
     local ent = ents.Create("horde_nuke")
     ent:Spawn()
     local pos = ply:GetEyeTrace().HitPos
@@ -43,12 +57,12 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     bs:Play()
 
     local flare = ents.Create("env_flare")
-	flare:SetPos(pos)
-	flare:SetAngles(Angle(0,0,0))
-	flare:SetParent(flare)
-	flare:SetKeyValue("Scale","5")
-	flare:SetKeyValue("spawnflags","4")
-	flare:Spawn()
+    flare:SetPos(pos)
+    flare:SetAngles(Angle(0,0,0))
+    flare:SetParent(flare)
+    flare:SetKeyValue("Scale","5")
+    flare:SetKeyValue("spawnflags","4")
+    flare:Spawn()
     timer.Simple(9, function ()
         flare:Remove()
         local flashpower = 5000
@@ -56,7 +70,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         for _, k in pairs(targets) do
             if k:IsPlayer() then
                 if k:VisibleVec( pos ) then
-                    k:ScreenFade(SCREENFADE.IN, Color( 255, 255, 255, 255 ), 1, 0.5)
+                    k:ScreenFade(SCREENFADE.IN, Color( 255, 255, 255, 120), 1, 0.5)
                 end
             end
         end
@@ -64,56 +78,56 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     timer.Simple(10, function ()
         bs:Stop()
         local attacker = ply
-        if !ply:IsValid() then attacker = Entity(0) end
+        if not ply:IsValid() then attacker = Entity(0) end
 
-        Blast(attacker, ent, pos, 800, 500, "explosion_huge", "ambient/explosions/explode_1.wav")
-        timer.Simple(0.2, function()
-            if !ply:IsValid() then attacker = Entity(0) end
-            Blast(attacker, ent, pos + Vector(0,0,100), 1000, 100, "explosion_huge")
-        end)
-        for i = 1, 10 do
-            for j = 1, i * 2 do
-                timer.Simple(0.2 * i, function ()
-                    if !ply:IsValid() then attacker = Entity(0) end
-                    local angle = math.random() * 3.14 * 2;
-                    local x = math.cos(angle) * i * 100;
-                    local y = math.sin(angle) * i * 100;
+        -- Create 5 large blasts
+        for i = 1, 5 do
+            timer.Simple(0.2 * i, function ()
+                if not ply:IsValid() then attacker = Entity(0) end
+                local angle = math.random() * math.pi * 2 -- Random angle
+                local distance = math.random(300, 600) -- Increased random distance from the center
+                local x = math.cos(angle) * distance
+                local y = math.sin(angle) * distance
+                local blast_pos = pos + Vector(x, y, 0)
 
-                    Blast(attacker, ent, pos + Vector(x,y,0), 500 - i * 10, 400 - i * 20, "vj_explosion" .. math.random(1,3), "ambient/explosions/explode_" .. math.random(2,9) .. ".wav")
-                end)
-            end
+                -- Larger blast
+                Blast(attacker, ent, blast_pos, 1200, 800, "explosion_huge", "ambient/explosions/explode_" .. math.random(1, 9) .. ".wav")
+            end)
         end
 
-        timer.Simple(2.2, function()
-            if !ply:IsValid() then attacker = Entity(0) end
-            for i = 1, 40 do
-                local angle = math.random() * 3.14 * 2;
-                local x = math.cos(angle) * 11 * 100;
-                local y = math.sin(angle) * 11 * 100;
-                Blast(attacker, ent, pos + Vector(x,y,0), 150, 100, nil)
-            end
+        -- Final central blast
+        timer.Simple(1.5, function ()
+            if not ply:IsValid() then attacker = Entity(0) end
+            Blast(attacker, ent, pos, 2000, 1500, "explosion_huge", "ambient/explosions/explode_1.wav")
         end)
 
-        timer.Simple(2.4, function()
-            if !ply:IsValid() then attacker = Entity(0) end
-            for i = 1, 60 do
-                local angle = math.random() * 3.14 * 2;
-                local x = math.cos(angle) * 12 * 100;
-                local y = math.sin(angle) * 12 * 100;
-                Blast(attacker, ent, pos + Vector(x,y,0), 100, 100, nil)
-            end
-        end)
-
-        timer.Simple(2.4, function ()
-            if !ply:IsValid() then return end
-            HORDE:CreateTimer("NukeDecay", 1, 60, function ()
-                if !ply:IsValid() or !ply:Alive() then HORDE:RemoveTimer("NukeDecay") end
-                for _, e in pairs(ents.FindInSphere(pos, 1000)) do
-                    if e == ply then
-                        e:Horde_AddDebuffBuildup(HORDE.Status_Decay, 10, ply)
-                    end
+        -- Add radioactive decay effect
+        HORDE:CreateTimer("NukeDecay", 1, 60, function ()
+            if not ply:IsValid() or not ply:Alive() then HORDE:RemoveTimer("NukeDecay") return end
+            for _, e in pairs(ents.FindInSphere(pos, 1000)) do
+                if e:IsPlayer() then
+                    e:Horde_AddDebuffBuildup(HORDE.Status_Decay, 10, ply)
                 end
-            end)
+            end
         end)
     end)
 end
+
+hook.Add("Horde_OnUnsetGadget", "Horde_NukeCooldownPersistence", function(ply, gadget)
+    if gadget ~= "gadget_nuke" then return end
+    -- Store the cooldown
+    ply.Horde_NukeCooldown = ply.Horde_NukeCooldown or 0
+end)
+
+hook.Add("Horde_OnSetGadget", "Horde_NukeCooldownRestore", function(ply, gadget)
+    if gadget ~= "gadget_nuke" then return end
+    -- Restore the cooldown
+    if ply.Horde_NukeCooldown and ply.Horde_NukeCooldown > CurTime() then
+        local remaining_cooldown = math.ceil(ply.Horde_NukeCooldown - CurTime())
+        HORDE:SendNotification("Nuke is still on cooldown! (" .. remaining_cooldown .. "s remaining)", 1, ply)
+        -- Send the cooldown to the client
+        net.Start("Horde_GadgetStartCooldown")
+            net.WriteUInt(remaining_cooldown, 8) -- Remaining cooldown time
+        net.Send(ply)
+    end
+end)
