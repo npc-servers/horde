@@ -1814,6 +1814,8 @@ LANGUAGE["Gadget_Desc_gadget_resistance_booster"] = [[
 LANGUAGE["Gadget_gadget_agility_booster"] = [[敏捷提升]]
 LANGUAGE["Gadget_Desc_gadget_agility_booster"] = [[
 提升 {1} 移动速度。
+提升 {2} 跳跃高度。
+提升 {3} 闪避概率
 ]]
 
 LANGUAGE["Gadget_gadget_ultimate_booster"] = [[极限提升]]

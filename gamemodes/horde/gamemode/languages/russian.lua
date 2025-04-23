@@ -2611,6 +2611,8 @@ LANGUAGE["Gadget_Desc_gadget_damage_booster"] = [[
 LANGUAGE["Gadget_gadget_agility_booster"] = [[Усилитель ловкости]]
 LANGUAGE["Gadget_Desc_gadget_agility_booster"] = [[
 На {1} увеличена скорость передвижения.
+На {2} увеличена высота прыжка.
+На {3} увеличен шанс уклонения.
 ]]
 
 LANGUAGE["Gadget_gadget_resistance_booster"] = [[Усилитель сопротивления]]
