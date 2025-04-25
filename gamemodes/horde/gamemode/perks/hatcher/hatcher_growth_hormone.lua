@@ -1,9 +1,11 @@
 PERK.PrintName = "Growth Hormone"
 PERK.Description =
-[[{1} increases Antlion evolving & healing rate.]]
+[[{1} increased Antlion evolve rate.
+{2} increased Antlion evolving rate when they are healed.]]
 PERK.Icon = "materials/perks/hatcher/growth_hormone.png"
 PERK.Params = {
-    [1] = {value = 1, percent = true},
+    [1] = {value = 0.5, percent = true},
+    [2] = {value = 1, percent = true},
 }
 
 PERK.Hooks = {}

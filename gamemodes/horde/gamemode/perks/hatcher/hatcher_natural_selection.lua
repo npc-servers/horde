@@ -35,7 +35,7 @@ end
 PERK.Hooks.OnEntityCreated = function (ent)
     if not ent:IsValid() then return end
     if CLIENT then return end
-    timer.Simple(0.1, function()
+    timer.Simple(0.2, function()
         if not ent:IsValid() then return end
         local ply = ent:GetNWEntity("HordeOwner")
         if ply:IsPlayer() and ply:Horde_GetPerk("hatcher_natural_selection") and ent:IsNPC() then
