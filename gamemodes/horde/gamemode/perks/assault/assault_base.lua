@@ -42,7 +42,7 @@ PERK.Hooks.Horde_PlayerMoveBonus = function(ply, bonus_walk, bonus_run, bonus_ju
     if not ply:Horde_GetPerk("assault_base") then return end
     bonus_walk.more = bonus_walk.more * ply:Horde_GetPerkLevelBonus("assault_base")
     bonus_run.more = bonus_run.more * ply:Horde_GetPerkLevelBonus("assault_base")
-    bonus_jump.increase = bonus_jump.increase + ply:Horde_GetPerkLevelBonus("assault_base")
+    bonus_jump.more = bonus_jump.more * ply:Horde_GetPerkLevelBonus("assault_base")
 end
 
 PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
