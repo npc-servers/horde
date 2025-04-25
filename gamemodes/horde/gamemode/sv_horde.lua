@@ -112,7 +112,11 @@ hook.Add("InitPostEntity", "Horde_Init", function()
     if not table.IsEmpty(ents.FindByClass("info_horde_spawn_distribution_uniform")) then
         HORDE.spawn_distribution = HORDE.SPAWN_UNIFORM
     elseif not table.IsEmpty(ents.FindByClass("info_horde_spawn_distribution_proximity_noisy")) then
+        if game.GetMap() == "hr_underbase" then
+            HORDE.spawn_distribution = HORDE.SPAWN_UNIFORM
+        else
         HORDE.spawn_distribution = HORDE.SPAWN_PROXIMITY_NOISY
+        end
     end
 
     -- Load economy
