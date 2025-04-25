@@ -28,6 +28,10 @@ local horde_boss_critical = nil
 
 HORDE.horde_active_holdzones = nil
 
+HORDE.MapSpawnDistributionOverrides = {
+    ["hr_underbase"] = HORDE.SPAWN_UNIFORM
+ }
+
 local entmeta = FindMetaTable("Entity")
 function entmeta:Horde_SetMostRecentAttacker(attacker)
 	self.most_recent_attacker = attacker
@@ -107,9 +111,6 @@ hook.Add("InitPostEntity", "Horde_Init", function()
 
     HORDE.has_buy_zone = not table.IsEmpty(ents.FindByClass("trigger_horde_buyzone"))
 
-    local Map_spwn_distr_override = {
-        ["hr_underbase"] = HORDE.SPAWN_UNIFORM,
-    }
     -- Check spawn distribution
     HORDE.spawn_distribution = HORDE.SPAWN_PROXIMITY
     if not table.IsEmpty(ents.FindByClass("info_horde_spawn_distribution_uniform")) then
@@ -118,12 +119,10 @@ hook.Add("InitPostEntity", "Horde_Init", function()
         HORDE.spawn_distribution = HORDE.SPAWN_PROXIMITY_NOISY
     end
 
-    for k, v in pairs( Map_spwn_distr_override ) do
-        if game.GetMap() == k then
-        HORDE.spawn_distribution = v
+    if  HORDE.MapSpawnDistributionOverrides[game.GetMap()] ~= nil then
+        HORDE.spawn_distribution = HORDE.MapSpawnDistributionOverrides[game.GetMap()]
         end
-    end
-
+    
     -- Load economy
     for _, ent in pairs(ents.FindByClass("logic_horde_economy")) do
         ent:KeyValue("startingmoney", ent:GetInternalVariable("startingmoney"))
