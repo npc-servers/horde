@@ -107,15 +107,20 @@ hook.Add("InitPostEntity", "Horde_Init", function()
 
     HORDE.has_buy_zone = not table.IsEmpty(ents.FindByClass("trigger_horde_buyzone"))
 
+    local Map_spwn_distr_override = {
+        ["hr_underbase"] = HORDE.SPAWN_UNIFORM,
+    }
     -- Check spawn distribution
     HORDE.spawn_distribution = HORDE.SPAWN_PROXIMITY
     if not table.IsEmpty(ents.FindByClass("info_horde_spawn_distribution_uniform")) then
         HORDE.spawn_distribution = HORDE.SPAWN_UNIFORM
     elseif not table.IsEmpty(ents.FindByClass("info_horde_spawn_distribution_proximity_noisy")) then
-        if game.GetMap() == "hr_underbase" then
-            HORDE.spawn_distribution = HORDE.SPAWN_UNIFORM
-        else
         HORDE.spawn_distribution = HORDE.SPAWN_PROXIMITY_NOISY
+    end
+
+    for k, v in pairs( Map_spwn_distr_override ) do
+        if game.GetMap() == k then
+        HORDE.spawn_distribution = v
         end
     end
 
