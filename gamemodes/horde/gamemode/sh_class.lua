@@ -13,7 +13,7 @@ HORDE.Class_Warden = "Warden"
 HORDE.Class_Cremator = "Cremator"
 
 -- Creates a Horde class
-function HORDE:CreateClass(name, extra_description, max_hp, movespd, sprintspd, base_perk, perks, order, display_name, model, icon, subclasses)
+function HORDE:CreateClass(name, extra_description, max_hp, movespd, sprintspd, jumppwr, base_perk, perks, order, display_name, model, icon, subclasses)
     if name == nil or name == "" then return end
     local class = {}
     class.name = name
@@ -21,6 +21,7 @@ function HORDE:CreateClass(name, extra_description, max_hp, movespd, sprintspd, 
     class.max_hp = max_hp
     class.movespd = movespd
     class.sprintspd = sprintspd
+    class.jumppwr = jumppwr
     class.base_perk = base_perk
     class.perks = perks
     class.order = order
@@ -97,6 +98,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "survivor_base",
         {
             [1] = {title = "Survival", choices = {"medic_antibiotics", "assault_charge"}},
@@ -114,6 +116,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "assault_base",
         {
             [1] = {title = "Maneuverability", choices = {"assault_ambush", "assault_charge"}},
@@ -131,6 +134,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "heavy_base",
         {
             [1] = {title = "Suppression", choices = {"heavy_sticky_compound", "heavy_crude_casing"}},
@@ -148,6 +152,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "medic_base",
         {
             [1] = {title = "Medicine", choices = {"medic_antibiotics", "medic_painkillers"}},
@@ -165,6 +170,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "demolition_base",
         {
             [1] = {title = "Grenade", choices = {"demolition_frag_impact", "demolition_frag_cluster"}},
@@ -182,6 +188,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "ghost_base",
         {
             [1] = {title = "Tactics", choices = {"ghost_headhunter", "ghost_sniper"}},
@@ -199,6 +206,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "engineer_base",
         {
             [1] = {title = "Craftsmanship", choices = {"engineer_tinkerer", "engineer_pioneer"}},
@@ -216,6 +224,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "berserker_base",
         {
             [1] = {title = "Fundamentals", choices = {"berserker_breathing_technique", "berserker_bloodlust"}},
@@ -233,6 +242,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "warden_base",
         {
             [1] = {title = "Sustain", choices = {"warden_bulwark", "warden_vitality"}},
@@ -250,6 +260,7 @@ function HORDE:GetDefaultClassesData()
         100,
         GetConVar("horde_base_walkspeed"):GetInt(),
         GetConVar("horde_base_runspeed"):GetInt(),
+        GetConVar("horde_base_jumpheight"):GetInt(),
         "cremator_base",
         {
             [1] = {title = "Chemicals", choices = {"cremator_methane", "cremator_napalm"}},
