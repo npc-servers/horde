@@ -22,6 +22,24 @@ PERK.Params = {
 
 PERK.Hooks = {}
 
+local function UpdateSpectreMaxCount(ply)
+    local count = 1
+    if not ply:Horde_GetPerk("necromancer_base") then
+        ply.Horde_Spectre_Max_Count = 0
+        return
+    end
+    if ply:Horde_GetPerk("necromancer_hollow_essence") then
+        count = count + 1
+    end
+    if ply:Horde_GetPerk("necromancer_abyssal_might") then
+        count = count + 1
+    end
+    if ply:Horde_GetPerk("necromancer_necromastery") then
+        count = count + 1
+    end
+    ply.Horde_Spectre_Max_Count = count
+end
+
 PERK.Hooks.Horde_OnPlayerDamageTaken = function ( ply, dmginfo, bonus )
     if not ply:Horde_GetPerk( "necromancer_base" )  then return end
 
@@ -48,7 +66,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 
         ply:Horde_SetMindRegenTick( 0.25 )
         ply:SetMaxArmor( 0 )
-        ply.Horde_Spectre_Max_Count = 1
+        UpdateSpectreMaxCount(ply)
 
         if ply:HasWeapon( "horde_void_projector" ) == true then return end
 
@@ -88,11 +106,11 @@ end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if SERVER and perk == "necromancer_base" then
-        ply.Horde_Spectre_Max_Count = 0
         ply:Horde_SetMaxMind( 0 )
         ply:Horde_SetMind( 0 )
         ply:Horde_SetMindRegenTick( 0 )
         ply:SetMaxArmor( 100 )
+        UpdateSpectreMaxCount(ply)
     end
 end
 
