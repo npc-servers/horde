@@ -23,11 +23,11 @@ PERK.Params = {
 PERK.Hooks = {}
 
 local function UpdateSpectreMaxCount(ply)
-    local count = 1
     if not ply:Horde_GetPerk("necromancer_base") then
         ply.Horde_Spectre_Max_Count = 0
         return
     end
+    local count = 1
     if ply:Horde_GetPerk("necromancer_hollow_essence") then
         count = count + 1
     end
