@@ -60,21 +60,24 @@ function ENT:Think()
 end
 
 function ENT:Explode()
-    if !self:IsValid() then return end
+    if not self:IsValid() then return end
     self:EmitSound("horde/weapons/nades/hemo.ogg", 100, 100, 1, CHAN_ITEM)
-
     local attacker = self
-
     if self:GetOwner():IsValid() then
         attacker = self:GetOwner()
     end
-
-    local dmginfo = DamageInfo()
-    dmginfo:SetDamage(170)
-    dmginfo:SetDamageType(DMG_SLASH)
-    dmginfo:SetAttacker(attacker)
-    dmginfo:SetInflictor(self)
-    util.BlastDamageInfo(dmginfo, self:GetPos(), 240)
+    for _, e in pairs(ents.FindInSphere(self:GetPos(), 240)) do
+        if IsValid(e) and HORDE:IsEnemy(e) then
+            local dmg = DamageInfo()
+            dmg:SetDamage(170)
+            dmg:SetDamageType(DMG_SLASH)
+            dmg:SetAttacker(attacker)
+            dmg:SetInflictor(self)
+            dmg:SetDamagePosition(self:GetPos())
+            e:TakeDamageInfo(dmg)
+            e:Horde_AddDebuffBuildup(HORDE.Status_Bleeding, dmg:GetDamage(), attacker, self:GetPos())
+        end
+    end
 
     local ed = EffectData()
     ed:SetOrigin(self:GetPos())
@@ -82,13 +85,9 @@ function ENT:Explode()
 end
 
 function ENT:Detonate()
-    if !self:IsValid() or self:WaterLevel() > 2 then return end
-    if !self.Armed then return end
-
+    if not self:IsValid() or self:WaterLevel() > 2 or not self.Armed then return end
     self.Armed = false
-
     self:Explode()
-
     self:Remove()
 end
 
