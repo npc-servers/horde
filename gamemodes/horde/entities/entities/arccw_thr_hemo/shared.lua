@@ -66,16 +66,17 @@ function ENT:Explode()
     if self:GetOwner():IsValid() then
         attacker = self:GetOwner()
     end
+    local dmg = DamageInfo()
+    dmg:SetDamage(170)
+    dmg:SetDamageType(DMG_SLASH)
+    dmg:SetAttacker(attacker)
+    dmg:SetInflictor(self)
+    dmg:SetDamagePosition(self:GetPos())
+    util.BlastDamageInfo(dmg, self:GetPos(), 240)
     for _, e in pairs(ents.FindInSphere(self:GetPos(), 240)) do
         if IsValid(e) and HORDE:IsEnemy(e) then
-            local dmg = DamageInfo()
-            dmg:SetDamage(170)
-            dmg:SetDamageType(DMG_SLASH)
-            dmg:SetAttacker(attacker)
-            dmg:SetInflictor(self)
-            dmg:SetDamagePosition(self:GetPos())
-            e:TakeDamageInfo(dmg)
-            e:Horde_AddDebuffBuildup(HORDE.Status_Bleeding, dmg:GetDamage(), attacker, self:GetPos())
+            local damageDealt = dmg:GetDamage() * 0.75
+            e:Horde_AddDebuffBuildup(HORDE.Status_Bleeding, damageDealt, attacker, self:GetPos())
         end
     end
 
