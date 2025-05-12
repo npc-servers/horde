@@ -592,7 +592,7 @@ net.Receive("Horde_BuyItem", function (len, ply)
                         if HORDE.items["npc_manhack"] then
                             ent:AddRelationship("npc_manhack D_LI 99")
                         end
-			if HORDE.items["npc_vj_horde_class_survivor"] then
+                        if HORDE.items["npc_vj_horde_class_survivor"] then
                             ent:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
                         end
                         if HORDE.items["npc_vj_horde_class_assault"] then
