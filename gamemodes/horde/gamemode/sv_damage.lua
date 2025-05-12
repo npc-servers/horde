@@ -259,6 +259,20 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
 
     if dmg:GetDamage() <= 0.5 then return true end
 
+    --Apply iFrames when direct damage is taken from enemies
+    local gameTime = CurTime()
+    local iFrameTime = HORDE.Difficulty[HORDE.CurrentDifficulty].iFrameWindow
+    
+    if target.iFrameEnd then
+        if gameTime < target.iFrameEnd then
+             return true 
+        else
+           target.iFrameEnd = gameTime + iFrameTime
+        end
+    else
+        target.iFrameEnd = gameTime + iFrameTime
+    end
+		
     -- Apply bonus
     local bonus = {resistance=0, less=1, evasion=0, block=0}
     local ret = hook.Run("Horde_OnPlayerDamageTaken", ply, dmg, bonus)
