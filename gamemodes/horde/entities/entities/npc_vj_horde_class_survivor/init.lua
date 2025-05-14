@@ -11,6 +11,7 @@ ENT.StartHealth = 360
 
 ENT.BloodColor = "Red"
 ENT.Immune_AcidPoisonRadiation = true
+ENT.Horde_Immune_Status_All = true
 
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY","CLASS_COMBINE"}
 ENT.PlayerFriendly = true
@@ -36,7 +37,7 @@ ENT.SoundTbl_Death = {"player/pl_pain5.wav","player/pl_pain6.wav","player/pl_pai
 -----------------------------------------------*/
 function ENT:CustomOnInitialize()
 	self:Give("weapon_vj_horde_ar15")
-	self:SetCollisionBounds(Vector(0,0,0), Vector(0,0,0))
+	self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 end
 function ENT:DoRelationshipCheck(ent)
     if ent:IsPlayer() or ent:GetNWEntity("HordeOwner"):IsValid() then return false end
