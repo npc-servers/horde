@@ -9,6 +9,7 @@ ENT.Model = {"models/Combine_Soldier_PrisonGuard.mdl"}
 
 ENT.StartHealth = 425
 ENT.Immune_AcidPoisonRadiation = true
+ENT.Horde_Immune_Status_All = true
 
 ENT.BloodColor = "Red"
 
@@ -36,7 +37,7 @@ ENT.SoundTbl_Death = {"player/pl_pain5.wav","player/pl_pain6.wav","player/pl_pai
 -----------------------------------------------*/
 function ENT:CustomOnInitialize()
 	self:Give("weapon_vj_horde_m16m203")
-	self:SetCollisionBounds(Vector(0,0,0), Vector(0,0,0))
+	self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 end
 function ENT:DoRelationshipCheck(ent)
     if ent:IsPlayer() or ent:GetNWEntity("HordeOwner"):IsValid() then return false end
