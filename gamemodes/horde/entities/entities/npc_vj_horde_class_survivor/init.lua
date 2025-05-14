@@ -10,6 +10,7 @@ ENT.Model = {"models/Combine_Soldier_PrisonGuard.mdl"}
 ENT.StartHealth = 360
 
 ENT.BloodColor = "Red"
+ENT.Immune_AcidPoisonRadiation = true
 
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY","CLASS_COMBINE"}
 ENT.PlayerFriendly = true
