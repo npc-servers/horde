@@ -8,6 +8,7 @@ include('shared.lua')
 ENT.Model = {"models/Combine_Soldier_PrisonGuard.mdl"}
 
 ENT.StartHealth = 425
+ENT.Immune_AcidPoisonRadiation = true
 
 ENT.BloodColor = "Red"
 
