@@ -7,7 +7,7 @@ include('shared.lua')
 -----------------------------------------------*/
 ENT.Model = {"models/Combine_Soldier_PrisonGuard.mdl"}
 
-ENT.StartHealth = 125
+ENT.StartHealth = 425
 
 ENT.BloodColor = "Red"
 
@@ -20,7 +20,7 @@ ENT.HasMeleeAttack = true
 ENT.HasGrenadeAttack = true
 ENT.GrenadeAttackEntity = "arccw_thr_stun"
 ENT.ThrowGrenadeChance = 2
-ENT.NextThrowGrenadeTime = VJ_Set(5, 10)
+ENT.NextThrowGrenadeTime = VJ_Set(5, 5)
 
 ENT.WaitForEnemyToComeOut = false
 
