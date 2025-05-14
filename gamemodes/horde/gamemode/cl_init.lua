@@ -333,12 +333,25 @@ net.Receive("Horde_HunterMarkHighlight", function(len,ply)
     end)
 end)
 
+net.Receive("Horde_VanguardStasisHighlight", function()
+    local entity = net.ReadEntity()
+    local idx = entity:EntIndex()
+    hook.Add("PreDrawHalos", "Horde_VanguardStasisHalo" .. idx, function()
+        if not entity:IsValid() then hook.Remove("PreDrawHalos", "Horde_VanguardStasisHalo" .. idx) end
+        halo.Add({entity}, Color(255, 255, 0), 1, 1, 1, true, true)
+    end)
+end)
+
 net.Receive("Horde_RemoveDeathMarkHighlight", function(len,ply)
     hook.Remove("PreDrawHalos", "Horde_DeathMarkHalo" .. net.ReadEntity():EntIndex())
 end)
 
 net.Receive("Horde_RemoveHunterMarkHighlight", function(len,ply)
     hook.Remove("PreDrawHalos", "Horde_HunterMarkHalo" .. net.ReadEntity():EntIndex())
+end)
+
+net.Receive("Horde_RemoveVanguardStasisHighlight", function()
+    hook.Remove("PreDrawHalos", "Horde_VanguardStasisHalo" .. net.ReadEntity():EntIndex())
 end)
 
 net.Receive("Horde_ToggleShop", function ()
