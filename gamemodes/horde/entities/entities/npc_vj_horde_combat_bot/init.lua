@@ -133,6 +133,7 @@ local extraSounds = {"physics/concrete/concrete_block_impact_hard1.wav", "physic
 
 function ENT:CustomOnInitialize()
 	self:SetColor(Color(0,150,255))
+	self:SetCollisionBounds(Vector(0,0,0), Vector(0,0,0))
 end
 
 function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt, isProp)
