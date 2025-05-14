@@ -166,5 +166,14 @@ if GetConVar("horde_enable_sandbox"):GetInt() == 0 and GetConVar("horde_enable_r
 		end
 		killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(expMulti) )
 		HORDE:SaveRank(killer)
+
+		if victim.Horde_Assist and victim.Horde_Assist:IsPlayer() and victim.Horde_Assist ~= killer then
+			local assist_class = victim.Horde_Assist:Horde_GetCurrentSubclass()
+			if assist_class and victim.Horde_Assist:Horde_GetLevel(assist_class) < HORDE.max_level then
+            	local assist_exp = math.floor(expMulti * 0.5)
+                victim.Horde_Assist:Horde_SetExp(assist_class, victim.Horde_Assist:Horde_GetExp(assist_class) + assist_exp)
+                HORDE:SaveRank(victim.Horde_Assist)
+            end
+		end
 	end)
 end
