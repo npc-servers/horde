@@ -183,6 +183,9 @@ function HORDE:GameEnd(status)
     local elite_kill_player = randomplayer
     local most_elite_kills = 0
 
+    local most_revives_player = randomplayer
+    local most_revives = 0
+
     for _,ply in pairs(player.GetHumans()) do
         if not ply:IsValid() then goto cont end
         local id = ply:SteamID()
@@ -226,6 +229,14 @@ function HORDE:GameEnd(status)
             most_headshots = HORDE.player_headshots[id]
             headshot_player = ply
         end
+
+        if HORDE.player_revives and HORDE.player_revives[id] and HORDE.player_revives[id] > most_revives then
+            most_revives = HORDE.player_revives[id]
+            most_revives_player = ply
+        end
+        
+
+        
 
         ::cont::
     end
@@ -285,6 +296,8 @@ function HORDE:GameEnd(status)
 
     net.WriteUInt(total_damage, 32)
 
+    net.WriteEntity(most_revives_player)
+    net.WriteUInt(most_revives, 32)
     map_list = HORDE:GetNextMaps()
 
     if not map_list then

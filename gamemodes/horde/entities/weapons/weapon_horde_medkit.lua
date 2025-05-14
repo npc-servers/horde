@@ -399,6 +399,8 @@ if SERVER then
 		local owner = self:GetOwner()
 		owner:Horde_AddMoney( 50 )
 		owner:Horde_SyncEconomy()
+		if not HORDE.player_revives[owner:SteamID()] then HORDE.player_revives[owner:SteamID()] = 0 end
+		HORDE.player_revives[owner:SteamID()] = HORDE.player_revives[owner:SteamID()] + 1
 	end
 
 	hook.Add( "Horde_OnPlayerShouldRespawnDuringWave", "HordeMedkitRevive", function( ply )

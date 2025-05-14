@@ -342,11 +342,11 @@ function PANEL:Votediff(vote_btn, diff)
     net.SendToServer()
 end
 
-function PANEL:SetData(status, mvp_player, mvp_damage, mvp_kills, damage_player, most_damage, kills_player, most_kills, most_heal_player, most_heal, headshot_player, most_headshots, elite_kill_player, most_elite_kills, damage_taken_player, most_damage_taken, total_damage, maps)
+function PANEL:SetData(status, mvp_player, mvp_damage, mvp_kills, damage_player, most_damage, kills_player, most_kills, most_heal_player, most_heal, headshot_player, most_headshots, elite_kill_player, most_elite_kills, damage_taken_player, most_damage_taken, total_damage, maps, most_revives_player, most_revives )
     local w = math.max(1024, ScrW() * 0.75)
     --local h = math.max(600, ScrH() * 0.75)
     local h = math.min(800, math.max(600, ScrH() * 0.75))
-    local player_panel_h = (h - 150) / 4  - 2
+    local player_panel_h = (h - 150) / 5  - 2
     local percentage = 0
     if total_damage > 0 then
         percentage = HORDE:Round2(mvp_damage / total_damage, 2) * 100
@@ -358,6 +358,8 @@ function PANEL:SetData(status, mvp_player, mvp_damage, mvp_kills, damage_player,
     self.create_player_panel({x=w/2,y=160 + 2*player_panel_h}, elite_kill_player,         translate.Get("Game_Elite_Killer"), tostring(most_elite_kills) .. " " .. translate.Get("Game_Elite_Kills"))
     self.create_player_panel({x=0,  y=160 + 3*player_panel_h}, most_heal_player,          translate.Get("Game_Most_Heal"), tostring(most_heal) .. " " .. translate.Get("Game_Healed"))
     self.create_player_panel({x=w/2,y=160 + 3*player_panel_h}, headshot_player,     translate.Get("Game_SharpShooter"), tostring(most_headshots) .. " " .. translate.Get("Game_Headshots"))
+    self.create_player_panel({x=w/4,  y=150 + 4*player_panel_h}, most_revives_player,       translate.Get("Game_Most_Revives"), tostring(most_revives) .. " " .. translate.Get("Game_Revives"))
+
 
     for _, map in pairs(maps) do
         self.create_map_panel(map)

@@ -160,6 +160,7 @@ HORDE.player_headshots = {}
 HORDE.player_elite_kills = {}
 HORDE.player_vote_map_change = {}
 HORDE.player_kills_weapon = {}
+HORDE.player_revives = {}
 
 -- Render / Gui
 HORDE.render_highlight_disable = 0
