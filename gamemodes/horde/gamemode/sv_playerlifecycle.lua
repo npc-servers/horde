@@ -183,11 +183,11 @@ function HORDE:GameEnd(status)
     local elite_kill_player = randomplayer
     local most_elite_kills = 0
 
-    local most_revives_player = net.ReadEntity()
-    local most_revives = net.ReadUInt(32)
+    local most_revives_player = randomplayer
+    local most_revives = 0
 
-    local most_revived_player = net.ReadEntity()
-    local most_revived = net.ReadUInt(32)
+    local most_revived_player = randomplayer
+    local most_revived = 0
 
     for _,ply in pairs(player.GetHumans()) do
         if not ply:IsValid() then goto cont end
