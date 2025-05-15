@@ -5,89 +5,29 @@ A powerful combatant capable of controlling individual threats using biotic powe
 Complexity: MEDIUM
 
 {1} increased Shotgun damage. ({2} per level, up to {3}).
-
-Press SHIFT+E to apply Stasis on an enemy.
-Stasis lasts for 5 seconds with a cooldown of 10 seconds.
-You can apply Stasis to one target at a time.
+Allows you to use Biotic abilites.
+Biotic abilities have a cooldown of {4} seconds.
 ]]
 PERK.Icon = "materials/subclasses/vanguard.png"
 
 PERK.Params = {
-    [1] = { percent = true, level = 0.008, max = 0.20, classname = HORDE.Class_Vanguard },
+    [1] = { percent = true, level = 0.008, max = 0.20, classname = "Vanguard" },
+    [2] = { value = 0.008, percent = true },
+    [3] = { value = 0.20, percent = true },
+    [4] = { value = 8 },
 }
 
 PERK.Hooks = {}
 
-PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
-    if SERVER and perk == "vanguard_base" then
-        net.Start("Horde_SyncActivePerk")
-            net.WriteUInt(HORDE.Status_Vanguard_Stasis, 8)
-            net.WriteUInt(1, 3)
-        net.Send(ply)
+PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
+    if not ply:Horde_GetPerk("vanguard_base") then return end
+    if HORDE:IsCurrentWeapon(dmginfo, "Shotgun") == true then
+        bonus.increase = bonus.increase + ply:Horde_GetPerkLevelBonus("vanguard_base")
     end
 end
 
-PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
-    if SERVER and perk == "vanguard_base" then
-        net.Start("Horde_SyncActivePerk")
-            net.WriteUInt(HORDE.Status_Vanguard_Stasis, 8)
-            net.WriteUInt(0, 3)
-        net.Send(ply)
-
-        if ply.Horde_Vanguard_Stasis_Target and ply.Horde_Vanguard_Stasis_Target:IsValid() then
-            local target = ply.Horde_Vanguard_Stasis_Target
-            net.Start("Horde_RemoveVanguardStasisHighlight")
-                net.WriteEntity(target)
-            net.Broadcast()
-            target.Horde_Has_Vanguard_Stasis = nil
-            ply.Horde_Vanguard_Stasis_Target = nil
-        end
-    end
-end
-
-PERK.Hooks.Horde_UseActivePerk = function(ply)
-    if CLIENT or not ply:Horde_GetPerk("vanguard_base") then return end
-
-    local ent = util.TraceLine(util.GetPlayerTrace(ply)).Entity
-
-    if ent:IsValid() and ent:IsNPC() and (not ent:GetNWEntity("HordeOwner"):IsValid()) then
-        local range = 500000
-        if ent:GetPos():DistToSqr(ply:GetPos()) > range then
-            return true
-        end
-
-        if ent.Horde_Has_Vanguard_Stasis and ent.Horde_Has_Vanguard_Stasis ~= ply then
-            return true
-        end
-
-        local id = ent:GetCreationID()
-        timer.Remove("Horde_VanguardStasisExpire" .. id)
-
-        if ply.Horde_Vanguard_Stasis_Target and ply.Horde_Vanguard_Stasis_Target:IsValid() and ply.Horde_Vanguard_Stasis_Target ~= ent then
-            timer.Remove("Horde_VanguardStasisExpire" .. ply.Horde_Vanguard_Stasis_Target:GetCreationID())
-            net.Start("Horde_RemoveVanguardStasisHighlight")
-                net.WriteEntity(ply.Horde_Vanguard_Stasis_Target)
-            net.Broadcast()
-            if ply.Horde_Vanguard_Stasis_Target.Horde_Has_Vanguard_Stasis then
-                ply.Horde_Vanguard_Stasis_Target.Horde_Has_Vanguard_Stasis = nil
-            end
-            ply.Horde_Vanguard_Stasis_Target = nil
-        end
-
-        ent.Horde_Has_Vanguard_Stasis = ply
-        net.Start("Horde_VanguardStasisHighlight")
-            net.WriteEntity(ent)
-        net.Broadcast()
-        ply.Horde_Has_Vanguard_Stasis = ent
-        sound.Play("horde/player/hunter_mark.ogg", ply:GetPos(), 70, 100)
-
-        timer.Create("Horde_VanguardStasisExpire" .. id, 5, 1, function ()
-            net.Start("Horde_RemoveVanguardStasisHighlight")
-                net.WriteEntity(ent)
-            net.Broadcast()
-            ent.Horde_Has_Vanguard_Stasis = nil
-        end)
-    else
-        return true
+PERK.Hooks.Horde_PrecomputePerkLevelBonus = function (ply)
+    if SERVER then
+        ply:Horde_SetPerkLevelBonus("vanguard_base", math.min(0.20, 0.008 * ply:Horde_GetLevel("Vanguard")))
     end
 end
