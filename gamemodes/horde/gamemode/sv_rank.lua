@@ -142,25 +142,34 @@ local expMultiConvar = GetConVar("horde_experience_multiplier")
 local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
 local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
 local endMinusStartXp = endXpMult - startXpMult
+local maxLevel = HORDE.max_level
 
-hook.Add("Horde_OnEnemyKilled", "Horde_GiveExp", function(victim, killer, wpn)
+hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn )
+	if HORDE.current_wave <= 0 then return end
+	if not killer:Horde_GetClass() then return end
 
 	local wavePercent = HORDE.current_wave / HORDE.max_waves
 	local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) --This gets the xp multi number between min and max multi based on round
 	local expMulti = roundXpMulti * expMultiConvar:GetInt()
 
-	if HORDE.current_wave <= 0 or GetConVar("sv_cheats"):GetInt() == 1 then return end
-	if not killer:IsPlayer() or not killer:IsValid() or not killer:Horde_GetClass() then return end
-	local class_name = killer:Horde_GetCurrentSubclass()
-	if killer:Horde_GetLevel(class_name) >= HORDE.max_level then return end
-	if victim:Horde_IsElite() then
-		expMulti = expMulti * 2
-		local p = math.random()
-		if p < 0.01 or (p < 0.1 and killer:Horde_GetGadget() == "gadget_corporate_mindset") then
-			killer:Horde_AddSkullTokens(1)
-		end
-	end
-	killer:Horde_SetExp(class_name, killer:Horde_GetExp(class_name) + math.floor(expMulti) )
-	HORDE:SaveRank(killer)
-end)
+	local maxHealth = victim.Horde_MaxHealth
+	for dealer, amount in pairs( victim.Horde_DamageDone ) do
+		if not IsValid( dealer ) or not dealer:IsPlayer() then continue end
 
+		local subClass = dealer:Horde_GetCurrentSubclass()
+		if dealer:Horde_GetLevel( subClass ) >= maxLevel then continue end
+
+		local rewardMult = math.floor( amount / maxHealth )
+
+		if rewardMult > 0.3 and victim:Horde_IsElite() then
+			expMulti = expMulti * 2
+			local p = math.random()
+			if p < 0.01 or ( p < 0.1 and dealer:Horde_GetGadget() == "gadget_corporate_mindset" ) then
+				dealer:Horde_AddSkullTokens( 1 )
+			end
+		end
+
+		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.floor( expMulti * rewardMult ) )
+		HORDE:SaveRank( dealer )
+	end
+end )

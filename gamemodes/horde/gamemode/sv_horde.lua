@@ -202,10 +202,8 @@ function HORDE:OnEnemyKilled(victim, killer, weapon)
             end
         end
 
-        local boss_properties = victim:Horde_GetBossProperties()
-        local defer_reward = false
         local reward = 0
-        if killer:IsValid() and killer:IsPlayer() or killer:GetNWEntity("HordeOwner"):IsPlayer() then
+        if killer:IsValid() and ( killer:IsPlayer() or killer:GetNWEntity( "HordeOwner" ):IsPlayer() ) then
             if killer:GetNWEntity("HordeOwner"):IsPlayer() then killer = killer:GetNWEntity("HordeOwner") end
             local scale = 1
             if victim:GetVar("reward_scale") then
@@ -214,30 +212,26 @@ function HORDE:OnEnemyKilled(victim, killer, weapon)
 
             reward = HORDE.kill_reward_base * scale
             hook.Run("Horde_OnGivePlayerReward", killer, reward)
-            if boss_properties and boss_properties.is_boss then
-                -- Boss reward is global. Defer reward.
-                defer_reward = true
-            end
-            if not defer_reward then
-                if IsValid(victim.Horde_Assist) and victim.Horde_Assist ~= killer then
-                    victim.Horde_Assist:Horde_AddMoney(reward * 0.1)
-                    victim.Horde_Assist:Horde_SyncEconomy()
-                    killer:Horde_AddMoney(reward * 0.9)
-                else
-                    killer:Horde_AddMoney(reward)
-                end
-            end
 
             if victim:Horde_IsElite() then
                 if not HORDE.player_elite_kills[killer:SteamID()] then HORDE.player_elite_kills[killer:SteamID()] = 0 end
                 HORDE.player_elite_kills[killer:SteamID()] = HORDE.player_elite_kills[killer:SteamID()] + 1
             end
 
-            killer:AddFrags(1)
-            killer:Horde_SyncEconomy()
+            local maxHealth = victim.Horde_MaxHealth
+            for dealer, amount in pairs( victim.Horde_DamageDone ) do
+                if not IsValid( dealer ) or not dealer:IsPlayer() then continue end
+                dealer:Horde_AddMoney( math.floor( amount / maxHealth ) * reward )
+                if amount > 0.5 * maxHealth then
+                    dealer:AddFrags( 1 )
+                end
+
+                dealer:Horde_SyncEconomy()
+            end
         end
 
         -- When a boss is killed.
+        local boss_properties = victim:Horde_GetBossProperties()
         if boss_properties then
             -- There could only be 1 boss.
             HORDE.horde_boss = nil
@@ -272,10 +266,6 @@ function HORDE:OnEnemyKilled(victim, killer, weapon)
         hook.Run("HordeWaveEnd", HORDE.current_wave)
     end
 end
-
-hook.Add("OnNPCKilled", "Horde_EnemyKilled", function(victim, killer, weapon)
-    HORDE:OnEnemyKilled(victim, killer, weapon)
-end)
 
 -- Corpse settings
 if GetConVar("horde_corpse_cleanup"):GetInt() == 1 then
@@ -362,21 +352,17 @@ hook.Add("ScaleNPCDamage", "Horde_HeadshotCounter", function (npc, hitgroup, dmg
 end)
 
 hook.Add("EntityRemoved", "Horde_EntityRemoved", function(ent)
-    if (ent:IsNPC() or ent:IsNextBot()) and ent:Horde_GetMostRecentAttacker() then
-        HORDE:OnEnemyKilled(ent, ent:Horde_GetMostRecentAttacker())
-    else
-        if HORDE.spawned_enemies[ent:EntIndex()] then
-            HORDE.spawned_enemies[ent:EntIndex()] = nil
-            HORDE.alive_enemies_this_wave = HORDE.alive_enemies_this_wave - 1
-            HORDE.total_enemies_this_wave = HORDE.total_enemies_this_wave + 1
-            local count = HORDE.spawned_enemies_count[ent:Horde_GetName()]
-            if count and count > 0 then
-                HORDE.spawned_enemies_count[ent:Horde_GetName()] = count - 1
-            end
-            if ent.Horde_Forced_Spawn_Flag then
-                local name = ent.Horde_Forced_Spawn_Flag
-                table.insert(horde_force_spawn_enemies[name], math.random(1, HORDE.total_enemies_this_wave_fixed))
-            end
+    if HORDE.spawned_enemies[ent:EntIndex()] then
+        HORDE.spawned_enemies[ent:EntIndex()] = nil
+        HORDE.alive_enemies_this_wave = HORDE.alive_enemies_this_wave - 1
+        HORDE.total_enemies_this_wave = HORDE.total_enemies_this_wave + 1
+        local count = HORDE.spawned_enemies_count[ent:Horde_GetName()]
+        if count and count > 0 then
+            HORDE.spawned_enemies_count[ent:Horde_GetName()] = count - 1
+        end
+        if ent.Horde_Forced_Spawn_Flag then
+            local name = ent.Horde_Forced_Spawn_Flag
+            table.insert(horde_force_spawn_enemies[name], math.random(1, HORDE.total_enemies_this_wave_fixed))
         end
     end
 end)

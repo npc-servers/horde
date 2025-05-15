@@ -115,12 +115,6 @@ function HORDE:ApplyDamage(npc, hitgroup, dmginfo)
 
     hook.Run("Horde_OnPlayerDamagePost", ply, npc, bonus, hitgroup, dmginfo)
 
-    if not npc.Horde_Assist then
-        npc.Horde_Assist = ply
-    elseif ply ~= npc.Horde_Hit then
-        npc.Horde_Assist = npc.Horde_Hit
-    end
-
     npc.Horde_Hit = ply
 end
 
@@ -440,3 +434,39 @@ hook.Add("ScaleNPCDamage", "Horde_BossHeadshotDamage", function (npc, hitgroup, 
         dmg:ScaleDamage(0.70)
     end
 end)
+
+-- Damage tracking per entity
+local entTakingDamage
+local lastHealth
+hook.Add( "EntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo, wasDamageTaken )
+    if not ent:IsNPC() or ent:IsNextBot() then return end
+
+    entTakingDamage = ent
+    lastHealth = ent:Health()
+
+    if not ent.Horde_DamageDone then
+        ent.Horde_DamageDone = {}
+        ent.Horde_MaxHealth = ent:GetMaxHealth()
+    end
+end )
+
+hook.Add( "PostEntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo, wasDamageTaken )
+    if entTakingDamage ~= ent then return end
+    local health = ent:Health()
+    if health < 0 then
+        health = 0
+    end
+
+    local doneDamage = lastHealth - health
+    if doneDamage <= 0 then return end
+
+    local attacker = dmgInfo:GetAttacker()
+    if not IsValid( attacker ) then return end
+
+    ent.Horde_DamageDone[attacker] = ent.Horde_DamageDone[attacker] or 0
+    ent.Horde_DamageDone[attacker] = ent.Horde_DamageDone[attacker] + doneDamage
+
+    if health == 0 then -- Entity died
+        HORDE:OnEnemyKilled( ent, attacker, dmgInfo:GetInflictor() )
+    end
+end )
