@@ -469,7 +469,7 @@ hook.Add( "PostEntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo
     ent.Horde_DamageDone[attacker] = ent.Horde_DamageDone[attacker] or 0
     ent.Horde_DamageDone[attacker] = ent.Horde_DamageDone[attacker] + doneDamage
 
-    if health == 0 then -- Entity died
+    if health == 0 or not ent:Alive() then
         HORDE:OnEnemyKilled( ent, attacker, dmgInfo:GetInflictor() )
     end
 end )
