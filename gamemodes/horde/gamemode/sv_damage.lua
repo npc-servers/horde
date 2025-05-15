@@ -446,7 +446,10 @@ hook.Add( "EntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo, wa
 
     if not ent.Horde_DamageDone then
         ent.Horde_DamageDone = {}
-        ent.Horde_MaxHealth = ent:GetMaxHealth()
+
+        local currentHealth = ent:Health()
+        local maxHealth = ent:GetMaxHealth()
+        ent.Horde_MaxHealth = maxHealth >= currentHealth and maxHealth or currentHealth
     end
 end )
 
