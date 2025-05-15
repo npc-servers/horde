@@ -458,22 +458,22 @@ net.Receive("Horde_GameEnd", function ()
 
     local mvp = net.ReadEntity()
     local mvp_damage = net.ReadUInt(32)
-    local mvp_kills = net.ReadUInt(32)
+    local mvp_kills = net.ReadUInt(16)
 
     local damage_player = net.ReadEntity()
     local most_damage = net.ReadUInt(32)
 
     local kills_player = net.ReadEntity()
-    local most_kills = net.ReadUInt(32)
+    local most_kills = net.ReadUInt(16)
 
     local most_heal_player = net.ReadEntity()
-    local most_heal = net.ReadUInt(32)
+    local most_heal = net.ReadUInt(24)
 
     local headshot_player = net.ReadEntity()
-    local most_headshots = net.ReadUInt(32)
+    local most_headshots = net.ReadUInt(16)
 
     local elite_kill_player = net.ReadEntity()
-    local most_elite_kills = net.ReadUInt(32)
+    local most_elite_kills = net.ReadUInt(16)
 
     local damage_taken_player = net.ReadEntity()
     local most_damage_taken = net.ReadUInt(32)
@@ -481,10 +481,10 @@ net.Receive("Horde_GameEnd", function ()
     local total_damage = net.ReadUInt(32)
 
     local most_revives_player = net.ReadEntity()
-    local most_revives = net.ReadUInt(32)
+    local most_revives = net.ReadUInt(9)
 
     local most_revived_player = net.ReadEntity()
-    local most_revived = net.ReadUInt(32)
+    local most_revived = net.ReadUInt(9)
 
     local maps = net.ReadTable()
 

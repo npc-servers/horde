@@ -392,8 +392,8 @@ if SERVER then
 		ply:SetPos( ply.Medkit_DeathPos )
 		ply.Medkit_DeathPos = nil
 		ply.Medit_Respawning = false
-		if not HORDE.player_revived[ply:SteamID()] then HORDE.player_revived[ply:SteamID()] = 0 end
-		HORDE.player_revived[ply:SteamID()] = HORDE.player_revived[ply:SteamID()] + 1
+		HORDE.player_revived[ply:SteamID()] = ( HORDE.player_revived[ply:SteamID()] or 0 ) + 1
+		HORDE.player_revives[owner:SteamID()] = ( HORDE.player_revives[owner:SteamID()] or 0 ) + 1
 
 		ply:EmitSound( "ambient/levels/labs/electric_explosion1.wav" )
 		ply:EmitSound( "items/suitchargeok1.wav" )
@@ -401,8 +401,6 @@ if SERVER then
 		local owner = self:GetOwner()
 		owner:Horde_AddMoney( 50 )
 		owner:Horde_SyncEconomy()
-		if not HORDE.player_revives[owner:SteamID()] then HORDE.player_revives[owner:SteamID()] = 0 end
-		HORDE.player_revives[owner:SteamID()] = HORDE.player_revives[owner:SteamID()] + 1
 	end
 
 	hook.Add( "Horde_OnPlayerShouldRespawnDuringWave", "HordeMedkitRevive", function( ply )
