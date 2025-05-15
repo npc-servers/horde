@@ -68,6 +68,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
     if self.Horde_Debuff_Cooldown[debuff] then return end
     if self.Horde_Debuff_Active[debuff] then return end
     if not self.Horde_Debuff_Buildup[debuff] then self.Horde_Debuff_Buildup[debuff] = 0 end
+    if not IsValid(self) then return end
     if self:IsPlayer() then
         if self.Horde_Debuff_Buildup[debuff] >= 100 then return end
         local bonus = {apply = 1, less = 1, add = 0}

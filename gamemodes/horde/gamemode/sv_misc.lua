@@ -75,15 +75,27 @@ hook.Add("EntityTakeDamage", "ManhackContactDamage", function (target, dmginfo)
 end)
 
 function HORDE:IsPlayerOrMinion(ent)
-    return ent:IsPlayer() or ent:GetNWEntity("HordeOwner"):IsValid()
+    if not IsValid(ent) then
+        return false
+    end
+    local owner = ent:GetNWEntity("HordeOwner", nil)
+    return ent:IsPlayer() or (IsValid(owner) and owner:IsPlayer())
 end
 
 function HORDE:IsPlayerMinion(ent)
-    return ent:GetNWEntity("HordeOwner"):IsValid()
+    if not IsValid(ent) then
+        return false
+    end
+    local owner = ent:GetNWEntity("HordeOwner", nil)
+    return IsValid(owner) and owner:IsPlayer()
 end
 
 function HORDE:IsEnemy(ent)
-    return ent:IsNPC() and (not ent:IsPlayer()) and (not ent:GetNWEntity("HordeOwner"):IsValid())
+    if not IsValid(ent) then
+        return false
+    end
+    local owner = ent:GetNWEntity("HordeOwner", nil)
+    return ent:IsNPC() and not ent:IsPlayer() and not (IsValid(owner) and owner:IsPlayer())
 end
 
 function HORDE:SpawnManhack(ply, id)
