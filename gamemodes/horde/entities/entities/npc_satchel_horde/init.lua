@@ -96,7 +96,7 @@ function ENT:PassiveDetonate()
     if IsValid(ply) and ply:Horde_GetPerk("demolition_frag_impact") then
         for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
             if HORDE:IsEnemy(ent) then
-                ent:Horde_AddDebuffBuildup(HORDE.Status_Stun, 250, self.Owner, ent:GetPos())
+                ent:Horde_AddDebuffBuildup(HORDE.Status_Stun, 250, ply, ent:GetPos())
             end
         end
     end
