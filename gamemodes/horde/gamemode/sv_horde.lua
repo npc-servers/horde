@@ -221,7 +221,7 @@ function HORDE:OnEnemyKilled(victim, killer, weapon)
             local maxHealth = victim.Horde_MaxHealth
             for dealer, amount in pairs( victim.Horde_DamageDone ) do
                 if not IsValid( dealer ) or not dealer:IsPlayer() then continue end
-                dealer:Horde_AddMoney( math.floor( amount / maxHealth ) * reward )
+                dealer:Horde_AddMoney( math.floor( ( amount / maxHealth ) * reward ) )
                 if amount > 0.5 * maxHealth then
                     dealer:AddFrags( 1 )
                 end

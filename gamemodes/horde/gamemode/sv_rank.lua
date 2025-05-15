@@ -159,7 +159,7 @@ hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn 
 		local subClass = dealer:Horde_GetCurrentSubclass()
 		if dealer:Horde_GetLevel( subClass ) >= maxLevel then continue end
 
-		local rewardMult = math.floor( amount / maxHealth )
+		local rewardMult = math.amount / maxHealth
 
 		if rewardMult > 0.3 and victim:Horde_IsElite() then
 			expMulti = expMulti * 2
@@ -169,7 +169,7 @@ hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn 
 			end
 		end
 
-		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.floor( expMulti * rewardMult ) )
+		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMult ) )
 		HORDE:SaveRank( dealer )
 	end
 end )
