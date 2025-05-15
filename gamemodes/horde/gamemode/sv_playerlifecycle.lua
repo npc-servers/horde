@@ -183,8 +183,11 @@ function HORDE:GameEnd(status)
     local elite_kill_player = randomplayer
     local most_elite_kills = 0
 
-    local most_revives_player = randomplayer
-    local most_revives = 0
+    local most_revives_player = net.ReadEntity()
+    local most_revives = net.ReadUInt(32)
+
+    local most_revived_player = net.ReadEntity()
+    local most_revived = net.ReadUInt(32)
 
     for _,ply in pairs(player.GetHumans()) do
         if not ply:IsValid() then goto cont end
@@ -234,9 +237,11 @@ function HORDE:GameEnd(status)
             most_revives = HORDE.player_revives[id]
             most_revives_player = ply
         end
-        
 
-        
+        if HORDE.player_revived and HORDE.player_revived[id] and HORDE.player_revived[id] > most_revived then
+            most_revived = HORDE.player_revived[id]
+            most_revived_player = ply
+        end
 
         ::cont::
     end
@@ -298,6 +303,9 @@ function HORDE:GameEnd(status)
 
     net.WriteEntity(most_revives_player)
     net.WriteUInt(most_revives, 32)
+
+    net.WriteEntity(most_revived_player)
+    net.WriteUInt(most_revived, 32)
     map_list = HORDE:GetNextMaps()
 
     if not map_list then
