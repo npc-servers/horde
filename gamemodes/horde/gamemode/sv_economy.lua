@@ -411,13 +411,6 @@ hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
         HORDE:GiveStarterWeapons(ply)
     end
 
-    if GetConVar("horde_enable_sandbox"):GetInt() == 1 then
-        net.Start("Horde_SyncStatus")
-            net.WriteUInt(HORDE.Status_ExpDisabled, 8)
-            net.WriteUInt(1, 8)
-        net.Send(ply)
-    end
-
     if not HORDE.has_buy_zone then
         net.Start("Horde_SyncStatus")
         net.WriteUInt(HORDE.Status_CanBuy, 8)
@@ -591,6 +584,12 @@ net.Receive("Horde_BuyItem", function (len, ply)
                         end
                         if HORDE.items["npc_manhack"] then
                             ent:AddRelationship("npc_manhack D_LI 99")
+                        end
+                        if HORDE.items["npc_vj_horde_class_survivor"] then
+                            ent:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
+                        end
+                        if HORDE.items["npc_vj_horde_class_assault"] then
+                            ent:AddRelationship("npc_vj_horde_class_assault D_LI 99")
                         end
                         ent:AddRelationship("npc_vj_horde_spectre D_LI 99")
                         ent:AddRelationship("npc_vj_horde_shadow_hulk D_LI 99")

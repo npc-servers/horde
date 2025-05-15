@@ -303,11 +303,7 @@ function HORDE:GameEnd(status)
     HORDE:BroadcastGameResultMessage(status, HORDE.current_wave)
 
     for _, ply in pairs(player.GetHumans()) do
-        if not ply:IsValid() then goto cont end
-        if GetConVar("horde_enable_rank"):GetInt() == 1 then
-            HORDE:SaveRank(ply)
-        end
-        ::cont::
+        HORDE:SaveRank(ply)
     end
 
     if _G.MapVote then
@@ -550,13 +546,6 @@ function HORDE:PlayerInit(ply)
     end
     net.Start("Horde_SyncClientExps")
     net.Send(ply)
-
-    if GetConVar("horde_enable_sandbox"):GetInt() == 1 then
-        net.Start("Horde_SyncStatus")
-            net.WriteUInt(HORDE.Status_ExpDisabled, 8)
-            net.WriteUInt(1, 8)
-        net.Send(ply)
-    end
 
     ply.Horde_Init_Complete = true
     local added = HORDE:TryAddTopTen(ply)
