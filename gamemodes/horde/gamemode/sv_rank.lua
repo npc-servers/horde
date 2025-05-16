@@ -19,6 +19,36 @@ function HORDE:SaveSkullTokens(ply)
 	strm:Close()
 end
 
+function HORDE:LoadSkullTokens(ply)
+	if not ply:IsValid() then return end
+	local path, strm
+
+	if not file.IsDir("horde/tokens", "DATA") then
+		file.CreateDir("horde/tokens", "DATA")
+	end
+
+	path = "horde/tokens/" .. HORDE:ScrubSteamID(ply) .. ".txt"
+
+	if not file.Exists(path, "DATA") then
+		ply:Horde_SetSkullTokens(0)
+		ply.Horde_Skull_Tokens_Loaded = true
+		return
+	end
+
+	strm = file.Open(path, "rb", "DATA")
+		local header = strm:Read(#EXPECTED_HEADER_TOKENS)
+
+		if header == EXPECTED_HEADER_TOKENS then
+			local tokens = strm:ReadLong()
+			ply:Horde_SetSkullTokens(tokens)
+		else
+			ply:Horde_SetSkullTokens(0)
+		end
+	strm:Close()
+
+	ply.Horde_Skull_Tokens_Loaded = true
+end
+
 function HORDE:SaveRank(ply)
 	if not ply:IsValid() then return end
 	if not ply.Horde_Rank_Loaded then return end
@@ -50,37 +80,6 @@ function HORDE:SaveRank(ply)
 	strm:Close()
 end
 
-function HORDE:LoadSkullTokens(ply)
-	if not ply:IsValid() then return end
-	local path, strm
-
-	if not file.IsDir("horde/tokens", "DATA") then
-		file.CreateDir("horde/tokens", "DATA")
-	end
-
-	path = "horde/tokens/" .. HORDE:ScrubSteamID(ply) .. ".txt"
-
-	if not file.Exists(path, "DATA") then
-		print("Path", path, "does not exist!")
-		ply:Horde_SetSkullTokens(0)
-		ply.Horde_Skull_Tokens_Loaded = true
-		return
-	end
-
-	strm = file.Open(path, "rb", "DATA")
-		local header = strm:Read(#EXPECTED_HEADER_TOKENS)
-
-		if header == EXPECTED_HEADER_TOKENS then
-			local tokens = strm:ReadLong()
-			ply:Horde_SetSkullTokens(tokens)
-		else
-			ply:Horde_SetSkullTokens(0)
-		end
-	strm:Close()
-
-	ply.Horde_Skull_Tokens_Loaded = true
-end
-
 function HORDE:LoadRank(ply)
 	if not ply:IsValid() then return end
 
@@ -93,7 +92,6 @@ function HORDE:LoadRank(ply)
 	path = "horde/ranks/" .. HORDE:ScrubSteamID(ply) .. ".txt"
 
 	if not file.Exists(path, "DATA") then
-		print("Path", path, "does not exist!")
 		ply.Horde_Rank_Loaded = true
 		return
 	end
@@ -137,6 +135,16 @@ function HORDE:LoadRank(ply)
 
 	ply.Horde_Rank_Loaded = true
 end
+
+hook.Add( "Shutdown", "Horde_SaveRank", function()
+	for _, ply in pairs( player.GetHumans() ) do
+		HORDE:SaveRank( ply )
+	end
+end )
+
+hook.Add( "PlayerDisconnect", "Horde_SaveRank", function( ply )
+	HORDE:SaveRank( ply )
+end )
 
 local expMultiConvar = GetConVar("horde_experience_multiplier")
 local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
