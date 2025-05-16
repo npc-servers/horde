@@ -12,7 +12,7 @@ SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "Masterkey"
-SWEP.Slot = 2
+SWEP.Slot = 1
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_mifl_masterkey_1.mdl"
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
@@ -45,7 +45,7 @@ SWEP.Delay = 60 / 180 -- 60 / RPM.
 SWEP.Num = 8 -- number of shots per trigger pull.
 SWEP.AccuracyMOA = 75 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 85 -- inaccuracy added by hip firing.
-SWEP.MoveDispersion = 75 -- inaccuracy added by moving. Applies in sights as well! Walking speed is considered as "maximum".
+SWEP.MoveDispersion = 50 -- inaccuracy added by moving. Applies in sights as well! Walking speed is considered as "maximum".
 SWEP.SightsDispersion = 0 -- dispersion that remains even in sights
 
 SWEP.SpeedMult = 1.15
