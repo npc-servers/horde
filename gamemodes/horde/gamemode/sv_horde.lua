@@ -222,7 +222,7 @@ function HORDE:OnEnemyKilled(victim, killer, weapon)
             for dealer, amount in pairs( victim.Horde_DamageDone ) do
                 if not IsValid( dealer ) or not dealer:IsPlayer() then continue end
                 dealer:Horde_AddMoney( math.floor( ( amount / maxHealth ) * reward ) )
-                if amount > 0.5 * maxHealth then
+                if amount > 0.45 * maxHealth then
                     dealer:AddFrags( 1 )
                 end
 
