@@ -440,6 +440,7 @@ local entTakingDamage
 local lastHealth
 hook.Add( "EntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo, wasDamageTaken )
     if not ent:IsNPC() or ent:IsNextBot() then return end
+    if ent.Horde_EntityDied then return end
 
     entTakingDamage = ent
     lastHealth = ent:Health()
@@ -469,6 +470,7 @@ hook.Add( "PostEntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo
     if health == 0 or not ent:Alive() then
         ent.Horde_MaxHealth = ent.Horde_TotalDamageDone
         ent.Horde_TotalDamageDone = nil
+        ent.Horde_EntityDied = true
 
         HORDE:OnEnemyKilled( ent, attacker, dmgInfo:GetInflictor() )
     end
