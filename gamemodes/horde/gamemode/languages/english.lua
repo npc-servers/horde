@@ -42,6 +42,10 @@ LANGUAGE["Game_Headshots"] = "Headshots"
 LANGUAGE["Game_Most_Heal"] = "Team Healer"
 LANGUAGE["Game_Healed"] = "Healed"
 LANGUAGE["Game_Healed_You"] = "healed you"
+LANGUAGE["Game_Most_Revives"] = "Most Revives"
+LANGUAGE["Game_Revives"] = "Revives"
+LANGUAGE["Game_Most_Revived"] = "Most Revived"
+LANGUAGE["Game_Revived"] = "Revived"
 
 
 -- Ranks

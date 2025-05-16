@@ -183,6 +183,12 @@ function HORDE:GameEnd(status)
     local elite_kill_player = randomplayer
     local most_elite_kills = 0
 
+    local most_revives_player = randomplayer
+    local most_revives = 0
+
+    local most_revived_player = randomplayer
+    local most_revived = 0
+
     for _,ply in pairs(player.GetHumans()) do
         if not ply:IsValid() then goto cont end
         local id = ply:SteamID()
@@ -227,6 +233,16 @@ function HORDE:GameEnd(status)
             headshot_player = ply
         end
 
+        if HORDE.player_revives and HORDE.player_revives[id] and HORDE.player_revives[id] > most_revives then
+            most_revives = HORDE.player_revives[id]
+            most_revives_player = ply
+        end
+
+        if HORDE.player_revived and HORDE.player_revived[id] and HORDE.player_revived[id] > most_revived then
+            most_revived = HORDE.player_revived[id]
+            most_revived_player = ply
+        end
+
         ::cont::
     end
 
@@ -261,30 +277,35 @@ function HORDE:GameEnd(status)
 
     net.WriteString(status)
 
-    net.WriteEntity(mvp_player)
+    net.WritePlayer(mvp_player)
     net.WriteUInt(mvp_damage, 32)
-    net.WriteUInt(mvp_kills, 32)
+    net.WriteUInt(mvp_kills, 16)
 
-    net.WriteEntity(damage_player)
+    net.WritePlayer(damage_player)
     net.WriteUInt(most_damage, 32)
 
-    net.WriteEntity(kills_player)
-    net.WriteUInt(most_kills, 32)
+    net.WritePlayer(kills_player)
+    net.WriteUInt(most_kills, 16)
 
-    net.WriteEntity(most_heal_player)
-    net.WriteUInt(most_heal, 32)
+    net.WritePlayer(most_heal_player)
+    net.WriteUInt(most_heal, 24)
 
-    net.WriteEntity(headshot_player)
-    net.WriteUInt(most_headshots, 32)
+    net.WritePlayer(headshot_player)
+    net.WriteUInt(most_headshots, 16)
 
-    net.WriteEntity(elite_kill_player)
-    net.WriteUInt(most_elite_kills, 32)
+    net.WritePlayer(elite_kill_player)
+    net.WriteUInt(most_elite_kills, 16)
 
-    net.WriteEntity(damage_taken_player)
+    net.WritePlayer(damage_taken_player)
     net.WriteUInt(most_damage_taken, 32)
 
     net.WriteUInt(total_damage, 32)
 
+    net.WritePlayer(most_revives_player)
+    net.WriteUInt(most_revives, 9)
+
+    net.WritePlayer(most_revived_player)
+    net.WriteUInt(most_revived, 9)
     map_list = HORDE:GetNextMaps()
 
     if not map_list then

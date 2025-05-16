@@ -392,6 +392,8 @@ if SERVER then
 		ply:SetPos( ply.Medkit_DeathPos )
 		ply.Medkit_DeathPos = nil
 		ply.Medit_Respawning = false
+		HORDE.player_revived[ply:SteamID()] = ( HORDE.player_revived[ply:SteamID()] or 0 ) + 1
+		HORDE.player_revives[owner:SteamID()] = ( HORDE.player_revives[owner:SteamID()] or 0 ) + 1
 
 		ply:EmitSound( "ambient/levels/labs/electric_explosion1.wav" )
 		ply:EmitSound( "items/suitchargeok1.wav" )
