@@ -25,7 +25,7 @@ SWEP.DamageMin = 200 -- damage done at maximum range
 SWEP.Range = 150 -- in METRES
 SWEP.Penetration = 22
 SWEP.VisualRecoilMult = 0
-SWEP.Recoil = 0.5
+SWEP.Recoil = 1
 SWEP.RecoilSide = 0
 
 SWEP.IsShotgun = false
@@ -33,8 +33,8 @@ SWEP.IsShotgun = false
 
 SWEP.Delay = 60 / 400 -- 60 / RPM.
 
-SWEP.AccuracyMOA = 0.06 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 800 -- inaccuracy added by hip firing.
+SWEP.AccuracyMOA = 0.12 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
+SWEP.HipDispersion = 400 -- inaccuracy added by hip firing.
 
 SWEP.ShootVol = 75 -- volume of shoot sound
 
@@ -129,11 +129,11 @@ SWEP.Attachments = {
 }
 function SWEP:Hook_ShouldNotFireFirst()
     if self:GetCurrentFiremode().Mode == 3 then
-        self.AccuracyMOA = 2
+        self.AccuracyMOA = 1.75
         self.AmmoPerShot = 2
         self.Num = 2 -- number of shots per trigger pull.
     else
-        self.AccuracyMOA = 1
+        self.AccuracyMOA = 0.12
         self.AmmoPerShot = 1
         self.Num = 1 -- number of shots per trigger pull.
     end
