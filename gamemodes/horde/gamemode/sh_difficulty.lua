@@ -25,6 +25,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.3,
         xpMultiStart = 1,
         xpMultiEnd = 1,
+        iFrameWindow = 2,
     },
     [2] = {
         name = "HARD",
@@ -49,6 +50,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.35,
         xpMultiStart = 1,
         xpMultiEnd = 2,
+        iFrameWindow = 1.5,
     },
     [3] = {
         name = "REALISM",
@@ -73,6 +75,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.4,
         xpMultiStart = 2,
         xpMultiEnd = 3,
+        iFrameWindow = 1,
     },
     [4] = {
         name = "NIGHTMARE",
@@ -97,6 +100,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.5,
         xpMultiStart = 2.5,
         xpMultiEnd = 4,
+        iFrameWindow = 0.75,
     },
     [5] = {
         name = "APOCALYPSE",
@@ -121,6 +125,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.5,
         xpMultiStart = 3,
         xpMultiEnd = 5,
+        iFrameWindow = 0.5,
     },
     [6] = {
         name = "SWARM",
@@ -145,6 +150,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.5,
         xpMultiStart = 3,
         xpMultiEnd = 5.5,
+        iFrameWindow = 0.25,
     },
     [7] = {
         name = "HELL",
@@ -169,6 +175,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.5,
         xpMultiStart = 3.5,
         xpMultiEnd = 6,
+        iFrameWindow = 0.25,
     },
     [8] = {
         name = "CHAOS",
@@ -193,6 +200,7 @@ HORDE.Difficulty = {
         hemorrhagePercentage = 0.5,
         xpMultiStart = 4,
         xpMultiEnd = 7,
+        iFrameWindow = 0.25,
     },
 }
 
