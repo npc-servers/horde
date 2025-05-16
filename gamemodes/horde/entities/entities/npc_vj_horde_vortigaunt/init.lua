@@ -18,15 +18,14 @@ ENT.ConstantlyFaceEnemy = true
 
 ENT.BloodColor = "Yellow"
 
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.RunAwayOnUnknownDamage = false
 
 ENT.HasMeleeAttack = false
 
 ENT.HasRangeAttack = true
 ENT.RangeAttackEntityToSpawn = nil
-
-ENT.AnimTbl_RangeAttack = {"vjges_g_zapattack1"}
-ENT.RangeAttackAnimationStopMovement = false
 
 ENT.RangeDistance = 5000
 ENT.RangeToMeleeDistance = 10
