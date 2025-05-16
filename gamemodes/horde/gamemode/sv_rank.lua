@@ -146,7 +146,6 @@ local maxLevel = HORDE.max_level
 
 hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn )
 	if HORDE.current_wave <= 0 then return end
-	if not killer:Horde_GetClass() then return end
 
 	local wavePercent = HORDE.current_wave / HORDE.max_waves
 	local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) --This gets the xp multi number between min and max multi based on round
