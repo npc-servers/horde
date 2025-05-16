@@ -28,6 +28,7 @@ ENT.DropWeaponOnDeath = false
 
 ENT.HasMeleeAttack = true
 
+ENT.DisableWeaponReloadAnimation = true
 ENT.WeaponReload_FindCover = false
 
 ENT.WaitForEnemyToComeOut = false
