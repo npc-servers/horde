@@ -20,6 +20,8 @@ ENT.CanThrowBackDetectedGrenades = false
 
 ENT.BloodColor = "Red"
 
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.MoveOrHideOnDamageByEnemy_OnlyMove = true
 
 ENT.DropWeaponOnDeath = false
