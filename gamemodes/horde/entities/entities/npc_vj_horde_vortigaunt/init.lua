@@ -67,7 +67,7 @@ function ENT:CustomRangeAttackCode()
         local chargeSound = CreateSound(self, "npc/vort/attack_charge.wav");
         chargeSound:Play()
         local pos = ene:GetPos() + ene:OBBCenter()
-        timer.Simple(0.5 / self.AnimationPlaybackRate, function ()
+        timer.Simple(1.0 / self.AnimationPlaybackRate, function ()
             if not self:IsValid() then
                 chargeSound:Stop()
                 return
