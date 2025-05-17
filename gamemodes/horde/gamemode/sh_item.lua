@@ -423,7 +423,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Pistol",     "Skorpion",          "arccw_horde_skorpion",    1000,  3, "Sa vz. 61 Skorpion.\nDeveloped in 1959 by Miroslav Rybar and produced \nunder the official designation 'Samopal vzor 61'.",
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "Masterkey",          "arccw_horde_masterkey",    1250,  3, "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
-    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
+    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true, Ghost = true, Berserker = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
 
     HORDE:CreateItem("Pistol",     "Dual M9",        "arccw_horde_akimbo_m9",       1500,  4, "Dual Beretta M9.\nSidearm used by the United States Armed Forces.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
