@@ -131,7 +131,7 @@ function ENT:Detonate(data)
     dmg2:SetDamage(self.ProjectileDamage)
     util.BlastDamageInfo(dmg2, self:GetPos(), self.ProjectileDamageRadius)
     hook.Run("Horde_PostExplosiveProjectileExplosion", self.Owner, self, dmg2, self.ProjectileDamageRadius)
-    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage() * 1, attacker, dmg2:GetDamagePosition())
+    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage(), attacker, dmg2:GetDamagePosition())
     self.Removing = true
     self:Remove()
 end

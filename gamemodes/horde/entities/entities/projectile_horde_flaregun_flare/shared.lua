@@ -82,7 +82,7 @@ function ENT:Detonate(data)
     local ply = self.Owner
     if ply:Horde_GetCurrentSubclass() == "Gunslinger" then
     local level = ply:Horde_GetUpgrade("arccw_horde_flaregun")
-    self.FlareUpgrade = 1 + (level * 0.03)
+    self.FlareUpgrade = 1 + (level * 0.1)
     end
 	
 	if IsValid(data.HitEntity) && (data.HitEntity:IsNPC() or data.HitEntity:IsPlayer()) && !self.Removing then

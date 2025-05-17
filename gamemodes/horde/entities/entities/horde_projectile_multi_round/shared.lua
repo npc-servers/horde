@@ -140,10 +140,10 @@ function ENT:Detonate(data)
     util.BlastDamageInfo(dmg2, self:GetPos(), self.ProjectileDamageRadius)
     hook.Run("Horde_PostExplosiveProjectileExplosion", self.Owner, self, dmg2, self.ProjectileDamageRadius)
     if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 5 then
-    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage() * 1, attacker, dmg2:GetDamagePosition())
+    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage(), attacker, dmg2:GetDamagePosition())
     end
     if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 6 then
-    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg2:GetDamage() * 1, attacker, dmg2:GetDamagePosition())
+    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg2:GetDamage(), attacker, dmg2:GetDamagePosition())
     end
     self.Removing = true
     self:Remove()
