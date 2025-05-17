@@ -2,8 +2,8 @@ PERK.PrintName = "Devotion"
 PERK.Icon = "materials/perks/artificer/devotion.png"
 PERK.Description =
 [[{1} increased mind regeneration
-{2} resistance against Fire and Lightning damage
-Grants immunity to Ignite and Shock debuff]]
+{2} increased resistance against Fire and Lightning damage.
+Gain immunity to Ignite and Shock.]]
 
 PERK.Params = {
     [1] = { value = 0.25, percent = true },

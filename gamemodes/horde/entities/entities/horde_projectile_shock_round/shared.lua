@@ -2,7 +2,7 @@ ENT.Base 				= "horde_explosive_projectile_base"
 ENT.PrintName 			= "Incendiary Round"
 ENT.Model = "models/items/ar2_grenade.mdl"
 ENT.LifeTime = 10 -- Time to removal
-ENT.ProjectileDamage = 230 -- Projectile/explosion damage
+ENT.ProjectileDamage = 345 -- Projectile/explosion damage
 ENT.ProjectileDamageRadius = 200 -- Explosion radius
 ENT.ArmDistance = 150 -- Safety distance
 ENT.Decal = "Scorch"
@@ -131,7 +131,7 @@ function ENT:Detonate(data)
     dmg2:SetDamage(self.ProjectileDamage)
     util.BlastDamageInfo(dmg2, self:GetPos(), self.ProjectileDamageRadius)
     hook.Run("Horde_PostExplosiveProjectileExplosion", self.Owner, self, dmg2, self.ProjectileDamageRadius)
-    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage() * 0.75, attacker, dmg2:GetDamagePosition())
+    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage(), attacker, dmg2:GetDamagePosition())
     self.Removing = true
     self:Remove()
 end

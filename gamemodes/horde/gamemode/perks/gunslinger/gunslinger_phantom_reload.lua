@@ -1,8 +1,7 @@
 PERK.PrintName = "Phantom Reload"
 PERK.Description = [[
-While Phantom Reload is active, switching Pistol weapons instantly reloads the weapon.
-Using Phantom Reload discards the entire magazine.
-Phantom Reload has a cooldown of {1} seconds.]]
+Switching to a Pistol weapon instantly reloads the weapon.
+Using Phantom Reload discards the entire magazine.]]
 PERK.Icon = "materials/perks/gunslinger/phantom_reload.png"
 PERK.Params = {
     [1] = {value = 3},
@@ -52,7 +51,7 @@ PERK.Hooks.PlayerSwitchWeapon = function(ply, old_wpn, new_wpn)
             net.WriteUInt(HORDE.Status_Phantom_Reload, 8)
             net.WriteUInt(0, 8)
         net.Send(ply)
-        timer.Simple(3, function ()
+        timer.Simple(0.0001, function ()
             if ply:IsValid() then
                 net.Start("Horde_SyncStatus")
                     net.WriteUInt(HORDE.Status_Phantom_Reload, 8)

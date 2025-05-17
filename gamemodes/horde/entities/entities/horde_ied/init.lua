@@ -61,7 +61,7 @@ function ENT:Detonate()
     for _, e in pairs( ents.FindInSphere( self:GetPos(), 200 ) ) do
         if e:IsNPC() and ( not e:GetNWEntity( "HordeOwner" ):IsValid() ) then
             local dmg = DamageInfo()
-            dmg:SetDamage( 100 )
+            dmg:SetDamage( 350 )
             dmg:SetDamageType( DMG_BLAST )
             dmg:SetAttacker( self.Horde_Owner )
             dmg:SetInflictor( self )

@@ -96,7 +96,7 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
 	local effectdata = EffectData()
 	effectdata:SetOrigin(dmginfo:GetDamagePosition())
 
-	if hitgroup ~= HITGROUP_HEAD and dmginfo:GetDamageType() then
+	if hitgroup ~= HITGROUP_HEAD and dmginfo:GetDamageType() and not dmginfo:IsDamageType(DMG_DIRECT) then
 		dmginfo:ScaleDamage(0.54)
 		util.Effect("StunstickImpact", effectdata)
 		VJ_EmitSound(self, self.armor, 75, 100)

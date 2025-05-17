@@ -1,22 +1,31 @@
 ENT.Base 				= "horde_explosive_projectile_base"
-ENT.PrintName 			= "Cryo Round"
+ENT.PrintName 			= "Multi Round"
 ENT.Model = "models/items/ar2_grenade.mdl"
 ENT.LifeTime = 10 -- Time to removal
 ENT.ProjectileDamage = 345 -- Projectile/explosion damage
 ENT.ProjectileDamageRadius = 200 -- Explosion radius
 ENT.ArmDistance = 150 -- Safety distance
 ENT.Decal = "Scorch"
-ENT.ProjectileExplosionDamageType = DMG_REMOVENORAGDOLL
 
 ENT.Ticks = 0
 
 AddCSLuaFile()
 
-
-
 function ENT:CustomInitialize()
 if SERVER then
-	self:SetColor(Color(0,0,255))
+
+if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 4 then
+    self:SetColor(Color(255,0,0))
+end
+
+if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 5 then
+    self:SetColor(Color(255,255,0))
+end
+
+if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 6 then
+    self:SetColor(Color(0,0,255))
+end
+
 end
 end
 
@@ -47,19 +56,6 @@ function ENT:CustomOnThink()
     self.Ticks = self.Ticks + 1
 end
 
-function ENT:CustomOnExplode()
-    local effectdata = EffectData()
-    effectdata:SetOrigin( self:GetPos() )
-
-    if self:WaterLevel() >= 1 then
-        util.Effect( "WaterSurfaceExplosion", effectdata )
-        self:EmitSound("weapons/underwater_explode3.wav", 125, 100, 1, CHAN_AUTO)
-    else
-        util.Effect( "horde_jotuun_ice_explosion", effectdata)
-        self:EmitSound("horde/sound/horde/status/cold_explosion.ogg", 125, 100, 1, CHAN_AUTO)
-    end
-end
-
 function ENT:Detonate(data)
     if !self:IsValid() or self.Removing then return end
     local attacker = self
@@ -71,6 +67,18 @@ function ENT:Detonate(data)
     local nodetonate = self:CustomOnPreDetonate(data)
     local hitEnt = data.HitEntity
     if nodetonate then self:Remove() return end
+	
+    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 4 then
+    self.ProjectileExplosionDamageType = DMG_BURN
+    end
+	
+    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 5 then
+    self.ProjectileExplosionDamageType = DMG_SHOCK
+    end
+	
+    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 6 then
+    self.ProjectileExplosionDamageType = DMG_REMOVENORAGDOLL
+    end
 
     if (self.StartPos:DistToSqr(self:GetPos()) <= self.ArmDistanceSqr) or self.ProjectileSabotRound then
         if self.ProjectileSabotRound then
@@ -131,7 +139,39 @@ function ENT:Detonate(data)
     dmg2:SetDamage(self.ProjectileDamage)
     util.BlastDamageInfo(dmg2, self:GetPos(), self.ProjectileDamageRadius)
     hook.Run("Horde_PostExplosiveProjectileExplosion", self.Owner, self, dmg2, self.ProjectileDamageRadius)
+    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 5 then
+    hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmg2:GetDamage(), attacker, dmg2:GetDamagePosition())
+    end
+    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 6 then
     hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg2:GetDamage(), attacker, dmg2:GetDamagePosition())
+    end
     self.Removing = true
     self:Remove()
+end
+
+function ENT:CustomOnExplode()
+    local effectdata = EffectData()
+    effectdata:SetOrigin( self:GetPos() )
+
+    if self:WaterLevel() >= 1 then
+        util.Effect( "WaterSurfaceExplosion", effectdata )
+        self:EmitSound("weapons/underwater_explode3.wav", 125, 100, 1, CHAN_AUTO)
+    else
+        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
+        util.Effect( "Explosion", effectdata)
+        self:EmitSound("phx/kaboom.wav", 125, 100, 1, CHAN_AUTO)
+        end
+        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 4 then
+        util.Effect( "demonic_edge_hit", effectdata)
+        self:EmitSound("horde/weapons/blaster/fire_explosion.ogg", 125, 100, 1, CHAN_AUTO)
+        end
+        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 5 then
+        util.Effect( "horde_emp_grenade_explosion", effectdata)
+        self:EmitSound("ambient/levels/labs/electric_explosion1.wav", 125, 100, 1, CHAN_AUTO)
+        end
+        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 6 then
+        util.Effect( "horde_jotuun_ice_explosion", effectdata)
+        self:EmitSound("horde/sound/horde/status/cold_explosion.ogg", 125, 100, 1, CHAN_AUTO)
+        end
+    end
 end
