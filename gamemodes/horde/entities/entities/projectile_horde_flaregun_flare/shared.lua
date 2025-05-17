@@ -13,6 +13,9 @@ ENT.CollisionGroup = COLLISION_GROUP_PLAYER_MOVEMENT
 ENT.CollisionGroupType = COLLISION_GROUP_PLAYER_MOVEMENT
 ENT.Removing = nil
 
+ENT.FlareDamage = 50
+ENT.FlareUpgrade = 1
+
 function ENT:Draw()
 	self:DrawModel()
 end
@@ -75,10 +78,17 @@ end
 function ENT:Detonate(data)
     if !SERVER then return end
     if !self:IsValid() or self.Removing then return end
+	
+    local ply = self.Owner
+    if ply:Horde_GetCurrentSubclass() == "Gunslinger" then
+    local level = ply:Horde_GetUpgrade("arccw_horde_flaregun")
+    self.FlareUpgrade = 1 + (level * 0.03)
+    end
+	
 	if IsValid(data.HitEntity) && (data.HitEntity:IsNPC() or data.HitEntity:IsPlayer()) && !self.Removing then
 		self:FireBullets({
 			Attacker = self.Owner,
-			Damage = 50,
+			Damage = self.FlareDamage * self.FlareUpgrade,
 			Tracer = 0,
 			Distance = 200,
 			Dir = (data.HitPos - self:GetPos()),
@@ -95,7 +105,7 @@ function ENT:Detonate(data)
                 end
 
                 if data.HitEntity:IsNPC() and HORDE:IsEnemy(data.HitEntity) then
-                    data.HitEntity:Horde_SetIgniteDamage(2)
+                    data.HitEntity:Horde_SetIgniteDamage(math.max(2, math.floor((self.FlareDamage * self.FlareUpgrade) * 0.03)))
                 end
             end
 		})

@@ -1561,7 +1561,7 @@ LANGUAGE["Gadget_Desc_gadget_gunslinger"] = [[
 -- Demolition Gadgets
 LANGUAGE["Gadget_gadget_proximity_defense"] = [[Proximity Defense]]
 LANGUAGE["Gadget_Desc_proximity_defense"] = [[
-Triggers an explosion that Stuns nearby enemies.
+Triggers an explosion that deals {1} Blast damage and stuns nearby enemies.
 ]]
 
 LANGUAGE["Gadget_gadget_projectile_launcher_blast"] = [[Projectile Launcher (Blast)]]
@@ -1678,6 +1678,6 @@ Deals 20 base Ignite damage.
 
 LANGUAGE["Gadget_barbeque"] = [[Barbeque]]
 LANGUAGE["Gadget_Desc_gadget_barbeque"] = [[
-Dealing Fire damage heals you for {1} of your max health.
+Kills heal you for {1} of your max health.
 Ignited enemies killed by you drop edible gibs.
 Each gib restores {2} of your max health.]]

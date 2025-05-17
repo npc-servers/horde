@@ -17,6 +17,8 @@ ENT.Ticks = 0
 ENT.RaygunEffect = "raygun_splash"
 ENT.RaygunSound = "ArcCW_BO1.RayGun_Splash"
 
+ENT.RaygunUpgrade = 1
+
 DEFINE_BASECLASS( ENT.Base )
 
 if SERVER then
@@ -61,6 +63,12 @@ if SERVER then
 
     local nodetonate = self:CustomOnPreDetonate(data)
     if nodetonate then self:Remove() return end
+	
+    local ply = self.Owner
+    if ply:Horde_GetCurrentSubclass() == "Gunslinger" then
+    local level = ply:Horde_GetUpgrade("arccw_horde_raygun")
+    self.RaygunUpgrade = 1 + (level * 0.03)
+    end
 
     if (self.StartPos:DistToSqr(self:GetPos()) <= self.ArmDistanceSqr) or self.ProjectileSabotRound then
         if self.ProjectileSabotRound then
@@ -115,7 +123,7 @@ if SERVER then
 				dmg:SetDamageType(self.ProjectileExplosionDamageType)
 				dmg:SetAttacker(self.Owner)
 				dmg:SetInflictor(self)
-				dmg:SetDamage(self.ProjectileDamage / 2)
+				dmg:SetDamage((self.ProjectileDamage * self.RaygunUpgrade) / 2)
                 hook.Run("Horde_OnExplosiveProjectileHeadshot", self.Owner, dmg)
 			end
 
@@ -128,7 +136,7 @@ if SERVER then
     dmg2:SetDamageType(self.ProjectileExplosionDamageType)
     dmg2:SetAttacker(attacker)
     dmg2:SetInflictor(self)
-    dmg2:SetDamage(self.ProjectileDamage)
+    dmg2:SetDamage(self.ProjectileDamage * self.RaygunUpgrade)
     util.BlastDamageInfo(dmg2, self:GetPos(), self.ProjectileDamageRadius)
     hook.Run("Horde_PostExplosiveProjectileExplosion", self.Owner, self, dmg2, self.ProjectileDamageRadius)
     self.Removing = true

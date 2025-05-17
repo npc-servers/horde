@@ -5,9 +5,10 @@ Your pistols can be upgraded in shop for increased damage.
 
 Press SHIFT+E to apply Hunter's Mark on an enemy.
 Hunter's Mark lasts for 5 seconds.
+Deal {5} more damage against enemies you use Hunter's Mark on.
 You can apply 1 Hunter's Mark at a time.
-Enemies killed under Hunter's Mark has {4} chance to drop extra cash.
 
+Enemies killed have a {4} chance to drop extra cash.
 Has access to all pistols.]]
 PERK.Icon = "materials/subclasses/gunslinger.png"
 PERK.Params = {
@@ -15,10 +16,16 @@ PERK.Params = {
     [2] = {value = 0.008, percent = true},
     [3] = {value = 0.2, percent = true},
     [4] = {value = 0.5, percent = true},
+	[5] = {value = 0.1, percent = true},
 }
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
+    if not IsValid(npc.Horde_Has_Hunter_Mark) then return end
+    if not npc.Horde_Has_Hunter_Mark:Horde_GetPerk("gunslinger_base") then return end
+
+    bonus.more = bonus.more * 1.1
+
     if not ply:Horde_GetPerk("gunslinger_base") then return end
     if HORDE:IsCurrentWeapon(dmginfo, "Pistol") == true then
         bonus.increase = bonus.increase + ply:Horde_GetPerkLevelBonus("gunslinger_base")
@@ -61,12 +68,11 @@ PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
 end
 
 PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, wpn)
-    if not IsValid(victim.Horde_Has_Hunter_Mark) then return end
-    if not victim.Horde_Has_Hunter_Mark:Horde_GetPerk("gunslinger_base") then return end
+    if not killer:Horde_GetPerk("gunslinger_base") then return end
     local p = math.random()
     if p <= 0.5 then
         local money = ents.Create("horde_money")
-        local pos = victim:GetPos()
+        local pos = killer:GetPos()
         local drop_pos = pos
         drop_pos.z = pos.z + 15
         money:SetPos(drop_pos)
@@ -122,13 +128,7 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
                 if mutations_count > 0 then
                     local muts = ent.Horde_Mutation
                     ent:Horde_UnsetMutations()
-                    timer.Simple(10, function ()
-                        if IsValid(ent) then
-                            for mut, _ in pairs(muts) do
-                                ent:Horde_SetMutation(mut)
-                            end
-                        end
-                    end)
+                    if not ent:Horde_GetBossProperties() then
                     local dmg = DamageInfo()
                     dmg:SetAttacker(ply)
                     dmg:SetInflictor(ply)
@@ -136,19 +136,7 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
                     dmg:SetDamage(ent:GetMaxHealth() * 0.075 * mutations_count)
                     dmg:SetDamageType(DMG_DIRECT)
                     ent:TakeDamageInfo(dmg)
-                end
-            end
-
-            if not ent:Horde_IsElite() then
-                local p = math.random()
-                if p <= 0.3 then
-                    local dmg = DamageInfo()
-                    dmg:SetAttacker(ply)
-                    dmg:SetInflictor(ply)
-                    dmg:SetDamagePosition(ent:GetPos())
-                    dmg:SetDamage(ent:GetMaxHealth())
-                    dmg:SetDamageType(DMG_DIRECT)
-                    ent:TakeDamageInfo(dmg)
+                    end
                 end
             end
         end

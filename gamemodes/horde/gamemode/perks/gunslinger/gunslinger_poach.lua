@@ -1,7 +1,7 @@
 PERK.PrintName = "Poach"
 PERK.Description = [[
 {1} increased Hunter's Mark duration.
-Enemies killed under Hunter's Mark has {2} chance to drop consumable gadgets.
+Enemies killed have a {2} chance to drop consumable gadgets.
 Elites enemies have {3} extra chance to drop gadgets.]]
 PERK.Icon = "materials/perks/gunslinger/poach.png"
 PERK.Params = {
@@ -12,8 +12,7 @@ PERK.Params = {
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, wpn)
-    if not IsValid(victim.Horde_Has_Hunter_Mark) then return end
-    if not victim.Horde_Has_Hunter_Mark:Horde_GetPerk("gunslinger_poach") then return end
+    if not killer:Horde_GetPerk("gunslinger_poach") then return end
     local p = math.random()
     local run = nil
     if victim:Horde_IsElite() then

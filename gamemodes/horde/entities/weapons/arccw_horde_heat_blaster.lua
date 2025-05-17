@@ -69,9 +69,9 @@ SWEP.Firemodes = {
     },
 }
 
-SWEP.AccuracyMOA = 10 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 150 -- inaccuracy added by hip firing.
-SWEP.MoveDispersion = 250
+SWEP.AccuracyMOA = 0 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
+SWEP.HipDispersion = 0 -- inaccuracy added by hip firing.
+SWEP.MoveDispersion = 0
 
 SWEP.Primary.Ammo = "SMG1_Grenade" -- what ammo type the gun uses
 
@@ -181,8 +181,16 @@ end
 
 
 function SWEP:Hook_PostFireRocket(rocket)
+    if self:GetCurrentFiremode().Mode == 2 and self.Owner:IsValid() and self.Owner:GetAmmoCount("SMG1_Grenade") > 0 then
+    self:SetClip1(self:Clip1() + 1)
+    self:GetOwner():SetAmmo(self.Owner:GetAmmoCount("SMG1_Grenade") - 1, "SMG1_Grenade")
+    end
     if self:GetCurrentFiremode().Mode == 3 then
         rocket:SetCharged(true)
+        if self.Owner:IsValid() and self.Owner:GetAmmoCount("SMG1_Grenade") > 3 then
+        self:SetClip1(self:Clip1() + 4)
+        self:GetOwner():SetAmmo(self.Owner:GetAmmoCount("SMG1_Grenade") - 4, "SMG1_Grenade")
+        end
         self:TakePrimaryAmmo(math.min(self.Weapon:Clip1(), 3))
         local phys = rocket:GetPhysicsObject()
         if phys:IsValid() then
