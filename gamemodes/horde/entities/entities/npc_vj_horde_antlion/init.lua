@@ -6,7 +6,6 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = "models/antlion.mdl"
---ENT.StartHealth = 125
 ENT.MoveType = MOVETYPE_STEP
 ENT.HullType = HULL_LARGE
 
@@ -117,8 +116,6 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
 	self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
 	self:SetAntlionCollisionBounds()
-
-	--self:SetCollisionBounds(Vector(-20, -20, 0), Vector(20, 20, 40))
 end
 
 function ENT:SetAntlionCollisionBounds()
