@@ -427,7 +427,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Pistol",     "Skorpion",          "arccw_horde_skorpion",    1000,  3, "Sa vz. 61 Skorpion.\nDeveloped in 1959 by Miroslav Rybar and produced \nunder the official designation 'Samopal vzor 61'.",
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "Masterkey",          "arccw_horde_masterkey",    1250,  3, "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
-    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
+    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true, Ghost = true, Berserker = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
 
     HORDE:CreateItem("Pistol",     "Dual M9",        "arccw_horde_akimbo_m9",       1500,  4, "Dual Beretta M9.\nSidearm used by the United States Armed Forces.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
@@ -650,9 +650,9 @@ function HORDE:GetDefaultItemsData()
     {Engineer=true}, 2, -1, nil, nil, {Engineer=4}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Special",    "Spore Launcher", "horde_spore_launcher", 1750,  6, "Improvised biological weapon.\nShoots out acidic projectiles that explodes after a short delay.\nHeals players and damages enemies.",
     {Medic=true, Survivor=true}, 10, -1, nil, nil, {Medic=2, Survivor=2}, nil, {HORDE.DMG_POISON})
-    HORDE:CreateItem("Special",    "M2 Health Thrower", "horde_healingthrower", 3000,  7, "M2-2 Health Thrower.\nAn American man-portable backpack flamethrower converted to heal stuff to death.\nsmells faintly of lime and mint (who hurt you)",
+    HORDE:CreateItem("Special",    "M2 Health Thrower", "horde_healingthrower", 3250,  7, "M2-2 Health Thrower.\nAn American man-portable backpack flamethrower converted to heal stuff to death.\nsmells faintly of lime and mint (who hurt you)",
     {Medic=true}, 35, -1, nil, nil, nil, nil, {HORDE.DMG_POISON})
-    HORDE:CreateItem("Explosive",  "Medic RPG",          "arccw_horde_medic_rpg",   3000,  8, "Medic Missile.\nAnti-Death Rocket Propelled Grenade \nmade in the Gamestop ventilation of an abandoned mall. \nnot to be confused with the infamous magic missile.",
+    HORDE:CreateItem("Explosive",  "Medic RPG",          "arccw_horde_medic_rpg",   3500,  8, "Medic Missile.\nAnti-Death Rocket Propelled Grenade \nmade in the Gamestop ventilation of an abandoned mall. \nnot to be confused with the infamous magic missile.",
     {Medic=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_POISON})
 
     HORDE:CreateItem("Pistol",    "Raygun",  "arccw_horde_raygun", 3000,  8, "Raygun. \nFires explosive electric bolts that deal Lightning damage.",
