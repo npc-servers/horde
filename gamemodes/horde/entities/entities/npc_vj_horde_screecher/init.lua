@@ -24,7 +24,9 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
 end
 function ENT:CustomOnThink()
-	if not self:GetEnemy() then return end
+	if not self:GetEnemy() then 
+		return 
+	end
 	local EnemyDistance = self.NearestPointToEnemyDistance
 	if EnemyDistance < 250 then
 		if CurTime() > self.NextBlastTime then
