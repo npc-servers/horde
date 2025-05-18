@@ -6,7 +6,6 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = "models/antlion.mdl"
-ENT.StartHealth = 125
 ENT.MoveType = MOVETYPE_STEP
 ENT.HullType = HULL_LARGE
 
@@ -25,7 +24,7 @@ ENT.TimeUntilMeleeAttackDamage = 0.8 -- This counted in seconds | This calculate
 ENT.NextAnyAttackTime_Melee = false -- How much time until it can use a attack again? | Counted in Seconds
 ENT.MeleeAttackDamage = 30
 ENT.MeleeAttackDamageType = DMG_SLASH -- Type of Damage
-
+ENT.AntlionCollisionBounds = {min = Vector(-20, -20, 0), max = Vector(20, 20, 40)} -- Collision bounds for the antlion
 ENT.NextAnyAttackTime_Range = 0.6 -- How much time until it can use a attack again? | Counted in Seconds
 ENT.Immune_CombineBall = false
 ENT.HasDeathAnimation = false -- Does it play an animation when it dies?
@@ -88,7 +87,7 @@ ENT.TurningSpeed = 40
 ENT.AnimTbl_Walk = {ACT_RUN} -- Set the walking animations | Put multiple to let the base pick a random animation when it moves
 ENT.AnimTbl_Run = {ACT_RUN}
 ENT.Evolve_Stage = 1
-ENT.Base_Health = 100
+ENT.Base_Health = 150
 ENT.Evolve_Health = 0
 ENT.Evolve_Health_Max = 100
 
@@ -116,7 +115,11 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_spectre D_LI 99")
 	self:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
 	self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
-	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
+	self:SetAntlionCollisionBounds()
+end
+
+function ENT:SetAntlionCollisionBounds()
+    self:SetCollisionBounds(self.AntlionCollisionBounds.min, self.AntlionCollisionBounds.max)
 end
 
 function ENT:UpgradeReset()
@@ -133,6 +136,7 @@ function ENT:UpgradeReset()
 		self.MeleeAttackDamage = 45 + self.level * 6
 		self.RangeAttackDamage = 35 + self.level * 4
 		self.NextRangeAttackTime = 2
+		self:SetAntlionCollisionBounds()
 	elseif self.Evolve_Stage == 3 then
 		self:SetSkin(3)
 		self:SetMaxHealth(anthp * 2 + self.level * 25)
@@ -142,6 +146,7 @@ function ENT:UpgradeReset()
 		self.RangeAttackDamage = 45 + self.level * 8
 		self.NextRangeAttackTime = 1
 		self.Horde_Immune_Break = true
+		self:SetAntlionCollisionBounds()
 	elseif self.Evolve_Stage == 4 then
 		self:SetSkin(0)
 		self:SetModelScale(1)
@@ -173,6 +178,7 @@ function ENT:UpgradeReset()
 		self.SoundTbl_Pain = {""}
 		self.SoundTbl_Death = {"npc/antlion_guard/antlion_guard_die1.wav","npc/antlion_guard/antlion_guard_die2.wav"}
 		self.SoundTbl_FootStep = {"npc/antlion_guard/foot_heavy1.wav","npc/antlion_guard/foot_heavy2.wav"}
+		self:SetAntlionCollisionBounds()
 	end
 	self:SetHealth(self:GetMaxHealth())
 end
@@ -227,7 +233,7 @@ function ENT:Horde_Evolve(health)
 			self:VJ_TASK_FACE_X("TASK_FACE_TARGET")
 		end
 		self:FollowReset()
-		self:Activate()
+		self:Activate() 
 
 		self.SoundTbl_Idle = {"npc/antlion_guard/growl_idle.wav"}
 		self.SoundTbl_Alert = {"npc/antlion_guard/angry1.wav","npc/antlion_guard/angry2.wav","npc/antlion_guard/angry3.wav"}
@@ -365,7 +371,7 @@ function ENT:BugPulse()
 			else
 				hook.Run("Horde_OnAntlionPulse", healer, self, ent)
 			end
-			local pulseheal = ent:GetMaxHealth() * (0.04 + (self.Evolve_Stage * 0.01))
+			local pulseheal = ent:GetMaxHealth() * (0.04 + (self.Evolve_Stage * 0.02))
 			local healinfo = HealInfo:New({amount=pulseheal, healer=healer})
 			HORDE:OnPlayerHeal(ent, healinfo)
 			self:SetHealth(math.min(self:GetMaxHealth(), self:Health() + pulseheal))
