@@ -31,6 +31,6 @@ sound.Add(
         volume = 1.0, 
         level = 75, 
         pitch = 100, 
-        sound = {"feedback/headshot1.wav","feedback/headshot2.wav"}
+        sound = {")feedback/headshot1.wav",")feedback/headshot2.wav"}
     }
 )
