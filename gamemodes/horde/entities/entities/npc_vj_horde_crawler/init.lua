@@ -11,6 +11,7 @@ ENT.HasLeapAttack = false
 ENT.FootStepTimeRun = 0.25
 ENT.AlertSounds_OnlyOnce = true
 ENT.HasExtraMeleeAttackSounds = true
+ENT.HasImpactSounds = false
 
 ENT.SoundTbl_FootStep = {"npc/fast_zombie/foot1.wav","npc/fast_zombie/foot2.wav","npc/fast_zombie/foot3.wav","npc/fast_zombie/foot4.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
