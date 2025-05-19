@@ -4,9 +4,9 @@ include('shared.lua')
 ENT.Model = {"models/horde/infected_stalker/infected_stalker.mdl"}
 ENT.StartHealth = 200
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
+ENT.AnimTbl_Run = {ACT_WALK}
 ENT.BloodColor = "Red"
 ENT.HasMeleeAttack = false
-ENT.AnimTbl_Run = {ACT_WALK}
 ENT.FootStepTimeRun = 1
 ENT.AlertSounds_OnlyOnce = true
 
