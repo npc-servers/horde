@@ -5,7 +5,6 @@ ENT.Model = {"models/blacktea/zpszombie1.mdl","models/blacktea/zpszombie2.mdl","
 ENT.StartHealth = 90
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
 ENT.BloodColor = "Red"
-ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = {"vjseq_weapon_attack1","vjseq_weapon_attack2"}
 ENT.MeleeAttackDistance = 32
 ENT.MeleeAttackDamageDistance = 64
