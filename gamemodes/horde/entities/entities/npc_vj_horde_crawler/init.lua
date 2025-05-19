@@ -49,4 +49,4 @@ function ENT:MultipleMeleeAttacks()
 end
 
 ENT.Critical = nil
-VJ.AddNPC("Crawler","npc_vj_horde_crawler","Zombies")
+VJ.AddNPC("Crawler", "npc_vj_horde_crawler", "Zombies")
