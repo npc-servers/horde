@@ -27,19 +27,22 @@ local function DoShockNova(ply, pos)
     util.BlastDamageInfo(dmg, pos, radius)
 end
 
+local function GetShockNovaTimerName(ply)
+    return "Warden_ShocknovaTimer" .. ply:SteamID()
+end
+
 GADGET.Hooks.Horde_UseActiveGadget = function(ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_shock_nova" then return end
-    local id = ply:SteamID()
-    local timer_shocknova = "Horde_Shock_Nova_Effect" .. id
-
+    local timer_shocknova = GetShockNovaTimerName(ply)
+    timer.Remove(timer_shocknova)
     timer.Create(timer_shocknova, 0.25, 5, function()
         if not IsValid(ply) then timer.Remove(timer_shocknova) return end
 
         local positions = { AdjustZ(ply:GetPos()) }
 
         if ply.Horde_GetPerk and ply:Horde_GetPerk("warden_ex_machina") then
-            local towers = HORDE.player_drop_entities and HORDE.player_drop_entities[id]
+            local towers = HORDE.player_drop_entities and HORDE.player_drop_entities[ply:SteamID()]
             if towers then
                 for _, ent in pairs(towers) do
                     if IsValid(ent) and ent.Horde_WardenAura then
@@ -59,9 +62,8 @@ GADGET.Hooks.Horde_UseActiveGadget = function(ply)
     end)
 end
 
-GADGET.Hooks.Horde_OnUnsetGadget = function (ply, gadget)
+GADGET.Hooks.Horde_OnUnsetGadget = function(ply, gadget)
     if CLIENT then return end
     if gadget ~= "gadget_shock_nova" then return end
-    local id = ply:SteamID()
-    timer.Remove(timer_shocknova)
+    timer.Remove(GetShockNovaTimerName(ply))
 end
