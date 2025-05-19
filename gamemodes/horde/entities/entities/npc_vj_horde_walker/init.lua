@@ -10,6 +10,7 @@ ENT.MeleeAttackDamageDistance = 64
 ENT.SlowPlayerOnMeleeAttack = true
 ENT.FootStepTimeRun = 1
 ENT.AlertSounds_OnlyOnce = true
+ENT.HasImpactSounds = false
 
 ENT.SoundTbl_FootStep = {"npc/zombie/foot1.wav","npc/zombie/foot2.wav","npc/zombie/foot3.wav","npc/zombie/foot_slide1.wav","npc/zombie/foot_slide2.wav","npc/zombie/foot_slide3.wav"}
 ENT.SoundTbl_MeleeAttack = {"zsszombie/zombie_attack_1.wav","zsszombie/zombie_attack_2.wav",")zsszombie/zombie_attack_3.wav","zsszombie/zombie_attack_4.wav","zsszombie/zombie_attack_5.wav","zsszombie/zombie_attack_6.wav"}
