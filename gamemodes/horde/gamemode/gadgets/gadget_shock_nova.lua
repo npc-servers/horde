@@ -35,7 +35,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function(ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_shock_nova" then return end
     local timer_shocknova = GetShockNovaTimerName(ply)
-    timer.Remove(timer_shocknova)
     timer.Create(timer_shocknova, 0.25, 5, function()
         if not IsValid(ply) then timer.Remove(timer_shocknova) return end
 
