@@ -9,6 +9,7 @@ ENT.BloodColor = "Red"
 ENT.HasMeleeAttack = false
 ENT.FootStepTimeRun = 1
 ENT.AlertSounds_OnlyOnce = true
+ENT.HasImpactSounds = false
 
 ENT.SoundTbl_FootStep = {"npc/stalker/stalker_footstep_left1.wav","npc/stalker/stalker_footstep_left2.wav","npc/stalker/stalker_footstep_right1.wav","npc/stalker/stalker_footstep_right2.wav"}
 
@@ -62,9 +63,13 @@ function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
     end
 end
 function ENT:ShockAttack(delay)
-	if self.Horde_Stunned then return end
+	if self.Horde_Stunned then 
+		return 
+	end
 	timer.Simple(delay, function()
-		if not self:IsValid() then return end
+		if not self:IsValid() then 
+			return 
+		end
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
@@ -87,6 +92,6 @@ function ENT:OnRemove()
 end
 
 ENT.Critical = nil
-ENT.NextBlastTime = CurTime()
 ENT.NextBlastCooldown = 8
+ENT.NextBlastTime = CurTime()
 VJ.AddNPC("Screecher", "npc_vj_horde_screecher", "Zombies")
