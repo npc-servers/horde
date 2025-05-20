@@ -56,12 +56,12 @@ function ENT:PhysicsCollide(data, physobj)
                 dmg:SetDamageType(DMG_SLASH)
                 dmg:SetAttacker(owner)
                 dmg:SetInflictor(self)
-                dmg:SetDamage(100)
+                dmg:SetDamage(125)
                 dmg:SetDamagePosition(self:GetPos())
                 self:FireBullets({
                     Attacker = owner,
                     Inflictor = self,
-                    Damage = 100,
+                    Damage = 125,
                     Tracer = 0,
                     Distance = 1000,
                     Dir = data.HitPos - self:GetPos(),

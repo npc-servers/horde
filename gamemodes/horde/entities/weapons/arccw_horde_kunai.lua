@@ -33,7 +33,7 @@ SWEP.Primary.ClipSize = -1
 
 SWEP.HoldType = "knife"
 SWEP.Primary.Ammo = "GrenadeHL1"
-SWEP.Primary.MaxAmmo = 5
+SWEP.Primary.MaxAmmo = 3
 SWEP.Primary.Automatic = true
 SWEP.NPCWeight = 25
 
@@ -106,7 +106,7 @@ function SWEP:SecondaryAttack()
     ent:GetPhysicsObject():SetVelocityInstantaneous( Forward * 4000)
 
         ply:SetAmmo(ply:GetAmmoCount("GrenadeHL1") -1, "GrenadeHL1")
-        self:SetNextSecondaryFire(CurTime() + 1)
+        self:SetNextSecondaryFire(CurTime() + 0.5)
         self:SendWeaponAnim(ACT_VM_RELEASE)
         self.RegenerationTimer = CurTime() + 2.25
     timer.Simple(0.3, function ()
@@ -169,7 +169,7 @@ end
 function SWEP:DoAttack()
     --credit to xdshot for this logic https://steamcommunity.com/sharedfiles/filedetails/?id=506283460, i'd have lost my marbles by now
     local Attacker = self:GetOwner()
-    local Range = 95
+    local Range = 100
 
     Attacker:LagCompensation(true)
     local Forward = Attacker:GetAimVector()
@@ -199,7 +199,7 @@ function SWEP:DoAttack()
     local damageinfo = DamageInfo()
     damageinfo:SetAttacker( Attacker )
     damageinfo:SetInflictor( self )
-    damageinfo:SetDamage( 75 )
+    damageinfo:SetDamage( 100 )
     damageinfo:SetDamageType(DMG_SLASH)
     damageinfo:SetDamageForce( Force )
     damageinfo:SetDamagePosition( AttackEnd )
