@@ -39,6 +39,7 @@ function plymeta:Horde_GetHealthRegenPercentage()
 end
 
 hook.Add("PlayerTick", "Horde_HealthRegen", function(ply, mv)
+    if not ply.Horde_HealthRegenPercentage then return end
     if ply.Horde_HealthRegenPercentage <= 0 or (ply.Horde_Debuff_Active and ply.Horde_Debuff_Active[HORDE.Status_Decay]) then return end
     if not ply:Alive() then return end
     if ply:Health() >= ply:GetMaxHealth() then
