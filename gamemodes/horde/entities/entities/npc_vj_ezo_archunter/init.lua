@@ -113,7 +113,6 @@ function ENT:CustomOnFlinch_BeforeFlinch(dmginfo, hitgroup)
 	if dmginfo:GetDamage() < 35 then
 		local dpos = dmginfo:GetAttacker():GetPos()
 
-		local function GetDirection()
 			local directions = {
 				{"vjges_flinch_s", dpos:Distance(self:GetPos() + self:GetForward() * 25)}, --North; move back
 				{"vjges_flinch_w", dpos:Distance(self:GetPos() + self:GetRight() * 25)}, --East; move left
@@ -125,33 +124,28 @@ function ENT:CustomOnFlinch_BeforeFlinch(dmginfo, hitgroup)
 				return a[2] < b[2]
 			end)
 
-			return directions[1][1]
-		end
-
-		self.AnimTbl_Flinch = {GetDirection()}
+		self.AnimTbl_Flinch = {directions[1][1]}
 	else
 		local dpos = dmginfo:GetAttacker():GetPos()
 
-		local function GetDirection()
-			local directions = {
+			local directions1 = {
 				{"staggers", dpos:Distance(self:GetPos() + self:GetForward() * 25)}, --North; move back
 				{"staggerw", dpos:Distance(self:GetPos() + self:GetRight() * 25)}, --East; move left
 				{"staggern", dpos:Distance(self:GetPos() - self:GetForward() * 25)}, --South; move forward
 				{"staggere", dpos:Distance(self:GetPos() - self:GetRight() * 25)} --West; move right
 			}
 
-			table.sort(directions, function(a, b)
+			table.sort(directions1, function(a, b)
 				return a[2] < b[2]
 			end)
 
-			return directions[1][1]
-		end
 
-		self.AnimTbl_Flinch = {GetDirection()}
+
+		self.AnimTbl_Flinch = {directions1[1][1]}
 	end
 
 	-- Code to make hunter stop charging on take big damage
-	if IsValid(self) and self.Charging and self.Dead == false then
+	if IsValid(self) and self.Charging and not self.Dead then
 		self.MovementType = VJ_MOVETYPE_GROUND
 		self.Charging = false
 		self.hit = true
@@ -177,16 +171,16 @@ end
 
 function ENT:MultipleMeleeAttacks()
 
-		if self:Visible(self:GetEnemy()) and self.RangeAttacking == false and self.MeleeAttacking == false and self.Alerting == false and self.Dodging == false and self.NearestPointToEnemyDistance > 400 and self.NearestPointToEnemyDistance < 2000 and CurTime() > self.NextCharge then
-			VJ_EmitSound(self, self.ChargeSd, 100, math.random(80, 100))
-			self:VJ_ACT_PLAYACTIVITY("charge_start", true, false, true)
+	if self:Visible(self:GetEnemy()) and not self.RangeAttacking and not self.MeleeAttacking and not self.Alerting and not self.Dodging and self.NearestPointToEnemyDistance > 400 and self.NearestPointToEnemyDistance < 2000 and CurTime() > self.NextCharge then
+		VJ_EmitSound(self, self.ChargeSd, 100, math.random(80, 100))
+		self:VJ_ACT_PLAYACTIVITY("charge_start", true, false, true)
 
-			timer.Simple(1.5, function()
-				if IsValid(self) then
-					self:Charge()
-				end
-			end)
-		end
+		timer.Simple(1.5, function()
+			if IsValid(self) then
+				self:Charge()
+			end
+		end)
+	end
 
 	local randAttack = math.random(1, 3)
 
@@ -213,7 +207,7 @@ function ENT:MultipleMeleeAttacks()
 end
 
 function ENT:Charge()
-	if self.Dead == false then
+	if not self.Dead then
 		self.HasMeleeAttack = false
 		self.Charging = true
 		self.HullType = HULL_MEDIUM_TALL --temporary change 
@@ -235,7 +229,7 @@ function ENT:Charge()
 end
 
 function ENT:ChargeHit()
-	if IsValid(self) and self.Charging and self.Dead == false then
+	if IsValid(self) and self.Charging and not self.Dead then
 		self:VJ_ACT_PLAYACTIVITY("charge_miss_slide", true, false, true)
 		self.FlinchChance = 2
 		self.NextFlinchTime = 2
@@ -263,7 +257,7 @@ function ENT:ChargeHit()
 end
 
 function ENT:StopCharge()
-	if IsValid(self) and self.Charging and self.Dead == false then
+	if IsValid(self) and self.Charging and not self.Dead then
 		self:VJ_ACT_PLAYACTIVITY("charge_miss_slide", true, false, true)
 		self.FlinchChance = 2
 		self.NextFlinchTime = 2
@@ -291,7 +285,7 @@ function ENT:StopCharge()
 end
 
 function ENT:ChargeCrash()
-	if IsValid(self) and self.Charging and self.Dead == false then
+	if IsValid(self) and self.Charging and not self.Dead then
 		self:VJ_ACT_PLAYACTIVITY("charge_crash", true, false, true)
 		self.FlinchChance = 2
 		self.NextFlinchTime = 2
@@ -321,14 +315,8 @@ function ENT:ChargeCrash()
 end
 
 function ENT:CustomRangeAttackCode_BeforeProjectileSpawn(projectile)
-	local muzz = ents.Create("info_particle_system")
-	muzz:SetKeyValue("effect_name", "hunter_muzzle_flash")
-	muzz:SetPos(self:GetAttachment(self:LookupAttachment("minigunbase")).Pos)
-	muzz:SetAngles(self:GetAttachment(self:LookupAttachment("minigunbase")).Ang)
-	muzz:Fire("SetParentAttachment", "minigunbase")
-	muzz:SetParent(self)
-	muzz:Spawn()
-	muzz:Activate()
+	local attid = self:LookupAttachment("minigunbase")
+	ParticleEffectAttach("hunter_muzzle_flash", 4, self, attid) --PATTACH_POINT_FOLLOW
 	self:EmitSound("snpc/hunterarc/ministrider_fire1.wav", 110, math.random(90, 110), 0.66, CHAN_WEAPON)
 end
 
@@ -389,7 +377,7 @@ function ENT:CustomOnThink()
 		end
 
 			for k, v in pairs(ents.FindInSphere(self:GetPos() + self:OBBCenter() + self:GetForward() * 40, 60)) do
-				if self:DoRelationshipCheck(v) and self:Visible(v) and IsValid(self) and not self.Dead then
+				if self:DoRelationshipCheck(v) and self:Visible(v) and not self.Dead then
 					VJ_EmitSound(self, self.SoundTbl_MeleeAttack, 100, math.random(80, 100))
 					local d = DamageInfo()
 					d:SetDamage( math.random(30, 40) )
@@ -439,7 +427,7 @@ function ENT:CustomOnThink()
 		self.Wounded = true
 	end
 
-	if (self:GetMaxHealth() * 0.5) > self:Health() and self.CanShake == true and self.Dead == false then
+	if (self:GetMaxHealth() * 0.5) > self:Health() and self.CanShake and not self.Dead then
 		self:VJ_ACT_PLAYACTIVITY("shakeoff", true, false, true)
 		self.CanShake = false
 	end
@@ -477,16 +465,8 @@ function ENT:CustomAttackCheck_RangeAttack()
 end
 
 function ENT:CustomRangeAttackCode_AfterProjectileSpawn(projectile)
-	local muzz1 = ents.Create("info_particle_system")
-	muzz1:SetKeyValue("effect_name", "hunter_muzzle_flash")
-	muzz1:SetPos(self:GetAttachment(self:LookupAttachment("minigunbase")).Pos)
-	muzz1:SetAngles(self:GetAttachment(self:LookupAttachment("minigunbase")).Ang)
-	muzz1:Fire("SetParentAttachment", "minigunbase")
-	muzz1:Fire("Start", "", 0.0)
-	muzz1:Fire("Kill", "", 0.2)
-	muzz1:SetParent(self)
-	muzz1:Spawn()
-	muzz1:Activate()
+	local attid = self:LookupAttachment("minigunbase")
+	ParticleEffectAttach("hunter_muzzle_flash", 4, self, attid)
 end
 
 function ENT:RangeAttackCode_GetShootPos(projectile)
