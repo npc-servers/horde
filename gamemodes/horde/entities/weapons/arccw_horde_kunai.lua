@@ -33,7 +33,7 @@ SWEP.Primary.ClipSize = -1
 
 SWEP.HoldType = "knife"
 SWEP.Primary.Ammo = "GrenadeHL1"
-SWEP.Primary.MaxAmmo = 3
+SWEP.Primary.MaxAmmo = 5
 SWEP.Primary.Automatic = true
 SWEP.NPCWeight = 25
 
@@ -62,7 +62,7 @@ function SWEP:Deploy()
     self:SendWeaponAnim( ACT_VM_DRAW )
     self:EmitSound("arccw_go/knife/knife_deploy1.wav")
     self:SetNextPrimaryFire( CurTime() + 0.5 )
-    self:SetNextSecondaryFire( CurTime() + 0.5 )
+    self:SetNextSecondaryFire( CurTime() + 0.7 )
     self.RegenerationTimer = CurTime() + 2.25
     if SERVER and self.HolsterTime then
         local ammoCount = math.floor( ( CurTime() - self.HolsterTime ) * self.AmmoRegenAmount )
@@ -106,7 +106,7 @@ function SWEP:SecondaryAttack()
     ent:GetPhysicsObject():SetVelocityInstantaneous( Forward * 4000)
 
         ply:SetAmmo(ply:GetAmmoCount("GrenadeHL1") -1, "GrenadeHL1")
-        self:SetNextSecondaryFire(CurTime() + 0.5)
+        self:SetNextSecondaryFire(CurTime() + 0.7)
         self:SendWeaponAnim(ACT_VM_RELEASE)
         self.RegenerationTimer = CurTime() + 2.25
     timer.Simple(0.3, function ()
