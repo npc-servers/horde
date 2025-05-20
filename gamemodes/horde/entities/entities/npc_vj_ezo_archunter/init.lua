@@ -235,7 +235,6 @@ function ENT:ChargeHit()
 		self.NextFlinchTime = 2
 		self.MovementType = VJ_MOVETYPE_GROUND
 		self.Charging = false
-		self.HullType = HULL_MEDIUM_TALL
 		self.hit = true
 		self.NextCharge = CurTime() + math.Rand(12, 26)
 		VJ_EmitSound(self, self.SoundTbl_MeleeAttack, 100, math.random(80, 100))
@@ -262,7 +261,6 @@ function ENT:StopCharge()
 		self.FlinchChance = 2
 		self.NextFlinchTime = 2
 		self.MovementType = VJ_MOVETYPE_GROUND
-		self.HullType = HULL_MEDIUM_TALL
 		self.Charging = false
 		self.hit = true
 
@@ -290,7 +288,6 @@ function ENT:ChargeCrash()
 		self.FlinchChance = 2
 		self.NextFlinchTime = 2
 		self.MovementType = VJ_MOVETYPE_GROUND
-		self.HullType = HULL_MEDIUM_TALL
 		self.Charging = false
 		self.hit = true
 
@@ -305,7 +302,7 @@ function ENT:ChargeCrash()
 				self.hit = false
 			end
 		end)
-		timer.Simple(2, function()
+		timer.Simple(1, function()
 			if IsValid(self) then
 				self.HasMeleeAttack = true
 				self.HasRangeAttack = true
@@ -352,7 +349,7 @@ function ENT:CustomOnThink()
 			endpos = self:GetPos() + self:OBBCenter() + self:GetForward() * 100,
 			filter = self,
 			mins = self:OBBMins(),
-			maxs = self:OBBMaxs(),
+			maxs = self:OBBMaxs() * 0.6,
 		})
 
 		if self:GetPos():Distance(self:GetLastPosition()) <= 90 and self.Charging and not tr.Hit and not tr.HitWorld then
