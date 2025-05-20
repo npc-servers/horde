@@ -385,12 +385,13 @@ function ENT:CustomOnThink()
 			return
 		end
 
+		local boxmax = self:OBBMaxs() * Vector(1, 1, 0.6)
 		local tr = util.TraceHull({
 			start = self:GetPos() + self:OBBCenter(),
 			endpos = self:GetPos() + self:OBBCenter() + self:GetForward() * 100,
 			filter = self,
 			mins = self:OBBMins(),
-			maxs = self:OBBMaxs() * 0.6,
+			maxs = boxmax,
 		})
 
 		if self:GetPos():Distance(self:GetLastPosition()) <= 90 and self.Charging and not tr.Hit and not tr.HitWorld then
