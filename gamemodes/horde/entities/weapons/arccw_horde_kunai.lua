@@ -62,7 +62,7 @@ function SWEP:Deploy()
     self:SendWeaponAnim( ACT_VM_DRAW )
     self:EmitSound("arccw_go/knife/knife_deploy1.wav")
     self:SetNextPrimaryFire( CurTime() + 0.5 )
-    self:SetNextSecondaryFire( CurTime() + 0.5 )
+    self:SetNextSecondaryFire( CurTime() + 0.7 )
     self.RegenerationTimer = CurTime() + 2.25
     if SERVER and self.HolsterTime then
         local ammoCount = math.floor( ( CurTime() - self.HolsterTime ) * self.AmmoRegenAmount )
@@ -106,7 +106,7 @@ function SWEP:SecondaryAttack()
     ent:GetPhysicsObject():SetVelocityInstantaneous( Forward * 4000)
 
         ply:SetAmmo(ply:GetAmmoCount("GrenadeHL1") -1, "GrenadeHL1")
-        self:SetNextSecondaryFire(CurTime() + 1)
+        self:SetNextSecondaryFire(CurTime() + 0.7)
         self:SendWeaponAnim(ACT_VM_RELEASE)
         self.RegenerationTimer = CurTime() + 2.25
     timer.Simple(0.3, function ()
@@ -169,7 +169,7 @@ end
 function SWEP:DoAttack()
     --credit to xdshot for this logic https://steamcommunity.com/sharedfiles/filedetails/?id=506283460, i'd have lost my marbles by now
     local Attacker = self:GetOwner()
-    local Range = 95
+    local Range = 100
 
     Attacker:LagCompensation(true)
     local Forward = Attacker:GetAimVector()
@@ -199,7 +199,7 @@ function SWEP:DoAttack()
     local damageinfo = DamageInfo()
     damageinfo:SetAttacker( Attacker )
     damageinfo:SetInflictor( self )
-    damageinfo:SetDamage( 75 )
+    damageinfo:SetDamage( 100 )
     damageinfo:SetDamageType(DMG_SLASH)
     damageinfo:SetDamageForce( Force )
     damageinfo:SetDamagePosition( AttackEnd )
