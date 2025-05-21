@@ -4,11 +4,11 @@ function EFFECT:Init(data)
     local emitter = ParticleEmitter(data:GetOrigin())
     local emitter2 = ParticleEmitter(data:GetOrigin(), true)
     emitter2:SetNearClip(24, 32)
-    for i = 1,10 do
+    for i = 1, 4 do
         local smoke = emitter:Add("particles/smokey", data:GetOrigin())
         smoke:SetGravity(Vector(0,0,-800))
         smoke:SetDieTime(radius/190/1.5)
-        smoke:SetStartAlpha(100)
+        smoke:SetStartAlpha(20)
         smoke:SetEndAlpha(0)
         smoke:SetStartSize(10)
         smoke:SetEndSize(radius * math.random(0.5,1))
@@ -28,11 +28,11 @@ function EFFECT:Init(data)
     local normal = Vector(0,0,1)
     local ringstart = data:GetOrigin() + normal * 10
     local particle
-    for i=1, 2 do
+    for i = 1, 2 do
         particle = emitter2:Add("effects/select_ring", ringstart)
         particle:SetDieTime(0.25 + i * 0.2)
         particle:SetColor(194, 255, 125)
-        particle:SetStartAlpha(255)
+        particle:SetStartAlpha(20)
         particle:SetEndAlpha(0)
         particle:SetStartSize(0)
         particle:SetEndSize(radius)
