@@ -115,12 +115,12 @@ function ENT:Think()
         if !self:IsValid() or self:WaterLevel() > 2 then return end
         if !IsValid(emitter) then return end
 
-        for i = 1,10 do
+        for i = 1, 4 do
             local fire = emitter:Add(GetFireParticle(), self:GetPos() + (VectorRand() * 30))
             fire:SetVelocity( VectorRand() * 500 * VectorRand() )
             fire:SetGravity( Vector(0, 0, 1000) )
             fire:SetDieTime( math.Rand(0.2, 0.5) )
-            fire:SetStartAlpha( 255 )
+            fire:SetStartAlpha( 85 )
             fire:SetEndAlpha( 0 )
             fire:SetStartSize( 0 )
             fire:SetEndSize( 50 )

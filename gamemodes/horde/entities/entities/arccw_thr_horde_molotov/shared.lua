@@ -37,7 +37,7 @@ function ENT:Initialize()
         self.SpawnTime = CurTime()
 
         timer.Simple(0, function()
-            if !IsValid(self) then return end
+            if not IsValid(self) then return end
             self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
         end)
     end
@@ -56,24 +56,24 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Think()
-    if !self.SpawnTime then self.SpawnTime = CurTime() end
+    if not self.SpawnTime then self.SpawnTime = CurTime() end
 
-    if SERVER and CurTime() - self.SpawnTime >= self.FuseTime and !self.Armed then
+    if SERVER and CurTime() - self.SpawnTime >= self.FuseTime and not self.Armed then
         self:Detonate()
     end
 
     if CLIENT then
         local emitter = ParticleEmitter(self:GetPos())
 
-        if !self:IsValid() or self:WaterLevel() > 2 then return end
-        if !IsValid(emitter) then return end
+        if not self:IsValid() or self:WaterLevel() > 2 then return end
+        if not IsValid(emitter) then return end
 
         if self.Ticks % 5 == 0 then
             local fire = emitter:Add("particles/smokey", self:GetPos())
             fire:SetVelocity( (VectorRand() * 25) + (self:GetAngles():Up() * 300) )
             fire:SetGravity( Vector(0, 0, 1500) )
             fire:SetDieTime( math.Rand(0.5, 1) )
-            fire:SetStartAlpha( 255 )
+            fire:SetStartAlpha( 155 )
             fire:SetEndAlpha( 0 )
             fire:SetStartSize( 10 )
             fire:SetEndSize( 50 )
@@ -87,7 +87,7 @@ function ENT:Think()
             fire:SetBounce(0.75)
             fire:SetNextThink( CurTime() + FrameTime() )
             fire:SetThinkFunction( function(pa)
-                if !pa then return end
+                if not pa then return end
                 local col1 = Color(255, 135, 0)
                 if self.has_burner then
                     col1 = Color(0, 135, 255)
@@ -119,7 +119,7 @@ function ENT:Detonate()
 
     local cloud = ents.Create("arccw_horde_fire")
 
-    if !IsValid(cloud) then return end
+    if not IsValid(cloud) then return end
 
     local vel = Vector(math.Rand(-1, 1), math.Rand(-1, 1), math.Rand(-1, 1)) * 1500
 

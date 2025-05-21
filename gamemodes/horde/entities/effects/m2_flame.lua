@@ -14,15 +14,15 @@ function EFFECT:Init(data)
 		self.Emitter = ParticleEmitter(Startpos)
 
 
-		for i = 1, 20 do
+		for i = 1, 4 do
 			local p = self.Emitter:Add("particles/flamelet1", Startpos)
 			if not has_burner then
-				p:SetColor(220,150,0)
+				p:SetColor(220,150,50)
 			else
-				p:SetColor(0,100,255)
+				p:SetColor(50,100,255)
 			end
             p:SetDieTime(1)
-			p:SetStartAlpha(100)
+			p:SetStartAlpha(30)
 			p:SetEndAlpha(0)
 			p:SetStartSize(math.Rand(0.8, 1.5))
 			p:SetEndSize(math.random(50, 75))

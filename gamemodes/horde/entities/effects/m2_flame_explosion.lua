@@ -44,11 +44,11 @@ function EFFECT:Init(data)
                 FlameParticle:SetLifeTime(0)
                 FlameParticle:SetDieTime(0.72)
 
-                FlameParticle:SetStartAlpha(210)
+                FlameParticle:SetStartAlpha(80)
                 FlameParticle:SetEndAlpha(0)
 
                 FlameParticle:SetStartSize(0)
-                FlameParticle:SetEndSize(64 * (data:GetScale() or 1))
+                FlameParticle:SetEndSize(48 * (data:GetScale() or 1))
 
                 FlameParticle:SetRoll(math.Rand(-210, 210))
                 FlameParticle:SetRollDelta(math.Rand(-3.2, 3.2))
