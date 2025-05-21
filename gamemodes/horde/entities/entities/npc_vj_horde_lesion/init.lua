@@ -42,7 +42,7 @@ ENT.GeneralSoundPitch2 = 50
 ENT.FootStepPitch = VJ_Set(40, 60)
 
 function ENT:CustomOnInitialize()
-    self:EmitSound(")horde/lesion/lesion_roar.ogg", 140)
+    self:EmitSound(")horde/lesion/lesion_roar.wav", 140)
     self:SetModelScale(1.75)
     local id = self:GetCreationID()
     timer.Remove("Horde_FlayerRage" .. id)
@@ -91,7 +91,7 @@ function ENT:CustomOnMeleeAttack_Miss()
     end
 end
 function ENT:CustomOnLeapAttack_BeforeChecks(hitEnt, isProp)
-    self:EmitSound("horde/lesion/lesion_leap.ogg")
+    self:EmitSound("horde/lesion/lesion_leap.wav")
 end
 function ENT:CustomOnLeapAttack_AfterChecks(hitEnt, isProp)
     if isProp then 
@@ -117,7 +117,7 @@ function ENT:Rage()
         return 
     end
     self.Raging = true
-    self:EmitSound("horde/lesion/lesion_enrage.ogg", 140)
+    self:EmitSound("horde/lesion/lesion_enrage.wav", 140)
     self:VJ_ACT_PLAYACTIVITY("BR2_Roar", true, 1.5, false)
     timer.Simple(1.5, function ()
         if not IsValid(self) then 
@@ -149,9 +149,9 @@ function ENT:UnRage()
     end)
 end
 function ENT:OnRemove()
-    self:StopSound("horde/lesion/lesion_enrage.ogg")
-    self:StopSound("horde/lesion/lesion_leap.ogg")
-    self:StopSound("horde/lesion/lesion_roar.ogg")
+    self:StopSound("horde/lesion/lesion_enrage.wav")
+    self:StopSound("horde/lesion/lesion_leap.wav")
+    self:StopSound("horde/lesion/lesion_roar.wav")
 end
 
 ENT.DamageReceived = 0
