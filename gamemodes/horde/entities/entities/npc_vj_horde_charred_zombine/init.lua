@@ -31,7 +31,6 @@ ENT.GeneralSoundPitch2 = 80
 function ENT:CustomOnInitialize()
 	self:SetBodygroup(1,1)
 	self:SetColor(Color(125,50,50))
-	self:Ignite(99999)
 	self:SetModelScale(1.15, 0)
 	self:AddRelationship("npc_headcrab_poison D_LI 99")
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
@@ -50,6 +49,9 @@ function ENT:CustomOnThink_AIEnabled()
 		self.AnimTbl_Walk = {ACT_WALK}
 		self.AnimTbl_Run = {ACT_RUN}
 	end
+	if not self:IsOnFire() then
+		self:Ignite(9999)
+	end
 end
 function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt, isProp)
     if isProp then 
@@ -67,6 +69,7 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
 	end
 end
 function ENT:CustomOnKilled(dmginfo, hitgroup)
+	self:Extinguish()
 	if IsValid(self.Zombine_Grenade) then
 		local att = self:GetAttachment(self:LookupAttachment("grenade_attachment"))
 		self.Zombine_Grenade:SetOwner(NULL)
@@ -81,6 +84,9 @@ function ENT:CustomOnKilled(dmginfo, hitgroup)
 			phys:Wake()
 		end
 	end
+end
+function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, corpseEnt)
+	self.Corpse:Ignite(math.Rand(8, 10), 0)
 end
 function ENT:Zombine_CreateGrenade()
 	self.Zombine_GrenadeOut = true
