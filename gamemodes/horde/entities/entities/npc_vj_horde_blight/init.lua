@@ -30,6 +30,7 @@ function ENT:CustomOnInitialize()
     self:SetBodygroup(1,1)
     self:SetColor(Color(50, 50, 50))
     self:SetModelScale(1.5, 0)
+    self.StartHeadHealth = self.StartHeadHealth * HORDE.Difficulty[HORDE.CurrentDifficulty].healthMultiplier
     self:AddRelationship("npc_headcrab_poison D_LI 99")
     self:AddRelationship("npc_headcrab_fast D_LI 99")
 end
@@ -51,12 +52,14 @@ function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 end
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
     if hitgroup == HITGROUP_HEAD then
-        dmginfo:ScaleDamage(4)
-        return
+        if self.StartHeadHealth > 0 then
+            self.StartHeadHealth = self.StartHeadHealth - dmginfo:GetDamage()
+        else
+            self:SetHealth(0)
+        end
+        dmginfo:ScaleDamage(2)
     elseif HORDE:IsBlastDamage(dmginfo) or HORDE:IsFireDamage(dmginfo) then
         dmginfo:ScaleDamage(1.5)
-    elseif HORDE:IsPoisonDamage(dmginfo) then
-        dmginfo:ScaleDamage(0.25)
     end
     local e = EffectData()
     e:SetOrigin(self:GetPos())
@@ -72,4 +75,5 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
     end
 end
 
+ENT.StartHeadHealth = 300
 VJ.AddNPC("Blight", "npc_vj_horde_blight", "Zombies")
