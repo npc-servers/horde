@@ -32,8 +32,8 @@ SWEP.WorldModel = "models/weapons/w_shotgun.mdl"
 
 SWEP.ViewModelFOV = 45
 
-SWEP.Damage = 30
-SWEP.DamageMin = 15
+SWEP.Damage = 35
+SWEP.DamageMin = 20
 SWEP.Range = 50 -- in METRES
 SWEP.Penetration = 2
 SWEP.DamageType = DMG_BUCKSHOT
