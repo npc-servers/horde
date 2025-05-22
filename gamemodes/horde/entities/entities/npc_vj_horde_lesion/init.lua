@@ -91,7 +91,7 @@ function ENT:CustomOnMeleeAttack_Miss()
     end
 end
 function ENT:CustomOnLeapAttack_BeforeChecks(hitEnt, isProp)
-    self:EmitSound("horde/lesion/lesion_leap.wav")
+    self:EmitSound("horde/lesion/lesion_leap.wav", 140)
 end
 function ENT:CustomOnLeapAttack_AfterChecks(hitEnt, isProp)
     if isProp then 
