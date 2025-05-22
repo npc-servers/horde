@@ -32,7 +32,7 @@ function ENT:CustomOnThink()
 	local EnemyDistance = self.NearestPointToEnemyDistance
 	if EnemyDistance < 250 then
 		if CurTime() > self.NextBlastTime then
-			self:EmitSound("npc/stalker/go_alert2.wav", 100, 50)
+			self:EmitSound("npc/stalker/go_alert2.wav", 140, 50)
 			self:VJ_ACT_PLAYACTIVITY("podconvulse", true, 1.5, false)
 			self:ShockAttack(1.5)
 			self:ShockAttack(1.75)
