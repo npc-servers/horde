@@ -43,8 +43,9 @@ function ENT:CustomOnThink_AIEnabled()
 		end
 	end
 	if IsValid(self.Zombine_Grenade) then
-		self.AnimTbl_Walk = VJ_SequenceToActivity(self,"walk_all_grenade")
-		self.AnimTbl_Run = VJ_SequenceToActivity(self,"run_all_grenade")
+		self.AnimTbl_IdleStand = {VJ_SequenceToActivity(self,"idle_grenade")}
+		self.AnimTbl_Walk = {VJ_SequenceToActivity(self,"walk_all_grenade")}
+		self.AnimTbl_Run = {VJ_SequenceToActivity(self,"run_all_grenade")}
 	else
 		self.AnimTbl_Walk = {ACT_WALK}
 		self.AnimTbl_Run = {ACT_RUN}
