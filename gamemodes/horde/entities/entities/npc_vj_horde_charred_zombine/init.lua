@@ -47,6 +47,7 @@ function ENT:CustomOnThink_AIEnabled()
 		self.AnimTbl_Walk = {VJ_SequenceToActivity(self,"walk_all_grenade")}
 		self.AnimTbl_Run = {VJ_SequenceToActivity(self,"run_all_grenade")}
 	else
+		self.AnimTbl_IdleStand = {ACT_IDLE}
 		self.AnimTbl_Walk = {ACT_WALK}
 		self.AnimTbl_Run = {ACT_RUN}
 	end
