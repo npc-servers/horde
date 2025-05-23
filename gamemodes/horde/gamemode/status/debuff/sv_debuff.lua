@@ -61,7 +61,7 @@ end
 
 function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
     if not IsValid(self) or (self:IsPlayer() and not self:Alive()) then return end
-    if inflictor and (HORDE:IsPlayerOrMinion(inflictor) == true) and (HORDE:IsPlayerOrMinion(self) == true) and inflictor ~= self then return end
+    if IsValid( inflictor ) and (HORDE:IsPlayerOrMinion(inflictor) == true) and (HORDE:IsPlayerOrMinion(self) == true) and inflictor ~= self then return end
     if not self.Horde_Debuff_Active then self.Horde_Debuff_Active = {} end
     if not self.Horde_Debuff_Buildup then self.Horde_Debuff_Buildup = {} end
     if not self.Horde_Debuff_Cooldown then self.Horde_Debuff_Cooldown = {} end
