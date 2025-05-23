@@ -355,6 +355,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["horde_sticky_launcher"].infusions = {}
     HORDE.items["arccw_horde_m32"].infusions = {}
     HORDE.items["arccw_horde_rpg7"].infusions = {}
+    HORDE.items["arccw_horde_usas12"].infusions = {}
     HORDE.items["arccw_horde_m202"].infusions = {}
     HORDE.items["arccw_horde_law"].infusions = {}
     HORDE.items["arccw_horde_apollo"].infusions = {HORDE.Infusion_Quality}
@@ -613,6 +614,8 @@ function HORDE:GetDefaultItemsData()
     {Demolition=true}, 50, -1, nil, nil, {Demolition=3}, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "RPG-7",          "arccw_horde_rpg7",   3000,  9, "Ruchnoy Protivotankoviy Granatomyot.\nAnti-tank rocket launcher developed by Soviet Union.",
     {Demolition=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
+    HORDE:CreateItem("Explosive",  "USAS-12",         "arccw_horde_usas12",    3000,  9, "USAS-12 automatic shotgun.\nShoots explosive slugs that deal either Ballistic or Explosive damage. \nPress B or ZOOM to switch grenade type.",
+    {Demolition=true, Heavy=true, Warden=true}, 20, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "LAW",        "arccw_horde_law",   3250,  9, "Light Anti-Armor Weapon.\nFocuses on raw destructive power instead of area of effect.",
     {Demolition=true}, 15, -1, nil, nil, {Demolition=4}, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "FGM-148 JAVELIN",        "arccw_horde_javelin",   3500,  10, "FGM-148 Javelin.\nFires guided shells that requires lock-on.",

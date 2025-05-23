@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/weapons/arccw/eap/usas/c_usas_shell"
+	"$translucent" 1
+}

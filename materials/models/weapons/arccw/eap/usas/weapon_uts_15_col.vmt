@@ -1,0 +1,21 @@
+"VertexLitGeneric"
+{
+"$basetexture" "models/weapons/arccw/eap/usas/weapon_uts_15_col"
+"$bumpmap" "models/weapons/arccw/eap/usas/weapon_uts_15_n"
+"$PhongExponentTexture" "models/weapons/arccw/eap/usas/weapon_uts_15_s"
+
+"$envmap" "env_cubemap"
+"$envmapfresnel" 			"1"
+"$envmapFresnelMinMaxExp"		"[2 4 5]"
+"$envmaptint" "[.3 .3 .3]"
+"$phong" 		"1"
+"$phongboost" "33"
+"$phongalbedotint" 			"1"
+"$phongalbedoboost" "33"
+"$phongfresnelranges" "[1.2 3.5 6.9]"
+"$halflambert" "1"
+"$ambientocclusion" "1"
+"$nocull" "1"
+
+
+}

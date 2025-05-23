@@ -1,0 +1,21 @@
+"VertexLitGeneric"
+{
+	"$basetexture"			"models\weapons\arccw\eap\usas\rail"
+	"$bumpmap" 			"models\weapons\arccw\eap\usas\rail_nm"
+	"$color"			"[1 1 1]"
+
+	 $normalmapalphaenvmapmask 	"1"
+
+	 $phongtint 			"[.8 .8 .8]"
+
+	 $envmap 			env_cubemap
+	 $envmaptint 			"[.017 .017 .017  ]"
+
+	 $phong 				"1"
+	//$PhongAlbedoTint 		"0"	
+	//$BasemapLuminancePhongMask	"1"
+	
+	$phongexponent 			"40"
+	$phongboost 			"1"
+	$phongfresnelranges		"[.5 1 3]"
+}
