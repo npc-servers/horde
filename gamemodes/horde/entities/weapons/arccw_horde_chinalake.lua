@@ -68,15 +68,6 @@ end
 
 -- SWEP.Delay = 60 / 300 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
-SWEP.Firemodes = {
-    {
-        PrintName = "fcg.pump",
-        Mode = 1,
-    },
-    {
-        Mode = 0
-    }
-}
 
 SWEP.Firemodes = {
     {

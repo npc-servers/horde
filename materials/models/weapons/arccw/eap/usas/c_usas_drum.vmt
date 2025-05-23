@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/weapons/arccw/eap/usas/c_usas_mag_drum"
+	"$bumpmap" "models/weapons/arccw/eap/usas/c_usas_mag_drum_n"
+	"$normalmapalphaenvmapmask" "1"
+	"$phong" "1"
+	"$phongexponent" "45"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[1 8 6]"
+}
