@@ -5,6 +5,7 @@ COMPLEXITY: MEDIUM
 Inflicts Frostbite buildup by {1} of base Cold damage. ({2} + {3} per level, up to {4}).
 {5} increased Cold damage resistance. ({6} per level, up to {7}).
 {8} increased minion damage. ({9} per level, up to {10}).
+{11} extra spectres. ({12} per {13} levels, up to {14}).
 
 Uses Mind instead of Armor.
 Has access to spells for Void Projector.]]
@@ -21,6 +22,10 @@ PERK.Params = {
     [8] = { percent = true, level = 0.01, max = 0.20, classname = "Necromancer" },
     [9] = { value = 0.01, percent = true },
     [10] = { value = 0.20, percent = true },
+    [11] = { level_scaling = true, base = 1, level = 1, per_level = 5, max = 5, classname = "Necromancer" },
+    [12] = { value = 1 },
+    [13] = { value = 5 },
+    [14] = { value = 5 },
 }
 
 PERK.Hooks = {}
@@ -30,7 +35,10 @@ function UpdateSpectreMaxCount(ply)
         ply.Horde_Spectre_Max_Count = 0
         return
     end
-    local count = 1
+
+    local level_bonus = math.min(5, math.floor(ply:Horde_GetLevel("Necromancer") / 5))
+    local count = 1 + level_bonus
+
     if ply:Horde_GetPerk("necromancer_hollow_essence") then
         count = count + 1
     end
@@ -40,6 +48,7 @@ function UpdateSpectreMaxCount(ply)
     if ply:Horde_GetPerk("necromancer_necromastery") then
         count = count + 1
     end
+
     ply.Horde_Spectre_Max_Count = count
 end
 
