@@ -60,7 +60,13 @@ function HORDE:ApplyDamage(npc, hitgroup, dmginfo)
         dmginfo:AddDamage(bonus.post_add)
         dmginfo:SetDamageCustom(HORDE.DMG_CALCULATED)
         if hitgroup == HITGROUP_HEAD then
-            sound.Play("horde/player/headshot.ogg", npc:GetPos())
+            if dmginfo:IsBulletDamage() then
+                sound.Play("Horde_Bullet_Headshot_Feedback", npc:GetPos())
+            else
+                sound.Play("Horde_Headshot_Feedback", npc:GetPos())
+            end
+        elseif dmginfo:IsBulletDamage() then
+            sound.Play("Horde_Bullet_Feedback", npc:GetPos())
         end
         return
     end
@@ -110,7 +116,13 @@ function HORDE:ApplyDamage(npc, hitgroup, dmginfo)
 
     -- Play sound
     if hitgroup == HITGROUP_HEAD then
-        sound.Play("horde/player/headshot.ogg", npc:GetPos())
+        if dmginfo:IsBulletDamage() then
+            sound.Play("Horde_Bullet_Headshot_Feedback", npc:GetPos())
+        else
+            sound.Play("Horde_Headshot_Feedback", npc:GetPos())
+        end
+    elseif dmginfo:IsBulletDamage() then
+        sound.Play("Horde_Bullet_Feedback", npc:GetPos())
     end
 
     hook.Run("Horde_OnPlayerDamagePost", ply, npc, bonus, hitgroup, dmginfo)
