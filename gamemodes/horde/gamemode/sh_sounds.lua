@@ -1,8 +1,8 @@
--- sound.Add({name = "", channel = CHAN_STATIC, volume = 1.0, level = 75, pitch = 100, sound = ""})
+-- sound.Add({name = "", channel = CHAN_BODY, volume = 1.0, level = 75, pitch = 100, sound = ""})
 --
 -- Here are some useful tips for other devs:
 -- Common Symbols: # connects volume to music volume, ^ makes stereo channels left play close and right play far, ) makes stereo audio directional.
--- Common Channels: CHAN_STATIC, CHAN_BODY, CHAN_ITEM, CHAN_VOICE, CHAN_WEAPON. If unsure what channels to use, reference soundscripts in sourceengine/scripts. Use channels in specific cases, common sounds that play frequently usually don't need a channel.
+-- Common Channels: CHAN_STATIC (Overlaps sounds), CHAN_BODY, CHAN_ITEM, CHAN_VOICE, CHAN_WEAPON. If unsure what channels to use, reference soundscripts in sourceengine/scripts. Use channels in specific cases, common sounds that play frequently usually don't need a channel.
 -- Common Levels: 75 is the default level, 140 is for gunshot/far out sounds, 0 is everywhere.
 --
 -- - func_brush
