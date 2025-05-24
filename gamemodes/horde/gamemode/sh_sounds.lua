@@ -1,4 +1,4 @@
--- sound.Add({name = "", channel = CHAN_BODY, volume = 1.0, level = 75, pitch = 100, sound = ""})
+-- sound.Add({name = "", channel = CHAN_"", volume = 1.0, level = 75, pitch = 100, sound = ""})
 -- https://developer.valvesoftware.com/wiki/Soundscripts
 
 sound.Add(
