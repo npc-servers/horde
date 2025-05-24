@@ -113,7 +113,7 @@ function ENT:Horde_SetGreaterSpectre()
 end
 
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
+	self:SetCollisionBounds(Vector(13, 13, 64), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
