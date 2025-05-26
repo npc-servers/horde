@@ -25,7 +25,24 @@ ENT.SoundTbl_Death = {"zsszombie/zombie_die1.wav",")zsszombie/zombie_die2.wav","
 
 ENT.GeneralSoundPitch1 = 100
 
+ENT.IsOnFire = false
+
 function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
 	self:AddRelationship("npc_headcrab_poison D_LI 99")
+end
+function ENT:CustomOnThink_AIEnabled()
+	if self:IsOnFire() then
+		if not self.IsOnfire then
+			self.AnimTbl_IdleStand = {ACT_IDLE_ON_FIRE}
+			self.AnimTbl_Walk = {ACT_WALK_ON_FIRE}
+			self.AnimTbl_Run = {ACT_WALK_ON_FIRE}
+			self.IsOnFire = true
+		end
+	elseif self.IsOnFire then 
+		self.AnimTbl_IdleStand = {ACT_IDLE}
+		self.AnimTbl_Walk = {ACT_WALK}
+		self.AnimTbl_Run = {ACT_RUN}
+		self.IsOnFire = false
+	end
 end
