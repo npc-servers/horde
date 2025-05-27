@@ -12,6 +12,7 @@ ENT.MeleeAttackDamageDistance = 60
 ENT.TimeUntilMeleeAttackDamage = 0.25
 ENT.MeleeAttackExtraTimers = {0.5}
 ENT.FootStepTimeRun = 0.25
+ENT.DisableFootStepOnWalk = true
 ENT.AlertSounds_OnlyOnce = true
 ENT.HasExtraMeleeAttackSounds = true
 ENT.HasImpactSounds = false
