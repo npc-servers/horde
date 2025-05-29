@@ -23,7 +23,7 @@ ENT.SoundTbl_Alert = {"vfastzombie/fzombie_alert1.wav","vfastzombie/fzombie_aler
 ENT.SoundTbl_BeforeMeleeAttack = {"vfastzombie/attack1.wav","vfastzombie/attack2.wav","vfastzombie/attack3.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 ENT.SoundTbl_Pain = {"vfastzombie/fzombie_pain1.wav","vfastzombie/fzombie_pain2.wav","vfastzombie/fzombie_pain3.wav"}
-ENT.SoundTbl_Death = {"vfastzombie/fzombie_die1.wav","vfastzombie/fzombie_die2.wav","common/null.wav"}
+ENT.SoundTbl_Death = {"vfastzombie/fzombie_die1.wav","vfastzombie/fzombie_die2.wav"}
 
 ENT.GeneralSoundPitch1 = 100
 
