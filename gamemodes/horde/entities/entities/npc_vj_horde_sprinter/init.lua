@@ -21,7 +21,7 @@ ENT.SoundTbl_Alert = {")zsszombie/zombie_alert1.wav",")zsszombie/zombie_alert2.w
 ENT.SoundTbl_MeleeAttack = {"zsszombie/zombie_attack_1.wav","zsszombie/zombie_attack_2.wav",")zsszombie/zombie_attack_3.wav","zsszombie/zombie_attack_4.wav","zsszombie/zombie_attack_5.wav","zsszombie/zombie_attack_6.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 ENT.SoundTbl_Pain = {"zsszombie/zombie_pain1.wav","zsszombie/zombie_pain2.wav","zsszombie/zombie_pain3.wav","zsszombie/zombie_pain4.wav","zsszombie/zombie_pain5.wav","zsszombie/zombie_pain6.wav","zsszombie/zombie_pain7.wav","zsszombie/zombie_pain8.wav"}
-ENT.SoundTbl_Death = {"zsszombie/zombie_die1.wav",")zsszombie/zombie_die2.wav","zsszombie/zombie_die3.wav",")zsszombie/zombie_die4.wav",")zsszombie/zombie_die5.wav",")zsszombie/zombie_die6.wav","common/null.wav"}
+ENT.SoundTbl_Death = {"zsszombie/zombie_die1.wav",")zsszombie/zombie_die2.wav","zsszombie/zombie_die3.wav",")zsszombie/zombie_die4.wav",")zsszombie/zombie_die5.wav",")zsszombie/zombie_die6.wav"}
 
 ENT.GeneralSoundPitch1 = 60
 ENT.GeneralSoundPitch2 = 60
