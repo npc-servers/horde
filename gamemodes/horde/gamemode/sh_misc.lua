@@ -50,6 +50,7 @@ net.Receive("Horde_Void_Shield_Deploy", function ()
         local pos = ent:GetPos()
         pos.z = pos.z + height / 2
         render.DrawSphere(pos, radius + 10, 50, 50)
+        ent:DrawModel()
     end)
 end)
 

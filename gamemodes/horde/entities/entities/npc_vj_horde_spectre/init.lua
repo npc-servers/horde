@@ -59,6 +59,19 @@ ENT.Roard = nil
 ENT.DamageReceived = 0
 ENT.Attacks = 0
 
+ENT.EntitiesToNoCollide = {
+    "player",
+    "npc_vj_horde_spectre",
+    "npc_vj_horde_antlion",
+	"npc_vj_horde_combat_bot",
+	"npc_vj_horde_vortigaunt",
+    "npc_vj_horde_rocket_turret",
+    "npc_vj_horde_class_survivor",
+    "npc_vj_horde_class_assault",
+    "npc_turret_floor",
+    "npc_manhack"
+}
+
 ENT.HasWorldShakeOnMove = false -- Should the world shake when it's moving?
 ENT.WorldShakeOnMoveAmplitude = 5 -- How much the screen will shake | From 1 to 16, 1 = really low 16 = really high
 ENT.WorldShakeOnMoveRadius = 200 -- How far the screen shake goes, in world units
@@ -75,7 +88,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_GENERIC)
+		dmg:SetDamageType(HORDE.DMG_COLD)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
@@ -113,8 +126,9 @@ function ENT:Horde_SetGreaterSpectre()
 end
 
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
+	self:SetCollisionBounds(Vector(13, 13, 64), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
+	self.MeleeAttackDamageType = HORDE.DMG_COLD
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
