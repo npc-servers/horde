@@ -8,7 +8,7 @@ Complexity: HIGH
 {4} increased Movement Speed and Jump height
 +{5} damage block.
 
-Aerial Parry: Jump to reduce Physical damage taken by {6}.]]
+Aerial Parry: Jump to reduce damage taken by {6}.]]
 PERK.Params = {
     [1] = { percent = true, level = 0.008, max = 0.20, classname = HORDE.Class_Berserker },
     [2] = { value = 0.008, percent = true },
