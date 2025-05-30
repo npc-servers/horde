@@ -19,7 +19,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
     sound.Play( "weapons/physcannon/energy_sing_explosion2.wav", ply:GetPos() )
 
     local dir = ply:GetAimVector()
-    local vel = dir * 8000
+    local vel = dir * 1000
     ply.Horde_NextAttack_Flash = true
     ply.Horde_Invincible = true
     ply.Flash_Fall_Damage_Prevention = true
@@ -68,14 +68,7 @@ end
 
 GADGET.Hooks.Horde_GetFallDamage = function(ply, speed, bonus)
     if ply:Horde_GetGadget() ~= "gadget_flash" then return end
-    if not ply.Flash_Fall_Damage_Prevention then return end
     bonus.less = bonus.less * 0.1
-    ply.Flash_Fall_Damage_Prevention = nil
 end
 
-GADGET.Hooks.PlayerTick = function (ply, mv)
-    if not ply.Flash_Fall_Damage_Prevention or not ply:Alive() then return end
-    if ply:IsOnGround() and not ply.Horde_In_Flash then
-        ply.Flash_Fall_Damage_Prevention = nil
-    end
-end
+
