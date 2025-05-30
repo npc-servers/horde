@@ -9,7 +9,7 @@ SPELL.Cooldown              = 3
 SPELL.Upgrades              = 5
 
 SPELL.Slot                  = HORDE.Spell_Slot_RMB
-SPELL.DamageType            = { HORDE.DMG_REMOVENORAGDOLL }
+SPELL.DamageType            = { HORDE.DMG_COLD, HORDE.DMG_PHYSICAL }
 SPELL.Type                  = { HORDE.Spell_Type_Minion }
 
 SPELL.Icon                  = "spells/raise_spectre.png"
