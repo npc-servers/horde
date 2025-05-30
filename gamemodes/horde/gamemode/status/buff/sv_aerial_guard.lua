@@ -44,7 +44,7 @@ hook.Add("Horde_OnPlayerDamageTaken", "Horde_AerialGuardDamageTaken", function (
     if ply.HasUnwaveringGuardBuff then
         bonus.less = bonus.less * 0.75
     end
-    if ply:Horde_GetAerialGuard() == 1 and HORDE:IsPhysicalDamage(dmginfo) then
+    if ply:Horde_GetAerialGuard() == 1 then
         bonus.less = bonus.less * 0.35
         local e = EffectData()
         if dmginfo:GetDamagePosition() ~= Vector(0,0,0) then
