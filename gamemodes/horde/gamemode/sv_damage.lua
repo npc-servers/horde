@@ -452,6 +452,8 @@ end )
 
 hook.Add( "PostEntityTakeDamage", "Horde_DamageTracking", function( ent, dmgInfo, wasDamageTaken )
     if entTakingDamage ~= ent then return end
+    if ent.Horde_EntityDied then return end
+
     local health = ent:Health()
     if health < 0 then
         health = 0
