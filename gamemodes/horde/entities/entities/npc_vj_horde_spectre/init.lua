@@ -14,6 +14,7 @@ ENT.FriendsWithAllPlayerAllies = true
 ENT.PlayerFriendly = true
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
+ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL -- The type of damage it should do
 ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1} -- Melee Attack Animations
 ENT.MeleeAttackDistance = 32 -- How close does it have to be until it attacks?
 ENT.MeleeAttackDamageDistance = 50 -- How far does the damage go?
@@ -88,7 +89,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(HORDE.DMG_COLD)
+		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
@@ -109,7 +110,6 @@ function ENT:Roar()
 	if not self:IsValid() then return end
     sound.Play("horde/spectres/abyssal_roar.ogg", self:GetPos(), 75, 100)
     self:VJ_ACT_PLAYACTIVITY("BR2_Roar", true, 1.5, false)
-	-- Deals heavy Physical damage to nearby enemies
 	self:Shockwave(0.2)
 	self:Shockwave(0.4)
 	self:Shockwave(0.6)
@@ -126,9 +126,8 @@ function ENT:Horde_SetGreaterSpectre()
 end
 
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(13, 13, 64), Vector(-13, -13, 0))
+	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
-	self.MeleeAttackDamageType = HORDE.DMG_COLD
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true

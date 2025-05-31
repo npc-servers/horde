@@ -7,7 +7,7 @@ SPELL.ChargeRelease         = true
 SPELL.Cooldown              = 4
 
 SPELL.Slot                  = HORDE.Spell_Slot_RMB
-SPELL.DamageType            = { HORDE.DMG_PHYSICAL }
+SPELL.DamageType            = { HORDE.DMG_COLD }
 SPELL.Type                  = { HORDE.Spell_Type_Minion }
 
 SPELL.Icon                  = "spells/raise_greater_spectre.png"
