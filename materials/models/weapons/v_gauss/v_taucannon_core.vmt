@@ -1,0 +1,40 @@
+VertexLitGeneric
+{
+	$basetexture models\weapons\v_gauss\v_taucannon
+	$bumpmap models\weapons\v_gauss\v_taucannon_normal
+	
+	//metal
+	"$normalmapalphaenvmapmask" "1"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.90 .90 .90]"
+
+	$phong 1
+	
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture vgui\white
+	$emissiveBlendBaseTexture models\weapons\v_gauss\v_taucannon_emissivemask
+	$emissiveBlendFlowTexture vgui\white
+	$emissiveBlendTint "[0 1.74 2]"
+	$emissiveBlendStrength 0
+	$emissiveBlendScrollVector "[0 0]"
+	
+	$coreGlow1 .2
+	$coreGlow2 0
+	
+	Proxies
+	{
+		ModelDetailFx
+		{
+		}
+		TauCharge
+		{
+			resultVar $coreGlow2
+		}
+		Add
+		{
+			srcVar1 $coreGlow1
+			srcVar2 $coreGlow2
+			resultVar $emissiveBlendStrength
+		}
+	}
+}

@@ -4,44 +4,43 @@ name = "Weapon_Horde_Tau_Cannon.Single",
 channel = CHAN_WEAPON,
 volume = VOL_NORM,
 soundlevel = SNDLVL_GUNFIRE,
-sound = {"horde/weapons/gauss/single1.ogg", "horde/weapons/gauss/single2.ogg"}
+sound = {"weapons/gauss/single01.ogg", "weapons/gauss/single02.ogg", "weapons/gauss/single03.ogg"}
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double",
 channel = CHAN_WEAPON,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = "horde/weapons/gauss/pulsemachine.ogg"
+sound = "weapons/gauss/gauss_spinup.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double_2",
 channel = CHAN_WEAPON,
 volume = VOL_NORM,
-pitch = 150,
 soundlevel = SNDLVL_NORM,
-sound = "horde/weapons/gauss/pulsemachine.ogg"
+sound = "weapons/gauss/chargeloop.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double_3",
 channel = CHAN_WEAPON,
 volume = VOL_NORM,
-pitch = 200,
+pitch = 150,
 soundlevel = SNDLVL_NORM,
-sound = "horde/weapons/gauss/pulsemachine.ogg"
+sound = "weapons/gauss/chargeloop.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau.Electro",
 channel = CHAN_ITEM,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = { "horde/weapons/gauss/charged.ogg" }
+sound = { "weapons/gauss/single_overcharged01.ogg", "weapons/gauss/single_overcharged02.ogg" }
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Explode",
 channel = CHAN_ITEM,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = { "horde/weapons/gauss/gauss_overcharged.ogg" }
+sound = { "weapons/gauss/gauss_overcharged.ogg" }
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.DryFire",
@@ -69,8 +68,8 @@ SWEP.AdminSpawnable= true
 SWEP.AdminOnly = false
 
 SWEP.ViewModelFOV = 85
-SWEP.ViewModel = "models/horde/weapons/v_gauss.mdl"
-SWEP.WorldModel = "models/horde/weapons/w_gauss.mdl"
+SWEP.ViewModel = "models/weapons/c_gauss.mdl"
+SWEP.WorldModel = "models/weapons/w_gauss_mp.mdl"
 SWEP.ViewModelFlip = false
 SWEP.BobScale = 1
 SWEP.SwayScale = 0
@@ -81,8 +80,8 @@ SWEP.Weight = 7
 SWEP.Slot = 3
 SWEP.SlotPos = 0
 
-SWEP.UseHands = false
-SWEP.HoldType = "ar2"
+SWEP.UseHands = true
+SWEP.HoldType = "shotgun"
 SWEP.FiresUnderwater = true
 SWEP.CSMuzzleFlashes = 1
 SWEP.Base = "weapon_base"
@@ -112,7 +111,7 @@ SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = "none"
 SWEP.Secondary.Damage = 60
 SWEP.Secondary.TakeAmmo = 5
-SWEP.ReloadSound            = "ambient/machines/keyboard2_clicks.wav"
+SWEP.ReloadSound            = "weapons/gauss/gauss_fidget.wav"
 
 function SWEP:DrawHUD()
     if CLIENT then
@@ -229,7 +228,7 @@ function SWEP:SecondaryAttack()
     if self.Weapon:Ammo1() < 5 then return end
     if self.FiresUnderwater == false and self.Owner:WaterLevel() == 3 then return end
     self:EmitSound( self.Secondary.Sound )
-    self.Weapon:SendWeaponAnim( ACT_GAUSS_SPINUP )
+    self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
     self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
     self:SetNextSecondaryFire( CurTime() + self.Primary.Delay )
     self.Spin = 1
@@ -296,8 +295,8 @@ function SWEP:Think()
             self.Owner:StopSound( "Weapon_Horde_Tau_Cannon.Double_3" )
             self.Owner:EmitSound( "Weapon_Horde_Tau.Electro" )
         end
-        self.Weapon:SendWeaponAnim( ACT_VM_SECONDARYATTACK )
-        self.Owner:SetAnimation( PLAYER_ATTACK1 )
+        self.Weapon:SendWeaponAnim(ACT_VM_SECONDARYATTACK)
+        self.Owner:SetAnimation(ACT_VM_RELEASE)
         self.Owner:MuzzleFlash()
         if self.SpinTimer > CurTime() + 6.5 and self.SpinTimer <= CurTime() + 7 then
             if self.Owner:IsValid() and self.Owner:GetAmmoCount("GaussEnergy") > 0 then
@@ -338,10 +337,10 @@ function SWEP:Think()
     if self.Idle == 0 and self.IdleTimer <= CurTime() then
         if SERVER then
             if self.Spin == 0 then
-                self.Weapon:SendWeaponAnim( ACT_VM_IDLE )
+                self.Weapon:SendWeaponAnim(ACT_VM_IDLE)
             end
             if self.Spin == 1 then
-                self.Weapon:SendWeaponAnim( ACT_GAUSS_SPINCYCLE )
+                self.Weapon:SendWeaponAnim(ACT_GAUSS_SPINCYCLE)
             end
         end
         self.Idle = 1
@@ -361,6 +360,6 @@ function SWEP:Think()
             self.Owner:EmitSound( "Weapon_Horde_Tau_Cannon.Explode" )
         end
         self:StopSound( self.Secondary.Sound )
-        util.BlastDamage( self, self.Owner, self:GetPos(), 256, 50 )
+        util.BlastDamage( self, self.Owner, self:GetPos(), 256, 200 )
     end
 end
