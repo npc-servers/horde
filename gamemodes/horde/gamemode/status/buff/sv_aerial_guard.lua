@@ -58,7 +58,7 @@ hook.Add("Horde_OnPlayerDamageTaken", "Horde_AerialGuardDamageTaken", function (
             sound.Play("horde/gadgets/guard" .. tostring(math.random(1,2)) ..".ogg", ply:GetPos(), 125, 100, 1, CHAN_AUTO)
         end
 
-        if ply:Horde_GetGracefulGuardEnabled() then
+        if ply:Horde_GetGracefulGuardEnabled() and HORDE:IsPhysicalDamage(dmginfo) then
             timer.Simple(0, function()
                 if not ply:IsValid() then return end
                 for debuff, buildup in pairs(ply.Horde_Debuff_Buildup) do
