@@ -266,13 +266,11 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_akimbo_m9"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_akimbo_deagle"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_raygun_mk2"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_masterkey"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_fucket"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
 
     --HORDE.items["arccw_horde_flaregun"].infusions = {HORDE.Infusion_Chrono, HORDE.Infusion_Quality}
 
-    -- SMGs
     local ballistic_infusions_smgs = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver}
+    -- SMGs
     HORDE.items["arccw_horde_smg1"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_mac10"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_mp40"].infusions = ballistic_infusions_smgs
@@ -290,22 +288,24 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_medic_acr"].infusions = infusions_medic
 
     -- Shotguns
+    local ballistic_infusions_shotguns = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming }
     HORDE.items["arccw_horde_shotgun"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_nova"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_870"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_mag7"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_m1014"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_doublebarrel"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
+    HORDE.items["arccw_horde_nova"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_870"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_mag7"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_m1014"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_doublebarrel"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_trenchgun"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Flaming, HORDE.Infusion_Siphoning}
-    HORDE.items["arccw_horde_spas12"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_striker"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_hsg1"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_aa12"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
+    HORDE.items["arccw_horde_spas12"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_striker"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_hsg1"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_aa12"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_medic_shotgun"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Septic, HORDE.Infusion_Siphoning}
+    HORDE.items["arccw_horde_masterkey"].infusions = ballistic_infusions_shotguns
 
     local ballistic_infusions_rifles = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning}
     -- Rifles
-    HORDE.items["arccw_horde_ar15"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
+    HORDE.items["arccw_horde_ar15"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_famas"].infusions = ballistic_infusions_rifles
     HORDE.items["arccw_horde_ace"].infusions = ballistic_infusions_rifles
     HORDE.items["arccw_horde_ak47"].infusions = ballistic_infusions_rifles
@@ -318,9 +318,9 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_ar2"].infusions = ballistic_infusions_rifles
 
     local ballistic_infusions_sniper_rifles = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning}
-    HORDE.items["arccw_horde_m14"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_winchester"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-    HORDE.items["arccw_horde_mosin_nagant"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
+    HORDE.items["arccw_horde_m14"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_winchester"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_mosin_nagant"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_winchester_fire"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_m200"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_ssg08"].infusions = ballistic_infusions_sniper_rifles
@@ -330,10 +330,9 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_fal"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_barret"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_m99"].infusions = ballistic_infusions_sniper_rifles
-    HORDE.items["arccw_horde_fucket_rifle"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
-
+    HORDE.items["arccw_horde_fucket_rifle"].infusions = ballistic_infusions_shotguns
+    HORDE.items["arccw_horde_fucket"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_heat_crossbow"].infusions = ballistic_infusions_sniper_rifles
-
     HORDE.items["arccw_horde_medic_rifle"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Septic, HORDE.Infusion_Siphoning}
     HORDE.items["arccw_horde_m16m203"].infusions = ballistic_infusions_rifles
 
@@ -349,7 +348,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_m2_browning"].infusions = ballistic_infusions_mg_rifles
     HORDE.items["arccw_horde_gau"].infusions = ballistic_infusions_mg_rifles
 
-    local projectile_infusions = {}
+    --local projectile_infusions = {}
     HORDE.items["weapon_frag"].infusions = {}
     HORDE.items["weapon_rpg"].infusions = {}
     HORDE.items["arccw_horde_m79"].infusions = {HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Chrono, HORDE.Infusion_Ruination, HORDE.Infusion_Flaming, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing}
@@ -391,7 +390,7 @@ function HORDE:GetDefaultItemsData()
     {Berserker=true}, 10, -1, nil, nil, {Berserker=5}, nil, {HORDE.DMG_SLASH})
 
     HORDE:CreateItem("Pistol",     "9mm",            "arccw_horde_9mm",   50,  1, "Combine standard sidearm.",
-    nil, 2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Engineer", "Demolition", "Survivor", "Psycho"})
+    nil, 2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Demolition", "Survivor", "Psycho"})
     HORDE:CreateItem("Pistol",     "Medic 9mm",       "arccw_horde_medic_9mm", 75,  1, "Modified 9mm that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing dart recharges every 1 second.",
     {Medic=true}, 2, -1, nil, "items/weapon_medic_9mm.png", nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON}, nil, {"Medic", "Hatcher"})
     HORDE:CreateItem("Pistol",     "357",            "arccw_horde_357",        100,  2, "Colt python magnum pistol.\nUsed by Black Mesa security guards.",
@@ -428,8 +427,6 @@ function HORDE:GetDefaultItemsData()
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 8, -1, nil, "arccw/weaponicons/arccw_go_tec9", {Survivor=2}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "Skorpion",          "arccw_horde_skorpion",    1000,  3, "Sa vz. 61 Skorpion.\nDeveloped in 1959 by Miroslav Rybar and produced \nunder the official designation 'Samopal vzor 61'.",
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Pistol",     "Masterkey",          "arccw_horde_masterkey",    1250,  3, "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
-    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true, Ghost = true, Berserker = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
 
     HORDE:CreateItem("Pistol",     "Dual M9",        "arccw_horde_akimbo_m9",       1500,  4, "Dual Beretta M9.\nSidearm used by the United States Armed Forces.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
@@ -472,9 +469,11 @@ function HORDE:GetDefaultItemsData()
     {Medic=true, Warden=true}, 10, -1, nil, nil, {Medic=2}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
 
     HORDE:CreateItem("Shotgun",    "Pump-Action",    "arccw_horde_shotgun",100, 2, "A standard 12-gauge shotgun.",
-    {Warden=true, Engineer=true, Cremator=true}, 2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Warden"})
+    {Warden=true, Engineer=true, Cremator=true}, 2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Warden", "Engineer"})
     HORDE:CreateItem("Shotgun",    "Nova",           "arccw_horde_nova",     1000, 4, "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
     {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, {HORDE.DMG_BALLISTIC})
+    HORDE:CreateItem("Shotgun",     "Masterkey",          "arccw_horde_masterkey",    1250,  3, "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
+    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true, Ghost = true, Berserker = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Shotgun",    "M870",           "arccw_horde_870",      1500, 4, "Remington 870 Shotgun.\nManufactured in the United States.",
     {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, "arccw/weaponicons/arccw_go_870", {Engineer=1}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Shotgun",    "MAG7",           "arccw_horde_mag7",     1500, 4, "Techno Arms MAG-7.\nFires a specialized 60mm 12 gauge shell.",
@@ -505,7 +504,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Rifle",      "M4A1",           "arccw_horde_m4",       3000, 7, "Colt M4.\nA 5.56×45mm NATO, air-cooled, gas-operated, select fire carbine.",
     {Assault=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "SG556",          "arccw_horde_sg556",    3000, 7, "SIG SG 550.\nAn assault rifle manufactured by Swiss Arms AG.",
-    {Assault=true}, 10, -1, nil, nil, {Assault=2}, nil, {HORDE.DMG_BALLISTIC})
+    {Assault=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "AUG",            "arccw_horde_aug",      3000, 7, "Steyr AUG.\nAn Austrian bullpup assault rifle.",
     {Assault=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "F2000",          "arccw_horde_f2000", 3250, 7, "FN F2000.\nAn ambidextrous bullpup rifle developed by FN. \nEquipped with an M203 underbarrel incendiary grenade launcher.\nPress USE+RELOAD to equip M203.",
@@ -534,11 +533,8 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Rifle",      "AWP",            "arccw_horde_awp",     2500, 8, "Magnum Ghost Rifle.\nA series of sniper rifles manufactured by the United Kingdom.",
     {Ghost=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Fucket",            "arccw_horde_fucket_rifle",     2750, 7, "Break-action double-barrel musket.\ndebatable whether its unholy or not",
-    {Survivor = true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    --fucket explicitly for gunslinger
-    HORDE:CreateItem("Pistol",      "Fucket",            "arccw_horde_fucket",     2750, 7, "Break-action double-barrel musket.\ndebatable whether its unholy or not",
-    {Medic = false, Assault = false, Heavy = false, Demolition = false, Survivor = false, Engineer = false, Warden = false, Cremator = false}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-
+    {Survivor = true, Ghost = true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
+    
     HORDE:CreateItem("Rifle",      "M200",           "arccw_horde_m200",    3000, 9, "CheyTec M200 Intervention.\nAmerican bolt-action sniper rifle.",
     {Ghost=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Barrett AMR",    "arccw_horde_barret",  3500, 10, ".50 Cal Anti-Material Sniper Rifle.\nDoes huge amounts of ballistic damage.",
