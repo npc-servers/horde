@@ -1,3 +1,5 @@
+PERK = PERK or {}
+PERK.ClassName = "cyborg_41"
 PERK.PrintName = "Rifle Mechanism"
 PERK.Description =
 [[Unlocks a Special Attack (Shift + E).
@@ -10,7 +12,7 @@ PERK.Hooks = {}
 HORDE:RegisterStatus("Rifle_Mechanism", "materials/perks/samurai/focus_slash.png", nil, nil, true)
 
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
-    if SERVER and perk == "totikfr_41" then
+    if SERVER and perk == "cyborg_41" then
         ply:Horde_SetPerkCooldown(15)
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_Rifle_Mechanism, 8)
@@ -20,7 +22,7 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
-    if SERVER and perk == "totikfr_41" then
+    if SERVER and perk == "cyborg_41" then
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_Rifle_Mechanism, 8)
             net.WriteUInt(0, 3)
@@ -30,7 +32,7 @@ end
 
 
 PERK.Hooks.Horde_UseActivePerk = function (ply, dmginfo)
-    if not ply:Horde_GetPerk("totikfr_41") then return end	
+    if not ply:Horde_GetPerk("cyborg_41") then return end	
 	
     local ent = util.TraceLine(util.GetPlayerTrace(ply)).Entity
 	local startpos = util.TraceLine(util.GetPlayerTrace(ply)).StartPos

@@ -1,4 +1,7 @@
-PERK.PrintName = "Cyborg Ninja Base"
+print("[HORDE] Loaded cyborg_base.lua")
+PERK = PERK or {}
+PERK.ClassName = "cyborg_base"
+PERK.PrintName = "Cyborg Ninja"
 PERK.Description = [[
 COMPLEXITY: HIGH
 
@@ -37,10 +40,10 @@ PERK.Hooks = {}
 --thanks my dude
 
 --PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
- --   if ply:Horde_GetPerk("totikfr_base") and ply.Horde_In_Frenzy_Mode  then
+ --   if ply:Horde_GetPerk("cyborg_base") and ply.Horde_In_Frenzy_Mode  then
   --  if HORDE:IsMeleeDamage(dmginfo) then
   --      bonus.increase = bonus.increase + 0.5
-	--	if ply:Horde_GetPerk("totikfr_31") then
+	--	if ply:Horde_GetPerk("cyborg_31") then
 	--	bonus.increase = bonus.increase + 0.35
 	--	end
   --  end
@@ -53,23 +56,23 @@ HORDE:RegisterStatus("HF_Mode", "materials/subclasses/cyborg_ninja.png")
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function (ply)
     if SERVER then
-        ply:Horde_SetPerkLevelBonus("totikfr_base", math.min(0.2, 0.008 * ply:Horde_GetLevel("Cyborg Ninja")))
+        ply:Horde_SetPerkLevelBonus("cyborg_base", math.min(0.2, 0.008 * ply:Horde_GetLevel("Cyborg Ninja")))
     end
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus, switchOn)
-    if not ply:Horde_GetPerk("totikfr_base")  then return end
+    if not ply:Horde_GetPerk("cyborg_base")  then return end
 	
-    bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus("totikfr_base")
+    bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus("cyborg_base")
 end
 
 PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
-    if not ply:Horde_GetPerk("totikfr_base") then return end
+    if not ply:Horde_GetPerk("cyborg_base") then return end
 	if not ply.Horde_In_Frenzy_Mode then return end
 
     if HORDE:IsMeleeDamage(dmginfo) then
-		bonus.increase = bonus.increase + 0.5 + ply:Horde_GetPerkLevelBonus("totikfr_base")
-	if ply:Horde_GetPerk("totikfr_31") then
+		bonus.increase = bonus.increase + 0.5 + ply:Horde_GetPerkLevelBonus("cyborg_base")
+	if ply:Horde_GetPerk("cyborg_31") then
 		bonus.increase = bonus.increase + 0.25
 		end
 			
@@ -77,7 +80,7 @@ end
 end
 
 PERK.Hooks.PlayerTick = function (ply, mv)
-	if not ply:Horde_GetPerk("totikfr_base") then return end
+	if not ply:Horde_GetPerk("cyborg_base") then return end
 	if SERVER then
     if ply.Horde_In_Frenzy_Mode and CurTime() >= ply.Horde_HealthDegenCurTime then
         ply:SetArmor(math.max(0, ply:Armor() - 1))
@@ -96,7 +99,7 @@ PERK.Hooks.PlayerTick = function (ply, mv)
 end
 
 PERK.Hooks.PlayerSwitchFlashlight = function (ply, switchOn)
-    if not ply:Horde_GetPerk("totikfr_base") then return end
+    if not ply:Horde_GetPerk("cyborg_base") then return end
 	if ply.Horde_Ripper_Mode then return end
 	
     if switchOn and ply:Armor()>=10 then
@@ -122,8 +125,8 @@ PERK.Hooks.PlayerSwitchFlashlight = function (ply, switchOn)
 end
 
 PERK.Hooks.Horde_PlayerMoveBonus = function(ply, bonus_walk, bonus_run)
-    if not ply:Horde_GetPerk("totikfr_base") then return end
-	local t = ply:Horde_GetPerkLevelBonus("totikfr_base")
+    if not ply:Horde_GetPerk("cyborg_base") then return end
+	local t = ply:Horde_GetPerkLevelBonus("cyborg_base")
 	
 	if ply.Horde_In_Frenzy_Mode then
 	bonus_walk.increase = bonus_walk.increase + (-0.6)
@@ -135,12 +138,12 @@ end
 
 --Zandatsu
 PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, inflictor)
-	if not killer:Horde_GetPerk("totikfr_base") then return end
+	if not killer:Horde_GetPerk("cyborg_base") then return end
 	if not killer.Horde_In_Frenzy_Mode then return end
     if not inflictor:IsValid() or inflictor:IsNPC() then return end -- Prevent infinite chains
     local p = math.random()
 	local c = 0.5
-	--if killer:Horde_GetPerk("totikfr_31") then c = 1 end
+	--if killer:Horde_GetPerk("cyborg_31") then c = 1 end
     if p <= c then
         local ent = ents.Create("item_battery")
         ent:SetPos(victim:GetPos())
@@ -151,7 +154,7 @@ PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, inflictor)
         ent:Activate()
         timer.Simple(30, function() if ent:IsValid() then ent:Remove() end end)
     end
-	--[[if killer:Horde_GetPerk("totikfr_32") and p <= 0.25 then
+	--[[if killer:Horde_GetPerk("cyborg_32") and p <= 0.25 then
 		local ent2 = ents.Create("item_healthkit")
 		ent2:SetPos(victim:GetPos())
 		ent2:SetOwner(killer)
@@ -168,14 +171,14 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function (ply, npc, bonus, hitgroup, dmgin
 	if ply.Horde_In_Frenzy_Mode then return end
 	if ply.Horde_Ripper_Mode then return end
 	-- check for melee damage to leech armor, while also preventing hitting minions to leech armor
-    if ply:Horde_GetPerk("totikfr_base") and HORDE:IsMeleeDamage(dmginfo) and not npc:GetNWEntity("HordeOwner"):IsPlayer() then
+    if ply:Horde_GetPerk("cyborg_base") and HORDE:IsMeleeDamage(dmginfo) and not npc:GetNWEntity("HordeOwner"):IsPlayer() then
         local leech = math.min(4, dmginfo:GetDamage() * 0.05)
 		ply:SetArmor(math.min(ply:GetMaxArmor(),ply:Armor()+leech))
     end
 end
 
 --PERK.Hooks.Horde_OnPlayerDebuffApply = function (ply, debuff, bonus)
-  --  if ply:Horde_GetPerk("totikfr_base") and debuff == HORDE.Status_Bleeding then
+  --  if ply:Horde_GetPerk("cyborg_base") and debuff == HORDE.Status_Bleeding then
   --      bonus.apply = 0
    --     return true
   --  end

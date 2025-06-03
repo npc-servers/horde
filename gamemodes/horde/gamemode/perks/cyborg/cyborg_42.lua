@@ -1,3 +1,5 @@
+PERK = PERK or {}
+PERK.ClassName = "cyborg_42"
 PERK.PrintName = "Ripper Mode"
 PERK.Description = [[
 Unlocks Ripper Mode (Shift+E). Requires full armor to activate.
@@ -14,7 +16,7 @@ HORDE:RegisterStatus("Ripper_Mode", "materials/perks/bloodlust.png", nil, nil, t
 HORDE:RegisterStatus("Jack", "materials/perks/graceful_guard.png")
 
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
-    if SERVER and perk == "totikfr_42" then
+    if SERVER and perk == "cyborg_42" then
         ply:Horde_SetPerkCooldown(1)
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_Ripper_Mode, 8)
@@ -24,7 +26,7 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
-    if SERVER and perk == "totikfr_42" then
+    if SERVER and perk == "cyborg_42" then
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_Ripper_Mode, 8)
             net.WriteUInt(0, 3)
@@ -34,7 +36,7 @@ end
 
 
 PERK.Hooks.Horde_UseActivePerk = function (ply)
-    if not ply:Horde_GetPerk("totikfr_42") then return end
+    if not ply:Horde_GetPerk("cyborg_42") then return end
 	if ply.Horde_In_Frenzy_Mode or ply.Horde_Ripper_Mode or ply.Horde_Ripper_Mode or ply:Armor()<ply:GetMaxArmor() then 
 	ply:EmitSound("items/suitchargeno1.wav")
 	return end
@@ -56,7 +58,7 @@ return false
 end
 
 PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
-    if not ply:Horde_GetPerk("totikfr_42") then return end
+    if not ply:Horde_GetPerk("cyborg_42") then return end
 	if not ply.ripperMode then return end
     if HORDE:IsMeleeDamage(dmginfo) then
         bonus.more = bonus.more * 2
@@ -66,7 +68,7 @@ end
 
 
 PERK.Hooks.PlayerTick = function (ply, mv)
-	if not ply:Horde_GetPerk("totikfr_42") then return end
+	if not ply:Horde_GetPerk("cyborg_42") then return end
 	if SERVER then
     if ply.ripperMode and CurTime() >= ply.ripperTimer then
         ply:SetArmor(math.max(0, ply:Armor() - 1))
@@ -85,7 +87,7 @@ PERK.Hooks.PlayerTick = function (ply, mv)
 end
 
 PERK.Hooks.Horde_PlayerMoveBonus = function(ply, bonus_walk, bonus_run)
-    if not ply:Horde_GetPerk("totikfr_42") then return end
+    if not ply:Horde_GetPerk("cyborg_42") then return end
 	if ply.Horde_Ripper_Mode then
     bonus_walk.increase = bonus_walk.increase + 0.35
     bonus_run.increase = bonus_run.increase + 0.35

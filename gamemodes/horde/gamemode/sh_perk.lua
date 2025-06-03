@@ -77,6 +77,9 @@ function plymeta:Horde_GetPerk(perk)
 end
 
 function plymeta:Horde_SetPerk(perk, shared)
+    for name, perk in pairs(HORDE.perks) do
+        print("[HORDE] Registered perk:", name)
+    end
     if not HORDE.perks[perk] then error("Tried to use nonexistent perk '" .. perk .. "' in Horde_SetPerk!") return end
     self.Horde_Perks = self.Horde_Perks or {}
     self.Horde_Perks[perk] = true

@@ -1,3 +1,5 @@
+PERK = PERK or {}
+PERK.ClassName = "cyborg_22"
 PERK.PrintName = "Parry"
 PERK.Description = "Activating Blade Mode will give you {1} physical resist for {2} second."
 PERK.Icon = "materials/perks/samurai/blade_dance.png"
@@ -11,14 +13,14 @@ PERK.Hooks = {}
 HORDE:RegisterStatus("Parry", "materials/perks/samurai/blade_dance.png")
 
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
-    if SERVER and perk == "totikfr_22" then
+    if SERVER and perk == "cyborg_22" then
 	ply.Horde_CheckCyborgDodge = true
      ply.Horde_DoCyborgDodge = nil
     end
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
-    if SERVER and perk == "totikfr_22" then
+    if SERVER and perk == "cyborg_22" then
         ply.Horde_CheckCyborgDodge = nil
      ply.Horde_DoCyborgDodge = nil
 	 timer.Stop( "CyborgNinja_EndDodge" )
@@ -30,7 +32,7 @@ PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
 end
 
 PERK.Hooks.PlayerSwitchFlashlight = function (ply, switchOn)
-    if not ply:Horde_GetPerk("totikfr_22") then return end
+    if not ply:Horde_GetPerk("cyborg_22") then return end
 	
 	local id = ply:SteamID()
 	
@@ -55,9 +57,9 @@ PERK.Hooks.PlayerSwitchFlashlight = function (ply, switchOn)
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
-    if not ply:Horde_GetPerk("totikfr_22")  then return end
+    if not ply:Horde_GetPerk("cyborg_22")  then return end
 	
-	if ply:Horde_GetPerk("totikfr_22") and HORDE:IsPhysicalDamage(dmginfo) and ply.Horde_In_Frenzy_Mode and ply.Horde_CheckCyborgDodge and ply.Horde_DoCyborgDodge then
+	if ply:Horde_GetPerk("cyborg_22") and HORDE:IsPhysicalDamage(dmginfo) and ply.Horde_In_Frenzy_Mode and ply.Horde_CheckCyborgDodge and ply.Horde_DoCyborgDodge then
 			bonus.resistance = bonus.resistance + 1.0	
 			
 			local e = EffectData()

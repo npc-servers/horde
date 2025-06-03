@@ -1,6 +1,6 @@
 PERK.PrintName = "Taboo Breaker"
 PERK.Description = "{1} increased Ballistic headshot damage. \nBallistic headshot damage increases Bleed buildup. \nBallistic damage removes Decay and Regenerator mutations."
-PERK.Icon = "materials/perks/reverend/taboo_breaker2.png"
+PERK.Icon = "materials/perks/reverend/taboo_breaker.png"
 PERK.Params = {
     [1] = {value = 0.25, percent = true}
 }

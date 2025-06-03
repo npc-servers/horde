@@ -5,10 +5,10 @@ SUBCLASS.Icon = "subclasses/cyborg_ninja.png" -- Required, Subclass Icon
 SUBCLASS.Description = [[
 Berserker subclass.
 Deals huge damage in Blade Mode.]] -- Required
-SUBCLASS.BasePerk = "totikfr_base"
+SUBCLASS.BasePerk = "cyborg_base"
 SUBCLASS.Perks = {
-    [1] = {title = "Enhancements", choices = {"totikfr_12", "totikfr_11"}},
-    [2] = {title = "Technique", choices = {"totikfr_21", "totikfr_22"}},
-    [3] = {title = "Technology", choices = {"totikfr_31", "totikfr_32"}},
-    [4] = {title = "Combat Arts", choices = {"totikfr_42", "totikfr_41"}},
+    [1] = {title = "Enhancements", choices = {"cyborg_11", "cyborg_12"}},
+    [2] = {title = "Technique", choices = {"cyborg_21", "cyborg_22"}},
+    [3] = {title = "Technology", choices = {"cyborg_31", "cyborg_32"}},
+    [4] = {title = "Combat Arts", choices = {"cyborg_41", "cyborg_42"}},
 } -- Required

@@ -1,3 +1,5 @@
+PERK = PERK or {}
+PERK.ClassName = "cyborg_31"
 PERK.PrintName = "Sharper Blade"
 PERK.Description = "+{1} Blade Mode damage increase. \nLeech a flat {4} armor on hit while not in Blade Mode or Ripper Mode."
 PERK.Icon = "materials/perks/samurai/demon_strike.png"
@@ -12,7 +14,7 @@ PERK.Hooks = {}
 
 
 PERK.Hooks.Horde_OnPlayerDamagePost = function (ply, npc, bonus, hitgroup, dmginfo)
-	if not ply:Horde_GetPerk("totikfr_31") then return end
+	if not ply:Horde_GetPerk("cyborg_31") then return end
 	if ply.Horde_In_Frenzy_Mode then return end
 	if ply.Horde_Ripper_Mode then return end
     if HORDE:IsMeleeDamage(dmginfo) then
@@ -21,7 +23,7 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function (ply, npc, bonus, hitgroup, dmgin
 end
 
 --PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
-   -- if not ply:Horde_GetPerk("totikfr_31") then return end
+   -- if not ply:Horde_GetPerk("cyborg_31") then return end
   --  if HORDE:IsMeleeDamage(dmginfo) and ply.Horde_In_Frenzy_Mode then
   --      npc:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmginfo:GetDamage() * 0.3, ply, dmginfo:GetDamagePosition())
   --  end

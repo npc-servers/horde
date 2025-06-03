@@ -1,3 +1,5 @@
+PERK = PERK or {}
+PERK.ClassName = "cyborg_21"
 PERK.PrintName = "Static Discharge"
 PERK.Description = "Receiving damage from enemies releases a pulse that deals {1} Electric damage."
 -- Gain immunity to Lightning damage. 
@@ -10,7 +12,7 @@ PERK.Params = {
 PERK.Hooks = {}
 
 PERK.Hooks.PlayerHurt = function(victim, attacker, healthRemaining, damageTaken)
-    if not (victim:Horde_GetPerk("totikfr_21") and victim:Alive())  then return end
+    if not (victim:Horde_GetPerk("cyborg_21") and victim:Alive())  then return end
 	if victim.DischargeActive then return end
     if attacker:IsValid() and attacker:IsNPC() then
 		local dmg = DamageInfo()
@@ -28,14 +30,14 @@ PERK.Hooks.PlayerHurt = function(victim, attacker, healthRemaining, damageTaken)
 end
 
 --PERK.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmginfo, bonus)
-  --  if not ply:Horde_GetPerk("totikfr_21") then return end
+  --  if not ply:Horde_GetPerk("cyborg_21") then return end
   --  if HORDE:IsLightningDamage(dmginfo) then
   --      bonus.resistance = bonus.resistance + 1.0
   --  end
 --end
 
 --PERK.Hooks.Horde_OnPlayerDebuffApply = function (ply, debuff, bonus)
-  --  if ply:Horde_GetPerk("totikfr_21") and debuff == HORDE.Status_Shock then
+  --  if ply:Horde_GetPerk("cyborg_21") and debuff == HORDE.Status_Shock then
    --     bonus.apply = 0
     --    return true
    -- end
