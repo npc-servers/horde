@@ -19,7 +19,7 @@ end
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
     if CLIENT then return end
     if perk == "necromancer_necromastery" then
-        HORDE:RemoveSpectres(ply)
+        HORDE:RemoveSpectre(ply)
         UpdateSpectreMaxCount(ply)
     end
 end
