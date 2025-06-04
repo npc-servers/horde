@@ -371,7 +371,7 @@ function HORDE:GetDefaultItemsData()
     nil, 10, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH})
     HORDE:CreateItem("Melee",      "Kunai",          "arccw_horde_kunai",     1750,  2, "Ranged throwing knives.\nThrown blades are non-retrieveable\n knives recharge every 3 seconds, with a total of 3 knives",
     {Survivor=true, Berserker=true}, 10, -1, nil, nil, {Berserker=1}, nil, {HORDE.DMG_SLASH})
-    HORDE:CreateItem("Melee",      "Fireaxe",        "arccw_horde_axe",       1500,  5, "Fireaxe.\nHeavy, but can chops most enemies in half.",
+    HORDE:CreateItem("Melee",      "Fireaxe",        "arccw_horde_axe",       1500,  5, "Fireaxe.\nHeavy, but can chop most enemies in half.",
     nil, 10, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH})
     HORDE:CreateItem("Melee",      "Stunstick",      "arccw_horde_stunstick", 1500,  4, "Electric baton.\nDeals extra Lightning damage.",
     nil, 10, -1, nil, "items/hl2/weapon_stunstick.png", nil, nil, {HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING})
@@ -431,9 +431,9 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Pistol",     "Masterkey",          "arccw_horde_masterkey",    1250,  3, "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
     {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true, Ghost = true, Berserker = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
 
-    HORDE:CreateItem("Pistol",     "Dual M9",        "arccw_horde_akimbo_m9",       1500,  4, "Dual Beretta M9.\nSidearm used by the United States Armed Forces.",
+    HORDE:CreateItem("Pistol",     "Dual M9",        "arccw_horde_akimbo_m9",       1500,  4, "Dual Beretta M9.\nA pair of pistols used by the United States Armed Forces.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Pistol",     "Dual Glock17",   "arccw_horde_akimbo_glock17",  1750,  5, "Dual Glock 17.\nWidely used by law enforcements.",
+    HORDE:CreateItem("Pistol",     "Dual Glock17",   "arccw_horde_akimbo_glock17",  1750,  5, "Dual Glock 17.\nA pair of pistols widely used by law enforcements.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "Dual Deagle",    "arccw_horde_akimbo_deagle",   2000,  6, "Dual Night Hawk .50C.\nA pair of handcannons that are difficult to master.",
     {Ghost=true}, 5, -1, nil, nil, {Ghost=1}, nil, {HORDE.DMG_BALLISTIC})
@@ -459,13 +459,13 @@ function HORDE:GetDefaultItemsData()
     {Assault=true, Survivor=true}, 15, -1, nil, "arccw/weaponicons/arccw_go_bizon", {Assault=1, Medic=2}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("SMG",        "P90",            "arccw_horde_p90",      2000, 5, "ES C90.\nA Belgian bullpup PDW with a magazine of 50 rounds.",
     {Assault=true, Survivor=true}, 15, -1, nil, "arccw/weaponicons/arccw_go_p90", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "MP5K Medic PDW",  "arccw_horde_mp5k",  2000, 4, "MP5K-PDW.\nA lighter solution to MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
+    HORDE:CreateItem("SMG",        "MP5K Medic PDW",  "arccw_horde_mp5k",  2000, 4, "MP5K-PDW.\nA more compact MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
     {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
     HORDE:CreateItem("SMG",        "MP9 Medic PDW",  "arccw_horde_mp9m",  2500, 4, "Brügger & Thomet MP9.\nManufactured in Switzerland,\nthe MP9 is favored by private security firms world-wide.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
     {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
-    HORDE:CreateItem("SMG",        "MP7A1 Medic PDW","arccw_horde_mp7m"  ,2500, 4, "A modified version of MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
+    HORDE:CreateItem("SMG",        "MP7A1 Medic PDW","arccw_horde_mp7m"  ,2500, 4, "A modified version of the MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
     {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
-    HORDE:CreateItem("SMG",        "Vector Medic PDW","arccw_horde_vector",3000, 5, "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that gives a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
+    HORDE:CreateItem("SMG",        "Vector Medic PDW","arccw_horde_vector",3000, 5, "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that provides a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
     {Medic=true}, 8, -1, nil, nil, {Medic=3}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
 
     HORDE:CreateItem("Shotgun",    "Medic Shotgun",        "arccw_horde_medic_shotgun",  2250, 5, "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
@@ -504,7 +504,7 @@ function HORDE:GetDefaultItemsData()
     {Assault=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "M4A1",           "arccw_horde_m4",       3000, 7, "Colt M4.\nA 5.56×45mm NATO, air-cooled, gas-operated, select fire carbine.",
     {Assault=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Rifle",      "SG556",          "arccw_horde_sg556",    3000, 7, "SIG SG 550.\nAn assault rifle manufactured by Swiss Arms AG.",
+    HORDE:CreateItem("Rifle",      "SG556",          "arccw_horde_sg556",    3000, 7, "SIG SG 556.\nAn assault rifle manufactured by Sig Sauer AG.",
     {Assault=true}, 10, -1, nil, nil, {Assault=2}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "AUG",            "arccw_horde_aug",      3000, 7, "Steyr AUG.\nAn Austrian bullpup assault rifle.",
     {Assault=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
@@ -531,7 +531,7 @@ function HORDE:GetDefaultItemsData()
     {Ghost=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "FN FAL",         "arccw_horde_fal",     3000, 8, "FN FAL.\nA battle rifle designed by Belgium and manufactured by FN Herstal.",
     {Ghost=true}, 15, -1, nil, nil, {Ghost=3}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Rifle",      "AWP",            "arccw_horde_awp",     2500, 8, "Arctic Warfare.\nA series of sniper rifles manufactured by the United Kingdom.",
+    HORDE:CreateItem("Rifle",      "AWP",            "arccw_horde_awp",     2500, 8, "Arctic Warfare Police.\nUnited Kingdom designed sniper rifle.\n This variant is widely used by law enforcement and counterterrorism units.",
     {Ghost=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Fucket",            "arccw_horde_fucket_rifle",     2750, 7, "Break-action double-barrel musket.\ndebatable whether its unholy or not",
     {Survivor = true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
@@ -560,7 +560,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem("MG",         "AUG HBAR",       "arccw_horde_aug_hbar", 2000, 9, "Steyr AUG HBAR.\nA light-support machine gun variant of the AUG assault rifle.",
     {Heavy=true, Survivor=true}, 25, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "Negev",          "arccw_horde_negev",     2250, 9, "IWI Negev.\nA 5.56×45mm NATO light machine gun developed by the IWI.",
+    HORDE:CreateItem("MG",         "Negev",          "arccw_horde_negev",     2250, 9, "IWI Negev.\nIWI developed light machine gun chambered in either 5.56×45mm intermediate rounds, or 7.62x51mm heavy rounds.",
     {Heavy=true, Survivor=true}, 25, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "M249",           "arccw_horde_m249",  2500, 9, "M249 light machine gun.\nA gas operated and air-cooled weapon of destruction.",
     {Heavy=true, Survivor=true}, 40, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
@@ -568,11 +568,11 @@ function HORDE:GetDefaultItemsData()
     {Heavy=true}, 25, -1, nil, nil, {Heavy=2}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "RPD",          "arccw_horde_rpd",      3000, 10, "Ruchnoy Pulemyot Degtyaryova.\na 7.62x39mm light machine gun developed in the Soviet Union by Vasily Degtyaryov.",
     {Heavy=true}, 50, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "MG4",           "arccw_horde_mg4",      3000, 10, "Heckler & Koch MG4.\nA belt-fed 5.56 mm light machine gun that replaced the MG3.",
+    HORDE:CreateItem("MG",         "MG4",           "arccw_horde_mg4",      3000, 10, "Heckler & Koch MG4.\nA belt-fed 5.56 mm light machine gun designed to replace the MG3.",
     {Heavy=true}, 40, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "M240",          "arccw_horde_m240",     3000, 10, "M240 Bravo.\nFires 7.62mm NATO ammunition.\nEquipped by U.S. Armed Forces.",
+    HORDE:CreateItem("MG",         "M240",          "arccw_horde_m240",     3000, 10, "M240 Bravo.\nFires powerful 7.62x51mm NATO rounds.\nEquipped by U.S. Armed Forces.",
     {Heavy=true}, 50, -1, nil, nil, {Heavy=3}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "M2 Browning",         "arccw_horde_m2_browning",     3500, 14, "Browning .50 caliber machine gun.\nKnown for extensive use as a vehicle weapon or \naircraft armament by the United States since the 1930s.",
+    HORDE:CreateItem("MG",         "M2 Browning",         "arccw_horde_m2_browning",     3500, 14, "M2 Browning .50 caliber machine gun.\nKnown for extensive use as a vehicle weapon or \naircraft armament by the United States since the 1930s.",
     {Heavy=true}, 20, -1, nil, nil, {Heavy=5}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "M-134D",         "arccw_horde_gau",     3500, 14, "M-134D rotary machine gun.\nFires 7.62 x 51mm cartridges at up to 3,000 rounds per minute.\n\nMust spin up before firing.",
     {Heavy=true}, 50, -1, nil, nil, {Heavy=5}, nil, {HORDE.DMG_BALLISTIC})
