@@ -805,8 +805,8 @@ Used by Black Mesa security guards.
 
 LANGUAGE["Item_Glock"] = [[Glock]]
 LANGUAGE["Item_Desc_Glock"] = [[
-Glock 18.
-Semi-automatic pistols manufactured in Austrian.
+Glock 17.
+Semi-automatic pistol manufactured in Austria.
 ]]
 
 LANGUAGE["Item_USP"] = [[USP]]

@@ -402,7 +402,7 @@ function HORDE:GetDefaultItemsData()
         "This item is only here in the Pistol category to calculate pistol damage.", 
         { Cremator = true, Gunslinger = true }, 10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, 
         nil, nil, nil, { HORDE.DMG_FIRE }, nil, nil, true) --This must be hidden
-    HORDE:CreateItem("Pistol",     "Glock",          "arccw_horde_glock",    750,  2, "Glock 18.\nSemi-automatic pistols manufactured in Austrian.",
+    HORDE:CreateItem("Pistol",     "Glock",          "arccw_horde_glock",    750,  2, "Glock 17.\nSemi-automatic pistol manufactured in Austria.",
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 5, -1, nil, "arccw/weaponicons/arccw_go_glock", nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "USP",            "arccw_horde_usp",      750,  2, "Universelle Selbstladepistole.\nA semi-automatic pistol developed in Germany by H&K.",
     {Medic=true, Assault=true, Heavy=true, Demolition=true, Survivor=true, Engineer=true, Warden=true, Cremator=true}, 5, -1, nil, "arccw/weaponicons/arccw_go_usp", nil, nil, {HORDE.DMG_BALLISTIC})
@@ -435,7 +435,7 @@ function HORDE:GetDefaultItemsData()
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Pistol",     "Dual Glock17",   "arccw_horde_akimbo_glock17",  1750,  5, "Dual Glock 17.\nWidely used by law enforcements.",
     {Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Pistol",     "Dual Deagle",    "arccw_horde_akimbo_deagle",   2000,  6, "Dual Night Hawk .50C.\nAn iconic pistol that is diffcult to master.",
+    HORDE:CreateItem("Pistol",     "Dual Deagle",    "arccw_horde_akimbo_deagle",   2000,  6, "Dual Night Hawk .50C.\nA pair of handcannons that are difficult to master.",
     {Ghost=true}, 5, -1, nil, nil, {Ghost=1}, nil, {HORDE.DMG_BALLISTIC})
 
     HORDE:CreateItem("Pistol",     "Raygun Mark II",    "arccw_horde_raygun_mk2",   2500,  7, "Raygun Mark II.\nSecond iteration of the classic Ray Gun, now in the format of a burst-fire laser.",
@@ -465,7 +465,7 @@ function HORDE:GetDefaultItemsData()
     {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
     HORDE:CreateItem("SMG",        "MP7A1 Medic PDW","arccw_horde_mp7m"  ,2500, 4, "A modified version of MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
     {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
-    HORDE:CreateItem("SMG",        "Vector Medic PDW","arccw_horde_vector",3000, 5, "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that results in its high firerate.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
+    HORDE:CreateItem("SMG",        "Vector Medic PDW","arccw_horde_vector",3000, 5, "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that gives a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
     {Medic=true}, 8, -1, nil, nil, {Medic=3}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
 
     HORDE:CreateItem("Shotgun",    "Medic Shotgun",        "arccw_horde_medic_shotgun",  2250, 5, "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
@@ -529,9 +529,9 @@ function HORDE:GetDefaultItemsData()
     {Survivor=true,  Ghost=true}, 15, -1, nil, nil, {Ghost=2}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "G3",             "arccw_horde_g3",      3000, 8, "G3 Battle Rifle.\nA 7.62×51mm NATO, select-fire battle rifle developed by H&K.",
     {Ghost=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Rifle",      "FN FAL",         "arccw_horde_fal",     3000, 8, "FN FAL.\nA battle rifle designed by Belgian and manufactured by FN Herstal.",
+    HORDE:CreateItem("Rifle",      "FN FAL",         "arccw_horde_fal",     3000, 8, "FN FAL.\nA battle rifle designed by Belgium and manufactured by FN Herstal.",
     {Ghost=true}, 15, -1, nil, nil, {Ghost=3}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Rifle",      "AWP",            "arccw_horde_awp",     2500, 8, "Magnum Ghost Rifle.\nA series of sniper rifles manufactured by the United Kingdom.",
+    HORDE:CreateItem("Rifle",      "AWP",            "arccw_horde_awp",     2500, 8, "Arctic Warfare.\nA series of sniper rifles manufactured by the United Kingdom.",
     {Ghost=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Fucket",            "arccw_horde_fucket_rifle",     2750, 7, "Break-action double-barrel musket.\ndebatable whether its unholy or not",
     {Survivor = true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
@@ -548,7 +548,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem("Rifle",      "Winchester Incendiary",         "arccw_horde_winchester_fire",  2500, 6, "Winchester 1894. \nUses incendiary rounds.",
     {Cremator=true}, 10, -1, nil, nil, {Ghost=1, Cremator=1}, nil, {HORDE.DMG_FIRE})
-    HORDE:CreateItem("Rifle",      "Apollo",         "arccw_horde_apollo",  3000, 8, "Apollo incineration rifle.\nFires energy pellets that melt down enemies.",
+    HORDE:CreateItem("Rifle",      "Apollo",         "arccw_horde_apollo",  3000, 8, "Apollo Plasma rifle.\nFires plasma balls that melt down enemies.",
     {Cremator=true}, 50, -1, nil, nil, {Cremator=5}, nil, {HORDE.DMG_FIRE})
 
     HORDE:CreateItem("Rifle",    "SSG08 Medic SR",   "arccw_horde_medic_rifle",  1500,   6, "A medic sniper rifle that shoots healing darts.\nDamages enemies and heals players.",
@@ -564,17 +564,17 @@ function HORDE:GetDefaultItemsData()
     {Heavy=true, Survivor=true}, 25, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "M249",           "arccw_horde_m249",  2500, 9, "M249 light machine gun.\nA gas operated and air-cooled weapon of destruction.",
     {Heavy=true, Survivor=true}, 40, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "L86 LSW",       "arccw_horde_l86",    2500, 9, "SA80 L86 LSW.\nBullpup light machine gun.",
+    HORDE:CreateItem("MG",         "L86 LSW",       "arccw_horde_l86",    2500, 9, "SA80 L86 LSW.\nBullpup light machine gun operated by the British Army.",
     {Heavy=true}, 25, -1, nil, nil, {Heavy=2}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "RPD",          "arccw_horde_rpd",      3000, 10, "Ruchnoy Pulemyot Degtyaryova.\na 7.62x39mm light machine gun developed in the Soviet Union by Vasily Degtyaryov.",
     {Heavy=true}, 50, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "MG4",           "arccw_horde_mg4",      3000, 10, "Heckler & Koch MG4.\nA belt-fed 5.56 mm light machine gun that replaced MG3.",
+    HORDE:CreateItem("MG",         "MG4",           "arccw_horde_mg4",      3000, 10, "Heckler & Koch MG4.\nA belt-fed 5.56 mm light machine gun that replaced the MG3.",
     {Heavy=true}, 40, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "M240",          "arccw_horde_m240",     3000, 10, "M240 Bravo.\nFires 7.62mm NATO ammunition.\nEquipped by U.S. Armed Forces.",
     {Heavy=true}, 50, -1, nil, nil, {Heavy=3}, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("MG",         "M2 Browning",         "arccw_horde_m2_browning",     3500, 14, "Browning .50 caliber machine gun.\nKnown for extensive use as a vehicle weapon or \naircraft armament by the United States since the 1930s.",
     {Heavy=true}, 20, -1, nil, nil, {Heavy=5}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("MG",         "GAU-19",         "arccw_horde_gau",     3500, 14, "GAU-19 rotary heavy machine gun.\nFires .50 BMG catridge at 1,300 rounds per minute.\n\nHold RMB to rev.",
+    HORDE:CreateItem("MG",         "M-134D",         "arccw_horde_gau",     3500, 14, "M-134D rotary machine gun.\nFires 7.62 x 51mm cartridges at up to 3,000 rounds per minute.\n\nMust spin up before firing.",
     {Heavy=true}, 50, -1, nil, nil, {Heavy=5}, nil, {HORDE.DMG_BALLISTIC})
 
     -- Class specific grenades
@@ -615,13 +615,13 @@ function HORDE:GetDefaultItemsData()
     {Demolition=true}, 50, -1, nil, nil, {Demolition=2}, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "M32 GL",         "arccw_horde_m32",    3000,  8, "Milkor Multiple Grenade Launcher.\nA lightweight 40mm six-shot revolver grenade launcher.",
     {Demolition=true}, 50, -1, nil, nil, {Demolition=3}, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
-    HORDE:CreateItem("Explosive",  "RPG-7",          "arccw_horde_rpg7",   3000,  9, "Ruchnoy Protivotankoviy Granatomyot.\nAnti-tank rocket launcher developed by Soviet Union.",
+    HORDE:CreateItem("Explosive",  "RPG-7",          "arccw_horde_rpg7",   3000,  9, "Ruchnoy Protivotankoviy Granatomyot.\nAnti-tank rocket launcher developed by the Soviet Union.",
     {Demolition=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "USAS-12",         "arccw_horde_usas12",    3000,  9, "USAS-12 automatic shotgun.\nShoots explosive slugs that deal either Ballistic or Explosive damage. \nPress B or ZOOM to switch grenade type.",
     {Demolition=true, Heavy=true, Warden=true, Assault=true}, 20, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "LAW",        "arccw_horde_law",   3250,  9, "Light Anti-Armor Weapon.\nFocuses on raw destructive power instead of area of effect.",
     {Demolition=true}, 15, -1, nil, nil, {Demolition=4}, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
-    HORDE:CreateItem("Explosive",  "FGM-148 JAVELIN",        "arccw_horde_javelin",   3500,  10, "FGM-148 Javelin.\nFires guided shells that requires lock-on.",
+    HORDE:CreateItem("Explosive",  "FGM-148 JAVELIN",        "arccw_horde_javelin",   3500,  10, "FGM-148 Javelin.\nFires guided rockets that require a lock-on.",
     {Demolition=true}, 15, -1, nil, nil, {Demolition=5}, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
     HORDE:CreateItem("Explosive",  "M202",          "arccw_horde_m202",   3500,  10, "M202 Flame Assault Shoulder.\nAmerican rocket launcher designed to replace the flamethrowers used in World War II.",
     {Demolition=true}, 20, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST}, {HORDE.Infusion_Quality})
