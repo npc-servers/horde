@@ -44,7 +44,7 @@ hook.Add("Horde_OnPlayerDamageTaken", "Horde_AerialGuardDamageTaken", function (
     if ply.HasUnwaveringGuardBuff then
         bonus.less = bonus.less * 0.75
     end
-    if ply:Horde_GetAerialGuard() == 1 and HORDE:IsPhysicalDamage(dmginfo) then
+    if ply:Horde_GetAerialGuard() == 1 then
         bonus.less = bonus.less * 0.35
         local e = EffectData()
         if dmginfo:GetDamagePosition() ~= Vector(0,0,0) then
@@ -58,7 +58,7 @@ hook.Add("Horde_OnPlayerDamageTaken", "Horde_AerialGuardDamageTaken", function (
             sound.Play("horde/gadgets/guard" .. tostring(math.random(1,2)) ..".ogg", ply:GetPos(), 125, 100, 1, CHAN_AUTO)
         end
 
-        if ply:Horde_GetGracefulGuardEnabled() then
+        if ply:Horde_GetGracefulGuardEnabled() and HORDE:IsPhysicalDamage(dmginfo) then
             timer.Simple(0, function()
                 if not ply:IsValid() then return end
                 for debuff, buildup in pairs(ply.Horde_Debuff_Buildup) do

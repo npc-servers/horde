@@ -318,6 +318,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_ar2"].infusions = ballistic_infusions_rifles
 
     local ballistic_infusions_sniper_rifles = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning}
+    HORDE.items["arccw_horde_m14"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
     HORDE.items["arccw_horde_winchester"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
     HORDE.items["arccw_horde_mosin_nagant"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming}
     HORDE.items["arccw_horde_winchester_fire"].infusions = ballistic_infusions_sniper_rifles
@@ -516,8 +517,10 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Rifle",      "OSIPR",          "arccw_horde_ar2",   3500, 9, "Overwatch Standard Issue Pulse Rifle.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or energy balls that deal Lightning damage and builds up Shock.",
     {Assault=true, Warden=true}, 15, -1, nil, "items/hl2/weapon_ar2.png", {Assault=5}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING})
 
+    HORDE:CreateItem("Rifle",      "Springfield M14",     "arccw_horde_m14",1000, 4, "Springfield semi-auto rifle.\nClassic, affordable, zombie-killing machine.",
+    {Assault=true, Ghost=true, Survivor=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Winchester LAR",     "arccw_horde_winchester",1000, 4, "Winchester Lever Action Rifle.\nAn all-time classic.",
-    {Survivor=true, Ghost=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
+    {Ghost=true, Survivor=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Mosin-Nagant",     "arccw_horde_mosin_nagant",1500, 5, "M1891 Mosin-Nagant.\nOne of the most mass-produced military bolt-action rifles in history, \nwith over 37 million units produced since 1891.",
     {Survivor=true, Ghost=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "SSG08",          "arccw_horde_ssg08",     2000, 6, "Steyr SSG 08.\nAustrian bolt-action sniper rifle developed and produced by Steyr Mannlicher.\nProvides unparalled mobility as a sniper rifle.",

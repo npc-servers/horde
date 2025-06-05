@@ -41,6 +41,7 @@ net.Receive("Horde_Void_Shield_Deploy", function ()
     local col_min, col_max = ent:GetCollisionBounds()
     local radius = col_max:Distance(col_min) / 2
     local height = math.abs(col_min.z - col_max.z)
+    local item = HORDE.items[ent:GetClass()]
     hook.Add("PostDrawTranslucentRenderables", "Horde_VoidShieldingEffect" .. id, function()
         if not ent:IsValid() then
             hook.Remove("PostDrawTranslucentRenderables", "Horde_VoidShieldingEffect" .. id)
@@ -48,8 +49,13 @@ net.Receive("Horde_Void_Shield_Deploy", function ()
         end
         render.SetMaterial(shldmat2)
         local pos = ent:GetPos()
+        if not item then
+            pos.z = pos.z + height + 12.5
+        else
         pos.z = pos.z + height / 2
+        end
         render.DrawSphere(pos, radius + 10, 50, 50)
+        ent:DrawModel()
     end)
 end)
 

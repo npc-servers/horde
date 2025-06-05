@@ -20,6 +20,7 @@ ENT.MeleeAttackDamageDistance = 95 -- How far does the damage go?
 ENT.TimeUntilMeleeAttackDamage = 0.8 -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDamage = 30
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
+ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL -- The type of damage it should do
 ENT.HasLeapAttack = false -- Should the SNPC have a leap attack?
 ENT.FootStepTimeRun = 0.4 -- Next foot step sound when it is running
 ENT.FootStepTimeWalk = 0.4 -- Next foot step sound when it is walking
@@ -38,6 +39,19 @@ ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strik
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 ENT.SoundTbl_Pain = nil
 
+ENT.EntitiesToNoCollide = {
+    "player",
+    "npc_vj_horde_spectre",
+    "npc_vj_horde_antlion",
+	"npc_vj_horde_combat_bot",
+	"npc_vj_horde_vortigaunt",
+    "npc_vj_horde_rocket_turret",
+    "npc_vj_horde_class_survivor",
+    "npc_vj_horde_class_assault",
+    "npc_turret_floor",
+    "npc_manhack"
+}
+
 ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75
 ENT.HasAllies = true
@@ -52,7 +66,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_GENERIC)
+		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
@@ -82,8 +96,9 @@ function ENT:Roar()
 end
 
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
+	self:SetCollisionBounds(Vector(35, 35, 20), Vector(-35, -35, 0))
 	self.AnimTbl_Run = ACT_RUN
+	self.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
     if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true

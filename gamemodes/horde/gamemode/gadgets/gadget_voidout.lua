@@ -21,8 +21,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         end
         local owner = ent:GetNWEntity("HordeOwner")
         if owner:IsValid() and owner == ply then
-            local item = HORDE.items[ent:GetClass()]
-            if not item then return end
             ent.Horde_Has_Void_Shield = ent:Health() * 0.1
             util.ParticleTracerEx("vortigaunt_beam", ply:GetPos(), ent:GetPos() + ent:OBBCenter(), true, ply:EntIndex(), -1)
             net.Start("Horde_Void_Shield_Deploy")
