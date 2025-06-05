@@ -26,10 +26,10 @@ SWEP.ViewModel = "models/weapons/arccw/c_winchester1873.mdl"
 SWEP.WorldModel = "models/weapons/arccw/w_winchester1873.mdl"
 SWEP.ViewModelFOV = 60
 
-SWEP.Damage = 150
+SWEP.Damage = 175
 SWEP.DamageMin = 125 -- damage done at maximum range
 SWEP.Range = 1500 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 1
+SWEP.Penetration = 24
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.MuzzleVelocity = 500 -- projectile or phys bullet muzzle velocity
