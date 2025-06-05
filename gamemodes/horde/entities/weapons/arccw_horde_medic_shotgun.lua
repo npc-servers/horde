@@ -65,9 +65,6 @@ SWEP.Firemodes = {
     {
 	    PrintName = "PUMP",
         Mode = 1,
-    },
-    {
-        Mode = 0
     }
 }
 
