@@ -25,6 +25,12 @@ SWEP.UseHands = true
 SWEP.ViewModel = "models/weapons/c_smg1.mdl"
 SWEP.WorldModel = "models/weapons/w_smg1.mdl"
 SWEP.ViewModelFOV = 65
+SWEP.MirrorVMWM = true
+
+SWEP.WorldModelOffset = {
+    pos = Vector(-14, 8, -5),
+    ang = Angle(-10, 0, 180)
+}
 
 SWEP.DefaultBodygroups = "000000000000"
 
