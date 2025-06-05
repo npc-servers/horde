@@ -70,9 +70,9 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo,hitgroup)
 end
 function ENT:CustomOnKilled(dmginfo,hitgroup)
 	timer.Remove("GrenadeSpawn")
+	timer.Remove("GrenadeReset")
 	self:Extinguish()
 	if IsValid(self.Grenade) then
-		timer.Remove("GrenadeReset")
 		local att = self:GetAttachment(self:LookupAttachment("grenade_attachment"))
 		self.Grenade:SetOwner(NULL)
 		self.Grenade:SetParent(NULL)
