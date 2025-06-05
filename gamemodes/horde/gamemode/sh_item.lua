@@ -392,7 +392,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem("Pistol",     "9mm",            "arccw_horde_9mm",   50,  1, "Combine standard sidearm.",
     nil, 2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Engineer", "Demolition", "Survivor", "Psycho"})
-    HORDE:CreateItem("Pistol",     "Medic 9mm",       "arccw_horde_medic_9mm", 75,  1, "Modified 9mm that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing dart recharges every 1 second.",
+    HORDE:CreateItem("Pistol",     "Medic 9mm",       "arccw_horde_medic_9mm", 75,  1, "Modified 9mm that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing dart recharges every 0.5 second.",
     {Medic=true}, 2, -1, nil, "items/weapon_medic_9mm.png", nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON}, nil, {"Medic", "Hatcher"})
     HORDE:CreateItem("Pistol",     "357",            "arccw_horde_357",        100,  2, "Colt python magnum pistol.\nUsed by Black Mesa security guards.",
     {Ghost=true}, 2, -1, nil, "items/hl2/weapon_357.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Ghost", "Gunslinger"})
@@ -471,7 +471,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Shotgun",    "Medic Shotgun",        "arccw_horde_medic_shotgun",  2250, 5, "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
     {Medic=true, Warden=true}, 10, -1, nil, nil, {Medic=2}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
 
-    HORDE:CreateItem("Shotgun",    "Pump-Action",    "arccw_horde_shotgun",100, 2, "A standard 12-gauge shotgun.",
+    HORDE:CreateItem("Shotgun",    "Shotgun",    "arccw_horde_shotgun",100, 2, "A standard 12-Gauge shotgun.",
     {Warden=true, Engineer=true, Cremator=true}, 2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Warden"})
     HORDE:CreateItem("Shotgun",    "Nova",           "arccw_horde_nova",     1000, 4, "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
     {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, {HORDE.DMG_BALLISTIC})
