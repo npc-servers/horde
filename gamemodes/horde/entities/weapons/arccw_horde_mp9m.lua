@@ -12,6 +12,11 @@ SWEP.PrintName = "MP9N Medic PDW"
 SWEP.Trivia_Class = "PDW"
 SWEP.Slot = 2
 
+SWEP.Firemodes = {
+    {
+        Mode = 2,
+    }
+}
 
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
