@@ -9,7 +9,7 @@ SPELL.Slot            = HORDE.Spell_Slot_Reload
 SPELL.DamageType      = {HORDE.DMG_FIRE, HORDE.DMG_BLAST}
 SPELL.Icon            = "spells/supernova.png"
 SPELL.Type            = {HORDE.Spell_Type_AOE}
-SPELL.Description     = [[Generates a supernova that immolates anything near it. Will also explode to deal additional damage.]]
+SPELL.Description     = "Generates a supernova that immolates anything near it.\nWill also explode to deal additional damage."
 SPELL.Fire            = function (ply, wpn, charge_stage)
     local tr = ply:GetEyeTrace()
     if not tr.Hit then return end
