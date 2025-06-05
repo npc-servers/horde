@@ -4,7 +4,6 @@ include('shared.lua')
 ENT.Model = {"models/zombie/zombie_soldier.mdl"}
 ENT.StartHealth = 350
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
-ENT.AnimTbl_Run = {ACT_WALK}
 ENT.BloodColor = "Red"
 ENT.Immune_Fire = true
 ENT.MeleeAttackDamage = 35
