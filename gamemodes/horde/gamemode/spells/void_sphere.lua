@@ -12,7 +12,7 @@ SPELL.DamageType     = { HORDE.DMG_COLD }
 SPELL.Type           = { HORDE.Spell_Type_Projectile, HORDE.Spell_Type_AOE }
 
 SPELL.Icon           = "spells/void_sphere.png"
-SPELL.Description    = [[Projects void energy that deals Cold damage. Charge for differnet effects.]]
+SPELL.Description    = "Projects void energy that deals Cold damage.\nLevel 2 charge throws 3 spheres.\nLevel 3 charge throws a larger void sphere."
 
 SPELL.Fire           = function ( ply, _, charge_stage )
 

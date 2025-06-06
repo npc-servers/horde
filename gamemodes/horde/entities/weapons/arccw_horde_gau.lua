@@ -5,262 +5,249 @@ if CLIENT then
     SWEP.BounceWeaponIcon = false
     killicon.Add("arccw_horde_gau", "vgui/hud/arccw_horde_gau", Color(0, 0, 0, 255))
 end
-SWEP.Base = "arccw_mw2_abase"
-SWEP.Spawnable = true
-SWEP.Category = "ArcCW - Horde"
+SWEP.Base = "arccw_base"
+SWEP.Spawnable = true -- this obviously has to be set to true
+SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
-SWEP.WeaponCamBone = tag_camera
-
-SWEP.PrintName = "GAU-19"
-SWEP.Trivia_Class = "Heavy Machine Gun"
-SWEP.Trivia_Desc = "Three-barrel rotary heavy machine gun."
-
-if CLIENT then
-SWEP.Trivia_Manufacturer = "General Dynamics"
-SWEP.Trivia_Calibre = "12.7x99mm NATO"
-SWEP.Trivia_Mechanism = "Electric"
-SWEP.Trivia_Country = "United States"
-SWEP.Trivia_Year = 1982
-end
+SWEP.PrintName = "Minigun"
+SWEP.TrueName = "M134D"
+SWEP.Trivia_Class = "Rotary Machine Gun"
+SWEP.Trivia_Desc = "A rotary machine gun derived from the Vulcan weapons platform, this modern Minigun uses materials in its construction to reduce weight without sacrificing durability."
+SWEP.Trivia_Manufacturer = "Daniel Ammon"
+SWEP.Trivia_Calibre = "7.62x51mm NATO"
+SWEP.Trivia_Mechanism = "Electronic Trigger"
+SWEP.Trivia_Country = "USA"
+SWEP.Trivia_Year = 1960
 
 SWEP.Slot = 2
 
+if GetConVar("arccw_truenames"):GetBool() then
+    SWEP.PrintName = SWEP.TrueName
+    SWEP.Trivia_Manufacturer = "Dillon Aero"
+end
+
 SWEP.UseHands = true
-
-SWEP.ViewModel = "models/horde/weapons/c_gau.mdl"
-SWEP.MirrorVMWM = false
-SWEP.WorldModel = "models/horde/weapons/w_gau.mdl"
-SWEP.WorldModelOffset = {
-    pos = Vector(0, 5, -35),
-    ang = Angle(0, 0, 0),
-    scale = 1,
-}
-SWEP.ViewModelFOV = 65
-
-SWEP.DefaultBodygroups = "100000"
+SWEP.ViewModel = "models/weapons/arccw/c_minigun.mdl"
+SWEP.WorldModel = "models/weapons/arccw/w_minigun.mdl"
+SWEP.ViewModelFOV = 62
+SWEP.DefaultBodygroups = "0000000"
 
 SWEP.Damage = 37
-SWEP.DamageMin = 33
-SWEP.Range = 1500 * 0.025  -- GAME UNITS * 0.025 = METRES
+SWEP.DamageMin = 33 -- damage done at maximum range
+SWEP.Range = 1500 * 0.025 -- in METRES
 SWEP.Penetration = 7
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
+SWEP.MuzzleVelocity = 1800 -- projectile or phys bullet muzzle velocity
+-- IN M/S
 
-SWEP.ChamberSize = 0
+
+SWEP.ChamberSize = 0 -- how many rounds can be chambered.
+
 SWEP.Primary.ClipSize = 300 -- DefaultClip is automatically set.
-SWEP.ExtendedClipSize = 300
-SWEP.ReducedClipSize = 300
 
-SWEP.VisualRecoilMult = 0
 SWEP.Recoil = 0.4
 SWEP.RecoilSide = 0.2
-SWEP.RecoilRise = 0
-SWEP.RecoilPunch = 0
-
-SWEP.Delay = 60 / 1300 -- lazy, fix this l8r btich -- 60 / RPM.
+SWEP.Delay = 60 / 1300 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
+SWEP.Malfunction = false
+SWEP.TriggerDelay = true
+
+
+
+
+
+
+SWEP.BobMult = 2
+
 SWEP.Firemodes = {
     {
         Mode = 2,
+        PrintName = "Full Auto"
     },
     {
-        Mode = 0,
-    },
+        Mode = 0
+    }
 }
+SWEP.Jamming = false
+SWEP.HeatCapacity = 300
+SWEP.HeatDissipation = 70
+SWEP.HeatLockout = true
+SWEP.HeatDelayTime = 1
 
-SWEP.NPCWeaponType = {"weapon_ar2", "weapon_smg1"}
-SWEP.NPCWeight = 150
-SWEP.CanBash = true
+
+SWEP.NPCWeaponType = {"weapon_ar2", "weapon_shotgun"}
+SWEP.NPCWeight = 1
 
 SWEP.AccuracyMOA = 1 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 150 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "AlyxGun" -- what ammo type the gun uses
-
+SWEP.MagID = "minigun" -- the magazine pool this gun draws from
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 105 -- pitch of shoot sound
+SWEP.ShootSound = "weapons/arccw/minigun/minigun_fire.wav"
+SWEP.ShootSoundSilenced = "weapons/arccw/minigun/minigun.wav"
+SWEP.DistantShootSound = "weapons/arccw/minigun/negev-1-distant.wav" --weapons/arccw/m249/m249-1-distant.wav
 
-SWEP.ShootSound =			"horde/weapons/gau/gaufire.wav"
---SWEP.DistantShootSound =	"weapons/fesiugmw2/fire_distant/aug.wav"
-SWEP.ShootDrySound =        "weapons/fesiugmw2/fire/dryfire_rifle.wav"
-SWEP.ShootSoundSilenced =	"horde/weapons/gau/gaufire.wav"
+SWEP.MuzzleEffect = "muzzleflash_minimi"
 
-SWEP.MuzzleEffect = "muzzleflash_4"
 SWEP.ShellModel = "models/shells/shell_556.mdl"
-SWEP.ShellPitch = 95
-SWEP.ShellScale = 1.5
-SWEP.ShellRotateAngle = Angle(0, 90, 0)
+SWEP.ShellPitch = 90
+SWEP.ShellScale = 2.5
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
-
-SWEP.SpeedMult = 0.875
+SWEP.SpeedMult = 0.85
 SWEP.SightedSpeedMult = 0.35
 SWEP.SightTime = 0.25
-SWEP.IronSightStruct = false
 
-SWEP.BulletBones = { -- the bone that represents bullets in gun/mag
-    -- [0] = "bulletchamber",
-    -- [1] = "bullet1"
+SWEP.IronSightStruct = {
+    Pos = Vector(0, -5, -2),
+    Ang = Angle(0, 0, 0),
+    Magnification = 1.1,
+    CrosshairInSights = true
 }
 
 SWEP.HoldtypeHolstered = "passive"
-SWEP.HoldtypeActive = "ar2"
-SWEP.HoldtypeSights = "rpg"
+SWEP.HoldtypeActive = "crossbow"
+SWEP.HoldtypeSights = "crossbow"
 
-SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
+SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN
 
-SWEP.ActivePos = Vector(-2, 5, 1)
+SWEP.ActivePos = Vector(0, 0, -4)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.HolsterPos = Vector(1, 0, 1)
-SWEP.HolsterAng = Angle(-10, 12, 0)
+SWEP.CustomizePos = Vector(12, -3, -4)
+SWEP.CustomizeAng = Angle(15, 40, 0)
 
-SWEP.SprintPos = Vector(0, 0, 1)
-SWEP.SprintAng = Angle(0, 0, 0)
+SWEP.HolsterPos = Vector(3, -6, -16)
+SWEP.HolsterAng = Angle(40, 0, 0)
 
-SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
-SWEP.BarrelOffsetHip = Vector(2, 0, -2)
+SWEP.BarrelOffsetSighted = Vector(5, 0, -10)
+SWEP.BarrelOffsetHip = Vector(4, 0, -6)
 
-SWEP.BarrelLength = 27
+SWEP.BarrelLength = 34
 
 SWEP.AttachmentElements = {
-    ["optic_mw2_mp5krearsight"] = { VMBodygroups = {{ind = 2, bg = 0}} },
-    ["grip"] = { VMBodygroups = {{ind = 3, bg = 1}} },
+    ["extendedmag"] = {
+        VMBodygroups = {{ind = 1, bg = 1}},
+        WMBodygroups = {{ind = 1, bg = 1}},
+    },
+    ["reducedmag"] = {
+        VMBodygroups = {{ind = 1, bg = 2}},
+        WMBodygroups = {{ind = 1, bg = 2}},
+    },
+    ["nors"] = {
+        VMBodygroups = {
+            {ind = 2, bg = 1},
+            {ind = 3, bg = 1},
+        },
+    },
+    ["nobrake"] = {
+        VMBodygroups = {
+            {ind = 6, bg = 1},
+        },
+    },
+    
 }
 
-SWEP.ExtraSightDist = 5
+SWEP.ShellRotateAngle = Angle(0, -90, 0)
+
+SWEP.ExtraSightDist = 8
 
 SWEP.Attachments = {
     {
-        PrintName = "Tactical",
-        Slot = "tac",
-        Bone = "tag_weapon",
-        Offset = {
-            vpos = Vector(-1.9, -1, 0.67),
-            vang = Angle(0, 0, 90),
-            wpos = Vector(15.625, -0.253, -6.298),
-            wang = Angle(-8.829, -0.556, 90)
-        },
-    },
-    {
-        PrintName = "Fire Group",
-        Slot = "fcg",
-        DefaultAttName = "Standard FCG"
-    },
-    {
         PrintName = "Ammo Type",
         Slot = "go_ammo",
-        DefaultAttName = "Standard Ammo"
     },
     {
         PrintName = "Perk",
         Slot = "go_perk"
     },
-    {
-        PrintName = "Camouflage",
-        DefaultAttName = "None",
-        Slot = "mw2_wepcamo",
-        FreeSlot = true,
+	    {
+        PrintName = "Fire Group",
+        Slot = "fcg",
+        DefaultAttName = "Standard FCG"
     },
 	{
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
-        Bone = "tag_weapon",
+        Bone = "v_weapon.minigun_Parent", -- relevant bone any attachments will be mostly referring to
         Offset = {
-            vpos = Vector(0, -0.5, 0.5),
-            vang = Angle(0, 0, 0),
-            wpos = Vector(9.625, 1.5, -4),
-            wang = Angle(0, 0, 180)
-        },
-    },
+            vpos = Vector(-0.5, -4.5, -4), -- offset that the attachment will be relative to the bone
+            vang = Angle(-90, 0, -90),
+            wpos = Vector(6.099, 1.1, -3.301),
+            wang = Angle(171.817, 180-1.17, 0),
+        }
+}
 }
 
 SWEP.Animations = {
+    ["idle"] = {
+        Source = "idle",
+        Time = 1
+    },
     ["draw"] = {
         Source = "draw",
-        Time = 30/30,
+        SoundTable = {
+            {
+                s = "weapons/arccw/minigun/m249_draw.wav",
+                t = 0
+            }
+        },
+        Time = 1.5
     },
+    ["fire"] = {
+        Source = {"fire_1", "fire_2", "fire_3"},
+        Time = 0.2,
+        ShellEjectAt = 0
+    },
+	    ["trigger"] = {
+         Source = "idle",
+		 SoundTable = {
+            {
+                s = "weapons/arccw/minigun/minigun_spinup.wav",
+                t = 0
+            }
+        },
+         MinProgress = 0.8,
+     },
+        ["untrigger"] = {
+         Source = "idle",
+     },
     ["reload"] = {
         Source = "reload",
-        Time = 113/24,
+        Time = 4,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        SoundTable = {
-						{s = "horde/weapons/gau/reload.wav", 		t = 0},
-					},
-    },
-    ["spin"] = {
-        Source = "shoot1",
-        Time = 5/30,
-        ShellEjectAt = 0,
+        Checkpoints = {20, 60, 80, 145, 170},
+        FrameRate = 30,
+        LastClip1OutTime = 3,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0.5
     },
 }
 
-function SWEP:SecondaryAttack()
-    return false
-end
+sound.Add({
+    name = "Weapon_M60.Boxout",
+    channel = CHAN_ITEM,
+    volume = 1.0,
+    sound = "weapons/arccw/minigun/m60_boxout.mp3"
+})
 
-SWEP.lastRev = 0
-SWEP.lastRevSound = 0
-SWEP.revDelay = 0.75
-SWEP.revved = nil
-SWEP.revving = nil
-SWEP.revSound = Sound("horde/weapons/gau/rev.ogg")
-SWEP.spinSound = Sound("horde/weapons/gau/spin.ogg")
-SWEP.unrevSound = Sound("horde/weapons/gau/unrev.ogg")
+sound.Add({
+    name = "Weapon_M60.Boxin",
+    channel = CHAN_ITEM,
+    volume = 1.0,
+    sound = "weapons/arccw/minigun/m60_boxin.mp3"
+})
 
-function SWEP:Hook_ShouldNotFireFirst()
-    if not self.revved then return true end
-end
-
-function SWEP:Rev()
-	if self.lastRev > CurTime() then return end
-    self.revving = true
-    self:SendWeaponAnim(181)
-
-	--self.Owner:SetWalkSpeed( 80 )
-	--self.Owner:SetRunSpeed( 80 )
-	--self:EmitSound(self.spinSound)
-	--self.Weapon:SetNextPrimaryFire( CurTime () + self.revSpeed )
-    self.lastRev = CurTime() + 0.25
-    timer.Simple(0.25, function ()
-        self.revved = true
-        self.revving = nil
-    end)
-end
-
-function SWEP:Spin()
-	if self.lastRev > CurTime() then return end
-    self:SendWeaponAnim(181)
-    self.lastRev = CurTime() + 0.25
-end
-
-function SWEP:Hook_Think()
-    if self:GetReloading() then return end
-	if self.Owner:KeyDown( IN_ATTACK2 ) || self.Owner:KeyDown( IN_ATTACK ) == true then
-        if not self.revved and not self.revving then
-            self:EmitSound(self.revSound)
-            self:Rev()
-        end
-        if self.revved then
-            self:Spin()
-        end
-        self.SpeedMult = 0.5
-    else
-        self.SpeedMult = 0.875
-        if self.revved then
-            self:EmitSound(self.unrevSound)
-        end
-        self.revved = nil
-        self.revving = nil
-	end
-
-    if SERVER then
-    if self.revved and self.lastRevSound <= CurTime() then
-        sound.Play(self.spinSound, self:GetPos(), 80)
-        self.lastRevSound = CurTime() + 0.14
-    end
-    end
-end
+sound.Add({
+    name = "minigun_spinup",
+    channel = CHAN_ITEM,
+    volume = 1.0,
+    sound = "weapons/arccw/minigun/minigun_spinup.wav"
+})

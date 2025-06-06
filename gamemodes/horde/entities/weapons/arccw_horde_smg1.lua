@@ -25,6 +25,12 @@ SWEP.UseHands = true
 SWEP.ViewModel = "models/weapons/c_smg1.mdl"
 SWEP.WorldModel = "models/weapons/w_smg1.mdl"
 SWEP.ViewModelFOV = 65
+SWEP.MirrorVMWM = true
+
+SWEP.WorldModelOffset = {
+    pos = Vector(-14, 8, -5),
+    ang = Angle(-10, 0, 180)
+}
 
 SWEP.DefaultBodygroups = "000000000000"
 
@@ -67,7 +73,7 @@ SWEP.AccuracyMOA = -12 -- accuracy in Minutes of Angle. There are 60 MOA in a de
 SWEP.HipDispersion = 250 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 75
 
-SWEP.Primary.Ammo = "SMG1" -- what ammo type the gun uses
+SWEP.Primary.Ammo = "Pistol" -- what ammo type the gun uses
 
 SWEP.ShootVol = 80 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
