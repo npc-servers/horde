@@ -314,13 +314,14 @@ Complexity: MEDIUM
 Regenerate {5} frag grenade every {6} seconds, if you do not have one.]]
 
 LANGUAGE["Perk_ghost_base"] = [[
-The Ghost class is focused on taking down boss enemies using Camoflague.
+The Ghost class is focused on taking down boss enemies using Camouflage.
 Complexity: HIGH
 
 {1} more headshot damage. ({2} per level, up to {3}).
 
-Crouch to activate Camoflague, granting {4} evasion.
-Attacking or Running REMOVES Camoflague.]]
+Crouch to activate Camouflage, granting {4} evasion.
+Evasion provides a chance to dodge incoming attacks.
+Attacking or Running REMOVES Camouflage.]]
 
 LANGUAGE["Perk_engineer_base"] = [[
 The Engineer class is a minion-centered class that deals damage through minions.
@@ -551,15 +552,15 @@ LANGUAGE["Perk_ghost_sniper"] = [[
 LANGUAGE["Perk_Title_Ghost_Tier_2"] = [[Reposition]]
 LANGUAGE["Perk_Title_ghost_phase_walk"] = [[Phase Walk]]
 LANGUAGE["Perk_ghost_phase_walk"] = [[
-Running does not cancel Camoflague.
-{1} increased movement speed when you have Camoflague.
-Adds {2} evasion when you have Camoflague.]]
+Running does not cancel Camouflage.
+{1} increased movement speed when you have Camouflage.
+Adds {2} evasion when you have Camouflage.]]
 
 LANGUAGE["Perk_Title_ghost_ghost_veil"] = [[Ghost Veil]]
 LANGUAGE["Perk_ghost_ghost_veil"] = [[
-Attacking does not cancel Camoflague.
-{1} increased walk speed when you have Camoflague.
-{2} increased Ballistic damage when you have Camoflague.]]
+Attacking does not cancel Camouflage.
+{1} increased walk speed when you have Camouflage.
+{2} increased Ballistic damage when you have Camouflage.]]
 
 LANGUAGE["Perk_Title_Ghost_Tier_3"] = [[Trajectory]]
 LANGUAGE["Perk_Title_ghost_brain_snap"] = [[Brain Snap]]
@@ -581,7 +582,7 @@ Instantly kills enemies with less than 20% health.]]
 
 LANGUAGE["Perk_Title_ghost_decapitate"] = [[Decapitate]]
 LANGUAGE["Perk_ghost_decapitate"] = [[
-When you have Camoflague:
+When you have Camouflage:
   {1} increased Ballistic damage.
   {2} increased headshot damage against elites.]]
 
@@ -799,7 +800,7 @@ Combine standard sidearm.
 
 LANGUAGE["Item_357"] = [[357]]
 LANGUAGE["Item_Desc_357"] = [[
-Colt python magnum pistol.
+Colt Python magnum revolver.
 Used by Black Mesa security guards.
 ]]
 
@@ -943,14 +944,13 @@ A Belgian bullpup PDW with a magazine of 50 rounds.
 LANGUAGE["Item_Vector"] = [[Vector]]
 LANGUAGE["Item_Desc_Vector"] = [[
 KRISS Vector Gen I.
-Uses an unconventional blowback system that results in its high firerate.
+Uses an unconventional blowback system that results in a high firerate with low recoil.
 ]]
 
 
 LANGUAGE["Item_Pump-Action"] = [[Pump-Action]]
 LANGUAGE["Item_Desc_Pump-Action"] = [[
 A standard 12-gauge shotgun.
-RMB to fire 2 shots at once.
 ]]
 
 LANGUAGE["Item_Nova"] = [[Nova]]
@@ -1005,7 +1005,7 @@ Devastating firepower at close to medium range.
 LANGUAGE["Item_AR15"] = [[AR15]]
 LANGUAGE["Item_Desc_AR15"] = [[
 AR-15 Style Rifle.
-A lightweight semi-automatic rifle based on ArmaLite AR-15 design.
+A lightweight semi-automatic rifle based on the ArmaLite AR-15 design.
 ]]
 
 LANGUAGE["Item_FAMAS"] = [[FAMAS]]
@@ -1035,7 +1035,7 @@ A 5.56×45mm NATO, air-cooled, gas-operated, select fire carbine.
 LANGUAGE["Item_SG556"] = [[SG556]]
 LANGUAGE["Item_Desc_SG556"] = [[
 SIG SG 550.
-An assault rifle manufactured by Swiss Arms AG.
+An assault rifle manufactured by Sig Sauer AG.
 ]]
 
 LANGUAGE["Item_AUG"] = [[AUG]]
@@ -1069,14 +1069,15 @@ A modular semi-Auto rifle.
 
 LANGUAGE["Item_AWP"] = [[AWP]]
 LANGUAGE["Item_Desc_AWP"] = [[
-Magnum Ghost Rifle.
-A series of sniper rifles manufactured by the United Kingdom.
+Arctic Warfare Police.
+United Kingdom designed sniper rifle.
+This variant is widely used by law enforcement and counterterrorism units.
 ]]
 
 LANGUAGE["Item_SCAR"] = [[SCAR]]
 LANGUAGE["Item_Desc_SCAR"] = [[
-FN SCAR.
-An assault rifle developed by Belgian manufacturer FN Herstal.
+FN SCAR Light.
+An assault rifle developed by Belgian manufacturer FN Herstal chambered for 5.56×45mm NATO.
 ]]
 
 LANGUAGE["Item_G3"] = [[G3]]
@@ -1101,7 +1102,7 @@ Damages enemies and heals players.
 LANGUAGE["Item_Negev"] = [[Negev]]
 LANGUAGE["Item_Desc_Negev"] = [[
 IWI Negev.
-A 5.56×45mm NATO light machine gun developed by the IWI.
+IWI developed light machine gun chambered in either 5.56×45mm intermediate rounds, or 7.62x51mm heavy rounds.
 ]]
 
 LANGUAGE["Item_M249"] = [[M249]]
@@ -1113,7 +1114,7 @@ A gas operated and air-cooled weapon of destruction.
 LANGUAGE["Item_MG4"] = [[MG4]]
 LANGUAGE["Item_Desc_MG4"] = [[
 Heckler & Koch MG4.
-A belt-fed 5.56 mm light machine gun that replaced MG3.
+A belt-fed 5.56 mm light machine gun designed to replace the MG3.
 ]]
 
 
@@ -1130,8 +1131,8 @@ Laser-guided rocket propulsion device.
 
 LANGUAGE["Item_M79 GL"] = [[M79 GL]]
 LANGUAGE["Item_Desc_M79 GL"] = [[
-M79 Grenade Launcher.
-Shoots 40x46mm grenades the explodes on impact.
+M79 Thumper.
+Shoots 40x46mm grenades that explode upon impact.
 ]]
 
 LANGUAGE["Item_M32 GL"] = [[M32 GL]]
@@ -1143,7 +1144,7 @@ A lightweight 40mm six-shot revolver grenade launcher.
 LANGUAGE["Item_RPG-7"] = [[RPG-7]]
 LANGUAGE["Item_Desc_RPG-7"] = [[
 Ruchnoy Protivotankoviy Granatomyot.
-Anti-tank rocket launcher developed by Soviet Union.
+Anti-tank rocket launcher developed by the Soviet Union.
 ]]
 
 LANGUAGE["Item_SLAM"] = [[SLAM]]
@@ -1151,7 +1152,7 @@ LANGUAGE["Item_Desc_SLAM"] = [[
 Selectable Lightweight Attack Munition.
 RMB to detonate. Attach to wall to active laser mode.
 
-You can plant at most 4 active SLAM.]]
+You can plant a maximum of 4 active SLAMs.]]
 
 LANGUAGE["Item_Incendiary Grenade"] = [[Incendiary Grenade]]
 LANGUAGE["Item_Desc_Incendiary Grenade"] = [[
@@ -1168,7 +1169,7 @@ Sets everything on fire within its effect.
 LANGUAGE["Item_Incendiary Launcher"] = [[Incendiary Launcher]]
 LANGUAGE["Item_Desc_Incendiary Launcher"] = [[
 Incendiary Grenade Launcher.
-Shoots incendiary grenades the erupt into flames on impact.
+Shoots incendiary grenades that erupt into flames on impact.
 ]]
 
 
@@ -1188,7 +1189,7 @@ Used to guard chocke points and vital areas.
 
 LANGUAGE["Item_Medic Grenade"] = [[Medic Grenade]]
 LANGUAGE["Item_Desc_Medic Grenade"] = [[
-A grenade that releases contiuous bursts of detoxication clouds.
+A grenade that releases contiuous bursts of healing clouds.
 Heals players and damages enemies.
 ]]
 
@@ -1261,7 +1262,7 @@ Device explodes if you overcharge.
 
 LANGUAGE["Item_MP7A1 Medic PDW"] = [[MP7A1 Medic PDW]]
 LANGUAGE["Item_Desc_MP7A1 Medic PDW"] = [[
-A modified version of MP7A1 for medical purposes.
+A modified version of the MP7A1 for medical purposes.
 
 Press B or ZOOM to fire healing darts.
 Healing dart heals 10 health and has a 1 second cooldown.
@@ -1270,7 +1271,7 @@ Healing dart heals 10 health and has a 1 second cooldown.
 LANGUAGE["Item_Vector Medic PDW"] = [[Vector Medic PDW]]
 LANGUAGE["Item_Desc_Vector Medic PDW"] = [[
 KRISS Vector Gen I equipped with a medical dart launcher.
-Uses an unconventional blowback system that results in its high firerate.
+Uses an unconventional blowback system that provides a high firerate with low recoil.
 
 Press B or ZOOM to fire healing darts.
 Healing dart heals 20 health and has a 1.5 second cooldown.
@@ -1288,7 +1289,7 @@ LANGUAGE["Item_Desc_Mjollnir"] = [[
 A warhammer embued with electric energy.
 
 Press RMB to charge the weapon.
-Charged Mjollnir creates a lightning explosion on impact.
+Charged Mjolnir creates a lightning explosion on impact.
 ]]
 
 LANGUAGE["Item_Double Barrel"] = [[Double Barrel]]
@@ -1300,7 +1301,7 @@ Devastating power at close range.
 LANGUAGE["Item_FN FAL"] = [[FN FAL]]
 LANGUAGE["Item_Desc_FN FAL"] = [[
 FN FAL.
-A battle rifle designed by Belgian and manufactured by FN Herstal.
+A 7.62x51mm battle rifle designed by Belgium and manufactured by FN Herstal.
 ]]
 
 LANGUAGE["Item_AUG HBAR"] = [[AUG HBAR]]
@@ -1311,7 +1312,7 @@ A light-support machine gun variant of the AUG assault rifle.
 
 LANGUAGE["Item_Manhack"] = [[Manhack]]
 LANGUAGE["Item_Desc_Manhack"] = [[
-Manhack that regenerates on death.
+Manhack that regenerates shortly after death.
 Manhack deals its health as damage to enemies.
 Manhack dies on impact.
 ]]
@@ -1603,7 +1604,7 @@ Projects an E-Parasite capsule that infects enemies on contact.
 E-Parasite counts as a minion.
 E-Parasite deals continuous damage to enemies.
 You leech health from damage dealt by E-Parasite.
-Enemies killed while infected by E-Parasite explode on death.
+Enemies killed while infected by E-Parasite explode on death, dealing damage based on its health.
 ]]
 
 -- Berserker Gadgets
