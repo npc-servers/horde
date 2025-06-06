@@ -71,12 +71,12 @@ HORDE.Infusion_Colors = {
     [HORDE.Infusion_Galvanizing] = HORDE.DMG_COLOR[HORDE.DMG_LIGHTNING],
     [HORDE.Infusion_Quality] = color_white,
     [HORDE.Infusion_Impaling] = color_white,
-    [HORDE.Infusion_Rejuvenating] = Color(50,205,50),
-    [HORDE.Infusion_Quicksilver] = Color(220, 220, 220),
-    [HORDE.Infusion_Siphoning] = Color(255, 74, 95),
-    [HORDE.Infusion_Titanium] = Color(192, 192, 192),
-    [HORDE.Infusion_Chrono] = Color(0,139,139),
-    [HORDE.Infusion_Ruination] = Color(0,50,25),
+    [HORDE.Infusion_Rejuvenating] = Color( 50, 205, 50 ),
+    [HORDE.Infusion_Quicksilver] = Color( 220, 220, 220 ),
+    [HORDE.Infusion_Siphoning] = Color( 255, 74, 95 ),
+    [HORDE.Infusion_Titanium] = Color( 192, 192, 192 ),
+    [HORDE.Infusion_Chrono] = Color( 0, 139, 139 ),
+    [HORDE.Infusion_Ruination] = Color( 0, 50, 25 ),
 }
 
 HORDE.Infusion_Description = {
@@ -132,12 +132,12 @@ Amplifies weapon healing/leeching by 25%.
 20% less weapon damage.
 ]],
 [HORDE.Infusion_Quicksilver] = [[
-Increases/decreases weapon damage based on player's available weight.
-
-<= 15% weight -> 30% damage increase
-<= 30% weight -> 25% damage increase
-<= 40% weight -> 15% damage increase
->40% weight -> 25% damage decrease
+Increases/decreases weapon damage based on player's current weight.
+Example: (15% <= 2/15, 30% <= 4/15, 40% <= 6/15)
+<= 15% of max weight -> 30% damage increase
+<= 30% of max weight -> 25% damage increase
+<= 40% of max weight -> 15% damage increase
+> 40% of max weight -> 25% damage decrease
 ]],
 [HORDE.Infusion_Titanium] = [[
 Reduces player damage taken based on weapon weight.
@@ -154,16 +154,15 @@ Decrease 1% damage taken for every 1 weight on the weapon.
 [HORDE.Infusion_Chrono] = [[
 Increases weapon damage the longer the weapon is being held by the user.
 
-6% damage increase per wave held by the user.
-Increase caps at 50%.
-
-20% decreased weapon damage.
+Reduces weapon damage by 20%.
+Increases weapon damage by 8% per wave held.
+Weapon damage increase caps at +50%.
 ]],
 [HORDE.Infusion_Ruination] = [[
-Increases weapon damage based on your current Decay buildup.
-5% damage increase per 10 Decay buildup, up to 25%.
+While holding this weapon, you gain 10 Decay buildup per second.
 
-Gain 10 Decay buildup per second while holding this weapon.
+Increases weapon damage based on your current Decay buildup.
++5% damage per 10 Decay buildup, up to a maximum of +25% at 50 Decay.
 ]]
 }
 
@@ -193,7 +192,7 @@ end
 if CLIENT then
 net.Receive("Horde_SyncInfusion", function(len, ply)
     MySelf.Horde_Infusions = net.ReadTable()
-end)
+end )
 end
 
 if SERVER then
@@ -258,7 +257,7 @@ local function galvanizing_damage(ply, npc, bonus, hitgroup, dmginfo)
 end
 
 local function quality_damage(ply, npc, bonus, hitgroup, dmginfo)
-    bonus.increase = 0.20
+    bonus.increase = bonus.increase + 0.20
     bonus.more = 1
     return true
 end
@@ -281,11 +280,11 @@ end
 
 local function quicksilver_damage(ply, npc, bonus, hitgroup, dmginfo)
     local percent = ply:Horde_GetWeight() / ply:Horde_GetMaxWeight()
-    if percent >= 0.85 then
+    if percent <= 0.15 then
         bonus.increase = bonus.increase + 0.3
-    elseif percent >= 0.7 then
+    elseif percent <= 0.3 then
         bonus.increase = bonus.increase + 0.25
-    elseif percent >= 0.6 then
+    elseif percent <= 0.4 then
         bonus.increase = bonus.increase + 0.15
     else
         bonus.increase = bonus.increase - 0.25
@@ -298,13 +297,13 @@ local function chrono_damage(ply, npc, bonus, hitgroup, dmginfo)
     local chrono_wave = ply.Horde_Infusion_Chrono_Wave[curr_weapon:GetClass()]
     if not chrono_wave then return end
 
-    bonus.increase = math.min(0.30, bonus.increase - 0.20 + (HORDE.current_wave - chrono_wave) * 0.06)
+    bonus.increase = bonus.increase + math.min(0.50, ((HORDE.current_wave - chrono_wave) * 0.08) - 0.20 )
 end
 
 local function ruination_damage(ply, npc, bonus, hitgroup, dmginfo)
     local curr_weapon = HORDE:GetCurrentWeapon(dmginfo:GetInflictor())
     if not IsValid(curr_weapon) then return end
-    bonus.increase = math.min(0.25, bonus.increase + ply:Horde_GetDebuffBuildup(HORDE.Status_Decay) / 200)
+    bonus.increase = bonus.increase + math.min(0.25, ply:Horde_GetDebuffBuildup(HORDE.Status_Decay) / 200)
 end
 
 local infusion_fns = {
