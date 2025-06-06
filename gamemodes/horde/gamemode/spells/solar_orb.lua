@@ -9,7 +9,7 @@ SPELL.Slot           = HORDE.Spell_Slot_LMB
 SPELL.DamageType     = {HORDE.DMG_FIRE}
 SPELL.Icon           = "spells/solar_orb.png"
 SPELL.Type           = {HORDE.Spell_Type_Projectile, HORDE.Spell_Type_AOE}
-SPELL.Description    = [[Conjures fireballs using solar energy. Charge for differnet effects.]]
+SPELL.Description    = [[Conjures fireballs using solar energy. Charge for stronger fireballs.]]
 SPELL.Fire           = function (ply, wpn, charge_stage)
     local function SpawnProjectile(pos, angles, dir, properties)
         local ent = ents.Create("projectile_horde_solar_orb")

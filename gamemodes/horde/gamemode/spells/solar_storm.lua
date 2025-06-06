@@ -9,7 +9,7 @@ SPELL.Slot           = HORDE.Spell_Slot_RMB
 SPELL.DamageType     = {HORDE.DMG_LIGHTNING}
 SPELL.Icon           = "spells/solar_storm.png"
 SPELL.Type           = {HORDE.Spell_Type_Hitscan}
-SPELL.Description    = [[Projects scattered lightning energy at the target. Charge for differnet effects.]]
+SPELL.Description    = [[Projects scattered lightning energy at the target. Charge for tightened spread and increased range.]]
 SPELL.Fire           = function (ply, wpn, charge_stage)
     local function Hitscan(damage, spread, dir, src)
         wpn:FireBullets({

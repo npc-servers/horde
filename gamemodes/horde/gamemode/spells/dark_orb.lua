@@ -10,7 +10,7 @@ SPELL.Slot           = HORDE.Spell_Slot_LMB
 SPELL.DamageType     = { HORDE.DMG_FIRE }
 SPELL.Icon           = "spells/dark_orb.png"
 SPELL.Type           = { HORDE.Spell_Type_Projectile, HORDE.Spell_Type_AOE }
-SPELL.Description    = [[Conjures dark fireballs using solar energy. The dark flame does extra Physical damage over time, but travels slower. Charge for differnet effects.]]
+SPELL.Description    = [[Conjures dark fireballs using solar energy. The dark flame does extra Physical damage over time, but travels slower. Charge for a larger blast.]]
 SPELL.Fire           = function ( ply, wpn, charge_stage )
     local function SpawnProjectile( pos, angles, dir, properties )
         hook.Run( "Horde_OnSolarSealLaunch", ply, properties )

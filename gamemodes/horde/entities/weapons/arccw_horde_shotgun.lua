@@ -9,7 +9,7 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "Arccw - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Pump-Action"
+SWEP.PrintName = "Shotgun"
 SWEP.Trivia_Class = "Shotgun"
 SWEP.Trivia_Desc = "A standard 12-gauge shotgun."
 SWEP.Trivia_Manufacturer = "Resistance"
@@ -36,53 +36,40 @@ SWEP.DefaultBodygroups = "000000000000"
 SWEP.Damage = 15
 SWEP.DamageMin = 7 -- damage done at maximum range
 SWEP.Num = 7
-SWEP.Range = 31 -- in METRES
+SWEP.Range = 1200 * 0.025 -- in METRES
 SWEP.Penetration = 1
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.ChamberSize = 0 -- how many rounds can be chambered.
 SWEP.Primary.ClipSize = 6 -- DefaultClip is automatically set.
 
-SWEP.PhysBulletMuzzleVelocity = 350
-
-SWEP.Recoil = 3
-SWEP.RecoilSide = 3
-SWEP.RecoilRise = 0.1
+SWEP.Recoil = 1
+SWEP.RecoilSide = 0.1
 SWEP.RecoilPunch = 2
 
+SWEP.NoLastCycle = true
 SWEP.ManualAction = true
 SWEP.ShotgunReload = true
-SWEP.Delay = 300 / 300 -- 60 / RPM.
+SWEP.Delay = 1 -- 60 / RPM.
 SWEP.Firemodes = {
     {
-        Mode = 1,
-        PrintName = "PUMP"
+        Mode = 2,
+        PrintName = "Slam-Fire"
     },
     {
-        Mode = 0
+        Mode = 0,
     }
 }
 
-SWEP.NPCWeaponType = "weapon_shotgun"
-SWEP.NPCWeight = 100
-
-SWEP.AccuracyMOA = 45 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 75 -- inaccuracy added by hip firing.
-SWEP.MoveDispersion = 25
+SWEP.AccuracyMOA = 50 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
+SWEP.HipDispersion = 100 -- inaccuracy added by hip firing.
+SWEP.MoveDispersion = 50
 
 SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
-
-SWEP.ShootSound = {"weapons/shotgun/shotgun_fire6.wav", "weapons/shotgun/shotgun_fire7.wav"}
-SWEP.ShootSoundSilenced = "arccw_go/m590_suppressed_fp.wav"
-SWEP.DistantShootSound = "arccw_go/sawedoff/sawedoff-1-distant.wav"
-
-SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
-SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
-SWEP.MeleeHitSound = "arccw_go/knife/knife_hitwall1.wav"
-SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
+SWEP.ShootSound = ")weapons/shotgun/shotgun_fire7.wav"
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/shot_sil.wav"
+SWEP.DistantShootSound = {")arccw_go/mag7/mag7_distant_01.wav",")arccw_go/mag7/mag7_distant_02.wav"}
 
 SWEP.MuzzleEffect = "muzzleflash_shotgun"
 SWEP.ShellModel = "models/shells/shell_12gauge.mdl"
@@ -96,51 +83,78 @@ SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
 
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.75
-SWEP.SightTime = 0.30
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-9, -5, 4.3),
-    Ang = Angle(0, 0.05, 0),
-    Magnification = 1.1,
+    Pos = Vector(-1, -1, 2),
+    Ang = Angle(0, 0, 0),
+    Magnification = 1.5,
     SwitchToSound = "", -- sound that plays when switching to this sight
-    CrosshairInSights = false
+    CrosshairInSights = true
 }
 
-SWEP.Holdtype = "shotgun"
 SWEP.HoldtypeHolstered = "passive"
 SWEP.HoldtypeActive = "shotgun"
-SWEP.HoldtypeSights = "shotgun"
+SWEP.HoldtypeSights = "ar2"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN
 
-SWEP.CrouchPos = Vector(-4, 0, -1)
-SWEP.CrouchAng = Angle(0, 0, -10)
+SWEP.ActivePos = Vector(0, 0, -1)
+SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.HolsterPos = Vector(3, 3, 0)
-SWEP.HolsterAng = Angle(-7.036, 30.016, 0)
-
-SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
-SWEP.BarrelOffsetHip = Vector(2, 0, -2)
-
-SWEP.CustomizePos = Vector(8, 0, 1)
-SWEP.CustomizeAng = Angle(5, 30, 30)
-
-SWEP.BarrelLength = 24
-
-SWEP.ExtraSightDist = 10
-SWEP.GuaranteeLaser = true
+SWEP.BarrelLength = 0
 
 SWEP.MirrorVMWM = true
 
 SWEP.Attachments = {
     {
+        PrintName = "Muzzle",
+        DefaultAttName = "Standard Muzzle",
+        Slot = "muzzle_shotgun",
+        Bone = "ValveBiped.Gun",
+        Offset = {
+            vpos = Vector(0.05, -0.57, 20.7),
+            vang = Angle(90, 0, 0),
+        },
+        VMScale = Vector(1.5, 1.5, 1.5)
+    },
+    {
+        PrintName = "Underbarrel",
+        Slot = "foregrip",
+        Bone = "ValveBiped.Pump",
+        Offset = {
+            vpos = Vector(0.05, 2.35, 2.5),
+            vang = Angle(90, 0, -90),
+        }
+    },
+    {
+        PrintName = "Tactical",
+        Slot = "tac",
+        Bone = "ValveBiped.Gun",
+        Offset = {
+            vpos = Vector(0.95, -0.8, 8.3),
+            vang = Angle(90, 0, 0),
+        },
+        VMScale = Vector(1, 1, 1)
+    },
+    {
         PrintName = "Ammo Type",
-        Slot = "go_ammo",
-        DefaultAttName = "Buckshot Shells"
+        DefaultAttName = "Buckshot Shells",
+        Slot = "go_ammo"
     },
     {
         PrintName = "Perk",
         Slot = "go_perk"
+    },
+    {
+        PrintName = "Charm",
+        Slot = "charm",
+        FreeSlot = true,
+        Bone = "ValveBiped.Gun",
+        Offset = {
+            vpos = Vector(1.15, 0.65, -9.965),
+            vang = Angle(90, 0, -90),
+        },
+        VMScale = Vector(0.8, 0.8, 0.8)
     },
 }
 
@@ -150,49 +164,47 @@ SWEP.Animations = {
     },
     ["draw"] = {
         Source = "draw",
-        FrameRate = 30,
     },
     ["fire"] = {
-        Source = "fire",
-        Time = 1,
+        Source = "fire01",
     },
     ["cycle"] = {
         Source = "pump",
-        Time = 0.5,
+        ShellEjectAt = 0.25,
+        SoundTable = {
+            {s = "Weapon_Shotgun.Special1", t = 0},
+        },
     },
     ["sgreload_start"] = {
         Source = "reload1",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
-        LHIKIn = 0.5,
+        LHIKIn = 0.2,
         LHIKOut = 0,
     },
     ["sgreload_insert"] = {
         Source = "reload2",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
+        SoundTable = {
+            {s = {"Weapon_Shotgun.Reload"}, t = 0},
+        },
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        SoundTable = {
-            {s = {"weapons/shotgun/shotgun_reload1.wav", "weapons/shotgun/shotgun_reload2.wav", "weapons/shotgun/shotgun_reload3.wav"}, t = 0},
-        },
-        Time = 0.5,
     },
     ["sgreload_finish"] = {
         Source = "reload3",
         LHIK = true,
         LHIKIn = 0,
-        LHIKOut = 1,
-        SoundTable = {
-            {s = "weapons/shotgun/shotgun_cock.wav", t = 0},
-        },
+        LHIKOut = 0.2,
     },
     ["sgreload_finish_empty"] = {
-        Source = "reload3",
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 1,
+        Source = "pump",
+        ShellEjectAt = 0.25,
+        SoundTable = {
+            {s = "Weapon_Shotgun.Special1", t = 0},
+        },
     },
 }
 
