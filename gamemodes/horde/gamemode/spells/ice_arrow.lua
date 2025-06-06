@@ -10,7 +10,7 @@ SPELL.Slot           = HORDE.Spell_Slot_LMB
 SPELL.DamageType     = { HORDE.DMG_COLD }
 SPELL.Icon           = "spells/ice_arrow.png"
 SPELL.Type           = { HORDE.Spell_Type_Projectile, HORDE.Spell_Type_AOE }
-SPELL.Description    = [[Conjures ice arrows that can be fired rapidly. Charge for different effects.]]
+SPELL.Description    = "Conjures ice arrows that can be fired rapidly.\nCharge for more projectiles in a wider horizontal spread."
 SPELL.Fire           = function ( ply, wpn, charge_stage )
     local function SpawnProjectile( pos, angles, force )
         local ent = ents.Create( "projectile_horde_ice_arrow" )
