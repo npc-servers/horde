@@ -25,7 +25,7 @@ end
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
     if CLIENT then return end
     if perk == "necromancer_abyssal_might" then
-        HORDE:RemoveSpectre(ply)
+        HORDE:RemoveSpectres(ply)
         UpdateSpectreMaxCount(ply)
     end
 end

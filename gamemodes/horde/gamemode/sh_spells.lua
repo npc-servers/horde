@@ -333,7 +333,7 @@ function HORDE:RaiseSpectre(ply, param, p2)
     end)
 end
 
-function HORDE:RemoveSpectre(ply)
+function HORDE:RemoveSpectres(ply)
     if HORDE.player_drop_entities[ply:SteamID()] then
         for id, ent in pairs(HORDE.player_drop_entities[ply:SteamID()]) do
             if ent:IsNPC() and (ent:GetClass() == "npc_vj_horde_spectre" or
