@@ -379,11 +379,11 @@ hook.Add("EntityTakeDamage", "Horde_ApplyMinionDamageTaken", function (target, d
             debuff = HORDE.Status_Frostbite
             bonus.more = 2
             local effectdata = EffectData()
-                effectdata:SetOrigin(target:GetPos() + target:GetUp() * 50)
-                effectdata:SetScale(10)
-                effectdata:SetMagnitude(10)
-		    util.Effect("GlassImpact", effectdata, true, true)
-		    util.Effect("GlassImpact", effectdata, true, true)
+            effectdata:SetOrigin(target:GetPos() + target:GetUp() * 50)
+            effectdata:SetScale(10)
+            effectdata:SetMagnitude(10)
+            util.Effect("GlassImpact", effectdata, true, true)
+            util.Effect("GlassImpact", effectdata, true, true)
         end
 
         if not debuff then return end

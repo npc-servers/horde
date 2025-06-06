@@ -40,16 +40,16 @@ ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zss
 ENT.SoundTbl_Pain = nil
 
 ENT.EntitiesToNoCollide = {
-    "player",
-    "npc_vj_horde_spectre",
-    "npc_vj_horde_antlion",
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
 	"npc_vj_horde_combat_bot",
 	"npc_vj_horde_vortigaunt",
-    "npc_vj_horde_rocket_turret",
-    "npc_vj_horde_class_survivor",
-    "npc_vj_horde_class_assault",
-    "npc_turret_floor",
-    "npc_manhack"
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
+	"npc_turret_floor",
+	"npc_manhack"
 }
 
 ENT.GeneralSoundPitch1 = 75
@@ -85,8 +85,8 @@ end
 
 function ENT:Roar()
 	if not self:IsValid() then return end
-    sound.Play("horde/spectres/abyssal_roar.ogg", self:GetPos(), 75, 100)
-    self:VJ_ACT_PLAYACTIVITY("FireWalk", true, 1.5, false)
+	sound.Play("horde/spectres/abyssal_roar.ogg", self:GetPos(), 75, 100)
+	self:VJ_ACT_PLAYACTIVITY("FireWalk", true, 1.5, false)
 	-- Deals heavy Physical damage to nearby enemies
 	self:Shockwave(0.2)
 	self:Shockwave(0.4)
@@ -99,7 +99,7 @@ function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(35, 35, 20), Vector(-35, -35, 0))
 	self.AnimTbl_Run = ACT_RUN
 	self.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
-    if self.properties.abyssal_might == true then
+	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
 		timer.Simple(0.5, function() self:Roar() end)
@@ -108,14 +108,14 @@ function ENT:CustomOnInitialize()
 			if not IsValid(self) then return end
 			self:Roar()
 		end)
-    end
+	end
 	local e = EffectData()
 		e:SetOrigin(self:GetPos())
 		e:SetNormal(Vector(0,0,1))
 		e:SetScale(0.25)
 	util.Effect("abyssal_roar", e, true, true)
-    self:SetRenderMode(RENDERMODE_TRANSCOLOR)
-    self:SetColor(Color(0, 0, 50, 200))
+	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
+	self:SetColor(Color(0, 0, 50, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
 	self:SetHealth(2 * (90 + 32 * self.properties.level))
 	self:AddRelationship("npc_turret_floor D_LI 99")
@@ -126,11 +126,10 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
 	self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
 	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
-    --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
 function ENT:DoEntityRelationshipCheck()
-    if self.Behavior == VJ_BEHAVIOR_PASSIVE_NATURE then return false end
+	if self.Behavior == VJ_BEHAVIOR_PASSIVE_NATURE then return false end
 	local posEnemies = self.CurrentPossibleEnemies
 	if posEnemies == nil then return false end
 	self.ReachableEnemyCount = 0

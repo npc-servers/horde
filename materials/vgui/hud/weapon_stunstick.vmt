@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "vgui/hud/weapon_stunstick"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}
