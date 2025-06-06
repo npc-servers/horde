@@ -1,7 +1,7 @@
 "VertexLitGeneric"
 {
-	"$baseTexture" "models\weapons\v_models\enron_winchester\winchester"
-      	"$bumpmap" "models\weapons\v_models\enron_winchester\winchester_normal"
+	"$baseTexture" "models\weapons\v_models\arccw\winchester1873\winchester"
+      	"$bumpmap" "models\weapons\v_models\arccw\winchester1873\winchester_normal"
 	"$envmap" "env_cubemap"
 	"$normalmapalphaenvmapmask" "1"
 }
