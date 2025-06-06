@@ -34,9 +34,9 @@ SWEP.WorldModelOffset = {
 SWEP.DefaultBodygroups = "000000000000"
 
 SWEP.Damage = 15
-SWEP.DamageMin = 5 -- damage done at maximum range
+SWEP.DamageMin = 7 -- damage done at maximum range
 SWEP.Num = 7
-SWEP.Range = 500 * 0.025 -- in METRES
+SWEP.Range = 1200 * 0.025 -- in METRES
 SWEP.Penetration = 1
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
