@@ -107,6 +107,36 @@ SWEP.MirrorVMWM = true
 
 SWEP.Attachments = {
     {
+        PrintName = "Muzzle",
+        DefaultAttName = "Standard Muzzle",
+        Slot = "muzzle_shotgun",
+        Bone = "ValveBiped.Gun",
+        Offset = {
+            vpos = Vector(0.05, -0.57, 20.7),
+            vang = Angle(90, 0, 0),
+        },
+        VMScale = Vector(1.5, 1.5, 1.5)
+    },
+    {
+        PrintName = "Underbarrel",
+        Slot = "foregrip",
+        Bone = "ValveBiped.Pump",
+        Offset = {
+            vpos = Vector(0.05, 2.35, 2.5),
+            vang = Angle(90, 0, -90),
+        }
+    },
+    {
+        PrintName = "Tactical",
+        Slot = "tac",
+        Bone = "ValveBiped.Gun",
+        Offset = {
+            vpos = Vector(0.95, -0.8, 8.3),
+            vang = Angle(90, 0, 0),
+        },
+        VMScale = Vector(1, 1, 1)
+    },
+    {
         PrintName = "Ammo Type",
         DefaultAttName = "Buckshot Shells",
         Slot = "go_ammo"
@@ -125,36 +155,6 @@ SWEP.Attachments = {
             vang = Angle(90, 0, -90),
         },
         VMScale = Vector(0.8, 0.8, 0.8)
-    },
-    {
-        PrintName = "Tactical",
-        Slot = "tac",
-        Bone = "ValveBiped.Gun",
-        Offset = {
-            vpos = Vector(0.95, -0.8, 8.3),
-            vang = Angle(90, 0, 0),
-        },
-        VMScale = Vector(1, 1, 1)
-    },
-    {
-        PrintName = "Underbarrel",
-        Slot = "foregrip",
-        Bone = "ValveBiped.Pump",
-        Offset = {
-            vpos = Vector(0.05, 2.35, 2.5),
-            vang = Angle(90, 0, -90),
-        }
-    },
-    {
-        PrintName = "Muzzle",
-        DefaultAttName = "Standard Muzzle",
-        Slot = "muzzle_shotgun",
-        Bone = "ValveBiped.Gun",
-        Offset = {
-            vpos = Vector(0.05, -0.57, 20.7),
-            vang = Angle(90, 0, 0),
-        },
-        VMScale = Vector(1.5, 1.5, 1.5)
     },
 }
 
