@@ -331,7 +331,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_barret"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_m99"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_fucket_rifle"].infusions = ballistic_infusions_shotguns
-    HORDE.items["arccw_horde_fucket"].infusions = ballistic_infusions_shotguns
+    --HORDE.items["arccw_horde_fucket"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_heat_crossbow"].infusions = ballistic_infusions_sniper_rifles
     HORDE.items["arccw_horde_medic_rifle"].infusions = {HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Septic, HORDE.Infusion_Siphoning}
     HORDE.items["arccw_horde_m16m203"].infusions = ballistic_infusions_rifles

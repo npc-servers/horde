@@ -296,7 +296,6 @@ local function chrono_damage(ply, npc, bonus, hitgroup, dmginfo)
     if not IsValid(curr_weapon) then return end
     local chrono_wave = ply.Horde_Infusion_Chrono_Wave[curr_weapon:GetClass()]
     if not chrono_wave then return end
-
     bonus.increase = bonus.increase + math.min(0.50, ((HORDE.current_wave - chrono_wave) * 0.08) - 0.20 )
 end
 

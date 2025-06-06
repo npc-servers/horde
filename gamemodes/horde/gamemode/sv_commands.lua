@@ -336,7 +336,6 @@ end)
 
 concommand.Add("horde_testing_give_skull_tokens", function (ply, cmd, args)
     if not ply:IsSuperAdmin() then HORDE:SendNotificationDenyAccess(ply) return end
-
     local amount = math.floor(tonumber(args[1]))
     ply:Horde_AddSkullTokens(amount)
     ply:Horde_SyncEconomy()
