@@ -1,0 +1,27 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\world_models\w_egon_pack"
+	"$bumpmap" "models\world_models\w_egon_pack_nm"
+	"$envmap" "env_cubemap"
+"$envmaptint" "[.1 .1 .1]"
+    	"$normalmapalphaenvmapmask" "1"
+ $phong 1
+        $phongexponent 20
+        $phongboost 2
+        $phongtint "[1 1 1]"
+        $halflambert 0
+        $phongfresnelranges "[.4 .8 30]"
+
+// Rim lighting parameters
+	"$rimlight" "1"				// To enable rim lighting (requires phong)
+	"$rimlightexponent" "80"             // Exponent for phong component of rim lighting
+	"$rimlightboost" ".3"	               // Boost for ambient cube component of rim lighting
+
+
+        $detail detail\bm_rustymetal_detail_01
+        $detailscale 3
+        $detailblendfactor .7
+        $detailblendmode 0
+    "$model" 1
+
+}

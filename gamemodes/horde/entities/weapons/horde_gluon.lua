@@ -40,8 +40,8 @@ SWEP.AdminOnly = false
 SWEP.UseHands = true
 
 SWEP.ViewModelFOV = 85
-SWEP.ViewModel = "models/horde/weapons/v_gluon.mdl"
-SWEP.WorldModel = "models/horde/weapons/w_gluon.mdl"
+SWEP.ViewModel = "models/weapons/c_egon.mdl"
+SWEP.WorldModel = "models/weapons/w_egon.mdl"
 SWEP.ViewModelFlip = false
 SWEP.BobScale = 1
 SWEP.SwayScale = 0
@@ -52,8 +52,8 @@ SWEP.Weight = 7
 SWEP.Slot = 3
 SWEP.SlotPos = 2
 
-SWEP.UseHands = false
-SWEP.HoldType = "ar2"
+SWEP.UseHands = true
+SWEP.HoldType = "crossbow"
 SWEP.FiresUnderwater = true
 SWEP.DrawCrosshair = false
 SWEP.DrawAmmo = true

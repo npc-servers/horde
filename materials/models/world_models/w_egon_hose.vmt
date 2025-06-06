@@ -1,0 +1,16 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\world_models/w_egon_hose"
+"$bumpmap" "models\world_models\w_egon_hose_nm"
+    	"$normalmapalphaenvmapmask" "1"
+$phong 1
+        $phongexponent 80
+        $phongboost 1
+        $halflambert 0
+        $phongfresnelranges "[.4 .8 30]"
+
+// Rim lighting parameters
+	"$rimlight" "1"				// To enable rim lighting (requires phong)
+	"$rimlightexponent" "10"             // Exponent for phong component of rim lighting
+	"$rimlightboost" ".1"	               // Boost for ambient cube component of rim lighting
+}
