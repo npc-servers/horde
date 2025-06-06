@@ -359,7 +359,7 @@ hook.Add("EntityTakeDamage", "Horde_ApplyMinionDamageTaken", function (target, d
     hook.Run("Horde_OnMinionDamageTaken", target, dmg)
     if dmg:GetDamage() <= 0.5 then return true end
 
-    if dmg:GetAttacker():GetClass() == "npc_vj_horde_grigori" or dmg:GetAttacker().Horde_Plague_Soldier then
+    if dmg:GetAttacker().Horde_Plague_Soldier then
         dmg:ScaleDamage(2.5)
     end
 
