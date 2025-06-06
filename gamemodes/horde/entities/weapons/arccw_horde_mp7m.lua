@@ -19,10 +19,7 @@ SWEP.Primary.ClipSize = 35 -- DefaultClip is automatically set.
 SWEP.Firemodes = {
     {
         Mode = 2,
-    },
-    {
-        Mode = 0,
-    },
+    }
 }
 
 SWEP.ShootVol = 75 -- volume of shoot sound

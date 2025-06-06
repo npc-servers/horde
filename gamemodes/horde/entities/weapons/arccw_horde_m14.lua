@@ -29,20 +29,19 @@ SWEP.WorldModelOffset = {
     ang = Angle(-10, 0, 180)
 }
 
-SWEP.Damage = 45
-SWEP.DamageMin = 28
-SWEP.Range = 50
-SWEP.Penetration = 10
+SWEP.Damage = 70
+SWEP.DamageMin = 30
+SWEP.Range = 1000 * 0.025
+SWEP.Penetration = 5
 SWEP.DamageType = DMG_BULLET
 
-SWEP.ChamberSize = 1
-SWEP.Primary.ClipSize = 8
-SWEP.ExtendedClipSize = 8
-SWEP.ReducedClipSize = 8
+SWEP.ChamberSize = 0
+SWEP.Primary.ClipSize = 10
+SWEP.ExtendedClipSize = 10
+SWEP.ReducedClipSize = 10
 
-SWEP.Recoil = 1
+SWEP.Recoil = 0.8
 SWEP.RecoilSide = 0.05
-SWEP.RecoilPunchBackMaxSights = 0
 
 SWEP.Delay = 60/625
 SWEP.Num = 1
@@ -56,8 +55,8 @@ SWEP.Firemodes = {
 }
 
 SWEP.AccuracyMOA = 0
-SWEP.HipDispersion = 200
-SWEP.MoveDispersion = 400
+SWEP.HipDispersion = 150
+SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "ar2"
 
@@ -77,7 +76,6 @@ SWEP.CamAttachment = 3
 
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.5
-SWEP.SightTime = 0.125
 
 SWEP.IronSightStruct = {
     Pos = Vector(-3.40, -4.11, 1.067),
@@ -96,26 +94,21 @@ SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.SprintPos = Vector(0, 0, 0)
 SWEP.SprintAng = Angle(0, 0, 0)
 
-SWEP.BarrelLength = 30
+SWEP.BarrelLength = 0
 
 SWEP.ExtraSightDist = 5
 
 SWEP.Attachments = {
     {
-        PrintName = "Ammo Type",
-        Slot = "go_ammo",
-        DefaultAttName = "Standard Ammo"
-    },
-    {
-        PrintName = "Charm",
-        Slot = "charm",
-        FreeSlot = true,
+        PrintName = "Optic",
+        DefaultAttName = "Iron Sights",
+        Slot = {"optic"},
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(5.4, -0.85, 0.72),
+            vpos = Vector(10, 0, 1.4),
             vang = Angle(0, 0, 0),
         },
-        VMScale = Vector(0.5, 0.5, 0.5),
+        VMScale = Vector(1, 1, 1),
     },
     {
         PrintName = "Muzzle",
@@ -129,19 +122,14 @@ SWEP.Attachments = {
         VMScale = Vector(1, 1, 1),
     },
     {
-        PrintName = "Optic",
-        DefaultAttName = "Iron Sights",
-        Slot = {"optic"},
+        PrintName = "Underbarrel",
+        Slot = {"foregrip"},
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(10, 0, 1.4),
+            vpos = Vector(10, 0, -0.5),
             vang = Angle(0, 0, 0),
         },
         VMScale = Vector(1, 1, 1),
-    },
-    {
-        PrintName = "Perk",
-        Slot = {"go_perk"}
     },
     {
         PrintName = "Tactical",
@@ -154,14 +142,24 @@ SWEP.Attachments = {
         VMScale = Vector(0.8, 0.8, 0.8),
     },
     {
-        PrintName = "Underbarrel",
-        Slot = {"foregrip"},
+        PrintName = "Ammo Type",
+        Slot = "go_ammo",
+        DefaultAttName = "Standard Ammo"
+    },
+    {
+        PrintName = "Perk",
+        Slot = {"go_perk"}
+    },
+    {
+        PrintName = "Charm",
+        Slot = "charm",
+        FreeSlot = true,
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(10, 0, -0.5),
+            vpos = Vector(5.4, -0.85, 0.72),
             vang = Angle(0, 0, 0),
         },
-        VMScale = Vector(1, 1, 1),
+        VMScale = Vector(0.5, 0.5, 0.5),
     },
 }
 

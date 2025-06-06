@@ -50,13 +50,7 @@ SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
     {
         Mode = 2,
-    },
-    {
-        Mode = 1,
-    },
-    {
-        Mode = 0,
-    },
+    }
 }
 
 SWEP.NPCWeaponType = {"weapon_ar2", "weapon_smg1"}
