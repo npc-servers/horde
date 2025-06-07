@@ -245,6 +245,7 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
     local Matches = {}
 
     for _, v in ipairs( allPlys ) do
+        if v == self then continue end
         local lowerName = string.lower( v:GetName() )
 
         if lowerName == searchName then
@@ -268,7 +269,6 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
     end
 
     if plyForMoney == nil then self:ChatPrint("Invalid player.") return end
-    if plyForMoney == self then self:ChatPrint("You can't pay yourself.") return end
 
     amount = math.floor(amount)
     if not amount or amount <= 0 or self:Horde_GetMoney() < amount then return end
