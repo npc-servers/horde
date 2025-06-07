@@ -257,9 +257,7 @@ function plymeta:Horde_PayPlayer(plyToPay, amount)
             plyForMoney = v
         end
     end
-    if #Matches == 2 and table.HasValue( Matches, self ) then
-        plyForMoney = Matches[1] == self and Matches[2] or Matches[1]
-    elseif #Matches > 1 then
+    if #Matches > 1 then
         local Names = ""
         for _,v in pairs(Matches) do
             Names = Names.." "..v:GetName()..","
