@@ -107,6 +107,7 @@ function ENT:CustomOnThink_AIEnabled()
 		net.Start("Horde_SyncBossHealth")
 		net.WriteInt(0, 32)
 		net.Broadcast()
+		HORDE:OnEnemyKilled(self, self)
 		return
 	end
 	self:SetHealth(hp)
