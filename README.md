@@ -1,7 +1,7 @@
 # Horde - A wave based zombie survival gamemode for Garry's Mod.
 
 ### Want to contribute to our fork?
-- Join our [Discord](discord.gg/npc).
+- Join our [Discord](https://discord.gg/npc).
 - Discuss what you want to change.
 - Open a pull request- your changes will be reviewed, critiqued, and merged once ready.
 
