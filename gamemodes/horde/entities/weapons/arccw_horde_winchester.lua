@@ -1,6 +1,6 @@
  SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+SWEP.Category = "ArcCW - CS+" -- edit this if you like
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "Randall Repeater"
@@ -26,10 +26,10 @@ SWEP.ViewModel = "models/weapons/arccw/c_winchester1873.mdl"
 SWEP.WorldModel = "models/weapons/arccw/w_winchester1873.mdl"
 SWEP.ViewModelFOV = 60
 
-SWEP.Damage = 175
+SWEP.Damage = 150
 SWEP.DamageMin = 125 -- damage done at maximum range
 SWEP.Range = 1500 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 24
+SWEP.Penetration = 1
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.MuzzleVelocity = 500 -- projectile or phys bullet muzzle velocity
@@ -73,8 +73,8 @@ SWEP.ShootVol = 115 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
 SWEP.ShootSound = "weapons/arccw/winchester1873/w73-1.wav"
-SWEP.ShootSoundSilenced = "weapons/arccw_go/mosin_suppressed_fp.wav"
-SWEP.DistantShootSound = "weapons/bo1_m14/m14_fire_silenced_1.wav"
+SWEP.ShootSoundSilenced = "arccw_go/mosin_suppressed_fp.wav"
+SWEP.DistantShootSound = "weapons/arccw_go/ssg08/ssg08-1-distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/shells/shell_338mag.mdl"
