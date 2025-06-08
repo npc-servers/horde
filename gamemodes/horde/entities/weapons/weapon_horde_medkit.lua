@@ -381,7 +381,21 @@ end
 
 if SERVER then
 	hook.Add( "PlayerDeath", "HordeMedkitRevive", function( ply )
-		ply.Medkit_DeathPos = ply:GetPos()
+		local deathPos = ply:GetPos()
+		local trace = util.TraceHull({
+			start = deathPos,
+			endpos = deathPos - Vector(0, 0, 25000),
+			mins = Vector(-16, -16, 0),
+			maxs = Vector(16, 16, 1),
+			mask = MASK_SOLID,
+			filter = function(ent)
+				if not IsValid(ent) then return true end
+				local class = ent:GetClass()
+				if class == "prop_static" or class == "prop_dynamic" then return true end
+				return false
+			end
+		})
+		ply.Medkit_DeathPos = trace.HitPos or deathPos
 	end )
 
 	function SWEP:RevivePlayer( ply )
