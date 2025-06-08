@@ -174,7 +174,8 @@ function ENT:MultipleMeleeAttacks()
 	if self:Visible(self:GetEnemy()) and not self.RangeAttacking and not self.MeleeAttacking and not self.Alerting and not self.Dodging and self.NearestPointToEnemyDistance > 400 and self.NearestPointToEnemyDistance < 2000 and CurTime() > self.NextCharge then
 		VJ_EmitSound(self, self.ChargeSd, 100, math.random(80, 100))
 		self:VJ_ACT_PLAYACTIVITY("charge_start", true, false, true)
-
+		self.HasMeleeAttack = false
+		self.HasRangeAttack = false
 		timer.Simple(1.5, function()
 			if IsValid(self) then
 				self:Charge()
