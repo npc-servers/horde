@@ -20,7 +20,7 @@ local function SpawnPlayer( ply, ply_pos, ply_angles, armor )
     ply:Spawn()
     ply.Horde_Fake_Respawn = nil
     ply:SetPos(ply_pos)
-    ply:SetAngles(ply_angles)
+    ply:SetEyeAngles(ply_angles)
     ply:SetNoTarget(false)
     ply.Horde_Invincible = nil
     ply:SetNoDraw(false)
