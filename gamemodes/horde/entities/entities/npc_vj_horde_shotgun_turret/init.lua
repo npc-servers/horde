@@ -83,7 +83,7 @@ ENT.SoundTbl_RangeAttack = {
 	"npc/sniper/sniper1.wav"
 }
 
-ENT.Horde_Immune_Status_All = true
+ENT.Horde_Immune_Bleeding = true
 ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
