@@ -74,8 +74,7 @@ ENT.SoundTbl_OnPlayerSight = {
 	"horde/rocket_turret/turret_deploy_6.ogg"
 }
 
-ENT.Immune_AcidPoisonRadiation = true -- Makes the SNPC not get damage from Acid, posion, radiation
-ENT.Horde_Immune_Bleeding = true
+ENT.Horde_Immune_Status_All = true
 
 function ENT:CustomOnInitialize()
 	self:SetSkin(math.random(0,3))
