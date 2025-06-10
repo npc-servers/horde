@@ -756,7 +756,7 @@ function HORDE:DropTurret(ent)
         local dist_sqr = turret_pos:DistToSqr(tr.HitPos)
         -- If you drop turrets from somewhere too high, they will just fall over.
         if dist_sqr >= 40000 then return end
-        ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z + 15))
+        ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z))
         ent:DropToFloor()
         timer.Simple(0.5, function()
             if not ent:IsValid() then return end
@@ -766,10 +766,11 @@ function HORDE:DropTurret(ent)
 end
 
 hook.Add("OnPlayerPhysicsDrop", "Horde_TurretDrop", function (ply, ent, thrown)
-    if ent:GetNWEntity("HordeOwner") and (ent:GetClass() == "npc_turret_floor" or (ent.Horde_TurretMinion and (not ent.Horde_Pickedup))) then
+    if ent:GetNWEntity("HordeOwner") and (ent:GetClass() == "npc_turret_floor" or ent.Horde_TurretMinion) then
         -- Turrets should always stay straight.
         local a = ent:GetAngles()
         if ent:GetClass() == "npc_vj_horde_sniper_turret" then
+            ent:SetAngles(Angle(a.x,a.y,180))
         else
             ent:SetAngles(Angle(0, a.y, 0))
         end

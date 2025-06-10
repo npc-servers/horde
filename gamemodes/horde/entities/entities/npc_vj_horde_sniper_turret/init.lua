@@ -161,21 +161,16 @@ end
 VJ.AddNPC("Sniper Turret","npc_vj_horde_sniper_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
+ENT.Horde_PickupCooldown = ENT.Horde_PickupCooldown or 0
+
 function ENT:Follow(ply)
-	if self:GetNWEntity("HordeOwner") == ply then
-		--local p = self:GetPos()
-		--p.z = ply:GetPos().z
-		local a = self:GetAngles()
-		self:SetAngles(Angle(a.x,a.y,180))
-		--self:SetPos(p)
-		self:PhysicsInit(SOLID_VPHYSICS)
-        ply:PickupObject(self)
-		self:GetPhysicsObject():EnableMotion(true)
-		self.Horde_Pickedup = true
-		timer.Simple(0.2, function ()
-			if self:IsValid() then
-				self.Horde_Pickedup = nil
-			end
-		end)
-    end
+	if self:GetNWEntity("HordeOwner") ~= ply then return end
+	if self.Horde_PickupCooldown > CurTime() then
+		HORDE:SendNotification("Please wait to pick up your turret again...", 1, ply)
+		return
+	end
+	self:PhysicsInit(SOLID_VPHYSICS)
+		ply:PickupObject(self)
+	self:GetPhysicsObject():EnableMotion(true)
+	self.Horde_PickupCooldown = CurTime() + 0.57
 end
