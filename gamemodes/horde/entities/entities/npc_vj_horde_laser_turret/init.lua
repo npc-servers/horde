@@ -75,7 +75,7 @@ ENT.SoundTbl_OnPlayerSight = {
 	"horde/rocket_turret/turret_deploy_6.ogg"
 }
 
-ENT.Horde_Immune_Bleeding = true
+ENT.Horde_Immune_Status_All = true
 ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
