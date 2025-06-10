@@ -75,8 +75,9 @@ ENT.SoundTbl_OnPlayerSight = {
 	"horde/rocket_turret/turret_deploy_6.ogg"
 }
 
-ENT.Horde_Immune_Bleeding = true
-ENT.Immune_AcidPoisonRadiation = true
+ENT.Horde_Debuff_Buildup[HORDE.Status_Bleeding] = true
+ENT.Horde_Debuff_Buildup[HORDE.Status_Freeze] = true
+ENT.Immune_AcidPoisonRadiation = true -- Poison Gas
 
 function ENT:CustomOnInitialize()
 	self:SetColor(Color(255, 255, 150))

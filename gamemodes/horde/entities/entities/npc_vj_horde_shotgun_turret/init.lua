@@ -83,8 +83,9 @@ ENT.SoundTbl_RangeAttack = {
 	"npc/sniper/sniper1.wav"
 }
 
-ENT.Horde_Immune_Bleeding = true
-ENT.Immune_AcidPoisonRadiation = true
+ENT.Horde_Debuff_Buildup[HORDE.Status_Bleeding] = true
+ENT.Horde_Debuff_Buildup[HORDE.Status_Freeze] = true
+ENT.Immune_AcidPoisonRadiation = true -- Poison Gas
 
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
