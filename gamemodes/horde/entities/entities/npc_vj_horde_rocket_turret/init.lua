@@ -75,6 +75,7 @@ ENT.SoundTbl_OnPlayerSight = {
 }
 
 ENT.Horde_Immune_Status_All = true
+ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
 	self:SetSkin(math.random(0,3))

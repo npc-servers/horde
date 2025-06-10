@@ -76,6 +76,7 @@ ENT.SoundTbl_OnPlayerSight = {
 }
 
 ENT.Horde_Immune_Status_All = true
+ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
 	self:SetColor(Color(255, 255, 150))

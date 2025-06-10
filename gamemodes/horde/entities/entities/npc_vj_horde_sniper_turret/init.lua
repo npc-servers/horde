@@ -78,6 +78,7 @@ ENT.SoundTbl_RangeAttack = {
 }
 
 ENT.Horde_Immune_Status_All = true
+ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
