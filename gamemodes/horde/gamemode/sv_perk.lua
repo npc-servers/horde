@@ -30,12 +30,12 @@ function plymeta:Horde_ApplyPerksForClass()
     self.Horde_PerkChoices[class] = self.Horde_PerkChoices[class] or {}
 
     for perk_level, v in pairs(perks) do
-        if HORDE.current_wave < HORDE:Horde_GetWaveForPerk(perk_level) or HORDE.current_break_time <= 0 then continue end
-        local c = math.min(2, math.max(1, self.Horde_PerkChoices[class][perk_level] or 1))
-        local choice = v.choices[c]
-        if not choice then error("Invalid choice in perk level " .. perk_level .. " for " .. class .. "!") return end
-        if self:Horde_GetPerk(choice) then continue end
-        self:Horde_SetPerk(choice)
+        if HORDE.current_wave >= HORDE:Horde_GetWaveForPerk(perk_level) or HORDE.current_break_time > 0 then
+            local c = math.min(2, math.max(1, self.Horde_PerkChoices[class][perk_level] or 1))
+            local choice = v.choices[c]
+            if not choice then error("Invalid choice in perk level " .. perk_level .. " for " .. class .. "!") return end
+            if self:Horde_GetPerk(choice) then self:Horde_SetPerk(choice) end
+        end
     end
 
     self:Horde_SetMaxHealth()
