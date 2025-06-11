@@ -88,6 +88,8 @@ ENT.Immune_AcidPoisonRadiation = true
 function ENT:CustomOnInitialize()
 	self:SetColor(Color(255, 255, 150))
 	self:SetSkin(math.random(0,3))
+	self:PhysicsInitBox(Vector(-20, -20, 0), Vector(20, 20, 40))
+	self:SetCollisionBounds(Vector(-20, -20, 0), Vector(20, 20, 80))
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,0))
 		HORDE:DropTurret(self)
@@ -172,7 +174,6 @@ function ENT:Follow(ply)
 		HORDE:SendNotification("Please wait to pick up your turret again...", 1, ply)
 		return
 	end
-	self:PhysicsInit(SOLID_VPHYSICS)
 	local p = self:GetPos()
 	p.z = ply:GetPos().z + 12
 	self:SetPos(p)
