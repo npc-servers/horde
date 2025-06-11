@@ -32,7 +32,7 @@ ENT.SoundTbl_Death = {"npc/zombie/zombie_die1.wav","npc/zombie/zombie_die2.wav",
 ENT.GeneralSoundPitch1 = 100
 ENT.GeneralSoundPitch2 = 100
 ENT.HasDeathRagdoll = false
-ENT.HasGibOnDeath = true
+ENT.HasGibOnDeath = false
 
 function ENT:CustomOnInitialize()
     self:SetBodygroup(1,1)
