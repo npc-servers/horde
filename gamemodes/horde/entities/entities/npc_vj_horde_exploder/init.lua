@@ -38,9 +38,7 @@ function ENT:CustomOnInitialize()
     self:SetBodygroup(1,1)
     self:SetColor(Color(255, 0, 255))
     self.HeadHealth = self.HeadHealth * HORDE.Difficulty[HORDE.CurrentDifficulty].healthMultiplier
-    self:SetModelScale(1.25, 0)
-    self:ManipulateBoneScale(0, Vector(2,2,2))
-    self:ManipulateBoneScale(9, Vector(2,2,4))
+    self:SetModelScale(1.15, 0)
 
     self:AddRelationship("npc_headcrab_poison D_LI 99")
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
