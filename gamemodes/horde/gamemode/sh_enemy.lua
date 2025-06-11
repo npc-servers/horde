@@ -381,12 +381,12 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Manhackbie",                 "npc_vj_ezt_manhackbie",        0.08, 9, false, 1, 1, 1, 1)
 
     -- Final Boss Wave
-    HORDE:CreateEnemy("Walker",         "npc_vj_horde_walker",      1.00, 10, false, 0.50, 1, 0.50, 1)
-    HORDE:CreateEnemy("Sprinter",       "npc_vj_horde_sprinter",    0.90, 10, false, 0.50, 1, 0.50, 1)
-    HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",     0.80, 10, false, 0.50, 1, 0.50, 1)
-    HORDE:CreateEnemy("Zombie",         "npc_zombie",               1.00, 10, false, 0.50, 1, 0.50, 1)
-    HORDE:CreateEnemy("Fast Zombie",    "npc_fastzombie",           0.40, 10, false, 0.50, 1, 0.50, 1)
-    HORDE:CreateEnemy("Poison Zombie",  "npc_poisonzombie",         0.18, 10, false, 0.50, 1, 0.50, 1)
+    HORDE:CreateEnemy("Walker",         "npc_vj_horde_walker",      1.00, 10, false, 1, 1, 1, 1)
+    HORDE:CreateEnemy("Sprinter",       "npc_vj_horde_sprinter",    0.90, 10, false, 1, 1, 1, 1)
+    HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",     0.80, 10, false, 1, 1, 1, 1)
+    HORDE:CreateEnemy("Zombie",         "npc_zombie",               1.00, 10, false, 1, 1, 1, 1)
+    HORDE:CreateEnemy("Fast Zombie",    "npc_fastzombie",           0.40, 10, false, 1, 1, 1, 1)
+    HORDE:CreateEnemy("Poison Zombie",  "npc_poisonzombie",         0.18, 10, false, 1, 1, 1, 1)
 
     -- Final Bosses
     HORDE:CreateEnemy("Alpha Gonome", "npc_vj_alpha_gonome", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
