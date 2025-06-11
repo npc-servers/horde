@@ -32,13 +32,13 @@ ENT.SoundTbl_Death = {"npc/zombie/zombie_die1.wav","npc/zombie/zombie_die2.wav",
 ENT.GeneralSoundPitch1 = 100
 ENT.GeneralSoundPitch2 = 100
 ENT.HasDeathRagdoll = false
-ENT.HasGibOnDeath = true
+ENT.HasGibOnDeath = false
 
 function ENT:CustomOnInitialize()
     self:SetBodygroup(1,1)
     self:SetColor(Color(255, 0, 255))
     self.HeadHealth = self.HeadHealth * HORDE.Difficulty[HORDE.CurrentDifficulty].healthMultiplier
-    self:SetModelScale(1.15, 0)
+    self:SetModelScale(1.2, 0)
 
     self:AddRelationship("npc_headcrab_poison D_LI 99")
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
