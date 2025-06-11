@@ -236,14 +236,12 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Sprinter",               "npc_vj_horde_sprinter",    0.80, 1, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Headcrab Zombie Torso",  "npc_zombie_torso",         0.40, 1, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Exploder",               "npc_vj_horde_exploder",    0.20, 1, true, 1, 1, 1.5, 1)
-    HORDE:CreateEnemy("Zombie",                 "npc_zombie",               0.40, 1, false, 1, 1, 1, 1)
 
     HORDE:CreateEnemy("Walker",         "npc_vj_horde_walker",      1.00, 2, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter",       "npc_vj_horde_sprinter",    0.80, 2, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",     0.60, 2, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Fast Zombie",    "npc_fastzombie",           0.40, 2, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Exploder",       "npc_vj_horde_exploder",    0.20, 2, true, 1, 1, 1.5, 1)
-    HORDE:CreateEnemy("Zombie",         "npc_zombie",               0.40, 2, false, 1, 1, 1, 1)
 
     HORDE:CreateEnemy("Walker",         "npc_vj_horde_walker",      1.00, 3, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter",       "npc_vj_horde_sprinter",    0.80, 3, false, 1, 1, 1, 1)
@@ -252,7 +250,6 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Poison Zombie",  "npc_poisonzombie",         0.18, 3, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Exploder",       "npc_vj_horde_exploder",    0.20, 3, true, 1, 1, 1.5, 1)
     HORDE:CreateEnemy("Vomitter",       "npc_vj_horde_vomitter",    0.12, 3, true, 1, 1, 1.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
-    HORDE:CreateEnemy("Zombie",         "npc_zombie",               0.40, 3, false, 1, 1, 1, 1)
 
     HORDE:CreateEnemy("Walker",                     "npc_vj_horde_walker",      1.00, 4, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter",                   "npc_vj_horde_sprinter",    0.80, 4, false, 1, 1, 1, 1)
@@ -265,7 +262,6 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Armed H.E.V. Zombie",        "npc_vj_ezt_weapbie",       0.04, 4, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("H.E.V. Zombie Shotgunner",   "npc_vj_ezt_shotbie",       0.04, 4, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Manhackbie",                 "npc_vj_ezt_manhackbie",    0.08, 4, false, 1, 1, 1, 1)
-    HORDE:CreateEnemy("Zombie",                     "npc_zombie",               0.40, 4, false, 1, 1, 1, 1)
 
     -- First Boss Wave
     HORDE:CreateEnemy("Walker",                     "npc_vj_horde_walker",      1.00, 5, false, 1, 1, 1, 1)
@@ -281,7 +277,6 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("H.E.V. Zombie Shotgunner",   "npc_vj_ezt_shotbie",       0.04, 5, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Lesser Hunter",              "npc_vj_ezo_archunter",     0.02, 5, true, 1, 1, 1.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
     HORDE:CreateEnemy("Manhackbie",                 "npc_vj_ezt_manhackbie",    0.08, 5, false, 1, 1, 1, 1)
-    HORDE:CreateEnemy("Zombie",                     "npc_zombie",               0.40, 5, false, 1, 1, 1, 1)
     
     -- First Bosses
     HORDE:CreateEnemy("Mutated Hulk", "npc_vj_mutated_hulk", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
@@ -385,7 +380,6 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Walker",         "npc_vj_horde_walker",      1.00, 10, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter",       "npc_vj_horde_sprinter",    0.90, 10, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",     0.80, 10, false, 1, 1, 1, 1)
-    HORDE:CreateEnemy("Zombie",         "npc_zombie",               1.00, 10, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Fast Zombie",    "npc_fastzombie",           0.40, 10, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Poison Zombie",  "npc_poisonzombie",         0.18, 10, false, 1, 1, 1, 1)
     
