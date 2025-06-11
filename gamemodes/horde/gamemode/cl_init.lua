@@ -222,6 +222,9 @@ end
 local OBS_MODE_ROAMING = OBS_MODE_ROAMING
 local TEXT_ALIGN_CENTER = TEXT_ALIGN_CENTER
 local specNameOffset = Vector( 0, 0, 80 )
+local specDeathNameOffset = Vector( 0, 0, 10 )
+local specDeathCrossH = 5 -- Horizontal part of the cross
+local specDeathCrossV = 15 -- Vertical part of the cross
 hook.Add( "HUDPaint", "Horde_SpectatorWh", function()
     if LocalPlayer():GetObserverMode() ~= OBS_MODE_ROAMING then return end
 
@@ -236,6 +239,28 @@ hook.Add( "HUDPaint", "Horde_SpectatorWh", function()
 
             draw.SimpleTextOutlined( ply:Nick(), "DermaDefault", x, y, team.GetColor( ply:Team() ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
             draw.SimpleTextOutlined( health, "DermaDefault", x, y + 20, hpColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+        elseif not ply:Alive() and DeadPlayers[ply] then
+            for deadPly, pos in pairs( DeadPlayers ) do
+                if IsValid( deadPly ) then
+                    surface.SetDrawColor( 255, 0, 0, 255 )
+                    local drawPos = pos + specDeathNameOffset
+                    local screenPos = drawPos:ToScreen()
+
+                    -- Holy cross
+                    surface.DrawLine( screenPos.x - specDeathCrossH, screenPos.y, screenPos.x + specDeathCrossH, screenPos.y ) -- Left
+                    surface.DrawLine( screenPos.x - specDeathCrossH, screenPos.y - 1, screenPos.x + specDeathCrossH, screenPos.y - 1 ) -- Center
+                    surface.DrawLine( screenPos.x - specDeathCrossH, screenPos.y, screenPos.x + specDeathCrossH, screenPos.y ) -- Right
+
+                    surface.DrawLine( screenPos.x, screenPos.y - specDeathCrossV / 2, screenPos.x, screenPos.y + specDeathCrossV ) -- Left
+                    surface.DrawLine( screenPos.x - 1, screenPos.y - specDeathCrossV / 2, screenPos.x, screenPos.y + specDeathCrossV ) -- Center
+                    surface.DrawLine( screenPos.x + 1, screenPos.y - specDeathCrossV / 2, screenPos.x, screenPos.y + specDeathCrossV ) -- Right
+
+                    -- Draw player name
+                    draw.SimpleTextOutlined( ply:GetName() .. "\n", "DermaDefault", screenPos.x, screenPos.y + 20, Color( 255, 0, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+
+                    draw.SimpleTextOutlined( "Hold R with medkit to revive", "DermaDefault", screenPos.x, screenPos.y + 30, Color( 255, 0, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+                end
+            end
         end
     end
 end )

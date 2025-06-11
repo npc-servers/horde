@@ -47,7 +47,7 @@ SWEP.ReviveRange = 75
 SWEP.ReviveSpeed = 20 -- Amount of progress per second
 
 if SERVER then
-	util.AddNetworkString( "horde_medkit_deadplayers" )
+	util.AddNetworkString( "horde_update_deadplayers" )
 end
 
 function SWEP:Initialize()
@@ -289,28 +289,6 @@ function SWEP:Think()
 	-- Do idle anim
 	self:Idle()
 
-	if SERVER and self.NextDeathSync < CurTime() then
-		self.NextDeathSync = CurTime() + self.DeathSyncTime
-
-		local deadPlayers = {}
-		for _, ply in pairs( player.GetAll() ) do
-			if not ply:Alive() and ply.Medkit_DeathPos then
-				deadPlayers[ply] = ply.Medkit_DeathPos
-			end
-		end
-
-		self.DeadPlayers = deadPlayers
-
-		net.Start( "horde_medkit_deadplayers" )
-		net.WriteEntity( self )
-		net.WriteUInt( table.Count( deadPlayers ), 8 )
-		for ply, pos in pairs( deadPlayers ) do
-			net.WriteEntity( ply )
-			net.WriteVector( pos )
-		end
-		net.Send( self:GetOwner() )
-	end
-
 	if not self:GetOwner():KeyDown( IN_RELOAD ) then
 		self.RevivingPlayer = nil
 		self.ReviveProgress = 0
@@ -320,82 +298,93 @@ function SWEP:Think()
 end
 
 if CLIENT then
-	net.Receive( "horde_medkit_deadplayers", function()
-		local medkit = net.ReadEntity()
-		if not IsValid( medkit ) then return end
-
-		local deadPlayers = {}
+	DeadPlayers = {}
+	net.Receive( "horde_update_deadplayers", function()
+		DeadPlayers = {}
 		local num = net.ReadUInt( 8 )
 		for _ = 1, num do
-			deadPlayers[net.ReadEntity()] = net.ReadVector()
+			DeadPlayers[net.ReadEntity()] = net.ReadVector()
 		end
-
-		medkit.DeadPlayers = deadPlayers
 	end )
 
-	-- Draw the dead players and revive progerss bar
+	-- Draw the dead players and revive progess bar
 	function SWEP:DrawHUD()
 
-		for ply, pos in pairs( self.DeadPlayers ) do
-			if not IsValid( ply ) then continue end
+		for ply, pos in pairs( DeadPlayers ) do
+			if IsValid( ply ) then
+				surface.SetDrawColor( 255, 0, 0, 255 )
+				local drawPos = pos + Vector( 0, 0, 40 )
+				local screenpos = drawPos:ToScreen()
 
-			surface.SetDrawColor( 255, 0, 0, 255 )
-			local drawPos = pos + Vector( 0, 0, 40 )
-			local screenpos = drawPos:ToScreen()
+				-- Holy cross
+				surface.DrawLine( screenpos.x - 30, screenpos.y, screenpos.x + 30, screenpos.y )
+				surface.DrawLine( screenpos.x - 30, screenpos.y + 1, screenpos.x + 30, screenpos.y + 1 )
+				surface.DrawLine( screenpos.x - 30, screenpos.y + 2, screenpos.x + 30, screenpos.y + 2 )
 
-			-- Holy cross
-			surface.DrawLine( screenpos.x - 30, screenpos.y, screenpos.x + 30, screenpos.y )
-			surface.DrawLine( screenpos.x - 30, screenpos.y + 1, screenpos.x + 30, screenpos.y + 1 )
-			surface.DrawLine( screenpos.x - 30, screenpos.y + 2, screenpos.x + 30, screenpos.y + 2 )
+				surface.DrawLine( screenpos.x, screenpos.y - 30, screenpos.x, screenpos.y + 80 )
+				surface.DrawLine( screenpos.x - 1, screenpos.y - 30, screenpos.x, screenpos.y + 80 )
+				surface.DrawLine( screenpos.x + 1, screenpos.y - 30, screenpos.x, screenpos.y + 80 )
 
-			surface.DrawLine( screenpos.x, screenpos.y - 30, screenpos.x, screenpos.y + 80 )
-			surface.DrawLine( screenpos.x - 1, screenpos.y - 30, screenpos.x, screenpos.y + 80 )
-			surface.DrawLine( screenpos.x + 1, screenpos.y - 30, screenpos.x, screenpos.y + 80 )
+				-- Draw player name
+				draw.SimpleTextOutlined( ply:GetName(), "ChatFont", screenpos.x, screenpos.y + 90, Color( 255, 0, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
 
-			-- Draw player name
-			draw.SimpleTextOutlined( ply:GetName(), "ChatFont", screenpos.x, screenpos.y + 90, Color( 255, 0, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+				local isCloseEnough = pos:Distance( self:GetOwner():GetPos() ) <= self.ReviveRange
+				if isCloseEnough then
+					draw.SimpleTextOutlined( "Hold R to revive", "ChatFont", screenpos.x, screenpos.y + 115, Color( 0, 255, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
 
-			local isCloseEnough = pos:Distance( self:GetOwner():GetPos() ) <= self.ReviveRange
-			if isCloseEnough then
-				draw.SimpleTextOutlined( "Hold R to revive", "ChatFont", screenpos.x, screenpos.y + 115, Color( 0, 255, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+					-- Draw revive progress bar
+					if IsValid( self.RevivingPlayer ) and self.ReviveProgress > 0 then
+						local barWidth = 200
+						local barHeight = 20
+						local barX = screenpos.x - barWidth / 2
+						local barY = screenpos.y + 130
 
-				-- Draw revive progress bar
-				if IsValid( self.RevivingPlayer ) and self.ReviveProgress > 0 then
-					local barWidth = 200
-					local barHeight = 20
-					local barX = screenpos.x - barWidth / 2
-					local barY = screenpos.y + 130
+						surface.SetDrawColor( 100, 100, 100, 255 )
+						surface.DrawRect( barX, barY, barWidth, barHeight )
 
-					surface.SetDrawColor( 100, 100, 100, 255 )
-					surface.DrawRect( barX, barY, barWidth, barHeight )
-
-					surface.SetDrawColor( 0, 255, 0, 255 )
-					surface.DrawRect( barX, barY, ( self.ReviveProgress / 100 ) * barWidth, barHeight )
+						surface.SetDrawColor( 0, 255, 0, 255 )
+						surface.DrawRect( barX, barY, ( self.ReviveProgress / 100 ) * barWidth, barHeight )
+					end
+				else
+					draw.SimpleTextOutlined( "Too far to revive", "ChatFont", screenpos.x, screenpos.y + 115, Color( 255, 0, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color( 0, 0, 0 ) )
 				end
-			else
-				draw.SimpleTextOutlined( "Too far to revive", "ChatFont", screenpos.x, screenpos.y + 115, Color( 255, 0, 0 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color( 0, 0, 0 ) )
 			end
 		end
 	end
 end
 
 if SERVER then
-	hook.Add( "PlayerDeath", "HordeMedkitRevive", function( ply )
+	hook.Add( "PlayerDeath", "horde_trackPlyDeath", function( ply )
 		local deathPos = ply:GetPos()
-		local trace = util.TraceHull({
+		local trace = util.TraceHull( {
 			start = deathPos,
-			endpos = deathPos - Vector(0, 0, 25000),
-			mins = Vector(-16, -16, 0),
-			maxs = Vector(16, 16, 1),
+			endpos = deathPos - Vector( 0, 0, 25000 ),
+			mins = Vector( -16, -16, 0 ),
+			maxs = Vector( 16, 16, 1 ),
 			mask = MASK_SOLID,
-			filter = function(ent)
-				if not IsValid(ent) then return true end
+			filter = function( ent )
+				if not IsValid( ent ) then return true end
 				local class = ent:GetClass()
 				if class == "prop_static" or class == "prop_dynamic" then return true end
 				return false
 			end
-		})
+		} )
 		ply.Medkit_DeathPos = trace.HitPos or deathPos
+
+		local deadPlayers = {}
+		for _, dply in pairs( player.GetAll() ) do
+			if not dply:Alive() and dply.Medkit_DeathPos then
+				deadPlayers[dply] = dply.Medkit_DeathPos
+			end
+		end
+
+		net.Start( "horde_update_deadplayers" )
+		net.WriteUInt( table.Count( deadPlayers ), 8 )
+		for deadPly, pos in pairs( deadPlayers ) do
+			net.WriteEntity( deadPly )
+			net.WriteVector( pos )
+		end
+		net.Broadcast()
 	end )
 
 	function SWEP:RevivePlayer( ply )
