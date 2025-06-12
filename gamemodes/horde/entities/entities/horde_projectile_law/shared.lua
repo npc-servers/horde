@@ -7,7 +7,7 @@ ENT.ProjectileDamage = 1500 -- Projectile/explosion damage
 ENT.ProjectileUnarmedDamageType = DMG_CLUB -- Damage type when hitting something unarmed
 ENT.ProjectileExplosionDamageType = DMG_BLAST -- Explosion damage type
 ENT.ProjectileDamageRadius = 175 -- Explosion radius
-ENT.ArmDistance = 175 -- Safety distance
+ENT.ArmDistance = 150 -- Safety distance
 ENT.Decal = "Scorch"
 
 ENT.Ticks = 0
