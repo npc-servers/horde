@@ -6,8 +6,8 @@ ENT.EnableGravity = false
 ENT.ProjectileDamage = 1500 -- Projectile/explosion damage
 ENT.ProjectileUnarmedDamageType = DMG_CLUB -- Damage type when hitting something unarmed
 ENT.ProjectileExplosionDamageType = DMG_BLAST -- Explosion damage type
-ENT.ProjectileDamageRadius = 180 -- Explosion radius
-ENT.ArmDistance = 180 -- Safety distance
+ENT.ProjectileDamageRadius = 175 -- Explosion radius
+ENT.ArmDistance = 175 -- Safety distance
 ENT.Decal = "Scorch"
 
 ENT.Ticks = 0

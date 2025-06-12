@@ -3,10 +3,10 @@ ENT.PrintName 			= "Javelin Round"
 ENT.Model = "models/weapons/w_missile_launch.mdl"
 ENT.LifeTime = 10 -- Time to removal
 ENT.EnableGravity = false
-ENT.ProjectileDamage = 1150 -- Projectile/explosion damage
+ENT.ProjectileDamage = 1500 -- Projectile/explosion damage
 ENT.ProjectileUnarmedDamageType = DMG_CLUB -- Damage type when hitting something unarmed
 ENT.ProjectileExplosionDamageType = DMG_BLAST -- Explosion damage type
-ENT.ProjectileDamageRadius = 200 -- Explosion radius
+ENT.ProjectileDamageRadius = 225 -- Explosion radius
 ENT.ArmDistance = 0 -- Safety distance
 ENT.Decal = "Scorch"
 
