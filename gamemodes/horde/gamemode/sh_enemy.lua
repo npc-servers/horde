@@ -284,13 +284,13 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Plague Berserker", "npc_vj_horde_platoon_berserker", 0.35, 5, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 1.0, music = "#music/hl2_song16.mp3", music_duration = 152})
     HORDE:CreateEnemy("Plague Heavy", "npc_vj_horde_platoon_heavy", 0.35, 5, true, 1, 1, 10, 1, nil, nil, nil,
-    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.75, music = "#music/hl2_song16.mp3", music_duration = 152})
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 1.0, music = "#music/hl2_song16.mp3", music_duration = 152})
     HORDE:CreateEnemy("Plague Demolition","npc_vj_horde_platoon_demolitionist", 0.35, 5, true, 1, 1, 10, 1, nil, nil, nil,
-    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl2_song16.mp3", music_duration = 152})
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 1.0, music = "#music/hl2_song16.mp3", music_duration = 152})
     HORDE:CreateEnemy("Hell Knight", "npc_vj_horde_hellknight", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave=true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song24.mp3", music_duration = 129}, "none", nil, nil, nil, {gadget = "gadget_hellfire_tincture", drop_rate = 0.5})
     HORDE:CreateEnemy("Xen Host Unit", "npc_vj_horde_xen_host_unit", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
-    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.75, music = "#music/hl1_song10.mp3", music_duration = 106}, "none", nil, nil, nil, {gadget = "gadget_matriarch_womb", drop_rate = 0.5})
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl1_song10.mp3", music_duration = 106}, "none", nil, nil, nil, {gadget = "gadget_matriarch_womb", drop_rate = 0.5})
 
     HORDE:CreateEnemy("Walker",                     "npc_vj_horde_walker",          1.00, 6, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter",                   "npc_vj_horde_sprinter",        0.90, 6, false, 1, 1, 1, 1)
@@ -385,9 +385,9 @@ function HORDE:GetDefaultEnemiesData ()
     
     -- Final Bosses
     HORDE:CreateEnemy("Alpha Gonome", "npc_vj_alpha_gonome", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
-    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.75, music = "#music/vlvx_song21.mp3", music_duration = 150}, "fume")
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song21.mp3", music_duration = 150}, "fume")
     HORDE:CreateEnemy("Gamma Gonome", "npc_vj_horde_gamma_gonome", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
-    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.75, music = "#music/vlvx_song9.mp3", music_duration = 76}, "none")
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song9.mp3", music_duration = 76}, "none")
     HORDE:CreateEnemy("Subject: Wallace Breen", "npc_vj_horde_breen", 1, 10, true,  1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl2_song6.mp3", music_duration = 47}, "decay")
     HORDE:CreateEnemy("Xen Destroyer Unit","npc_vj_horde_xen_destroyer_unit", 1,    10, true,  1, 1, 10, 1, nil, nil, nil,
