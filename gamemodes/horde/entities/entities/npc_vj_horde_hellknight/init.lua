@@ -93,14 +93,20 @@ function ENT:CustomOnInitialize()
     self.HasLeapAttack = false
     self.AnimTbl_Run = ACT_WALK
     self:SetColor(Color(25, 25, 25))
-	
+    local f = ents.Create("info_particle_system")
+    f:SetKeyValue("effect_name","burning_character")
+    f:SetPos(self:GetPos())
+    f:Fire("Start","",0)
+    f:SetParent(self)
+    f:SetKeyValue("cpoint" .. 1, self:GetName())
+    f:Spawn()
+    f:Activate()
     local id = self:GetCreationID()
     timer.Remove("Horde_FlayerRage" .. id)
     timer.Create("Horde_FlayerRage" .. id, 10, 1, function ()
         if not IsValid(self) then return end
         self:Rage()
     end)
-	
     self:AddRelationship("npc_headcrab_poison D_LI 99")
     self:AddRelationship("npc_headcrab_fast D_LI 99")
 end
@@ -110,7 +116,7 @@ function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt, isProp)
     if not self.Raged then return end
     if hitEnt and IsValid(hitEnt) and hitEnt:IsPlayer() then
         self:UnRage()
-        hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite, 25, self)
+        hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite, 35, self)
     end
 end
 
