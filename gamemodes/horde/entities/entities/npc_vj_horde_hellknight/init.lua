@@ -15,7 +15,6 @@ ENT.TimeUntilMeleeAttackDamage = 0.2 -- This counted in seconds | This calculate
 ENT.MeleeAttackDamage = 30
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
 ENT.NextAnyAttackTime_Melee = 0.6
-ENT.HasLeapAttack = true -- Should the SNPC have a leap attack?
 ENT.AnimTbl_LeapAttack = {"leapstrike"} -- Melee Attack Animations
 ENT.LeapDistance = 400 -- The distance of the leap, for example if it is set to 500, when the SNPC is 500 Unit away, it will jump
 ENT.LeapToMeleeDistance = 150 -- How close does it have to be until it uses melee?
@@ -61,20 +60,23 @@ function ENT:Rage()
         self.Raged = true
         self.Raging = false
         self:SetColor(Color(125, 50, 50))
-			
 	local e = EffectData()
         e:SetOrigin(self:GetPos())
-        e:SetScale(10)
-    	util.Effect("m2_flame_explosion", e, true, true)
-
-	local dmg = DamageInfo()
-    	dmg:SetInflictor(self)
-    	dmg:SetAttacker(self)
-    	dmg:SetDamageType(DMG_BURN)
-    	dmg:SetDamage(20)
-    	util.BlastDamageInfo(dmg, self:GetPos(), 250)
-	
-    	sound.Play("vj_fire/fireball_explode.wav", self:GetPos())
+        e:SetScale(5)
+        util.Effect("m2_flame_explosion", e, true, true)
+        for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
+            if ent:IsPlayer() then
+                local Trace = util.TraceLine({
+                    start = self:WorldSpaceCenter(),
+                    endpos = ent:WorldSpaceCenter(),
+                    mask = MASK_SOLID_BRUSHONLY
+                })
+                if not Trace.HitWorld then
+                    ent:Horde_AddDebuffBuildup(HORDE.Status_Ignite, 100, self)
+                end
+            end
+        end
+        sound.Play("vj_fire/fireball_explode.wav", self:GetPos())
     end)
 end
 
@@ -87,8 +89,7 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
 end
 
 function ENT:CustomOnInitialize()
-    self:SetCollisionBounds(Vector(13, 13, 50), Vector(-13, -13, 0))
-    self:SetModelScale(1.75)
+    self:SetModelScale(1.75, 0.001)
     self.HasLeapAttack = false
     self.AnimTbl_Run = ACT_WALK
     self:SetColor(Color(25, 25, 25))
@@ -109,14 +110,8 @@ function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt, isProp)
     if not self.Raged then return end
     if hitEnt and IsValid(hitEnt) and hitEnt:IsPlayer() then
         self:UnRage()
-        hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite, 35, self)
+        hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite, 25, self)
     end
-end
-
-function ENT:CustomOnThink_AIEnabled()
-	if not self:IsOnFire() then
-		self:Ignite(99999)
-	end
 end
 
 function ENT:UnRage()
@@ -153,12 +148,6 @@ end
 
 function ENT:CustomOnKilled(dmginfo,hitgroup)
 	self:StopSound("npc/fast_zombie/fz_frenzy1.wav")
-	self:Extinguish()
-end
-
-function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo,hitgroup,corpseEnt)
-	self.Corpse:Ignite(math.Rand(8,10),0)
 end
 
 VJ.AddNPC("Hell Knight","npc_vj_horde_hellknight", "Zombies")
-ENT.Immune_Fire = true
