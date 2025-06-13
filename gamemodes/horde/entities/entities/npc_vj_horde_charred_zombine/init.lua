@@ -33,10 +33,18 @@ ENT.GrenadeOut = false
 ENT.MaxGrenades = 3
 
 function ENT:CustomOnInitialize()
-	self:AddRelationship("npc_headcrab_fast D_LI 99")
-	self:AddRelationship("npc_headcrab_poison D_LI 99")
-	self:SetBodygroup(1,1)
-	self:SetColor(Color(125,50,50))
+    self:AddRelationship("npc_headcrab_fast D_LI 99")
+    self:AddRelationship("npc_headcrab_poison D_LI 99")
+    self:SetBodygroup(1,1)
+    self:SetColor(Color(125,50,50))
+    local f = ents.Create("info_particle_system")
+    f:SetKeyValue("effect_name","burning_character")
+    f:SetPos(self:GetPos())
+    f:Fire("Start","",0)
+    f:SetParent(self)
+    f:SetKeyValue("cpoint" .. 1, self:GetName())
+    f:Spawn()
+    f:Activate()
 end
 function ENT:CustomOnThink_AIEnabled()
 	if IsValid(self.Grenade) then
@@ -55,7 +63,7 @@ function ENT:CustomOnThink_AIEnabled()
 	end
 end
 function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt,isProp)
-	hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite,35)
+	hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite,25)
 end
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo,hitgroup)
 	if HORDE:IsFireDamage(dmginfo) then
