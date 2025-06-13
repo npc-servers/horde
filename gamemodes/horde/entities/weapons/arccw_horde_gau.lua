@@ -12,12 +12,12 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Minigun"
 SWEP.TrueName = "M134D"
 SWEP.Trivia_Class = "Rotary Machine Gun"
-SWEP.Trivia_Desc = "A rotary machine gun derived from the Vulcan weapons platform, this modern Minigun uses materials in its construction to reduce weight without sacrificing durability."
+SWEP.Trivia_Desc = "A rotary machine gun derived from the Vulcan weapons platform, this modern Minigun uses special materials in its construction to reduce weight without sacrificing durability."
 SWEP.Trivia_Manufacturer = "Daniel Ammon"
 SWEP.Trivia_Calibre = "7.62x51mm NATO"
 SWEP.Trivia_Mechanism = "Electronic Trigger"
 SWEP.Trivia_Country = "USA"
-SWEP.Trivia_Year = 1960
+SWEP.Trivia_Year = 2003
 
 SWEP.Slot = 2
 
@@ -88,8 +88,7 @@ SWEP.MagID = "minigun" -- the magazine pool this gun draws from
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 105 -- pitch of shoot sound
 SWEP.ShootSound = "weapons/arccw/minigun/minigun_fire.wav"
-SWEP.ShootSoundSilenced = "weapons/arccw/minigun/minigun.wav"
-SWEP.DistantShootSound = "weapons/arccw/minigun/negev-1-distant.wav" --weapons/arccw/m249/m249-1-distant.wav
+SWEP.DistantShootSound = "weapons/arccw/minigun/negev-1-distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 
@@ -99,7 +98,7 @@ SWEP.ShellScale = 2.5
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
-SWEP.SpeedMult = 0.85
+SWEP.SpeedMult = 0.875
 SWEP.SightedSpeedMult = 0.35
 SWEP.SightTime = 0.25
 
@@ -128,8 +127,7 @@ SWEP.HolsterAng = Angle(40, 0, 0)
 SWEP.BarrelOffsetSighted = Vector(5, 0, -10)
 SWEP.BarrelOffsetHip = Vector(4, 0, -6)
 
-SWEP.BarrelLength = 34
-
+SWEP.BarrelLength = 22
 SWEP.AttachmentElements = {
     ["extendedmag"] = {
         VMBodygroups = {{ind = 1, bg = 1}},
@@ -201,7 +199,7 @@ SWEP.Animations = {
         Time = 1.5
     },
     ["fire"] = {
-        Source = {"fire_1", "fire_2", "fire_3"},
+        Source = {"fire_1"},
         Time = 0.2,
         ShellEjectAt = 0
     },
@@ -213,7 +211,7 @@ SWEP.Animations = {
                 t = 0
             }
         },
-         MinProgress = 0.8,
+         MinProgress = 0.5,
      },
         ["untrigger"] = {
          Source = "idle",
@@ -235,14 +233,14 @@ sound.Add({
     name = "Weapon_M60.Boxout",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/minigun/m60_boxout.mp3"
+    sound = "weapons/arccw/minigun/minigun_boxout.wav"
 })
 
 sound.Add({
     name = "Weapon_M60.Boxin",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/minigun/m60_boxin.mp3"
+    sound = "weapons/arccw/minigun/minigun_boxin.wav"
 })
 
 sound.Add({
