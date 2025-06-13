@@ -49,7 +49,7 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
             drop_pos.z = pos.z + item.entity_properties.z
             ent:SetPos(drop_pos)
             ent:SetAngles(Angle(0, ply:GetAngles().y + item.entity_properties.yaw, 0))
-            if ent:GetClass() == "npc_vj_horde_smg_turret" then
+            if ent:GetClass() == "npc_vj_horde_smg_turret" or ent:GetClass() == "npc_vj_horde_shotgun_turret" then
                 ply:PickupObject(ent)
                 ent:GetPhysicsObject():EnableMotion(true)
             end
