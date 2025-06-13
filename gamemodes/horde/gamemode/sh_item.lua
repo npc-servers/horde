@@ -628,7 +628,7 @@ function HORDE:GetDefaultItemsData()
     {Engineer=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST}, nil, {"Engineer"})
     HORDE:CreateItem("Special",    "Manhack",        "npc_manhack",          900,  3, "Manhack that regenerates on death.\nManhack deals its health as damage to enemies.\nManhack dies on impact.",
     {Engineer=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=3}, "items/npc_manhack.png", nil, nil, {HORDE.DMG_SLASH})
-    HORDE:CreateItem("Special",    "Turret",         "npc_turret_floor",    1000,  4, "Combine Overwatch turret.\n\nUsed to guard chocke points and vital areas.",
+    HORDE:CreateItem("Special",    "SMG Turret",         "npc_vj_horde_smg_turret",    1000,  4, "Combine smg turret.\n\nUsed to guard choke points and vital areas.",
     {Engineer=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=3}, "items/npc_turret_floor.png", nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Special",    "Shotgun Turret", "npc_vj_horde_shotgun_turret",   1250,  4, "Combine shotgun turret.\n\nFires in a shotgun pattern.",
     {Engineer=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=3}, "items/shotgun_turret.png", nil, nil, {HORDE.DMG_BALLISTIC})

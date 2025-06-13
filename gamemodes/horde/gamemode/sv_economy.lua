@@ -550,9 +550,6 @@ net.Receive("Horde_BuyItem", function (len, ply)
                     end
                 end
 
-                -- Prevent players from purchasing turrets if they have the manhack skill.
-                if item.class == "npc_turret_floor" and ply:Horde_GetPerk("engineer_manhack") then return end
-
                 ply:Horde_AddMoney(-price)
                 ply:Horde_AddSkullTokens(-skull_tokens)
                 ply:Horde_AddWeight(-item.weight)
@@ -578,17 +575,6 @@ net.Receive("Horde_BuyItem", function (len, ply)
                         end
                         if HORDE.items["npc_vj_horde_combat_bot"] then
                             ent:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
-                        end
-                        if HORDE.items["npc_turret_floor"] then
-                            ent:AddRelationship("npc_turret_floor D_LI 99")
-                            ent.Horde_Immune_Status = {
-                                [HORDE.Status_Bleeding] = true,
-                                [HORDE.Status_Frostbite] = true,
-                                [HORDE.Status_Ignite] = true,
-                                [HORDE.Status_Break] = true,
-                                [HORDE.Status_Necrosis] = true,
-                                [HORDE.Status_Hemorrhage] = true,
-                            }
                         end
                         if HORDE.items["npc_manhack"] then
                             ent:AddRelationship("npc_manhack D_LI 99")
@@ -619,20 +605,11 @@ net.Receive("Horde_BuyItem", function (len, ply)
 
                     -- Special case for turrets
                     local id = ent:GetCreationID()
-                    if ent:GetClass() == "npc_turret_floor" then
+                    ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
+                    timer.Simple(0.1, function ()
+                        if not ent:IsValid() then return end
                         ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
-                        timer.Simple(0.1, function ()
-                            if not ent:IsValid() then return end
-                            ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
-                        end)
-                        HORDE:DropTurret(ent)
-                    else
-                        ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
-                        timer.Simple(0.1, function ()
-                            if not ent:IsValid() then return end
-                            ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
-                        end)
-                    end
+                    end)
 
                     -- Count Minions
                     ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() + 1)
@@ -744,10 +721,6 @@ function GM:PlayerUse(other_ply, target)    -- This will make it to be default b
     local owner = target:GetNWEntity("HordeOwner")
     if IsValid(owner) and other_ply ~= owner then return false end   -- If owner disconnected/not valid, why would we care about ownership?
 
-    if target:GetClass() == "npc_turret_floor" then
-        target:GetPhysicsObject():EnableMotion(true)
-    end
-
     return true
 end
 
@@ -774,7 +747,7 @@ function HORDE:DropTurret(ent)
 end
 
 hook.Add("OnPlayerPhysicsDrop", "Horde_TurretDrop", function (ply, ent, thrown)
-    if ent:GetNWEntity("HordeOwner") and (ent:GetClass() == "npc_turret_floor" or ent.Horde_TurretMinion) then
+    if ent:GetNWEntity("HordeOwner") and ent.Horde_TurretMinion then
         -- Turrets should always stay straight.
         local a = ent:GetAngles()
         if ent:GetClass() == "npc_vj_horde_sniper_turret" then
