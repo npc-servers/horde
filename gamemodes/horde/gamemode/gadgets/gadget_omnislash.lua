@@ -10,7 +10,7 @@ GADGET.Active = true
 GADGET.Params = {}
 GADGET.Hooks = {}
 
-local function SpawnPlayer( ply, ply_pos, ply_angles, armor )
+local function SpawnPlayer( ply, ply_pos, ply_angles, armor, flashlighton )
     if not IsValid(ply) then return end
     if ply:GetNoDraw() == false then return end
 
@@ -20,11 +20,12 @@ local function SpawnPlayer( ply, ply_pos, ply_angles, armor )
     ply:Spawn()
     ply.Horde_Fake_Respawn = nil
     ply:SetPos(ply_pos)
-    ply:SetAngles(ply_angles)
+    ply:SetEyeAngles(ply_angles)
     ply:SetNoTarget(false)
     ply.Horde_Invincible = nil
     ply:SetNoDraw(false)
     ply:DrawWorldModel(true)
+    if flashlighton then ply:Flashlight(flashlighton) end -- Prevents the flashlight noise from happening if you had your flashlight off
 
     timer.Simple( 0, function ()
         ply:SetHealth(health)
@@ -68,6 +69,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         ply.Horde_Fake_Respawn = true
         ply.Horde_Invincible = true
         local armor = ply:Armor()
+        local flashlighton = ply:FlashlightIsOn()
 
         local p = ent:GetPos()
         for i = 1, 15 do
@@ -82,12 +84,10 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                         end
                     end
 
-                    if not IsValid(ent) then
-                        ply.Horde_In_Omni = nil
-                        timer.Simple( 0.5, function ()
-                        SpawnPlayer(ply, ply_pos, ply_angles, armor)
-                        end )
-                    end
+                    ply.Horde_In_Omni = nil
+                    timer.Simple( 0.5, function ()
+                        SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
+                    end )
                 end
                 local dmg = DamageInfo()
                 dmg:SetAttacker(ply)
@@ -105,7 +105,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                 else
                     ply.Horde_In_Omni = nil
                     timer.Simple( 0.5, function ()
-                    SpawnPlayer(ply, ply_pos, ply_angles, armor)
+                    SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
                     end )
                     return
                 end
@@ -113,7 +113,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                 if i == 15 then
                     ply.Horde_In_Omni = nil
                     timer.Simple( 0.5, function ()
-                    SpawnPlayer(ply, ply_pos, ply_angles, armor)
+                    SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
                     end )
                 end
             end )
