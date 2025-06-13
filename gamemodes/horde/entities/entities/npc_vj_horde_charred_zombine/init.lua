@@ -5,7 +5,6 @@ ENT.Model = {"models/zombie/zombie_soldier.mdl"}
 ENT.StartHealth = 350
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
 ENT.BloodColor = "Red"
-ENT.Immune_Fire = true
 ENT.MeleeAttackDamage = 35
 ENT.AnimTbl_MeleeAttack = {"vjseq_fastattack"}
 ENT.MeleeAttackDistance = 40
@@ -54,9 +53,6 @@ function ENT:CustomOnThink_AIEnabled()
 			self:CreateGrenade()
 		end
 	end
-	if not self:IsOnFire() then
-		self:Ignite(99999)
-	end
 end
 function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt,isProp)
 	hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite,35)
@@ -71,7 +67,6 @@ end
 function ENT:CustomOnKilled(dmginfo,hitgroup)
 	timer.Remove("GrenadeSpawn")
 	timer.Remove("GrenadeReset")
-	self:Extinguish()
 	if IsValid(self.Grenade) then
 		local att = self:GetAttachment(self:LookupAttachment("grenade_attachment"))
 		self.Grenade:SetOwner(NULL)
@@ -86,9 +81,6 @@ function ENT:CustomOnKilled(dmginfo,hitgroup)
 			phys:Wake()
 		end
 	end
-end
-function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo,hitgroup,corpseEnt)
-	self.Corpse:Ignite(math.Rand(8,10),0)
 end
 function ENT:CreateGrenade()
 	self:VJ_ACT_PLAYACTIVITY("pullgrenade",true,false,true)
