@@ -48,8 +48,8 @@ function ENT:BecomeFriendlyToPlayers()
     if HORDE.items["npc_vj_horde_combat_bot"] then
         self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
     end
-    if HORDE.items["npc_turret_floor"] then
-        self:AddRelationship("npc_turret_floor D_LI 99")
+    if HORDE.items["npc_vj_horde_smg_turret"] then
+        self:AddRelationship("npc_vj_horde_smg_turret D_LI 99")
     end
     if HORDE.items["npc_manhack"] then
         self:AddRelationship("npc_manhack D_LI 99")

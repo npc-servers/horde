@@ -69,7 +69,7 @@ ENT.EntitiesToNoCollide = {
     "npc_vj_horde_rocket_turret",
     "npc_vj_horde_class_survivor",
     "npc_vj_horde_class_assault",
-    "npc_turret_floor",
+    "npc_vj_horde_smg_turret",
     "npc_manhack"
 }
 
@@ -147,7 +147,7 @@ function ENT:CustomOnInitialize()
 	self:SetColor(Color(0, 0, 100, 200))
 	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
 	self:SetHealth(90 + 2 * 16 * self.properties.level)
-	self:AddRelationship("npc_turret_floor D_LI 99")
+	self:AddRelationship("npc_vj_horde_smg_turret D_LI 99")
 	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 	self:AddRelationship("npc_manhack D_LI 99")
 	self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
@@ -227,7 +227,7 @@ function ENT:DoEntityRelationshipCheck()
 					entFri = true
 					self:AddEntityRelationship(v, D_LI, 99)
 				end
-				if vClass == "npc_turret_floor" or vClass == "npc_vj_horde_combat_bot" or vClass == "npc_vj_horde_vortigaunt" or vClass == "npc_manhack" then
+				if vClass == "npc_vj_horde_smg_turret" or vClass == "npc_vj_horde_combat_bot" or vClass == "npc_vj_horde_vortigaunt" or vClass == "npc_manhack" then
 					entFri = true
 					self:AddEntityRelationship(v, D_LI, 99)
 				else
