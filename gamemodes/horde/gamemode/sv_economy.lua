@@ -581,6 +581,14 @@ net.Receive("Horde_BuyItem", function (len, ply)
                         end
                         if HORDE.items["npc_turret_floor"] then
                             ent:AddRelationship("npc_turret_floor D_LI 99")
+                            ent.Horde_Immune_Status = {
+                                [HORDE.Status_Bleeding] = true,
+                                [HORDE.Status_Frostbite] = true,
+                                [HORDE.Status_Ignite] = true,
+                                [HORDE.Status_Break] = true,
+                                [HORDE.Status_Necrosis] = true,
+                                [HORDE.Status_Hemorrhage] = true,
+                            }
                         end
                         if HORDE.items["npc_manhack"] then
                             ent:AddRelationship("npc_manhack D_LI 99")

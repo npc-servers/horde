@@ -25,6 +25,14 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:SetColor(Color(255,0,0,255))
     ent:Spawn()
     ent.Horde_Is_Mini_Sentry = true
+    ent.Horde_Immune_Status = {
+        [HORDE.Status_Bleeding] = true,
+        [HORDE.Status_Frostbite] = true,
+        [HORDE.Status_Ignite] = true,
+        [HORDE.Status_Break] = true,
+        [HORDE.Status_Necrosis] = true,
+        [HORDE.Status_Hemorrhage] = true,
+    }
 
     -- Minions have no player collsion
     ent:AddRelationship("player D_LI 99")
