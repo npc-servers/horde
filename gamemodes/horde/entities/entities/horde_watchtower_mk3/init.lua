@@ -28,6 +28,7 @@ function ENT:Initialize()
     self.Horde_LastMovePos = self:GetPos()
     self.Horde_IdleStart = CurTime()
     self.Horde_Idle = false
+    self.Horde_Immune_Status_All = true
     self:SetColor(Color(0, 150, 255))
 
     if self.Horde_Owner:Horde_GetPerk("warden_restock") then
