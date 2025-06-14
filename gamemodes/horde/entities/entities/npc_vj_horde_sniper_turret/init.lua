@@ -88,7 +88,6 @@ ENT.Horde_Immune_Status = {
 ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
-	self:PhysicsInitBox(Vector(-13, -13, 20), Vector(13, 13, 0))
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,180))
