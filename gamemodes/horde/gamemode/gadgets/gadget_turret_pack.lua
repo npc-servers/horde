@@ -11,7 +11,7 @@ GADGET.Hooks = {}
 GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_turret_pack" then return end
-    local ent = ents.Create("npc_vj_smg_turret")
+    local ent = ents.Create("npc_vj_horde_smg_turret")
     local pos = ply:GetPos()
     local dir = (ply:GetEyeTrace().HitPos - pos)
     dir:Normalize()
