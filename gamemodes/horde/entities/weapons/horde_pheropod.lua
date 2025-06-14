@@ -198,8 +198,8 @@ function SWEP:RaiseAntlion()
 		if HORDE.items["npc_vj_horde_combat_bot"] then
 			ent:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 		end
-		if HORDE.items["npc_turret_floor"] then
-			ent:AddRelationship("npc_turret_floor D_LI 99")
+		if HORDE.items["npc_vj_horde_smg_turret"] then
+			ent:AddRelationship("npc_vj_horde_smg_turret D_LI 99")
 		end
 		if HORDE.items["npc_manhack"] then
 			ent:AddRelationship("npc_manhack D_LI 99")

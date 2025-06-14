@@ -47,15 +47,15 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
             dir:Normalize()
             local drop_pos = pos + dir * item.entity_properties.x
             drop_pos.z = pos.z + item.entity_properties.z
+            local drop_ang = Angle(0, ply:GetAngles().y + item.entity_properties.yaw, 0)
+            if ent:GetClass() == "npc_vj_horde_sniper_turret" then
+                drop_ang.r = 180
+            end
             ent:SetPos(drop_pos)
-            ent:SetAngles(Angle(0, ply:GetAngles().y + item.entity_properties.yaw, 0))
-            if ent:GetClass() == "npc_turret_floor" then
+            ent:SetAngles(drop_ang)
+            if ent.MovementType == VJ_MOVETYPE_STATIONARY then
                 ply:PickupObject(ent)
                 ent:GetPhysicsObject():EnableMotion(true)
-            end
-            if ent:GetClass() == "npc_vj_horde_rocket_turret" then
-                ent:SetAngles(Angle(0,0,0))
-                HORDE:DropTurret(ent)
             end
             ent:SetHealth(math.min(ent:GetMaxHealth(), ent:GetMaxHealth() * 0.05 + ent:Health()))
         else
