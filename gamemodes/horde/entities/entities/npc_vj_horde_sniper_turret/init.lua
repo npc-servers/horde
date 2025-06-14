@@ -89,11 +89,11 @@ ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
+	self:SetModelScale(1.5)
+	self:PhysicsInit(SOLID_VPHYSICS)
+
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,180))
-		self:SetModelScale(1.5)
-		self:PhysicsInit(SOLID_VPHYSICS)
-
 		HORDE:DropTurret(self)
 	end)
 end
@@ -171,6 +171,7 @@ end
 VJ.AddNPC("Sniper Turret","npc_vj_horde_sniper_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
+-- This is the only turret that really needs the cooldown as it tends to get stuck in the ground without one
 ENT.Horde_PickupCooldown = ENT.Horde_PickupCooldown or 0
 
 function ENT:Follow(ply)

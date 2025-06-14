@@ -90,6 +90,7 @@ function ENT:CustomOnInitialize()
 	self:SetSkin(math.random(0,3))
 	self:PhysicsInitBox(Vector(-20, -20, 0), Vector(20, 20, 40))
 	self:SetCollisionBounds(Vector(-20, -20, 0), Vector(20, 20, 80))
+
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,0))
 		HORDE:DropTurret(self)
@@ -166,18 +167,13 @@ end
 VJ.AddNPC("Laser Turret","npc_vj_horde_laser_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
-ENT.Horde_PickupCooldown = ENT.Horde_PickupCooldown or 0
-
 function ENT:Follow(ply)
 	if self:GetNWEntity("HordeOwner") ~= ply then return end
-	if self.Horde_PickupCooldown > CurTime() then
-		HORDE:SendNotification("Please wait to pick up your turret again...", 1, ply)
-		return
-	end
+
 	local p = self:GetPos()
 	p.z = ply:GetPos().z + 12
 	self:SetPos(p)
-	ply:PickupObject(self)
+
 	self:GetPhysicsObject():EnableMotion(true)
-	self.Horde_PickupCooldown = CurTime() + 0.57
+	ply:PickupObject(self)
 end

@@ -91,6 +91,9 @@ ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
     self:SetCollisionBounds( Vector( 13, 13, 60 ), Vector( -13, -13, 0 ) )
+    self:PhysicsInit( SOLID_VPHYSICS )
+    self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
+
     timer.Simple( 0.1, function ()
         HORDE:DropTurret( self )
     end )
@@ -198,16 +201,8 @@ function ENT:Follow( ply )
     local a = self:GetAngles()
     self:SetAngles( Angle( 0, a.y, 0 ) )
 
-    self:PhysicsInit( SOLID_VPHYSICS )
     ply:PickupObject( self )
     self:GetPhysicsObject():EnableMotion( true )
-    self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
-    self.Horde_Pickedup = true
-    timer.Simple( 0.2, function ()
-        if self:IsValid() then
-            self.Horde_Pickedup = nil
-        end
-    end )
 end
 
 VJ.AddNPC( "SMG Turret", "npc_vj_horde_smg_turret", "Horde" )

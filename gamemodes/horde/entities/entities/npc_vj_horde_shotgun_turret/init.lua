@@ -94,11 +94,13 @@ ENT.Horde_Immune_Status = {
 ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
+	self:SetColor(Color(0,255,255))
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
+	self:PhysicsInit(SOLID_VPHYSICS)
+
 	timer.Simple(0.1, function ()
 		HORDE:DropTurret(self)
 	end)
-	self:SetColor(Color(0,255,255))
 end
 
 function ENT:CustomOnThink_AIEnabled()
@@ -205,21 +207,11 @@ VJ.AddNPC("Shotgun Turret","npc_vj_horde_shotgun_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
 function ENT:Follow(ply)
-	if self:GetNWEntity("HordeOwner") == ply then
-		--local p = self:GetPos()
-		--p.z = ply:GetPos().z
-		local a = self:GetAngles()
-		self:SetAngles(Angle(0,a.y,0))
-		--self:SetPos(p)
-		self:PhysicsInit(SOLID_VPHYSICS)
-        ply:PickupObject(self)
-		self:GetPhysicsObject():EnableMotion(true)
-		self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
-		self.Horde_Pickedup = true
-		timer.Simple(0.2, function ()
-			if self:IsValid() then
-				self.Horde_Pickedup = nil
-			end
-		end)
-    end
+	if self:GetNWEntity("HordeOwner") != ply then return end
+
+	local a = self:GetAngles()
+	self:SetAngles(Angle(0,a.y,0))
+
+	self:GetPhysicsObject():EnableMotion(true)
+	ply:PickupObject(self)
 end
