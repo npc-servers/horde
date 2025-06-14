@@ -378,6 +378,8 @@ if SERVER then
 			end
 		end
 
+		ENT.DeadPlayers = deadPlayers
+
 		net.Start( "horde_update_deadplayers" )
 		net.WriteUInt( table.Count( deadPlayers ), 8 )
 		for deadPly, pos in pairs( deadPlayers ) do
