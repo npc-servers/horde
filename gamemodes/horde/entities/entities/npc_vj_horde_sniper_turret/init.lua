@@ -92,6 +92,8 @@ function ENT:CustomOnInitialize()
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,180))
 		self:SetModelScale(1.5)
+		self:PhysicsInit(SOLID_VPHYSICS)
+
 		HORDE:DropTurret(self)
 	end)
 end
@@ -177,8 +179,9 @@ function ENT:Follow(ply)
 		HORDE:SendNotification("Please wait to pick up your turret again...", 1, ply)
 		return
 	end
-	self:PhysicsInit(SOLID_VPHYSICS)
-		ply:PickupObject(self)
+
 	self:GetPhysicsObject():EnableMotion(true)
+	ply:PickupObject(self)
+
 	self.Horde_PickupCooldown = CurTime() + 0.57
 end
