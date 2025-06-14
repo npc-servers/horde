@@ -83,11 +83,12 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                             break
                         end
                     end
-
-                    ply.Horde_In_Omni = nil
-                    timer.Simple( 0.5, function ()
+                    if not IsValid(ent) then
+                        ply.Horde_In_Omni = nil
+                        timer.Simple( 0.5, function ()
                         SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
-                    end )
+                        end )
+                    end
                 end
                 local dmg = DamageInfo()
                 dmg:SetAttacker(ply)
