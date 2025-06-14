@@ -32,7 +32,7 @@ ENT.NextRangeAttackTime = 0 -- How much time until it can use a range attack?
 ENT.NextAnyAttackTime_Range = 0 -- How much time until it can use any attack again? | Counted in Seconds
 -- ====== Distance Variables ====== --
 ENT.TimeUntilRangeAttackProjectileRelease = 0 -- How much time until the projectile code is ran?
-ENT.RangeDistance = 1000 -- This is how far away it can shoot
+ENT.RangeDistance = 2000 -- This is how far away it can shoot
 ENT.RangeToMeleeDistance = 0 -- How close does it have to be until it uses melee?
 ENT.NextRangeAttackTime = 0 -- How much time until it can use a range attack?
 ENT.HasFootStepSound = false
@@ -133,11 +133,11 @@ function ENT:FireBullet( gunPos )
     bullet.Num = 1
     bullet.Src = gunPos
     bullet.Dir = ( self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter() + Vector( 0, 0, 10 ) ) - gunPos
-    bullet.Spread = Vector( math.Rand( -50, 50 ), math.Rand( -50, 50 ), math.Rand( -50, 50 ) )
+    bullet.Spread = Vector( 50, 50, 0 )
     bullet.Tracer = 1
     bullet.TracerName = "Tracer"
     bullet.Force = 1
-    bullet.Damage = 6
+    bullet.Damage = 10
     bullet.AmmoType = "Pistol"
     self:FireBullets( bullet )
 end
