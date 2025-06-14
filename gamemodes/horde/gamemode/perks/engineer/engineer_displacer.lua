@@ -53,8 +53,10 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
             end
             ent:SetPos(drop_pos)
             ent:SetAngles(drop_ang)
-            ply:PickupObject(ent)
-            ent:GetPhysicsObject():EnableMotion(true)
+            if ent.MovementType == VJ_MOVETYPE_STATIONARY then
+                ply:PickupObject(ent)
+                ent:GetPhysicsObject():EnableMotion(true)
+            end
             ent:SetHealth(math.min(ent:GetMaxHealth(), ent:GetMaxHealth() * 0.05 + ent:Health()))
         else
             return true
