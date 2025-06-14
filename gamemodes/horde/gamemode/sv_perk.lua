@@ -33,7 +33,7 @@ function plymeta:Horde_ApplyPerksForClass()
         local curWave = HORDE.current_wave
         local perkWaveRequirement = HORDE:Horde_GetWaveForPerk(perk_level)
 
-        if curWave >= perkWaveRequirement or (curWave == perkWaveRequirement and HORDE.current_break_time > 0) then
+        if curWave > perkWaveRequirement or (curWave == perkWaveRequirement and HORDE.current_break_time > 0) then
             local c = math.min(2, math.max(1, self.Horde_PerkChoices[class][perk_level] or 1))
             local choice = v.choices[c]
             if not choice then error("Invalid choice in perk level " .. perk_level .. " for " .. class .. "!") return end
