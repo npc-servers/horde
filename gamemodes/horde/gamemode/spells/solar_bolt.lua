@@ -16,12 +16,7 @@ SPELL.Fire           = function (ply, wpn, charge_stage)
         local tr = util.TraceLine({
             start = src,
             endpos = src + dir * d,
-            filter = function(ent)
-                if !IsValid(ent) then return true end
-                if IsValid(ply.Horde_Floating_Chaos) and ent == ply.Horde_Floating_Chaos then return false end
-                if HORDE:IsPlayerOrMinion(ent) then return false end
-                return true
-            end
+            filter = {ply, ply.Horde_Floating_Chaos},
         })
         net.Start("Horde_SolarStormTracer")
             net.WriteUInt(charge_stage - 1, 3)
