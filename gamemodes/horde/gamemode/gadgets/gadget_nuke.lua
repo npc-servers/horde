@@ -50,7 +50,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         endpos = ply:GetShootPos() + ply:GetAimVector() * 80000,
         filter = function(ent)
             if not IsValid(ent) then return true end
-            if not HORDE:IsEnemy(ent) then return false end
+            if HORDE:IsPlayerOrMinion(ent) then return false end
             return true
         end,
         mask = MASK_SOLID
