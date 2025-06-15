@@ -10,27 +10,17 @@ GADGET.Active = true
 GADGET.Params = {}
 GADGET.Hooks = {}
 
-local function SpawnPlayer( ply, ply_pos, ply_angles, armor, flashlighton )
+local function SpawnPlayer( ply, ply_pos )
     if not IsValid(ply) then return end
     if ply:GetNoDraw() == false then return end
 
-    local health = ply:Health()
+    ply.Horde_In_Omni = nil
     ply:UnSpectate()
-    ply:DrawViewModel(true)
-    ply:Spawn()
-    ply.Horde_Fake_Respawn = nil
-    ply:SetPos(ply_pos)
-    ply:SetEyeAngles(ply_angles)
-    ply:SetNoTarget(false)
-    ply.Horde_Invincible = nil
     ply:SetNoDraw(false)
-    ply:DrawWorldModel(true)
-    if flashlighton then ply:Flashlight(flashlighton) end -- Prevents the flashlight noise from happening if you had your flashlight off
-
-    timer.Simple( 0, function ()
-        ply:SetHealth(health)
-        ply:SetArmor(armor)
-    end )
+    ply:DrawViewModel(true)
+    ply:SetPos(ply_pos)
+    ply:UnLock()
+    ply:SetNoTarget(false)
 end
 
 GADGET.Hooks.Horde_UseActiveGadget = function (ply)
@@ -40,7 +30,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     local tr = util.TraceHull( {
         start = ply:GetShootPos(),
         endpos = ply:GetShootPos() + ply:GetAimVector() * 5000,
-        filter = {ply},
+        filter = { "player" },
         mins = Vector(-16, -16, -8),
         maxs = Vector(16, 16, 8),
         mask = MASK_SHOT_HULL
@@ -48,28 +38,17 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
 
     local ent = tr.Entity
 
-    if not ent:IsValid() then
-        ply:EmitSound("items/suitchargeno1.wav")
-        ply:Horde_SetGadgetCooldown(1)
-        return
-    end
-
-    if HORDE:IsEnemy(ent) then
+    if ent:IsValid() and HORDE:IsEnemy(ent) then
         ply:Horde_SetGadgetCooldown(15)
         local ply_pos = ply:GetPos()
-        local ply_angles = ply:GetAngles()
+
+        ply.Horde_In_Omni = true
         ply:Spectate(OBS_MODE_CHASE)
         ply:SpectateEntity(ent)
         ply:SetNoDraw(true)
-        ply:DrawWorldModel(false)
-        ply:SetNoTarget(true)
-        ply:SetMoveType(MOVETYPE_NONE)
         ply:DrawViewModel(false)
-        ply.Horde_In_Omni = true
-        ply.Horde_Fake_Respawn = true
-        ply.Horde_Invincible = true
-        local armor = ply:Armor()
-        local flashlighton = ply:FlashlightIsOn()
+        ply:SetNoTarget(true)
+        ply:Lock()
 
         local p = ent:GetPos()
         for i = 1, 15 do
@@ -84,9 +63,8 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                         end
                     end
                     if not IsValid(ent) then
-                        ply.Horde_In_Omni = nil
                         timer.Simple( 0.5, function ()
-                        SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
+                        SpawnPlayer(ply, ply_pos)
                         end )
                     end
                 end
@@ -104,22 +82,23 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
                     util.Effect("horde_omnislash_effect", ed, true, true)
                     p = ent:GetPos()
                 else
-                    ply.Horde_In_Omni = nil
                     timer.Simple( 0.5, function ()
-                    SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
+                    SpawnPlayer(ply, ply_pos)
                     end )
                     return
                 end
 
                 if i == 15 then
-                    ply.Horde_In_Omni = nil
                     timer.Simple( 0.5, function ()
-                    SpawnPlayer(ply, ply_pos, ply_angles, armor, flashlighton)
+                    SpawnPlayer(ply, ply_pos)
                     end )
                 end
             end )
         end
     else
+        ply:EmitSound("items/suitchargeno1.wav")
+        ply:Horde_SetGadgetCooldown(1)
+
         return true
     end
 end
