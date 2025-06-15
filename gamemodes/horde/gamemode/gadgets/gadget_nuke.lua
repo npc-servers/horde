@@ -45,9 +45,20 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
 
     ply.Horde_NukeCooldown = CurTime() + 90
 
+    local trace = util.TraceLine( {
+        start = ply:GetShootPos(),
+        endpos = ply:GetShootPos() + ply:GetAimVector() * 80000,
+        filter = function(ent)
+            if not IsValid(ent) then return true end
+            if not HORDE:IsEnemy(ent) then return false end
+            return true
+        end,
+        mask = MASK_SOLID
+    } )
+
     local ent = ents.Create("horde_nuke")
     ent:Spawn()
-    local pos = ply:GetEyeTrace().HitPos
+    local pos = trace.HitPos
     local bs = CreateSound(game.GetWorld(), "ambient/alarms/siren.wav")
     bs:SetSoundLevel(0)
     bs:Play()
