@@ -15,6 +15,7 @@ local function SpawnPlayer( ply, ply_pos )
     if ply:GetNoDraw() == false then return end
 
     ply.Horde_In_Omni = nil
+    ply.Horde_Immune_Status_All = false
     ply:UnSpectate()
     ply:SetNoDraw(false)
     ply:DrawViewModel(true)
@@ -43,6 +44,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         local ply_pos = ply:GetPos()
 
         ply.Horde_In_Omni = true
+        ply.Horde_Immune_Status_All = true
         ply:Spectate(OBS_MODE_CHASE)
         ply:SpectateEntity(ent)
         ply:SetNoDraw(true)
@@ -98,7 +100,5 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     else
         ply:EmitSound("items/suitchargeno1.wav")
         ply:Horde_SetGadgetCooldown(1)
-
-        return true
     end
 end
