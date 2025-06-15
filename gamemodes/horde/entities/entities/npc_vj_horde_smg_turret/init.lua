@@ -6,7 +6,7 @@ include( "shared.lua" )
     without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = "models/combine_turrets/floor_turret.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 200
+ENT.StartHealth = 400
 ENT.SightDistance = 8000
 ENT.HullType = HULL_HUMAN
 ENT.MovementType = VJ_MOVETYPE_STATIONARY
@@ -135,11 +135,11 @@ function ENT:FireBullet( gunPos )
     bullet.Num = 1
     bullet.Src = gunPos
     bullet.Dir = ( self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter() + Vector( 0, 0, 10 ) ) - gunPos
-    bullet.Spread = Vector( 44.5, 44.5, 0 )
+    bullet.Spread = Vector( 43.58, 43.58, 0 )
     bullet.Tracer = 1
     bullet.TracerName = "Tracer"
     bullet.Force = 1
-    bullet.Damage = 12
+    bullet.Damage = 15
     bullet.AmmoType = "Pistol"
     self:FireBullets( bullet )
 end
