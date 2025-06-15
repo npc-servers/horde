@@ -21,7 +21,8 @@ SPELL.Fire           = function (ply, wpn, charge_stage)
                 if IsValid(ply.Horde_Floating_Chaos) and ent == ply.Horde_Floating_Chaos then return false end
                 if HORDE:IsPlayerOrMinion(ent) then return false end
                 return true
-            end
+            end,
+            mask = MASK_SOLID
         })
         net.Start("Horde_SolarStormTracer")
             net.WriteUInt(charge_stage - 1, 3)
