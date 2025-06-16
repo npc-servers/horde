@@ -11,16 +11,7 @@ SPELL.Icon            = "spells/supernova.png"
 SPELL.Type            = {HORDE.Spell_Type_AOE}
 SPELL.Description     = "Generates a supernova that immolates anything near it.\nWill also explode to deal additional damage."
 SPELL.Fire            = function (ply, wpn, charge_stage)
-    local tr = util.TraceLine({
-        start = ply:GetShootPos(),
-        endpos = ply:GetShootPos() + ply:GetAimVector() * 80000,
-        filter = function(ent)
-            if not IsValid(ent) then return true end
-            if HORDE:IsPlayerOrMinion(ent) then return false end
-            return true
-        end,
-        mask = MASK_SOLID
-    })
+    local tr = traceSolidIgnoreAllies(ply)
     if not tr.Hit then return end
     local pos = tr.HitPos
     pos.z = pos.z + 100
