@@ -44,14 +44,14 @@ SWEP.Melee2Damage = 400
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_SLASH
-SWEP.MeleeRange = 85
+SWEP.MeleeRange = 150
 SWEP.MeleeAttackTime = 0.5
-SWEP.MeleeTime = 1
+SWEP.MeleeTime = 0.8
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 90
+SWEP.Melee2Range = 150
 SWEP.Melee2AttackTime = 0.75
-SWEP.Melee2Time = 1.5
+SWEP.Melee2Time = 1
 
 SWEP.MeleeSwingSound = {
     "horde/weapons/zweihander/swing_hard_1.ogg",
