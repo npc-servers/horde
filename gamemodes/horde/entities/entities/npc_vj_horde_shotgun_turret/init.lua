@@ -138,17 +138,23 @@ function ENT:CustomOnThink_AIEnabled()
 	end
 end
 
+local coneAngleDegrees = 5
+local coneAngleTangent = math.tan(math.rad(coneAngleDegrees))
+local bulletSpreadCone = Vector(coneAngleTangent, coneAngleTangent, 0)
+
 function ENT:FireBullet(gunPos)
+	local enemy = self:GetEnemy()
 	local bullet = {}
 	bullet.Num = 1
 	bullet.Src = gunPos
-	bullet.Dir = (self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter() + Vector(0,0,10)) - gunPos
-	bullet.Spread = Vector(math.random(-35, 35), math.random(-35, 35), math.random(-35, 35))
+	bullet.Dir = (enemy:GetPos() + enemy:OBBCenter() + Vector(0,0,10) - gunPos):GetNormalized()
+	bullet.Spread = bulletSpreadCone
 	bullet.Tracer = 1
 	bullet.TracerName = "arccw_tracer"
 	bullet.Force = 5
 	bullet.Damage = 20
 	bullet.AmmoType = "SMG1"
+
 	self:FireBullets(bullet)
 end
 
