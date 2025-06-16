@@ -39,8 +39,8 @@ SWEP.ViewModelFOV = 60
 SWEP.DefaultSkin = 0
 SWEP.DefaultWMSkin = 0
 
-SWEP.MeleeDamage = 160
-SWEP.Melee2Damage = 28
+SWEP.MeleeDamage = 175
+SWEP.Melee2Damage = 35
 
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
@@ -238,9 +238,8 @@ function SWEP:Bash(melee2)
     mat = mat * self:GetBuff_Mult("Mult_MeleeAttackTime") * math.pow(mult, 1.5)
 
     self:SetTimer(mat or (0.125 * mt), function()
-        if !IsValid(self) then return end
-        if !IsValid(self:GetOwner()) then return end
-        if self:GetOwner():GetActiveWeapon() != self then return end
+        if not IsValid(self) or not IsValid(self:GetOwner()) then return end
+        if self:GetOwner():GetActiveWeapon() ~= self then return end
 
         if CLIENT then
             self:OurViewPunch(-self.BashAng * 0.05)
@@ -259,7 +258,7 @@ function SWEP:Reload()
     self.Weapon:SendWeaponAnim(ACT_VM_HOLSTER)
 	self:SetNextPrimaryFire(CurTime() + 1)
 	timer.Simple(1, function ()
-		if !IsValid(self.Weapon) then return end
+		if not IsValid(self.Weapon) then return end
 		self.Weapon:SendWeaponAnim(ACT_VM_IDLE)
 		local ammo = self.Owner:GetAmmoCount(self.Primary.Ammo)
 		local clip = math.min(self.Primary.ClipSize, ammo + self:Clip1())
