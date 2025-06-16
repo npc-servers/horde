@@ -389,7 +389,7 @@ function HORDE:GetDefaultEnemiesData ()
     HORDE:CreateEnemy("Gamma Gonome", "npc_vj_horde_gamma_gonome", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song9.mp3", music_duration = 76}, "none")
     HORDE:CreateEnemy("Subject: Wallace Breen", "npc_vj_horde_breen", 1, 10, true,  1, 1, 10, 1, nil, nil, nil,
-    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl2_song5.mp3", music_duration = 47}, "decay")
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl2_song5.mp3", music_duration = 69}, "decay")
     HORDE:CreateEnemy("Xen Destroyer Unit","npc_vj_horde_xen_destroyer_unit", 1,    10, true,  1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song22.mp3", music_duration = 196}, "none")
     HORDE:CreateEnemy("Xen Psychic Unit","npc_vj_horde_xen_psychic_unit", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
