@@ -229,6 +229,8 @@ function HORDE:GetDefaultEnemiesData ()
 
         HORDE:CreateEnemy("Weeper", "npc_vj_horde_weeper",  0.12, 7, true, 1, 1, 2, 1, nil, nil,nil, nil,nil, nil, nil, 1)
         HORDE:CreateEnemy("Yeti",   "npc_vj_horde_yeti",    0.08, 7, true, 1, 1, 2.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
+        
+        HORDE:CreateEnemy("Plague Elite", "npc_vj_horde_plague_elite", 0.01, 8, true, 1, 1, 4, 1, nil, nil, nil, nil, nil, nil, nil, 1)
 
     end
 
