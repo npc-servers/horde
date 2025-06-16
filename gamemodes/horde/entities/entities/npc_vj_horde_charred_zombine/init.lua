@@ -5,7 +5,6 @@ ENT.Model = {"models/zombie/zombie_soldier.mdl"}
 ENT.StartHealth = 350
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
 ENT.BloodColor = "Red"
-ENT.Immune_Fire = true
 ENT.MeleeAttackDamage = 35
 ENT.AnimTbl_MeleeAttack = {"vjseq_fastattack"}
 ENT.MeleeAttackDistance = 40
@@ -34,10 +33,18 @@ ENT.GrenadeOut = false
 ENT.MaxGrenades = 3
 
 function ENT:CustomOnInitialize()
-	self:AddRelationship("npc_headcrab_fast D_LI 99")
-	self:AddRelationship("npc_headcrab_poison D_LI 99")
-	self:SetBodygroup(1,1)
-	self:SetColor(Color(125,50,50))
+    self:AddRelationship("npc_headcrab_fast D_LI 99")
+    self:AddRelationship("npc_headcrab_poison D_LI 99")
+    self:SetBodygroup(1,1)
+    self:SetColor(Color(125,50,50))
+    local f = ents.Create("info_particle_system")
+    f:SetKeyValue("effect_name","burning_character")
+    f:SetPos(self:GetPos())
+    f:Fire("Start","",0)
+    f:SetParent(self)
+    f:SetKeyValue("cpoint" .. 1, self:GetName())
+    f:Spawn()
+    f:Activate()
 end
 function ENT:CustomOnThink_AIEnabled()
 	if IsValid(self.Grenade) then
@@ -54,12 +61,9 @@ function ENT:CustomOnThink_AIEnabled()
 			self:CreateGrenade()
 		end
 	end
-	if not self:IsOnFire() then
-		self:Ignite(99999)
-	end
 end
 function ENT:CustomOnMeleeAttack_AfterChecks(hitEnt,isProp)
-	hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite,35)
+	hitEnt:Horde_AddDebuffBuildup(HORDE.Status_Ignite,25)
 end
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo,hitgroup)
 	if HORDE:IsFireDamage(dmginfo) then
@@ -71,7 +75,6 @@ end
 function ENT:CustomOnKilled(dmginfo,hitgroup)
 	timer.Remove("GrenadeSpawn")
 	timer.Remove("GrenadeReset")
-	self:Extinguish()
 	if IsValid(self.Grenade) then
 		local att = self:GetAttachment(self:LookupAttachment("grenade_attachment"))
 		self.Grenade:SetOwner(NULL)
@@ -86,9 +89,6 @@ function ENT:CustomOnKilled(dmginfo,hitgroup)
 			phys:Wake()
 		end
 	end
-end
-function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo,hitgroup,corpseEnt)
-	self.Corpse:Ignite(math.Rand(8,10),0)
 end
 function ENT:CreateGrenade()
 	self:VJ_ACT_PLAYACTIVITY("pullgrenade",true,false,true)

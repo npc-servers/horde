@@ -219,7 +219,7 @@ function SWEP:Hook_ShouldNotSight()
     return true
 end
 
-SWEP.LockDuration = 0.5
+SWEP.LockDuration = 0.3
 sound.Add({
     name = "JAVELIN_LOCK",
     channel = 16,
