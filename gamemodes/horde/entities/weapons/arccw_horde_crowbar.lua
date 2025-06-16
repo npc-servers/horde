@@ -32,8 +32,8 @@ SWEP.ViewModelFOV = 55
 SWEP.DefaultSkin = 0
 SWEP.DefaultWMSkin = 0
 
-SWEP.MeleeDamage = 60
-SWEP.Melee2Damage = 90
+SWEP.MeleeDamage = 75
+SWEP.Melee2Damage = 100
 
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
