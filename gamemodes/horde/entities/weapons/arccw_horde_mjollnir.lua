@@ -154,7 +154,6 @@ function SWEP:Hook_PostBash(info)
                 dmg:SetInflictor(self)
                 dmg:SetDamagePosition(info.tr.HitPos)
                 ent:TakeDamageInfo(dmg)
-                ent:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmginfo:GetDamage() * 0.75, attacker, dmginfo:GetDamagePosition())
             end
         end
         timer.Simple(0.4, function ()
