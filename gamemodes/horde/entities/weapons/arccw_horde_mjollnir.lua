@@ -11,13 +11,13 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Mjollnir"
+SWEP.PrintName = "Mjölnir"
 SWEP.Trivia_Class = "Melee Weapon"
 SWEP.Trivia_Desc = "Warhammer."
-SWEP.Trivia_Manufacturer = "Asgard"
+SWEP.Trivia_Manufacturer = "Eitri & Brokkr"
 SWEP.Trivia_Calibre = "N/A"
 SWEP.Trivia_Mechanism = "Club Weapon"
-SWEP.Trivia_Country = "Asgard"
+SWEP.Trivia_Country = "Ásgarðr"
 SWEP.Trivia_Year = 2018
 
 SWEP.Slot = 0
@@ -39,13 +39,13 @@ SWEP.Melee2Damage = 0
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_CLUB
-SWEP.MeleeRange = 50
+SWEP.MeleeRange = 105
 SWEP.MeleeAttackTime = 0.15
 SWEP.MeleeTime = 0.8
 SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 55
+SWEP.Melee2Range = 95
 SWEP.Melee2AttackTime = 0.1
 SWEP.Melee2Time = 0.5
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2

@@ -363,29 +363,29 @@ end
 function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Melee",      "Combat Knife",   "arccw_horde_knife",    100,  0, "A reliable bayonet.\nRMB to deal a heavy slash.",
     nil, 10, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH}, nil, {"Berserker", "Samurai", "Cyborg Ninja"})
-    HORDE:CreateItem("Melee",      "Crowbar",        "arccw_horde_crowbar", 750,  3, "A trusty crowbar.\nEasy to use.",
+    HORDE:CreateItem("Melee",      "Crowbar",        "arccw_horde_crowbar", 750,  2, "A trusty crowbar.\nEasy to use.",
     nil, 10, -1, nil, "items/hl2/weapon_crowbar.png", nil, nil, {HORDE.DMG_BLUNT})
-    HORDE:CreateItem("Melee",      "Machete",        "arccw_horde_machete", 750,  3, "A large machete.\nEasy to use.",
+    HORDE:CreateItem("Melee",      "Machete",        "arccw_horde_machete", 750,  2, "A large machete.\nEasy to use.",
     nil, 10, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH})
     HORDE:CreateItem("Melee",      "Kunai",          "arccw_horde_kunai",     1750,  2, "Ranged throwing knives.\nThrown blades are non-retrieveable\n knives recharge every 3 seconds, with a total of 3 knives",
     {Survivor=true, Berserker=true}, 10, -1, nil, nil, {Berserker=1}, nil, {HORDE.DMG_SLASH})
-    HORDE:CreateItem("Melee",      "Fireaxe",        "arccw_horde_axe",       1500,  5, "Fireaxe.\nHeavy, but can chop most enemies in half.",
+    HORDE:CreateItem("Melee",      "Fireaxe",        "arccw_horde_axe",       1500,  4, "Fireaxe.\nHeavy, but can chop most enemies in half.",
     nil, 10, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH})
     HORDE:CreateItem("Melee",      "Stunstick",      "arccw_horde_stunstick", 1500,  4, "Electric baton.\nDeals extra Lightning damage.",
     nil, 10, -1, nil, "items/hl2/weapon_stunstick.png", nil, nil, {HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING})
-    HORDE:CreateItem("Melee",      "Katana",         "arccw_horde_katana",  2000,  5, "Ninja sword.\nLong attack range and fast attack speed.",
+    HORDE:CreateItem("Melee",      "Katana",         "arccw_horde_katana",  2000,  4, "Ninja sword.\nLong attack range and fast attack speed.",
     {Survivor=true, Berserker=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH})
-    HORDE:CreateItem("Melee",      "Bat",            "arccw_horde_bat",     2000,  5, "Sturdy baseball bat.\nHits like a truck.",
+    HORDE:CreateItem("Melee",      "Bat",            "arccw_horde_bat",     2000,  4, "Sturdy baseball bat.\nHits like a truck.",
     {Survivor=true, Berserker=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BLUNT})
-    HORDE:CreateItem("Melee",      "Chainsaw",       "arccw_horde_chainsaw",2500, 8, "Brrrrrrrrrrrrrrrr.\n\nHold RMB to saw through enemies.\nDeals a lot more damage when using ammo.",
+    HORDE:CreateItem("Melee",      "Chainsaw",       "arccw_horde_chainsaw",2500, 6, "Brrrrrrrrrrrrrrrr.\n\nHold RMB to saw through enemies.\nDeals a lot more damage when using ammo.",
     {Berserker=true}, 10, -1, nil, nil, {Berserker=2}, nil, {HORDE.DMG_SLASH})
     HORDE:CreateItem("Melee",      "Inferno",        "arccw_horde_inferno_blade",   2500, 6, "A blazing curved sword with hidden power.\n\nPress RMB to activate/deactivate the weapon.\n\nWhen deactivated, the weapon deals Slashing damage.\n\nWhen activated, the weapon deals extra splashing Fire damage.\nHowever, the user takes Fire damage over time.",
     {Berserker=true, Cremator=true}, 10, -1, nil, nil, {Berserker=2, Cremator=2}, nil , {HORDE.DMG_SLASH, HORDE.DMG_FIRE})
-    HORDE:CreateItem("Melee",      "Jötunn",         "arccw_horde_jotuun",     2500, 8, "A cursed spiked mace forged with permafrost material.\n\nPress RMB to deliver a powerful ice blast.\nPerforming the ice blast increases Frostbite buildup on you.",
+    HORDE:CreateItem("Melee",      "Jötunn",         "arccw_horde_jotuun",     2500, 6, "A cursed spiked mace forged with permafrost material.\n\nPress RMB to deliver a powerful ice blast.\nPerforming the ice blast increases Frostbite buildup on you.",
     {Berserker=true}, 10, -1, nil, nil, {Berserker=4}, nil, {HORDE.DMG_BLUNT, HORDE.DMG_COLD})
-    HORDE:CreateItem("Melee",      "Mjölnir",       "arccw_horde_mjollnir",    3000, 8, "A warhammer embued with electric energy.\n\nPress RMB to charge the weapon.\nCharged attack creates a lightning storm on impact.",
+    HORDE:CreateItem("Melee",      "Mjölnir",       "arccw_horde_mjollnir",    3000, 6, "A warhammer embued with electric energy.\n\nPress RMB to charge the weapon.\nCharged attack creates a lightning storm on impact.",
     {Berserker=true}, 10, -1, nil, nil, {Berserker=3}, nil, {HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING})
-    HORDE:CreateItem("Melee",      "Zweihänder",     "arccw_horde_zweihander",  3000, 9, "A heavy, large two-handed longsword.\nCan easily decapitate enemies in a full swing.",
+    HORDE:CreateItem("Melee",      "Zweihänder",     "arccw_horde_zweihander",  3000, 8, "A heavy, large two-handed longsword.\nCan easily decapitate enemies in a full swing.",
     {Berserker=true}, 10, -1, nil, nil, {Berserker=5}, nil, {HORDE.DMG_SLASH})
 
     HORDE:CreateItem("Pistol",     "9mm",            "arccw_horde_9mm",   50,  1, "Combine standard sidearm.",
