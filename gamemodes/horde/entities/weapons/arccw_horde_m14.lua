@@ -91,7 +91,7 @@ SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.SprintPos = Vector(0, 0, 0)
 SWEP.SprintAng = Angle(0, 0, 0)
 
-SWEP.BarrelLength = 0
+SWEP.BarrelLength = 32
 
 SWEP.ExtraSightDist = 5
 
