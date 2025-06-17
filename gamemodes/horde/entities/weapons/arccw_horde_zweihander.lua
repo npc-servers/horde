@@ -18,7 +18,7 @@ SWEP.Trivia_Manufacturer = "Brotherhood of Saint Mark"
 SWEP.Trivia_Calibre = "N/A"
 SWEP.Trivia_Mechanism = "Slashing Weapon"
 SWEP.Trivia_Country = "Germany"
-SWEP.Trivia_Year = 2020
+SWEP.Trivia_Year = 1520
 
 SWEP.Slot = 0
 
