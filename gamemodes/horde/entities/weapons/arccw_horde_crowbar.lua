@@ -45,8 +45,8 @@ SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE
 
 SWEP.Melee2 = true
 SWEP.Melee2Range = 65
-SWEP.Melee2AttackTime = 0.3
-SWEP.Melee2Time = 0.8
+SWEP.Melee2AttackTime = 0.15
+SWEP.Melee2Time = 1
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
 
 SWEP.MeleeSwingSound = {
