@@ -11,13 +11,13 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Mjollnir"
+SWEP.PrintName = "Mjölnir"
 SWEP.Trivia_Class = "Melee Weapon"
 SWEP.Trivia_Desc = "Warhammer."
-SWEP.Trivia_Manufacturer = "Asgard"
+SWEP.Trivia_Manufacturer = "Eitri & Brokkr"
 SWEP.Trivia_Calibre = "N/A"
 SWEP.Trivia_Mechanism = "Club Weapon"
-SWEP.Trivia_Country = "Asgard"
+SWEP.Trivia_Country = "Ásgarðr"
 SWEP.Trivia_Year = 2018
 
 SWEP.Slot = 0
@@ -154,6 +154,7 @@ function SWEP:Hook_PostBash(info)
                 dmg:SetInflictor(self)
                 dmg:SetDamagePosition(info.tr.HitPos)
                 ent:TakeDamageInfo(dmg)
+                ent:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmginfo:GetDamage() * 0.75, attacker, dmginfo:GetDamagePosition())
             end
         end
         timer.Simple(0.4, function ()

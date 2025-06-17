@@ -11,13 +11,13 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Zweihander"
+SWEP.PrintName = "Zweihänder"
 SWEP.Trivia_Class = "Melee Weapon"
 SWEP.Trivia_Desc = "Double hand sword."
-SWEP.Trivia_Manufacturer = "Arasaki"
+SWEP.Trivia_Manufacturer = "Brotherhood of Saint Mark"
 SWEP.Trivia_Calibre = "N/A"
 SWEP.Trivia_Mechanism = "Slashing Weapon"
-SWEP.Trivia_Country = "Japan"
+SWEP.Trivia_Country = "Germany"
 SWEP.Trivia_Year = 2020
 
 SWEP.Slot = 0
@@ -44,14 +44,14 @@ SWEP.Melee2Damage = 400
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_SLASH
-SWEP.MeleeRange = 150
+SWEP.MeleeRange = 130
 SWEP.MeleeAttackTime = 0.5
-SWEP.MeleeTime = 0.8
+SWEP.MeleeTime = 1
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 150
+SWEP.Melee2Range = 135
 SWEP.Melee2AttackTime = 0.75
-SWEP.Melee2Time = 1
+SWEP.Melee2Time = 1.5
 
 SWEP.MeleeSwingSound = {
     "horde/weapons/zweihander/swing_hard_1.ogg",

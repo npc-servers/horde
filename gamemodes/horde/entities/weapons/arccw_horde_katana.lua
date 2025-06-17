@@ -44,13 +44,13 @@ SWEP.Melee2Damage = 150
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_SLASH
-SWEP.MeleeRange = 95
+SWEP.MeleeRange = 85
 SWEP.MeleeAttackTime = 0.2
 SWEP.MeleeTime = 0.65
 SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 100
+SWEP.Melee2Range = 90
 SWEP.Melee2AttackTime = 0.5
 SWEP.Melee2Time = 1.25
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE

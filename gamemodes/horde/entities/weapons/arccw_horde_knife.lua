@@ -35,7 +35,7 @@ SWEP.WorldModelOffset = {
 SWEP.PrimaryBash = true
 
 SWEP.MeleeDamage = 45
-SWEP.MeleeRange = 65
+SWEP.MeleeRange = 40
 SWEP.MeleeDamageType = DMG_SLASH
 SWEP.MeleeTime = 0.5
 SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_KNIFE
@@ -43,7 +43,7 @@ SWEP.MeleeAttackTime = 0.1
 
 SWEP.Melee2 = true
 SWEP.Melee2Damage = 65
-SWEP.Melee2Range = 65
+SWEP.Melee2Range = 40
 SWEP.Melee2Time = 1
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE
 SWEP.Melee2AttackTime = 0.1

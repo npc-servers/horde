@@ -151,9 +151,9 @@ function SWEP:Hook_PostBash(t)
 
         local dmginfo = DamageInfo()
         if t.melee2 then
-            dmginfo:SetDamage(25)
-        else
             dmginfo:SetDamage(35)
+        else
+            dmginfo:SetDamage(25)
         end
 
         dmginfo:SetAttacker(self:GetOwner())
@@ -162,5 +162,6 @@ function SWEP:Hook_PostBash(t)
         dmginfo:SetDamageType(DMG_SHOCK)
         dmginfo:SetDamagePosition(tr.HitPos)
         tr.Entity:TakeDamageInfo(dmginfo)
+        tr.Entity:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmginfo:GetDamage() * 0.75, attacker, dmginfo:GetDamagePosition())
     end
 end
