@@ -29,9 +29,9 @@ SWEP.WorldModelOffset = {
     ang = Angle(-10, 0, 180)
 }
 
-SWEP.Damage = 70
-SWEP.DamageMin = 30
-SWEP.Range = 1000 * 0.025
+SWEP.Damage = 100
+SWEP.DamageMin = 70
+SWEP.Range = 1250 * 0.025
 SWEP.Penetration = 5
 SWEP.DamageType = DMG_BULLET
 
@@ -40,7 +40,7 @@ SWEP.Primary.ClipSize = 10
 SWEP.ExtendedClipSize = 10
 SWEP.ReducedClipSize = 10
 
-SWEP.Recoil = 0.8
+SWEP.Recoil = 0.5
 SWEP.RecoilSide = 0.05
 
 SWEP.Delay = 60/625
@@ -48,9 +48,6 @@ SWEP.Num = 1
 SWEP.Firemodes = {
     {
         Mode = 1,
-    },
-    {
-        Mode = 0,
     }
 }
 
