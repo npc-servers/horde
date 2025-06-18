@@ -516,7 +516,7 @@ function HORDE:GetDefaultItemsData()
     {Assault=true, Warden=true}, 15, -1, nil, "items/hl2/weapon_ar2.png", {Assault=5}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING})
 
     HORDE:CreateItem("Rifle",      "Springfield M14",     "arccw_horde_m14",1250, 4, "Springfield semi-auto rifle.\nClassic, affordable, zombie-killing machine.",
-    {Assault=true, Ghost=true, Survivor=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
+    {Ghost=true, Survivor=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Winchester LAR",     "arccw_horde_winchester",1000, 4, "Winchester Lever Action Rifle.\nAn all-time classic.",
     {Ghost=true, Survivor=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
     HORDE:CreateItem("Rifle",      "Mosin-Nagant",     "arccw_horde_mosin_nagant",1500, 5, "M1891 Mosin-Nagant.\nOne of the most mass-produced military bolt-action rifles in history, \nwith over 37 million units produced since 1891.",
