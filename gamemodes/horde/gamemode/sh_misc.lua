@@ -67,7 +67,7 @@ end)
 end
 -- Draw the antimatter shield
 
-function HORDE.traceSolidIgnoreAllies(ply)
+function HORDE:traceSolidIgnoreAllies(ply)
     local tr = util.TraceLine({
         start = ply:GetShootPos(),
         endpos = ply:GetShootPos() + ply:GetAimVector() * 80000,
