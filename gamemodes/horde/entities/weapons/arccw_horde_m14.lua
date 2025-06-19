@@ -4,7 +4,7 @@ if CLIENT then
     killicon.Add("arccw_horde_m14", "arccw/weaponicons/arccw_m14", Color(0, 0, 0, 255))
 end
 
-SWEP.Base = "arccw_base"
+SWEP.Base = "arccw_mw2_abase"
 SWEP.Slot = 2
 SWEP.ViewModelFOV = 75
 
@@ -12,10 +12,10 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "M14"
+SWEP.PrintName = "Mini-14"
 SWEP.Trivia_Class = "Rifle"
-SWEP.Trivia_Desc = "United States military rifle chambered for the 7.62x51mm NATO cartridge."
-SWEP.Trivia_Calibre = "7.62x51mm NATO"
+SWEP.Trivia_Desc = "Basic multi-purpose rifle based on the M14 chambered for the 5.56x45mm NATO cartridge."
+SWEP.Trivia_Calibre = "5.56x45mm NATO"
 
 SWEP.UseHands = true
 
@@ -29,21 +29,22 @@ SWEP.WorldModelOffset = {
     ang = Angle(-10, 0, 180)
 }
 
-SWEP.Damage = 100
-SWEP.DamageMin = 70
+SWEP.Damage = 70
+SWEP.DamageMin = 50
 SWEP.Range = 1250 * 0.025
 SWEP.Penetration = 5
 SWEP.DamageType = DMG_BULLET
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 10
-SWEP.ExtendedClipSize = 10
+SWEP.Primary.ClipSize = 20
+SWEP.ExtendedClipSize = 30
 SWEP.ReducedClipSize = 10
 
 SWEP.Recoil = 0.5
-SWEP.RecoilSide = 0.05
+SWEP.RecoilSide = 0.1
+SWEP.RecoilRise = 0.4
 
-SWEP.Delay = 60/625
+SWEP.Delay = 60/600
 SWEP.Num = 1
 SWEP.Firemodes = {
     {
@@ -71,8 +72,8 @@ SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 2
 SWEP.CamAttachment = 3
 
-SWEP.SpeedMult = 1
-SWEP.SightedSpeedMult = 0.5
+SWEP.SpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.6
 
 SWEP.IronSightStruct = {
     Pos = Vector(-3.40, -4.11, 1.067),
@@ -175,21 +176,12 @@ SWEP.Animations = {
     },
     ["ready"] = {
         Source = "reg_draw_first",
-        SoundTable = {
-            {s = "ArcCw_Horde_M14.Foley",  t = 0},
-        },
     },
     ["draw"] = {
         Source = "reg_draw",
-        SoundTable = {
-            {s = "ArcCw_Horde_M14.Foley",  t = 0},
-        },
     },
     ["holster"] = {
         Source = "reg_holster",
-        SoundTable = {
-            {s = "ArcCw_Horde_M14.Foley",  t = 0},
-        },
     },
     ["fire"] = {
         Source = "reg_fire",
