@@ -36,8 +36,8 @@ SWEP.Penetration = 5
 SWEP.DamageType = DMG_BULLET
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 20
-SWEP.ExtendedClipSize = 30
+SWEP.Primary.ClipSize = 10
+SWEP.ExtendedClipSize = 10
 SWEP.ReducedClipSize = 10
 
 SWEP.Recoil = 0.5
