@@ -120,6 +120,11 @@ SWEP.Attachments = {
         VMScale = Vector(1, 1, 1),
     },
     {
+        PrintName = "Magazine",
+        DefaultAttName = "20-Round 5.56mm",
+        Slot = {"ammo_m14"},
+    },
+    {
         PrintName = "Underbarrel",
         Slot = {"foregrip"},
         Bone = "tag_weapon",
@@ -141,12 +146,12 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Ammo Type",
-        Slot = "go_ammo",
-        DefaultAttName = "Standard Ammo"
+        Slot = {"go_ammo"},
+        DefaultAttName = "Standard Ammo",
     },
     {
         PrintName = "Perk",
-        Slot = {"go_perk"}
+        Slot = {"go_perk"},
     },
     {
         PrintName = "Charm",
