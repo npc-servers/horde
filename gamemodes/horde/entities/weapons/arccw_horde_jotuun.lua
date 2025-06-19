@@ -14,11 +14,11 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Jötunn"
 SWEP.Trivia_Class = "Melee Weapon"
 SWEP.Trivia_Desc = "Spiked mace with ice-related abilities."
-SWEP.Trivia_Manufacturer = "Jötunn"
+SWEP.Trivia_Manufacturer = "Ymir"
 SWEP.Trivia_Calibre = "N/A"
-SWEP.Trivia_Mechanism = "Blunt Weapon"
-SWEP.Trivia_Country = "???"
-SWEP.Trivia_Year = 0
+SWEP.Trivia_Mechanism = "Popsicle"
+SWEP.Trivia_Country = "Jötunheimr"
+SWEP.Trivia_Year = "900 AD"
 
 SWEP.Slot = 0
 
@@ -30,8 +30,8 @@ SWEP.ViewModel = "models/horde/weapons/c_mace.mdl"
 SWEP.WorldModel = "models/horde/weapons/c_mace.mdl"
 SWEP.ViewModelFOV = 40
 SWEP.WorldModelOffset = {
-    pos = Vector(-4, 10, -5),
-    ang = Angle(90, 0, 180),
+    pos = Vector(-12, 18, -10),
+    ang = Angle(90, 10, 176),
     scale = 2
 }
 
@@ -44,13 +44,13 @@ SWEP.Melee2Damage = 100
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_CLUB
-SWEP.MeleeRange = 75
+SWEP.MeleeRange = 95
 SWEP.MeleeAttackTime = 0.5
 SWEP.MeleeTime = 0.75
 SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 75
+SWEP.Melee2Range = 105
 SWEP.Melee2AttackTime = 0.5
 SWEP.Melee2Time = 1.25
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
@@ -143,6 +143,7 @@ function SWEP:Hook_PostBash(t)
                     dmg:SetInflictor(self)
                     dmg:SetDamagePosition(ent:GetPos() + ent:OBBCenter())
                     ent:TakeDamageInfo(dmg)
+                    ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmginfo:GetDamage() * 0.75, attacker, dmginfo:GetDamagePosition())
                 end
             end
 
@@ -162,5 +163,6 @@ function SWEP:Hook_PostBash(t)
         dmginfo:SetDamageType(DMG_REMOVENORAGDOLL)
         dmginfo:SetDamagePosition(tr.HitPos)
         tr.Entity:TakeDamageInfo(dmginfo)
+        tr.Entity:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmginfo:GetDamage() * 0.75, attacker, dmginfo:GetDamagePosition())
     end
 end
