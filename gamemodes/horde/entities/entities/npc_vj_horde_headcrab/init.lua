@@ -1,8 +1,8 @@
-AddCSLuaFile("shared.lua")
-include('shared.lua')
+AddCSLuaFile( "shared.lua" )
+include( "shared.lua" )
 
-ENT.Model = {"models/headcrabclassic.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"}
+ENT.Model = "models/headcrabclassic.mdl"
+ENT.VJ_NPC_Class = { "CLASS_PLAYER_ALLY", "CLASS_COMBINE" }
 ENT.TurningSpeed = 60 -- How fast it can turn
 ENT.StartHealth = 1
 ENT.LeapDistance = 100 -- The distance of the leap, for example if it is set to 500, when the SNPC is 500 Unit away, it will jump
@@ -23,30 +23,10 @@ ENT.GeneralSoundPitch2 = 120
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-    self:SetCollisionBounds(Vector(20, 20, 20), Vector(-20, -20, 0))
-    self.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"}
-    self:AddRelationship("player D_LI 99")
-    self:AddRelationship("ally D_LI 99")
-    if HORDE.items["npc_vj_horde_vortigaunt"] then
-        self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-    end
-    if HORDE.items["npc_vj_horde_combat_bot"] then
-        self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
-    end
-    if HORDE.items["npc_vj_horde_smg_turret"] then
-        self:AddRelationship("npc_vj_horde_smg_turret D_LI 99")
-    end
+    self:SetCollisionBounds( Vector( 20, 20, 20 ), Vector( -20, -20, 0 ) )
     if HORDE.items["npc_manhack"] then
-        self:AddRelationship("npc_manhack D_LI 99")
+        self:AddRelationship( "npc_manhack D_LI 99" )
     end
-    if HORDE.items["npc_vj_horde_class_survivor"] then
-        self:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
-    end
-    if HORDE.items["npc_vj_horde_class_assault"] then
-        self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
-    end
-    self:AddRelationship("npc_vj_horde_spectre D_LI 99")
-    self:AddRelationship("npc_vj_horde_antlion D_LI 99")
 end
 
-VJ.AddNPC("Headcrab","npc_vj_horde_headcrab", "Horde")
+VJ.AddNPC( "Headcrab", "npc_vj_horde_headcrab", "Horde" )

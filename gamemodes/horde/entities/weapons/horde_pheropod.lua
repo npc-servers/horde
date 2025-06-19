@@ -190,29 +190,9 @@ function SWEP:RaiseAntlion()
 	ent:Spawn()
 
 	timer.Simple(0.1, function ()
-		ent:AddRelationship("player D_LI 99")
-		ent:AddRelationship("ally D_LI 99")
-		if HORDE.items["npc_vj_horde_vortigaunt"] then
-			ent:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-		end
-		if HORDE.items["npc_vj_horde_combat_bot"] then
-			ent:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
-		end
-		if HORDE.items["npc_vj_horde_smg_turret"] then
-			ent:AddRelationship("npc_vj_horde_smg_turret D_LI 99")
-		end
 		if HORDE.items["npc_manhack"] then
 			ent:AddRelationship("npc_manhack D_LI 99")
 		end
-		if HORDE.items["npc_vj_horde_class_survivor"] then
-			ent:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
-		end
-		if HORDE.items["npc_vj_horde_class_assault"] then
-			ent:AddRelationship("npc_vj_horde_class_assault D_LI 99")
-		end
-		ent:AddRelationship("npc_vj_horde_spectre D_LI 99")
-		ent:AddRelationship("npc_vj_horde_shadow_hulk D_LI 99")
-		ent:AddRelationship("npc_vj_horde_headcrab D_LI 99")
 
 		ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() + 1)
 		ent:CallOnRemove("Horde_EntityRemoved", function()

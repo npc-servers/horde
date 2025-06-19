@@ -61,16 +61,18 @@ ENT.DamageReceived = 0
 ENT.Attacks = 0
 
 ENT.EntitiesToNoCollide = {
-    "player",
-    "npc_vj_horde_spectre",
-    "npc_vj_horde_antlion",
-	"npc_vj_horde_combat_bot",
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
 	"npc_vj_horde_vortigaunt",
-    "npc_vj_horde_rocket_turret",
-    "npc_vj_horde_class_survivor",
-    "npc_vj_horde_class_assault",
-    "npc_vj_horde_smg_turret",
-    "npc_manhack"
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
 }
 
 ENT.HasWorldShakeOnMove = false -- Should the world shake when it's moving?

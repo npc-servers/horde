@@ -40,16 +40,18 @@ ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zss
 ENT.SoundTbl_Pain = nil
 
 ENT.EntitiesToNoCollide = {
-    "player",
-    "npc_vj_horde_spectre",
-    "npc_vj_horde_antlion",
-	"npc_vj_horde_combat_bot",
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
 	"npc_vj_horde_vortigaunt",
-    "npc_vj_horde_rocket_turret",
-    "npc_vj_horde_class_survivor",
-    "npc_vj_horde_class_assault",
-    "npc_vj_horde_smg_turret",
-    "npc_manhack"
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
 }
 
 ENT.GeneralSoundPitch1 = 75
@@ -118,14 +120,7 @@ function ENT:CustomOnInitialize()
     self:SetColor(Color(0, 0, 50, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
 	self:SetHealth(2 * (90 + 32 * self.properties.level))
-	self:AddRelationship("npc_vj_horde_smg_turret D_LI 99")
-	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 	self:AddRelationship("npc_manhack D_LI 99")
-	self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
-	self:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
-	self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
-	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
     --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
