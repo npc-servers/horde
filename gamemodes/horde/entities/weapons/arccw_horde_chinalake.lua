@@ -187,7 +187,7 @@ SWEP.Animations = {
     },
     ["draw"] = {
         Source = "draw",
-        Time = 1,
+        Time = 0.35,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
@@ -197,7 +197,7 @@ SWEP.Animations = {
     },
     ["holster"] = {
         Source = "holster",
-        Time = 1,
+        Time = 0.35,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.1,
@@ -231,25 +231,25 @@ SWEP.Animations = {
         Source = {
             "pump",
         },
-        Time = 35 / 25,
+        Time = 17 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 25 / 25},
-            {s = "ArcCW_BO1.CL_Fwd", t = 37 / 25}
+            {s = "ArcCW_BO1.CL_Back", t = 12 / 25},
+            {s = "ArcCW_BO1.CL_Fwd", t = 18 / 25}
         },
     },
     ["cycle_iron"] = {
         Source = {
             "pump",
         },
-        Time = 35 / 25,
+        Time = 17 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 26 / 25},
-            {s = "ArcCW_BO1.CL_Fwd", t = 38 / 25}
+            {s = "ArcCW_BO1.CL_Back", t = 13 / 25},
+            {s = "ArcCW_BO1.CL_Fwd", t = 19 / 25}
         },
     },
     ["sgreload_start"] = {
         Source = "reload_in",
-        Time = 15 / 24,
+        Time = 8 / 24,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.5,
@@ -260,25 +260,25 @@ SWEP.Animations = {
     },
     ["sgreload_insert"] = {
         Source = "reload_loop",
-        Time = 26 / 24,
+        Time = 13 / 24,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        MinProgress = 17 / 24,
+        MinProgress = 8 / 24,
         SoundTable = {
             {s = "ArcCW_BO1.CL_Shell", t = 17 / 24}
         },
     },
     ["sgreload_finish"] = {
         Source = "reload_out",
-        Time = 18 / 24,
+        Time = 9 / 12,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Fwd", t = 20 / 24}
+            {s = "ArcCW_BO1.CL_Fwd", t = 10 / 12}
         },
     },
     ["enter_sprint"] = {
