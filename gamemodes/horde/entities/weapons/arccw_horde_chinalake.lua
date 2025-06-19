@@ -231,54 +231,54 @@ SWEP.Animations = {
         Source = {
             "pump",
         },
-        Time = 69 / 50,
+        Time = 35 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 25 / 50},
-            {s = "ArcCW_BO1.CL_Fwd", t = 37 / 50}
+            {s = "ArcCW_BO1.CL_Back", t = 25 / 25},
+            {s = "ArcCW_BO1.CL_Fwd", t = 37 / 25}
         },
     },
     ["cycle_iron"] = {
         Source = {
             "pump",
         },
-        Time = 69 / 50,
+        Time = 35 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 26 / 50},
-            {s = "ArcCW_BO1.CL_Fwd", t = 38 / 50}
+            {s = "ArcCW_BO1.CL_Back", t = 26 / 25},
+            {s = "ArcCW_BO1.CL_Fwd", t = 38 / 25}
         },
     },
     ["sgreload_start"] = {
         Source = "reload_in",
-        Time = 30 / 48,
+        Time = 15 / 24,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 4 / 48}
+            {s = "ArcCW_BO1.CL_Back", t = 4 / 24}
         },
     },
     ["sgreload_insert"] = {
         Source = "reload_loop",
-        Time = 52 / 48,
+        Time = 26 / 24,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        MinProgress = 17 / 48,
+        MinProgress = 17 / 24,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Shell", t = 17 / 48}
+            {s = "ArcCW_BO1.CL_Shell", t = 17 / 24}
         },
     },
     ["sgreload_finish"] = {
         Source = "reload_out",
-        Time = 36 / 48,
+        Time = 18 / 24,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Fwd", t = 20 / 48}
+            {s = "ArcCW_BO1.CL_Fwd", t = 20 / 24}
         },
     },
     ["enter_sprint"] = {
