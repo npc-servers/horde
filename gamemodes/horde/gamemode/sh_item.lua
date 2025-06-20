@@ -152,8 +152,8 @@ function HORDE:GetDefaultGadgets()
     HORDE:CreateGadgetItem( "gadget_arctic_plating", 1500, 0, nil )
     HORDE:CreateGadgetItem( "gadget_shock_plating", 1500, 0, nil, { Warden = 4 } )
     HORDE:CreateGadgetItem( "gadget_blast_plating", 1500, 0, nil, { Demolition = 4 } )
-    HORDE:CreateGadgetItem( "gadget_diamond_plating", 1750, 0, nil, { Berserker = 3, Heavy = 3 } )
-    HORDE:CreateGadgetItem( "gadget_corporate_mindset", 2000, 0, nil, { Survivor = 5, Medic = 5, Assault = 5, Demolition = 5, Berserker = 5, Engineer = 5, Warden = 5, Cremator = 5, Heavy = 5, Ghost = 5 } )
+    HORDE:CreateGadgetItem( "gadget_diamond_plating", 1750, 0, nil, { Heavy = 3, Berserker = 3 } )
+    HORDE:CreateGadgetItem( "gadget_corporate_mindset", 2000, 0, nil, { Survivor = 5, Assault = 5, Heavy = 5, Medic = 5, Demolition = 5, Ghost = 5, Engineer = 5, Berserker = 5, Warden = 5, Cremator = 5 } )
 
     -- Survivor --
     HORDE:CreateGadgetItem( "gadget_vitality_booster", 2500, 1, { Survivor = true, Psycho = true }, { Survivor = 5 } )
@@ -482,7 +482,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Pistol", "FiveSeven", "arccw_horde_fiveseven", 750, 2,
         "ES Five-seven.\nA Belgian semi-automatic pistol made by FN Herstal.",
         { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
-        5, -1, nil, "arccw/weaponicons/arccw_go_fiveseven", { Medic = 1, Assault = 1, Heavy = 1, Demolition = 1, Survivor = 1, Engineer = 1, Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_BALLISTIC } )
+        5, -1, nil, "arccw/weaponicons/arccw_go_fiveseven", { Survivor = 1, Assault = 1, Heavy = 1, Medic = 1, Demolition = 1, Engineer = 1, Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Tec-9", "arccw_horde_tec9", 1000, 3,
         "A Swedish-made semi-automatic pistol.\nLethal in close quarters.",
         { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
@@ -512,38 +512,64 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Pistol", "Raygun (Hidden)", "horde_projectile_raygun_bolt", 0, 0,
         "This item is only here in the Pistol category to calculate pistol damage.",
         { Gunslinger = true, Warden = true },
-        10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, nil, nil, nil, { HORDE.DMG_LIGHTNING }, nil, nil, true) --This must be hidden
+        10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, nil, nil, nil, { HORDE.DMG_LIGHTNING }, nil, nil, true ) -- This must be hidden
     HORDE:CreateItem( "Pistol", "Raygun Mark II", "arccw_horde_raygun_mk2", 2500, 7,
         "Raygun Mark II.\nSecond iteration of the classic Ray Gun, now in the format of a burst-fire laser.",
         { Gunslinger = true, Warden = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
 
-    HORDE:CreateItem("SMG",        "SMG1",           "arccw_horde_smg1",   100, 3, "A compact, fully automatic firearm.",
-    {Assault=true, Heavy=true}, 5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut"})
-    HORDE:CreateItem("SMG",        "UZI",            "arccw_horde_uzi",   1250, 3, "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab–Israeli War.",
-    {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Cremator=true}, 8, -1, nil, nil, {Survivor=3}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "MP40",           "arccw_horde_mp40",  1250, 3, "Maschinenpistole 40.\nDeveloped in Nazi Germany and used extensively by the Axis powers during World War II.",
-    {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Cremator=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "MAC-10",          "arccw_horde_mac10",    1500, 4, "Military Armament Corporation Model 10.\nBoasts a high rate of fire,\nwith poor spread accuracy and high recoil as trade-offs.",
-    {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Cremator=true}, 8, -1, nil, "arccw/weaponicons/arccw_go_mac10", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "MP5",            "arccw_horde_mp5",      1500, 4, "Heckler & Koch MP5.\nOften imitated but never equaled,\nthe MP5 is perhaps the most versatile SMG in the world.",
-    {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Cremator=true}, 8, -1, nil, "arccw/weaponicons/arccw_go_mp5", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "UMP45",          "arccw_horde_ump",      1500, 4, "KM UMP45.\nA lighter and cheaper successor to the MP5.",
-    {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Cremator=true}, 8, -1, nil, "arccw/weaponicons/arccw_go_ump", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "TMP",            "arccw_horde_tmp",   1500, 4, "Steyr TMP.\nA select-fire 9×19mm Parabellum caliber machine pistol.",
-    {Medic=true, Assault=true, Heavy=true, Survivor=true, Engineer=true, Cremator=true}, 8, -1, nil, nil, {Survivor=2}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "PP Bizon",       "arccw_horde_bizon",    2000, 5, "PP-19 Bizon.\nOffers a high-capacity magazine that reloads quickly.",
-    {Assault=true, Survivor=true}, 15, -1, nil, "arccw/weaponicons/arccw_go_bizon", {Assault=1, Medic=2}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "P90",            "arccw_horde_p90",      2000, 5, "ES C90.\nA Belgian bullpup PDW with a magazine of 50 rounds.",
-    {Assault=true, Survivor=true}, 15, -1, nil, "arccw/weaponicons/arccw_go_p90", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("SMG",        "MP5K Medic PDW",  "arccw_horde_mp5k",  2000, 4, "MP5K-PDW.\nA more compact MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
-    {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
-    HORDE:CreateItem("SMG",        "MP9 Medic PDW",  "arccw_horde_mp9m",  2500, 4, "Brügger & Thomet MP9.\nManufactured in Switzerland,\nthe MP9 is favored by private security firms world-wide.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
-    {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
-    HORDE:CreateItem("SMG",        "MP7A1 Medic PDW","arccw_horde_mp7m"  ,2500, 4, "A modified version of the MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
-    {Medic=true}, 8, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
-    HORDE:CreateItem("SMG",        "Vector Medic PDW","arccw_horde_vector",3000, 5, "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that provides a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
-    {Medic=true}, 8, -1, nil, nil, {Medic=3}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
+    HORDE:CreateItem( "SMG", "SMG1", "arccw_horde_smg1", 100, 3,
+        "A compact, fully automatic firearm.",
+        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
+        5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
+    HORDE:CreateItem( "SMG", "UZI", "arccw_horde_uzi", 1250, 3,
+        "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab-sraeli War.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        8, -1, nil, nil, { Survivor = 3 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "MP40", "arccw_horde_mp40", 1250, 3,
+        "Maschinenpistole 40.\nDeveloped in Nazi Germany and used extensively by the Axis powers during World War II.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "MAC-10", "arccw_horde_mac10", 1500, 4,
+        "Military Armament Corporation Model 10.\nBoasts a high rate of fire,\nwith poor spread accuracy and high recoil as trade-offs.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        8, -1, nil, "arccw/weaponicons/arccw_go_mac10", nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "MP5", "arccw_horde_mp5", 1500, 4,
+        "Heckler & Koch MP5.\nOften imitated but never equaled,\nthe MP5 is perhaps the most versatile SMG in the world.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        8, -1, nil, "arccw/weaponicons/arccw_go_mp5", nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "UMP45", "arccw_horde_ump", 1500, 4,
+        "KM UMP45.\nA lighter and cheaper successor to the MP5.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        8, -1, nil, "arccw/weaponicons/arccw_go_ump", nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "TMP", "arccw_horde_tmp", 1500, 4,
+        "Steyr TMP.\nA select-fire 9×19mm Parabellum caliber machine pistol.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        8, -1, nil, nil, { Survivor = 2 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "PP Bizon", "arccw_horde_bizon", 2000, 5,
+        "PP-19 Bizon.\nOffers a high-capacity magazine that reloads quickly.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
+        15, -1, nil, "arccw/weaponicons/arccw_go_bizon", { Assault = 1, Medic = 2 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "P90", "arccw_horde_p90", 2000, 5,
+        "ES C90.\nA Belgian bullpup PDW with a magazine of 50 rounds.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
+        15, -1, nil, "arccw/weaponicons/arccw_go_p90", nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "MP5K Medic PDW", "arccw_horde_mp5k",  2000, 4,
+        "MP5K-PDW.\nA more compact MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
+        { Medic = true, Hatcher = true },
+        8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
+    HORDE:CreateItem( "SMG", "MP9 Medic PDW", "arccw_horde_mp9m", 2500, 4,
+        "Brügger & Thomet MP9.\nManufactured in Switzerland,\nthe MP9 is favored by private security firms world-wide.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
+        { Medic = true, Hatcher = true },
+        8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
+    HORDE:CreateItem( "SMG", "MP7A1 Medic PDW", "arccw_horde_mp7m", 2500, 4,
+        "A modified version of the MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
+        { Medic = true, Hatcher = true },
+        8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
+    HORDE:CreateItem( "SMG", "Vector Medic PDW", "arccw_horde_vector", 3000, 5,
+        "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that provides a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
+        { Medic = true, Hatcher = true },
+        8, -1, nil, nil, { Medic = 3 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
 
     HORDE:CreateItem("Shotgun",    "Medic Shotgun",        "arccw_horde_medic_shotgun",  2250, 5, "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
     {Medic=true, Warden=true}, 10, -1, nil, nil, {Medic=2}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
