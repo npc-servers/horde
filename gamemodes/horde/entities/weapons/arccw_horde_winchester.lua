@@ -276,14 +276,14 @@ SWEP.Animations = {
     },
     ["cycle"] = {
         Source = "cycle",
-        Time = 0.5,
+        Time = 0.7,
         ShellEjectAt = 0.3,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.6,
     },
     ["cycle_iron"] = {
         Source = "cycle_iron",
-        Time = 0.5,
+        Time = 0.7,
         ShellEjectAt = 0.4,
     },
     ["sgreload_start"] = {
@@ -292,7 +292,7 @@ SWEP.Animations = {
     },
     ["sgreload_insert"] = {
         Source = "reload_insert",
-        Time = 0.3,
+        Time = 0.5,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         TPAnimStartTime = 0.5,
     },
