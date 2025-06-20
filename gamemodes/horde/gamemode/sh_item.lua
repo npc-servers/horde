@@ -571,33 +571,54 @@ function HORDE:GetDefaultItemsData()
         { Medic = true, Hatcher = true },
         8, -1, nil, nil, { Medic = 3 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
 
-    HORDE:CreateItem("Shotgun",    "Medic Shotgun",        "arccw_horde_medic_shotgun",  2250, 5, "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
-    {Medic=true, Warden=true}, 10, -1, nil, nil, {Medic=2}, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_POISON})
+    HORDE:CreateItem( "Shotgun", "Medic Shotgun", "arccw_horde_medic_shotgun", 2250, 5,
+        "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
+        { Medic = true, Hatcher = true, Warden = true },
+        10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
 
-    HORDE:CreateItem("Shotgun",    "Shotgun",    "arccw_horde_shotgun", 100, 2, "A standard 12-Gauge shotgun.",
-    {Warden=true, Engineer=true, Cremator=true}, 2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Warden", "Engineer"})
-    HORDE:CreateItem("Shotgun",    "Nova",           "arccw_horde_nova",     1000, 4, "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
-    {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",     "Masterkey",          "arccw_horde_masterkey",    1250,  3, "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
-    {Medic = true, Assault = true, Heavy = true, Demolition = true, Survivor = true, Engineer = true, Warden = true, Cremator = true, Ghost = true, Berserker = true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "M870",           "arccw_horde_870",      1500, 4, "Remington 870 Shotgun.\nManufactured in the United States.",
-    {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, "arccw/weaponicons/arccw_go_870", {Engineer=1}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "MAG7",           "arccw_horde_mag7",     1500, 4, "Techno Arms MAG-7.\nFires a specialized 60mm 12 gauge shell.",
-    {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, "arccw/weaponicons/arccw_go_mag7", nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "XM1014",         "arccw_horde_m1014",    2000, 5, "Benelli M4 Super 90.\nFully automatic shotgun.",
-    {Assault=true, Heavy=true, Survivor=true, Engineer=true, Warden=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "Trench Gun",     "arccw_horde_trenchgun", 2250, 6, "Winchester Model 1200.\nShoots incendiary pellets.",
-    {Warden=true, Cremator=true}, 15, -1, nil, nil, {Warden=1, Cremator=1}, nil, {HORDE.DMG_FIRE}, {HORDE.Infusion_Quality, HORDE.Infusion_Impaling})
-    HORDE:CreateItem("Shotgun",    "Double Barrel",  "arccw_horde_doublebarrel",    2250, 5, "Double Barrel Shotgun.\nDevastating power at close range.",
-    {Survivor=true, Warden=true, Assault=true, Heavy=true, Engineer=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "SPAS-12",        "arccw_horde_spas12",  2500, 6, "Franchi SPAS-12.\nA combat shotgun manufactured by Italian firearms company Franchi.",
-    {Survivor=true, Warden=true, Assault=true, Heavy=true, Engineer=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "Striker",        "arccw_horde_striker", 2750, 7, "Armsel Striker.\nA 12-gauge shotgun with a revolving cylinder from South Africa.",
-    {Warden=true, Assault=true, Heavy=true, Engineer=true}, 15, -1, nil, nil, {Warden=2}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "HSG-1",           "arccw_horde_hsg1",  3000, 8, "Modified version of the Kel-Tec KSG. \nUses a box magazine instead of being tube-fed.",
-    {Warden=true}, 15, -1, nil, nil, {Warden=2}, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Shotgun",    "AA12",           "arccw_horde_aa12",  3750, 9, "Atchisson Assault Shotgun.\nDevastating firepower at close to medium range.",
-    {Warden=true, Heavy=true}, 25, -1, nil, nil, {Warden=3}, nil, {HORDE.DMG_BALLISTIC})
+    HORDE:CreateItem( "Shotgun", "Shotgun", "arccw_horde_shotgun", 100, 2,
+        "A standard 12-Gauge shotgun.",
+        { Engineer = true, Warden = true, Cremator = true },
+        2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Engineer", "Warden" } )
+    HORDE:CreateItem( "Shotgun", "Nova", "arccw_horde_nova", 1000, 4,
+        "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "Masterkey", "arccw_horde_masterkey", 1250, 3,
+        "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
+        nil, 5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "M870", "arccw_horde_870", 1500, 4,
+        "Remington 870 Shotgun.\nManufactured in the United States.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        10, -1, nil, "arccw/weaponicons/arccw_go_870", { Engineer = 1 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "MAG7", "arccw_horde_mag7", 1500, 4, "Techno Arms MAG-7.\nFires a specialized 60mm 12 gauge shell.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        10, -1, nil, "arccw/weaponicons/arccw_go_mag7", nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "XM1014", "arccw_horde_m1014", 2000, 5,
+        "Benelli M4 Super 90.\nFully automatic shotgun.",
+        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "Trench Gun", "arccw_horde_trenchgun", 2250, 6,
+        "Winchester Model 1200.\nShoots incendiary pellets.",
+        { Warden = true, Cremator = true },
+        15, -1, nil, nil, { Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_FIRE }, { HORDE.Infusion_Quality, HORDE.Infusion_Impaling } )
+    HORDE:CreateItem( "Shotgun", "Double Barrel", "arccw_horde_doublebarrel", 2250, 5,
+        "Double Barrel Shotgun.\nDevastating power at close range.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "SPAS-12", "arccw_horde_spas12", 2500, 6,
+        "Franchi SPAS-12.\nA combat shotgun manufactured by Italian firearms company Franchi.",
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        15, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "Striker", "arccw_horde_striker", 2750, 7, "Armsel Striker.\nA 12-gauge shotgun with a revolving cylinder from South Africa.",
+        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        15, -1, nil, nil, { Warden = 2 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "HSG-1", "arccw_horde_hsg1", 3000, 8,
+        "Modified version of the Kel-Tec KSG. \nUses a box magazine instead of being tube-fed.",
+        { Warden = true }, 15, -1, nil, nil, { Warden = 2 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Shotgun", "AA12", "arccw_horde_aa12", 3750, 9,
+        "Atchisson Assault Shotgun.\nDevastating firepower at close to medium range.",
+    { Heavy = true, Juggernaut = true, Warden = true }, 25, -1, nil, nil, { Warden = 3 }, nil, { HORDE.DMG_BALLISTIC } )
 
     HORDE:CreateItem("Rifle",      "AR15",           "arccw_horde_ar15",     2000, 6, "AR-15 Style Rifle.\nA lightweight semi-automatic rifle based on the ArmaLite AR-15 design.",
     {Medic=true, Assault=true, Survivor=true, Ghost=true}, 10, -1, nil, nil, {Assault=2,Ghost=1}, nil, {HORDE.DMG_BALLISTIC})
