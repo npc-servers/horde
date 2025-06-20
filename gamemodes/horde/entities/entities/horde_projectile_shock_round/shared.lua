@@ -1,5 +1,5 @@
 ENT.Base 				= "horde_explosive_projectile_base"
-ENT.PrintName 			= "Incendiary Round"
+ENT.PrintName 			= "Shock Round"
 ENT.Model = "models/items/ar2_grenade.mdl"
 ENT.LifeTime = 10 -- Time to removal
 ENT.ProjectileDamage = 345 -- Projectile/explosion damage
