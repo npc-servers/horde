@@ -314,18 +314,6 @@ hook.Add("PostEntityTakeDamage", "Horde_PostDamage", function (ent, dmg, took)
 
                     -- Some special music for horde default boss.
                     if GetConVar("horde_default_enemy_config"):GetInt() == 1 and HORDE.horde_boss and HORDE.horde_boss:IsValid() and boss_music_loop and not horde_boss_critical and ent.Critical then
-                        timer.Remove("Horde_BossMusic")
-                        boss_music_loop:Stop()
-                        local fierce_music = {"music/hl1_song10.mp3", "music/hl2_song4.mp3", "music/hl2_song25_teleporter.mp3"}
-                        local fierce_music_duration = {103, 65, 43}
-                        local selected_id = math.random(#fierce_music)
-                        boss_music_loop = CreateSound(game.GetWorld(), fierce_music[selected_id])
-                        boss_music_loop:SetSoundLevel(0)
-                        timer.Create("Horde_BossMusic", fierce_music_duration[selected_id], 0, function()
-                            boss_music_loop:Stop()
-                            boss_music_loop:Play()
-                        end)
-                        boss_music_loop:Play()
                         horde_boss_critical = true
                     end
                 end

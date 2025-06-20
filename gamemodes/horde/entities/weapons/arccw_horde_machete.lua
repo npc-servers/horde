@@ -37,19 +37,19 @@ SWEP.WorldModelOffset = {
 SWEP.DefaultSkin = 0
 SWEP.DefaultWMSkin = 0
 
-SWEP.MeleeDamage = 55
+SWEP.MeleeDamage = 70
 SWEP.Melee2Damage = 105
 
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_SLASH
-SWEP.MeleeRange = 60
+SWEP.MeleeRange = 55
 SWEP.MeleeAttackTime = 0.3
-SWEP.MeleeTime = 0.8
+SWEP.MeleeTime = 0.7
 SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 80
+SWEP.Melee2Range = 65
 SWEP.Melee2AttackTime = 0.5
 SWEP.Melee2Time = 1.1
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
