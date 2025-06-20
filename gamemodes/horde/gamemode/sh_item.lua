@@ -7,20 +7,20 @@ HORDE.ENTITY_PROPERTY_DROP = 3
 HORDE.ENTITY_PROPERTY_ARMOR = 4
 HORDE.ENTITY_PROPERTY_GADGET = 5
 
-HORDE.categories = {"Melee", "Pistol", "SMG", "Shotgun", "Rifle", "MG", "Explosive", "Special", "Equipment", "Attachment", "Gadget"}
-HORDE.entity_categories = {"Special", "Equipment"}
-HORDE.arccw_attachment_categories = {"Optic", "Underbarrel", "Tactical", "Barrel", "Muzzle", "Magazine", "Stock", "Slide", "Ammo Type", "Perk"}
+HORDE.categories = { "Melee", "Pistol", "SMG", "Shotgun", "Rifle", "MG", "Explosive", "Special", "Equipment", "Attachment", "Gadget" }
+HORDE.entity_categories = { "Special", "Equipment" }
+HORDE.arccw_attachment_categories = { "Optic", "Underbarrel", "Tactical", "Barrel", "Muzzle", "Magazine", "Stock", "Slide", "Ammo Type", "Perk" }
 HORDE.starter_weapons = {}
 
 HORDE.max_weight = 15
 HORDE.default_ammo_price = 10
 
 -- Creates a Horde item. The item will appear in the shop.
-function HORDE:CreateItem(category, name, class, price, weight, description, whitelist, ammo_price, secondary_ammo_price, entity_properties, shop_icon, levels, skull_tokens, dmgtype, infusions, starter_classes, hidden)
+function HORDE:CreateItem( category, name, class, price, weight, description, whitelist, ammo_price, secondary_ammo_price, entity_properties, shop_icon, levels, skull_tokens, dmgtype, infusions, starter_classes, hidden )
     if category == nil or name == nil or class == nil or price == nil or weight == nil or description == nil then return end
     if name == "" or class == "" then return end
-    if not table.HasValue(HORDE.categories, category) then return end
-    if string.len(name) <= 0 or string.len(class) <= 0 then return end
+    if not table.HasValue( HORDE.categories, category ) then return end
+    if string.len( name ) <= 0 or string.len( class ) <= 0 then return end
     if price < 0 or weight < 0 then return end
     local item = {}
     item.category = category
@@ -36,10 +36,10 @@ function HORDE:CreateItem(category, name, class, price, weight, description, whi
     if entity_properties then
         item.entity_properties = entity_properties
     else
-        item.entity_properties = {type=HORDE.ENTITY_PROPERTY_WPN}
+        item.entity_properties = { type = HORDE.ENTITY_PROPERTY_WPN }
     end
     if item.class == "_horde_armor_100" then
-        item.entity_properties = {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}
+        item.entity_properties = { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }
     end
     if shop_icon and shop_icon ~= "" then
         item.shop_icon = shop_icon
@@ -48,7 +48,7 @@ function HORDE:CreateItem(category, name, class, price, weight, description, whi
     if levels then
         item.levels = levels
         local total_levels = 0
-        for _, level in pairs(levels) do
+        for _, level in pairs( levels ) do
             total_levels = total_levels + level
         end
         item.total_levels = total_levels
@@ -61,21 +61,21 @@ function HORDE:CreateItem(category, name, class, price, weight, description, whi
     HORDE:SetItemsData()
 end
 
-function HORDE:CreateGadgetItem(class, price, weight, whitelist, levels, dmgtype, hidden)
+function HORDE:CreateGadgetItem( class, price, weight, whitelist, levels, dmgtype, hidden )
     local gadget = HORDE.gadgets[class]
     if not gadget then
-        print("[HORDE] Gadget " .. class .. " not found.")
+        print( "[HORDE] Gadget " .. class .. " not found." )
         return
     end
-    HORDE:CreateItem("Gadget", gadget.PrintName, class, price, weight, "", whitelist, 10, -1, {type=HORDE.ENTITY_PROPERTY_GADGET}, nil, levels, nil, dmgtype, nil, nil, hidden)
+    HORDE:CreateItem( "Gadget", gadget.PrintName, class, price, weight, "", whitelist, 10, -1, { type = HORDE.ENTITY_PROPERTY_GADGET }, nil, levels, nil, dmgtype, nil, nil, hidden )
 end
 
 HORDE.InvalidateHordeItemCache = 1
 HORDE.CachedHordeItems = nil
 HORDE.GetCachedHordeItems = function()
     if HORDE.InvalidateHordeItemCache == 1 then
-        local tab = util.TableToJSON(HORDE.items)
-        local str = util.Compress(tab)
+        local tab = util.TableToJSON( HORDE.items )
+        local str = util.Compress( tab )
         HORDE.CachedHordeItems = str
         HORDE.InvalidateHordeItemCache = 0
     end
@@ -85,34 +85,35 @@ end
 function HORDE:SyncItems()
     local str = HORDE.GetCachedHordeItems()
     if player then
-        for _, ply in pairs(player.GetAll()) do
-            net.Start("Horde_SyncItems")
-                net.WriteUInt(string.len(str), 32)
-                net.WriteData(str, string.len(str))
-            net.Send(ply)
+        for _, ply in pairs( player.GetAll() ) do
+            net.Start( "Horde_SyncItems" )
+                net.WriteUInt( string.len( str ), 32 )
+                net.WriteData( str, string.len( str ) )
+            net.Send( ply )
         end
     end
 end
 
 function HORDE:SetItemsData()
     if SERVER then
-        if GetConVarNumber("horde_default_item_config") == 1 then return end
-        if not file.IsDir("horde", "DATA") then
-            file.CreateDir("horde")
+        local defaultItemConf = GetConVar( "horde_default_item_config" ):GetInt()
+        if defaultItemConf then return end
+        if not file.IsDir( "horde", "DATA" ) then
+            file.CreateDir( "horde" )
         end
 
-        file.Write("horde/items.txt", util.TableToJSON(HORDE.items))
+        file.Write( "horde/items.txt", util.TableToJSON( HORDE.items ) )
 
         HORDE:SyncItems()
     end
 end
 
 local function GetStarterWeapons()
-    for class, item in pairs(HORDE.items) do
+    for class, item in pairs( HORDE.items ) do
         if item.starter_classes then
-            for _, starter_subclass in pairs(item.starter_classes) do
+            for _, starter_subclass in pairs( item.starter_classes ) do
                 if not HORDE.starter_weapons[starter_subclass] then HORDE.starter_weapons[starter_subclass] = {} end
-                table.insert(HORDE.starter_weapons[starter_subclass], class)
+                table.insert( HORDE.starter_weapons[starter_subclass], class )
             end
         end
     end
@@ -120,23 +121,23 @@ end
 
 local function GetItemsData()
     if SERVER then
-        if not file.IsDir("horde", "DATA") then
-            file.CreateDir("horde")
+        if not file.IsDir( "horde", "DATA" ) then
+            file.CreateDir( "horde" )
             return
         end
 
-        if file.Read("horde/items.txt", "DATA") then
-            local t = util.JSONToTable(file.Read("horde/items.txt", "DATA"))
+        if file.Read( "horde/items.txt", "DATA" ) then
+            local t = util.JSONToTable( file.Read( "horde/items.txt", "DATA" ) )
 
-            for _, item in pairs(t) do
+            for _, item in pairs( t ) do
                 if item.name == "" or item.class == "" or item.name == nil or item.category == nil or item.class == nil or item.ammo_price == nil or item.secondary_ammo_price == nil then
-                    HORDE:SendNotification("Item config file validation failed! Please update your file or delete it.", 1)
+                    HORDE:SendNotification( "Item config file validation failed! Please update your file or delete it.", 1 )
                     return
                 end
             end
             HORDE.items = t
 
-            print("[HORDE] - Loaded custom item config.")
+            print( "[HORDE] - Loaded custom item config." )
         end
 
         GetStarterWeapons()
