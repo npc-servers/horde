@@ -66,3 +66,18 @@ net.Receive("Horde_Void_Shield_Remove", function ()
 end)
 end
 -- Draw the antimatter shield
+
+function HORDE:traceSolidIgnoreAllies(ply)
+    local tr = util.TraceLine({
+        start = ply:GetShootPos(),
+        endpos = ply:GetShootPos() + ply:GetAimVector() * 80000,
+        filter = function(ent)
+            if not IsValid(ent) then return true end
+            if HORDE:IsPlayerOrMinion(ent) then return false end
+            return true
+        end,
+        mask = MASK_SOLID
+    })
+
+    return tr
+end
