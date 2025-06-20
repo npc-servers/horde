@@ -98,9 +98,6 @@ SWEP.BarrelLength = 32
 
 SWEP.ExtraSightDist = 5
 
-SWEP.AttachmentElements = {
-    ["m14_mag_8_762"] = {}
-}
 SWEP.Attachments = {
     {
         PrintName = "Optic",
@@ -126,7 +123,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Magazine",
-        DefaultAttName = "Standard Magazine",
+        DefaultAttName = "20-Round 5.56mm",
         Slot = {"ammo_m14"},
     },
     {
