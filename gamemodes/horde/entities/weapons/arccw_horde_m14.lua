@@ -233,13 +233,13 @@ sound.Add({
 })
 sound.Add({
     name = "ArcCw_Horde_M14.Foley2",
-    sound = {"weapons/arccw/bo1_shared/rattle_00.wav","weapons/arccw/bo1_shared/rattle_01.wav","weapons/arccw/bo1_shared/rattle_02.wav","weapons/arccw/bo1_shared/rattle_03.wav","weapons/arccw/bo1_shared/rattle_04.wav"},
+    sound = {")weapons/arccw/bo1_shared/rattle_00.wav",")weapons/arccw/bo1_shared/rattle_01.wav",")weapons/arccw/bo1_shared/rattle_02.wav",")weapons/arccw/bo1_shared/rattle_03.wav",")weapons/arccw/bo1_shared/rattle_04.wav"},
     channel = CHAN_ITEM,
     volume = 0.45
 })
 sound.Add({
     name = "ArcCw_Horde_M14.Equip",
-    sound = {"weapons/arccw/bo1_shared/pickup_00.wav","weapons/arccw/bo1_shared/pickup_01.wav","weapons/arccw/bo1_shared/pickup_02.wav"},
+    sound = {")weapons/arccw/bo1_shared/pickup_00.wav",")weapons/arccw/bo1_shared/pickup_01.wav",")weapons/arccw/bo1_shared/pickup_02.wav"},
     channel = CHAN_ITEM
 })
 sound.Add({
