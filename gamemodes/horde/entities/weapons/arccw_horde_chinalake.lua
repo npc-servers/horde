@@ -187,7 +187,7 @@ SWEP.Animations = {
     },
     ["draw"] = {
         Source = "draw",
-        Time = 0.35,
+        Time = 0.55,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
@@ -197,7 +197,7 @@ SWEP.Animations = {
     },
     ["holster"] = {
         Source = "holster",
-        Time = 0.35,
+        Time = 0.55,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.1,
@@ -219,21 +219,21 @@ SWEP.Animations = {
         Source = {
             "fire",
         },
-        MinProgress = 0.5
+        MinProgress = 0.3
     },
     ["fire_iron"] = {
         Source = {
             "fire",
         },
-        MinProgress = 0.5
+        MinProgress = 0.3
     },
     ["cycle"] = {
         Source = {
             "pump",
         },
-        Time = 17 / 25,
+        Time = 35 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 12 / 25},
+            {s = "ArcCW_BO1.CL_Back", t = 13 / 25},
             {s = "ArcCW_BO1.CL_Fwd", t = 18 / 25}
         },
     },
@@ -241,7 +241,7 @@ SWEP.Animations = {
         Source = {
             "pump",
         },
-        Time = 17 / 25,
+        Time = 35 / 25,
         SoundTable = {
             {s = "ArcCW_BO1.CL_Back", t = 13 / 25},
             {s = "ArcCW_BO1.CL_Fwd", t = 19 / 25}
@@ -249,13 +249,13 @@ SWEP.Animations = {
     },
     ["sgreload_start"] = {
         Source = "reload_in",
-        Time = 8 / 24,
+        Time = 12 / 32,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 4 / 24}
+            {s = "ArcCW_BO1.CL_Back", t = 12 / 32}
         },
     },
     ["sgreload_insert"] = {
@@ -268,7 +268,7 @@ SWEP.Animations = {
         LHIKOut = 0,
         MinProgress = 8 / 24,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Shell", t = 17 / 24}
+            {s = "ArcCW_BO1.CL_Shell", t = 13 / 24}
         },
     },
     ["sgreload_finish"] = {
@@ -278,7 +278,7 @@ SWEP.Animations = {
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Fwd", t = 10 / 12}
+            {s = "ArcCW_BO1.CL_Fwd", t = 9 / 12}
         },
     },
     ["enter_sprint"] = {
