@@ -4,8 +4,8 @@ AddCSLuaFile()
 
 local att = {}
 
-att.PrintName = "7.62x51mm NATO Conversion"
-att.AbbrevName = "Conversion Kit"
+att.PrintName = "8-Round 7.62mm"
+att.AbbrevName = "8-Round 7.62mm"
 att.Icon = Material("entities/acwatt_go_ak_mag_15_545.png", "mips smooth")
 att.Description = "7.62x51mm NATO conversion for the M14."
 att.SortOrder = 15
@@ -13,7 +13,7 @@ att.Desc_Pros = {
 }
 att.Desc_Cons = {
 }
-att.AutoStats = false
+att.AutoStats = true
 att.Slot = "ammo_m14"
 
 att.Override_ClipSize = 8
