@@ -73,6 +73,7 @@ include("arccw/attachments/eap_usas_mag_6.lua")
 include("arccw/attachments/eap_usas_mag_drum.lua")
 include("arccw/attachments/eap_usas_stock_light.lua")
 include("arccw/attachments/eap_usas_stock_reinforced.lua")
+include("arccw/attachments/bo1_m14_762_conversion.lua")
 
 -- Some users report severe lag with halo
 CreateConVar("horde_enable_halo", 1, FCVAR_LUA_CLIENT, "Enables highlight for last 10 enemies.")
