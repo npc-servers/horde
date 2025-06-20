@@ -12,9 +12,9 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Mini-14"
+SWEP.PrintName = "M14"
 SWEP.Trivia_Class = "Rifle"
-SWEP.Trivia_Desc = "Basic multi-purpose rifle based on the M14 chambered for the 5.56x45mm NATO cartridge."
+SWEP.Trivia_Desc = "Multi-purpose United States military rifle."
 SWEP.Trivia_Calibre = "5.56x45mm NATO"
 
 SWEP.UseHands = true
@@ -29,16 +29,14 @@ SWEP.WorldModelOffset = {
     ang = Angle(-10, 0, 180)
 }
 
-SWEP.Damage = 70
-SWEP.DamageMin = 50
+SWEP.Damage = 55
+SWEP.DamageMin = 30
 SWEP.Range = 1250 * 0.025
 SWEP.Penetration = 5
 SWEP.DamageType = DMG_BULLET
 
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 20
-SWEP.ExtendedClipSize = 30
-SWEP.ReducedClipSize = 10
 
 SWEP.Recoil = 0.5
 SWEP.RecoilSide = 0.1
@@ -56,11 +54,15 @@ SWEP.AccuracyMOA = 0
 SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 200
 
-SWEP.Primary.Ammo = "ar2"
+SWEP.Primary.Ammo = "smg1"
 
-SWEP.ShootSound = {")weapons/bo1_m14/m14_fire_close_1.wav",")weapons/bo1_m14/m14_fire_close_2.wav",")weapons/bo1_m14/m14_fire_close_3.wav",")weapons/bo1_m14/m14_fire_close_4.wav",")weapons/bo1_m14/m14_fire_close_5.wav"}
-SWEP.DistantShootSound = {")weapons/bo1_m14/m14_fire_dist_1.wav",")weapons/bo1_m14/m14_fire_dist_2.wav",")weapons/bo1_m14/m14_fire_dist_3.wav",")weapons/bo1_m14/m14_fire_dist_4.wav",")weapons/bo1_m14/m14_fire_dist_5.wav"}
-SWEP.ShootSoundSilenced = {")weapons/bo1_m14/m14_fire_silenced_1.wav",")weapons/bo1_m14/m14_fire_silenced_2.wav",")weapons/bo1_m14/m14_fire_silenced_3.wav",")weapons/bo1_m14/m14_fire_silenced_4.wav",")weapons/bo1_m14/m14_fire_silenced_5.wav"}
+SWEP.ShootPitch = 115
+
+SWEP.ShootSound = {")weapons/arccw/bo1_m14/bo1/shot_00.wav",")weapons/arccw/bo1_m14/bo1/shot_01.wav",")weapons/arccw/bo1_m14/bo1/shot_02.wav",")weapons/arccw/bo1_m14/bo1/shot_03.wav",")weapons/arccw/bo1_m14/bo1/shot_04.wav"}
+SWEP.ShootMechSound = nil
+SWEP.ShootSoundExt = {")weapons/arccw/bo1_m14/bo1/dist_00.wav",")weapons/arccw/bo1_m14/bo1/dist_01.wav",")weapons/arccw/bo1_m14/bo1/dist_02.wav",")weapons/arccw/bo1_m14/bo1/dist_03.wav",")weapons/arccw/bo1_m14/bo1/dist_04.wav"}
+SWEP.ShootSoundExtExt = {"weapons/arccw/bo1_m14/bo1/lfe_00.wav"}
+SWEP.ShootSoundSilenced = {")weapons/fesiugmw2/fire/sniper_sil.wav"}
 
 SWEP.MuzzleEffect = "muzzleflash_3"
 
@@ -96,6 +98,9 @@ SWEP.BarrelLength = 32
 
 SWEP.ExtraSightDist = 5
 
+SWEP.AttachmentElements = {
+    ["m14_mag_8_762"] = {}
+}
 SWEP.Attachments = {
     {
         PrintName = "Optic",
@@ -121,7 +126,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Magazine",
-        DefaultAttName = "20-Round 5.56mm",
+        DefaultAttName = "Standard Magazine",
         Slot = {"ammo_m14"},
     },
     {
@@ -181,12 +186,15 @@ SWEP.Animations = {
     },
     ["ready"] = {
         Source = "reg_draw_first",
+        SoundTable = {{s = "ArcCw_Horde_M14.Equip", t = 0, c = CHAN_ITEM}},
     },
     ["draw"] = {
         Source = "reg_draw",
+        SoundTable = {{s = "ArcCw_Horde_M14.Foley2", t = 0, c = CHAN_ITEM}},
     },
     ["holster"] = {
         Source = "reg_holster",
+        SoundTable = {{s = "ArcCw_Horde_M14.Foley2", t = 0, c = CHAN_ITEM}},
     },
     ["fire"] = {
         Source = "reg_fire",
@@ -214,37 +222,98 @@ SWEP.Animations = {
 
 sound.Add({
     name = "ArcCw_Horde_M14.BoltBack",
-    volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_bolt_back.wav"
+    sound = "weapons/arccw/bo1_m14/fly_m14_bolt_back.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.BoltRelease",
-    volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_bolt_release.wav"
+    sound = "weapons/arccw/bo1_m14/fly_m14_bolt_release.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.Foley",
+    sound = {"weapons/arccw/bo1_shared/fly_gear_reload_plr_00.wav","weapons/arccw/bo1_shared/fly_gear_reload_plr_01.wav","weapons/arccw/bo1_shared/fly_gear_reload_plr_02.wav","weapons/arccw/bo1_shared/fly_gear_reload_plr_03.wav"},
     channel = CHAN_ITEM,
-    volume = 0.5,
-    sound = {"weapons/bo1_m14/m14_foley_1.wav","weapons/bo1_m14/m14_foley_2.wav","weapons/bo1_m14/m14_foley_3.wav","weapons/bo1_m14/m14_foley_4.wav"}
+    volume = 0.45
+})
+sound.Add({
+    name = "ArcCw_Horde_M14.Foley2",
+    sound = {"weapons/arccw/bo1_shared/rattle_00.wav","weapons/arccw/bo1_shared/rattle_01.wav","weapons/arccw/bo1_shared/rattle_02.wav","weapons/arccw/bo1_shared/rattle_03.wav","weapons/arccw/bo1_shared/rattle_04.wav"},
+    channel = CHAN_ITEM,
+    volume = 0.45
+})
+sound.Add({
+    name = "ArcCw_Horde_M14.Equip",
+    sound = {"weapons/arccw/bo1_shared/pickup_00.wav","weapons/arccw/bo1_shared/pickup_01.wav","weapons/arccw/bo1_shared/pickup_02.wav"},
+    channel = CHAN_ITEM
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagIn1",
-    volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_in_1.wav"
+    sound = "weapons/arccw/bo1_m14/fly_m14_mag_in.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagIn2",
-    volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_in_2.wav"
+    sound = "weapons/arccw/bo1_m14/fly_m14_tap.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagOut",
-    volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_out.wav"
+    sound = "weapons/arccw/bo1_m14/fly_m14_mag_out.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagRattle",
-    volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_rattle.wav"
+    sound = "weapons/arccw/bo1_m14/fly_m14_futz.wav"
 })
+
+function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride)
+    local fsound = self.ShootSound
+    local msound = self.ShootMechSound
+
+    local extsound = self.ShootSoundExt
+    local extextsound = self.ShootSoundExtExt
+
+    fsound = self:GetBuff_Hook("Hook_GetShootSound", fsound)
+    msound = self:GetBuff_Hook("Hook_GetShootMechSound", msound)
+
+    -- Ringoff & LFE
+    extsound = self:GetBuff_Hook("Hook_GetShootSoundExt", extsound)
+    extextsound = self:GetBuff_Hook("Hook_GetShootSoundExtExt", extextsound)
+
+    local suppressed = self:GetBuff_Override("Silencer")
+    if suppressed then
+        fsound = self.ShootSoundSilenced
+        pitch = 100
+        msound = nil
+        extsound = nil
+        extextsound = nil
+    end
+
+    local spv    = self.ShootPitchVariation
+    local volume = self.ShootVol
+    local pitch  = self.ShootPitch * math.Rand(1 - spv, 1 + spv) * self:GetBuff_Mult("Mult_ShootPitch")
+
+    local v = GetConVar("arccw_weakensounds"):GetFloat()
+    volume = volume - v
+
+    volume = volume * self:GetBuff_Mult("Mult_ShootVol")
+
+    volume = math.Clamp(volume, 51, 149)
+    pitch  = math.Clamp(pitch, 0, 255)
+
+    if sndoverride then fsound = sndoverride end
+    if voloverride then volume = voloverride end
+    if pitchoverride then pitch = pitchoverride end
+
+    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_WEAPON) end
+
+    -- Ringoff & LFE
+    if extsound then self:MyEmitSound(extsound, volume, pitch, 1, CHAN_WEAPON + 1) end
+    if extextsound then self:MyEmitSound(extextsound, 45, pitch, 1, CHAN_AUTO) end
+
+    if msound then self:MyEmitSound(msound, 45, math.Rand(95, 105), .45, CHAN_AUTO) end
+
+    local data = {
+        sound   = fsound,
+        volume  = volume,
+        pitch   = pitch,
+    }
+
+    self:GetBuff_Hook("Hook_AddShootSound", data)
+end
