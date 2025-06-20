@@ -74,11 +74,21 @@ ENT.SoundTbl_OnPlayerSight = {
 	"horde/rocket_turret/turret_deploy_6.ogg"
 }
 
-ENT.Immune_AcidPoisonRadiation = true -- Makes the SNPC not get damage from Acid, posion, radiation
-ENT.Horde_Immune_Bleeding = true
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = true,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
 
 function ENT:CustomOnInitialize()
 	self:SetSkin(math.random(0,3))
+	self:PhysicsInitBox(Vector(-20, -20, 0), Vector(20, 20, 40))
+	self:SetCollisionBounds(Vector(-20, -20, 0), Vector(20, 20, 80))
+
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,0))
 		HORDE:DropTurret(self)
@@ -127,20 +137,13 @@ end
 VJ.AddNPC("Rocket Turret","npc_vj_horde_rocket_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
-
 function ENT:Follow(ply)
-	if self:GetNWEntity("HordeOwner") == ply then
-		self:PhysicsInit(SOLID_VPHYSICS)
-		local p = self:GetPos()
-		p.z = ply:GetPos().z + 12
-		self:SetPos(p)
-        ply:PickupObject(self)
-		self:GetPhysicsObject():EnableMotion(true)
-		self.Horde_Pickedup = true
-		timer.Simple(0.2, function ()
-			if self:IsValid() then
-				self.Horde_Pickedup = nil
-			end
-		end)
-    end
+	if self:GetNWEntity("HordeOwner") ~= ply then return end
+
+	local p = self:GetPos()
+	p.z = ply:GetPos().z + 12
+	self:SetPos(p)
+
+	self:GetPhysicsObject():EnableMotion(true)
+	ply:PickupObject(self)
 end

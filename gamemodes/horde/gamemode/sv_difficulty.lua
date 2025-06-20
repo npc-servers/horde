@@ -64,14 +64,6 @@ hook.Add("EntityTakeDamage", "Horde_EntityTakeDamage", function (target, dmg)
                 dmg:SetDamage( math.min( dmg:GetDamage(), HORDE.Difficulty[HORDE.CurrentDifficulty].poisonHeadcrabDamage ) )
             end
 
-            if target:GetClass() == "npc_turret_floor" then
-                dmg:SetDamageForce(Vector(0,0,0))
-                target:SetHealth(target:Health() - dmg:GetDamage())
-                if target:Health() <= 0 then
-                    target:Fire("selfdestruct")
-                end
-            end
-
             local dmgMult = HORDE.Difficulty[HORDE.CurrentDifficulty].damageMultiplier
             if HORDE.endless == 1 then
                 dmg:ScaleDamage(dmgMult * HORDE.endless_damage_multiplier)
