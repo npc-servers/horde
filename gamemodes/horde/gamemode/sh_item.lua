@@ -770,26 +770,46 @@ function HORDE:GetDefaultItemsData()
         50, -1, nil, nil, { Heavy = 5 }, nil, { HORDE.DMG_BALLISTIC } )
 
     -- Class specific grenades
-    HORDE:CreateItem("Explosive",  "Frag Grenade",   "weapon_frag",                    10,  0, "A standard frag grenade.\nGood for crowd control.",
-    {Survivor=true}, 10, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST})
-    HORDE:CreateItem("Explosive",  "Stun Grenade",   "arccw_horde_nade_stun",          100,  0, "A grenade that deals minor damage and stuns enemy for 3 seconds.\nStun cooldown is 10 seconds.",
-    {Assault=true}, 100, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST})
-    HORDE:CreateItem("Explosive",  "Shrapnel Grenade",   "arccw_horde_nade_shrapnel",  100,  0, "A grenade that explodes into shrapnels, dealing Ballistic damage in an area.",
-    {Heavy=true}, 100, -1, nil, nil, nil, nil, {HORDE.DMG_BALLISTIC})
-    HORDE:CreateItem("Explosive",  "Sonar Grenade",   "arccw_horde_nade_sonar",        100,  0, "A grenade that reveals and marks nearby enemies while active.\nMarked enemies take 15% more headshot damage.",
-    {Ghost=true}, 100, -1)
-    HORDE:CreateItem("Explosive",  "M67 Frag Grenade",    "arccw_horde_m67",                100,  0, "M67 High Explosive Fragmentation Grenade.\nMilitary grade, does large amounts of Blast damage.",
-    {Demolition=true}, 100, -1, nil, nil, nil, nil, {HORDE.DMG_BLAST})
-    HORDE:CreateItem("Explosive",  "Medic Grenade",  "arccw_nade_medic",               100,  0, "A grenade that releases contiuous bursts of detoxication clouds.\nHeals players and damages enemies.",
-    {Medic=true}, 100, -1, nil, "items/arccw_nade_medic.png", nil,  nil, {HORDE.DMG_POISON})
-    HORDE:CreateItem("Explosive",  "Nanobot Grenade",   "arccw_horde_nade_nanobot",    100,  0, "A grenade that releases streams of repair nanobots.\nHeals minions and players over time.\nHealing is more potent for minions.",
-    {Engineer=true}, 100, -1)
-    HORDE:CreateItem("Explosive",  "Hemo Grenade",   "arccw_horde_nade_hemo",          100,  0, "A grenade that deals Slashing damage in the area.\nIncreases Bleeding buildup.",
-    {Berserker=true}, 100, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH})
-    HORDE:CreateItem("Explosive",  "EMP Grenade",   "arccw_horde_nade_emp",  100,  0, "A grenade that deals rapid Lightning damage in the area.\nYou are safe from the EMP blast.",
-    {Warden=true}, 100, -1, nil, nil, nil, nil, {HORDE.DMG_LIGHTNING})
-    HORDE:CreateItem("Explosive",  "Molotov",   "arccw_horde_nade_molotov",            100,  0, "Generates a pool of fire on impact.\nSets everything on fire within its effect.",
-    {Cremator=true}, 100, -1, nil, nil, nil, nil, {HORDE.DMG_FIRE})
+    HORDE:CreateItem( "Explosive", "Frag Grenade", "weapon_frag", 10, 0,
+        "A standard frag grenade.\nGood for crowd control.",
+        { Survivor = true, Psycho = true },
+        10, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST } )
+    HORDE:CreateItem( "Explosive", "Stun Grenade", "arccw_horde_nade_stun", 100, 0,
+        "A grenade that deals minor damage and stuns enemy for 3 seconds.\nStun cooldown is 10 seconds.",
+        { Assault = true, SpecOps = true, Reverend = true },
+        100, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST } )
+    HORDE:CreateItem( "Explosive", "Shrapnel Grenade", "arccw_horde_nade_shrapnel", 100, 0,
+        "A grenade that explodes into shrapnels, dealing Ballistic damage in an area.",
+        { Heavy = true, Carcass = true, Juggernaut = true },
+        100, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "Explosive", "Sonar Grenade", "arccw_horde_nade_sonar", 100, 0,
+        "A grenade that reveals and marks nearby enemies while active.\nMarked enemies take 15% more headshot damage.",
+        { Ghost = true, Gunslinger = true },
+        100, -1 )
+    HORDE:CreateItem( "Explosive", "M67 Frag Grenade", "arccw_horde_m67", 100, 0,
+        "M67 High Explosive Fragmentation Grenade.\nMilitary grade, does large amounts of Blast damage.",
+        { Demolition = true },
+        100, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST } )
+    HORDE:CreateItem( "Explosive", "Medic Grenade", "arccw_nade_medic", 100, 0,
+        "A grenade that releases contiuous bursts of detoxication clouds.\nHeals players and damages enemies.",
+        { Medic = true, Hatcher = true },
+        100, -1, nil, "items/arccw_nade_medic.png", nil, nil, { HORDE.DMG_POISON } )
+    HORDE:CreateItem( "Explosive", "Nanobot Grenade", "arccw_horde_nade_nanobot", 100, 0,
+        "A grenade that releases streams of repair nanobots.\nHeals minions and players over time.\nHealing is more potent for minions.",
+        { Engineer = true },
+        100, -1 )
+    HORDE:CreateItem( "Explosive", "Hemo Grenade", "arccw_horde_nade_hemo", 100, 0,
+        "A grenade that deals Slashing damage in the area.\nIncreases Bleeding buildup.",
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        100, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
+    HORDE:CreateItem( "Explosive", "EMP Grenade", "arccw_horde_nade_emp", 100, 0,
+        "A grenade that deals rapid Lightning damage in the area.\nYou are safe from the EMP blast.",
+        { Warden = true },
+        100, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
+    HORDE:CreateItem( "Explosive", "Molotov", "arccw_horde_nade_molotov", 100, 0,
+        "Generates a pool of fire on impact.\nSets everything on fire within its effect.",
+        { Cremator = true },
+        100, -1, nil, nil, nil, nil, { HORDE.DMG_FIRE } )
 
     HORDE:CreateItem("Explosive",  "SLAM",           "horde_slam",          950,  2, "Selectable Lightweight Attack Munition.\nRMB to detonate. Attach to wall to active laser mode.\n\nA maximum of 4 SLAMs can be active at the same time.",
     {Demolition=true}, 40, 0, nil, "items/hl2/weapon_slam.png", nil, nil, {HORDE.DMG_BLAST})
