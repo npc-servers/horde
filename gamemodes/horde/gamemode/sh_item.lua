@@ -1090,13 +1090,13 @@ function HORDE:GetDefaultItemsData()
 
     if ArcCWInstalled == true and GetConVar( "horde_arccw_attinv_free" ):GetInt() == 0 then
         print( "[HORDE] ArcCW detected. Loading attachments into shop." )
-        HORDE.GetArcCWAttachments()
+        HORDE:GetArcCWAttachments()
     end
 
     print( "[HORDE] - Loaded default item config." )
 end
 
-HORDE.GetArcCWAttachments = function ()
+function HORDE:GetArcCWAttachments()
     -- Optics
     HORDE:CreateItem("Attachment", "C-MORE (RDS)",   "go_optic_cmore",  100,  0, "RDS",
     nil, 10, -1, {type=HORDE.ENTITY_PROPERTY_GIVE, is_arccw_attachment=true, arccw_attachment_type="Optic"})
@@ -1506,17 +1506,17 @@ HORDE.GetArcCWAttachments = function ()
     nil, 10, -1, {type=HORDE.ENTITY_PROPERTY_GIVE, is_arccw_attachment=true, arccw_attachment_type="Perk"})
 end
 
-function HORDE:IsWatchTower(ent)
+function HORDE:IsWatchTower( ent )
     return ent:IsValid() and ent.Horde_WatchTower
 end
 
 -- Startup
 if SERVER then
-    util.AddNetworkString("Horde_SetItemsData")
+    util.AddNetworkString( "Horde_SetItemsData" )
+    util.AddNetworkString( "Horde_SetUpgrades" )
 
-    if GetConVar("horde_external_lua_config"):GetString() and GetConVar("horde_external_lua_config"):GetString() ~= "" then
-    else
-        if GetConVarNumber("horde_default_item_config") == 0 then
+    if not GetConVar( "horde_external_lua_config" ):GetString() or GetConVar( "horde_external_lua_config" ):GetString() == "" then
+        if GetConVar( "horde_default_item_config" ):GetBool() == 0 then
             GetItemsData()
         else
             HORDE:GetDefaultItemsData()
@@ -1525,88 +1525,83 @@ if SERVER then
         end
     end
 
-
-    net.Receive("Horde_SetItemsData", function (len, ply)
+    net.Receive( "Horde_SetItemsData", function ( _, ply )
         if not ply:IsSuperAdmin() then return end
-        local items_len = net.ReadUInt(32)
-        local data = net.ReadData(items_len)
-        local str = util.Decompress(data)
-        HORDE.items = util.JSONToTable(str)
+        local itemsLen = net.ReadUInt( 32 )
+        local data = net.ReadData( itemsLen )
+        local str = util.Decompress( data )
+        HORDE.items = util.JSONToTable( str )
         HORDE.InvalidateHordeItemCache = 1
         HORDE:SetItemsData()
-    end)
-end
-
-if SERVER then
-    util.AddNetworkString("Horde_SetUpgrades")
+    end )
 end
 
 if CLIENT then
-    net.Receive("Horde_SetUpgrades", function(len, ply)
+    net.Receive( "Horde_SetUpgrades", function()
         local class = net.ReadString()
-        local level = net.ReadUInt(8)
-        MySelf:Horde_SetUpgrade(class, level)
-    end)
+        local level = net.ReadUInt( 8 )
+        MySelf:Horde_SetUpgrade( class, level )
+    end )
 end
 
-local plymeta = FindMetaTable("Player")
+local plymeta = FindMetaTable( "Player" )
 
-function plymeta:Horde_GetUpgrade(class)
+function plymeta:Horde_GetUpgrade( class )
     if not self.Horde_Upgrades then self.Horde_Upgrades = {} end
     return self.Horde_Upgrades[class] or 0
 end
 
-function plymeta:Horde_SetUpgrade(class, level)
+function plymeta:Horde_SetUpgrade( class, level )
     if not self.Horde_Upgrades then self.Horde_Upgrades = {} end
     if SERVER then
-        net.Start("Horde_SetUpgrades")
-            net.WriteString(class)
-            net.WriteUInt(level, 8)
-        net.Send(self)
+        net.Start( "Horde_SetUpgrades" )
+            net.WriteString( class )
+            net.WriteUInt( level, 8 )
+        net.Send( self )
     end
     self.Horde_Upgrades[class] = level
 end
 
-function HORDE:IsMeleeItem(class)
+function HORDE:IsMeleeItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Melee"
 end
 
-function HORDE:IsPistolItem(class)
+function HORDE:IsPistolItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Pistol"
 end
 
-function HORDE:IsSMGItem(class)
+function HORDE:IsSMGItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "SMG"
 end
 
-function HORDE:IsRifleItem(class)
+function HORDE:IsRifleItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Rifle"
 end
 
-function HORDE:IsShotgunItem(class)
+function HORDE:IsShotgunItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Shotgun"
 end
 
-function HORDE:IsMGItem(class)
+function HORDE:IsMGItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "MG"
 end
 
-function HORDE:IsExplosiveItem(class)
+function HORDE:IsExplosiveItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Explosive"
 end
 
-function HORDE:IsSpecialItem(class)
+function HORDE:IsSpecialItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Special"
 end
 
-function HORDE:IsEquipmentItem(class)
+function HORDE:IsEquipmentItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Equipment"
 end
 
-function HORDE:IsAttachmentItem(class)
+function HORDE:IsAttachmentItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Attachment"
 end
 
-function HORDE:IsGadgetItem(class)
+function HORDE:IsGadgetItem( class )
     return HORDE.items[class] and HORDE.items[class].category == "Gadget"
 end
