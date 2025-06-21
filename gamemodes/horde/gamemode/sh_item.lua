@@ -816,51 +816,51 @@ function HORDE:GetDefaultItemsData()
         { Demolition = true },
         40, 0, nil, "items/hl2/weapon_slam.png", nil, nil, { HORDE.DMG_BLAST } )
     HORDE:CreateItem( "Explosive", "ResistanceRPG", "weapon_rpg", 1500, 5,
-        "Laser-guidedrocketpropulsiondevice.",
+        "Laser-guided rocket propulsion device.",
         { Survivor = true, Psycho = true, Demolition = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     -- HORDE:CreateItem( "Explosive", "HopperMine", "horde_hopper_mine", 2000, 5,
-        -- "Combinereactiveminesthatexplodewhenenemiescomeinproximity.\nYoucanplantatmost5reactivemines.",
+        -- "Combine reactive mines that explode when enemies come in proximity.\nYou can plant at most 5 reactive mines.",
         -- { Demolition = true },
         -- 15, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     -- HORDE:CreateItem( "Explosive", "StaticMine", "horde_static_mine", 2000, 5,
-        -- "Combinereactiveminesthathoversinair.\nExplodewhenenemiescomeinproximity.\nYoucanplantatmost5reactivemines.",
+        -- "Combine reactive mines that hovers in air.\nExplode when enemies come in proximity.\nYou can plant at most 5 reactive mines.",
         -- { Demolition = true },
         -- 15, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "M79GL", "arccw_horde_m79", 1500, 5,
-        "M79Thumper.\nShoots40x46mmgrenadesthatexplodeonimpact.",
+        "M79 Thumper.\nShoots 40x46mm grenades that explode on impact.",
         { Survivor = true, Psycho = true, Demolition = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "ChinaLakeGL", "arccw_horde_chinalake", 2000, 6,
-        "Pump-ActionGrenadeLauncher.\nHoldsatotaloffour40mmgrenades, \nandcyclessimilartoapump-actionshotgun.\nPressBorZOOMtoswitchgrenadetype.",
+        "Pump-Action Grenade Launcher.\nHolds a total of four 40mm grenades,\nand cycles similar to a pump-action shotgun. \nPress B or ZOOM to switch grenade type.",
         { Survivor = true, Psycho = true, Demolition = true, Engineer = true, Warden = true, Cremator = true },
         30, -1, nil, nil, { Demolition = 2 }, nil, { HORDE.DMG_BLAST, HORDE.DMG_FIRE, HORDE.DMG_LIGHTNING, HORDE.DMG_COLD }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "StickyLauncher", "horde_sticky_launcher", 2500, 7,
-        "Stickygrenadelauncher.\nLaunchesgrenadesthatsticktosurfacesandentities.\n\nRMBtodetonate.",
+        "Sticky grenade launcher.\nLaunches grenades that stick to surfaces and entities.\n\nRMB to detonate.",
         { Demolition = true },
         50, -1, nil, nil, { Demolition = 2 }, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "M32GL", "arccw_horde_m32", 3000, 8,
-        "MilkorMultipleGrenadeLauncher.\nAlightweight40mmsix-shotrevolvergrenadelauncher.",
+        "Milkor Multiple Grenade Launcher.\nA lightweight 40mm six-shot revolver grenade launcher.",
         { Demolition = true },
         50, -1, nil, nil, { Demolition = 3 }, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "RPG-7", "arccw_horde_rpg7", 3000, 9,
-        "RuchnoyProtivotankoviyGranatomyot.\nAnti-tankrocketlauncherdevelopedbytheSovietUnion.",
+        "Ruchnoy Protivotankoviy Granatomyot.\nAnti-tank rocket launcher developed by the Soviet Union.",
         { Demolition = true },
         15, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "USAS-12", "arccw_horde_usas12", 3000, 9,
-        "USAS-12automaticshotgun.\nShootsexplosiveslugsthatdealeitherBallisticorExplosivedamage.\nPressBorZOOMtoswitchgrenadetype.",
+        "USAS-12 automatic shotgun.\nShoots explosive slugs that deal either Ballistic or Explosive damage. \nPress B or ZOOM to switch grenade type.",
         { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Demolition = true, Warden = true },
         20, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "LAW", "arccw_horde_law", 3250, 9,
-        "LightAnti-ArmorWeapon.\nFocusesonrawdestructivepowerinsteadofareaofeffect.",
+        "Light Anti-Armor Weapon.\nFocuses on raw destructive power instead of area of effect.",
         { Demolition = true },
         15, -1, nil, nil, { Demolition = 4 }, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "FGM-148JAVELIN", "arccw_horde_javelin", 3500, 10,
-        "FGM-148Javelin.\nFiresguidedrocketsthatrequirealock-on.",
+        "FGM-148 Javelin.\nFires guided rockets that require a lock-on.",
         { Demolition = true },
         15, -1, nil, nil, { Demolition = 5 }, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     HORDE:CreateItem( "Explosive", "M202", "arccw_horde_m202", 3500, 10,
-        "M202FlameAssaultShoulder.\nAmericanrocketlauncherdesignedtoreplacetheflamethrowersusedinWorldWarII.",
+        "M202 Flame Assault Shoulder.\nAmerican rocket launcher designed to replace the flamethrowers used in World War II.",
         { Demolition = true },
         20, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
     -- HORDE:CreateItem( "Explosive", "Thermite", "arccw_horde_nade_incendiary", 1500, 1,
