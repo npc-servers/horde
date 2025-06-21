@@ -917,12 +917,18 @@ function HORDE:GetDefaultItemsData()
         "Organic weapon used by Xen soldiers.\nHas infinite ammo.\nPrimary fire generates homing ricocheting shots.\nSecondary fire rapidly unloads the entire weapon.",
         { Engineer = true },
         2, -1, nil, nil, { Engineer = 4 }, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem("Special",    "Spore Launcher", "horde_spore_launcher", 1750,  6, "Improvised biological weapon.\nShoots out acidic projectiles that explodes after a short delay.\nHeals players and damages enemies.",
-    {Medic=true, Survivor=true}, 10, -1, nil, nil, {Medic=2, Survivor=2}, nil, {HORDE.DMG_POISON})
-    HORDE:CreateItem("Special",    "M2 Health Thrower", "horde_healingthrower", 3250,  7, "M2-2 Health Thrower.\nAn American man-portable backpack flamethrower converted to heal stuff to death.\nsmells faintly of lime and mint (who hurt you)",
-    {Medic=true}, 35, -1, nil, nil, nil, nil, {HORDE.DMG_POISON})
-    HORDE:CreateItem("Explosive",  "Medic RPG",          "arccw_horde_medic_rpg",   3500,  8, "Medic Missile.\nAnti-Death Rocket Propelled Grenade \nmade in the Gamestop ventilation of an abandoned mall. \nnot to be confused with the infamous magic missile.",
-    {Medic=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_POISON})
+    HORDE:CreateItem( "Special", "Spore Launcher", "horde_spore_launcher", 1750, 6,
+        "Improvised biological weapon.\nShoots out acidic projectiles that explodes after a short delay.\nHeals players and damages enemies.",
+        { Survivor = true, Psycho = true, Medic = true, Hatcher = true },
+        10, -1, nil, nil, { Survivor = 2, Medic = 2 }, nil, { HORDE.DMG_POISON } )
+    HORDE:CreateItem( "Special", "M2 Health Thrower", "horde_healingthrower", 3250, 7,
+        "M2-2 Health Thrower.\nAn American man-portable backpack flamethrower converted to heal stuff to death.\nsmells faintly of lime and mint (who hurt you)",
+        { Medic = true, Hatcher = true },
+        35, -1, nil, nil, nil, nil, { HORDE.DMG_POISON } )
+    HORDE:CreateItem( "Explosive", "Medic RPG", "arccw_horde_medic_rpg", 3500, 8,
+        "Medic Missile.\nAnti-Death Rocket Propelled Grenade \nmade in the Gamestop ventilation of an abandoned mall. \nnot to be confused with the infamous magic missile.",
+        { Medic = true, Hatcher = true },
+        15, -1, nil, nil, nil, nil, { HORDE.DMG_POISON } )
 
     HORDE:CreateItem("Special",    "Watchtower",      "horde_watchtower",        800,  1, "A watchtower that provides resupply.\nGenerates 1 ammobox every 30 seconds.\n(Entity Class: horde_watchtower)",
     {Warden=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=2}, "items/horde_watchtower.png")
@@ -937,16 +943,26 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem("Special",    "Watchtower Type-Beacon",  "horde_watchtower_beacon", 2000,  4, "A watchtower that acts as a shop during waves.\nProvides additional lighting.\n(Entity Class: horde_watchtower_beacon)",
     {Warden=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=1}, "items/horde_watchtower.png", nil, nil, nil)
 
-    HORDE:CreateItem("Special",    "Heat Crossbow",  "arccw_horde_heat_crossbow", 2000,  5, "Improvised sniper weapon.\nHas two firemodes that can be swapped between to deal either Ballistic or Fire damage.\n\nDeals 300% headshot damage.",
-    {Survivor=true, Ghost=true, Cremator=true}, 1, -1, nil, "items/hl2/weapon_crossbow.png", nil, nil, {HORDE.DMG_BALLISTIC, HORDE.DMG_FIRE})
-    HORDE:CreateItem("Special",    "M2 Flamethrower", "horde_m2",            2500,  7, "M2-2 Flamethrower.\nAn American man-portable backpack flamethrower.",
-    {Cremator=true}, 50, -1, nil, nil, nil, nil, {HORDE.DMG_FIRE})
-    HORDE:CreateItem("Special",    "Tau Cannon",      "horde_tau",         3000,  7, "A device that uses electromagnetism to ionize particles.\nHold RMB to charge and release a powerful shot.\nDeals more damage as you charge.\nDevice explodes if you overcharge.",
-    {Cremator=true}, 15, -1, nil, nil, {Cremator=3}, nil, {HORDE.DMG_FIRE})
-    HORDE:CreateItem("Special",    "Gluon Gun", "horde_gluon",            3000,   8, "Quantum Destabilizer.\nAn experimental weapon that fires a devastating laser.",
-    {Cremator=true}, 40, -1, nil, nil, {Cremator=4}, nil, {HORDE.DMG_FIRE})
-    HORDE:CreateItem("Special",    "Heat Blaster",  "arccw_horde_heat_blaster", 3000,  8, "A projectile launcher that shoots flaming fireballs.\nHold RMB to charge a shot.",
-    {Cremator=true}, 50, -1, nil, nil, nil, nil, {HORDE.DMG_FIRE})
+    HORDE:CreateItem( "Special", "Heat Crossbow", "arccw_horde_heat_crossbow", 2000, 5,
+        "Improvised sniper weapon.\nHas two firemodes that can be swapped between to deal either Ballistic or Fire damage.\n\nDeals 300% headshot damage.",
+        { Survivor = true, Psycho = true, Ghost = true, Cremator = true },
+        1, -1, nil, "items/hl2/weapon_crossbow.png", nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_FIRE } )
+    HORDE:CreateItem( "Special", "M2 Flamethrower", "horde_m2", 2500, 7,
+        "M2-2 Flamethrower.\nAn American man-portable backpack flamethrower.",
+        { Cremator = true },
+        50, -1, nil, nil, nil, nil, { HORDE.DMG_FIRE } )
+    HORDE:CreateItem( "Special", "Tau Cannon", "horde_tau", 3000, 7,
+        "A device that uses electromagnetism to ionize particles.\nHold RMB to charge and release a powerful shot.\nDeals more damage as you charge.\nDevice explodes if you overcharge.",
+        { Cremator = true },
+        15, -1, nil, nil, { Cremator = 3 }, nil, { HORDE.DMG_FIRE } )
+    HORDE:CreateItem( "Special", "Gluon Gun", "horde_gluon", 3000, 8,
+        "Quantum Destabilizer.\nAn experimental weapon that fires a devastating laser.",
+        { Cremator = true },
+        40, -1, nil, nil, { Cremator = 4 }, nil, { HORDE.DMG_FIRE } )
+    HORDE:CreateItem( "Special", "Heat Blaster", "arccw_horde_heat_blaster", 3000, 8,
+        "A projectile launcher that shoots flaming fireballs.\nHold RMB to charge a shot.",
+        { Cremator = true },
+        50, -1, nil, nil, nil, nil, { HORDE.DMG_FIRE } )
     --[[HORDE:CreateItem("Special",    "Taser",           "arccw_go_taser",      1000,  1, "Taser.",
     {Engineer=true}, 50, -1)]]--
 
