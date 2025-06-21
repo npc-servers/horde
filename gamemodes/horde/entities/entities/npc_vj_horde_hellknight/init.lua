@@ -89,7 +89,7 @@ function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
 end
 
 function ENT:CustomOnInitialize()
-    self:SetModelScale(1.75, 0.001)
+    self:SetModelScale(1.75, 0)
     self.HasLeapAttack = false
     self.AnimTbl_Run = ACT_WALK
     self:SetColor(Color(25, 25, 25))
