@@ -978,31 +978,35 @@ function HORDE:GetDefaultItemsData()
     --[[HORDE:CreateItem("Special",    "Taser",           "arccw_go_taser",      1000,  1, "Taser.",
     {Engineer=true}, 50, -1)]]--
 
-    HORDE:CreateItem("Special",    "Void Projector",   "horde_void_projector",   0,  11,
+    HORDE:CreateItem( "Special", "Void Projector", "horde_void_projector", 0, 11,
     [[Only usable by Necromancer subclass!
     Manipulates dark energy to inflict hypothermia and conjure entities.]],
-    {Engineer=true}, -1, -1, nil, nil, nil, nil, {HORDE.DMG_COLD, HORDE.DMG_PHYSICAL}, nil, {"Necromancer"}, true)
+    { Necromancer = true },
+    -1, -1, nil, nil, nil, nil, { HORDE.DMG_COLD, HORDE.DMG_PHYSICAL }, nil, { "Necromancer" } )
 
-    HORDE:CreateItem("Special",    "Solar Seal",   "horde_solar_seal",   0,  11,
+    HORDE:CreateItem( "Special", "Solar Seal", "horde_solar_seal", 0, 11,
     [[Only usable by Artificer subclass!
     Manipulates solar energy to wreak destruction.]],
-    {Cremator=true}, -1, -1, nil, nil, nil, nil, {HORDE.DMG_FIRE, HORDE.DMG_LIGHTNING}, nil, {"Artificer"}, true)
+    { Artificer = true },
+    -1, -1, nil, nil, nil, nil, { HORDE.DMG_FIRE, HORDE.DMG_LIGHTNING }, nil, { "Artificer" } )
 
-    HORDE:CreateItem("Special",    "Astral Relic",   "horde_astral_relic",   0,  11,
+    HORDE:CreateItem( "Special", "Astral Relic", "horde_astral_relic", 0, 11,
     [[Only usable by Warlock subclass!
     Manipulates negative energy fields.]],
-    {Demolition=true}, -1, -1, nil, nil, nil, nil, {HORDE.DMG_PHYSICAL}, nil, {"Warlock"}, true)
+    { Warlock = true },
+    -1, -1, nil, nil, nil, nil, { HORDE.DMG_PHYSICAL }, nil, { "Warlock" } )
 
-    HORDE:CreateItem("Special",    "Carcass Biosystem",   "horde_carcass",   0,  12,
+    HORDE:CreateItem( "Special", "Carcass Biosystem", "horde_carcass", 0, 12,
     [[Only usable by Carcass subclass!
     Advanced combat biosystem that completely screws up the appearance of its user.
     Leaves behind an unpleasant stench.
 
     LMB: Punch.
     Hold for a charged punch that deals increased damage in an area.]],
-    {Heavy=true}, -1, -1, nil, nil, nil, nil, {HORDE.DMG_PHYSICAL}, nil, {"Carcass"}, true)
+    { Carcass = true },
+    -1, -1, nil, nil, nil, nil, { HORDE.DMG_PHYSICAL }, nil, { "Carcass" } )
 
-    HORDE:CreateItem("Special",    "Pheropod",   "horde_pheropod",   0,  9,
+    HORDE:CreateItem( "Special", "Pheropod", "horde_pheropod", 0, 9,
     [[Only usable by Hatcher subclass!
     Pheropods that can hatch and control alien Antlions.
 
@@ -1024,7 +1028,8 @@ function HORDE:GetDefaultItemsData()
         - Increased health, damage and attack speed.
         - Increased Aroma Pulse radius and reduce Bug Pulse cooldown.
         - Immune to Poison damage and Break.]],
-    {Medic=true}, -1, -1, nil, nil, nil, nil, {HORDE.DMG_SLASH, HORDE.DMG_POISON}, nil, {"Hatcher"}, true)
+    { Hatcher = true },
+    -1, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH, HORDE.DMG_POISON }, nil, { "Hatcher" } )
 
     HORDE:CreateItem("Equipment",  "Medkit",         "weapon_horde_medkit",      50,   0, "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
     nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, {"Survivor", "Psycho", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Cremator", "Artificer"})
