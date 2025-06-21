@@ -1031,45 +1031,69 @@ function HORDE:GetDefaultItemsData()
     { Hatcher = true },
     -1, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH, HORDE.DMG_POISON }, nil, { "Hatcher" } )
 
-    HORDE:CreateItem("Equipment",  "Medkit",         "weapon_horde_medkit",      50,   0, "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
-    nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, {"Survivor", "Psycho", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Cremator", "Artificer"})
-    HORDE:CreateItem("Equipment",  "Health Vial",    "item_healthvial",    15,   0, "A capsule filled with sticky green liquid.\nHeals instantly when picked up.",
-    {Medic=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_DROP, x=50, z=15, yaw=0, limit=5}, nil)
-    HORDE:CreateItem("Equipment", "Kevlar Armor Battery", "item_battery", 160, 0, "Armor battery.\nEach one provides 15 armor. Personal use only.",
-    nil, 10, -1, {type=HORDE.ENTITY_PROPERTY_GIVE}, "items/armor_15.png")
-    HORDE:CreateItem("Equipment", "Full Kevlar Armor", "armor100", 1000, 0, "Full kevlar armor set.\nFills up 100% of your armor bar.",
-    nil, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_100.png")
-    HORDE:CreateItem("Equipment", "Advanced Kevlar Armor", "armor_survivor", 1000, 0, "Distinguished Survivor armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased damage resistance.",
-    {Survivor=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_survivor.png", {Survivor=30}, 1)
-    HORDE:CreateItem("Equipment", "Assault Vest", "armor_assault", 1000, 0, "Distinguished Assault armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Ballistic damage resistance.",
-    {Assault=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_assault.png", {Assault=30}, 1)
-    HORDE:CreateItem("Equipment", "Bulldozer Suit", "armor_heavy", 1000, 0, "Distinguished Heavy armor.\n\nFills up 125% of your armor bar.\n\nIncreases max armor by 25%.",
-    {Heavy=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=125}, "items/armor_heavy.png", {Heavy=30}, 1)
-    HORDE:CreateItem("Equipment", "Hazmat Suit", "armor_medic", 1000, 0, "Distinguished Medic armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Poison damage resistance.",
-    {Medic=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_medic.png", {Medic=30}, 1)
-    HORDE:CreateItem("Equipment", "Bomb Suit", "armor_demolition", 1000, 0, "Distinguished Demolition armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Blast damage resistance.",
-    {Demolition=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_demolition.png", {Demolition=30}, 1)
-    HORDE:CreateItem("Equipment", "Assassin's Cloak", "armor_ghost", 1000, 0, "Distinguished Ghost armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased evasion.",
-    {Ghost=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_ghost.png", {Ghost=30}, 1)
-    HORDE:CreateItem("Equipment", "Defense Matrix", "armor_engineer", 1000, 0, "Distinguished Engineer armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased damage resistance.",
-    {Engineer=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_engineer.png", {Engineer=30}, 1)
-    HORDE:CreateItem("Equipment", "Riot Armor", "armor_warden", 1000, 0, "Distinguished Warden armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Shock and Sonic damage resistance.",
-    {Warden=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_warden.png", {Warden=30}, 1)
-    HORDE:CreateItem("Equipment", "Molten Armor", "armor_cremator", 1000, 0, "Distinguished Cremator armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Fire damage resistance.",
-    {Cremator=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_cremator.png", {Cremator=30}, 1)
-    HORDE:CreateItem("Equipment", "Battle Vest", "armor_berserker", 1000, 0, "Distinguished Berserker armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Slashing/Blunt damage resistance.",
-    {Berserker=true}, 10, -1, {type=HORDE.ENTITY_PROPERTY_ARMOR, armor=100}, "items/armor_berserker.png", {Berserker=30}, 1)
-
+    HORDE:CreateItem( "Equipment", "Medkit", "weapon_horde_medkit", 50, 0,
+        "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
+        nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, { "Survivor", "Psycho", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Cremator", "Artificer" } )
+    HORDE:CreateItem( "Equipment", "Health Vial", "item_healthvial", 15, 0,
+        "A capsule filled with sticky green liquid.\nHeals instantly when picked up.",
+        { Medic = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 5 }, nil )
+    HORDE:CreateItem( "Equipment", "Kevlar Armor Battery", "item_battery", 160, 0,
+        "Armor battery.\nEach one provides 15 armor. Personal use only.",
+        nil, 10, -1, { type = HORDE.ENTITY_PROPERTY_GIVE }, "items/armor_15.png" )
+    HORDE:CreateItem( "Equipment", "Full Kevlar Armor", "armor100", 1000, 0,
+        "Full kevlar armor set.\nFills up 100% of your armor bar.",
+        nil, 10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_100.png" )
+    HORDE:CreateItem( "Equipment", "Advanced Kevlar Armor", "armor_survivor", 1000, 0,
+        "Distinguished Survivor armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased damage resistance.",
+        { Survivor = true, Psycho = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_survivor.png", { Survivor = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Assault Vest", "armor_assault", 1000, 0,
+        "Distinguished Assault armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Ballistic damage resistance.",
+        { Assault = true, SpecOps = true, Reverend = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_assault.png", { Assault = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Bulldozer Suit", "armor_heavy", 1000, 0,
+        "Distinguished Heavy armor.\n\nFills up 125% of your armor bar.\n\nIncreases max armor by 25%.",
+        { Heavy = true, Carcass = true, Juggernaut = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 125 }, "items/armor_heavy.png", { Heavy = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Hazmat Suit", "armor_medic", 1000, 0,
+        "Distinguished Medic armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Poison damage resistance.",
+        { Medic = true, Hatcher = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_medic.png", { Medic = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Bomb Suit", "armor_demolition", 1000, 0,
+        "Distinguished Demolition armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Blast damage resistance.",
+        { Demolition = true, Warlock = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_demolition.png", { Demolition = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Assassin's Cloak", "armor_ghost", 1000, 0,
+        "Distinguished Ghost armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased evasion.",
+        { Ghost = true, Gunslinger = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_ghost.png", { Ghost = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Defense Matrix", "armor_engineer", 1000, 0,
+        "Distinguished Engineer armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased damage resistance.",
+        { Engineer = true, Necromancer = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_engineer.png", { Engineer = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Battle Vest", "armor_berserker", 1000, 0,
+        "Distinguished Berserker armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Slashing/Blunt damage resistance.",
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_berserker.png", { Berserker = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Riot Armor", "armor_warden", 1000, 0,
+        "Distinguished Warden armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Shock and Sonic damage resistance.",
+        { Warden = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_warden.png", { Warden = 30 }, 1 )
+    HORDE:CreateItem( "Equipment", "Molten Armor", "armor_cremator", 1000, 0,
+        "Distinguished Cremator armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Fire damage resistance.",
+        { Cremator = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_cremator.png", { Cremator = 30 }, 1 )
 
     HORDE:GetDefaultGadgets()
     HORDE:GetDefaultItemInfusions()
 
-    if ArcCWInstalled == true and GetConVar("horde_arccw_attinv_free"):GetInt() == 0 then
-        print("[HORDE] ArcCW detected. Loading attachments into shop.")
+    if ArcCWInstalled == true and GetConVar( "horde_arccw_attinv_free" ):GetInt() == 0 then
+        print( "[HORDE] ArcCW detected. Loading attachments into shop." )
         HORDE.GetArcCWAttachments()
     end
 
-    print("[HORDE] - Loaded default item config.")
+    print( "[HORDE] - Loaded default item config." )
 end
 
 HORDE.GetArcCWAttachments = function ()
