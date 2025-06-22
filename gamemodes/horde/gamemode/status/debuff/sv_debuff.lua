@@ -62,15 +62,12 @@ end
 function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
     if not IsValid(self) or (self:IsPlayer() and not self:Alive()) then return end
     if IsValid( inflictor ) and (HORDE:IsPlayerOrMinion(inflictor) == true) and (HORDE:IsPlayerOrMinion(self) == true) and inflictor ~= self then return end
-    if self.Horde_Immune_Status_All then return end
-    if self.Horde_Immune_Status and self.Horde_Immune_Status[debuff] then return end
     if not self.Horde_Debuff_Active then self.Horde_Debuff_Active = {} end
     if not self.Horde_Debuff_Buildup then self.Horde_Debuff_Buildup = {} end
     if not self.Horde_Debuff_Cooldown then self.Horde_Debuff_Cooldown = {} end
     if self.Horde_Debuff_Cooldown[debuff] then return end
     if self.Horde_Debuff_Active[debuff] then return end
     if not self.Horde_Debuff_Buildup[debuff] then self.Horde_Debuff_Buildup[debuff] = 0 end
-
     if self:IsPlayer() then
         if self.Horde_Debuff_Buildup[debuff] >= 100 then return end
         local bonus = {apply = 1, less = 1, add = 0}
@@ -111,7 +108,8 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
     else
         local threshold = self.Horde_Debuff_Threshold or 100
         if self.Horde_Debuff_Buildup[debuff] >= threshold then return end
-
+        if self.Horde_Immune_Status_All then return end
+        if self.Horde_Immune_Status and self.Horde_Immune_Status[debuff] then return end
         local bonus = {apply = 1, more = 1, increase = 0}
         if inflictor and inflictor:IsValid() and inflictor:IsPlayer() then
             hook.Run("Horde_OnEnemyDebuffApply", self, debuff, bonus, inflictor, buildup)
