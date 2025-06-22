@@ -176,6 +176,10 @@ if ArcCWInstalled then
         end
     end
 
+    -- Disable near-walling and lunging that messes with gameplay.
+    RunConsoleCommand("arccw_override_nearwall", "0")
+    RunConsoleCommand("arccw_override_lunge_off", "1")
+
     -- Disable perks that messes up with Horde's own system.
     if GetConVar("horde_default_item_config"):GetInt() == 1 then
         ArcCW.AttachmentBlacklistTable["go_perk_headshot"] = true
