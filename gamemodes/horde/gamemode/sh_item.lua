@@ -383,7 +383,7 @@ function HORDE:GetDefaultItemsData()
         nil, 10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Kunai", "arccw_horde_kunai", 1750, 2,
         "Ranged throwing knives.\nThrown blades are non-retrieveable\n knives recharge every 3 seconds, with a total of 3 knives",
-        { Survivor = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, { Berserker = 1 }, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Fireaxe", "arccw_horde_axe", 1500, 4,
         "Fireaxe.\nHeavy, but can chop most enemies in half.",
@@ -393,11 +393,11 @@ function HORDE:GetDefaultItemsData()
         nil, 10, -1, nil, "items/hl2/weapon_stunstick.png", nil, nil, { HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Melee", "Katana", "arccw_horde_katana", 2000, 4,
         "Ninja sword.\nLong attack range and fast attack speed.",
-        { Survivor = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Bat", "arccw_horde_bat", 2000, 4,
         "Sturdy baseball bat.\nHits like a truck.",
-        { Survivor = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLUNT } )
     HORDE:CreateItem( "Melee", "Chainsaw", "arccw_horde_chainsaw", 2500, 6,
         "Brrrrrrrrrrrrrrrr.\n\nHold RMB to saw through enemies.\nDeals a lot more damage when using ammo.",
@@ -465,7 +465,7 @@ function HORDE:GetDefaultItemsData()
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Deagle", "arccw_horde_deagle", 750, 2,
         "Night Hawk .50C.\nAn iconic pistol that is diffcult to master.",
-        { Survivor = true, Ghost = true, Gunslinger = true },
+        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_deagle", { Ghost = 1 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Anaconda", "arccw_horde_anaconda", 1000, 3,
         "Colt Anaconda.\nChambered for the powerful .44 Magnum.",
@@ -477,7 +477,7 @@ function HORDE:GetDefaultItemsData()
         5, -1, nil, "arccw/weaponicons/arccw_go_cz75", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "M9", "arccw_horde_m9", 750, 2,
         "Beretta M9.\nSidearm used by the United States Armed Forces.",
-        { Survivor = true, Ghost = true, Gunslinger = true },
+        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_m9", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "FiveSeven", "arccw_horde_fiveseven", 750, 2,
         "ES Five-seven.\nA Belgian semi-automatic pistol made by FN Herstal.",
@@ -596,7 +596,7 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, "arccw/weaponicons/arccw_go_mag7", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "XM1014", "arccw_horde_m1014", 2000, 5,
         "Benelli M4 Super 90.\nFully automatic shotgun.",
-        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Trench Gun", "arccw_horde_trenchgun", 2250, 6,
         "Winchester Model 1200.\nShoots incendiary pellets.",
@@ -748,6 +748,10 @@ function HORDE:GetDefaultItemsData()
         "M249 light machine gun.\nA gas operated and air-cooled weapon of destruction.",
         { Survivor = true, Psycho = true, Heavy = true, Juggernaut = true },
         40, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "MG", "L86 LSW", "arccw_horde_l86", 2500, 9,
+        "SA80 L86 LSW.\nBullpup light machine gun operated by the British Army.",
+        { Heavy = true, Juggernaut = true },
+        25, -1, nil, nil, { Heavy = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "MG", "RPD", "arccw_horde_rpd", 3000, 10,
         "Ruchnoy Pulemyot Degtyaryova.\na 7.62x39mm light machine gun developed in the Soviet Union by Vasily Degtyaryov.",
         { Heavy = true, Juggernaut = true },
@@ -815,7 +819,7 @@ function HORDE:GetDefaultItemsData()
         "Selectable Lightweight Attack Munition.\nRMB to detonate. Attach to wall to active laser mode.\n\nA maximum of 4 SLAMs can be active at the same time.",
         { Demolition = true },
         40, 0, nil, "items/hl2/weapon_slam.png", nil, nil, { HORDE.DMG_BLAST } )
-    HORDE:CreateItem( "Explosive", "ResistanceRPG", "weapon_rpg", 1500, 5,
+    HORDE:CreateItem( "Explosive", "Resistance RPG", "weapon_rpg", 1500, 5,
         "Laser-guided rocket propulsion device.",
         { Survivor = true, Psycho = true, Demolition = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
@@ -827,15 +831,15 @@ function HORDE:GetDefaultItemsData()
         -- "Combine reactive mines that hovers in air.\nExplode when enemies come in proximity.\nYou can plant at most 5 reactive mines.",
         -- { Demolition = true },
         -- 15, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
-    HORDE:CreateItem( "Explosive", "M79GL", "arccw_horde_m79", 1500, 5,
+    HORDE:CreateItem( "Explosive", "M79 GL", "arccw_horde_m79", 1500, 5,
         "M79 Thumper.\nShoots 40x46mm grenades that explode on impact.",
         { Survivor = true, Psycho = true, Demolition = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
-    HORDE:CreateItem( "Explosive", "ChinaLakeGL", "arccw_horde_chinalake", 2000, 6,
+    HORDE:CreateItem( "Explosive", "China Lake GL", "arccw_horde_chinalake", 2000, 6,
         "Pump-Action Grenade Launcher.\nHolds a total of four 40mm grenades,\nand cycles similar to a pump-action shotgun. \nPress B or ZOOM to switch grenade type.",
         { Survivor = true, Psycho = true, Demolition = true, Engineer = true, Warden = true, Cremator = true },
         30, -1, nil, nil, { Demolition = 2 }, nil, { HORDE.DMG_BLAST, HORDE.DMG_FIRE, HORDE.DMG_LIGHTNING, HORDE.DMG_COLD }, { HORDE.Infusion_Quality } )
-    HORDE:CreateItem( "Explosive", "StickyLauncher", "horde_sticky_launcher", 2500, 7,
+    HORDE:CreateItem( "Explosive", "Sticky Launcher", "horde_sticky_launcher", 2500, 7,
         "Sticky grenade launcher.\nLaunches grenades that stick to surfaces and entities.\n\nRMB to detonate.",
         { Demolition = true },
         50, -1, nil, nil, { Demolition = 2 }, nil, { HORDE.DMG_BLAST }, { HORDE.Infusion_Quality } )
