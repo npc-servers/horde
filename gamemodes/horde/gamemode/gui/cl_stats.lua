@@ -541,11 +541,11 @@ function PANEL:Init()
         draw.SimpleText("Headcrab zombie Combine soldier. Pulls out a grenade at quarter health. Runs at half health.", 'Content', 100, 950, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("Charred Zombine", 'Heading', 50, 1000, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Zombine covered in flames. Pulls out 3 grenades.", 'Content', 100, 1050, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Charred Zombine with a dark, red hue. Pulls out 3 grenades.", 'Content', 100, 1050, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw_resistances(1000, {[HORDE.DMG_FIRE] = 0.5, [HORDE.DMG_COLD] = 1.25})
 
         draw.SimpleText("Plague Soldier", 'Heading', 50, 1100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Combine soldier controlled by a parasite. Equiped with an SMG or shotgun. Throws grenades.", 'Content', 100, 1150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Combine soldier controlled by a parasite. Equipped with an SMG or shotgun. Throws grenades.", 'Content', 100, 1150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
         
         -- Elite enemies.
@@ -560,11 +560,11 @@ function PANEL:Init()
         draw_resistances(1400, {[HORDE.DMG_POISON] = 0.25})
 
         draw.SimpleText("Scorcher", 'Heading', 50, 1500, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Mutated Vomitter covered in flames. Spits burning flesh that deals Fire damage. Has a flamethrower attack.", 'Content', 100, 1550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Scorched, mutated Vomitter with a dark hue. Spits burning flesh that deals Fire damage. Has a flamethrower attack.", 'Content', 100, 1550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw_resistances(1500, {[HORDE.DMG_FIRE] = 0.75, [HORDE.DMG_COLD] = 1.25})
         
         draw.SimpleText("Screecher", 'Heading', 50, 1600, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Slow-moving beta-era stalker. Deals a burst of Lightning damage. Runs at half health.", 'Content', 100, 1650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Slow-moving, early model stalker. Deals a burst of Lightning damage. Runs at half health.", 'Content', 100, 1650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw_resistances(1600, {[HORDE.DMG_LIGHTNING] = 0.5, [HORDE.DMG_BLAST] = 1.25})
         
         draw.SimpleText("Blight", 'Heading', 50, 1700, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
@@ -592,7 +592,7 @@ function PANEL:Init()
         draw.SimpleText("Mutated Hunter with high health and damage.", 'Content', 100, 2350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("Plague Elite", 'Heading', 50, 2400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Mutated Plague Soldier with high health and damage. Fires energy balls that explode on impact. Can summon Zombine and Plague Soldier minions.", 'Content', 100, 2450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Combine elite soldier controlled by a parasite. Fires energy balls that explode on impact. Can summon Zombine and Plague Soldier minions.", 'Content', 100, 2450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
         
         draw.SimpleText("Bosses", 'LargeTitle', 50, 2550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
@@ -662,11 +662,10 @@ function PANEL:Init()
 
         draw.SimpleText("Plague Platoon", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "Combine commanders that have been converted into biological weapons using parasites.",
-            "While their brains are fully infested, they retain a low level of setience.",
-            "Plague Heavy: Armed with an M249 machine gun. Can throw shrapnel grenades",
+            "Specialized Combine units that have been converted into biological weapons using parasites.",
+            "Plague Heavy: Armed with an M249 machine gun that inflicts Hinder buildup. Can throw shrapnel grenades",
             "Plague Demolition: Armed with an RPG-7. Can throw M67 grenade with mini-cluster nades.",
-            "Plauge Berserker: Armed with a katana and inflicts Bleeding buildup on you.",
+            "Plauge Berserker: Armed with a katana that inflicts Bleeding buildup. Parries Physical damage.",
         }, next_pos + 100)
     end
 
