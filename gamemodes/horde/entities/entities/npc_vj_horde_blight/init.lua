@@ -1,7 +1,7 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 
-ENT.Model = {"models/zombie/classic.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/zombie/classic.mdl"
 ENT.StartHealth = 700
 ENT.HeadHealth = 300
 ENT.HullType = HULL_HUMAN
@@ -34,6 +34,9 @@ ENT.GeneralSoundPitch2 = 100
 ENT.HasDeathRagdoll = false
 ENT.HasGibOnDeath = false
 
+ENT.NecrosisSpreadCD = 0.1
+ENT.NecrosisNextSpreadCD = 0
+
 function ENT:CustomOnInitialize()
     self:SetBodygroup(1,1)
     self:SetColor(Color(50, 50, 50))
@@ -41,57 +44,64 @@ function ENT:CustomOnInitialize()
     self:SetModelScale(1.3, 0)
     
     self:AddRelationship("npc_headcrab_poison D_LI 99")
-	self:AddRelationship("npc_headcrab_fast D_LI 99")
+	  self:AddRelationship("npc_headcrab_fast D_LI 99")
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 
-    if hitgroup == HITGROUP_HEAD then
-	self.HasDeathRagdoll = true
-	return
-    end
+	if hitgroup == HITGROUP_HEAD then
+		self.HasDeathRagdoll = true
+		return
+	end
 
-    local e = EffectData()
-        e:SetOrigin(self:GetPos())
-    util.Effect("blight_explosion", e, true, true)
+	local e = EffectData()
+	e:SetOrigin(self:GetPos())
+	util.Effect("blight_explosion", e, true, true)
 
-    local dmg = DamageInfo()
-    dmg:SetInflictor(self)
-    dmg:SetAttacker(self)
-    dmg:SetDamageType(DMG_DISSOLVE)
-    dmg:SetDamage(50)
-    util.BlastDamageInfo(dmg, self:GetPos(), 300)
+	local dmg = DamageInfo()
+	dmg:SetInflictor(self)
+	dmg:SetAttacker(self)
+	dmg:SetDamageType(DMG_DISSOLVE)
+	dmg:SetDamage(50)
+	util.BlastDamageInfo(dmg, self:GetPos(), 300)
 
-    sound.Play("vj_acid/acid_splat.wav", self:GetPos())
+	sound.Play("vj_acid/acid_splat.wav", self:GetPos())
 end
 
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
-    if hitgroup == HITGROUP_HEAD then
-        self.HeadHealth = self.HeadHealth - dmginfo:GetDamage()
-        if self.HeadHealth <= 0 then
-            self:SetHealth(1)
-        end
-        dmginfo:ScaleDamage(2)
-    else
-        if HORDE:IsBlastDamage(dmginfo) or HORDE:IsFireDamage(dmginfo) then
-            dmginfo:ScaleDamage(1.5)
-        end
-        local e = EffectData()
-            e:SetOrigin(self:GetPos())
-        util.Effect("blight_mini_explosion", e, true, true)
-        for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
-			if ent:IsPlayer() then
-				local Trace = util.TraceLine({
-		                    start = self:WorldSpaceCenter(),
-		                    endpos = ent:WorldSpaceCenter(),
-				    mask = MASK_SOLID_BRUSHONLY
-		                })
-				if not Trace.HitWorld then
-					ent:Horde_AddDebuffBuildup(HORDE.Status_Necrosis, 5, self)
-				end
+	if hitgroup == HITGROUP_HEAD then
+		self.HeadHealth = self.HeadHealth - dmginfo:GetDamage()
+		if self.HeadHealth <= 0 then
+			self:SetHealth(1)
+		end
+		dmginfo:ScaleDamage(2)
+
+		return
+	end
+	if HORDE:IsBlastDamage(dmginfo) or HORDE:IsFireDamage(dmginfo) then
+		dmginfo:ScaleDamage(1.5)
+	end
+
+	if self.NecrosisNextSpreadCD >= CurTime() then return end
+
+	local e = EffectData()
+	e:SetOrigin(self:GetPos())
+	util.Effect("blight_mini_explosion", e, true, true)
+
+	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
+		if ent:IsPlayer() then
+			local Trace = util.TraceLine({
+				start = self:WorldSpaceCenter(),
+				endpos = ent:WorldSpaceCenter(),
+				mask = MASK_SOLID_BRUSHONLY
+			})
+			if not Trace.HitWorld then
+				ent:Horde_AddDebuffBuildup(HORDE.Status_Necrosis, 5, self)
 			end
 		end
-    end
+	end
+
+	self.NecrosisNextSpreadCD = CurTime() + self.NecrosisSpreadCD
 end
 
 VJ.AddNPC("Blight","npc_vj_horde_blight", "Zombies")
