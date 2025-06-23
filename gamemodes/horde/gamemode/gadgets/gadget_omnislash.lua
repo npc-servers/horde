@@ -20,7 +20,7 @@ local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
         local flashlightOn = ply:FlashlightIsOn()
 
         ply.Horde_In_Omni = nil
-        ply.Horde_Immune_Status_All = false
+        ply.Horde_Immune_Status_All = nil
         ply:UnSpectate()
         ply:Spawn()
         ply:UnLock()
@@ -38,6 +38,7 @@ local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
         end
 
         timer.Simple( 0, function()
+            ply.Horde_Fake_Respawn = nil
             ply:SetHealth( health )
             ply:SetArmor( armor )
         end )
@@ -67,6 +68,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
 
         ply.Horde_In_Omni = true
         ply.Horde_Immune_Status_All = true
+        ply.Horde_Fake_Respawn = true
         ply:Spectate( OBS_MODE_CHASE )
         ply:SpectateEntity( ent )
         ply:SetNoDraw( true )
@@ -82,6 +84,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
                     for _, nearbyEnt in pairs( ents.FindInSphere( entPos, 200 ) ) do
                         if HORDE:IsEnemy( nearbyEnt ) then
                             ent = nearbyEnt
+                            entPos = ent:GetPos()
                             ply:SpectateEntity( ent )
                             break
                         end
