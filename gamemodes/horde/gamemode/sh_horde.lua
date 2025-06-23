@@ -197,6 +197,9 @@ RunConsoleCommand("sbox_godmode", "0")
 RunConsoleCommand("vj_npc_addfrags", "0")
 RunConsoleCommand("vj_npc_knowenemylocation", "1")
 RunConsoleCommand("vj_npc_bleedenemyonmelee", "0")
+RunConsoleCommand("vj_npc_nocallhelp", "1")
+RunConsoleCommand("vj_npc_nowandering", "1")
+RunConsoleCommand("vj_npc_nogib", "1") -- Since we use our own gibbing system, there should be no need to call for VJ Base gibbing system.
 
 -- Util functions
 function HORDE:GiveAmmo(ply, wpn, count)
