@@ -59,69 +59,70 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
     } )
 
     local ent = tr.Entity
+    if not ent:IsValid() or not HORDE:IsEnemy( ent ) then
+        ply:EmitSound( "items/suitchargeno1.wav" )
+        ply:Horde_SetGadgetCooldown( 1 )
 
-    if ent:IsValid() and HORDE:IsEnemy( ent ) then
-        ply:Horde_SetGadgetCooldown( 15 )
-        local plyPos = ply:GetPos()
-        local plyAng = ply:GetAngles()
-        local plyVel = ply:GetVelocity()
+        return
+    end
 
-        ply.Horde_In_Omni = true
-        ply.Horde_Immune_Status_All = true
-        ply.Horde_Fake_Respawn = true
-        ply:Spectate( OBS_MODE_CHASE )
-        ply:SpectateEntity( ent )
-        ply:SetNoDraw( true )
-        ply:DrawViewModel( false )
-        ply:SetNoTarget( true )
-        ply:Lock()
+    ply:Horde_SetGadgetCooldown( 15 )
+    local plyPos = ply:GetPos()
+    local plyAng = ply:GetAngles()
+    local plyVel = ply:GetVelocity()
 
-        local entPos = ent:GetPos()
-        for i = 1, 15 do
-            timer.Simple( i * 0.1, function ()
-                if not ply.Horde_In_Omni then return end
-                if not IsValid( ent ) then
-                    for _, nearbyEnt in pairs( ents.FindInSphere( entPos, 200 ) ) do
-                        if HORDE:IsEnemy( nearbyEnt ) then
-                            ent = nearbyEnt
-                            entPos = ent:GetPos()
-                            ply:SpectateEntity( ent )
-                            break
-                        end
-                    end
+    ply.Horde_In_Omni = true
+    ply.Horde_Immune_Status_All = true
+    ply.Horde_Fake_Respawn = true
+    ply:Spectate( OBS_MODE_CHASE )
+    ply:SpectateEntity( ent )
+    ply:SetNoDraw( true )
+    ply:DrawViewModel( false )
+    ply:SetNoTarget( true )
+    ply:Lock()
 
-                    if not IsValid( ent ) then
-                        spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
-                        return
+    local entPos = ent:GetPos()
+    for i = 1, 15 do
+        timer.Simple( i * 0.1, function ()
+            if not ply.Horde_In_Omni then return end
+            if not IsValid( ent ) then
+                for _, nearbyEnt in pairs( ents.FindInSphere( entPos, 200 ) ) do
+                    if HORDE:IsEnemy( nearbyEnt ) then
+                        ent = nearbyEnt
+                        entPos = ent:GetPos()
+                        ply:SpectateEntity( ent )
+                        break
                     end
                 end
 
-                local dmg = DamageInfo()
-                dmg:SetAttacker( ply )
-                dmg:SetInflictor( ply )
-                dmg:SetDamageType( DMG_SLASH )
-                dmg:SetDamage( 200 )
-
-                if IsValid( ent ) then
-                    dmg:SetDamagePosition( ent:GetPos() )
-                    ent:TakeDamageInfo( dmg )
-                    sound.Play( "weapons/physcannon/energy_sing_explosion2.wav", ply:GetPos(), 100, 150 )
-                    local ed = EffectData()
-                    ed:SetOrigin( ent:GetPos() + ent:OBBCenter() )
-                    util.Effect( "horde_omnislash_effect", ed, true, true )
-                    p = ent:GetPos()
-                else
+                if not IsValid( ent ) then
                     spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
                     return
                 end
+            end
 
-                if i == 15 then
-                    spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
-                end
-            end )
-        end
-    else
-        ply:EmitSound( "items/suitchargeno1.wav" )
-        ply:Horde_SetGadgetCooldown( 1 )
+            local dmg = DamageInfo()
+            dmg:SetAttacker( ply )
+            dmg:SetInflictor( ply )
+            dmg:SetDamageType( DMG_SLASH )
+            dmg:SetDamage( 200 )
+
+            if IsValid( ent ) then
+                dmg:SetDamagePosition( ent:GetPos() )
+                ent:TakeDamageInfo( dmg )
+                sound.Play( "weapons/physcannon/energy_sing_explosion2.wav", ply:GetPos(), 100, 150 )
+                local ed = EffectData()
+                ed:SetOrigin( ent:GetPos() + ent:OBBCenter() )
+                util.Effect( "horde_omnislash_effect", ed, true, true )
+                p = ent:GetPos()
+            else
+                spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
+                return
+            end
+
+            if i == 15 then
+                spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
+            end
+        end )
     end
 end
