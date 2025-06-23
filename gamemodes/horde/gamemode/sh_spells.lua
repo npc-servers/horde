@@ -234,7 +234,11 @@ net.Receive("Horde_BuySpellUpgrade", function (len, ply)
 end)
 
 function HORDE:RaiseSpectre(ply, param, p2)
-    local level = ply:Horde_GetSpellUpgrade("raise_spectre")
+        local spell_name = "raise_spectre"
+    if param and param.greater_spectre then
+        spell_name = "raise_greater_spectre"
+    end
+    local level = ply:Horde_GetSpellUpgrade(spell_name)
     local p = {level = level}
     hook.Run("Horde_OnRaiseSpectre", ply, p)
     local spectres_count = 0
