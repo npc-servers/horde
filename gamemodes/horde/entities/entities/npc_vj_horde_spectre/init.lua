@@ -136,7 +136,7 @@ function ENT:CustomOnInitialize()
 		e:SetScale(0.25)
 	util.Effect("abyssal_roar", e, true, true)
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
-	self:SetColor(Color(20, 20, 150, 200))
+	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
 	self.LeapAttackDamage = self.LeapAttackDamage + 8 * self.properties.level
 	self.StartHealth = math.floor(self.StartHealth + 32 * self.properties.level)
