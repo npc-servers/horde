@@ -6,7 +6,7 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/zombie/fast.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 100
+ENT.StartHealth = 90
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
@@ -117,14 +117,6 @@ function ENT:Roar()
 	self:Shockwave(1.0)
 end
 
-function ENT:Horde_SetGreaterSpectre()
-	self:SetModelScale(1.5)
-	self.HasLeapAttack = false
-	self.MeleeAttackDamage = self.MeleeAttackDamage * 1.65
-	self.NextAnyAttackTime_Melee = 0.75
-	self:SetHealth(1.25 * (90 + 2 * 16 * self.properties.level))
-end
-
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
@@ -144,9 +136,11 @@ function ENT:CustomOnInitialize()
 		e:SetScale(0.25)
 	util.Effect("abyssal_roar", e, true, true)
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
-	self:SetColor(Color(0, 0, 100, 200))
+	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
-	self:SetHealth(90 + 2 * 16 * self.properties.level)
+	self.LeapAttackDamage = self.LeapAttackDamage + 8 * self.properties.level
+	self.StartHealth = math.floor(self.StartHealth + 32 * self.properties.level)
+	self:SetHealth(self.StartHealth)
 	self:AddRelationship("npc_turret_floor D_LI 99")
 	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 	self:AddRelationship("npc_manhack D_LI 99")
@@ -156,6 +150,16 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
 	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+end
+
+function ENT:Horde_SetGreaterSpectre()
+	self:SetModelScale(1.5)
+	self.HasLeapAttack = false
+	self.MeleeAttackDamage = self.MeleeAttackDamage * 1.65
+	self.NextAnyAttackTime_Melee = 0.75
+	self.StartHealth = math.floor(1.25 * self.StartHealth)
+	self:SetHealth(self.StartHealth)
+	self:SetMaxHealth(self.StartHealth)
 end
 
 function ENT:DoEntityRelationshipCheck()
