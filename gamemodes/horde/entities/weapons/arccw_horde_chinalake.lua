@@ -187,7 +187,7 @@ SWEP.Animations = {
     },
     ["draw"] = {
         Source = "draw",
-        Time = 1,
+        Time = 0.55,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
@@ -197,7 +197,7 @@ SWEP.Animations = {
     },
     ["holster"] = {
         Source = "holster",
-        Time = 1,
+        Time = 0.55,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.1,
@@ -219,66 +219,66 @@ SWEP.Animations = {
         Source = {
             "fire",
         },
-        MinProgress = 0.5
+        MinProgress = 0.3
     },
     ["fire_iron"] = {
         Source = {
             "fire",
         },
-        MinProgress = 0.5
+        MinProgress = 0.3
     },
     ["cycle"] = {
         Source = {
             "pump",
         },
-        Time = 69 / 50,
+        Time = 35 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 25 / 50},
-            {s = "ArcCW_BO1.CL_Fwd", t = 37 / 50}
+            {s = "ArcCW_BO1.CL_Back", t = 13 / 25},
+            {s = "ArcCW_BO1.CL_Fwd", t = 18 / 25}
         },
     },
     ["cycle_iron"] = {
         Source = {
             "pump",
         },
-        Time = 69 / 50,
+        Time = 35 / 25,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 26 / 50},
-            {s = "ArcCW_BO1.CL_Fwd", t = 38 / 50}
+            {s = "ArcCW_BO1.CL_Back", t = 13 / 25},
+            {s = "ArcCW_BO1.CL_Fwd", t = 19 / 25}
         },
     },
     ["sgreload_start"] = {
         Source = "reload_in",
-        Time = 30 / 48,
+        Time = 12 / 32,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 4 / 48}
+            {s = "ArcCW_BO1.CL_Back", t = 12 / 32}
         },
     },
     ["sgreload_insert"] = {
         Source = "reload_loop",
-        Time = 52 / 48,
+        Time = 13 / 24,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        MinProgress = 17 / 48,
+        MinProgress = 8 / 24,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Shell", t = 17 / 48}
+            {s = "ArcCW_BO1.CL_Shell", t = 13 / 24}
         },
     },
     ["sgreload_finish"] = {
         Source = "reload_out",
-        Time = 36 / 48,
+        Time = 9 / 12,
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Fwd", t = 20 / 48}
+            {s = "ArcCW_BO1.CL_Fwd", t = 9 / 12}
         },
     },
     ["enter_sprint"] = {
