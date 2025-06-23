@@ -86,6 +86,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
                             break
                         end
                     end
+
                     if not IsValid( ent ) then
                         spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
                         return

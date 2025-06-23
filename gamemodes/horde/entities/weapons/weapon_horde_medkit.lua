@@ -48,6 +48,7 @@ SWEP.ReviveSpeed = 20 -- Amount of progress per second
 
 if SERVER then
 	util.AddNetworkString( "horde_medkit_deadplayers" )
+	util.AddNetworkString( "horde_medkit_player_revived" )
 end
 
 function SWEP:Initialize()
@@ -333,6 +334,20 @@ if CLIENT then
 		medkit.DeadPlayers = deadPlayers
 	end )
 
+	local reviveGreen = Color( 0, 170, 14 )
+
+	net.Receive( "horde_medkit_player_revived", function()
+		local revived = net.ReadEntity()
+		local revivedName = revived:GetName()
+		local revivedCol = team.GetColor( revived:Team() )
+
+		local reviver = net.ReadEntity()
+		local reviverName = reviver:GetName()
+		local reviverCol = team.GetColor( reviver:Team() )
+
+		chat.AddText( reviveGreen, "[HORDE] ", revivedCol, revivedName, color_white, " was revived by ", reviverCol, reviverName )
+	end )
+
 	-- Draw the dead players and revive progerss bar
 	function SWEP:DrawHUD()
 
@@ -416,6 +431,11 @@ if SERVER then
 
 		owner:Horde_AddMoney( 50 )
 		owner:Horde_SyncEconomy()
+
+		net.Start( "horde_medkit_player_revived" )
+			net.WriteEntity( ply ) -- Revived
+			net.WriteEntity( owner ) -- Reviver
+		net.Broadcast()
 	end
 
 	hook.Add( "Horde_OnPlayerShouldRespawnDuringWave", "HordeMedkitRevive", function( ply )
