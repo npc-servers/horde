@@ -39,8 +39,3 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
 	self:AddRelationship("npc_headcrab_poison D_LI 99")
 end
-function ENT:CustomOnThink_AIEnabled()
-	self.AnimTbl_IdleStand = {self:IsOnFire() and ACT_IDLE_ON_FIRE or ACT_IDLE}
-	self.AnimTbl_Walk = {self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK}
-	self.AnimTbl_Run = {self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_RUN}
-end
