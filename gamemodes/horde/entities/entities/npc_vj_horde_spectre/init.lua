@@ -61,16 +61,18 @@ ENT.DamageReceived = 0
 ENT.Attacks = 0
 
 ENT.EntitiesToNoCollide = {
-    "player",
-    "npc_vj_horde_spectre",
-    "npc_vj_horde_antlion",
-	"npc_vj_horde_combat_bot",
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
 	"npc_vj_horde_vortigaunt",
-    "npc_vj_horde_rocket_turret",
-    "npc_vj_horde_class_survivor",
-    "npc_vj_horde_class_assault",
-    "npc_turret_floor",
-    "npc_manhack"
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
 }
 
 ENT.HasWorldShakeOnMove = false -- Should the world shake when it's moving?
@@ -141,14 +143,7 @@ function ENT:CustomOnInitialize()
 	self.LeapAttackDamage = self.LeapAttackDamage + 8 * self.properties.level
 	self.StartHealth = math.floor(self.StartHealth + 32 * self.properties.level)
 	self:SetHealth(self.StartHealth)
-	self:AddRelationship("npc_turret_floor D_LI 99")
-	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 	self:AddRelationship("npc_manhack D_LI 99")
-	self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
-	self:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
-	self:AddRelationship("npc_vj_horde_class_assault D_LI 99")
-	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
@@ -231,7 +226,7 @@ function ENT:DoEntityRelationshipCheck()
 					entFri = true
 					self:AddEntityRelationship(v, D_LI, 99)
 				end
-				if vClass == "npc_turret_floor" or vClass == "npc_vj_horde_combat_bot" or vClass == "npc_vj_horde_vortigaunt" or vClass == "npc_manhack" then
+				if vClass == "npc_vj_horde_smg_turret" or vClass == "npc_vj_horde_combat_bot" or vClass == "npc_vj_horde_vortigaunt" or vClass == "npc_manhack" then
 					entFri = true
 					self:AddEntityRelationship(v, D_LI, 99)
 				else
