@@ -20,8 +20,7 @@ ENT.HasEntitiesToNoCollide = true -- If set to false, it won't run the EntitiesT
 ENT.MeleeAttackDamageType = DMG_SLASH -- Type of Damage
 ENT.EntitiesToNoCollide = {"npc_headcrab","npc_manhack"}
 	-- ====== Flinching Code ====== --
-ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
-ENT.FlinchChance = 2 -- Chance of it flinching from 1 to x | 1 will make it always flinch
+ENT.CanFlinch = 0 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_FootStep = {"npc/xzombie/foot1.wav","npc/xzombie/foot2.wav","npc/xzombie/foot3.wav"}
@@ -44,36 +43,7 @@ ENT.canhavemanhack = true
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
 		end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnFlinch_BeforeFlinch(dmginfo, hitgroup)
-	if hitgroup == HITGROUP_LEFTARM && !IsValid(self.Manhack) then
-		self.AnimTbl_Flinch = {"vjges_flinch_leftarm"}
-end
-if hitgroup == HITGROUP_RIGHTARM && !IsValid(self.Manhack) then
-		self.AnimTbl_Flinch = {"vjges_flinch_rightarm"}
-end
-if hitgroup == HITGROUP_LEFTLEG then
-		self.AnimTbl_Flinch = {"flinch_leftleg"}
-end
-if hitgroup == HITGROUP_RIGHTLEG then
-		self.AnimTbl_Flinch = {"flinch_rightleg"}
-	end
-if hitgroup == HITGROUP_CHEST && !IsValid(self.Manhack)  then
-		self.AnimTbl_Flinch = {"vjges_flinch1"}
-	end
-if hitgroup == HITGROUP_HEAD && !IsValid(self.Manhack)  then
-	self.AnimTbl_Flinch = {"vjges_flinch_head"}
-end
-	if IsValid(self.Manhack) && hitgroup != HITGROUP_LEFTLEG &&  hitgroup != HITGROUP_RIGHTLEG then
-		self.AnimTbl_Flinch = {"vjges_flinch_grenade_east","vjges_flinch_grenade_west","vjges_flinch_grenade_back","vjges_flinch_grenade_front"}
-end
-end
----------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
-	if self:IsOnFire() then
-		self.AnimTbl_Walk = {ACT_WALK_ON_FIRE}
-		self.AnimTbl_Run = {ACT_WALK_ON_FIRE}
-		self.AnimTbl_IdleStand = {ACT_IDLE_ON_FIRE}
-	end
 	if self.canhavemanhack && CurTime() > self.ManhackPullT && IsValid(self) && IsValid(self:GetEnemy()) && !IsValid(self.Manhack) && self.NearestPointToEnemyDistance < 200 && self.hasmanhack == false then
 	self:VJ_ACT_PLAYACTIVITY("pullgrenade",true,1,true)
 	    self.Manhack = ents.Create("npc_manhack")
