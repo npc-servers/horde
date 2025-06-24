@@ -177,11 +177,12 @@ SWEP.Attachments = {
     }, --5
 }
 
+--[[
 SWEP.Hook_ShouldNotFire = function(wep)
     if wep:GetState() != ArcCW.STATE_SIGHTS or wep:GetSightDelta() > 0 then
         return true
     end
-end
+end]]
 
 SWEP.Animations = {
     ["idle"] = {
