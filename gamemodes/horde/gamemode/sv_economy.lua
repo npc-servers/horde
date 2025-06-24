@@ -750,12 +750,12 @@ function HORDE:DropTurret(ent)
 
     -- Turrets should always stay straight.
     local ang = ent:GetAngles()
-    a.p = 0
-    a.r = 0
+    ang.p = 0
+    ang.r = 0
     if turret_class == "npc_vj_horde_sniper_turret" then
-        a.r = 180
+        ang.r = 180
     elseif turret_class == "npc_vj_horde_rocket_turret" or ent:GetClass() == "npc_vj_horde_laser_turret" then
-        a.y = 0
+        ang.y = 0
     end
     ent:SetAngles(ang)
 end
