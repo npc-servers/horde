@@ -110,6 +110,20 @@ function SWEP:Initialize()
 		if self:GetOwner() and not self:GetOwner():IsValid() then return end
 		self:GetOwner():SetAmmo(100, "Thumper")
 	end)
+
+	if CLIENT then return end
+
+	local id = self:EntIndex()
+	timer.Create("horde_pheropod_holstered_regen" .. id, 0.75, 0, function()
+		if self.Owner:GetActiveWeapon():GetClass() == "horde_pheropod" then return end
+		if not self.Owner:IsValid() then timer.Remove("horde_pheropod_holstered_regen" .. id) return end
+		self:RegenAmmo()
+	end)
+end
+
+function SWEP:RegenAmmo()
+	if self:Clip1() >= self.Primary.MaxAmmo then return end
+	self:SetClip1(math.min(self.Primary.MaxAmmo, self:Clip1() + 1))
 end
 
 function SWEP:PrimaryAttack()
@@ -276,6 +290,14 @@ function SWEP:Think()
 
 	if SERVER and self.EnergyRegenTimer <= CurTime() then
 		self.EnergyRegenTimer = CurTime() + 0.25
-		self:SetClip1(math.min(self.Primary.MaxAmmo, self:Clip1() + 1))
+		self:RegenAmmo()
 	end
+end
+
+function SWEP:OnRemove()
+	timer.Stop("horde_pheropod_holstered_regen" .. self:EntIndex())
+end
+
+function SWEP:OnDrop()
+	self:Remove()
 end
