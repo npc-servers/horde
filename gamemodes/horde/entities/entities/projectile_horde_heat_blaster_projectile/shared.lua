@@ -33,8 +33,18 @@ if SERVER then
 function ENT:Initialize()
     self:SetMaterial("models/props_combine/portalball001_sheet")
 
+    local owner = self:GetOwner()
+    self.has_burner = nil
+    if IsValid( owner ) and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
+        self.has_burner = true
+    end
+
 	self.StartGlow1 = ents.Create( "env_sprite" )
-	self.StartGlow1:SetKeyValue( "rendercolor","255 255 0" )
+    if self.has_burner then
+        self.StartGlow1:SetKeyValue( "rendercolor","0 150 255" )
+    else
+	    self.StartGlow1:SetKeyValue( "rendercolor","255 106 0" )
+    end
 	self.StartGlow1:SetKeyValue( "GlowProxySize","2.0" )
 	self.StartGlow1:SetKeyValue( "HDRColorScale","1.0" )
 	self.StartGlow1:SetKeyValue( "renderfx","14" )
@@ -44,7 +54,7 @@ function ENT:Initialize()
 	self.StartGlow1:SetKeyValue( "mindxlevel","0" )
 	self.StartGlow1:SetKeyValue( "maxdxlevel","0" )
 	self.StartGlow1:SetKeyValue( "framerate","10.0" )
-	self.StartGlow1:SetKeyValue( "model","sprites/orangeglow1.spr" )
+	self.StartGlow1:SetKeyValue( "model","sprites/glow04_noz.spr" )
 	self.StartGlow1:SetKeyValue( "spawnflags","0" )
     timer.Simple(0, function ()
         if not IsValid( self ) then return end
