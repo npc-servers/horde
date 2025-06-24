@@ -435,7 +435,7 @@ function HORDE:GetDefaultItemsData()
     {Ghost=true}, 5, -1, nil, nil, {Ghost=1}, nil, {HORDE.DMG_BALLISTIC})
 
     HORDE:CreateItem("Pistol",     "Raygun Mark II",    "arccw_horde_raygun_mk2",   2500,  7, "Raygun Mark II.\nSecond iteration of the classic Ray Gun, now in the format of a burst-fire laser.",
-    {Warden=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_LIGHTNING})
+    {Warden=true, Engineer=true}, 5, -1, nil, nil, nil, nil, {HORDE.DMG_LIGHTNING})
 
     HORDE:CreateItem("SMG",        "SMG1",           "arccw_horde_smg1",   100, 3, "A compact, fully automatic firearm.",
     {Assault=true, Heavy=true}, 5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, {HORDE.DMG_BALLISTIC}, nil, {"Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut"})
@@ -657,10 +657,10 @@ function HORDE:GetDefaultItemsData()
     {Medic=true}, 15, -1, nil, nil, nil, nil, {HORDE.DMG_POISON})
 
     HORDE:CreateItem("Pistol",    "Raygun",  "arccw_horde_raygun", 3000,  8, "Raygun. \nFires explosive electric bolts that deal Lightning damage.",
-    {Warden=true}, 20, -1, nil, nil, nil, nil, {HORDE.DMG_LIGHTNING})
+    {Warden=true, Engineer=true}, 20, -1, nil, nil, nil, nil, {HORDE.DMG_LIGHTNING})
     HORDE:CreateItem("Pistol", "Raygun (Hidden)", "horde_projectile_raygun_bolt", 0, 0,
         "This item is only here in the Pistol category to calculate pistol damage.", 
-        { Warden = true, Gunslinger = true }, 10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, 
+        { Warden = true, Gunslinger = true, Engineer = true }, 10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, 
         nil, nil, nil, { HORDE.DMG_LIGHTNING }, nil, nil, true) --This must be hidden
 
     HORDE:CreateItem("Special",    "Watchtower",      "horde_watchtower",        800,  1, "A watchtower that provides resupply.\nGenerates 1 ammobox every 30 seconds.\n(Entity Class: horde_watchtower)",
