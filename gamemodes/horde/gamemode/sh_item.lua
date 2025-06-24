@@ -513,15 +513,15 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Pistol", "Raygun", "arccw_horde_raygun", 3000, 8,
         "Raygun. \nFires explosive electric bolts that deal Lightning damage.",
-        { Gunslinger = true, Warden = true },
+        { Gunslinger = true, Engineer = true, Warden = true },
         20, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Pistol", "Raygun (Hidden)", "horde_projectile_raygun_bolt", 0, 0,
         "This item is only here in the Pistol category to calculate pistol damage.",
-        { Gunslinger = true, Warden = true },
+        { Gunslinger = true, Engineer = true, Warden = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, nil, nil, nil, { HORDE.DMG_LIGHTNING }, nil, nil, true ) -- This must be hidden
     HORDE:CreateItem( "Pistol", "Raygun Mark II", "arccw_horde_raygun_mk2", 2500, 7,
         "Raygun Mark II.\nSecond iteration of the classic Ray Gun, now in the format of a burst-fire laser.",
-        { Gunslinger = true, Warden = true },
+        { Gunslinger = true, Engineer = true, Warden = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
 
     HORDE:CreateItem( "SMG", "SMG1", "arccw_horde_smg1", 100, 3,
