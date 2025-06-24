@@ -872,7 +872,7 @@ function HORDE:GetDefaultItemsData()
         -- { Cremator = true },
         -- 100, -1, nil, nil, nil, nil, { HORDE.DMG_FIRE } )
 
-    HORDE:CreateItem( "Special", "Welder", "horde_welder", 100, 1,
+    HORDE:CreateItem( "Special", "Welder", "horde_welder", 100, 0,
         "Engineering welder.\nDamages enemies and heals minions.",
         { Engineer = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST }, nil, { "Engineer" } )

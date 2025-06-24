@@ -49,8 +49,6 @@ CreateConVar("horde_ready_countdown_ratio", 0.5, nil, "Ratio of players required
 CreateConVar("horde_enable_scoreboard", 1, nil, "Enables built-in scoreboard.")
 CreateConVar("horde_enable_3d2d_icon", 1, nil, "Enables player icon renders.")
 
-CreateConVar("horde_turret_spread", 0.5, nil, "Turret spread.")
-
 CreateConVar("horde_testing_unlimited_class_change", 0, nil, "You can change a class for an unlimited times. Please use this only for testing purposes.")
 CreateConVar("horde_testing_display_damage", 0, FCVAR_ARCHIVE, "Display damage for testing.")
 CreateConVar("horde_display_damage", 1, FCVAR_ARCHIVE, "Display damage.")
@@ -175,6 +173,10 @@ if ArcCWInstalled then
             RunConsoleCommand("arccw_attinv_free", "1")
         end
     end
+
+    -- Disable near-walling and lunging that messes with gameplay.
+    RunConsoleCommand("arccw_override_nearwall", "0")
+    RunConsoleCommand("arccw_override_lunge_off", "1")
 
     -- Disable perks that messes up with Horde's own system.
     if GetConVar("horde_default_item_config"):GetInt() == 1 then

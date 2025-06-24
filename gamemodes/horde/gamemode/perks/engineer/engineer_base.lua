@@ -28,7 +28,7 @@ end
 PERK.Hooks.Horde_OnPlayerMinionDamage = function (ply, npc, bonus, dmginfo)
     if ply:Horde_GetPerk("engineer_base") then
         local class = dmginfo:GetInflictor():GetClass()
-        if class == "npc_turret_floor" then
+        if class == "npc_vj_smg_turret" then
             bonus.more = bonus.more * 5
         end
         bonus.increase = bonus.increase + ply:Horde_GetPerkLevelBonus("engineer_base")
@@ -41,7 +41,7 @@ if SERVER then
         timer.Simple( 0.1, function()
             if not ent:IsValid() then return end
             local ply = ent:GetNWEntity("HordeOwner")
-            if ply:IsPlayer() and ply:Horde_GetPerk("engineer_base") and ent:IsNPC() and ent:GetClass() == "npc_turret_floor" and ent:GetMaxHealth() < 400 then
+            if ply:IsPlayer() and ply:Horde_GetPerk("engineer_base") and ent:IsNPC() and ent:GetClass() == "npc_vj_horde_smg_turret" and ent:GetMaxHealth() < 400 then
                 if ent.Horde_Is_Mini_Sentry then
                     ent:SetMaxHealth(200)
                     ent:SetHealth(200)

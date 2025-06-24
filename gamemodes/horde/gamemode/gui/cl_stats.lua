@@ -508,86 +508,132 @@ function PANEL:Init()
     enemies_text_panel:SetSize(self:GetParent():GetWide(), 5000)
     enemies_text_panel:SetVisible(false)
     enemies_text_panel.Paint = function ()
+
+        -- Regular enemies.
         draw.SimpleText("Regular Enemies", 'LargeTitle', 50, 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
         draw.SimpleText("Walker", 'Heading', 50, 100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Slow moving zombies that come in hordes.", 'Content', 100, 150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Slow-moving zombie.", 'Content', 100, 150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
         draw.SimpleText("Sprinter", 'Heading', 50, 200, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Zombies with moderate speed that come in hordes.", 'Content', 100, 250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Zombie with moderate speed.", 'Content', 100, 250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
         draw.SimpleText("Crawler", 'Heading', 50, 300, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Zombies with fast speed that come in hordes that are easy to dispose of.", 'Content', 100, 350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Fast Zombie/Poison Zombie/Zombine", 'Heading', 50, 400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Zombies that roam around City-17.", 'Content', 100, 450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Charred Zombine", 'Heading', 50, 500, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Zombine convered in flames that are more suicidal.", 'Content', 100, 550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(500, {[HORDE.DMG_FIRE] = 0.5, [HORDE.DMG_COLD] = 1.25})
+        draw.SimpleText("Weak zombie with high agility. Deals rapid-speed attacks.", 'Content', 100, 350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Headcrab Zombie Torso", 'Heading', 50, 400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Upper-half of a headcrab zombie. Deals fast, low-blow attacks.", 'Content', 100, 450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Fast Zombie", 'Heading', 50, 500, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Weak headcrab zombie with high agility. Leaps at enemies.", 'Content', 100, 550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Poison Zombie", 'Heading', 50, 600, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Strong, slow-moving headcrab zombie. Throws poison headcrabs at enemies.", 'Content', 100, 650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("H.E.V. Zombie", 'Heading', 50, 700, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Strong headcrab zombie equipped with an H.E.V. suit. Equipped with a handgun or shotgun.", 'Content', 100, 750, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(700, {[HORDE.DMG_PHYSICAL] = 0.75})
 
-        draw.SimpleText("Elite Enemies", 'LargeTitle', 50, 700, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Exploder", 'Heading', 50, 750, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Explodes on death, dealing Poison damage. Does not explode when decapitated. Weak to headshots.", 'Content', 100, 800, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(750, {[HORDE.DMG_POISON] = 0.5, [HORDE.DMG_FIRE] = 1.5, [HORDE.DMG_BLAST] = 1.5})
+        draw.SimpleText("Manhackbie", 'Heading', 50, 800, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Headcrab zombie metrocop. Deploys rogue manhacks.", 'Content', 100, 850, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Zombine", 'Heading', 50, 900, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Headcrab zombie Combine soldier. Pulls out a grenade at quarter health. Runs at half health.", 'Content', 100, 950, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Charred Zombine", 'Heading', 50, 1000, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Charred Zombine with a dark, red hue. Pulls out 3 grenades.", 'Content', 100, 1050, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1000, {[HORDE.DMG_FIRE] = 0.5, [HORDE.DMG_COLD] = 1.25})
 
-        draw.SimpleText("Vomitter", 'Heading', 50, 850, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Ranged attackers that spits flesh at enemies. Inflicts Bleeding.", 'Content', 100, 900, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Scorcher", 'Heading', 50, 950, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Vomitters covered in flames. Spits burning flesh that deal Fire damage. Has a flamethrower attack.", 'Content', 100, 1000, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(950, {[HORDE.DMG_FIRE] = 0.5, [HORDE.DMG_COLD] = 1.25})
+        draw.SimpleText("Plague Soldier", 'Heading', 50, 1100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Combine soldier controlled by a parasite. Equipped with an SMG or shotgun. Throws grenades.", 'Content', 100, 1150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Screecher", 'Heading', 50, 1050, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Emits screaming shockwaves when approached. Deals Lightning damage.", 'Content', 100, 1100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(1050, {[HORDE.DMG_LIGHTNING] = 0.5, [HORDE.DMG_BLAST] = 1.25})
+        
+        -- Elite enemies.
+        draw.SimpleText("Elite Enemies", 'LargeTitle', 50, 1250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Exploder", 'Heading', 50, 1300, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Bloated headcrab zombie with a purple hue. Explodes on death dealing Poison damage. Does not explode when decapitated or shot in the head.", 'Content', 100, 1350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1300, {[HORDE.DMG_POISON] = 0.25, [HORDE.DMG_BLAST] = 1.5, [HORDE.DMG_FIRE] = 1.5})
+        
+        draw.SimpleText("Vomitter", 'Heading', 50, 1400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Slow-moving Bullsquid. Spits flesh that deals Bleed damage from a distance.", 'Content', 100, 1450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1400, {[HORDE.DMG_POISON] = 0.25})
 
-        draw.SimpleText("Blight", 'Heading', 50, 1150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Increases Necrosis buildup to nearby players when shot in the torso. Weak to headshots.", 'Content', 100, 1200, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(1150, {[HORDE.DMG_LIGHTNING] = 1.5})
+        draw.SimpleText("Scorcher", 'Heading', 50, 1500, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Scorched, mutated Vomitter with a dark hue. Spits burning flesh that deals Fire damage. Has a flamethrower attack.", 'Content', 100, 1550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1500, {[HORDE.DMG_FIRE] = 0.75, [HORDE.DMG_COLD] = 1.25})
+        
+        draw.SimpleText("Screecher", 'Heading', 50, 1600, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Slow-moving, early model stalker. Deals a burst of Lightning damage. Runs at half health.", 'Content', 100, 1650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1600, {[HORDE.DMG_LIGHTNING] = 0.5, [HORDE.DMG_BLAST] = 1.25})
+        
+        draw.SimpleText("Blight", 'Heading', 50, 1700, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Exploder with a dark hue. Deals Necrosis buildup when not shot in the head.", 'Content', 100, 1750, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1700, {[HORDE.DMG_BLAST] = 1.5, [HORDE.DMG_FIRE] = 1.5})
+        
+        draw.SimpleText("Weeper", 'Heading', 50, 1800, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Screecher covered in frostbite. Deals Cold damage.", 'Content', 100, 1850, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(1800, {[HORDE.DMG_COLD] = 0.5, [HORDE.DMG_LIGHTNING] = 0.75, [HORDE.DMG_BLAST] = 1.25, [HORDE.DMG_FIRE] = 1.25})
+        
+        draw.SimpleText("Hulk", 'Heading', 50, 1900, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Dangerous zombie with high health. Rages at half health", 'Content', 100, 1950, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Yeti", 'Heading', 50, 2000, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Hulk covered in frostbite. Deals Cold damage bursts at half health.", 'Content', 100, 2050, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw_resistances(2000, {[HORDE.DMG_COLD] = 0.5, [HORDE.DMG_FIRE] = 1.25})
+        
+        draw.SimpleText("Lesion", 'Heading', 50, 2100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Dangerous zombie with high health and agility. Rages periodically or when damaged. Leaps at enemies when raged. Deals Bleed damage.", 'Content', 100, 2150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Lesser Hunter", 'Heading', 50, 2200, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Combine Hunter with rogue programming. Shoots flechettes that explode after a delay. Charges at enemies.", 'Content', 100, 2250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Weeper", 'Heading', 50, 1250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Emits growling shockwaves when approached. Deals Cold damage.", 'Content', 100, 1300, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(1250, {[HORDE.DMG_FIRE] = 1.25, [HORDE.DMG_COLD] = 0.5, [HORDE.DMG_LIGHTNING] = 0.75, [HORDE.DMG_BLAST] = 1.25})
+        draw.SimpleText("Hell Hunter", 'Heading', 50, 2300, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Hunter with high health and damage.", 'Content', 100, 2350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Plague Elite", 'Heading', 50, 2400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Combine elite soldier controlled by a parasite. Fires energy balls that explode on impact. Can summon Zombine and Plague Soldier minions.", 'Content', 100, 2450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Hulk", 'Heading', 50, 1350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Dangerous enemy with high health. Rages when health drops below 50%.", 'Content', 100, 1400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Yeti", 'Heading', 50, 1450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Hulks that are experimented with dangerous mutations.", 'Content', 100, 1500, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw_resistances(1450, {[HORDE.DMG_FIRE] = 1.25, [HORDE.DMG_COLD] = 0.5})
-
-        draw.SimpleText("Lesion", 'Heading', 50, 1550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Dangerous enemy with high health and agility. Rages periodically or when provoked.", 'Content', 100, 1600, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-        draw.SimpleText("Plague Elite", 'Heading', 50, 1650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Dangerous enemy with high health. Can fire devastating energy balls and summon minions.", 'Content', 100, 1700, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-        draw.SimpleText("Bosses", 'LargeTitle', 50, 1750, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-        draw.SimpleText("Alpha Gonome", 'Heading', 50, 1800, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        
+        draw.SimpleText("Bosses", 'LargeTitle', 50, 2550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Alpha Gonome", 'Heading', 50, 2600, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         local next_pos = write_paragraph({
             "An aged gonome that gained increased endurance and power.",
             "Corruption Aura: Inflicts Bleeding to players nearby.",
             "Claw Attack: Deals Slashing damage. Inflicts Bleeding.",
             "Acid Throw: Ranged attack that deals Poison damage.",
             "Frenzy (Phase 2): Passively increases movement speed and action speed.",
-        }, 1850)
+        }, 2650)
 
         draw.SimpleText("Gamma Gonome", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "A gonome infused with cryo-engine that provides minor camouflage.",
+            "A gonome infused with cryo-engine.",
             "Claw Attack: Deals Slashing damage. Inflicts Frostbite.",
             "Icicle Throw: Ranged attack that deals Cold damage.",
             "Icestorm (Phase 2): Creates a large icestorm near itself, dealing massive Cold damage to nearby units.",
         }, next_pos + 100)
 
+        draw.SimpleText("Hell Knight", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        next_pos = write_paragraph({
+            "A highly mutated Lesion forged in fire.",
+            "Claw Attack: Deals Slashing damage. Inflicts Fire.",
+            "Fiery Fury: Rages while dealing a Fire burst that ignites enemies.",
+            "Leap Attack (Raged): Leaps at enemies. Inflicts Fire",
+        }, next_pos + 100)
+        
         draw.SimpleText("Subject: Wallace Breen", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "A gonome infused with a human subject to increase cognitive capabilities.",
+            "A gonome infused with Dr. Wallace Breen of City-17 to increase cognitive capabilities.",
             "Claw Attack: Deals Slashing damage. Inflicts Haemorrhage.",
             "Particle Cannon: An accurate ranged cannon that deals massive Physical and Blast damage. Inflicts Decay.",
-            "Particle Cannon (Phase 2): Generates continuous explosions post detonation.",
             "Shockwave: Generates a shockwave when it received certain amount of damage. Inflicts Haemorrhage.",
-            "Haemorrhage: A strong Bleeding debuff that builds up slowly on its own. Removes health one the bar is full."
+            "Haemorrhage: A strong Bleeding debuff that builds up slowly on its own. Removes health one the bar is full.",
+            "Particle Cannon (Phase 2): Generates continuous explosions post detonation."
         }, next_pos + 100)
 
         draw.SimpleText("Xen Host Unit", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "Experimental unit made from Gonarch.",
+            "Experimental unit made from the Xen Gonarch.",
             "Claw Attack: Deals Slash damage.",
             "Acid Mortar: Spits acid from above acting like a mortar.",
             "Spawn Baby Headcrab: Spawns a swarm of baby headcrabs.",
@@ -595,7 +641,7 @@ function PANEL:Init()
 
         draw.SimpleText("Xen Destroyer Unit", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "Experimental unit made from Xen Gargantua. Dropping heavy armor and focuses on offense capabilities.",
+            "Experimental unit made from the Xen Gargantua. Has enhanced physical capabilities.",
             "Slam Attack: Deals Blunt damage.",
             "Fumethrower: Creates streams of dark flame that deals Fire damage and inflicts Necrosis.",
             "Earthshatter: Stomps the ground and generates a tracing shockwave torwards the target. Deals Physical damage.",
@@ -604,22 +650,22 @@ function PANEL:Init()
 
         draw.SimpleText("Xen Psychic Unit", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "Experimental unit made from Xen Kingpin. Has enhanced psychic and physical capabilities.",
+
+            "Experimental unit made from the Xen Kingpin. Has enhanced psychic capabilities.",
             "Claw Attack: Deals Slashing damage.",
             "Lightning Beam: Projects a lightning beam, dealing heavy Lightning damage in an area.",
-            "Lightning Beam (Phase 2): Lightning Beam leaves behind ground flames that last for a long time.",
             "Lightning Orb: Creates homing lightning orbs that follow players. Explodes after delay on contact, dealing Lightning damage.",
             "Melee Mode (Phase 2): Greatly increases speed and focuses on Melee attacks.",
+            "Lightning Beam (Phase 2): Lightning Beam leaves behind ground flames that last for a long time.",
             "Psionic Shield (Phase 2): Melee Mode only. When the shield is active, reduces damage taken by 50%.",
         }, next_pos + 100)
 
         draw.SimpleText("Plague Platoon", 'Heading', 50, next_pos + 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         next_pos = write_paragraph({
-            "Combine commanders that have been converted into biological weapons using parasites.",
-            "While their brains are fully infested, they retain a low level of setience.",
-            "Plague Heavy: Armed with an M249 machine gun. Can throw shrapnel grenades",
+            "Specialized Combine units that have been converted into biological weapons using parasites.",
+            "Plague Heavy: Armed with an M249 machine gun that inflicts Hinder buildup. Can throw shrapnel grenades",
             "Plague Demolition: Armed with an RPG-7. Can throw M67 grenade with mini-cluster nades.",
-            "Plauge Berserker: Armed with a katana and inflicts Bleeding buildup on you.",
+            "Plauge Berserker: Armed with a katana that inflicts Bleeding buildup. Parries Physical damage.",
         }, next_pos + 100)
     end
 
