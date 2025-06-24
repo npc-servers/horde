@@ -115,8 +115,8 @@ function SWEP:Initialize()
 
 	local id = self:EntIndex()
 	timer.Create("horde_pheropod_holstered_regen" .. id, 0.75, 0, function()
-		if self.Owner:GetActiveWeapon():GetClass() == "horde_pheropod" then return end
-		if not self.Owner:IsValid() then timer.Remove("horde_pheropod_holstered_regen" .. id) return end
+		if not self:GetOwner():IsValid() then timer.Remove("horde_pheropod_holstered_regen" .. id) return end
+		if self:GetOwner():GetActiveWeapon():GetClass() == "horde_pheropod" then return end
 		self:RegenAmmo()
 	end)
 end
