@@ -521,21 +521,21 @@ function PANEL:Init()
         draw.SimpleText("Crawler", 'Heading', 50, 300, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw.SimpleText("Weak zombie with high agility. Deals rapid-speed attacks.", 'Content', 100, 350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
-        draw.SimpleText("Headcrab Zombie Torso", 'Heading', 50, 400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Zombie Torso", 'Heading', 50, 400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw.SimpleText("Upper-half of a headcrab zombie. Deals fast, low-blow attacks.", 'Content', 100, 450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("Fast Zombie", 'Heading', 50, 500, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw.SimpleText("Weak headcrab zombie with high agility. Leaps at enemies.", 'Content', 100, 550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("Poison Zombie", 'Heading', 50, 600, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Strong, slow-moving headcrab zombie. Throws poison headcrabs at enemies.", 'Content', 100, 650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Strong, slow-moving headcrab zombie. Throws an acid ball that inflicts Poison damage.", 'Content', 100, 650, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("H.E.V. Zombie", 'Heading', 50, 700, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw.SimpleText("Strong headcrab zombie equipped with an H.E.V. suit. Equipped with a handgun or shotgun.", 'Content', 100, 750, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw_resistances(700, {[HORDE.DMG_PHYSICAL] = 0.75})
 
         draw.SimpleText("Manhackbie", 'Heading', 50, 800, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Headcrab zombie metrocop. Deploys rogue manhacks.", 'Content', 100, 850, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Headcrab zombie City-17 metrocop. Deploys a rogue manhack that attacks everything when released.", 'Content', 100, 850, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("Zombine", 'Heading', 50, 900, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         draw.SimpleText("Headcrab zombie Combine soldier. Pulls out a grenade at quarter health. Runs at half health.", 'Content', 100, 950, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
