@@ -171,18 +171,9 @@ end
 VJ.AddNPC("Sniper Turret","npc_vj_horde_sniper_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
--- This is the only turret that really needs the cooldown as it tends to get stuck in the ground without one
-ENT.Horde_PickupCooldown = ENT.Horde_PickupCooldown or 0
-
 function ENT:Follow(ply)
 	if self:GetNWEntity("HordeOwner") ~= ply then return end
-	if self.Horde_PickupCooldown > CurTime() then
-		HORDE:SendNotification("Please wait to pick up your turret again...", 1, ply)
-		return
-	end
 
 	self:GetPhysicsObject():EnableMotion(true)
 	ply:PickupObject(self)
-
-	self.Horde_PickupCooldown = CurTime() + 0.57
 end
