@@ -278,4 +278,5 @@ hook.Add("Horde_ShouldCollide", "Horde_Frag_Grenades", function(ent1, ent2)
     if ent1:GetClass() == fragNadeID or ent2:GetClass() == fragNadeID then
         return false
     end
+    return true
 end)

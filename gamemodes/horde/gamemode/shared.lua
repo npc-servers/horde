@@ -122,23 +122,30 @@ end
 
 function GM:ShouldCollide(ent1, ent2)
     -- Ulti: Yes, this does prevents bullets from colliding with teammates somehow
-    -- Players, Minions and Minion Projectiles
     local ent1IsPlayer = ent1:IsPlayer()
     local ent2IsPlayer = ent2:IsPlayer()
+    if ent1IsPlayer and ent2IsPlayer then
+        return false
+    end
+
+    -- Player Projectiles, Minions and Minion Projectiles
+    local ent1IsFriendly = (ent1:GetOwner():IsValid()and ent1:GetOwner():IsPlayer())
+        or ent1:GetNWEntity("HordeOwner"):IsValid()
+        or (ent1:GetOwner():IsValid() and ent1:GetOwner():GetNWEntity("HordeOwner"):IsValid())
+    local ent2IsFriendly = (ent2:GetOwner():IsValid() and ent2:GetOwner():IsPlayer())
+        or ent2:GetNWEntity("HordeOwner"):IsValid()
+        or (ent2:GetOwner():IsValid() and ent2:GetOwner():GetNWEntity("HordeOwner"):IsValid())
+    local areFriendlyEnts = ent1IsFriendly and ent2IsFriendly
 
     if ent1IsPlayer or ent2IsPlayer then
+        if areFriendlyEnts then
+            return false
+        end
+
         local res = hook.Run("Horde_ShouldCollide", ent1, ent2)
         if res != nil then
             return res
         end
-    end
-
-    local ent1IsPlyOrMinion = ent1IsPlayer or ent1:GetNWEntity("HordeOwner"):IsValid() or (ent1:GetOwner():IsValid() and ent1:GetOwner():GetNWEntity("HordeOwner"):IsValid())
-    local ent2IsPlyOrMinion = ent2IsPlayer or ent2:GetNWEntity("HordeOwner"):IsValid() or (ent2:GetOwner():IsValid() and ent2:GetOwner():GetNWEntity("HordeOwner"):IsValid())
-    local areFriendlyEnts = ent1IsPlyOrMinion and ent2IsPlyOrMinion
-
-    if areFriendlyEnts then
-        return false
     end
 
     return true
