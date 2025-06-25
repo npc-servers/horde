@@ -671,10 +671,6 @@ HORDE.VoteChangeMap = function (ply)
     end
 end
 
-function plymeta:SetAvoidPlayers(bool)
-    debug.traceback()
-end
-
 hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
     if ply.Horde_Fake_Respawn == true then return end
     if ply:IsValid() then
