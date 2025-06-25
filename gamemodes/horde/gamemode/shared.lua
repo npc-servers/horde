@@ -129,16 +129,15 @@ function GM:ShouldCollide(ent1, ent2)
     end
 
     -- Player Projectiles, Minions and Minion Projectiles
-    local ent1IsFriendly = (ent1:GetOwner():IsValid()and ent1:GetOwner():IsPlayer())
+    local ent1IsFriendly = (ent1:GetOwner():IsValid() and ent1:GetOwner():IsPlayer())
         or ent1:GetNWEntity("HordeOwner"):IsValid()
         or (ent1:GetOwner():IsValid() and ent1:GetOwner():GetNWEntity("HordeOwner"):IsValid())
     local ent2IsFriendly = (ent2:GetOwner():IsValid() and ent2:GetOwner():IsPlayer())
         or ent2:GetNWEntity("HordeOwner"):IsValid()
         or (ent2:GetOwner():IsValid() and ent2:GetOwner():GetNWEntity("HordeOwner"):IsValid())
-    local areFriendlyEnts = ent1IsFriendly and ent2IsFriendly
 
     if ent1IsPlayer or ent2IsPlayer then
-        if areFriendlyEnts then
+        if ent1IsFriendly or ent2IsFriendly then
             return false
         end
 
