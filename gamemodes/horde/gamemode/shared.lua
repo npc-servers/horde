@@ -122,12 +122,14 @@ end
 
 function GM:ShouldCollide(ent1, ent2)
     -- Ulti: Yes, this does prevents bullets from colliding with teammates somehow
-    if ent1:IsPlayer() or ent2:IsPlayer() then
-        if ent1:IsPlayer() and ent2:IsPlayer() then return false end
-        -- No combine balls
-        if ent1:GetClass() == "prop_combine_ball" or ent2:GetClass() == "prop_combine_ball" then return false end
+    -- Players, Minions and Minion Projectiles
+    local ent1IsPlyOrMinion = ent1:IsPlayer() or ent1:GetNWEntity("HordeOwner"):IsValid() or (ent1:GetOwner():IsValid() and ent1:GetOwner():GetNWEntity("HordeOwner"):IsValid())
+    local ent2IsPlyOrMinion = ent2:IsPlayer() or ent2:GetNWEntity("HordeOwner"):IsValid() or (ent2:GetOwner():IsValid() and ent2:GetOwner():GetNWEntity("HordeOwner"):IsValid())
+    local areFriendlyEnts = ent1IsPlyOrMinion and ent2IsPlyOrMinion
+
+    if areFriendlyEnts then
         local res = hook.Run("Horde_ShouldCollide", ent1, ent2)
-        if res ~= nil then return res end
+        return res != nil and res or false
     end
 
     return true

@@ -272,14 +272,3 @@ function HORDE:SimpleParticleSystem(particle_name, pos, angles, parent)
     p:Fire( "start", "", 0 )
     return p
 end
-
-hook.Add("ShouldCollide", "Horde_FriendlyProjectilesIgnorePlayers", function(ent1, ent2)
-    local ent1Owner = IsValid(ent1:GetOwner()) and ent1:GetOwner():IsPlayer()
-    local ent2Owner = IsValid(ent2:GetOwner()) and ent2:GetOwner():IsPlayer()
-    local isFriendlyProj = ent1Owner or ent2Owner
-    local isPlayer = ent1:IsPlayer() or ent2:IsPlayer()
-
-    if isFriendlyProj and isPlayer then
-        return false
-    end
-end)
