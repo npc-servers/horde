@@ -153,7 +153,7 @@ function SWEP:Throw(level)
 	ent:SetPos( self:GetOwner():EyePos() + ( self:GetOwner():GetAimVector() * 10 ) )
 	ent:SetAngles( self:GetOwner():EyeAngles() )
 	ent.properties = {level = 1, type = self.VirusType}
-	ent.Owner = self:GetOwner()
+	ent:SetOwner(self:GetOwner())
 	ent:Spawn()
 	local phys = ent:GetPhysicsObject()
 	if (  !IsValid( phys ) ) then ent:Remove() return end
