@@ -304,11 +304,12 @@ end
 
 function HORDE:RemoveSpectres(ply)
     if HORDE.player_drop_entities[ply:SteamID()] then
-        for id, ent in pairs(HORDE.player_drop_entities[ply:SteamID()]) do
-            if ent:IsNPC() and (ent:GetClass() == "npc_vj_horde_spectre" or ent:GetClass() == "npc_vj_horde_shadow_hulk") then
+        for _, ent in pairs(HORDE.player_drop_entities[ply:SteamID()]) do
+            if IsValid( ent ) and ent:IsNPC() and (ent:GetClass() == "npc_vj_horde_spectre" or ent:GetClass() == "npc_vj_horde_shadow_hulk") then
                 ent:Remove()
             end
         end
     end
 end
+
 end
