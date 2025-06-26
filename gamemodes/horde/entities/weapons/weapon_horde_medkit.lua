@@ -337,13 +337,11 @@ if CLIENT then
 	local reviveGreen = Color( 0, 170, 14 )
 
 	net.Receive( "horde_medkit_player_revived", function()
-		local revived = net.ReadEntity()
-		local revivedName = revived:GetName()
-		local revivedCol = team.GetColor( revived:Team() )
+		local revivedName = net.ReadString()
+		local revivedCol = net.ReadColor()
 
-		local reviver = net.ReadEntity()
-		local reviverName = reviver:GetName()
-		local reviverCol = team.GetColor( reviver:Team() )
+		local reviverName = net.ReadString()
+		local reviverCol = net.ReadColor()
 
 		chat.AddText( reviveGreen, "[HORDE] ", revivedCol, revivedName, color_white, " was revived by ", reviverCol, reviverName )
 	end )
@@ -433,8 +431,10 @@ if SERVER then
 		owner:Horde_SyncEconomy()
 
 		net.Start( "horde_medkit_player_revived" )
-			net.WriteEntity( ply ) -- Revived
-			net.WriteEntity( owner ) -- Reviver
+			net.WriteString( ply:GetName() ) -- Revived player name
+			net.WriteColor( team.GetColor( ply:Team() ) ) -- Revived player color
+			net.WriteString( owner:GetName() ) -- Reviver player name
+			net.WriteColor( team.GetColor( owner:Team() ) ) -- Reviver player color
 		net.Broadcast()
 	end
 
