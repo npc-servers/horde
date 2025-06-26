@@ -234,7 +234,11 @@ net.Receive("Horde_BuySpellUpgrade", function (len, ply)
 end)
 
 function HORDE:RaiseSpectre(ply, param, p2)
-    local level = ply:Horde_GetSpellUpgrade("raise_spectre")
+        local spell_name = "raise_spectre"
+    if param and param.greater_spectre then
+        spell_name = "raise_greater_spectre"
+    end
+    local level = ply:Horde_GetSpellUpgrade(spell_name)
     local p = {level = level}
     hook.Run("Horde_OnRaiseSpectre", ply, p)
     local spectres_count = 0
@@ -276,25 +280,8 @@ function HORDE:RaiseSpectre(ply, param, p2)
         if param and param.greater_spectre then
             ent:Horde_SetGreaterSpectre()
         end
-        ent:AddRelationship("player D_LI 99")
-        ent:AddRelationship("ally D_LI 99")
-        if HORDE.items["npc_vj_horde_vortigaunt"] then
-            ent:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-        end
-        if HORDE.items["npc_vj_horde_combat_bot"] then
-            ent:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
-        end
-        if HORDE.items["npc_turret_floor"] then
-            ent:AddRelationship("npc_turret_floor D_LI 99")
-        end
         if HORDE.items["npc_manhack"] then
             ent:AddRelationship("npc_manhack D_LI 99")
-        end
-        if HORDE.items["npc_vj_horde_class_survivor"] then
-            ent:AddRelationship("npc_vj_horde_class_survivor D_LI 99")
-        end
-        if HORDE.items["npc_vj_horde_class_assault"] then
-            ent:AddRelationship("npc_vj_horde_class_assault D_LI 99")
         end
     end)
 
