@@ -137,13 +137,13 @@ function GM:ShouldCollide(ent1, ent2)
         or (ent2:GetOwner():IsValid() and ent2:GetOwner():GetNWEntity("HordeOwner"):IsValid())
 
     if ent1IsPlayer or ent2IsPlayer then
-        if ent1IsFriendly or ent2IsFriendly then
-            return false
-        end
-
         local res = hook.Run("Horde_ShouldCollide", ent1, ent2)
         if res != nil then
             return res
+        end
+
+        if ent1IsFriendly or ent2IsFriendly then
+            return false
         end
     end
 
