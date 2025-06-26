@@ -19,7 +19,7 @@ if SERVER then
 
 hook.Add("Horde_ShouldCollide", "Horde_Projectile_Heal", function(ent1, ent2)
     local entClass = "projectile_launcher_heal_round"
-    if ent1:GetClass() == entClass or ent2:GetClass() == entClass then
+    if ent1 == entClass or ent2 == entClass then
         return true
     end
 end)
