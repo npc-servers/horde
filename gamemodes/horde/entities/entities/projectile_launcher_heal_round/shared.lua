@@ -6,7 +6,6 @@ ENT.Information 		= ""
 
 ENT.Spawnable 			= false
 
-
 AddCSLuaFile()
 
 ENT.Model = "models/items/ar2_grenade.mdl"
@@ -17,6 +16,13 @@ ENT.CollisionGroupType = COLLISION_GROUP_PROJECTILE
 ENT.Removing = nil
 
 if SERVER then
+
+hook.Add("Horde_ShouldCollide", "Horde_Projectile_Heal", function(ent1, ent2)
+    local entClass = "projectile_launcher_heal_round"
+    if ent1:GetClass() == entClass or ent2:GetClass() == entClass then
+        return true
+    end
+end)
 
 function ENT:Initialize()
     local pb_vert = 1
