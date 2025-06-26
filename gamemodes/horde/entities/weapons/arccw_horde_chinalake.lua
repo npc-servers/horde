@@ -219,13 +219,13 @@ SWEP.Animations = {
         Source = {
             "fire",
         },
-        MinProgress = 0.3
+        MinProgress = 0.2
     },
     ["fire_iron"] = {
         Source = {
             "fire",
         },
-        MinProgress = 0.3
+        MinProgress = 0.2
     },
     ["cycle"] = {
         Source = {
@@ -255,7 +255,7 @@ SWEP.Animations = {
         LHIKIn = 0.5,
         LHIKOut = 0,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Back", t = 12 / 32}
+            {s = "ArcCW_BO1.CL_Back", t = 6 / 32}
         },
     },
     ["sgreload_insert"] = {
@@ -278,7 +278,7 @@ SWEP.Animations = {
         LHIKIn = 0,
         LHIKOut = 1,
         SoundTable = {
-            {s = "ArcCW_BO1.CL_Fwd", t = 9 / 12}
+            {s = "ArcCW_BO1.CL_Fwd", t = 3 / 12}
         },
     },
     ["enter_sprint"] = {
