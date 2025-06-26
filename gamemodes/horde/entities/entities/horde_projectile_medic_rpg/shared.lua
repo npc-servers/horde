@@ -24,6 +24,13 @@ ENT.TouchedEntities = {}
 
 AddCSLuaFile()
 
+hook.Add("Horde_ShouldCollide", "Horde_Projectile_Medic_RPG", function(ent1, ent2)
+	local entClass = "horde_projectile_medic_rpg"
+	if ent1:GetClass() == entClass or ent2:GetClass() == entClass then
+		return true
+	end
+end)
+
 local entmeta = FindMetaTable("Entity")
 
 function entmeta:Horde_AddEffect_RPGMedicGrenade(ent)
