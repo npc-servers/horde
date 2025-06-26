@@ -674,7 +674,6 @@ end
 hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
     if ply.Horde_Fake_Respawn == true then return end
     if ply:IsValid() then
-        ply:SetCollisionGroup(15)
         ply:SetCanZoom(false)
         ply:ConCommand("mat_colorcorrection 1")
         ply:ConCommand("cl_showhints 0")
