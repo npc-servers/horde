@@ -272,11 +272,3 @@ function HORDE:SimpleParticleSystem(particle_name, pos, angles, parent)
     p:Fire( "start", "", 0 )
     return p
 end
-
-hook.Add("Horde_ShouldCollide", "Horde_Frag_Grenades", function(ent1, ent2)
-    local fragNadeID = "npc_grenade_frag"
-    if ent1:GetClass() == fragNadeID or ent2:GetClass() == fragNadeID then
-        return false
-    end
-    return true
-end)
