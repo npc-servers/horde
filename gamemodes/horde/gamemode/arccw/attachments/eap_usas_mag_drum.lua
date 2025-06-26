@@ -22,7 +22,7 @@ att.SortOrder = 20
 att.Override_ClipSize = 20
 
 att.Mult_SpeedMult = 0.85
-att.Mult_SightTime = 1.4
+att.Mult_SightTime = 1.25
 att.Mult_ReloadTime = 1.2
 
 att.Hook_TranslateAnimation = function(wep, anim)
