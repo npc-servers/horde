@@ -47,7 +47,12 @@ function ENT:CustomOnPhysicsCollide(data, phys)
 	util.BlastDamageInfo(dmg, self:GetPos(), 150)
 	for _, e in pairs(ents.FindInSphere(self:GetPos(), 180)) do
 		if e:IsPlayer() then
-			e:Horde_AddDebuffBuildup(HORDE.Status_Break, 100, attacker)
+			e:Horde_AddDebuffBuildup(HORDE.Status_Break, 20, attacker)
+		end
+	end
+	for _, d in pairs(ents.FindInSphere(self:GetPos(), 15)) do
+		if d:IsPlayer() then
+			d:Horde_AddDebuffBuildup(HORDE.Status_Break, 100, attacker)
 		end
 	end
 	self:OnCollideSoundCode()
