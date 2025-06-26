@@ -52,7 +52,7 @@ function ENT:CustomOnPhysicsCollide(data, phys)
 	end
 	for _, d in pairs(ents.FindInSphere(self:GetPos(), 15)) do
 		if d:IsPlayer() then
-			d:Horde_AddDebuffBuildup(HORDE.Status_Break, 100, attacker)
+			d:Horde_AddDebuffBuildup(HORDE.Status_Break, 80, attacker)
 		end
 	end
 	self:OnCollideSoundCode()
