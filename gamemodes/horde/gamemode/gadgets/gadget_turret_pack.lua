@@ -26,6 +26,12 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:Spawn()
     ent.Horde_Is_Mini_Sentry = true
 
+    local npc_info = list.Get("NPC")[ent:GetClass()]
+    if not npc_info then
+        print("[HORDE] NPC does not exist in ", list.Get("NPC"))
+    end
+
+    HORDE:DropTurret(ent)
     ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() + 1)
 
     ent:CallOnRemove("Horde_EntityRemoved", function()
