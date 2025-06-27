@@ -51,7 +51,7 @@ function ENT:CustomOnInitialize()
 	self:SetColor(Color(50, 50, 0))
 	self:AddRelationship("npc_headcrab_poison D_LI 99")
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
-	self:SetModelScale(1.15, 0.001)
+	self:SetModelScale(1.15, 0)
 end
 
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
