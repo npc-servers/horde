@@ -128,13 +128,18 @@ function GM:ShouldCollide(ent1, ent2)
         return false
     end
 
+    local ent1Owner = ent1:GetOwner()
+    local ent2Owner = ent2:GetOwner()
+    local ent1ValidOwner = IsValid(ent1Owner)
+    local ent2ValidOwner = IsValid(ent2Owner)
+
     -- Player Projectiles, Minions and Minion Projectiles
-    local ent1IsFriendly = (ent1:GetOwner():IsValid() and ent1:GetOwner():IsPlayer())
+    local ent1IsFriendly = (ent1ValidOwner and ent1Owner:IsPlayer())
         or ent1:GetNWEntity("HordeOwner"):IsValid()
-        or (ent1:GetOwner():IsValid() and ent1:GetOwner():GetNWEntity("HordeOwner"):IsValid())
-    local ent2IsFriendly = (ent2:GetOwner():IsValid() and ent2:GetOwner():IsPlayer())
+        or (ent1ValidOwner and ent1Owner:GetNWEntity("HordeOwner"):IsValid())
+    local ent2IsFriendly = (ent2ValidOwner and ent2Owner)
         or ent2:GetNWEntity("HordeOwner"):IsValid()
-        or (ent2:GetOwner():IsValid() and ent2:GetOwner():GetNWEntity("HordeOwner"):IsValid())
+        or (ent2ValidOwner and ent2Owner:GetNWEntity("HordeOwner"):IsValid())
     if ent1IsFriendly and ent2IsFriendly then
         local res = hook.Run("Horde_ShouldCollide", ent1:GetClass(), ent2:GetClass())
         if res != nil then
