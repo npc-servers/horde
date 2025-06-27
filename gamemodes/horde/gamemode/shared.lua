@@ -151,10 +151,6 @@ function GM:ShouldCollide(ent1, ent2)
         and (getMetatable(ent2Owner) == playerMeta or isValid(entGetNWEntity(ent2Owner, HORDE_OWNER_KEY)))
         or isValid(entGetNWEntity(ent2, HORDE_OWNER_KEY))
 
-    if ent1IsFriendly and ent2IsFriendly then
-        return false
-    end
-
     if ent1IsPlayer or ent2IsPlayer then
         local ent1Class, ent2Class = entGetClass(ent1), entGetClass(ent2)
         local res = hookRun("Horde_ShouldCollide", ent1Class, ent2Class)
