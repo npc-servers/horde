@@ -50,10 +50,8 @@ function ENT:CustomOnPhysicsCollide(data, phys)
 			e:Horde_AddDebuffBuildup(HORDE.Status_Break, 20, attacker)
 		end
 	end
-	for _, d in pairs(ents.FindInSphere(self:GetPos(), 15)) do
-		if d:IsPlayer() then
-			d:Horde_AddDebuffBuildup(HORDE.Status_Break, 80, attacker)
-		end
+	if data.HitEntity:IsPlayer() then
+		data.HitEntity:Horde_AddDebuffBuildup(HORDE.Status_Break, 80, attacker)
 	end
 	self:OnCollideSoundCode()
 	if self.PaintDecalOnDeath == true && VJ_PICK(self.DecalTbl_DeathDecals) != false && self.AlreadyPaintedDeathDecal == false then
