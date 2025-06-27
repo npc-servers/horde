@@ -86,9 +86,18 @@ function ENT:CustomOnInitialize()
     self.StartTime = CurTime()
     end
 
+    local owner = self:GetOwner()
+    self.has_burner = nil
+    if IsValid( owner ) and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
+        self.has_burner = true
+    end
+
     if CLIENT then
     timer.Simple(0, function ()
         if not self:IsValid() then return end
+
+        local hydrogen = self.has_burner and "_hydrogen" or ""
+
         local charged = self:GetCharged()
         if charged >= 3 then
             if charged == 4 then
@@ -100,11 +109,11 @@ function ENT:CustomOnInitialize()
             end
             return
         end
-        ParticleEffectAttach("solar_orb", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+        ParticleEffectAttach("solar_orb" .. hydrogen, PATTACH_ABSORIGIN_FOLLOW, self, 0)
         if charged >= 1 then
-            ParticleEffectAttach("solar_orb_charged_1", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+            ParticleEffectAttach("solar_orb_charged_1" .. hydrogen, PATTACH_ABSORIGIN_FOLLOW, self, 0)
             if charged >= 2 then
-                ParticleEffectAttach("solar_orb_charged_2", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+                ParticleEffectAttach("solar_orb_charged_2" .. hydrogen, PATTACH_ABSORIGIN_FOLLOW, self, 0)
             end
         end
     end)
@@ -134,7 +143,9 @@ function ENT:Think()
             dmg_splash:SetDamageCustom(HORDE.DMG_SPLASH)
             util.BlastDamageInfo(dmg_splash, self:GetPos(), 150 * radius_mult)
 
-            ParticleEffect("solar_orb_explode", self:GetPos(), Angle(0,0,0), self.Owner)
+            local hydrogen = self.has_burner and "_hydrogen" or ""
+
+            ParticleEffect("solar_orb_explode" .. hydrogen, self:GetPos(), Angle(0,0,0), self.Owner)
             sound.Play("horde/weapons/solar_seal/solar_orb_hit.ogg", self:GetPos(), 80, math.random(70, 90))
         end
         self:Remove()
@@ -221,12 +232,13 @@ end
 function ENT:PhysicsCollide(colData, collider)
     if !self:IsValid() or self.Removing then return end
     local pos = colData.HitPos
+    local hydrogen = self.has_burner and "_hydrogen" or ""
 
     if self:GetCharged() == 0 then
         if self.Draconic == true then
             self:LSS(self:GetPos(), 75)
         else
-            ParticleEffect("solar_orb_explode", pos, Angle(0,0,0), self.Owner)
+            ParticleEffect("solar_orb_explode" .. hydrogen, pos, Angle(0,0,0), self.Owner)
         end
 
         sound.Play("horde/weapons/solar_seal/solar_orb_hit.ogg", pos, 80, math.random(70, 90))
@@ -235,13 +247,13 @@ function ENT:PhysicsCollide(colData, collider)
         if self.Draconic == true then
             self:LSS(self:GetPos(), 100)
         else
-            ParticleEffect("solar_orb_charged_1_explode", pos, Angle(0,0,0), self.Owner)
+            ParticleEffect("solar_orb_charged_1_explode" .. hydrogen, pos, Angle(0,0,0), self.Owner)
         end
     elseif self:GetCharged() == 2 then
         if self.Draconic == true then
             self:LSS(self:GetPos(), 150)
         else
-            ParticleEffect("solar_orb_charged_2_explode", pos, Angle(0,0,0), self.Owner)
+            ParticleEffect("solar_orb_charged_2_explode" .. hydrogen, pos, Angle(0,0,0), self.Owner)
         end
 
         sound.Play("horde/weapons/solar_seal/solar_orb_charged_2_hit.ogg", pos, 100, math.random(90, 110))
