@@ -120,7 +120,7 @@ function GM:PlayerSetModel(ply)
     player_manager.RunClass( ply, "SetModel" )
 end
 
--- ~40% gain in performance when these are cached
+-- ~40% gain in GM:ShouldCollide() performance when these are cached
 local entMeta = FindMetaTable("Entity")
 local playerMeta = FindMetaTable("Player")
 local entGetOwner = entMeta.GetOwner
