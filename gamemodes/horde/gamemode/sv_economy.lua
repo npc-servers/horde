@@ -605,13 +605,10 @@ net.Receive("Horde_BuyItem", function (len, ply)
                         ent:Give(wpn)
                     end
 
-                    -- Special case for turrets
                     local id = ent:GetCreationID()
-                    ent:SetCollisionGroup(COLLISION_GROUP_PLAYER)
-                    timer.Simple(0.1, function ()
-                        if not ent:IsValid() then return end
-                        ent:SetCollisionGroup(COLLISION_GROUP_PLAYER)
-                    end)
+                    if ent:GetCollisionGroup() ~= COLLISION_GROUP_PLAYER then
+                        ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
+                    end
 
                     -- Count Minions
                     ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() + 1)
