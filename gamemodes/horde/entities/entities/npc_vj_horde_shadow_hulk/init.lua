@@ -39,20 +39,7 @@ ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strik
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 ENT.SoundTbl_Pain = nil
 
-ENT.EntitiesToNoCollide = {
-	"player",
-	"npc_vj_horde_spectre",
-	"npc_vj_horde_antlion",
-	"npc_vj_horde_smg_turret",
-	"npc_vj_horde_shotgun_turret",
-	"npc_vj_horde_rocket_turret",
-	"npc_vj_horde_laster_turret",
-	"npc_vj_horde_class_survivor",
-	"npc_vj_horde_class_assault",
-	"npc_vj_horde_vortigaunt",
-	"npc_vj_horde_combat_bot",
-	"npc_manhack"
-}
+ENT.EntitiesToNoCollide = HORDE.FriendlyNoCollide
 
 ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75

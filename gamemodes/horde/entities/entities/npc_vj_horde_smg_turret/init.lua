@@ -87,11 +87,12 @@ ENT.Horde_Immune_Status = {
     [HORDE.Status_Hemorrhage] = true,
 }
 ENT.Immune_AcidPoisonRadiation = true
+ENT.EntitiesToNoCollide = HORDE.FriendlyNoCollide
 
 function ENT:CustomOnInitialize()
     self:SetCollisionBounds( Vector( 13, 13, 60 ), Vector( -13, -13, 0 ) )
     self:PhysicsInit( SOLID_VPHYSICS )
-    self:SetCollisionGroup( COLLISION_GROUP_PLAYER )
+    self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
 
     timer.Simple( 0.1, function ()
         HORDE:DropTurret( self )
