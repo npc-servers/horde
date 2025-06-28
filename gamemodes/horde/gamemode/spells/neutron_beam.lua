@@ -15,6 +15,8 @@ SPELL.Fire            = function ( ply, wpn, charge_stage )
 	ply:EmitSound( "horde/weapons/nether_relic/nether_star_launch.ogg", 100, math.random( 90, 110 ) )
 	local function Hitscan( damage, spread, dir, src, ignore, max_scan )
         if not IsValid( wpn ) then return end
+		if max_scan <= 0 then return src end
+
 		local tr2
         wpn:FireBullets ( {
             Attacker = ply,
@@ -31,9 +33,9 @@ SPELL.Fire            = function ( ply, wpn, charge_stage )
             end
         } )
 		if not tr2 then return src end
-		if max_scan <= 0 or not tr2.Hit or tr2.HitWorld or tr2.HitSky then return tr2.HitPos end
+		if not tr2.Hit or tr2.HitWorld or tr2.HitSky then return tr2.HitPos end
 		if HORDE:IsPlayerMinion( tr2.Entity ) then
-			return Hitscan( damage, spread, dir, tr2.HitPos, tr2.Entity, max_scan )
+			return Hitscan( damage, spread, dir, tr2.HitPos, tr2.Entity, max_scan - 1 )
 		else
 			return Hitscan( damage * 0.8, spread, dir, tr2.HitPos, tr2.Entity, max_scan - 1 )
 		end

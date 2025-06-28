@@ -5,7 +5,7 @@ local deaths = {}
 
 local function onPlayerDied()
     local ply = net.ReadEntity()
-    local plyName = ply:GetName()
+    local plyName = IsValid( ply ) and ply:GetName() or "Unknown"
     local plyColor = team.GetColor( ply:Team() )
 
     local npcClassName = net.ReadString()

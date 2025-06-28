@@ -49,8 +49,6 @@ CreateConVar("horde_ready_countdown_ratio", 0.5, nil, "Ratio of players required
 CreateConVar("horde_enable_scoreboard", 1, nil, "Enables built-in scoreboard.")
 CreateConVar("horde_enable_3d2d_icon", 1, nil, "Enables player icon renders.")
 
-CreateConVar("horde_turret_spread", 0.5, nil, "Turret spread.")
-
 CreateConVar("horde_testing_unlimited_class_change", 0, nil, "You can change a class for an unlimited times. Please use this only for testing purposes.")
 CreateConVar("horde_testing_display_damage", 0, FCVAR_ARCHIVE, "Display damage for testing.")
 CreateConVar("horde_allow_display_damage", 1, FCVAR_REPLICATED, "Allow displaying of damage numbers.")
@@ -179,6 +177,10 @@ if ArcCWInstalled then
         end
     end
 
+    -- Disable near-walling and lunging that messes with gameplay.
+    RunConsoleCommand("arccw_override_nearwall", "0")
+    RunConsoleCommand("arccw_override_lunge_off", "1")
+
     -- Disable perks that messes up with Horde's own system.
     if GetConVar("horde_default_item_config"):GetInt() == 1 then
         ArcCW.AttachmentBlacklistTable["go_perk_headshot"] = true
@@ -196,6 +198,9 @@ RunConsoleCommand("sbox_godmode", "0")
 RunConsoleCommand("vj_npc_addfrags", "0")
 RunConsoleCommand("vj_npc_knowenemylocation", "1")
 RunConsoleCommand("vj_npc_bleedenemyonmelee", "0")
+RunConsoleCommand("vj_npc_nocallhelp", "1")
+RunConsoleCommand("vj_npc_nowandering", "1")
+RunConsoleCommand("vj_npc_nogib", "1") -- Since we use our own gibbing system, there should be no need to call for VJ Base gibbing system.
 
 -- Util functions
 function HORDE:GiveAmmo(ply, wpn, count)

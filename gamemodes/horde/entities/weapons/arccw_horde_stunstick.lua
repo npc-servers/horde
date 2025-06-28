@@ -39,13 +39,13 @@ SWEP.Melee2Damage = 80
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_CLUB
-SWEP.MeleeRange = 50
+SWEP.MeleeRange = 75
 SWEP.MeleeAttackTime = 0.15
 SWEP.MeleeTime = 0.65
 SWEP.MeleeGesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 50
+SWEP.Melee2Range = 75
 SWEP.Melee2AttackTime = 0.15
 SWEP.Melee2Time = 1
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
@@ -151,9 +151,9 @@ function SWEP:Hook_PostBash(t)
 
         local dmginfo = DamageInfo()
         if t.melee2 then
-            dmginfo:SetDamage(25)
-        else
             dmginfo:SetDamage(35)
+        else
+            dmginfo:SetDamage(25)
         end
 
         dmginfo:SetAttacker(self:GetOwner())
@@ -162,5 +162,6 @@ function SWEP:Hook_PostBash(t)
         dmginfo:SetDamageType(DMG_SHOCK)
         dmginfo:SetDamagePosition(tr.HitPos)
         tr.Entity:TakeDamageInfo(dmginfo)
+        tr.Entity:Horde_AddDebuffBuildup(HORDE.Status_Shock, dmginfo:GetDamage() * 0.75, attacker, dmginfo:GetDamagePosition())
     end
 end

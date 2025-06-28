@@ -1,6 +1,6 @@
  SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+SWEP.Category = "ArcCW - CS+" -- edit this if you like
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "Randall Repeater"
@@ -73,8 +73,8 @@ SWEP.ShootVol = 115 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
 SWEP.ShootSound = "weapons/arccw/winchester1873/w73-1.wav"
-SWEP.ShootSoundSilenced = "weapons/arccw_go/mosin_suppressed_fp.wav"
-SWEP.DistantShootSound = "weapons/bo1_m14/m14_fire_silenced_1.wav"
+SWEP.ShootSoundSilenced = "arccw_go/mosin_suppressed_fp.wav"
+SWEP.DistantShootSound = "arccw_go/ssg08/ssg08-1-distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/shells/shell_338mag.mdl"
@@ -276,14 +276,14 @@ SWEP.Animations = {
     },
     ["cycle"] = {
         Source = "cycle",
-        Time = 1,
+        Time = 0.7,
         ShellEjectAt = 0.3,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.6,
     },
     ["cycle_iron"] = {
         Source = "cycle_iron",
-        Time = 1,
+        Time = 0.7,
         ShellEjectAt = 0.4,
     },
     ["sgreload_start"] = {
@@ -298,7 +298,7 @@ SWEP.Animations = {
     },
     ["sgreload_finish"] = {
         Source = "reload_finish",
-        Time = 0.5,
+        Time = 0.3,
     },
     ["sgreload_finish_empty"] = {
         Source = "reload_finish_empty",

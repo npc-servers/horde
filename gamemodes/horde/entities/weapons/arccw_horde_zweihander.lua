@@ -11,14 +11,14 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Zweihander"
+SWEP.PrintName = "Zweihänder"
 SWEP.Trivia_Class = "Melee Weapon"
 SWEP.Trivia_Desc = "Double hand sword."
-SWEP.Trivia_Manufacturer = "Arasaki"
+SWEP.Trivia_Manufacturer = "Brotherhood of Saint Mark"
 SWEP.Trivia_Calibre = "N/A"
 SWEP.Trivia_Mechanism = "Slashing Weapon"
-SWEP.Trivia_Country = "Japan"
-SWEP.Trivia_Year = 2020
+SWEP.Trivia_Country = "Germany"
+SWEP.Trivia_Year = 1520
 
 SWEP.Slot = 0
 
@@ -38,18 +38,18 @@ SWEP.ViewModelFOV = 75
 SWEP.DefaultSkin = 0
 SWEP.DefaultWMSkin = 0
 
-SWEP.MeleeDamage = 175
-SWEP.Melee2Damage = 350
+SWEP.MeleeDamage = 200
+SWEP.Melee2Damage = 400
 
 SWEP.PrimaryBash = true
 SWEP.CanBash = true
 SWEP.MeleeDamageType = DMG_SLASH
-SWEP.MeleeRange = 85
+SWEP.MeleeRange = 130
 SWEP.MeleeAttackTime = 0.5
 SWEP.MeleeTime = 1
 
 SWEP.Melee2 = true
-SWEP.Melee2Range = 90
+SWEP.Melee2Range = 135
 SWEP.Melee2AttackTime = 0.75
 SWEP.Melee2Time = 1.5
 
