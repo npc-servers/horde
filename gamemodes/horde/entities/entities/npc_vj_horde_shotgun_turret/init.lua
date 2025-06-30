@@ -97,7 +97,6 @@ function ENT:CustomOnInitialize()
 	self:SetColor(Color(0,255,255))
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
 	self:PhysicsInit(SOLID_VPHYSICS)
-	self:SetCollisionGroup( COLLISION_GROUP_PLAYER )
 
 	timer.Simple(0.1, function ()
 		HORDE:DropTurret(self)

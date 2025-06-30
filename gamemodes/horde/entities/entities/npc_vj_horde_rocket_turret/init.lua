@@ -88,7 +88,6 @@ function ENT:CustomOnInitialize()
 	self:SetSkin(math.random(0,3))
 	self:PhysicsInitBox(Vector(-20, -20, 0), Vector(20, 20, 40))
 	self:SetCollisionBounds(Vector(-20, -20, 0), Vector(20, 20, 80))
-	self:SetCollisionGroup( COLLISION_GROUP_PLAYER )
 
 	timer.Simple(0.1, function ()
 		self:SetAngles(Angle(0,0,0))

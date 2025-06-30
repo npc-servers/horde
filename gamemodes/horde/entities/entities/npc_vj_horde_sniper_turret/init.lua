@@ -94,7 +94,6 @@ function ENT:CustomOnInitialize()
 	self:PhysicsInitBox(Vector(20, 20, -0.1), Vector(-20, -20, -40))
 	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
 	self:PhysWake()
-	self:SetCollisionGroup( COLLISION_GROUP_PLAYER )
 
 	timer.Simple(0, function()
 		self:SetAngles(Angle(0,0,180))
