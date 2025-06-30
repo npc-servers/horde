@@ -606,7 +606,7 @@ net.Receive("Horde_BuyItem", function (len, ply)
                     end
 
                     local id = ent:GetCreationID()
-                    if ent:GetCollisionGroup() ~= COLLISION_GROUP_PASSABLE_DOOR then
+                    if ent:GetCollisionGroup() ~= COLLISION_GROUP_PLAYER then
                         ent:SetCollisionGroup(COLLISION_GROUP_WORLD)
                     end
 

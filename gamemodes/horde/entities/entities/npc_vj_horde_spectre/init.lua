@@ -60,7 +60,20 @@ ENT.Roard = nil
 ENT.DamageReceived = 0
 ENT.Attacks = 0
 
-ENT.EntitiesToNoCollide = HORDE.FriendlyNoCollide
+ENT.EntitiesToNoCollide = {
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
+	"npc_vj_horde_vortigaunt",
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
+}
 
 ENT.HasWorldShakeOnMove = false -- Should the world shake when it's moving?
 ENT.WorldShakeOnMoveAmplitude = 5 -- How much the screen will shake | From 1 to 16, 1 = really low 16 = really high
