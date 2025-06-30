@@ -144,6 +144,7 @@ function GM:ShouldCollide(ent1, ent2)
     local ent1Owner = entGetOwner(ent1)
     local ent2Owner = entGetOwner(ent2)
 
+    -- Player projectiles, Minion Projectiles, Minions
     local ent1IsFriendly = isValid(ent1Owner)
         and (getMetatable(ent1Owner) == playerMeta or isValid(entGetNWEntity(ent1Owner, HORDE_OWNER_KEY)))
         or isValid(entGetNWEntity(ent1, HORDE_OWNER_KEY))
