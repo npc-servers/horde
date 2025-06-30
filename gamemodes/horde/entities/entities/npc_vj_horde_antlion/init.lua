@@ -14,7 +14,6 @@ ENT.SightAngle = 180 -- The sight angle | Example: 180 would make the it see all
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class will be friendly to each other | Combine: CLASS_COMBINE, Zombie: CLASS_ZOMBIE, Antlions = CLASS_ANTLION
-ENT.EntitiesToNoCollide = HORDE.FriendlyNoCollide
 ENT.CustomBlood_Particle = {"striderbuster_smoke"} -- Particle that the SNPC spawns when it's damaged
 ENT.BloodDecal = {"YellowBlood"} -- Leave blank for none | Commonly used: Red = Blood, Yellow Blood = YellowBlood
 ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
