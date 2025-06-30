@@ -12,7 +12,7 @@ SPELL.Type            = {HORDE.Spell_Type_AOE}
 SPELL.Description     = [[Applies Cold damage in an area. Leeches health for each enemy hit.]]
 SPELL.Fire            = function (ply, wpn, charge_stage)
     ply:EmitSound("horde/spells/void_maw.ogg")
-    local tr = ply:GetEyeTrace()
+    local tr = HORDE:traceSolidIgnoreAllies(ply)
     if not tr.Hit then return end
     local pos = tr.HitPos
 

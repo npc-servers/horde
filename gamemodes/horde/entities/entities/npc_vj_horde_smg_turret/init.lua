@@ -91,7 +91,7 @@ ENT.Immune_AcidPoisonRadiation = true
 function ENT:CustomOnInitialize()
     self:SetCollisionBounds( Vector( 13, 13, 60 ), Vector( -13, -13, 0 ) )
     self:PhysicsInit( SOLID_VPHYSICS )
-    self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
+    self:SetCollisionGroup( COLLISION_GROUP_WORLD )
 
     timer.Simple( 0.1, function ()
         HORDE:DropTurret( self )

@@ -398,15 +398,11 @@ if SERVER then
 		local trace = util.TraceHull({
 			start = deathPos,
 			endpos = deathPos - Vector(0, 0, 25000),
-			mins = Vector(-16, -16, 0),
 			maxs = Vector(16, 16, 1),
+			mins = Vector(-16, -16, 0),
 			mask = MASK_SOLID,
-			filter = function(ent)
-				if not IsValid(ent) then return true end
-				local class = ent:GetClass()
-				if class == "prop_static" or class == "prop_dynamic" then return true end
-				return false
-			end
+			filter = {"prop_static", "prop_dynamic"},
+			whitelist = true,
 		})
 		ply.Medkit_DeathPos = trace.HitPos or deathPos
 	end )

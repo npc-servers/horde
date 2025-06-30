@@ -120,14 +120,47 @@ function GM:PlayerSetModel(ply)
     player_manager.RunClass( ply, "SetModel" )
 end
 
+-- ~40% gain in GM:ShouldCollide() performance when these are cached
+local entMeta = FindMetaTable("Entity")
+local playerMeta = FindMetaTable("Player")
+local entGetOwner = entMeta.GetOwner
+local entGetNWEntity = entMeta.GetNWEntity
+local entGetClass = entMeta.GetClass
+
+local isValid = IsValid
+local hookRun = hook.Run
+local getMetatable = getmetatable
+
+local HORDE_OWNER_KEY = "HordeOwner"
+
 function GM:ShouldCollide(ent1, ent2)
-    -- Ulti: Yes, this does prevents bullets from colliding with teammates somehow
-    if ent1:IsPlayer() or ent2:IsPlayer() then
-        if ent1:IsPlayer() and ent2:IsPlayer() then return false end
-        -- No combine balls
-        if ent1:GetClass() == "prop_combine_ball" or ent2:GetClass() == "prop_combine_ball" then return false end
-        local res = hook.Run("Horde_ShouldCollide", ent1, ent2)
-        if res ~= nil then return res end
+    local ent1IsPlayer = getMetatable(ent1) == playerMeta
+    local ent2IsPlayer = getMetatable(ent2) == playerMeta
+
+    if ent1IsPlayer and ent2IsPlayer then
+        return false
+    end
+
+    local ent1Owner = entGetOwner(ent1)
+    local ent2Owner = entGetOwner(ent2)
+
+    local ent1IsFriendly = isValid(ent1Owner)
+        and (getMetatable(ent1Owner) == playerMeta or isValid(entGetNWEntity(ent1Owner, HORDE_OWNER_KEY)))
+        or isValid(entGetNWEntity(ent1, HORDE_OWNER_KEY))
+    local ent2IsFriendly = isValid(ent2Owner)
+        and (getMetatable(ent2Owner) == playerMeta or isValid(entGetNWEntity(ent2Owner, HORDE_OWNER_KEY)))
+        or isValid(entGetNWEntity(ent2, HORDE_OWNER_KEY))
+
+    if ent1IsPlayer or ent2IsPlayer then
+        local ent1Class, ent2Class = entGetClass(ent1), entGetClass(ent2)
+        local res = hookRun("Horde_ShouldCollide", ent1Class, ent2Class)
+        if res ~= nil then
+            return res
+        end
+
+        if ent1IsFriendly or ent2IsFriendly then
+            return false
+        end
     end
 
     return true
