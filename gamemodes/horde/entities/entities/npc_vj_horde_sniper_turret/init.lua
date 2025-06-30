@@ -87,8 +87,6 @@ ENT.Horde_Immune_Status = {
 }
 ENT.Immune_AcidPoisonRadiation = true
 
-util.AddNetworkString("Horde_SyncSniperTurretPhys")
-
 function ENT:CustomOnInitialize()
 	self:SetModelScale(1.5, 0)
 	self:PhysicsInitBox(Vector(20, 20, -0.1), Vector(-20, -20, -40))
