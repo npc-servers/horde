@@ -81,3 +81,20 @@ function HORDE:traceSolidIgnoreAllies(ply)
 
     return tr
 end
+
+function HORDE:traceHullSolidIgnoreAllies(ply, maxRange, min, max)
+    local tr = util.TraceHull({
+        start = ply:GetShootPos(),
+        endpos = ply:GetShootPos() + ply:GetAimVector() * maxRange,
+        max = max,
+        min = min,
+        filter = function(ent)
+            if not IsValid(ent) then return true end
+            if HORDE:IsPlayerOrMinion(ent) then return false end
+            return true
+        end,
+        mask = MASK_SOLID
+    })
+
+    return tr
+end

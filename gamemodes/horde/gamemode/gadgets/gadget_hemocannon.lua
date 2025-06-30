@@ -37,13 +37,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         ply:Horde_SetGadgetCharges(math.min(5, ply:Horde_GetGadgetCharges() + 1))
     end)
 
-    local tracedata = {}
-    tracedata.start = ply:GetShootPos()
-    tracedata.endpos = ply:GetShootPos() + (ply:GetAimVector() * 500)
-    tracedata.filter = ply
-    tracedata.mins = Vector(-25,-25,-25)
-    tracedata.maxs = Vector(25,25,25)
-    local trace = util.TraceHull(tracedata)
+    local trace = HORDE:traceHullSolidIgnoreAllies(ply, 500, Vector(-25, -25, -25), Vector(25, 25, 25))
     local Distance = ply:GetPos():Distance(trace.HitPos)
     local Ignite = function()
         if not ply:IsValid() then return end
