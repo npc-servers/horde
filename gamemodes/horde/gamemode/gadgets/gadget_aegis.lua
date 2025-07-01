@@ -2,7 +2,7 @@ GADGET.PrintName = "Aegis"
 GADGET.Description = [[Provides damage and status immunity for {1} seconds in an area.]]
 GADGET.Icon = "items/gadgets/aegis.png"
 GADGET.Duration = 0
-GADGET.Cooldown = 30
+GADGET.Cooldown = 3
 GADGET.Active = true
 GADGET.Params = {
     [1] = {value = 3},
@@ -40,7 +40,8 @@ end
 
 GADGET.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmg, bonus)
     if ply.Horde_Aegis then
-        dmg:SetDamage(0)
+        bonus.resistance = bonus.resistance + 1
+
         return true
     end
 end
@@ -48,6 +49,7 @@ end
 GADGET.Hooks.Horde_OnPlayerDebuffApply = function (ply, debuff, bonus)
     if ply.Horde_Aegis then
         bonus.apply = 0
+
         return true
     end
 end
