@@ -152,7 +152,7 @@ function HORDE:CalcResistance(ply, stats, dmgtype, horde_dmgtype)
 end
 
 function HORDE:CalcStatusResistance(ply, stats, debuff)
-    local bonus = {apply = 0, less = 1}
+    local bonus = {apply = 1, less = 1}
     hook.Run("Horde_OnPlayerDebuffApply", ply, debuff, bonus)
 
     if ply.Horde_Immune_Status_All then
@@ -163,7 +163,12 @@ function HORDE:CalcStatusResistance(ply, stats, debuff)
         stats[debuff] = 1 + (1 - bonus.less)
         return
     end
-    stats[debuff] = bonus.apply + (1 - bonus.less)
+
+    if bonus.apply == 0 then
+        stats[debuff] = 1 + (1 - bonus.less)
+    else
+        stats[debuff] = 1 - bonus.less
+    end
 end
 
 net.Receive("Horde_GetStats", function (len, ply)
