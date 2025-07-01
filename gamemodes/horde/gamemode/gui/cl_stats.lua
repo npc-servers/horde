@@ -40,6 +40,22 @@ local function multlinetext(text, maxw, font)
     return content
 end
 
+local function drawResistance(self, txt, stat, x, y, matTable, matTableOrCol)
+    local col
+    if IsColor(matTableOrCol) then
+        col = matTableOrCol
+    else
+        col = matTableOrCol[stat]
+    end
+
+    surface.SetMaterial(Material(matTable[stat], "mips smooth"))
+    surface.SetDrawColor(col)
+    surface.DrawTexturedRect(x / 2, y - 20, 40, 40)
+
+    draw.SimpleText(txt, "Heading", x, y, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(HORDE:GetStat(stat) * 100 .. "%", "Heading", self:GetWide() / 3 - x / 2, y, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+end
+
 function PANEL:Init()
     if ScrH() < 1080 then
         self:SetSize(ScrW(), ScrH())
@@ -817,136 +833,39 @@ function PANEL:Init()
         end
     end
 
-    local res_stats_panel = vgui.Create("DPanel", stats_panel)
-    res_stats_panel:Dock(LEFT)
-    res_stats_panel:SetWide(self:GetWide() / 3)
-    res_stats_panel:SetTall(self:GetTall())
-
-    res_stats_panel.Paint = function ()
-        --local mat = Material("materials/damagetype/physical.png", "mips smooth")
-        --surface.SetMaterial(mat)
-        --surface.SetDrawColor(color_white)
-        --surface.DrawTexturedRect(50, 50, 40, 40)
-
-        local mat = Material("materials/damagetype/ballistic.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(color_white)
-        surface.DrawTexturedRect(50, 80, 40, 40)
-
-        mat = Material("materials/damagetype/slash.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(color_white)
-        surface.DrawTexturedRect(50, 130, 40, 40)
-
-        mat = Material("materials/damagetype/blunt.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(color_white)
-        surface.DrawTexturedRect(50, 180, 40, 40)
-
-        mat = Material("materials/damagetype/physical.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(color_white)
-        surface.DrawTexturedRect(50, 230, 40, 40)
-
+    local res_stats_panel_middle = vgui.Create("DPanel", stats_panel)
+    res_stats_panel_middle:Dock(LEFT)
+    res_stats_panel_middle:SetWide(self:GetWide() / 3)
+    res_stats_panel_middle:SetTall(self:GetTall())
+    res_stats_panel_middle.Paint = function ()
         draw.SimpleText("Physical Resistances", 'Heading', 50, 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Ballistic Resistance:", 'Heading', 100, 100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Slash Resistance:", 'Heading', 100, 150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Blunt Resistance:", 'Heading', 100, 200, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Other:", 'Heading', 100, 250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        drawResistance(self, "Ballistic Resistance:", HORDE.DMG_BALLISTIC, 100, 100, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Slash Resistance:", HORDE.DMG_SLASH, 100, 150, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Blunt Resistance:", HORDE.DMG_BLUNT, 100, 200, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Other:", HORDE.DMG_PHYSICAL, 100, 250, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
 
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_BALLISTIC) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 100, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_SLASH) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 150, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_BLUNT) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 200, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_PHYSICAL) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 250, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-
-        mat = Material("materials/damagetype/fire.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_FIRE])
-        surface.DrawTexturedRect(50, 360, 40, 40)
-
-        mat = Material("materials/damagetype/cold.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_COLD])
-        surface.DrawTexturedRect(50, 410, 40, 40)
-
-        mat = Material("materials/damagetype/lightning.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_LIGHTNING])
-        surface.DrawTexturedRect(50, 460, 40, 40)
-
-        mat = Material("materials/damagetype/poison.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_POISON])
-        surface.DrawTexturedRect(50, 510, 40, 40)
-
-        mat = Material("materials/damagetype/blast.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_BLAST])
-        surface.DrawTexturedRect(50, 560, 40, 40)
-        draw.SimpleText("Special Resistances", 'Heading', 50, 330, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Fire Resistance:", 'Heading', 100, 380, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Cold Resistance:", 'Heading', 100, 430, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Lightning Resistance:", 'Heading', 100, 480, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Poison Resistance:", 'Heading', 100, 530, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Blast Resistance:", 'Heading', 100, 580, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_FIRE) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 380, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_COLD) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 430, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_LIGHTNING) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 480, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_POISON) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 530, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(tostring(HORDE:GetStat(HORDE.DMG_BLAST) * 100) .. "%", 'Heading', self:GetWide() / 3 - 10, 580, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Elemental Resistances", 'Heading', 50, 350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        drawResistance(self, "Fire Resistance:", HORDE.DMG_FIRE, 100, 400, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Cold Resistance:", HORDE.DMG_COLD, 100, 450, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Lightning Resistance:", HORDE.DMG_LIGHTNING, 100, 500, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Poison Resistance:", HORDE.DMG_POISON, 100, 550, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
+        drawResistance(self, "Blast Resistance:", HORDE.DMG_BLAST, 100, 600, HORDE.DMG_TYPE_ICON, HORDE.DMG_COLOR)
     end
 
-    local immunity_stats_panel = vgui.Create("DPanel", stats_panel)
-    immunity_stats_panel:Dock(LEFT)
-    immunity_stats_panel:SetWide(self:GetWide() / 3)
-    immunity_stats_panel:SetTall(self:GetTall())
-    immunity_stats_panel.Paint = function ()
-        draw.SimpleText("Status Effects", 'Heading', 50, 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-        local mat = Material("materials/status/bleeding.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.color_crimson_violet)
-        surface.DrawTexturedRect(50, 80, 40, 40)
-
-        mat = Material("materials/status/ignite.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_FIRE])
-        surface.DrawTexturedRect(50, 130, 40, 40)
-
-        mat = Material("materials/status/frostbite.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_COLD])
-        surface.DrawTexturedRect(50, 180, 40, 40)
-
-        mat = Material("materials/status/shock.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_LIGHTNING])
-        surface.DrawTexturedRect(50, 230, 40, 40)
-
-        mat = Material("materials/status/break.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.DMG_COLOR[HORDE.DMG_POISON])
-        surface.DrawTexturedRect(50, 280, 40, 40)
-
-        mat = Material("materials/status/necrosis.png", "mips smooth")
-        surface.SetMaterial(mat)
-        surface.SetDrawColor(HORDE.STATUS_COLOR[HORDE.Status_Necrosis])
-        surface.DrawTexturedRect(50, 330, 40, 40)
-
-        draw.SimpleText("Bleeding Immunity:", 'Heading', 100, 100, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Ignite Immunity:", 'Heading', 100, 150, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Frostbite Immunity:", 'Heading', 100, 200, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Shock Immunity:", 'Heading', 100, 250, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Break Immunity:", 'Heading', 100, 300, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Necrosis Immunity:", 'Heading', 100, 350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-        draw.SimpleText(GetImmune(HORDE.Status_Bleeding), 'Heading', self:GetWide() / 3 - 50, 100, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(GetImmune(HORDE.Status_Ignite), 'Heading', self:GetWide() / 3 - 50, 150, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(GetImmune(HORDE.Status_Frostbite), 'Heading', self:GetWide() / 3 - 50, 200, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(GetImmune(HORDE.Status_Shock), 'Heading', self:GetWide() / 3 - 50, 250, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(GetImmune(HORDE.Status_Break), 'Heading', self:GetWide() / 3 - 50, 300, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
-        draw.SimpleText(GetImmune(HORDE.Status_Necrosis), 'Heading', self:GetWide() / 3 - 50, 350, color_white, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+    local res_stats_panel_right = vgui.Create("DPanel", stats_panel)
+    res_stats_panel_right:Dock(LEFT)
+    res_stats_panel_right:SetWide(self:GetWide() / 3)
+    res_stats_panel_right:SetTall(self:GetTall())
+    res_stats_panel_right.Paint = function ()
+        draw.SimpleText("Status Resistances", 'Heading', 50, 50, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        drawResistance(self, "Bleeding Resistance:", HORDE.Status_Bleeding, 100, 100, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Ignite Resistance:", HORDE.Status_Ignite, 100, 150, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Frostbite Resistance:", HORDE.Status_Frostbite, 100, 200, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Shock Resistance:", HORDE.Status_Shock, 100, 250, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Break Resistance:", HORDE.Status_Break, 100, 300, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Decay Resistance:", HORDE.Status_Decay, 100, 350, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Necrosis Resistance:", HORDE.Status_Necrosis, 100, 400, HORDE.Status_Icon, HORDE.STATUS_COLOR)
+        drawResistance(self, "Hemorrhage Resistance:", HORDE.Status_Hemorrhage, 100, 450, HORDE.Status_Icon, HORDE.STATUS_COLOR)
     end
 
     local stats_btn = vgui.Create("DButton", self)

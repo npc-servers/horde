@@ -43,27 +43,29 @@ HORDE.DMG_TYPE_ICON = {
 }
 
 HORDE.DMG_COLOR = {
-    [HORDE.DMG_PHYSICAL] = Color(255, 255, 255),
-    [HORDE.DMG_SLASH] =  Color(255, 255, 255),
-    [HORDE.DMG_BLUNT] =  Color(255, 255, 255),
-    [HORDE.DMG_BALLISTIC] =  Color(255, 255, 255),
-    [HORDE.DMG_FIRE] = Color(255,51,51),
-    [HORDE.DMG_COLD] = Color(0,191,255),
-    [HORDE.DMG_LIGHTNING] = Color(255,215,0),
+    [HORDE.DMG_PHYSICAL] = color_white,
+    [HORDE.DMG_SLASH] = color_white,
+    [HORDE.DMG_BLUNT] = color_white,
+    [HORDE.DMG_BALLISTIC] = color_white,
+    [HORDE.DMG_FIRE] = Color(255, 51, 51),
+    [HORDE.DMG_COLD] = Color(0, 191, 255),
+    [HORDE.DMG_LIGHTNING] = Color(255, 255, 0),
     [HORDE.DMG_POISON] = Color(255, 0, 255),
-    [HORDE.DMG_BLAST] = Color(255,140,0),
-    [HORDE.DMG_PURE] = Color(255,255,255),
+    [HORDE.DMG_BLAST] = Color(255, 140, 0),
+    [HORDE.DMG_PURE] = color_white,
 }
 
 HORDE.STATUS_COLOR = {
-    [HORDE.Status_Decay] = Color(50, 150, 50),
-    [HORDE.Status_Necrosis] = Color(204, 204, 255),
     [HORDE.Status_Bleeding] = HORDE.color_crimson_violet,
-    [HORDE.Status_Freeze] = HORDE.DMG_COLOR[HORDE.DMG_COLD],
+    [HORDE.Status_Ignite] = HORDE.DMG_COLOR[HORDE.DMG_FIRE],
     [HORDE.Status_Frostbite] = HORDE.DMG_COLOR[HORDE.DMG_COLD],
     [HORDE.Status_Shock] = HORDE.DMG_COLOR[HORDE.DMG_LIGHTNING],
-    [HORDE.Status_Stun] = Color(255, 255, 0),
     [HORDE.Status_Break] = HORDE.DMG_COLOR[HORDE.DMG_POISON],
+    [HORDE.Status_Decay] = Color(50, 150, 50),
+    [HORDE.Status_Necrosis] = Color(204, 204, 255),
+    [HORDE.Status_Stun] = Color(255, 255, 0),
+    [HORDE.Status_Freeze] = HORDE.DMG_COLOR[HORDE.DMG_COLD],
+    [HORDE.Status_Hemorrhage] = HORDE.color_crimson_violet,
 }
 
 function HORDE:GetDamageType(dmginfo)
@@ -149,10 +151,19 @@ function HORDE:CalcResistance(ply, stats, dmgtype, horde_dmgtype)
     stats[horde_dmgtype] = 1 - bonus.less * (1 - bonus.resistance)
 end
 
-function HORDE:CalcImmunity(ply, stats, debuff)
-    local bonus = {apply = 1, less = 1}
+function HORDE:CalcStatusResistance(ply, stats, debuff)
+    local bonus = {apply = 0, less = 1}
     hook.Run("Horde_OnPlayerDebuffApply", ply, debuff, bonus)
-    stats[debuff] = 1 - bonus.apply
+
+    if ply.Horde_Immune_Status_All then
+        stats[debuff] = 1 + (1 - bonus.less)
+        return
+    end
+    if ply.Horde_Immune_Status and ply.Horde_Immune_Status[debuff] then
+        stats[debuff] = 1 + (1 - bonus.less)
+        return
+    end
+    stats[debuff] = bonus.apply + (1 - bonus.less)
 end
 
 net.Receive("Horde_GetStats", function (len, ply)
@@ -180,12 +191,14 @@ net.Receive("Horde_GetStats", function (len, ply)
     hook.Run("Horde_PlayerMoveBonus", ply, bonus_walk, bonus_run, bonus_jump)
     stats["speed"] = math.max(bonus_walk.more + bonus_walk.increase, bonus_run.more + bonus_run.increase, bonus_jump.more + bonus_jump.increase)
 
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Bleeding)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Ignite)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Frostbite)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Shock)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Break)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Necrosis)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Bleeding)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Ignite)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Frostbite)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Shock)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Break)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Decay)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Necrosis)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Hemorrhage)
 
     net.Start("Horde_GiveStats")
         net.WriteTable(stats)
