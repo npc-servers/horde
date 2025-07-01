@@ -39,23 +39,23 @@ function ENT:Initialize()
         self.has_burner = true
     end
 
-	self.StartGlow1 = ents.Create( "env_sprite" )
+    self.StartGlow1 = ents.Create( "env_sprite" )
     if self.has_burner then
         self.StartGlow1:SetKeyValue( "rendercolor","0 150 255" )
     else
-	    self.StartGlow1:SetKeyValue( "rendercolor","255 106 0" )
+        self.StartGlow1:SetKeyValue( "rendercolor","255 106 0" )
     end
-	self.StartGlow1:SetKeyValue( "GlowProxySize","2.0" )
-	self.StartGlow1:SetKeyValue( "HDRColorScale","1.0" )
-	self.StartGlow1:SetKeyValue( "renderfx","14" )
-	self.StartGlow1:SetKeyValue( "rendermode","3" )
-	self.StartGlow1:SetKeyValue( "renderamt","255" )
-	self.StartGlow1:SetKeyValue( "disablereceiveshadows","0" )
-	self.StartGlow1:SetKeyValue( "mindxlevel","0" )
-	self.StartGlow1:SetKeyValue( "maxdxlevel","0" )
-	self.StartGlow1:SetKeyValue( "framerate","10.0" )
-	self.StartGlow1:SetKeyValue( "model","sprites/glow04_noz.spr" )
-	self.StartGlow1:SetKeyValue( "spawnflags","0" )
+    self.StartGlow1:SetKeyValue( "GlowProxySize","2.0" )
+    self.StartGlow1:SetKeyValue( "HDRColorScale","1.0" )
+    self.StartGlow1:SetKeyValue( "renderfx","14" )
+    self.StartGlow1:SetKeyValue( "rendermode","3" )
+    self.StartGlow1:SetKeyValue( "renderamt","255" )
+    self.StartGlow1:SetKeyValue( "disablereceiveshadows","0" )
+    self.StartGlow1:SetKeyValue( "mindxlevel","0" )
+    self.StartGlow1:SetKeyValue( "maxdxlevel","0" )
+    self.StartGlow1:SetKeyValue( "framerate","10.0" )
+    self.StartGlow1:SetKeyValue( "model","sprites/glow04_noz.spr" )
+    self.StartGlow1:SetKeyValue( "spawnflags","0" )
     timer.Simple(0, function ()
         if not IsValid( self ) then return end
         if self:GetCharged() == true then
@@ -64,25 +64,25 @@ function ENT:Initialize()
             self.StartGlow1:SetKeyValue( "scale","0.5" )
         end
     end)
-	self.StartGlow1:SetPos( self.Entity:GetPos() )
-	self.StartGlow1:Spawn()
-	self.StartGlow1:SetParent( self.Entity )
-	self:DeleteOnRemove(self.StartGlow1)
+    self.StartGlow1:SetPos( self.Entity:GetPos() )
+    self.StartGlow1:Spawn()
+    self.StartGlow1:SetParent( self.Entity )
+    self:DeleteOnRemove(self.StartGlow1)
 
-	self.StartLight1 = ents.Create("light_dynamic")
-	self.StartLight1:SetKeyValue("brightness", "1")
-	self.StartLight1:SetKeyValue("distance", "200")
-	self.StartLight1:SetLocalPos(self:GetPos())
-	self.StartLight1:SetLocalAngles( self:GetAngles() )
-	self.StartLight1:Fire("Color", "255 150 0")
-	self.StartLight1:SetParent(self)
-	self.StartLight1:Spawn()
-	self.StartLight1:Activate()
-	self.StartLight1:Fire("TurnOn", "", 0)
-	self:DeleteOnRemove(self.StartLight1)
-	self:SetModelScale(0.5)
+    self.StartLight1 = ents.Create("light_dynamic")
+    self.StartLight1:SetKeyValue("brightness", "1")
+    self.StartLight1:SetKeyValue("distance", "200")
+    self.StartLight1:SetLocalPos(self:GetPos())
+    self.StartLight1:SetLocalAngles( self:GetAngles() )
+    self.StartLight1:Fire("Color", "255 150 0")
+    self.StartLight1:SetParent(self)
+    self.StartLight1:Spawn()
+    self.StartLight1:Activate()
+    self.StartLight1:Fire("TurnOn", "", 0)
+    self:DeleteOnRemove(self.StartLight1)
+    self:SetModelScale(0.5)
     self:PhysicsInitSphere(1, "metal_bouncy")
-	construct.SetPhysProp(self:GetOwner(), self, 0, self:GetPhysicsObject(), {GravityToggle = false, Material = "metal_bouncy"})
+    construct.SetPhysProp(self:GetOwner(), self, 0, self:GetPhysicsObject(), {GravityToggle = false, Material = "metal_bouncy"})
     local phys = self:GetPhysicsObject()
     if phys:IsValid() then
         phys:Wake()
@@ -98,8 +98,8 @@ function ENT:Initialize()
         end
     end)
 
-	self:DrawShadow(false)
-	self:ResetSequence("idle")
+    self:DrawShadow(false)
+    self:ResetSequence("idle")
 
     self.SpawnTime = CurTime()
 
@@ -120,16 +120,16 @@ function ENT:PhysicsCollide(data, collider)
         v = 250
     end
 
-	local dmg = DamageInfo()
-	dmg:SetAttacker(self.Owner)
-	dmg:SetInflictor(self)
-	dmg:SetDamageType(DMG_BURN)
-	dmg:SetDamage(v)
-	util.BlastDamageInfo(dmg, self:GetPos(), v)
-	if self.AlreadyPaintedDeathDecal == false then
-		self.AlreadyPaintedDeathDecal = true
-		util.Decal("Scorch", data.HitPos + data.HitNormal, data.HitPos - data.HitNormal)
-	end
+    local dmg = DamageInfo()
+    dmg:SetAttacker(self.Owner)
+    dmg:SetInflictor(self)
+    dmg:SetDamageType(DMG_BURN)
+    dmg:SetDamage(v)
+    util.BlastDamageInfo(dmg, self:GetPos(), v)
+    if self.AlreadyPaintedDeathDecal == false then
+        self.AlreadyPaintedDeathDecal = true
+        util.Decal("Scorch", data.HitPos + data.HitNormal, data.HitPos - data.HitNormal)
+    end
 
     local attacker = self
     if self.Owner:IsValid() then
@@ -149,32 +149,32 @@ function ENT:PhysicsCollide(data, collider)
     })
 
     local effectdata = EffectData()
-	effectdata:SetOrigin(data.HitPos)
+    effectdata:SetOrigin(data.HitPos)
     if self:GetCharged() == true then
         effectdata:SetScale(2/2.5)
     else
         effectdata:SetScale(1/2.5)
     end
-	effectdata:SetEntity(self.Owner)
-	util.Effect("horde_blaster_flame_explosion", effectdata )
+    effectdata:SetEntity(self.Owner)
+    util.Effect("horde_blaster_flame_explosion", effectdata )
 
     self:EmitSound("horde/weapons/blaster/fire_explosion.ogg")
 
 
-	--ParticleEffect("vj_explosion1", self:GetPos(), Angle(0,0,0), nil)
+    --ParticleEffect("vj_explosion1", self:GetPos(), Angle(0,0,0), nil)
 
-	local expLight = ents.Create("light_dynamic")
-	expLight:SetKeyValue("brightness", "4")
-	expLight:SetKeyValue("distance", "300")
-	expLight:SetLocalPos(data.HitPos)
-	expLight:SetLocalAngles(self:GetAngles())
-	expLight:Fire("Color", "255 150 0")
-	expLight:SetParent(self)
-	expLight:Spawn()
-	expLight:Activate()
-	expLight:Fire("TurnOn", "", 0)
-	self:DeleteOnRemove(expLight)
-	self:Remove()
+    local expLight = ents.Create("light_dynamic")
+    expLight:SetKeyValue("brightness", "4")
+    expLight:SetKeyValue("distance", "300")
+    expLight:SetLocalPos(data.HitPos)
+    expLight:SetLocalAngles(self:GetAngles())
+    expLight:Fire("Color", "255 150 0")
+    expLight:SetParent(self)
+    expLight:Spawn()
+    expLight:Activate()
+    expLight:Fire("TurnOn", "", 0)
+    self:DeleteOnRemove(expLight)
+    self:Remove()
 end
 
 end
