@@ -256,7 +256,7 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
     -- Apply bonus
     local bonus = {resistance=0, less=1, evasion=0, block=0}
     local ret = hook.Run("Horde_OnPlayerDamageTaken", ply, dmg, bonus)
-    if ret then return end
+    if ret then return ret end
     if bonus.evasion > 0 then
         local evade = math.random()
         if evade <= bonus.evasion then
