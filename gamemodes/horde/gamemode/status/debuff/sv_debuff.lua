@@ -27,6 +27,23 @@ function plymeta:Horde_GetApplyDebuffMore()
     return self.Horde_ApplyDebuffMore or 0
 end
 
+function plymeta:Horde_SetImmuneToAllDebuffs(bool)
+    self.Horde_Immune_Status_All = bool
+end
+
+function plymeta:Horde_SetImmuneToDebuff(status, bool)
+    if not self.Horde_Immune_Status then
+        self.Horde_Immune_Status = {}
+    end
+    self.Horde_Immune_Status[status] = bool
+end
+
+function plymeta:Horde_SetImmuneToDebuffs(statusTable)
+    for k, v in pairs(statusTable) do
+        self:Horde_SetImmuneToDebuff(k, v)
+    end
+end
+
 function plymeta:Horde_ReduceDebuffBuildup(debuff, amount)
     if not self.Horde_Debuff_Buildup[debuff] or self.Horde_Debuff_Buildup[debuff] <= 0 or self.Horde_Debuff_Active[debuff] then return end
     self.Horde_Debuff_Buildup[debuff] = math.max(0, self.Horde_Debuff_Buildup[debuff] - amount)
@@ -42,6 +59,23 @@ function plymeta:Horde_ReduceDebuffBuildup(debuff, amount)
             net.WriteUInt(d2, 8)
             net.WriteUInt(self.Horde_Debuff_Buildup[d2], 8)
         net.Send(self)
+    end
+end
+
+function entmeta:Horde_SetImmuneToAllDebuffs(bool)
+    self.Horde_Immune_Status_All = bool
+end
+
+function entmeta:Horde_SetImmuneToDebuff(status, bool)
+    if not self.Horde_Immune_Status then
+        self.Horde_Immune_Status = {}
+    end
+    self.Horde_Immune_Status[status] = bool
+end
+
+function entmeta:Horde_SetImmuneToDebuffs(statusTable)
+    for k, v in pairs(statusTable) do
+        self:Horde_SetImmuneToDebuff(k, v)
     end
 end
 
