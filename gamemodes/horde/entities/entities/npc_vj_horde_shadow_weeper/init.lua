@@ -8,6 +8,20 @@ include('shared.lua')
 ENT.Model = {"models/horde/infected_stalker/infected_stalker.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 100
 ENT.HullType = HULL_HUMAN
+ENT.EntitiesToNoCollide = {
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
+	"npc_vj_horde_vortigaunt",
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
+}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
 ENT.FriendsWithAllPlayerAllies = true
@@ -90,13 +104,11 @@ function ENT:Roar()
 end
 
 function ENT:CustomOnInitialize()
-
 	self:SetModelScale(self:GetModelScale() * 1.25, 0)
-	
 
 	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
 	self.AnimTbl_Run = ACT_RUN
-    if self.properties.abyssal_might == true then
+	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
 		timer.Simple(0.5, function() self:Roar() end)
@@ -105,23 +117,18 @@ function ENT:CustomOnInitialize()
 			if not IsValid(self) then return end
 			self:Roar()
 		end)
-    end
+	end
 	local e = EffectData()
-		e:SetOrigin(self:GetPos())
-		e:SetNormal(Vector(0,0,1))
-		e:SetScale(0.25)
+	e:SetOrigin(self:GetPos())
+	e:SetNormal(Vector(0,0,1))
+	e:SetScale(0.25)
 	util.Effect("abyssal_roar", e, true, true)
-    self:SetRenderMode(RENDERMODE_TRANSCOLOR)
-    self:SetColor(Color(0, 0, 0, 200))
+	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
+	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
 	self:SetHealth((90 + 32 * self.properties.level))
-	self:AddRelationship("npc_turret_floor D_LI 99")
-	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 	self:AddRelationship("npc_manhack D_LI 99")
-	self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
-	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
-    --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
 function ENT:ShockAttack(delay)

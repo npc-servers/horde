@@ -86,11 +86,11 @@ function ENT:Roar()
 end
 
 function ENT:CustomOnInitialize()
---	self:SetBodygroup(1,1)
+	-- self:SetBodygroup(1,1)
 	self.AnimationPlaybackRate = (1 + (0.2 * self.properties.level))
 	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
 	self.AnimTbl_Run = ACT_RUN
-    if self.properties.abyssal_might == true then
+	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
 		timer.Simple(0.5, function()  self:Roar() end)
@@ -99,14 +99,14 @@ function ENT:CustomOnInitialize()
 			if not IsValid(self) then return end
 			self:Roar()
 		end)
-    end
+	end
 	local e = EffectData()
-		e:SetOrigin(self:GetPos())
-		e:SetNormal(Vector(0,0,1))
-		e:SetScale(0.25)
+	e:SetOrigin(self:GetPos())
+	e:SetNormal(Vector(0,0,1))
+	e:SetScale(0.25)
 	util.Effect("abyssal_roar", e, true, true)
-    self:SetRenderMode(RENDERMODE_TRANSCOLOR)
-    self:SetColor(Color(0, 0, 0, 200))
+	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
+	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
 	self:SetHealth(200)
 	self:AddRelationship("npc_turret_floor D_LI 99")
@@ -115,7 +115,7 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
 	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
 	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
-    --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
