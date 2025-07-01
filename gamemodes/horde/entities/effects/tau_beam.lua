@@ -3,10 +3,10 @@ function EFFECT:Init( data )
     self.Position = data:GetStart()
     self.WeaponEnt = data:GetEntity()
     local owner = self.WeaponEnt.Owner
-	self.has_burner = nil
-	if IsValid( owner ) and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
-		self.has_burner = true
-	end
+    self.has_burner = nil
+    if IsValid( owner ) and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
+        self.has_burner = true
+    end
     self.Attachment = data:GetAttachment()
     self.StartPos = self:GetTracerShootPos( self.Position, self.WeaponEnt, self.Attachment )
     self.EndPos = data:GetOrigin()
