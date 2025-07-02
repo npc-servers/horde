@@ -2,22 +2,21 @@ PERK.PrintName = "Cyborg Ninja Base"
 PERK.Description = [[
 COMPLEXITY: HIGH
 
-{1} increased melee damage while in Blade mode. ({11} base, {2} per level, up to {3})
+{1} increased melee damage while in Blade mode. ({7} base, {2} per level, up to {3})
 {4} increased Global damage resistance. ({11} base, {5} per level, up to {6})
 
 Press F to enter Blade Mode, replacing your flashlight.
 Blade Mode reduces your speed by {14}.
 Blade Mode uses Suit Power when active and requires 10 to activate.
 Blade Mode disables Suit Armor gain from perks while active.
-{7} increased melee damage in Blade Mode.
 
 Enemies killed in Blade Mode performs Zandatsu, giving you a {9} chance to drop a Suit Battery.
-Normal attacks leech up to 4 Suit Power if you are not in Blade Mode or Ripper Mode.]]
+Normal attacks leech up to 8 Suit Power if you are not in Blade Mode or Ripper Mode.]]
 PERK.Icon = "materials/subclasses/cyborg_ninja.png"
 PERK.Params = {
-    [1] = { percent = true, base = 0, level = 0.008, max = 0.2, classname = "Cyborg Ninja" },
-    [2] = { value = 0.008, percent = true },
-    [3] = { value = 0.2, percent = true },
+    [1] = { percent = true, base = 0.5, level = 0.025, max = 1, classname = "Cyborg Ninja" },
+    [2] = { value = 0.025, percent = true },
+    [3] = { value = 1.00, percent = true },
     [4] = { percent = true, base = 0, level = 0.008, max = 0.2, classname = "Cyborg Ninja" },
     [5] = { value = 0.008, percent = true },
     [6] = { value = 0.2, percent = true },
@@ -28,7 +27,7 @@ PERK.Params = {
     [11] = { value = 0, percent = true },
     [12] = { value = 0.5, percent = true },
     [13] = { value = 0.75, percent = true },
-    [14] = { value = 0.60, percent = true },
+    [14] = { value = 0.40, percent = true },
 }
 PERK.Hooks = {}
 
@@ -105,8 +104,8 @@ PERK.Hooks.Horde_PlayerMoveBonus = function( ply, bonus_walk, bonus_run )
     if not ply:Horde_GetPerk( "cyborg_ninja_base" ) then return end
     if not ply.Horde_In_Frenzy_Mode then return end
 
-    bonus_walk.increase = bonus_walk.increase + -0.6
-    bonus_run.increase = bonus_run.increase + -0.6
+    bonus_walk.increase = bonus_walk.increase + -0.4
+    bonus_run.increase = bonus_run.increase + -0.4
 end
 
 --Zandatsu
@@ -140,6 +139,6 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
     if HORDE:IsPlayerMinion( npc ) then return end
 
-    local leech = math.min( 4, dmginfo:GetDamage() * 0.05 )
+    local leech = math.min( 8, dmginfo:GetDamage() * 0.05 )
     ply:SetArmor( math.min( ply:GetMaxArmor(), ply:Armor() + leech ) )
 end
