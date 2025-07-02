@@ -20,7 +20,6 @@ local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
         local flashlightOn = ply:FlashlightIsOn()
 
         ply.Horde_In_Omni = nil
-        ply.Horde_Immune_Status_All = nil
         ply:UnSpectate()
         ply:Spawn()
         ply:UnLock()
@@ -72,7 +71,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
     local plyVel = ply:GetVelocity()
 
     ply.Horde_In_Omni = true
-    ply.Horde_Immune_Status_All = true
     ply.Horde_Fake_Respawn = true
     ply:Spectate( OBS_MODE_CHASE )
     ply:SpectateEntity( ent )
@@ -124,5 +122,11 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
                 spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
             end
         end )
+    end
+end
+
+GADGET.Hooks.Horde_OnPlayerDebuffApply = function( ply, _, bonus )
+    if ply.Horde_In_Omni then
+        bonus.apply = 0
     end
 end
