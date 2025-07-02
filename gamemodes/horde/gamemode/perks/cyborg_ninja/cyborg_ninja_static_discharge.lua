@@ -9,7 +9,8 @@ PERK.Params = {
 PERK.Hooks = {}
 
 PERK.Hooks.PlayerHurt = function( victim, attacker )
-    if not victim:Horde_GetPerk( "cyborg_ninja_static_discharge" ) and not victim:Alive()  then return end
+    if not victim:Horde_GetPerk( "cyborg_ninja_static_discharge" ) then return end
+    if not not victim:Alive() then return end
     if victim.DischargeActive then return end
     if not attacker:IsValid() or not attacker:IsNPC() then return end
 
