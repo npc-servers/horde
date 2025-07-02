@@ -280,12 +280,15 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
         if HORDE:IsPoisonDamage(dmg) then
             debuff = HORDE.Status_Break
             more = 2
+            ply._Horde_ArmorBefore = ply:Armor()
         elseif HORDE:IsFireDamage(dmg) then
             debuff = HORDE.Status_Ignite
             more = 2
+            ply._Horde_ArmorBefore = ply:Armor()
         elseif HORDE:IsLightningDamage(dmg) then
             debuff = HORDE.Status_Shock
             more = 2
+            ply._Horde_ArmorBefore = ply:Armor()
         elseif HORDE:IsColdDamage(dmg) then
             debuff = HORDE.Status_Frostbite
             more = 2
@@ -295,6 +298,7 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
                 effectdata:SetMagnitude(10)
 		    util.Effect("GlassImpact", effectdata, true, true)
 		    util.Effect("GlassImpact", effectdata, true, true)
+            ply._Horde_ArmorBefore = ply:Armor()
         elseif dmg:IsDamageType(DMG_DISSOLVE) then
             debuff = HORDE.Status_Necrosis
             more = 2
@@ -313,6 +317,14 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
             buildup = math.min(85, buildup)
         end
         ply:Horde_AddDebuffBuildup(debuff, buildup, dmg:GetAttacker())
+    end
+end)
+
+hook.Add("PostEntityTakeDamage", "Horde_PreventArmorDamage", function(ply)
+    if not ply:IsPlayer() then return end
+    if ply._Horde_ArmorBefore ~= nil then
+        ply:SetArmor(ply._Horde_ArmorBefore)
+        ply._Horde_ArmorBefore = nil
     end
 end)
 
