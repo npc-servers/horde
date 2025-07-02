@@ -63,6 +63,13 @@ HORDE:RegisterStatus("SolarFlux", "materials/perks/artificer/solar_flux.png", tr
 HORDE:RegisterStatus("Bio_Thruster", "materials/perks/carcass/bio_thruster.png", true)
 HORDE:RegisterStatus("Twin_Heart", "materials/perks/carcass/twin_heart.png", true)
 
+-- Cyborg Ninja
+HORDE:RegisterStatus("HF_Mode", "materials/subclasses/cyborg_ninja.png")
+HORDE:RegisterStatus("Parry", "materials/perks/samurai/blade_dance.png")
+HORDE:RegisterStatus("Rifle_Mechanism", "materials/perks/samurai/focus_slash.png", nil, nil, true)
+HORDE:RegisterStatus("Ripper_Mode", "materials/perks/bloodlust.png", nil, nil, true)
+HORDE:RegisterStatus("Jack", "materials/perks/graceful_guard.png")
+
 HORDE:RegisterStatus("Fortify", "materials/perks/fortify.png")
 HORDE:RegisterStatus("Berserk", "materials/perks/berserk.png")
 HORDE:RegisterStatus("Haste", "materials/perks/haste.png")
