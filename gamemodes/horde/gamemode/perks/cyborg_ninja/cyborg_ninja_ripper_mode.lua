@@ -32,7 +32,7 @@ end
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "cyborg_ninja_ripper_mode" ) then return end
-    if ply.Horde_In_Frenzy_Mode or ply.Horde_Ripper_Mode or ply.Horde_Ripper_Mode or ply:Armor() < ply:GetMaxArmor() then
+    if ply.Horde_In_Frenzy_Mode or ply.Horde_Ripper_Mode or ply:Armor() < ply:GetMaxArmor() then
         ply:EmitSound( "items/suitchargeno1.wav" )
         return
     end
