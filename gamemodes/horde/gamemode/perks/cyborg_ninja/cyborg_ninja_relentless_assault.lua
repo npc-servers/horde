@@ -31,6 +31,10 @@ end
 local function setMeleeTime( wep, time )
     if not IsValid( wep ) then return end
 
+    if wep.OldMeleeTime or wep.OldMelee2Time then
+        resetMeleeTime( wep )
+    end
+
     if wep.MeleeTime then
         wep.OldMeleeTime = wep.MeleeTime
         wep.MeleeTime = wep.MeleeTime * time
