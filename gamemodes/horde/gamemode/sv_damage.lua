@@ -280,15 +280,12 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
         if HORDE:IsPoisonDamage(dmg) then
             debuff = HORDE.Status_Break
             more = 2
-            ply._Horde_ArmorBefore = ply:Armor()
         elseif HORDE:IsFireDamage(dmg) then
             debuff = HORDE.Status_Ignite
             more = 2
-            ply._Horde_ArmorBefore = ply:Armor()
         elseif HORDE:IsLightningDamage(dmg) then
             debuff = HORDE.Status_Shock
             more = 2
-            ply._Horde_ArmorBefore = ply:Armor()
         elseif HORDE:IsColdDamage(dmg) then
             debuff = HORDE.Status_Frostbite
             more = 2
@@ -298,7 +295,6 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
                 effectdata:SetMagnitude(10)
 		    util.Effect("GlassImpact", effectdata, true, true)
 		    util.Effect("GlassImpact", effectdata, true, true)
-            ply._Horde_ArmorBefore = ply:Armor()
         elseif dmg:IsDamageType(DMG_DISSOLVE) then
             debuff = HORDE.Status_Necrosis
             more = 2
@@ -320,13 +316,30 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
     end
 end)
 
-hook.Add("PostEntityTakeDamage", "Horde_PreventArmorDamage", function(ply)
-    if not ply:IsPlayer() then return end
-    if ply._Horde_ArmorBefore ~= nil then
-        ply:SetArmor(ply._Horde_ArmorBefore)
-        ply._Horde_ArmorBefore = nil
+function GM:HandlePlayerArmorReduction(ply, dmginfo)
+    if ply:Armor() <= 0 then return end
+
+    if HORDE:IsPoisonDamage(dmginfo) or HORDE:IsFireDamage(dmginfo) or HORDE:IsLightningDamage(dmginfo) or HORDE:IsColdDamage(dmginfo) then
+        return
     end
-end)
+
+    local flBonus = 1.0 -- Each Point of Armor is worth 1/x points of health
+    local flRatio = 0.2 -- Armor Takes 80% of the damage
+
+    local flNew = dmginfo:GetDamage() * flRatio
+    local flArmor = (dmginfo:GetDamage() - flNew) * flBonus
+
+    -- Does this use more armor than we have?
+    if flArmor > ply:Armor() then
+        flArmor = ply:Armor() * (1 / flBonus)
+        flNew = dmginfo:GetDamage() - flArmor
+        ply:SetArmor(0)
+    else
+        ply:SetArmor(ply:Armor() - flArmor)
+    end
+
+    dmginfo:SetDamage(flNew)
+end
 
 hook.Add("Horde_OnPlayerDamageTaken", "Horde_SpecialArmor", function (ply, dmg, bonus)
     if not ply.Horde_Special_Armor then return end
