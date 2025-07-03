@@ -48,7 +48,7 @@ local function setMeleeTime( wep, time )
     wep.OnDrop = function()
         resetMeleeTime( wep )
 
-        if OldOnDrop then
+        if wep.OldOnDrop then
             wep:OldOnDrop()
         end
     end
