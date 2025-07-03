@@ -114,7 +114,23 @@ PERK.Hooks.PlayerSwitchFlashlight = function( ply, switchOn )
 
     if switchOn and ply:Armor() >= 10 then
         -- Enable Frenzy mode
-        ply:SetArmor( math.max( 0, ply:Armor() - 10 ) )
+        if ply.Horde_In_Frenzy_Mode then -- If somehow you are in frenzy mode and your flashlight was enabled again
+            net.Start( "Horde_SyncStatus" )
+                net.WriteUInt( HORDE.Status_HF_Mode, 8 )
+                net.WriteUInt( 0, 8 )
+            net.Send( ply )
+            ply.Horde_In_Frenzy_Mode = nil
+            ply:ScreenFade( SCREENFADE.PURGE, Color( 60, 60, 200, 0 ), 0.1, 0.1 )
+
+            if ply.Horde_CyborgNinjaGraceActive then
+                local id = ply:SteamID64()
+                ply.Horde_CyborgNinjaGraceActive = nil
+                timer.Remove( "Horde_CyborgNinjaGracePeriod" .. id )
+            end
+        else
+            ply:SetArmor( math.max( 0, ply:Armor() - 10 ) )
+        end
+
         sound.Play( "weapons/physcannon/superphys_launch4.wav", ply:GetPos() )
         net.Start( "Horde_SyncStatus" )
             net.WriteUInt( HORDE.Status_HF_Mode, 8 )

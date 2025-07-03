@@ -32,14 +32,8 @@ local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
         ply:SetEyeAngles( plyAng )
         ply:SetVelocity( plyVel )
 
-        if flashlightOn and not ply.Horde_In_Frenzy_Mode then -- Prevents the flashlight noise from happening if you had your flashlight off
+        if flashlightOn then -- Prevents the flashlight noise from happening if you had your flashlight off
             ply:Flashlight( flashlightOn )
-        elseif flashlightOn then
-            ply:Flashlight( false )
-            timer.Simple( 0.1, function()
-                ply:SetArmor( math.min( ply:GetMaxArmor(), armor + 10 ) ) -- refund armor
-                ply:Flashlight( flashlightOn )
-            end )
         end
 
         timer.Simple( 0, function()
