@@ -10,13 +10,13 @@ Blade Mode reduces your speed by {14}.
 Blade Mode uses Suit Power when active and requires 10 to activate.
 Blade Mode disables Suit Armor gain from perks while active.
 
-Enemies killed in Blade Mode performs Zandatsu, giving you a {9} chance to drop a Suit Battery.
+Enemies killed in Blade Mode performs Zandatsu, giving you a {9} chance to receive a Suit Battery.
 Normal attacks leech up to 8 Suit Power if you are not in Blade Mode or Ripper Mode.]]
 PERK.Icon = "materials/subclasses/cyborg_ninja.png"
 PERK.Params = {
-    [1] = { percent = true, base = 0.5, level = 0.025, max = 1, classname = "Cyborg Ninja" },
-    [2] = { value = 0.025, percent = true },
-    [3] = { value = 1.00, percent = true },
+    [1] = { percent = true, base = 0.5, level = 0.01, max = 0.75, classname = "Cyborg Ninja" },
+    [2] = { value = 0.01, percent = true },
+    [3] = { value = 0.25, percent = true },
     [4] = { percent = true, base = 0, level = 0.008, max = 0.2, classname = "Cyborg Ninja" },
     [5] = { value = 0.008, percent = true },
     [6] = { value = 0.2, percent = true },
@@ -49,12 +49,12 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
 
     local base = 0.5
-    local perLevel = 0.025
-    local max = 0.5 -- not including base
+    local perLevel = 0.01
+    local max = 0.25 -- not including base
 
     bonus.increase = bonus.increase + base + math.min( max, perLevel * ply:Horde_GetLevel( "Cyborg Ninja" ) )
     if ply:Horde_GetPerk( "cyborg_ninja_sharper_blade" ) then
-        bonus.increase = bonus.increase + 0.25
+        bonus.increase = bonus.increase + 0.5
     end
 end
 
@@ -70,8 +70,13 @@ PERK.Hooks.PlayerTick = function( ply )
         ply.Horde_HealthDegenCurTime = CurTime() + armorLossRate
     end
 
-    if ply:FlashlightIsOn() and ( ply:Armor() < 1 or not ply:Alive() ) then
-        ply:Flashlight( false )
+    local gracePeriod = 2
+
+    if ply:FlashlightIsOn() and ply:Armor() < 1 then
+        timer.Simple( gracePeriod, function()
+            if not ply:FlashlightIsOn() or ply:Armor() >= 1 then return end
+            ply:Flashlight( false )
+        end )
     end
 end
 
@@ -124,7 +129,7 @@ PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
 
     if rand <= chance then
         local ent = ents.Create( "item_battery" )
-        ent:SetPos( victim:GetPos() )
+        ent:SetPos( killer:GetPos() )
         ent:SetOwner( killer )
         ent.Owner = killer
         ent.Inflictor = victim
