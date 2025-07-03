@@ -8,7 +8,7 @@ Deals huge damage in Blade Mode.]] -- Required
 SUBCLASS.BasePerk = "cyborg_ninja_base"
 SUBCLASS.Perks = {
     [1] = { title = "Enhancements", choices = { "cyborg_ninja_exoskeleton", "cyborg_ninja_cybernetic_arm" } },
-    [2] = { title = "Technique", choices = { "cyborg_ninja_static_discharge", "cyborg_ninja_parry" } },
+    [2] = { title = "Technique", choices = { "cyborg_ninja_static_discharge", "cyborg_ninja_relentless_assault" } },
     [3] = { title = "Technology", choices = { "cyborg_ninja_sharper_blade", "cyborg_ninja_pain_inhibitors" } },
     [4] = { title = "Combat Arts", choices = { "cyborg_ninja_ripper_mode", "cyborg_ninja_rifle_mechanism" } },
 } -- Required
