@@ -62,19 +62,16 @@ PERK.Hooks.PlayerTick = function( ply )
     if not SERVER then return end
     if not ply:Horde_GetPerk( "cyborg_ninja_base" ) then return end
 
+    local armorLost = 1
+    local armorLossRate = 0.25
+
     if ply.Horde_In_Frenzy_Mode and CurTime() >= ply.Horde_HealthDegenCurTime then
-        ply:SetArmor( math.max( 0, ply:Armor() - 1 ) )
-        ply.Horde_HealthDegenCurTime = CurTime() + 0.25
+        ply:SetArmor( math.max( 0, ply:Armor() - armorLost ) )
+        ply.Horde_HealthDegenCurTime = CurTime() + armorLossRate
     end
 
-    if ply:Armor() < 1 or not ply:Alive() then
-        -- Disable Frenzy mode
-        net.Start( "Horde_SyncStatus" )
-            net.WriteUInt( HORDE.Status_HF_Mode, 8 )
-            net.WriteUInt( 0, 8 )
-        net.Send( ply )
-        ply.Horde_In_Frenzy_Mode = nil
-        ply:ScreenFade( SCREENFADE.PURGE, Color( 60, 60, 200, 0 ), 0.1, 0.1 )
+    if ply:FlashlightIsOn() and ( ply:Armor() < 1 or not ply:Alive() ) then
+        ply:Flashlight( false )
     end
 end
 
@@ -101,6 +98,8 @@ PERK.Hooks.PlayerSwitchFlashlight = function( ply, switchOn )
         net.Send( ply )
         ply.Horde_In_Frenzy_Mode = nil
         ply:ScreenFade( SCREENFADE.PURGE, Color( 60, 60, 200, 0 ), 0.1, 0.1 )
+
+        return false
     end
 end
 
