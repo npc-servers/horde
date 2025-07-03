@@ -48,7 +48,11 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
     if not ply.Horde_In_Frenzy_Mode then return end
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
 
-    bonus.increase = bonus.increase + 0.5 + ply:Horde_GetPerkLevelBonus( "cyborg_ninja_base" )
+    local base = 0.5
+    local perLevel = 0.025
+    local max = 0.5 -- not including base
+
+    bonus.increase = bonus.increase + base + math.min( max, perLevel * ply:Horde_GetLevel( "Cyborg Ninja" ) )
     if ply:Horde_GetPerk( "cyborg_ninja_sharper_blade" ) then
         bonus.increase = bonus.increase + 0.25
     end
@@ -104,8 +108,10 @@ PERK.Hooks.Horde_PlayerMoveBonus = function( ply, bonus_walk, bonus_run )
     if not ply:Horde_GetPerk( "cyborg_ninja_base" ) then return end
     if not ply.Horde_In_Frenzy_Mode then return end
 
-    bonus_walk.increase = bonus_walk.increase + -0.4
-    bonus_run.increase = bonus_run.increase + -0.4
+    local bladeModeSlow = 0.4
+
+    bonus_walk.increase = bonus_walk.increase + -bladeModeSlow
+    bonus_run.increase = bonus_run.increase + -bladeModeSlow
 end
 
 --Zandatsu
@@ -113,10 +119,10 @@ PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
     if not killer:Horde_GetPerk( "cyborg_ninja_base" ) then return end
     if not killer.Horde_In_Frenzy_Mode then return end
     if not inflictor:IsValid() or inflictor:IsNPC() then return end -- Prevent infinite chains
-    local p = math.random()
-    local c = 0.5
+    local rand = math.random()
+    local chance = 0.5
 
-    if p <= c then
+    if rand <= chance then
         local ent = ents.Create( "item_battery" )
         ent:SetPos( victim:GetPos() )
         ent:SetOwner( killer )
@@ -139,6 +145,9 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
     if HORDE:IsPlayerMinion( npc ) then return end
 
-    local leech = math.min( 8, dmginfo:GetDamage() * 0.05 )
+    local maxArmorLeech = 8
+    local meleeDmgLeech = 0.05
+
+    local leech = math.min( maxArmorLeech, dmginfo:GetDamage() * meleeDmgLeech )
     ply:SetArmor( math.min( ply:GetMaxArmor(), ply:Armor() + leech ) )
 end
