@@ -4,7 +4,7 @@ however, Blade Mode drains Suit Power {3} faster.]]
 PERK.Icon = "materials/perks/samurai/blade_dance.png"
 PERK.Params = {
     [1] = { value = 0.25, percent = true },
-    [2] = { value = 0.15, percent = true },
+    [2] = { value = 0.25, percent = true },
     [3] = { value = 0.25, percent = true },
 }
 
@@ -13,8 +13,8 @@ PERK.Hooks = {}
 local function resetMeleeTime( wep )
     if not IsValid( wep ) then return end
 
-    if not false then
-        wep.OnDrop = wep.oldOnDrop
+    if wep.OldOnDrop then
+        wep.OnDrop = wep.OldOnDrop
     else
         wep.OnDrop = nil
     end
@@ -55,7 +55,7 @@ PERK.Hooks.PlayerSwitchFlashlight = function( ply, switchOn )
 
     if switchOn then
         for _, wep in ipairs( ply:GetWeapons() ) do
-            setMeleeTime( wep, 0.1 )
+            setMeleeTime( wep, 0.75 )
         end
     else
         for _, wep in ipairs( ply:GetWeapons() ) do
@@ -77,7 +77,7 @@ PERK.Hooks.Horde_PlayerMoveBonus = function( ply, bonus_walk, bonus_run )
     if not ply:Horde_GetPerk( "cyborg_ninja_base" ) then return end
     if not ply.Horde_In_Frenzy_Mode then return end
 
-    local movespeedIncrease = 0.15
+    local movespeedIncrease = 0.25
 
     bonus_walk.increase = bonus_walk.increase + movespeedIncrease
     bonus_run.increase = bonus_run.increase + movespeedIncrease
