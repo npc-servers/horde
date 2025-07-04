@@ -410,8 +410,8 @@ local function isSuitableSpawn( vec )
     } )
 
     if trace.Hit then
-        debugoverlay.Box( vec + heightOffset, mins, maxs, 1, Color( 255, 0, 0, 0 ) )
-        debugoverlay.Text( vec, tostring( trace.Entity ), 1, false )
+        -- debugoverlay.Box( vec + heightOffset, mins, maxs, 1, Color( 255, 0, 0, 0 ) )
+        -- debugoverlay.Text( vec, tostring( trace.Entity ), 1, false )
         return false
     end
 
@@ -423,12 +423,27 @@ local function isSuitableSpawn( vec )
     } )
 
     if not groundTrace.Hit then
-        debugoverlay.Line( line1, line2, 1, Color( 255, 0, 0 ), true )
-        debugoverlay.Text( vec, "No ground", 1, false )
+        -- debugoverlay.Line( line1, line2, 1, Color( 255, 0, 0 ), true )
+        -- debugoverlay.Text( vec, "No ground", 1, false )
         return false
     end
 
-    debugoverlay.Box( vec, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
+    -- debugoverlay.Box( vec, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
+    return true
+end
+
+local function checkNodeOverlap( newNode, existingNodes )
+    local nodeSize = math.max( maxs.x - mins.x, maxs.y - mins.y )
+    local minDistanceBetweenNodes = nodeSize + 10
+
+    local minSqr = minDistanceBetweenNodes ^ 2
+    for _, other in ipairs( existingNodes ) do
+        if newNode:DistToSqr( other ) < minSqr then
+            return false
+        end
+    end
+
+    -- debugoverlay.Box( newNode, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
     return true
 end
 
@@ -675,6 +690,10 @@ function HORDE:GetValidNodes( enemies )
 
     if HORDE.spawn_distribution == HORDE.SPAWN_UNIFORM then
         for _, node in pairs( HORDE.ai_nodes ) do
+            if not checkNodeOverlap( nodePos, valid_nodes ) then
+                continue
+            end
+
             table.insert( valid_nodes, node["pos"] )
         end
         return valid_nodes
@@ -726,6 +745,10 @@ function HORDE:GetValidNodes( enemies )
         end
 
         if not isSuitableSpawn( nodePos ) then
+            continue
+        end
+
+        if not checkNodeOverlap( nodePos, valid_nodes ) then
             continue
         end
 
