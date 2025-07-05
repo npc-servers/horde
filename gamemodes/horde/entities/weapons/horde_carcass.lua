@@ -117,117 +117,118 @@ end
 local phys_pushscale = GetConVar( "phys_pushscale" )
 
 function SWEP:DealDamage()
+	local owner = self:GetOwner()
+
 	if SERVER then
-		local level = self.Owner:Horde_GetUpgrade("horde_carcass")
+		local level = owner:Horde_GetUpgrade("horde_carcass")
 		self.BaseDamage = 25 + 8 * level
 	end
 
-	local anim = self:GetSequenceName(self.Owner:GetViewModel():GetSequence())
+	local anim = self:GetSequenceName(owner:GetViewModel():GetSequence())
 
-	self.Owner:LagCompensation( true )
+	owner:LagCompensation( true )
 
 	local tr = util.TraceLine( {
-		start = self.Owner:GetShootPos(),
-		endpos = self.Owner:GetShootPos() + self.Owner:GetAimVector() * self.HitDistance,
-		filter = self.Owner,
+		start = owner:GetShootPos(),
+		endpos = owner:GetShootPos() + owner:GetAimVector() * self.HitDistance,
+		filter = owner,
 		mask = MASK_SHOT_HULL
 	} )
 
 	if ( !IsValid( tr.Entity ) ) then
 		tr = util.TraceHull( {
-			start = self.Owner:GetShootPos(),
-			endpos = self.Owner:GetShootPos() + self.Owner:GetAimVector() * self.HitDistance,
-			filter = self.Owner,
+			start = owner:GetShootPos(),
+			endpos = owner:GetShootPos() + owner:GetAimVector() * self.HitDistance,
+			filter = owner,
 			mins = Vector( -10, -10, -8 ),
 			maxs = Vector( 10, 10, 8 ),
 			mask = MASK_SHOT_HULL
 		} )
 	end
 
+	local hitent = tr.Entity
+
 	-- We need the second part for single player because SWEP:Think is ran shared in SP
 	if ( tr.Hit && !( game.SinglePlayer() && CLIENT ) ) then
 		self:EmitSound( HitSound )
 	end
 
-	if tr.Hit and tr.Entity:IsWorld() and self.Charged == 1 and self.Owner:Horde_GetPerk("carcass_reinforced_arms") then
+	if tr.Hit and hitent:IsWorld() and self.Charged == 1 and owner:Horde_GetPerk("carcass_reinforced_arms") then
 		local hitnormal = tr.HitNormal
-		self.Owner:SetVelocity(self.Owner:GetVelocity() + hitnormal * 250)
+		owner:SetVelocity(owner:GetVelocity() + hitnormal * 250)
 	end
 
 	local hit = false
 	local scale = phys_pushscale:GetFloat()
 
-	if ( SERVER && IsValid( tr.Entity ) && ( tr.Entity:IsNPC() || tr.Entity:IsPlayer() || tr.Entity:Health() > 0 ) ) then
-		local attacker = self.Owner
+	if ( SERVER && IsValid( hitent ) && ( hitent:IsNPC() || hitent:IsPlayer() || hitent:Health() > 0 ) ) then
+		local attacker = owner
 		if ( !IsValid( attacker ) ) then attacker = self end
 
-		self:FireBullets({
-            Attacker = attacker,
-            Inflictor = self,
-            Damage = self.BaseDamage,
-            Tracer = -1,
-			HullSize = 10,
-            Distance = self.HitDistance,
-            Dir = tr.HitPos - self:GetOwner():GetShootPos(),
-            Src = self:GetOwner():GetShootPos(),
-            Callback = function(att, trb, dmginfo)
-                dmginfo:SetAttacker( attacker )
-				dmginfo:SetInflictor( self )
-				dmginfo:SetDamage(self.BaseDamage)
-				local bonus = {increase = 0, more = 1}
-				local ply = self.Owner
-				if self.Charged == 1 then
-					dmginfo:ScaleDamage(2)
-				end
-				if ply:Horde_GetPerk("carcass_reinforced_arms") then
-					bonus.more = bonus.more * math.max(1, ply:GetVelocity():Length() / 180)
-				end
-				if ply.Horde_Bio_Thruster_Stack and ply.Horde_Bio_Thruster_Stack > 0 then
-					bonus.increase = bonus.increase + ply.Horde_Bio_Thruster_Stack * 0.1
-				end
+		local dmginfo = DamageInfo()
+		dmginfo:SetDamage(self.BaseDamage)
+		dmginfo:SetAttacker(attacker)
+		dmginfo:SetInflictor(self)
+		dmginfo:SetDamageType(DMG_CLUB)
+		dmginfo:SetDamagePosition(tr.HitPos)
+		if hitent:IsPlayer() and tr.HitGroup == HITGROUP_HEAD then hitent:SetLastHitGroup(HITGROUP_HEAD) end
 
-				dmginfo:ScaleDamage((1 + bonus.increase) * bonus.more)
-				dmginfo:SetDamageType(DMG_CLUB)
-				if ( anim == "fists_left" ) then
-					dmginfo:SetDamageForce( self.Owner:GetRight() * 4912 * scale + self.Owner:GetForward() * 9998 * scale ) -- Yes we need those specific numbers
-				elseif ( anim == "fists_right" ) then
-					dmginfo:SetDamageForce( self.Owner:GetRight() * -4912 * scale + self.Owner:GetForward() * 9989 * scale )
-				elseif ( anim == "fists_uppercut" ) then
-					dmginfo:SetDamageForce( self.Owner:GetUp() * 5158 * scale + self.Owner:GetForward() * 10012 * scale )
-					local dmg = DamageInfo()
-					dmg:SetAttacker(attacker)
-					dmg:SetInflictor(trb.Entity)
-					dmg:SetDamageType(DMG_CLUB)
-					dmg:SetDamage(dmginfo:GetDamage() / 2)
-					dmg:SetDamageForce(Vector(0,0,0))
-					dmg:SetDamageCustom(HORDE.DMG_SPLASH)
+		local bonus = {increase = 0, more = 1}
+		if self.Charged == 1 then
+			dmginfo:ScaleDamage(2)
+		end
+		if owner:Horde_GetPerk("carcass_reinforced_arms") then
+			bonus.more = bonus.more * math.max(1, owner:GetVelocity():Length() / 180)
+		end
+		if owner.Horde_Bio_Thruster_Stack and owner.Horde_Bio_Thruster_Stack > 0 then
+			bonus.increase = bonus.increase + owner.Horde_Bio_Thruster_Stack * 0.1
+		end
 
-					if ply:Horde_GetPerk("carcass_reinforced_arms") then
-						local vmult = math.max(1, ply:GetVelocity():Length() / 180)
-						util.BlastDamageInfo(dmg, dmginfo:GetDamagePosition(), 140 * vmult)
-						dmginfo:SetDamageForce(self.Owner:GetUp() * 5158 * scale * vmult + self.Owner:GetForward() * 10012 * scale * vmult)
-					else
-						util.BlastDamageInfo(dmg, dmginfo:GetDamagePosition(), 140)
-					end
-				end
+		dmginfo:ScaleDamage((1 + bonus.increase) * bonus.more)
 
-                if (not trb.Entity:IsValid()) or (not trb.Entity:IsNPC()) then
-                    tr.Entity:TakeDamageInfo(dmginfo)
-                end
-            end
-        })
+		local uppercut = false
+		local reinforced = owner:Horde_GetPerk("carcass_reinforced_arms")
+		local vmult = math.max(1, owner:GetVelocity():Length() / 180)
+		if anim == "fists_left" then
+			dmginfo:SetDamageForce(owner:GetRight() * 4912 * scale + owner:GetForward() * 9998 * scale) -- Yes we need those specific numbers
+		elseif anim == "fists_right" then
+			dmginfo:SetDamageForce(owner:GetRight() * -4912 * scale + owner:GetForward() * 9989 * scale)
+		elseif anim == "fists_uppercut" then
+			dmginfo:SetDamageForce(owner:GetUp() * 5158 * scale + owner:GetForward() * 10012 * scale)
+			if reinforced then
+				dmginfo:SetDamageForce(owner:GetUp() * 5158 * scale * vmult + owner:GetForward() * 10012 * scale * vmult)
+			end
+			uppercut = true
+		end
+
+		hitent:DispatchTraceAttack( dmginfo, tr, tr.Normal )
+
+		if uppercut then
+			local pos, damage = dmginfo:GetDamagePosition(), dmginfo:GetDamage() / 2
+
+			local dmg = DamageInfo()
+			dmg:SetAttacker(attacker)
+			dmg:SetInflictor(hitent)
+			dmg:SetDamageType(DMG_CLUB)
+			dmg:SetDamage(damage)
+			dmg:SetDamageForce(Vector(0, 0, 0))
+			dmg:SetDamagePosition(pos)
+			dmg:SetDamageCustom(HORDE.DMG_SPLASH)
+
+			util.BlastDamageInfo(dmg, pos, 140 * (reinforced and vmult or 1))
+		end
 
 		SuppressHostEvents( NULL ) -- Let the breakable gibs spawn in multiplayer on client
-		SuppressHostEvents( self.Owner )
+		SuppressHostEvents( owner )
 
 		hit = true
 
 	end
 
-	if ( IsValid( tr.Entity ) ) then
-		local phys = tr.Entity:GetPhysicsObject()
+	if ( IsValid( hitent ) ) then
+		local phys = hitent:GetPhysicsObject()
 		if ( IsValid( phys ) ) then
-			phys:ApplyForceOffset( self.Owner:GetAimVector() * 80 * phys:GetMass() * scale, tr.HitPos )
+			phys:ApplyForceOffset( owner:GetAimVector() * 80 * phys:GetMass() * scale, tr.HitPos )
 		end
 	end
 
@@ -239,7 +240,7 @@ function SWEP:DealDamage()
 		end
 	end
 
-	self.Owner:LagCompensation( false )
+	owner:LagCompensation( false )
 
 end
 
