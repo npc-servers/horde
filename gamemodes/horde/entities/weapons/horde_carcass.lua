@@ -171,7 +171,6 @@ function SWEP:DealDamage()
 		dmginfo:SetInflictor(self)
 		dmginfo:SetDamageType(DMG_CLUB)
 		dmginfo:SetDamagePosition(tr.HitPos)
-		if hitent:IsPlayer() and tr.HitGroup == HITGROUP_HEAD then hitent:SetLastHitGroup(HITGROUP_HEAD) end
 
 		local bonus = {increase = 0, more = 1}
 		if self.Charged == 1 then
