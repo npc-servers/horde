@@ -86,9 +86,8 @@ function SWEP:MeleeAttack(melee2)
         dmginfo:SetDamageType(self:GetBuff_Override("Override_MeleeDamageType") or self.MeleeDamageType or DMG_CLUB)
         dmginfo:SetDamagePosition(tr.HitPos)
 	dmginfo:SetDamageForce(self:GetOwner():GetRight() * -4912 + self:GetOwner():GetForward() * 9989)
-        if hitent:IsPlayer() and tr.HitGroup == HITGROUP_HEAD then hitent:SetLastHitGroup(HITGROUP_HEAD) end
 
-        hitent:DispatchTraceAttack( dmginfo, tr, tr.Normal )
+        hitent:DispatchTraceAttack(dmginfo, tr, tr.Normal)
 
         if hitent:GetClass() == "func_breakable_surf" then
             hitent:Fire("Shatter", "0.5 0.5 256")
