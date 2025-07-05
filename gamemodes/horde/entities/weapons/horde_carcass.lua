@@ -201,7 +201,7 @@ function SWEP:DealDamage()
 			uppercut = true
 		end
 
-		hitent:DispatchTraceAttack( dmginfo, tr, tr.Normal )
+		hitent:DispatchTraceAttack(dmginfo, tr, tr.Normal)
 
 		if uppercut then
 			local pos, damage = dmginfo:GetDamagePosition(), dmginfo:GetDamage() / 2
