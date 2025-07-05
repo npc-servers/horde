@@ -1,8 +1,11 @@
 SWEP.Base = "arccw_base_melee"
 
 function SWEP:MeleeAttack(melee2)
-    local reach = 32 + self:GetBuff_Add("Add_MeleeRange") + (melee2 and self.Melee2Range or self.MeleeRange)
-    local dmg = self:GetBuff_Override("Override_MeleeDamage", melee2 and self.Melee2Damage or self.MeleeDamage) or 20
+    local reach = melee2 and self.Melee2Range or self.MeleeRange
+    local dmg = melee2 and self.Melee2Damage or self.MeleeDamage
+
+    reach = 32 + self:GetBuff_Add("Add_MeleeRange") + reach
+    dmg = self:GetBuff_Override("Override_MeleeDamage", dmg) or 20
 
     dmg = dmg * self:GetBuff_Mult("Mult_MeleeDamage")
 
