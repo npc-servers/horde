@@ -439,12 +439,12 @@ local function checkNodeOverlap( newNode, existingNodes )
     local minSqr = minDistanceBetweenNodes ^ 2
     for _, other in ipairs( existingNodes ) do
         if newNode:DistToSqr( other ) < minSqr then
-            return false
+            return true
         end
     end
 
     -- debugoverlay.Box( newNode, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
-    return true
+    return false
 end
 
 -- Spawns a Horde enemy at the give position.
@@ -690,11 +690,9 @@ function HORDE:GetValidNodes( enemies )
 
     if HORDE.spawn_distribution == HORDE.SPAWN_UNIFORM then
         for _, node in pairs( HORDE.ai_nodes ) do
-            if not checkNodeOverlap( nodePos, valid_nodes ) then
-                continue
+            if not checkNodeOverlap( node["pos"], valid_nodes ) then
+                table.insert( valid_nodes, node["pos"] ) 
             end
-
-            table.insert( valid_nodes, node["pos"] )
         end
         return valid_nodes
     end
@@ -748,7 +746,7 @@ function HORDE:GetValidNodes( enemies )
             continue
         end
 
-        if not checkNodeOverlap( nodePos, valid_nodes ) then
+        if checkNodeOverlap( nodePos, valid_nodes ) then
             continue
         end
 
