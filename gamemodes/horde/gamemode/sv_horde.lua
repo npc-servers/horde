@@ -397,6 +397,7 @@ end
 local mins = Vector( -30, -30, 0 )
 local maxs = Vector( 30, 30, 80 )
 local heightOffset = Vector( 0, 0, 5 )
+local downwards = Vector( 0, 0, -max.z )
 
 local function isSuitableSpawn( vec )
     if not util.IsInWorld( vec ) then return false end
@@ -415,8 +416,21 @@ local function isSuitableSpawn( vec )
         return false
     end
 
+    local underTrace = util.TraceHull( {
+        start = vec + heightOffset,
+        endpos = vec + heightOffset + downwards,
+        mins = mins,
+        maxs = maxs,
+        mask = MASK_NPCSOLID,
+    } )
+
+    if underTrace.Hit and not underTrace.Entity:IsWorld() then
+        --debugoverlay.Box( vec + heightOffset + downwards, mins, maxs, 1, Color( 255, 0, 0, 0 ) )
+        return false
+    end
+
     local line1 = vec + heightOffset
-    local line2 = vec + Vector( 0, 0, -65 )
+    local line2 = vec + downwards
     local groundTrace = util.TraceLine( {
         start = line1,
         endpos = line2,
@@ -690,8 +704,8 @@ function HORDE:GetValidNodes( enemies )
 
     if HORDE.spawn_distribution == HORDE.SPAWN_UNIFORM then
         for _, node in pairs( HORDE.ai_nodes ) do
-            if not checkNodeOverlap( node["pos"], valid_nodes ) then
-                table.insert( valid_nodes, node["pos"] ) 
+            if isSuitableSpawn( node["pos"] ) and not checkNodeOverlap( node["pos"], valid_nodes ) then
+                table.insert( valid_nodes, node["pos"] )
             end
         end
         return valid_nodes
