@@ -256,7 +256,7 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
     -- Apply bonus
     local bonus = {resistance=0, less=1, evasion=0, block=0}
     local ret = hook.Run("Horde_OnPlayerDamageTaken", ply, dmg, bonus)
-    if ret then return ret end
+    if ret ~= nil then return ret end
     if bonus.evasion > 0 then
         local evade = math.random()
         if evade <= bonus.evasion then
@@ -323,22 +323,31 @@ function GM:HandlePlayerArmorReduction(ply, dmginfo)
         return
     end
 
-    local flBonus = 1.0 -- Each Point of Armor is worth 1/x points of health
-    local flRatio = 0.2 -- Armor Takes 80% of the damage
+    local dmg = dmginfo:GetDamage()
 
-    local flNew = dmginfo:GetDamage() * flRatio
-    local flArmor = (dmginfo:GetDamage() - flNew) * flBonus
+    --[[
+        mult : Each point of damage absorbed costs this much armor
+        armorDmg : Armor Takes 80% of the damage
+        block : Block x amount of dmg to armor
+    ]]
+    local bonus = {mult = 1.0, resist = 0.2, block = 0}
+    local ret = hook.Run("Horde_HandlePlayerArmorReduction", ply, dmginfo, bonus)
+    if ret ~= nil then return ret end
+
+    local healthDmg = dmg * bonus.resist
+    local armorDmg = (dmg - healthDmg) * bonus.armorWorth
+    armorDmg = math.max(0, armorDmg - bonus.block)
 
     -- Does this use more armor than we have?
-    if flArmor > ply:Armor() then
-        flArmor = ply:Armor() * (1 / flBonus)
-        flNew = dmginfo:GetDamage() - flArmor
+    if armorDmg > ply:Armor() then
+        armorDmg = ply:Armor() * (1 / bonus.armorWorth)
+        healthDmg = dmg - armorDmg
         ply:SetArmor(0)
     else
-        ply:SetArmor(ply:Armor() - flArmor)
+        ply:SetArmor(ply:Armor() - armorDmg)
     end
 
-    dmginfo:SetDamage(flNew)
+    dmginfo:SetDamage(healthDmg)
 end
 
 hook.Add("Horde_OnPlayerDamageTaken", "Horde_SpecialArmor", function (ply, dmg, bonus)
