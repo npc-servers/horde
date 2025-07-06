@@ -397,7 +397,7 @@ end
 local mins = Vector( -30, -30, 0 )
 local maxs = Vector( 30, 30, 80 )
 local heightOffset = Vector( 0, 0, 5 )
-local downwards = Vector( 0, 0, -max.z )
+local downwards = Vector( 0, 0, -maxs.z )
 
 local function isSuitableSpawn( vec )
     if not util.IsInWorld( vec ) then return false end
