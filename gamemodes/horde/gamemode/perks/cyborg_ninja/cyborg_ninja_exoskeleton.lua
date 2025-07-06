@@ -5,7 +5,7 @@ Gain immunity to poison damage and break.]]
 PERK.Icon = "materials/perks/unwavering_guard.png"
 PERK.Params = {
     [1] = { value = 0.25, percent = true },
-    [2] = { value = 0.01, percent = true },
+    [2] = { value = 0.02, percent = true },
     [3] = { value = 1 },
     [4] = { value = 25 },
     [5] = { value = 0.25, percent = true },
@@ -15,7 +15,7 @@ PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if SERVER and perk == "cyborg_ninja_exoskeleton" then
-        ply:Horde_SetHealthRegenPercentage( 0.01 )
+        ply:Horde_SetHealthRegenPercentage( 0.02 )
         ply:Horde_SetImmuneToDebuff( HORDE.Status_Break, true )
     end
 end
