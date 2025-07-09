@@ -11,9 +11,6 @@ Blade Mode uses Suit Power when active and requires 10 to activate.
 Blade Mode disables Suit Armor gain from perks while active.
 Enemies killed in Blade Mode performs Zandatsu, giving you a {9} chance to receive a Suit Battery.
 
-Upon reaching 0 armor in Blade Mode, you gain a {15}-second grace period.
-Regaining at least {16} armor within this grace period prevents deactivation and resets the grace period.
-
 Normal attacks leech up to 8 Suit Power if you are not in Blade Mode or Ripper Mode.]]
 PERK.Icon = "materials/subclasses/cyborg_ninja.png"
 PERK.Params = {
@@ -70,9 +67,6 @@ PERK.Hooks.PlayerTick = function( ply )
     local armor = ply:Armor()
     local armorLost = 1
     local armorLossRate = 0.25
-    if ply:Horde_GetPerk( "cyborg_ninja_relentless_assault" ) then
-        armorLossRate = armorLossRate * 0.75
-    end
 
     local plyInFrenzy = ply.Horde_In_Frenzy_Mode
     if not ply.Horde_CyborgNinjaArmorLossCurtime then
@@ -85,26 +79,6 @@ PERK.Hooks.PlayerTick = function( ply )
     end
     if plyInFrenzy and CurTime() >= ply.Horde_HealthDegenCurTime then
         ply.Horde_HealthDegenCurTime = CurTime() + 0.25
-    end
-
-    local gracePeriod = 2
-    local minResetArmor = 10 -- Min armor to reset grace period
-
-    local id = ply:SteamID64()
-    local timerName = "Horde_CyborgNinjaGracePeriod" .. id
-    local flashlightOn = ply:FlashlightIsOn()
-
-    if flashlightOn and not ply.Horde_CyborgNinjaGraceActive and armor < 1 then
-        ply.Horde_CyborgNinjaGraceActive = true
-        timer.Create( timerName, gracePeriod, 1, function()
-            if not IsValid( ply ) then return end
-            ply.Horde_CyborgNinjaGraceActive = nil
-            if not ply:FlashlightIsOn() or armor >= minResetArmor then return end
-            ply:Flashlight( false )
-        end )
-    elseif flashlightOn and ply.Horde_CyborgNinjaGraceActive and armor >= minResetArmor then
-        ply.Horde_CyborgNinjaGraceActive = nil
-        timer.Remove( timerName )
     end
 end
 
@@ -121,12 +95,6 @@ PERK.Hooks.PlayerSwitchFlashlight = function( ply, switchOn )
             net.Send( ply )
             ply.Horde_In_Frenzy_Mode = nil
             ply:ScreenFade( SCREENFADE.PURGE, Color( 60, 60, 200, 0 ), 0.1, 0.1 )
-
-            if ply.Horde_CyborgNinjaGraceActive then
-                local id = ply:SteamID64()
-                ply.Horde_CyborgNinjaGraceActive = nil
-                timer.Remove( "Horde_CyborgNinjaGracePeriod" .. id )
-            end
         else
             ply:SetArmor( math.max( 0, ply:Armor() - 10 ) )
         end
@@ -147,12 +115,6 @@ PERK.Hooks.PlayerSwitchFlashlight = function( ply, switchOn )
         net.Send( ply )
         ply.Horde_In_Frenzy_Mode = nil
         ply:ScreenFade( SCREENFADE.PURGE, Color( 60, 60, 200, 0 ), 0.1, 0.1 )
-
-        if ply.Horde_CyborgNinjaGraceActive then
-            local id = ply:SteamID64()
-            ply.Horde_CyborgNinjaGraceActive = nil
-            timer.Remove( "Horde_CyborgNinjaGracePeriod" .. id )
-        end
 
         if not switchOn then return end
         return false
