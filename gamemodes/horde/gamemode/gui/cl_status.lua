@@ -535,7 +535,7 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         if MySelf:Horde_GetGadget() ~= nil then
             local gadget = MySelf:Horde_GetGadget()
             local charge = MySelf:Horde_GetGadgetCharges()
-            local cd = MySelf:Horde_GetGadgetInternalCooldown()
+            local cd = math.ceil(MySelf:Horde_GetGadgetInternalCooldown() - CurTime())
             local x = ScrW() - airgap - ScreenScale(78) - ScreenScale(33)
             local y = ScrH() - ScreenScale(33) - airgap
             local s = ScreenScale(26) + airgap
@@ -556,8 +556,10 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
 
             if cd > 0 then
                 draw.RoundedBox(10, x, y, s, s, Color(40,40,40,225))
-                surface.SetDrawColor(color_white)
-                draw.SimpleText(cd, font, x + s/2, y + s/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                if MySelf:Horde_GetGadgetCooldown() >= 1 then
+                    surface.SetDrawColor(color_white)
+                    draw.SimpleText(cd, font, x + s/2, y + s/2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                end
             end
 
             if charge >= 0 then
@@ -640,12 +642,7 @@ if CLIENT then
         end)
     end
     net.Receive("Horde_GadgetStartCooldown", function()
-        MySelf:Horde_SetGadgetInternalCooldown(net.ReadUInt(8))
-        if MySelf:Horde_GetGadgetInternalCooldown() <= 0 then return end
-        timer.Create("Horde_LocalGadgetCooldown", 1, 0, function()
-            if MySelf:Horde_GetGadgetInternalCooldown() <= 0 then timer.Remove("Horde_LocalGadgetCooldown") return end
-            MySelf:Horde_SetGadgetInternalCooldown(MySelf:Horde_GetGadgetInternalCooldown() - 1)
-        end)
+        MySelf:Horde_SetGadgetInternalCooldown(net.ReadFloat())
     end)
 
     net.Receive("Horde_PerkStartCooldown", function ()

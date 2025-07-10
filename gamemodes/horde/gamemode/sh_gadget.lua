@@ -146,6 +146,7 @@ Horde_LoadGadgets()
 if CLIENT then
     hook.Add("PlayerButtonDown", "Horde_UseKey", function(ply, key)
         if GetConVar("horde_disable_default_gadget_use_key"):GetInt() == 1 then return end
+        if not IsFirstTimePredicted() then return end
         if (key == KEY_T) then
             ply:ConCommand("horde_use_gadget")
         end
@@ -154,11 +155,11 @@ end
 
 if SERVER then
     function HORDE:UseGadget(ply)
-        if ply:Horde_GetGadget() and HORDE.gadgets[ply:Horde_GetGadget()] and HORDE.gadgets[ply:Horde_GetGadget()].Active and ply:Horde_GetGadgetInternalCooldown() <= 0 and ply:Alive() then
+        if ply:Horde_GetGadget() and HORDE.gadgets[ply:Horde_GetGadget()] and HORDE.gadgets[ply:Horde_GetGadget()].Active and CurTime() >= ply:Horde_GetGadgetInternalCooldown() and ply:Alive() then
             hook.Run("Horde_UseActiveGadget", ply)
-            ply:Horde_SetGadgetInternalCooldown(ply:Horde_GetGadgetCooldown())
+            ply:Horde_SetGadgetInternalCooldown(CurTime() + ply:Horde_GetGadgetCooldown())
             net.Start("Horde_GadgetStartCooldown")
-                net.WriteUInt(ply:Horde_GetGadgetCooldown(), 8)
+                net.WriteFloat(ply:Horde_GetGadgetInternalCooldown())
             net.Send(ply)
 
             if HORDE.gadgets[ply:Horde_GetGadget()].Once then
@@ -167,12 +168,4 @@ if SERVER then
             end
         end
     end
-
-    hook.Add("PlayerPostThink", "Horde_GadgetCooldown", function(ply)
-        if CurTime() >= ply:Horde_GetGadgetNextThink() then
-            if ply:Horde_GetGadgetInternalCooldown() <= 0 then return end
-            ply:Horde_SetGadgetInternalCooldown(ply:Horde_GetGadgetInternalCooldown() - 1)
-            ply:Horde_SetGadgetNextThink(CurTime() + 1)
-        end
-    end)
 end
