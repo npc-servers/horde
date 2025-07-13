@@ -671,16 +671,20 @@ HORDE.VoteChangeMap = function (ply)
     end
 end
 
+hook.Add("PlayerInitialSpawn", "Horde_InitPlayer", function(ply)
+    ply:SetCollisionGroup(15)
+    ply:SetAvoidPlayers(false)
+    ply:SetCustomCollisionCheck(true)
+
+    ply:SetCanZoom(false)
+    ply:SetMoveType(MOVETYPE_WALK)
+
+    ply:ConCommand("mat_colorcorrection 1")
+    ply:ConCommand("cl_showhints 0")
+end)
+
 hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
     if ply.Horde_Fake_Respawn == true then return end
-    if ply:IsValid() then
-        ply:SetCollisionGroup(15)
-        ply:SetCanZoom(false)
-        ply:ConCommand("mat_colorcorrection 1")
-        ply:ConCommand("cl_showhints 0")
-        ply:SetMoveType(MOVETYPE_WALK)
-        ply:SetAvoidPlayers(false)
-    end
 
     for _, ent in pairs( ents.GetAll() ) do
         if ent:IsWeapon() and not IsValid( ent:GetOwner() ) and ent.lastWeaponHolder == ply then
