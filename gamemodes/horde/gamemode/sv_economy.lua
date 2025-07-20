@@ -725,37 +725,41 @@ function GM:PlayerUse(other_ply, target)    -- This will make it to be default b
 end
 
 function HORDE:DropTurret(ent)
+    local turret_class = ent:GetClass()
     local turret_pos = ent:GetPos()
+
     local tr = util.TraceLine({
         start = turret_pos,
         endpos = turret_pos + Vector(0,0,-1) * 10000,
-        filter = ent,
-        collisiongroup =  COLLISION_GROUP_WORLD
+        filter = {"prop_static", "prop_dynamic"},
+        whitelist = true,
+        mask = MASK_SOLID,
     })
 
     if IsValid(tr.Entity) or tr.HitWorld then
         local dist_sqr = turret_pos:DistToSqr(tr.HitPos)
         -- If you drop turrets from somewhere too high, they will just fall over.
         if dist_sqr >= 40000 then return end
-        ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z))
+        ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z) + vector_up)
 
         if not ent:IsValid() then return end
         ent:GetPhysicsObject():EnableMotion(false)
     end
+
+    -- Turrets should always stay straight.
+    local ang = ent:GetAngles()
+    ang.p = 0
+    ang.r = 0
+    if turret_class == "npc_vj_horde_sniper_turret" then
+        ang.r = 180
+    elseif turret_class == "npc_vj_horde_rocket_turret" or ent:GetClass() == "npc_vj_horde_laser_turret" then
+        ang.y = 0
+    end
+    ent:SetAngles(ang)
 end
 
 hook.Add("OnPlayerPhysicsDrop", "Horde_TurretDrop", function (ply, ent, thrown)
     if ent:GetNWEntity("HordeOwner") and ent.Horde_TurretMinion then
-        -- Turrets should always stay straight.
-        local a = ent:GetAngles()
-        if ent:GetClass() == "npc_vj_horde_sniper_turret" then
-            ent:SetAngles(Angle(a.x,a.y,180))
-        elseif ent:GetClass() == "npc_vj_horde_rocket_turret" || ent:GetClass() == "npc_vj_horde_laser_turret" then
-            ent:SetAngles(angle_zero)
-        else
-            ent:SetAngles(Angle(0, a.y, 0))
-        end
-
         HORDE:DropTurret(ent)
     end
 end)
