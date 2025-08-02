@@ -156,8 +156,16 @@ function SWEP:Hook_PostBash(info)
                 ent:TakeDamageInfo(dmg)
             end
         end
-        timer.Simple(0.4, function ()
-            if not IsValid(self) and not IsValid(self.Owner) then return end
+
+        local entID = self:EntIndex()
+
+        timer.Create("Horde_Mjollnir_ShockAOE" .. entID, 0.4, 2, function()
+            if not IsValid(self) or not IsValid(self.Owner) then
+                timer.Remove("Horde_Mjollnir_ShockAOE" .. entID)
+
+                return
+            end
+
             for _, ent in pairs(ents.FindInSphere(info.tr.HitPos, 100)) do
                 if ent:IsNPC() then
                     local dmg = DamageInfo()
@@ -170,20 +178,7 @@ function SWEP:Hook_PostBash(info)
                 end
             end
         end)
-        timer.Simple(0.8, function ()
-            if not IsValid(self) and not IsValid(self.Owner) then return end
-            for _, ent in pairs(ents.FindInSphere(info.tr.HitPos, 100)) do
-                if ent:IsNPC() then
-                    local dmg = DamageInfo()
-                    dmg:SetDamage(50)
-                    dmg:SetDamageType(DMG_SHOCK)
-                    dmg:SetAttacker(self.Owner)
-                    dmg:SetInflictor(self)
-                    dmg:SetDamagePosition(info.tr.HitPos)
-                    ent:TakeDamageInfo(dmg)
-                end
-            end
-        end)
+
         self:LSS(info.tr.HitPos)
     end
     self.Charged = nil
