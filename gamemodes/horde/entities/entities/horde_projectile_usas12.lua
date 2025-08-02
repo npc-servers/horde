@@ -14,13 +14,20 @@ ENT.Ticks = 0
 AddCSLuaFile()
 
 function ENT:CustomInitialize()
-if SERVER then
+    if !SERVER then return end
 
-if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
-    self:SetColor(Color(0, 0, 0))
-end
+    local firemode = self:GetOwner():GetActiveWeapon():GetCurrentFiremode()
+    if !firemode then
+        self.Firemode = 3
+    end
 
-end
+    self.Firemode = firemode.Mode
+
+    if self.Firemode == 3 then
+        self:SetColor(Color(0, 0, 0))
+    elseif self.Firemode == 4 then
+        self.ProjectileExplosionDamageType = DMG_BLAST
+    end
 end
 
 function ENT:CustomOnThink()
@@ -61,10 +68,6 @@ function ENT:Detonate(data)
     local nodetonate = self:CustomOnPreDetonate(data)
     local hitEnt = data.HitEntity
     if nodetonate then self:Remove() return end
-	
-    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 4 then
-    self.ProjectileExplosionDamageType = DMG_BLAST
-    end
 
     if (self.StartPos:DistToSqr(self:GetPos()) <= self.ArmDistanceSqr) or self.ProjectileSabotRound then
         if self.ProjectileSabotRound then
@@ -136,14 +139,15 @@ function ENT:CustomOnExplode()
     if self:WaterLevel() >= 1 then
         util.Effect( "WaterSurfaceExplosion", effectdata )
         self:EmitSound("weapons/underwater_explode3.wav", 125, 100, 1, CHAN_AUTO)
-    else
-        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
+
+        return
+    end
+
+    if self.Firemode == 3 then
         util.Effect( "horde_shrapnel_grenade_explosion", effectdata)
         self:EmitSound("ambient/explosions/explode_1.wav", 100, 100, 1, CHAN_WEAPON)
-        end
-        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 4 then
+    elseif self.Firemode == 4 then
         util.Effect( "Explosion", effectdata)
         self:EmitSound("phx/kaboom.wav", 100, 100, 1, CHAN_WEAPON)
-        end
     end
 end
