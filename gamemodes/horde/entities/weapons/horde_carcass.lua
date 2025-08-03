@@ -470,7 +470,7 @@ function SWEP:UpdateAttack()
 
 	if (!intestine_endpos) then
 		intestine_endpos = self.Tr.HitPos
-		if self.Tr.Entity:IsNPC() then
+		if IsValid(self.Tr.Entity) && self.Tr.Entity:IsNPC() then
 			intestine_endpos = intestine_endpos + self.Tr.Entity:OBBCenter()
 		end
 		if pull == true then
