@@ -17,13 +17,13 @@ ENT.AlertSounds_OnlyOnce = true
 ENT.HasExtraMeleeAttackSounds = true
 ENT.HasImpactSounds = false
 
-ENT.SoundTbl_FootStep = {"zsszombine/gear1.wav","zsszombine/gear2.wav","zsszombine/gear3.wav"}
-ENT.SoundTbl_Idle = {"zsszombine/idle1.wav","zsszombine/idle2.wav","zsszombine/idle3.wav","zsszombine/idle4.wav","zsszombine/idle5.wav"}
-ENT.SoundTbl_Alert = {"zsszombine/alert1.wav","zsszombine/alert2.wav","zsszombine/alert3.wav","zsszombine/alert4.wav","zsszombine/alert5.wav","zsszombine/alert6.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"zsszombine/attack1.wav","zsszombine/attack2.wav","zsszombine/attack3.wav","zsszombine/attack4.wav"}
+ENT.SoundTbl_FootStep = {"npc/zombine/gear1.wav","npc/zombine/gear2.wav","npc/zombine/gear3.wav"}
+ENT.SoundTbl_Idle = {"npc/zombine/zombine_idle1.wav","npc/zombine/zombine_idle2.wav","npc/zombine/zombine_idle3.wav","npc/zombine/zombine_idle4.wav"}
+ENT.SoundTbl_Alert = {"npc/zombine/zombine_alert1.wav","npc/zombine/zombine_alert2.wav","npc/zombine/zombine_alert3.wav","npc/zombine/zombine_alert4.wav","npc/zombine/zombine_alert5.wav","npc/zombine/zombine_alert6.wav","npc/zombine/zombine_alert7.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"npc/zombine/zombine_charge1.wav","npc/zombine/zombine_charge2.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"zsszombine/pain1.wav","zsszombine/pain2.wav","zsszombine/pain3.wav","zsszombine/pain4.wav"}
-ENT.SoundTbl_Death = {"zsszombine/die1.wav","zsszombine/die2.wav"}
+ENT.SoundTbl_Pain = {"npc/zombine/zombine_pain1.wav","npc/zombine/zombine_pain2.wav","npc/zombine/zombine_pain3.wav","npc/zombine/zombine_pain4.wav"}
+ENT.SoundTbl_Death = {"npc/zombine/zombine_die1.wav","npc/zombine/zombine_die2.wav"}
 
 ENT.GeneralSoundPitch1 = 100
 
