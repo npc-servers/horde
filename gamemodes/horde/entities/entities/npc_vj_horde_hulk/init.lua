@@ -5,7 +5,7 @@ include('shared.lua')
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/horde/hulk/hulk.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = {"models/vj_zombies/hulk.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 1200
 ENT.HullType = HULL_MEDIUM_TALL
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -65,10 +65,13 @@ function ENT:CustomOnThink()
 		self.AnimTbl_Run = {self:GetSequenceActivity(self:LookupSequence("FireWalk"))}
 	else
 		self.AnimTbl_Walk = {ACT_WALK}
-		self.AnimTbl_Run = {ACT_RUN}
+		self.AnimTbl_Run = {ACT_WALK}
 	end
 	if self.Critical and self:IsOnGround() then
 		self:SetLocalVelocity(self:GetMoveVelocity() * 1.5)
+		if not self:IsOnFire() then
+			self.AnimTbl_Run = {ACT_RUN}
+		end
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
