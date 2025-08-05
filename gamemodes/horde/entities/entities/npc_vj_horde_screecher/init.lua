@@ -5,7 +5,7 @@ include('shared.lua')
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/horde/infected_stalker/infected_stalker.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = {"models/vj_zombies/stalker.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 200
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,12 +28,10 @@ ENT.AnimTbl_Run = {ACT_WALK}
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_FootStep = {"npc/stalker/stalker_footstep_left1.wav", "npc/stalker/stalker_footstep_left2.wav", "npc/stalker/stalker_footstep_right1.wav", "npc/stalker/stalker_footstep_right2.wav"}
-ENT.SoundTbl_Idle = {"npc/stalker/breathing3.wav"}
-ENT.SoundTbl_Alert = {}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"zsszombies/zmisc_pain1.wav","zsszombies/zmisc_pain2.wav","zsszombies/zmisc_pain3.wav","zsszombies/zmisc_pain4.wav","zsszombies/zmisc_pain5.wav","zsszombies/zmisc_pain6.wav"}
-ENT.SoundTbl_Death = {"zsszombies/zmisc_die1.wav","zsszombies/zmisc_die2.wav","zsszombies/zmisc_die3.wav"}
+ENT.SoundTbl_Idle = {"npc/stalker/stalker_ambient01.wav"}
+ENT.SoundTbl_Alert = {"npc/stalker/breathing3.wav","npc/stalker/stalker_alert1b.wav","npc/stalker/stalker_alert2b.wav","npc/stalker/stalker_alert3b.wav"}
+ENT.SoundTbl_Pain = {"npc/stalker/stalker_pain1.wav","npc/stalker/stalker_pain2.wav","npc/stalker/stalker_pain3.wav"}
+ENT.SoundTbl_Death = {"npc/stalker/stalker_die1.wav","npc/stalker/stalker_die2.wav"}
 
 ENT.FootStepSoundLevel = 55
 ENT.NextBlastTime = CurTime()
