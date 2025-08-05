@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/cpthazama/zombiepanic/zombie0/zombie1_legs_dif"
+	"$bumpmap" "models/cpthazama/zombiepanic/zombie0/zombie1_legs_nm"
+
+	"$phong"     "1"
+	"$phongexponent"   "25"
+	"$phongboost"   ".2"
+	"$phongfresnelranges"   "[0.4 5 1]"
+}
+ 

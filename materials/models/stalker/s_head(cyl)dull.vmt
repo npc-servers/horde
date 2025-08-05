@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	// Original shader: VertexLitMaskedEnvMappedTexture
+	"$basetexture" "models/stalker/s_head(cyl)dull"
+	"$envmap" "models/stalker/stalkerspec"
+	"$envmapmask" "models/stalker/s_head(cyl)mask"
+	"$envmapsphere" 1
+}

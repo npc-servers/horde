@@ -1,0 +1,10 @@
+"UnlitGeneric"
+{
+	"$basetexture" "models/cpthazama/zombiepanic/zombie0/zombie1_eye_glow"
+	"$envmap" "env_cubemap"
+	"$surfaceprop" "flesh"
+
+	"$envmapcontrast" 2
+	"$envmaptint" "[.75 .25 0]"
+	"$selfillum" 1
+}

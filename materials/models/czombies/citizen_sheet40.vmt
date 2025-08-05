@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/czombies/citizen_sheet40"
+	"$halflambert" "1"
+	"$model" "1"
+	"$surfaceprop" "flesh"
+}

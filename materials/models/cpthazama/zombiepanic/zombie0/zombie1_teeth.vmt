@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/cpthazama/zombiepanic/zombie0/zombie1_teeth"
+	"$surfaceprop" "flesh"
+
+}
