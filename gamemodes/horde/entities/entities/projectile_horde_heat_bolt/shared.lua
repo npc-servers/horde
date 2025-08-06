@@ -39,8 +39,9 @@ function ENT:Initialize()
 end
 
 function ENT:Think()
-    if SERVER and CurTime() - self.SpawnTime >= self.FuseTime then
-        self:Detonate()
+    if SERVER and CurTime() - self.SpawnTime >= self.FuseTime and !self.Removing then
+        self.Removing = true
+        self:Remove()
     end
 end
 
