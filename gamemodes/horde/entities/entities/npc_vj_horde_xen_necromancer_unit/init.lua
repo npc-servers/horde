@@ -134,7 +134,7 @@ function ENT:CustomOnThink()
 			e1:SetOrigin( self.MiniBoss2:GetPos() )
 			e1:SetNormal( Vector( 0, 0, 1 ) )
 			e1:SetScale( 1.4 )
-			util.Effect( "abyssal_roar", e, true, true )
+			util.Effect( "abyssal_roar", e1, true, true )
 
 			timer.Simple(2, function ()
         		if not IsValid( self ) then 
@@ -298,7 +298,7 @@ function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
 			e1:SetOrigin( self.MiniBoss2:GetPos() )
 			e1:SetNormal( Vector( 0, 0, 1 ) )
 			e1:SetScale( 1.4 )
-			util.Effect( "abyssal_roar", e, true, true )
+			util.Effect( "abyssal_roar", e1, true, true )
     		self.MiniBoss2:Remove() 
     	end
     end
