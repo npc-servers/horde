@@ -79,7 +79,6 @@ ENT.NextBlastTime = CurTime()
 ENT.NextBlastCooldown = 10
 ENT.NextSummonTime = CurTime()
 ENT.NextSummonCooldown = 5
-ENT.CanSummon = true
 ENT.DamageReceived = 0
 
 function ENT:CustomOnInitialize()
@@ -87,24 +86,18 @@ function ENT:CustomOnInitialize()
 	self:RageTimer()
 end
 
-local defAng = Angle(0, 0, 0)
-
 function ENT:CustomOnThink()
+
+	local enemyDistance = self.NearestPointToEnemyDistance
+
 	if self.Raged and self:IsOnGround() then
 		self:SetLocalVelocity(self:GetMoveVelocity() * 1.5)
 	end
 	
-	if IsValid( self:GetEnemy() ) and self.CanSummon then
-		if self.Raging or self.Raged or self.RangeAttacking or self.Slamming then
-			return
-		end
-		if CurTime() > self.NextSummonTime and not IsValid(self.MiniBoss1) and not IsValid(self.MiniBoss2) and self:Health() > self:GetMaxHealth() * 0.5 then
-			self.Summoning = true
-
+	if IsValid( self:GetEnemy() ) and CurTime() > self.NextSummonTime and self:Health() > self:GetMaxHealth() * 0.5 and enemyDistance >= 150 then
+		if not IsValid(self.MiniBoss1) or not IsValid(self.MiniBoss2) then
+		
 			self:VJ_ACT_PLAYACTIVITY( "vjseq_summon", true, false, false )
-
-			--ParticleEffect( "aurora_shockwave_debris", self:GetPos(), self:GetAngles(), nil )
-			--ParticleEffect( "aurora_shockwave", self:GetPos(), self:GetAngles(), nil )
 
 			sound.Play( "horde/spells/raise.ogg", self:GetPos(), 140, 100 )
 
@@ -114,6 +107,12 @@ function ENT:CustomOnThink()
 				self.MiniBoss1:Spawn()
 				self.MiniBoss1:SetOwner( self )
 				self.MiniBoss1:Activate()
+
+				local e = EffectData()
+				e:SetOrigin( self.MiniBoss1:GetPos() )
+				e:SetNormal( Vector( 0, 0, 1 ) )
+				e:SetScale( 1.4 )
+				util.Effect( "abyssal_roar", e, true, true )
 			end
 
 			if not IsValid(self.MiniBoss2) then
@@ -122,35 +121,18 @@ function ENT:CustomOnThink()
 				self.MiniBoss2:Spawn()
 				self.MiniBoss2:SetOwner( self )
 				self.MiniBoss2:Activate()
+
+				local e1 = EffectData()
+				e1:SetOrigin( self.MiniBoss2:GetPos() )
+				e1:SetNormal( Vector( 0, 0, 1 ) )
+				e1:SetScale( 1.4 )
+				util.Effect( "abyssal_roar", e1, true, true )
 			end
-
-			local e = EffectData()
-			e:SetOrigin( self.MiniBoss1:GetPos() )
-			e:SetNormal( Vector( 0, 0, 1 ) )
-			e:SetScale( 1.4 )
-			util.Effect( "abyssal_roar", e, true, true )
-
-			local e1 = EffectData()
-			e1:SetOrigin( self.MiniBoss2:GetPos() )
-			e1:SetNormal( Vector( 0, 0, 1 ) )
-			e1:SetScale( 1.4 )
-			util.Effect( "abyssal_roar", e1, true, true )
-
-			timer.Simple(2, function ()
-        		if not IsValid( self ) then 
-        			return 
-        		end
-        		self.Summoning = nil
-			end)
 		end
 		self.NextSummonTime = CurTime() + self.NextSummonCooldown
 	end
 
-	local enemyDistance = self.NearestPointToEnemyDistance
 	if IsValid( self:GetEnemy() ) and enemyDistance < 150 and enemyDistance > 60 then
-		if self.Raging or self.RangeAttacking or self.Summoning then
-			return
-		end
 		if CurTime() > self.NextBlastTime then
 			self.Slamming = true
 
@@ -162,12 +144,6 @@ function ENT:CustomOnThink()
 
 			self.NextBlastTime = CurTime() + self.NextBlastCooldown
 
-			timer.Simple(2, function ()
-        		if not IsValid( self ) then 
-        			return 
-        		end
-        		self.Slamming = nil
-			end)
 		end
 	end
 end
@@ -182,31 +158,17 @@ function ENT:MeleeAttackKnockbackVelocity(hitEnt)
 	return self:GetForward() * math.random( 400, 450 ) + self:GetUp() * 400
 end
 
-function ENT:CustomOnRangeAttack_BeforeStartTimer(seed)
-	self.RangeAttacking = true
-	timer.Simple(2, function ()
-		if not IsValid( self ) then 
-			return 
-		end
-		self.RangeAttacking = nil
-	end)
-end
-
 function ENT:RageTimer()
 	local id = self:GetCreationID()
     timer.Remove("Horde_FlayerRage" .. id)
-    timer.Create("Horde_FlayerRage" .. id, 15, 1, function ()
-        if not IsValid(self) then 
-        	return 
-        end
+    timer.Create("Horde_FlayerRage" .. id, 10, 1, function ()
+        if not IsValid(self) then return end
         self:Rage()
     end)
 end
 
 function ENT:Rage()
-    if self.Raging or self.Raged or self.Summoning or self.RangeAttacking or self.Slamming then 
-    	return 
-    end
+    if self.Raging or self.Raged then return end
     self.Raging = true
     self.CanSummon = false
     self.HasRangeAttack = false
@@ -221,10 +183,8 @@ function ENT:Rage()
 
 	sound.Play( "horde/spectres/abyssal_roar.ogg", self:GetPos(), 140, 100 )
 
-    timer.Simple(2, function ()
-        if not IsValid( self ) then 
-        	return 
-        end
+    timer.Simple(1, function ()
+        if not IsValid( self ) then return end
         self.Raged = true
         self.Raging = nil
         self.AnimationPlaybackRate = 1.5
@@ -244,9 +204,8 @@ end
 
 function ENT:ShockAttack(delay)
 	timer.Simple(delay, function()
-		if not self:IsValid() then 
-			return 
-		end
+		if not self:IsValid() then return end
+
 		local e = EffectData()
 		e:SetOrigin(self:GetPos())
 		e:SetNormal(Vector(0,0,1))
@@ -271,6 +230,7 @@ function ENT:ShockAttack(delay)
         			dmginfo:SetDamageType( DMG_REMOVENORAGDOLL )
         			dmginfo:SetDamage(5)
         			dmginfo:SetDamagePosition( ent:GetPos() )
+
         			ent:TakeDamageInfo( dmginfo )
                 end
             end
