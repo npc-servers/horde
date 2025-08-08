@@ -293,6 +293,8 @@ function HORDE:GetDefaultEnemiesData ()
     {is_boss = true, end_wave=true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song24.mp3", music_duration = 129}, "none", nil, nil, nil, {gadget = "gadget_hellfire_tincture", drop_rate = 0.5})
     HORDE:CreateEnemy("Xen Host Unit", "npc_vj_horde_xen_host_unit", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl1_song10.mp3", music_duration = 106}, "none", nil, nil, nil, {gadget = "gadget_matriarch_womb", drop_rate = 0.5})
+    HORDE:CreateEnemy("Xen Necromancer Unit", "npc_vj_horde_xen_necromancer_unit", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
+    {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/Wasteshredder.mp3", music_duration = 64})
 
     HORDE:CreateEnemy("Walker",                     "npc_vj_horde_walker",          1.00, 6, false, 1, 1, 1, 1)
     HORDE:CreateEnemy("Sprinter",                   "npc_vj_horde_sprinter",        1.00, 6, false, 1, 1, 1, 1)
