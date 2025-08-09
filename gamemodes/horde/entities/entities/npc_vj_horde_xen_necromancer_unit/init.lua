@@ -37,8 +37,8 @@ ENT.SoundTbl_MeleeAttackMiss = {
 	"npc/vort/claw_swing1.wav",
 	"npc/vort/claw_swing2.wav"
 }
-ENT.SoundTbl_BeforeRangeAttack = { "horde/weapons/void_projector/void_spear_launch.ogg" }
-
+ENT.SoundTbl_BeforeRangeAttack = { "horde/spells/void_charge.ogg" }
+ENT.SoundTbl_RangeAttack = { "horde/weapons/void_projector/void_spear_launch.ogg" }
 ENT.SoundTbl_CombatIdle = {
 	"aslave/slv_word1.wav",
 	"aslave/slv_word2.wav",
@@ -63,12 +63,16 @@ ENT.SoundTbl_Death = {
 	"aslave/slv_die2.wav"
 }
 
+ENT.BeforeRangeAttackSoundLevel = 100
+ENT.RangeAttackSoundLevel = 100
+
 ENT.GeneralSoundPitch1 = 50
 ENT.GeneralSoundPitch2 = 50
 
 ENT.BeforeMeleeAttackSoundPitch = VJ_Set(100, 100)
 ENT.MeleeAttackSoundPitch = VJ_Set(100, 100)
 ENT.BeforeRangeAttackPitch = VJ_Set(100, 100)
+ENT.RangeAttackPitch = VJ_Set(100, 100)
 
 ENT.NextBlastTime = CurTime()
 ENT.NextBlastCooldown = 10
@@ -183,25 +187,28 @@ function ENT:MeleeAttackKnockbackVelocity(hitEnt)
 end
 
 function ENT:MultipleRangeAttacks()
-	local randomRangeAttack = math.random( 1, 3 )
+	local randomRangeAttack = math.random( 1, 5 )
 
 	if randomRangeAttack == 1 then
+		self.HasRangeAttackSound = false
 		self.AnimTbl_RangeAttack = { "vjseq_attack_big" }
 		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_arrow"
 		self.TimeUntilRangeAttackProjectileRelease = 0.2
 		self.RangeAttackExtraTimers = { 0.4, 0.6, 0.8 }
 		self.RangeAttackPos_Up = 50
 	elseif randomRangeAttack == 2 then
-		self.AnimTbl_RangeAttack = { "vjseq_attack_range_projec" }
-		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_void"
-		self.TimeUntilRangeAttackProjectileRelease = 0.6
-		self.RangeAttackExtraTimers = { 0.8, 1 }
-		self.RangeAttackPos_Up = 100
-	else
+		self.HasRangeAttackSound = true
 		self.AnimTbl_RangeAttack = { "vjseq_attack_range_projec" }
 		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_void_large"
 		self.TimeUntilRangeAttackProjectileRelease = 0.8
 		self.RangeAttackExtraTimers = nil
+		self.RangeAttackPos_Up = 100
+	else
+		self.HasRangeAttackSound = true
+		self.AnimTbl_RangeAttack = { "vjseq_attack_range_projec" }
+		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_void"
+		self.TimeUntilRangeAttackProjectileRelease = 0.6
+		self.RangeAttackExtraTimers = { 0.8, 1 }
 		self.RangeAttackPos_Up = 100
 	end
 end
@@ -237,7 +244,7 @@ function ENT:Rage()
         self.Raged = true
         self.Raging = nil
         self.AnimTbl_Run = {ACT_RUN}
-        
+
         timer.Simple(10, function ()
         if not IsValid( self ) and not self.Raging or not self.Raged then return end
         	self:UnRage()
