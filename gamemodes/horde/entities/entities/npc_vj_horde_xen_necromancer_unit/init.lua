@@ -2,6 +2,7 @@ AddCSLuaFile("shared.lua")
 include('shared.lua')
 
 ENT.Model = { "models/vj_hlr/sven/tor.mdl" }
+ENT.EntitiesToNoCollide = {"npc_vj_horde_yeti","npc_vj_horde_weeper"}
 ENT.StartHealth = 7000
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 ENT.HullType = HULL_HUMAN
@@ -12,16 +13,10 @@ ENT.MeleeAttackDamageDistance = 100
 ENT.AnimTbl_MeleeAttack = { "vjseq_attack_stab" }
 ENT.HasMeleeAttackKnockBack = true
 ENT.HasRangeAttack = true
-ENT.AnimTbl_RangeAttack = { "vjseq_attack_range_projec" }
-ENT.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_void"
-ENT.RangeDistance = 700
+ENT.RangeDistance = 1250
 ENT.RangeToMeleeDistance = 350
-ENT.RangeAttackExtraTimers = { 0.8, 1 }
-ENT.TimeUntilRangeAttackProjectileRelease = 0.6
-ENT.NextRangeAttackTime = 2
-ENT.NextRangeAttackTime_DoRand = 6
-ENT.RangeUseAttachmentForPos = true
-ENT.RangeUseAttachmentForPosID = "0"
+ENT.NextRangeAttackTime = 1
+ENT.NextRangeAttackTime_DoRand = 3
 ENT.AnimTbl_Run = {ACT_WALK}
 ENT.DisableFootStepOnWalk = true
 ENT.AlertSounds_OnlyOnce = true
@@ -80,6 +75,7 @@ ENT.NextBlastCooldown = 10
 ENT.NextSummonTime = CurTime()
 ENT.NextSummonCooldown = 5
 ENT.DamageReceived = 0
+ENT.Projectile = 0
 
 function ENT:CustomOnInitialize()
 	self:SetSkin(1)
@@ -91,11 +87,11 @@ function ENT:CustomOnThink()
 	local enemyDistance = self.NearestPointToEnemyDistance
 
 	if self.Raged and self:IsOnGround() then
-		self:SetLocalVelocity(self:GetMoveVelocity() * 1.5)
+		self:SetLocalVelocity(self:GetMoveVelocity() * 2)
 	end
 	
 	if IsValid( self:GetEnemy() ) and CurTime() > self.NextSummonTime and self:Health() > self:GetMaxHealth() * 0.5 and enemyDistance >= 150 then
-		if not IsValid(self.MiniBoss1) or not IsValid(self.MiniBoss2) then
+		if not IsValid(self.MiniBoss1) or not IsValid(self.MiniBoss2) or not IsValid(self.MiniBoss3) or not IsValid(self.MiniBoss4) then
 		
 			self:VJ_ACT_PLAYACTIVITY( "vjseq_summon", true, false, false )
 
@@ -103,7 +99,7 @@ function ENT:CustomOnThink()
 
 			if not IsValid(self.MiniBoss1) then
 				self.MiniBoss1 = ents.Create("npc_vj_horde_weeper")
-				self.MiniBoss1:SetPos( self:GetPos() + self:GetForward() * 100 + self:GetUp() * 5 )
+				self.MiniBoss1:SetPos( self:GetPos() + self:GetForward() * 50 + self:GetUp() * 5 )
 				self.MiniBoss1:Spawn()
 				self.MiniBoss1:SetOwner( self )
 				self.MiniBoss1:Activate()
@@ -117,7 +113,7 @@ function ENT:CustomOnThink()
 
 			if not IsValid(self.MiniBoss2) then
 				self.MiniBoss2 = ents.Create("npc_vj_horde_yeti")
-				self.MiniBoss2:SetPos( self:GetPos() + self:GetForward() * -100 + self:GetUp() * 5 )
+				self.MiniBoss2:SetPos( self:GetPos() + self:GetForward() * -50 + self:GetUp() * 5 )
 				self.MiniBoss2:Spawn()
 				self.MiniBoss2:SetOwner( self )
 				self.MiniBoss2:Activate()
@@ -127,6 +123,34 @@ function ENT:CustomOnThink()
 				e1:SetNormal( Vector( 0, 0, 1 ) )
 				e1:SetScale( 1.4 )
 				util.Effect( "abyssal_roar", e1, true, true )
+			end
+
+			if not IsValid(self.MiniBoss3) then
+				self.MiniBoss3 = ents.Create("npc_vj_horde_weeper")
+				self.MiniBoss3:SetPos( self:GetPos() + self:GetRight() * 50 + self:GetUp() * 5 )
+				self.MiniBoss3:Spawn()
+				self.MiniBoss3:SetOwner( self )
+				self.MiniBoss3:Activate()
+
+				local e2 = EffectData()
+				e2:SetOrigin( self.MiniBoss3:GetPos() )
+				e2:SetNormal( Vector( 0, 0, 1 ) )
+				e2:SetScale( 1.4 )
+				util.Effect( "abyssal_roar", e2, true, true )
+			end
+
+			if not IsValid(self.MiniBoss4) then
+				self.MiniBoss4 = ents.Create("npc_vj_horde_yeti")
+				self.MiniBoss4:SetPos( self:GetPos() + self:GetRight() * -50 + self:GetUp() * 5 )
+				self.MiniBoss4:Spawn()
+				self.MiniBoss4:SetOwner( self )
+				self.MiniBoss4:Activate()
+
+				local e3 = EffectData()
+				e3:SetOrigin( self.MiniBoss4:GetPos() )
+				e3:SetNormal( Vector( 0, 0, 1 ) )
+				e3:SetScale( 1.4 )
+				util.Effect( "abyssal_roar", e3, true, true )
 			end
 		end
 		self.NextSummonTime = CurTime() + self.NextSummonCooldown
@@ -158,10 +182,35 @@ function ENT:MeleeAttackKnockbackVelocity(hitEnt)
 	return self:GetForward() * math.random( 400, 450 ) + self:GetUp() * 400
 end
 
+function ENT:MultipleRangeAttacks()
+	local randomRangeAttack = math.random( 1, 3 )
+
+	if randomRangeAttack == 1 then
+		self.AnimTbl_RangeAttack = { "vjseq_attack_big" }
+		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_arrow"
+		self.TimeUntilRangeAttackProjectileRelease = 0.2
+		self.RangeAttackExtraTimers = { 0.4, 0.6, 0.8 }
+		self.RangeAttackPos_Up = 50
+	elseif randomRangeAttack == 2 then
+		self.AnimTbl_RangeAttack = { "vjseq_attack_range_projec" }
+		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_void"
+		self.TimeUntilRangeAttackProjectileRelease = 0.6
+		self.RangeAttackExtraTimers = { 0.8, 1 }
+		self.RangeAttackPos_Up = 100
+	else
+		self.AnimTbl_RangeAttack = { "vjseq_attack_range_projec" }
+		self.RangeAttackEntityToSpawn = "obj_vj_horde_necromancer_void_large"
+		self.TimeUntilRangeAttackProjectileRelease = 0.8
+		self.RangeAttackExtraTimers = nil
+		self.RangeAttackPos_Up = 100
+	end
+end
+
+
 function ENT:RageTimer()
 	local id = self:GetCreationID()
     timer.Remove("Horde_FlayerRage" .. id)
-    timer.Create("Horde_FlayerRage" .. id, 10, 1, function ()
+    timer.Create("Horde_FlayerRage" .. id, 20, 1, function ()
         if not IsValid(self) then return end
         self:Rage()
     end)
@@ -187,8 +236,13 @@ function ENT:Rage()
         if not IsValid( self ) then return end
         self.Raged = true
         self.Raging = nil
-        self.AnimationPlaybackRate = 1.5
         self.AnimTbl_Run = {ACT_RUN}
+        
+        timer.Simple(10, function ()
+        if not IsValid( self ) and not self.Raging or not self.Raged then return end
+        	self:UnRage()
+        	self:VJ_ACT_PLAYACTIVITY("vjseq_alert", true, false, false)
+    	end)
     end)
 end
 
@@ -197,7 +251,6 @@ function ENT:UnRage()
     self.Raging = nil
     self.CanSummon = true
     self.HasRangeAttack = true
-    self.AnimationPlaybackRate = 1
     self.AnimTbl_Run = {ACT_WALK}
     self:RageTimer()
 end
@@ -253,6 +306,7 @@ function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
 			util.Effect( "abyssal_roar", e, true, true )
     		self.MiniBoss1:Remove() 
     	end
+
     	if IsValid(self.MiniBoss2) then
     		local e1 = EffectData()
 			e1:SetOrigin( self.MiniBoss2:GetPos() )
@@ -260,6 +314,24 @@ function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
 			e1:SetScale( 1.4 )
 			util.Effect( "abyssal_roar", e1, true, true )
     		self.MiniBoss2:Remove() 
+    	end
+
+    	if IsValid(self.MiniBoss3) then
+    		local e2 = EffectData()
+			e2:SetOrigin( self.MiniBoss3:GetPos() )
+			e2:SetNormal( Vector( 0, 0, 1 ) )
+			e2:SetScale( 1.4 )
+			util.Effect( "abyssal_roar", e2, true, true )
+    		self.MiniBoss3:Remove() 
+    	end
+
+    	if IsValid(self.MiniBoss4) then
+    		local e3 = EffectData()
+			e3:SetOrigin( self.MiniBoss4:GetPos() )
+			e3:SetNormal( Vector( 0, 0, 1 ) )
+			e3:SetScale( 1.4 )
+			util.Effect( "abyssal_roar", e3, true, true )
+    		self.MiniBoss4:Remove() 
     	end
     end
 end
