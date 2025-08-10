@@ -298,6 +298,14 @@ function ENT:ShockAttack(delay)
 	end)
 end
 
+function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
+	if HORDE:IsColdDamage(dmginfo) then
+		dmginfo:ScaleDamage(0.75)
+	elseif HORDE:IsFireDamage(dmginfo) or HORDE:IsBlastDamage(dmginfo) then
+		dmginfo:ScaleDamage(1.5)
+	end
+end
+
 function ENT:CustomOnTakeDamage_AfterDamage(dmginfo, hitgroup)
     self.DamageReceived = self.DamageReceived + dmginfo:GetDamage()
     if self.DamageReceived >= self:GetMaxHealth() * 0.10 then
