@@ -25,7 +25,6 @@ SWEP.ShootSound =  ")arccw_go/ak47/ak47_01.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound =  ")arccw_go/ak47/ak47_distant.wav"
 
-SWEP.Delay = 60 / 525
 SWEP.Firemodes = {
     {
         Mode = 2,
