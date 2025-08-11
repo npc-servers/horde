@@ -22,7 +22,7 @@ SWEP.DamageMin = 45 -- damage done at maximum range
 SWEP.Range = 3000 * 0.025 -- in METRES
 SWEP.RecoilPunch = 1
 
-SWEP.Delay = 60 / 750
+SWEP.Delay = 60 / 800
 
 SWEP.FirstShootSound = {")arccw_go/m4a1/m4a1_02.wav",")arccw_go/m4a1/m4a1_03.wav"}
 SWEP.ShootSound =  {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_04.wav"}
