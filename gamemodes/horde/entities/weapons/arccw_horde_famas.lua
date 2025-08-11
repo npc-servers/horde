@@ -25,7 +25,7 @@ SWEP.Primary.ClipSize = 25 -- DefaultClip is automatically set.
 SWEP.RecoilRise = 0.4
 SWEP.RecoilPunch = 0.65
 
-SWEP.Delay = 60 / 900
+SWEP.Delay = 60 / 1000
 SWEP.Firemodes = {
     {
         Mode = 2,
