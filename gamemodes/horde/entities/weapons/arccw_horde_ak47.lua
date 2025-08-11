@@ -18,7 +18,7 @@ SWEP.DamageMin = 49 -- damage done at maximum range
 SWEP.RecoilSide = 0.1
 SWEP.RecoilPunch = 1.2
 
-SWEP.Delay = 60 / 525
+SWEP.Delay = 60 / 600
 
 SWEP.FirstShootSound = ")arccw_go/ak47/ak47_01.wav"
 SWEP.ShootSound =  ")arccw_go/ak47/ak47_01.wav"
