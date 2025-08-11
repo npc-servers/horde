@@ -24,8 +24,8 @@ SWEP.RecoilPunch = 1
 
 SWEP.Delay = 60 / 750
 
-SWEP.FirstShootSound = {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_04.wav"}
-SWEP.ShootSound =  {")arccw_go/m4a1/m4a1_02.wav",")arccw_go/m4a1/m4a1_03.wav"}
+SWEP.FirstShootSound = {")arccw_go/m4a1/m4a1_02.wav",")arccw_go/m4a1/m4a1_03.wav"}
+SWEP.ShootSound =  {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_04.wav"}
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound =  ")arccw_go/m4a1/m4a1_distant_01.wav"
 
