@@ -1,6 +1,6 @@
 SWEP.Base = "arccw_base"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+SWEP.Spawnable = true
+SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "AKM"
@@ -26,14 +26,10 @@ SWEP.Damage = 65
 SWEP.DamageMin = 49
 SWEP.Range = 100
 SWEP.Penetration = 14
-SWEP.DamageType = DMG_BULLET
-SWEP.ShootEntity = nil
 SWEP.MuzzleVelocity = 715
--- IN M/S
+
 SWEP.ChamberSize = 1
 SWEP.Primary.ClipSize = 30
-
-SWEP.PhysBulletMuzzleVelocity = 700
 
 SWEP.Recoil = 0.45
 SWEP.RecoilSide = 0.2
@@ -54,19 +50,15 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.NPCWeaponType = "weapon_ar2"
-SWEP.NPCWeight = 200
-
 SWEP.AccuracyMOA = 6
 SWEP.HipDispersion = 750
 SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "ar2"
-SWEP.MagID = "ak47"
 
 SWEP.ShootVol = 75
 
-SWEP.ShootSound = ")arccw_go/ak47/ak47_01.wav" -- When using stereo .wav files, add ) to the beginning to make it directional. - func_brush
+SWEP.ShootSound = ")arccw_go/ak47/ak47_01.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = ")arccw_go/ak47/ak47_distant.wav"
 
@@ -345,9 +337,9 @@ SWEP.Attachments = {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
-        Bone = "v_weapon.ak47_Parent", -- relevant bone any attachments will be mostly referring to
+        Bone = "v_weapon.ak47_Parent",
         Offset = {
-            vpos = Vector(0.6, -2.75, 6), -- offset that the attachment will be relative to the bone
+            vpos = Vector(0.6, -2.75, 6),
             vang = Angle(90, 0, -90),
         },
     },
@@ -481,35 +473,7 @@ sound.Add({
     sound = "arccw_go/ak47/ak47_clipin.wav"
 })
 
---[[ OLD CODE
-
-if not ArcCWInstalled then return end
-if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_go_ak47")
-    killicon.Add("arccw_horde_ak47", "arccw/weaponicons/arccw_go_ak47", Color(0, 0, 0, 255))
-end
-SWEP.Base = "arccw_go_ak47"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
-SWEP.AdminOnly = false
-
-SWEP.PrintName = "AKM"
-SWEP.Slot = 2
-SWEP.ViewModel = "models/weapons/arccw_go/v_rif_ak47.mdl"
-SWEP.WorldModel = "models/weapons/w_rif_ak47.mdl"
-SWEP.Damage = 65
-SWEP.DamageMin = 49 -- damage done at maximum range
-
-SWEP.Recoil = 0.45
-SWEP.RecoilSide = 0.35
-SWEP.RecoilPunch = 0
-
-SWEP.Delay = 60 / 600 -- 60 / RPM.
-SWEP.ShootVol = 75 -- volume of shoot sound
-
-]]
-
-function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride) -- For edited shooting sounds.
+function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride)
     local fsound = self.ShootSound
     local suppressed = self:GetBuff_Override("Silencer")
 
@@ -573,7 +537,7 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
 
     if distancesound then self:MyEmitSound(distancesound, 140, pitch, 0.5, CHAN_WEAPON) end
 
-    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end -- Only use ONE instance of CHAN_STATIC for shooting sounds, any more will cause bugs. - func_brush
+    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end
 
     local data = {
         sound   = fsound,

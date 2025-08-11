@@ -1,6 +1,6 @@
 SWEP.Base = "arccw_base"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+SWEP.Spawnable = true
+SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "AUG A3"
@@ -26,14 +26,10 @@ SWEP.Damage = 63
 SWEP.DamageMin = 47
 SWEP.Range = 120
 SWEP.Penetration = 12
-SWEP.DamageType = DMG_BULLET
-SWEP.ShootEntity = nil
 SWEP.MuzzleVelocity = 1050
--- IN M/S
+
 SWEP.ChamberSize = 1
 SWEP.Primary.ClipSize = 35
-
-SWEP.PhysBulletMuzzleVelocity = 970
 
 SWEP.Recoil = 0.425
 SWEP.RecoilSide = 0.14
@@ -54,15 +50,11 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.NPCWeaponType = "weapon_ar2"
-SWEP.NPCWeight = 100
-
 SWEP.AccuracyMOA = 3
 SWEP.HipDispersion = 600
 SWEP.MoveDispersion = 150
 
 SWEP.Primary.Ammo = "smg1"
-SWEP.MagID = "stanag"
 
 SWEP.ShootVol = 75
 

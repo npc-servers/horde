@@ -1,6 +1,6 @@
 SWEP.Base = "arccw_base"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+SWEP.Spawnable = true
+SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
 SWEP.PrintName = "M4A1"
@@ -26,14 +26,10 @@ SWEP.Damage = 60
 SWEP.DamageMin = 45
 SWEP.Range = 100
 SWEP.Penetration = 10
-SWEP.DamageType = DMG_BULLET
-SWEP.ShootEntity = nil
 SWEP.MuzzleVelocity = 1050
--- IN M/S
+
 SWEP.ChamberSize = 1
 SWEP.Primary.ClipSize = 30
-
-SWEP.PhysBulletMuzzleVelocity = 900
 
 SWEP.Recoil = 0.325
 SWEP.RecoilSide = 0.13
@@ -54,19 +50,15 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.NPCWeaponType = "weapon_ar2"
-SWEP.NPCWeight = 100
-
 SWEP.AccuracyMOA = 4
 SWEP.HipDispersion = 400
 SWEP.MoveDispersion = 100
 
 SWEP.Primary.Ammo = "smg1"
-SWEP.MagID = "stanag"
 
 SWEP.ShootVol = 75
 
-SWEP.ShootSound = {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_02.wav",")arccw_go/m4a1/m4a1_03.wav",")arccw_go/m4a1/m4a1_04.wav"} -- When using stereo .wav files, add ) to the beginning to make it directional. - func_brush
+SWEP.ShootSound = {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_02.wav",")arccw_go/m4a1/m4a1_03.wav",")arccw_go/m4a1/m4a1_04.wav"}
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = ")arccw_go/m4a1/m4a1_distant_01.wav"
 
@@ -282,7 +274,6 @@ SWEP.WorldModelOffset = {
 
 SWEP.MirrorVMWM = true
 
--- calculates which front sight we should see
 SWEP.Hook_ModifyBodygroups = function(wep, data)
     local vm = data.vm
     local eles = data.eles
@@ -407,9 +398,9 @@ SWEP.Attachments = {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
-        Bone = "v_weapon.M4A1_Parent", -- relevant bone any attachments will be mostly referring to
+        Bone = "v_weapon.M4A1_Parent",
         Offset = {
-            vpos = Vector(0.6, -3.25, 4), -- offset that the attachment will be relative to the bone
+            vpos = Vector(0.6, -3.25, 4),
             vang = Angle(90, 0, -90),
             wpos = Vector(6.099, 1.1, -3.301),
             wang = Angle(171.817, 180-1.17, 0),
@@ -538,38 +529,7 @@ sound.Add({
     sound = "arccw_go/m4a1/m4a1_boltback.wav"
 })
 
---[[ OLD CODE
-
-if not ArcCWInstalled then return end
-if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_go_m4")
-    killicon.Add("arccw_horde_m4", "arccw/weaponicons/arccw_go_m4", Color(0, 0, 0, 255))
-end
-SWEP.Base = "arccw_go_m4"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
-SWEP.AdminOnly = false
-
-SWEP.PrintName = "M4A1"
-
-
-SWEP.Slot = 2
-
-
-SWEP.ViewModel = "models/weapons/arccw_go/v_rif_m4a1.mdl"
-SWEP.WorldModel = "models/weapons/arccw_go/v_rif_m4a1.mdl"
-
-SWEP.Damage = 60
-SWEP.DamageMin = 45 -- damage done at maximum range
-SWEP.Range = 3000 * 0.025 -- in METRES
-SWEP.RecoilPunch = 0
-
-SWEP.Delay = 60 / 800 --725 60 / RPM.
-SWEP.ShootVol = 75 -- volume of shoot sound
-
-]]
-
-function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride) -- For edited shooting sounds.
+function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride)
     local fsound = self.ShootSound
     local suppressed = self:GetBuff_Override("Silencer")
 
@@ -633,7 +593,7 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
 
     if distancesound then self:MyEmitSound(distancesound, 140, pitch, 0.5, CHAN_WEAPON) end
 
-    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end -- Only use ONE instance of CHAN_STATIC for shooting sounds, any more will cause bugs. - func_brush
+    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end
 
     local data = {
         sound   = fsound,

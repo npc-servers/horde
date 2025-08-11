@@ -26,22 +26,18 @@ SWEP.Damage = 64
 SWEP.DamageMin = 48
 SWEP.Range = 150
 SWEP.Penetration = 11
-SWEP.DamageType = DMG_BULLET
-SWEP.ShootEntity = nil
 SWEP.MuzzleVelocity = 1050 
--- IN M/S
-SWEP.ChamberSize = 1 -- how many rounds can be chambered.
-SWEP.Primary.ClipSize = 30 -- DefaultClip is automatically set.
 
-SWEP.PhysBulletMuzzleVelocity = 900
+SWEP.ChamberSize = 1
+SWEP.Primary.ClipSize = 30
 
 SWEP.Recoil = 0.295
 SWEP.RecoilSide = 0.18
 SWEP.RecoilRise = 0.1
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 60 / 700 -- 60 / RPM.
-SWEP.Num = 1 -- number of shots per trigger pull.
+SWEP.Delay = 60 / 700
+SWEP.Num = 1
 SWEP.Firemodes = {
     {
         Mode = 2,
@@ -54,20 +50,16 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.NPCWeaponType = "weapon_ar2"
-SWEP.NPCWeight = 100
-
-SWEP.AccuracyMOA = 2 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 650 -- inaccuracy added by hip firing.
+SWEP.AccuracyMOA = 2
+SWEP.HipDispersion = 650
 SWEP.MoveDispersion = 100
 
-SWEP.Primary.Ammo = "smg1" -- what ammo type the gun uses
-SWEP.MagID = "stanag" -- the magazine pool this gun draws from
+SWEP.Primary.Ammo = "smg1"
 
 SWEP.ShootVol = 75
 
 SWEP.FirstShootSound = ")arccw_go/sg556/sg556_02.wav"
-SWEP.ShootSound = {")arccw_go/sg556/sg556_01.wav",")arccw_go/sg556/sg556_03.wav",")arccw_go/sg556/sg556_04.wav"} -- When using stereo .wav files, add ) to the beginning to make it directional. - func_brush
+SWEP.ShootSound = {")arccw_go/sg556/sg556_01.wav",")arccw_go/sg556/sg556_03.wav",")arccw_go/sg556/sg556_04.wav"}
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = ")arccw_go/sg556/sg556_distant.wav"
 
@@ -77,8 +69,8 @@ SWEP.ShellPitch = 95
 SWEP.ShellScale = 1.25
 SWEP.ShellRotateAngle = Angle(0, 180, 0)
 
-SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
-SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
+SWEP.MuzzleEffectAttachment = 1
+SWEP.CaseEffectAttachment = 2
 
 SWEP.SpeedMult = 0.97
 SWEP.SightedSpeedMult = 0.75
@@ -88,7 +80,7 @@ SWEP.IronSightStruct = {
     Pos = Vector(-5.14, -8.573, 1.05),
     Ang = Angle(-0.75, 0.15, 0),
     Magnification = 1.1,
-    SwitchToSound = "", -- sound that plays when switching to this sight
+    SwitchToSound = "",
     CrosshairInSights = false
 }
 
@@ -283,9 +275,9 @@ SWEP.Attachments = {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
-        Bone = "v_weapon.sg556_Parent", -- relevant bone any attachments will be mostly referring to
+        Bone = "v_weapon.sg556_Parent",
         Offset = {
-            vpos = Vector(0.5, -3.25, 6.5), -- offset that the attachment will be relative to the bone
+            vpos = Vector(0.5, -3.25, 6.5),
             vang = Angle(90, 0, -90),
             wpos = Vector(6.099, 1.1, -3.301),
             wang = Angle(171.817, 180-1.17, 0),
@@ -395,32 +387,7 @@ sound.Add({
     sound = "arccw_go/sg556/sg556_boltback.wav"
 })
 
---[[ OLD CODE
-
-if not ArcCWInstalled then return end
-if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_go_sg556")
-    killicon.Add("arccw_horde_sg556", "arccw/weaponicons/arccw_go_sg556", Color(0, 0, 0, 255))
-end
-SWEP.Base = "arccw_go_sg556"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
-SWEP.AdminOnly = false
-
-SWEP.PrintName = "SIG SG556"
-SWEP.Slot = 2
-
-SWEP.ViewModel = "models/weapons/arccw_go/v_rif_sg556.mdl"
-SWEP.WorldModel = "models/weapons/arccw_go/v_rif_sg556.mdl"
-
-SWEP.Damage = 64
-SWEP.DamageMin = 48  -- damage done at maximum range
-SWEP.RecoilPunch = 0
-SWEP.ShootVol = 75 -- volume of shoot sound
-
-]]
-
-function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride) -- For edited shooting sounds.
+function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride)
     local fsound = self.ShootSound
     local suppressed = self:GetBuff_Override("Silencer")
 
@@ -484,7 +451,7 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
 
     if distancesound then self:MyEmitSound(distancesound, 140, pitch, 0.5, CHAN_WEAPON) end
 
-    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end -- Only use ONE instance of CHAN_STATIC for shooting sounds, any more will cause bugs. - func_brush
+    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end
 
     local data = {
         sound   = fsound,
