@@ -15,9 +15,22 @@ SWEP.WorldModel = "models/weapons/w_rif_ak47.mdl"
 SWEP.Damage = 65
 SWEP.DamageMin = 49 -- damage done at maximum range
 
-SWEP.Recoil = 0.45
-SWEP.RecoilSide = 0.35
-SWEP.RecoilPunch = 0
+SWEP.RecoilSide = 0.1
+SWEP.RecoilPunch = 1.2
 
-SWEP.Delay = 60 / 600 -- 60 / RPM.
-SWEP.ShootVol = 75 -- volume of shoot sound
+SWEP.Delay = 60 / 525
+
+SWEP.FirstShootSound = ")arccw_go/ak47/ak47_01.wav"
+SWEP.ShootSound =  ")arccw_go/ak47/ak47_01.wav"
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound =  ")arccw_go/ak47/ak47_distant.wav"
+
+SWEP.Delay = 60 / 525
+SWEP.Firemodes = {
+    {
+        Mode = 2,
+    },
+    {
+        Mode = 1,
+    }
+}

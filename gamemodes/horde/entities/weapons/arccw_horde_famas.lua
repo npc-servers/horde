@@ -23,9 +23,9 @@ SWEP.Range = 100 -- in METRES
 SWEP.Primary.ClipSize = 25 -- DefaultClip is automatically set.
 
 SWEP.RecoilRise = 0.4
-SWEP.RecoilPunch = 0
+SWEP.RecoilPunch = 0.65
 
-SWEP.Delay = 60 / 1000 -- 60 / RPM.
+SWEP.Delay = 60 / 900
 SWEP.Firemodes = {
     {
         Mode = 2,
@@ -33,18 +33,13 @@ SWEP.Firemodes = {
     {
         Mode = -3,
     },
-    {
-        Mode = 0
-    }
 }
 
 
-SWEP.ShootVol = 75 -- volume of shoot sound
-
-SWEP.FirstShootSound = "arccw_go/famas/famas_01.wav"
-SWEP.ShootSound = "arccw_go/famas/famas_04.wav"
-SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "arccw_go/famas/famas-1-distant.wav"
+SWEP.FirstShootSound = ")arccw_go/famas/famas_02.wav"
+SWEP.ShootSound = {")arccw_go/famas/famas_01.wav",")arccw_go/famas/famas_03.wav",")arccw_go/famas/famas_04.wav"}
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = ")arccw_go/famas/famas_distant_01.wav"
 
 SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
 SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
@@ -254,3 +249,5 @@ SWEP.Attachments = {
         },
     },
 }
+
+SWEP.RecoilSide = 0.1

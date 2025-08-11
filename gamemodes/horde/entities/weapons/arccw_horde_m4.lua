@@ -20,7 +20,22 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_rif_m4a1.mdl"
 SWEP.Damage = 60
 SWEP.DamageMin = 45 -- damage done at maximum range
 SWEP.Range = 3000 * 0.025 -- in METRES
-SWEP.RecoilPunch = 0
+SWEP.RecoilPunch = 1
 
-SWEP.Delay = 60 / 800 --725 60 / RPM.
-SWEP.ShootVol = 75 -- volume of shoot sound
+SWEP.Delay = 60 / 750
+
+SWEP.FirstShootSound = {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_04.wav"}
+SWEP.ShootSound =  {")arccw_go/m4a1/m4a1_02.wav",")arccw_go/m4a1/m4a1_03.wav"}
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound =  ")arccw_go/m4a1/m4a1_distant_01.wav"
+
+SWEP.Firemodes = {
+    {
+        Mode = 2,
+    },
+    {
+        Mode = 1,
+    }
+}
+
+SWEP.RecoilSide = 0.1
