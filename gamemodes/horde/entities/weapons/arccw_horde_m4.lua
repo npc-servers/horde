@@ -29,13 +29,4 @@ SWEP.ShootSound =  {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_04.wav"}
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound =  ")arccw_go/m4a1/m4a1_distant_01.wav"
 
-SWEP.Firemodes = {
-    {
-        Mode = 2,
-    },
-    {
-        Mode = 1,
-    }
-}
-
 SWEP.RecoilSide = 0.1
