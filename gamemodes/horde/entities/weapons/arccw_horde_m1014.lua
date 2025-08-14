@@ -17,8 +17,8 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 
 SWEP.Damage = 26
 
-SWEP.Recoil = 4
-SWEP.RecoilSide = 2.25
+SWEP.Recoil = 3
+SWEP.RecoilSide = 2
 SWEP.RecoilPunch = 0
 
 SWEP.Firemodes = {
@@ -46,6 +46,10 @@ SWEP.MeleeHitNPCSound = "weapons/arccw/melee_hitbody.wav"
 
 SWEP.ActivePos = Vector(0, -2, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
+
+function SWEP:Hook_TranslateAnimation(anim)
+    return false
+end
 
 function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride)
     local fsound = self.ShootSound
@@ -93,6 +97,7 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
 
     local spv = self.ShootPitchVariation
     local volume = self.ShootVol
+    local pitch  = self.ShootPitch * math.Rand(1 - spv, 1 + spv) * self:GetBuff_Mult("Mult_ShootPitch")
 
     local v = ArcCW.ConVars["weakensounds"]:GetFloat()
 
@@ -101,18 +106,21 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
     volume = volume * self:GetBuff_Mult("Mult_ShootVol")
 
     volume = math.Clamp(volume, 50, 140)
+    pitch  = math.Clamp(pitch, 0, 255)
 
-    if sndoverride then fsound = sndoverride end
-    if dsndoverride then distancesound = dsndoverride end
-    if voloverride then volume = voloverride end
+    if    sndoverride        then    fsound    = sndoverride end
+    if    dsndoverride    then    distancesound = dsndoverride end
+    if    voloverride        then    volume    = voloverride end
+    if    pitchoverride    then    pitch    = pitchoverride end
 
-    if distancesound then self:MyEmitSound(distancesound, 140, 100, 0.5, CHAN_WEAPON) end
+    if distancesound then self:MyEmitSound(distancesound, 140, pitch, 0.25, CHAN_WEAPON) end
 
-    if fsound then self:MyEmitSound(fsound, volume, 100, 1, CHAN_STATIC) end
+    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end
 
     local data = {
         sound   = fsound,
         volume  = volume,
+        pitch   = pitch,
     }
 
     self:GetBuff_Hook("Hook_AddShootSound", data)

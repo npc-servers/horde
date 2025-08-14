@@ -20,7 +20,7 @@ SWEP.Damage = 16
 SWEP.NoLastCycle = true
 
 SWEP.Recoil = 2
-SWEP.RecoilSide = 1
+SWEP.RecoilSide = 2
 SWEP.RecoilPunch = 0
 
 SWEP.ShootVol = 75
@@ -37,22 +37,11 @@ SWEP.MeleeHitNPCSound = "weapons/arccw/melee_hitbody.wav"
 SWEP.ActivePos = Vector(0, -2, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
+function SWEP:Hook_TranslateAnimation(anim)
+    return false
+end
+
 SWEP.Animations = {
-    ["idle"] = {
-        Source = "idle"
-    },
-    ["draw"] = {
-        Source = "draw",
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.5,
-    },
-    ["ready"] = {
-        Source = "ready",
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.5,
-    },
     ["fire"] = {
         Source = "shoot",
         Time = 0.5,
@@ -65,29 +54,8 @@ SWEP.Animations = {
     },
     ["cycle"] = {
         Source = "cycle",
-        ShellEjectAt = 0.25,
+        ShellEjectAt = 0.2,
         TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
-    },
-    ["sgreload_start"] = {
-        Source = "start_reload",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0,
-    },
-    ["sgreload_insert"] = {
-        Source = "insert",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-        TPAnimStartTime = 0.3,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0,
-    },
-    ["sgreload_finish"] = {
-        Source = "end_reload",
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 1,
     },
     ["sgreload_finish_empty"] = {
         Source = "end_reload_empty",
@@ -144,6 +112,7 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
 
     local spv = self.ShootPitchVariation
     local volume = self.ShootVol
+    local pitch  = self.ShootPitch * math.Rand(1 - spv, 1 + spv) * self:GetBuff_Mult("Mult_ShootPitch")
 
     local v = ArcCW.ConVars["weakensounds"]:GetFloat()
 
@@ -152,18 +121,21 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
     volume = volume * self:GetBuff_Mult("Mult_ShootVol")
 
     volume = math.Clamp(volume, 50, 140)
+    pitch  = math.Clamp(pitch, 0, 255)
 
-    if sndoverride then fsound = sndoverride end
-    if dsndoverride then distancesound = dsndoverride end
-    if voloverride then volume = voloverride end
+    if    sndoverride        then    fsound    = sndoverride end
+    if    dsndoverride    then    distancesound = dsndoverride end
+    if    voloverride        then    volume    = voloverride end
+    if    pitchoverride    then    pitch    = pitchoverride end
 
-    if distancesound then self:MyEmitSound(distancesound, 140, 100, 0.5, CHAN_WEAPON) end
+    if distancesound then self:MyEmitSound(distancesound, 140, pitch, 0.25, CHAN_WEAPON) end
 
-    if fsound then self:MyEmitSound(fsound, volume, 100, 1, CHAN_STATIC) end
+    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_STATIC) end
 
     local data = {
         sound   = fsound,
         volume  = volume,
+        pitch   = pitch,
     }
 
     self:GetBuff_Hook("Hook_AddShootSound", data)
