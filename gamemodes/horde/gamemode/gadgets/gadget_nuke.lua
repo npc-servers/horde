@@ -45,7 +45,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
 
     ply.Horde_NukeCooldown = CurTime() + 90
 
-    local trace = HORDE:traceSolidIgnoreAllies(ply)
+    local trace = HORDE:traceSolidIgnoreAllies(ply, 80000)
 
     local ent = ents.Create("horde_nuke")
     ent:Spawn()
