@@ -48,9 +48,13 @@ function GM:Initialize()
     game.AddAmmoType({
         name = "horde_m2_flamethrower"
     })
+
     if SERVER then
         HORDE.NPCS = list.Get("NPC")
     end
+
+    -- Override default gmod team color
+    team.SetColor(1001, Color(50, 255, 0))
 end
 
 function GM:PlayerLoadout(ply) return true end

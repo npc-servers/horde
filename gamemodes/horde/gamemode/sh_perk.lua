@@ -156,8 +156,9 @@ local function Horde_LoadPerks()
         ::cont::
     end
 
-    for subclass_name, subclass in pairs(HORDE.subclasses) do
-        prefix = "horde/gamemode/perks/" .. subclass_name .. "/"
+    for subclass_name, _ in pairs(HORDE.subclasses) do
+        local normalized_subclass_name = string.Replace(subclass_name, " ", "_")
+        prefix = "horde/gamemode/perks/" .. normalized_subclass_name .. "/"
         for _, f in ipairs(file.Find(prefix .. "*", "LUA")) do
             PERK = {}
             AddCSLuaFile(prefix .. f)

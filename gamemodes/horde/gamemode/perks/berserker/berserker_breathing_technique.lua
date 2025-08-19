@@ -1,5 +1,5 @@
 PERK.PrintName = "Breathing Technique"
-PERK.Description = "Regenerate {1} health per second.\nImmune to Poison damage."
+PERK.Description = "Regenerate {1} health per second.\nImmune to Poison damage and Break."
 PERK.Icon = "materials/perks/breathing_technique.png"
 PERK.Params = {
     [1] = {value = 0.02, percent = true},
@@ -9,12 +9,14 @@ PERK.Hooks = {}
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if SERVER and perk == "berserker_breathing_technique" then
         ply:Horde_SetHealthRegenPercentage(0.02)
+        ply:Horde_SetImmuneToDebuff(HORDE.Status_Break, true)
     end
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
     if SERVER and perk == "berserker_breathing_technique" then
         ply:Horde_SetHealthRegenPercentage(0)
+        ply:Horde_SetImmuneToDebuff(HORDE.Status_Break, nil)
     end
 end
 

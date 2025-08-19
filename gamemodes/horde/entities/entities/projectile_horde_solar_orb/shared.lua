@@ -63,7 +63,7 @@ function ENT:CustomOnInitialize()
     if phys:IsValid() then
         phys:Wake()
         phys:EnableGravity(true)
-        phys:SetMass(1)
+        phys:SetMass(0.5)
     end
 
     self.SpawnTime = CurTime()
@@ -71,15 +71,16 @@ function ENT:CustomOnInitialize()
     self.StartPos = self:GetPos()
 
     self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
-    self.ExplodeTimer = CurTime() + 0.4
+    self.ExplodeTimer = CurTime() + 8
 
+    --[[
     if self:GetCharged() == 1 then
         self.ExplodeTimer = self.ExplodeTimer + 0.5
     elseif self:GetCharged() == 2 then
         self.ExplodeTimer = self.ExplodeTimer + 0.6
     elseif self:GetCharged() >= 3 then
         self.ExplodeTimer = self.ExplodeTimer + 0.7
-    end
+    end]]
 
     self:SetRenderMode(RENDERMODE_TRANSCOLOR)
     self:SetColor(Color(0,0,0,0))
