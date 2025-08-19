@@ -56,7 +56,7 @@ local UpOffset = Vector(0,0,15)
 
 -- Called when an indicator should be created for this player.
 net.Receive("Horde_HitnumbersSpawn", function()
-	if not GetConVar("horde_display_damage"):GetBool() then return end
+	if not GetConVar("horde_allow_display_damage"):GetBool() or not GetConVar("horde_display_damage"):GetBool() then return end
 
 	-- Get damage type and amount.
 	local dmg     = net.ReadFloat()
@@ -82,7 +82,7 @@ net.Receive("Horde_HitnumbersSpawn", function()
 end)
 
 net.Receive("Horde_HitnumbersDebuffSpawn", function()
-	if not GetConVar("horde_display_damage"):GetBool() then return end
+	if not GetConVar("horde_allow_display_debuffs"):GetBool() or not GetConVar("horde_display_debuffs"):GetBool() then return end
 
 	-- Get damage type and amount.
 	local debuff = net.ReadUInt(32)
@@ -95,7 +95,13 @@ net.Receive("Horde_HitnumbersDebuffSpawn", function()
 end)
 
 hook.Add("HUDPaint", "Horde_DrawIndicators2D", function()
-    if not GetConVar("horde_display_damage"):GetBool() then return end
+    local allowDamageNum = GetConVar("horde_allow_display_damage"):GetBool()
+    local allowDebuffText = GetConVar("horde_allow_display_debuffs"):GetBool()
+    local damageNumEnabled = GetConVar("horde_display_damage"):GetBool()
+    local debuffTextEnabled = GetConVar("horde_display_debuffs"):GetBool()
+
+    if (not allowDamageNum and not damageNumEnabled) or (not allowDebuffText and not debuffTextEnabled) then return end
+
 	if #indicators == 0 then return end
 	local ind
     for i=1, #indicators do
@@ -110,7 +116,7 @@ hook.Add("HUDPaint", "Horde_DrawIndicators2D", function()
 
         cam.Start2D()
 
-        if ind.type == 0 then
+        if allowDamageNum and damageNumEnabled and ind.type == 0 then
             surface.SetFont("Horde_DamageNum_Shadow")
             local width = surface.GetTextSize(ind.text)
             surface.SetTextColor(0, 0, 0, 255 * ind.life)
@@ -126,7 +132,7 @@ hook.Add("HUDPaint", "Horde_DrawIndicators2D", function()
             surface.SetMaterial(ind.icon)
             surface.SetDrawColor(ind.col.r, ind.col.g, ind.col.b, (ind.life / ind.ttl * 255))
             surface.DrawTexturedRect(x - (width / 2) + surface.GetTextSize(ind.text) + 5, y + ScreenScale(1), ScreenScale(6), ScreenScale(6))
-        else
+        elseif allowDebuffText and debuffTextEnabled then
             surface.SetFont("Horde_Debuff_Shadow")
             local width = surface.GetTextSize(ind.text)
             surface.SetTextColor(0, 0, 0, 255 * ind.life)
