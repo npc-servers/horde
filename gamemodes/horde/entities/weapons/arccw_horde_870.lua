@@ -15,7 +15,7 @@ SWEP.PrintName = "Model 870"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_870.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_870.mdl"
 
-SWEP.Damage = 24
+SWEP.Damage = 29
 
 SWEP.NoLastCycle = true
 
@@ -38,7 +38,11 @@ SWEP.ActivePos = Vector(0, -2, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 function SWEP:Hook_TranslateAnimation(anim)
-    return false
+    if anim == "fire_iron" then
+        if self:GetBuff_Override("NoStock") then return "fire" end
+    elseif anim == "fire_iron_empty" then
+        if self:GetBuff_Override("NoStock") then return "fire_empty" end
+    end
 end
 
 SWEP.Animations = {
