@@ -15,7 +15,7 @@ SWEP.PrintName = "MAG-7"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 
-SWEP.Damage = 21
+SWEP.Damage = 20
 
 SWEP.NoLastCycle = true
 
@@ -34,7 +34,7 @@ SWEP.MeleeMissSound = "weapons/arccw/melee_miss.wav"
 SWEP.MeleeHitSound = "weapons/arccw/melee_hitworld.wav"
 SWEP.MeleeHitNPCSound = "weapons/arccw/melee_hitbody.wav"
 
-SWEP.ActivePos = Vector(0, -2, 0)
+SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 function SWEP:Hook_TranslateAnimation(anim)
@@ -153,4 +153,5 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
     }
 
     self:GetBuff_Hook("Hook_AddShootSound", data)
+
 end
