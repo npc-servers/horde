@@ -15,7 +15,7 @@ SWEP.PrintName = "SuperNova"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_nova.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_nova.mdl"
 
-SWEP.Damage = 16
+SWEP.Damage = 24
 
 SWEP.NoLastCycle = true
 
@@ -34,11 +34,15 @@ SWEP.MeleeMissSound = "weapons/arccw/melee_miss.wav"
 SWEP.MeleeHitSound = "weapons/arccw/melee_hitworld.wav"
 SWEP.MeleeHitNPCSound = "weapons/arccw/melee_hitbody.wav"
 
-SWEP.ActivePos = Vector(0, -2, 0)
+SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 function SWEP:Hook_TranslateAnimation(anim)
-    return false
+    if anim == "fire_iron" then
+        if self:GetBuff_Override("NoStock") then return "fire" end
+    elseif anim == "fire_iron_empty" then
+        if self:GetBuff_Override("NoStock") then return "fire_empty" end
+    end
 end
 
 SWEP.Animations = {
@@ -139,4 +143,5 @@ function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride
     }
 
     self:GetBuff_Hook("Hook_AddShootSound", data)
+
 end
