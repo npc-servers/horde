@@ -25,7 +25,7 @@ SWEP.Recoil = 0.105
 SWEP.RecoilSide = 0.075
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 60 / 600
+SWEP.Delay = 60 / 700
 
 SWEP.ShootVol = 75
 
