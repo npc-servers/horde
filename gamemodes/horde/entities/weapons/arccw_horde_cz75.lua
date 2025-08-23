@@ -17,8 +17,8 @@ SWEP.Slot = 1
 SWEP.ViewModel = "models/weapons/arccw_go/v_pist_cz75.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_pist_cz75.mdl"
 
-SWEP.Recoil = 0.12
-SWEP.RecoilSide = 0.12
+SWEP.Recoil = 0.15
+SWEP.RecoilSide = 0.125
 SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 750
@@ -57,10 +57,6 @@ function SWEP:Hook_TranslateAnimation(anim)
         if not self.Attachments[6].Installed then return "fire" end
     elseif anim == "fire_iron_empty" then
         if not self.Attachments[6].Installed then return "fire_empty" end
-    elseif anim == "fire" then
-        if self.Attachments[6].Installed then return "fire_iron" end
-    elseif anim == "fire_empty" then
-        if self.Attachments[6].Installed then return "fire_iron_empty" end
     end
 end
 

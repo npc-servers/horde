@@ -47,10 +47,6 @@ function SWEP:Hook_TranslateAnimation(anim)
         if not self.Attachments[6].Installed then return "fire" end
     elseif anim == "fire_iron_empty" then
         if not self.Attachments[6].Installed then return "fire_empty" end
-    elseif anim == "fire" then
-        if self.Attachments[6].Installed then return "fire_iron" end
-    elseif anim == "fire_empty" then
-        if self.Attachments[6].Installed then return "fire_iron_empty" end
     end
 end
 

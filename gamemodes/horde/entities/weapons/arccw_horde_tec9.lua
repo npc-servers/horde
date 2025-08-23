@@ -38,8 +38,16 @@ SWEP.MeleeMissSound = "weapons/arccw/melee_miss.wav"
 SWEP.MeleeHitSound = "weapons/arccw/melee_hitworld.wav"
 SWEP.MeleeHitNPCSound = "weapons/arccw/melee_hitbody.wav"
 
+SWEP.IronSightStruct = {
+    Pos = Vector(-5.1, 1, 2.55),
+    Ang = Angle(0, 0.175, 0),
+    Magnification = 1.1,
+}
+
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
+
+SWEP.SightPlusOffset = 10
 
 SWEP.Attachments = {
     {PrintName = "Optic"}, { PrintName = "Tactical"}, {PrintName = "Underbarrel"}, {PrintName = "Barrel"}, {PrintName = "Muzzle"}, {PrintName = "Magazine"},
@@ -58,8 +66,6 @@ SWEP.Attachments = {
 function SWEP:Hook_TranslateAnimation(anim)
     if anim == "fire_iron" then
         if not self.Attachments[7].Installed then return "fire" end
-    elseif anim == "fire" then
-        if self.Attachments[7].Installed then return "fire_iron" end
     end
 end
 
