@@ -24,6 +24,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
     ent:SetColor(Color(255,0,0,255))
     ent:Spawn()
+    ent.Horde_Is_Mini_Sentry = true
 
     local npc_info = list.Get("NPC")[ent:GetClass()]
     if not npc_info then
