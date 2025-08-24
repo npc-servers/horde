@@ -2,7 +2,7 @@ GADGET.PrintName = "Turret Pack"
 GADGET.Description = "Deploys a temporary turret.\nTurret has 50% less health.\nTurret is destroyed when duration expires."
 GADGET.Icon = "items/gadgets/turret_pack.png"
 GADGET.Duration = 20
-GADGET.Cooldown = 1
+GADGET.Cooldown = 30
 GADGET.Active = true
 GADGET.Params = {
 }
@@ -24,7 +24,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
     ent:SetColor(Color(255,0,0,255))
     ent:Spawn()
-    ent.Horde_Is_Mini_Sentry = true
 
     local npc_info = list.Get("NPC")[ent:GetClass()]
     if not npc_info then
