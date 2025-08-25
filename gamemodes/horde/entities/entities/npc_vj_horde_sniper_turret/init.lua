@@ -90,7 +90,7 @@ ENT.Immune_AcidPoisonRadiation = true
 function ENT:CustomOnInitialize()
 	self:SetModelScale(1.5, 0)
 	self:PhysicsInitBox(Vector(20, 20, -0.1), Vector(-20, -20, -40))
-	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
+	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self:PhysWake()
 
 	timer.Simple(0, function()
