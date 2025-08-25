@@ -728,9 +728,11 @@ function HORDE:DropTurret(ent)
     local turret_class = ent:GetClass()
     local turret_pos = ent:GetPos()
 
-    local tr = util.TraceLine({
+    local tr = util.TraceHull({
         start = turret_pos,
-        endpos = turret_pos + Vector(0,0,-1) * 10000,
+        endpos = turret_pos + Vector(0, 0, -1) * 10000,
+        mins = ent:OBBMins(),
+        maxs = ent:OBBMaxs(),
         filter = {"prop_static", "prop_dynamic"},
         whitelist = true,
         mask = MASK_SOLID,
@@ -743,7 +745,12 @@ function HORDE:DropTurret(ent)
         ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z) + vector_up)
 
         if not ent:IsValid() then return end
-        ent:GetPhysicsObject():EnableMotion(false)
+        timer.Simple(0, function()
+            local phys = ent:GetPhysicsObject()
+            if phys then
+                phys:EnableMotion(false)
+            end
+        end)
     end
 
     -- Turrets should always stay straight.
