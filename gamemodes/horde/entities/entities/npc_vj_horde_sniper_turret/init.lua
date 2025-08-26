@@ -5,7 +5,7 @@ include('shared.lua')
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/combine_turrets/ground_turret.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/combine_turrets/floor_turret.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 400
 ENT.SightDistance = 8000
 ENT.HullType = HULL_HUMAN
@@ -87,14 +87,16 @@ ENT.Horde_Immune_Status = {
 }
 ENT.Immune_AcidPoisonRadiation = true
 
-function ENT:CustomOnInitialize()
-	self:SetModelScale(1.5, 0)
-	self:PhysicsInitBox(Vector(20, 20, -0.1), Vector(-20, -20, -40))
-	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
-	self:PhysWake()
+function ENT:CustomOnInitialize() -- phoenix_storms/stripes
+	self:SetModelScale(1.3, 0)
+	self:SetCollisionBounds(Vector(15, 15, 60), Vector(-15, -15, 0))
+	self:PhysicsInit(SOLID_VPHYSICS)
+	self:SetCollisionGroup(COLLISION_GROUP_WORLD)
+
+	self:SetMaterial("phoenix_storms/stripes")
+	self:SetColor(Color(150, 0, 0))
 
 	timer.Simple(0, function()
-		self:SetAngles(Angle(0,0,180))
 		timer.Simple(0.1, function()
 			HORDE:DropTurret(self)
 		end)

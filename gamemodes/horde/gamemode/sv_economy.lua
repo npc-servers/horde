@@ -757,9 +757,7 @@ function HORDE:DropTurret(ent)
     local ang = ent:GetAngles()
     ang.p = 0
     ang.r = 0
-    if turret_class == "npc_vj_horde_sniper_turret" then
-        ang.r = 180
-    elseif turret_class == "npc_vj_horde_rocket_turret" or ent:GetClass() == "npc_vj_horde_laser_turret" then
+    if turret_class == "npc_vj_horde_rocket_turret" or ent:GetClass() == "npc_vj_horde_laser_turret" then
         ang.y = 0
     end
     ent:SetAngles(ang)
