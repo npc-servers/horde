@@ -672,7 +672,6 @@ HORDE.VoteChangeMap = function (ply)
 end
 
 hook.Add("PlayerInitialSpawn", "Horde_InitPlayer", function(ply)
-    ply:SetCollisionGroup(15)
     ply:SetCustomCollisionCheck(true)
 
     ply:SetCanZoom(false)
@@ -680,16 +679,18 @@ hook.Add("PlayerInitialSpawn", "Horde_InitPlayer", function(ply)
 
     ply:ConCommand("mat_colorcorrection 1")
     ply:ConCommand("cl_showhints 0")
+end)
+
+hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
+    if ply.Horde_Fake_Respawn == true then return end
+
+    ply:SetCollisionGroup(15)
 
     timer.Simple(0, function() -- lua/includes/modules/player_manager.lua sets SetAvoidPlayer back to true
         if not IsValid(ply) then return end
 
         ply:SetAvoidPlayers(false)
     end)
-end)
-
-hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
-    if ply.Horde_Fake_Respawn == true then return end
 
     for _, ent in pairs( ents.GetAll() ) do
         if ent:IsWeapon() and not IsValid( ent:GetOwner() ) and ent.lastWeaponHolder == ply then
