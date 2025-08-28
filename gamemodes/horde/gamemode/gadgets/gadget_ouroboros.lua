@@ -36,5 +36,9 @@ end
 
 GADGET.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
     if ply:Horde_GetGadget() ~= "gadget_ouroboros" then return end
-    bonus.increase = bonus.increase + 0.8 * ply:Health() / ply:GetMaxHealth()
+
+    local fracMissing = 1 - ply:Health() / ply:GetMaxHealth()
+    local dmgMulti = 0.8 * fracMissing
+
+    bonus.increase = bonus.increase + dmgMulti
 end
