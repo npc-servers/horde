@@ -21,20 +21,9 @@ SWEP.DamageMin = 57
 SWEP.Recoil = 0.42
 SWEP.RecoilSide = 0.35
 
-SWEP.ShootVol = 75
-
-SWEP.ShootSound = ")weapons/fesiugmw2/fire/f2000.wav"
-SWEP.ShootMechSound = {
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c1.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c2.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c3.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c4.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c5.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c6.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c7.wav",
-    ")weapons/fesiugmw2/mechanism/weap_mech_layer_c8.wav"
-}
-SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/m4_sil.wav"
+SWEP.ShootSound = "ArcCW_Horde.F2000_Fire"
+SWEP.ShootMechSound = "ArcCW_Horde.F2000_Fire_Mech"
+SWEP.ShootSoundSilenced = "ArcCW_Horde.F2000_Fire_Sil"
 
 SWEP.AttachmentElements = {
     ["wepcamo-desert"]      = { VMSkin = 1 },
@@ -62,6 +51,8 @@ SWEP.AttachmentElements = {
     },
 }
 
+SWEP.RejectAttachments = {["mw2_ubgl_m203"] = true, ["mw2_ubgl_masterkey"] = true}
+
 SWEP.Attachments = {
     {
         PrintName = "Optic",
@@ -87,7 +78,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Underbarrel",
-        Slot = {"foregrip", "horde_ubgl_incendiary", "", ""},
+        Slot = {"foregrip", "horde_ubgl_incendiary"},
         Bone = "tag_weapon",
         Offset = {
             vpos = Vector(10, 0, -1.04),
@@ -167,116 +158,38 @@ SWEP.Hook_TranslateAnimation = function(wep, anim)
     end
 end
 
-SWEP.Animations = {
-    ["draw"] = {
-        Source = "pullout",
-        Time = 33/30,
-        SoundTable = {{s = "weapons/fesiugmw2/wpnarm_2.wav", c = CHAN_ITEM, t = 0}},
-        LHIK = true,
-        LHIKIn = 0.3,
-        LHIKOut = 0,
-    },
-    ["ready"] = {
-        Source = "pullout_first",
-        Time = 35/30,
-        SoundTable = {
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_first_lift_v1.wav", c = CHAN_ITEM, t = 0/30},
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_first_chamber_v1.wav", c = CHAN_ITEM, t = 13/30},
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
-    },
-    ["reload"] = {
-        Source = "reload",
-        Time = 90/30,
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        SoundTable = {
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_lift_v1.wav", c = CHAN_ITEM, t = 0},
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_clipout_v1.wav", c = CHAN_ITEM, t = 16/30},
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_clipin_v1.wav", c = CHAN_ITEM, t = 60/30},
-        },
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0.5,
-    },
-    ["reload_empty"] = {
-        Source = "reload_empty",
-        Time = 103/30,
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        SoundTable = {
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_lift_v1.wav", c = CHAN_ITEM, t = 0},
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_clipout_v1.wav", c = CHAN_ITEM, t = 15/30},
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_clipin_v1.wav", c = CHAN_ITEM, t = 61/30},
-            {s = "weapons/fesiugmw2/foley/wpfoly_fn2000_reload_chamber_v1.wav", c = CHAN_ITEM, t = 76/30},
-        },
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0.6,
-    },
-    ["alt_draw_m203"] = {
-        Source = "alt_pullout_m203",
-        Time = 33/30,
-        SoundTable = {{s = "weapons/fesiugmw2/pu_weapon01.wav", c = CHAN_ITEM, t = 0}},
-    },
-    ["alt_reload_m203"] = {
-        Source = "alt_reload_m203",
-        Time = 79/30,
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        SoundTable = {
-            {s = "weapons/fesiugmw2/foley/wpfoly_m203_chamber_open_v12.wav", c = CHAN_ITEM, t = 12/30},
-            {s = "weapons/fesiugmw2/foley/wpfoly_m203_load_v12.wav", c = CHAN_ITEM, t = 39/30},
-            {s = "weapons/fesiugmw2/foley/wpfoly_m203_chamber_close_v12.wav", c = CHAN_ITEM, t = 60/30},
-        },
-    },
-    ["switch2_gun_m203"] = {
-        Source = "switch2_gun_m203",
-        SoundTable = {{s = "weapons/fesiugmw2/pu_weapon01.wav", c = CHAN_ITEM, t = 0}},
-        Time = 25/30
-    },
-    ["switch2_alt_m203"] = {
-        Source = "switch2_alt_m203",
-        SoundTable = {{s = "weapons/fesiugmw2/pu_weapon01.wav", c = CHAN_ITEM, t = 0}},
-        Time = 25/30
-    },
-}
-function SWEP:DoShootSound(sndoverride, dsndoverride, voloverride, pitchoverride)
-    local fsound = self.ShootSound
-    local msound = self.ShootMechSound
-    local suppressed = self:GetBuff_Override("Silencer")
+sound.Add({
+    name = "ArcCW_Horde.F2000_Fire",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = {95, 110},
+    sound = ")weapons/fesiugmw2/fire/f2000.wav"
+})
 
-    fsound = self:GetBuff_Hook("Hook_GetShootSound", fsound)
-
-    local spv    = self.ShootPitchVariation
-    local volume = self.ShootVol
-    local pitch  = self.ShootPitch * math.Rand(1 - spv, 1 + spv) * self:GetBuff_Mult("Mult_ShootPitch")
-
-    local v = GetConVar("arccw_weakensounds"):GetFloat()
-    volume = volume - v
-
-    volume = volume * self:GetBuff_Mult("Mult_ShootVol")
-
-    volume = math.Clamp(volume, 50, 140)
-    pitch  = math.Clamp(pitch, 0, 255)
-
-    if sndoverride then fsound = sndoverride end
-    if voloverride then volume = voloverride end
-    if pitchoverride then pitch = pitchoverride end
-
-    if suppressed then
-        fsound = self.ShootSoundSilenced
-        pitch = 100
-        msound = nil
-    end
-
-    if fsound then self:MyEmitSound(fsound, volume, pitch, 1, CHAN_WEAPON) end
-    if msound then self:MyEmitSound(msound, 45, math.Rand(95, 105), .45, CHAN_AUTO) end
-
-    local data = {
-        sound   = fsound,
-        volume  = volume,
-        pitch   = pitch,
+sound.Add({
+    name = "ArcCW_Horde.F2000_Fire_Mech",
+    channel = CHAN_AUTO,
+    volume = 1.0,
+    level = 45,
+    pitch = {95, 110},
+    sound = {
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c1.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c2.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c3.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c4.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c5.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c6.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c7.wav",
+        ")weapons/fesiugmw2/mechanism/weap_mech_layer_c8.wav"
     }
+})
 
-    self:GetBuff_Hook("Hook_AddShootSound", data)
-end
+sound.Add({
+    name = "ArcCW_Horde.F2000_Fire_Sil",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = {95, 110},
+    sound = ")weapons/fesiugmw2/fire/m4_sil.wav"
+})
