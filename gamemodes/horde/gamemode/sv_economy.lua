@@ -364,7 +364,7 @@ hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
     hook.Run("Horde_ResetStatus", ply)
     net.Start("Horde_ClearStatus")
     net.Send(ply)
-    ply:SetCustomCollisionCheck(true)
+
     HORDE.refresh_living_players = true
 
     if HORDE.start_game and HORDE.current_break_time <= 0 then
