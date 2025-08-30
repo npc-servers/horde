@@ -1,0 +1,41 @@
+"VertexLitGeneric"
+{
+	// Original shader: VertexLitTexture
+	"$basetexture" "models/Weapons/V_Gauss/glowCHROME"
+	"$bumpmap" "models/Weapons/V_Gauss/glowCHROME_nrm"
+	"$selfillum" 1
+	//"$envmapsphere"			1
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask"	"1"
+	"$envmaptint"	"[0.9 0.9 0.9]"
+	"$envmapfresnel"	"0"
+	
+	"Proxies"
+	{
+		"Sine"
+		{
+			"resultVar" "$selfIllumTint"
+			"sinemin" 0.25
+			"sinemax" 0.60
+			"sineperiod" 0.80
+		}
+		"TextureScroll"
+		{
+			"texturescrollvar" "$basetexturetransform"
+			"texturescrollrate" 4.5
+			"texturescrollangle" 90
+		}
+		"TextureScroll"
+		{
+			"texturescrollvar" "$bumptransform"
+			"texturescrollrate" -5
+			"texturescrollangle" 90
+		}
+		"TextureScroll"
+		{
+			"texturescrollvar" "$envmapmasktransform"
+			"texturescrollrate" -5
+			"texturescrollangle" 90
+		}
+	}
+}
