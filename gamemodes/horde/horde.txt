@@ -202,13 +202,21 @@
 		}
 		25
 		{
-			"name"		"horde_display_damage"
-			"text"		"Display damage."
+			"name"		"horde_allow_display_damage"
+			"text"		"Allow players to display damage numbers."
 			"type"		"CheckBox"
 			"default"	"1"
 			"singleplayer" ""
 		}
 		26
+		{
+			"name"		"horde_allow_display_debuffs"
+			"text"		"Allow players to display debuffs to enemies."
+			"type"		"CheckBox"
+			"default"	"1"
+			"singleplayer" ""
+		}
+		27
 		{
 			"name"		"horde_arccw_attinv_free"
 			"text"		"(ArcCW Only) Free Attachments"
@@ -216,7 +224,7 @@
 			"default"	"1"
 			"singleplayer" ""
 		}
-		27
+		28
 		{
 			"name"		"horde_total_enemies_scaling"
 			"text"		"Forced enemy scaling multi."
