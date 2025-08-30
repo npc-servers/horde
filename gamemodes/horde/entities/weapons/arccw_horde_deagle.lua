@@ -20,7 +20,7 @@ SWEP.DamageMin = 85
 
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 60 / 150
+SWEP.Delay = 60 / 200
 
 SWEP.ShootSound = "ArcCW_Horde.GSO.Deagle_Fire"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.Deagle_Fire_Sil"
