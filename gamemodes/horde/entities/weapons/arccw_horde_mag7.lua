@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 
 SWEP.Damage = 16
 SWEP.DamageMin = 6
+SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
 
@@ -99,4 +100,5 @@ sound.Add( {
     level = 140,
     pitch = 100,
     sound = {")arccw_go/mag7/mag7_distant_01.wav","arccw_go/mag7/mag7_distant_02.wav"}
+
 } )
