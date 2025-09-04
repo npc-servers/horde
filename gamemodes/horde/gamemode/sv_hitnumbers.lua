@@ -5,7 +5,7 @@ util.AddNetworkString("Horde_HitnumbersDebuffSpawn")
 local on = true
 
 hook.Add("PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function(target, dmginfo, took)
-	if not GetConVar("horde_display_damage"):GetBool() then return end
+	if not GetConVar("horde_allow_display_damage"):GetBool() then return end
     if not took then return end
 	local attacker         = dmginfo:GetAttacker()
 	local attackerIsPlayer = attacker:IsPlayer()
@@ -49,7 +49,7 @@ hook.Add("PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function(target, 
 end)
 
 hook.Add("Horde_PostEnemyDebuffApply", "Horde_HitnumbersDebuff", function (target, inflictor, debuff, pos)
-    if not GetConVar("horde_display_damage"):GetBool() then return end
+    if not GetConVar("horde_allow_display_debuffs"):GetBool() then return end
     if IsValid(inflictor) and inflictor:IsPlayer() then
         net.Start("Horde_HitnumbersDebuffSpawn", true)
 
