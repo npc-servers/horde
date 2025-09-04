@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 
 SWEP.Damage = 30
 SWEP.DamageMin = 16
+SWEP.Penetration = 10
 
 SWEP.Recoil = 2
 SWEP.RecoilSide = 1
@@ -78,4 +79,5 @@ sound.Add( {
     level = 140,
     pitch = 100,
     sound = "arccw_go/xm1014/xm1014-1-distant.wav"
+
 } )
