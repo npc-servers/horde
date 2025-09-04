@@ -279,7 +279,10 @@ local function siphoning_damage(ply, npc, bonus, hitgroup, dmginfo)
 end
 
 local function quicksilver_damage(ply, npc, bonus, hitgroup, dmginfo)
-    local percent = ply:Horde_GetWeight() / ply:Horde_GetMaxWeight()
+    local maxWeight = ply:Horde_GetMaxWeight()
+    local currentWeight = maxWeight - ply:Horde_GetWeight()
+    local percent = currentWeight / maxWeight
+
     if percent <= 0.15 then
         bonus.increase = bonus.increase + 0.3
     elseif percent <= 0.3 then
