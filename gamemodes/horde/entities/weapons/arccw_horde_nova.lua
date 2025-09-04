@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_nova.mdl"
 
 SWEP.Damage = 20
 SWEP.DamageMin = 8
+SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
 
@@ -76,4 +77,5 @@ sound.Add( {
     level = 140,
     pitch = 100,
     sound = "arccw_go/nova/nova-1-distant.wav"
+
 } )
