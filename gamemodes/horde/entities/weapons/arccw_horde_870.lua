@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_870.mdl"
 
 SWEP.Damage = 28
 SWEP.DamageMin = 12
+SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
 
@@ -85,4 +86,5 @@ sound.Add( {
     level = 140,
     pitch = 100,
     sound = "arccw_go/sawedoff/sawedoff-1-distant.wav"
+
 } )
