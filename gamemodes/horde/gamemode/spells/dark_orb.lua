@@ -71,4 +71,4 @@ SPELL.Upgrade_Description        = "Increases damage."
 SPELL.Upgrade_Prices             = function ( upgrade_level )
     return 550 + 50 * upgrade_level
 end
-SPELL.Levels          = { Artificer = 5 }
+SPELL.Levels          = { Artificer = 3 }
