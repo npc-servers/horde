@@ -54,6 +54,16 @@ ENT.EntitiesToNoCollide = {
 	"npc_manhack"
 }
 
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75
 ENT.HasAllies = true

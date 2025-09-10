@@ -47,6 +47,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
     if not ply:Horde_GetPerk("necromancer_eldritch_protection") then return end
     local attacker = dmginfo:GetAttacker()
     if HORDE:IsPlayerOrMinion(attacker) or dmginfo:GetDamage() <= 0 or not ply:Alive() then return end
+
     if (not ply.Horde_Eldritch_Shield_Cooldown) or (ply.Horde_Eldritch_Shield_Cooldown <= CurTime()) then
         ply:EmitSound("physics/glass/glass_cup_break2.wav")
         bonus.resistance = bonus.resistance + 0.4
@@ -59,8 +60,10 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
         dmg:SetAttacker(ply)
         dmg:SetInflictor(ply)
         dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-        dmg:SetDamage(150)
+        dmg:SetDamage(math.min(dmginfo:GetDamage() * 2, 300))
         util.BlastDamageInfo(dmg, ply:GetPos(), 200)
+
+        ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), math.min( 15, dmginfo:GetDamage() / 5 ) + ply:Horde_GetMind() ) )
 
         local effectdata = EffectData()
         effectdata:SetOrigin(ply:GetPos())
