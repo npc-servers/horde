@@ -43,7 +43,7 @@ function ENT:Initialize()
 
     self:SetCollisionGroup(COLLISION_GROUP_WORLD)
 
-    self.ExplodeTimer = CurTime() + 3 * ( self.Horde_Spell_Level + 1 )
+    self.ExplodeTimer = CurTime() + 3 + ( self.Horde_Spell_Level * 2 )
 
     self.Owner.Horde_Floating_Chaos = self
 
