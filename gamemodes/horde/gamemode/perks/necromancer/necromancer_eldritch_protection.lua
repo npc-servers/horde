@@ -60,10 +60,10 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
         dmg:SetAttacker(ply)
         dmg:SetInflictor(ply)
         dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-        dmg:SetDamage(math.min(dmginfo:GetDamage() * 2, 300))
-        util.BlastDamageInfo(dmg, ply:GetPos(), 200)
+        dmg:SetDamage(math.min(dmginfo:GetDamage() * 4, 300))
+        util.BlastDamageInfo(dmg, ply:GetPos(), 300)
 
-        ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), math.min( 15, dmginfo:GetDamage() / 5 ) + ply:Horde_GetMind() ) )
+        ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), math.floor( dmginfo:GetDamage() ) + ply:Horde_GetMind() ) )
 
         local effectdata = EffectData()
         effectdata:SetOrigin(ply:GetPos())
