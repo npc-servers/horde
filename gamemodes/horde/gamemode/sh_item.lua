@@ -649,11 +649,11 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "SG556", "arccw_horde_sg556", 3000, 7,
         "SIG SG 556.\nAn assault rifle manufactured by Sig Sauer AG.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
+        { Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "AUG", "arccw_horde_aug", 3000, 7,
         "Steyr AUG.\nAn Austrian bullpup assault rifle.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
+        { Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "F2000", "arccw_horde_f2000", 3250, 7,
         "FN F2000.\nAn ambidextrous bullpup rifle developed by FN. \nEquipped with an M203 underbarrel incendiary grenade launcher.\nPress USE+RELOAD to equip M203.",
