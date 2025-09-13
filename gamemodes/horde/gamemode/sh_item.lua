@@ -732,7 +732,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Rifle", "SSG08 Medic SR", "arccw_horde_medic_rifle", 1500, 6,
         "A medic sniper rifle that shoots healing darts.\nDamages enemies and heals players.",
-        { Assault = true, SpecOps = true, Reverend = true, Medic = true, Hatcher = true, Ghost = true, Gunslinger = true },
+        { Medic = true, Hatcher = true, Ghost = true, Gunslinger = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "ACR Medic AR", "arccw_horde_medic_acr", 3000, 8,
         "Remington Adaptive Combat Rifle.\nEquipped with healing dart and medic grenade launcher.\n\nPress USE+RELOAD to equip medic grenade launcher.\nPress B or ZOOM to fire healing dart.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
