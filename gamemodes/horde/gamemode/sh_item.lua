@@ -641,19 +641,19 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "AK47", "arccw_horde_ak47", 3000, 7,
         "Avtomat Kalashnikova.\nA gas-operated, 7.62x39mm assault rifle developed in the Soviet Union.",
-        { Assault = true, SpecOps = true, Reverend = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "M4A1", "arccw_horde_m4", 3000, 7,
         "Colt M4.\nA 5.56x45mm NATO, air-cooled, gas-operated, select fire carbine.",
-        { Assault = true, SpecOps = true, Reverend = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "SG556", "arccw_horde_sg556", 3000, 7,
         "SIG SG 556.\nAn assault rifle manufactured by Sig Sauer AG.",
-        { Assault = true, SpecOps = true, Reverend = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "AUG", "arccw_horde_aug", 3000, 7,
         "Steyr AUG.\nAn Austrian bullpup assault rifle.",
-        { Assault = true, SpecOps = true, Reverend = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "F2000", "arccw_horde_f2000", 3250, 7,
         "FN F2000.\nAn ambidextrous bullpup rifle developed by FN. \nEquipped with an M203 underbarrel incendiary grenade launcher.\nPress USE+RELOAD to equip M203.",
@@ -673,7 +673,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Rifle", "Springfield M14", "arccw_horde_m14", 1250, 4,
         "Springfield semi-auto rifle.\nClassic, affordable, zombie-killing machine.",
-        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Ghost = true, Gunslinger = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "Winchester LAR", "arccw_horde_winchester", 1000, 4,
         "Winchester Lever Action Rifle.\nAn all-time classic.",
@@ -732,7 +732,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Rifle", "SSG08 Medic SR", "arccw_horde_medic_rifle", 1500, 6,
         "A medic sniper rifle that shoots healing darts.\nDamages enemies and heals players.",
-        { Medic = true, Hatcher = true, Ghost = true, Gunslinger = true },
+        { Assault = true, SpecOps = true, Reverend = true, Medic = true, Hatcher = true, Ghost = true, Gunslinger = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "ACR Medic AR", "arccw_horde_medic_acr", 3000, 8,
         "Remington Adaptive Combat Rifle.\nEquipped with healing dart and medic grenade launcher.\n\nPress USE+RELOAD to equip medic grenade launcher.\nPress B or ZOOM to fire healing dart.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
@@ -740,7 +740,7 @@ function HORDE:GetDefaultItemsData()
         10, 10, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "Rifle", "M16 M203", "arccw_horde_m16m203", 2250, 7,
         "M16A4 equipped with an M203 underbarrel grenade launcher.\nPress USE+RELOAD to equip M203.",
-        { Assault = true, SpecOps = true, Reverend = true, Demolition = true },
+        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Demolition = true },
         10, 10, nil, nil, { Assault = 2, Demolition = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST } )
 
     HORDE:CreateItem( "MG", "AUG HBAR", "arccw_horde_aug_hbar", 2000, 9,
