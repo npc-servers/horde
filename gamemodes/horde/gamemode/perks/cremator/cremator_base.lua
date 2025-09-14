@@ -4,7 +4,7 @@ The Cremator builds its offense and defense around Fire damage.
 Complexity: EASY
 
 {8} increased Fire damage resistance and immune to Ignite.
-Regenerate a Molotov every 45 seconds.
+Regenerate a Molotov every 30 seconds.
 Attacks have {5} chance to Ignite enemies.
 {1} increased Ignite damage. ({3} per level, up to {4}).
 
@@ -26,7 +26,7 @@ PERK.Hooks = {}
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if SERVER and perk == "cremator_base" then
         ply:Horde_SetApplyIgniteChance(ply:Horde_GetApplyIgniteChance() + 0.25)
-        timer.Create("Horde_CrematorBase" .. ply:SteamID(), 45, 0, function ()
+        timer.Create("Horde_CrematorBase" .. ply:SteamID(), 30, 0, function ()
             if not ply:IsValid() or not ply:Alive() then return end
             if HORDE.items["arccw_thr_horde_molotov"] then
                 if not ply:HasWeapon("arccw_thr_horde_molotov") then
