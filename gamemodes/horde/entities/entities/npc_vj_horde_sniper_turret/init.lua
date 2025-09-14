@@ -5,7 +5,7 @@ include('shared.lua')
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/combine_turrets/ground_turret.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = "models/combine_turrets/floor_turret.mdl" -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 400
 ENT.SightDistance = 8000
 ENT.HullType = HULL_HUMAN
@@ -87,14 +87,19 @@ ENT.Horde_Immune_Status = {
 }
 ENT.Immune_AcidPoisonRadiation = true
 
-function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(13, 13, 60), Vector(-13, -13, 0))
-	self:SetModelScale(1.5)
+function ENT:CustomOnInitialize() -- phoenix_storms/stripes
+	self:SetModelScale(1.3, 0)
+	self:SetCollisionBounds(Vector(15, 15, 60), Vector(-15, -15, 0))
 	self:PhysicsInit(SOLID_VPHYSICS)
+	self:SetCollisionGroup(COLLISION_GROUP_WORLD)
 
-	timer.Simple(0.1, function ()
-		self:SetAngles(Angle(0,0,180))
-		HORDE:DropTurret(self)
+	self:SetMaterial("phoenix_storms/stripes")
+	self:SetColor(Color(150, 0, 0))
+
+	timer.Simple(0, function()
+		timer.Simple(0.1, function()
+			HORDE:DropTurret(self)
+		end)
 	end)
 end
 
@@ -171,18 +176,9 @@ end
 VJ.AddNPC("Sniper Turret","npc_vj_horde_sniper_turret", "Horde")
 ENT.Horde_TurretMinion = true
 
--- This is the only turret that really needs the cooldown as it tends to get stuck in the ground without one
-ENT.Horde_PickupCooldown = ENT.Horde_PickupCooldown or 0
-
 function ENT:Follow(ply)
 	if self:GetNWEntity("HordeOwner") ~= ply then return end
-	if self.Horde_PickupCooldown > CurTime() then
-		HORDE:SendNotification("Please wait to pick up your turret again...", 1, ply)
-		return
-	end
 
 	self:GetPhysicsObject():EnableMotion(true)
 	ply:PickupObject(self)
-
-	self.Horde_PickupCooldown = CurTime() + 0.57
 end

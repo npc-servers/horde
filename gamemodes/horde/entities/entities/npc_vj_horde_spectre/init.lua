@@ -75,6 +75,16 @@ ENT.EntitiesToNoCollide = {
 	"npc_manhack"
 }
 
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.HasWorldShakeOnMove = false -- Should the world shake when it's moving?
 ENT.WorldShakeOnMoveAmplitude = 5 -- How much the screen will shake | From 1 to 16, 1 = really low 16 = really high
 ENT.WorldShakeOnMoveRadius = 200 -- How far the screen shake goes, in world units

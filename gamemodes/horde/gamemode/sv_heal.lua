@@ -99,7 +99,7 @@ function HORDE:OnPlayerHeal(ply, healinfo, silent)
         return
     end
 	if ply:GetInfoNum("horde_heal_flash", 1) == 1 then
-	    ply:ScreenFade(SCREENFADE.IN, Color(50, 200, 50, 10), 0.3, 0)
+	    ply:ScreenFade(SCREENFADE.IN, Color(50, 200, 50, 5), 0.15, 0)
 	end
 end
 

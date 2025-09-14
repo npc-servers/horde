@@ -20,7 +20,7 @@ SPELL.Fire           = function ( ply, wpn, charge_stage )
 
         local level = ply:Horde_GetSpellUpgrade( "dark_orb" )
         ent:SetSpellLevel( level )
-        ent:SetSpellBaseDamages( { math.floor( 25 + math.pow( level, 1.1 ) * 5.5 ), math.floor( 10 + math.pow( level, 1.1 ) * 7 ) } )
+        ent:SetSpellBaseDamages( { math.floor( 25 + ( level ^ 1.1 ) * 5.5 ), math.floor( 10 + ( level ^ 1.1 ) * 7 ) } )
         ent:SetPos( pos )
         ent:SetAngles( angles )
         hook.Run( "Horde_OnDraconicCheck", ply, ent )
@@ -30,7 +30,7 @@ SPELL.Fire           = function ( ply, wpn, charge_stage )
         if ( not IsValid( phys ) ) then ent:Remove() return end
         local velocity = dir
         velocity:Normalize()
-        velocity = velocity * 750
+        velocity = velocity * 2000
         if charge_stage == 4 then
             velocity = velocity * 1.25
         end
@@ -71,4 +71,4 @@ SPELL.Upgrade_Description        = "Increases damage."
 SPELL.Upgrade_Prices             = function ( upgrade_level )
     return 550 + 50 * upgrade_level
 end
-SPELL.Levels          = { Artificer = 5 }
+SPELL.Levels          = { Artificer = 3 }

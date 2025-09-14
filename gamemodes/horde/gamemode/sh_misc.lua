@@ -67,10 +67,12 @@ end)
 end
 -- Draw the antimatter shield
 
-function HORDE:traceSolidIgnoreAllies(ply)
+function HORDE:traceSolidIgnoreAllies(ply, range)
+    if not range then range = 80000 end
+
     local tr = util.TraceLine({
         start = ply:GetShootPos(),
-        endpos = ply:GetShootPos() + ply:GetAimVector() * 80000,
+        endpos = ply:GetShootPos() + ply:GetAimVector() * range,
         filter = function(ent)
             if not IsValid(ent) then return true end
             if HORDE:IsPlayerOrMinion(ent) then return false end

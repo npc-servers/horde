@@ -57,7 +57,7 @@ PERK.Hooks.PlayerSwitchFlashlight = function (ply, switchOn)
         net.Send(ply)
         ply.Horde_In_Frenzy_Mode = true
         ply.Horde_HealthDegenCurTime = CurTime()
-        ply:ScreenFade(SCREENFADE.STAYOUT, Color(200, 112, 121, 50), 0.2, 5)
+        ply:ScreenFade(SCREENFADE.STAYOUT, Color(200, 112, 121, 20), 0.2, 5)
     else
         -- Disable Frenzy mode
         net.Start("Horde_SyncStatus")

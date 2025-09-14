@@ -364,7 +364,7 @@ hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
     hook.Run("Horde_ResetStatus", ply)
     net.Start("Horde_ClearStatus")
     net.Send(ply)
-    ply:SetCustomCollisionCheck(true)
+
     HORDE.refresh_living_players = true
 
     if HORDE.start_game and HORDE.current_break_time <= 0 then
@@ -449,24 +449,25 @@ hook.Add("PlayerCanPickupWeapon", "Horde_Economy_Pickup", function (ply, wpn)
 
     if HORDE.items[wpn:GetClass()] then
         local item = HORDE.items[wpn:GetClass()]
+        local class = ply:Horde_GetCurrentSubclass()
         if (ply:Horde_GetWeight() - item.weight < 0) then
             return false
         end
         if ply:Horde_GetCurrentSubclass() == "Gunslinger" and item.category == "Pistol" then return true end
-        if (item.whitelist and (not item.whitelist[ply:Horde_GetClass().name])) then
+        if (item.whitelist and (not item.whitelist[class])) then
             return false
         end
 
         if item.starter_classes then
-            if (item.class == "horde_void_projector" and ply:Horde_GetCurrentSubclass() ~= "Necromancer") or
-               (item.class == "horde_solar_seal" and ply:Horde_GetCurrentSubclass() ~= "Artificer") or
-               (item.class == "horde_astral_relic" and ply:Horde_GetCurrentSubclass() ~= "Warlock") or
-               (item.class == "horde_carcass" and ply:Horde_GetCurrentSubclass() ~= "Carcass") or
-               (item.class == "horde_pheropod" and ply:Horde_GetCurrentSubclass() ~= "Hatcher") then
+            if (item.class == "horde_void_projector" and class ~= "Necromancer") or
+               (item.class == "horde_solar_seal" and class ~= "Artificer") or
+               (item.class == "horde_astral_relic" and class ~= "Warlock") or
+               (item.class == "horde_carcass" and class ~= "Carcass") or
+               (item.class == "horde_pheropod" and class ~= "Hatcher") then
                 return false
             end
         end
-        if ply:Horde_GetCurrentSubclass() == "Carcass"
+        if class == "Carcass"
         and (item.class ~= "horde_carcass" and item.class ~= "weapon_horde_medkit") then
             return false
         end
@@ -480,14 +481,15 @@ end)
 
 hook.Add("WeaponEquip", "Horde_Economy_Equip", function (wpn, ply)
     if not ply:IsValid() then return end
+    local class = ply:Horde_GetCurrentSubclass()
     if HORDE.items[wpn:GetClass()] then
         local item = HORDE.items[wpn:GetClass()]
-        if ply:Horde_GetCurrentSubclass() == "Gunslinger" and item.category == "Pistol" then
+        if class == "Gunslinger" and item.category == "Pistol" then
             ply:Horde_AddWeight(-item.weight)
             ply:Horde_SyncEconomy()
             return
         end
-        if (ply:Horde_GetWeight() - item.weight < 0) or (item.whitelist and (not item.whitelist[ply:Horde_GetClass().name])) then
+        if (ply:Horde_GetWeight() - item.weight < 0) or (item.whitelist and (not item.whitelist[class])) then
             timer.Simple(0, function ()
                 ply:DropWeapon(wpn)
             end)
@@ -725,37 +727,46 @@ function GM:PlayerUse(other_ply, target)    -- This will make it to be default b
 end
 
 function HORDE:DropTurret(ent)
+    local turret_class = ent:GetClass()
     local turret_pos = ent:GetPos()
-    local tr = util.TraceLine({
+
+    local tr = util.TraceHull({
         start = turret_pos,
-        endpos = turret_pos + Vector(0,0,-1) * 10000,
-        filter = ent,
-        collisiongroup =  COLLISION_GROUP_WORLD
+        endpos = turret_pos + Vector(0, 0, -1) * 10000,
+        mins = ent:OBBMins(),
+        maxs = ent:OBBMaxs(),
+        filter = {"prop_static", "prop_dynamic"},
+        whitelist = true,
+        mask = MASK_SOLID,
     })
 
     if IsValid(tr.Entity) or tr.HitWorld then
         local dist_sqr = turret_pos:DistToSqr(tr.HitPos)
         -- If you drop turrets from somewhere too high, they will just fall over.
         if dist_sqr >= 40000 then return end
-        ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z))
+        ent:SetPos(Vector(turret_pos.x, turret_pos.y, tr.HitPos.z) + vector_up)
 
         if not ent:IsValid() then return end
-        ent:GetPhysicsObject():EnableMotion(false)
+        timer.Simple(0, function()
+            local phys = ent:GetPhysicsObject()
+            if phys then
+                phys:EnableMotion(false)
+            end
+        end)
     end
+
+    -- Turrets should always stay straight.
+    local ang = ent:GetAngles()
+    ang.p = 0
+    ang.r = 0
+    if turret_class == "npc_vj_horde_rocket_turret" or ent:GetClass() == "npc_vj_horde_laser_turret" then
+        ang.y = 0
+    end
+    ent:SetAngles(ang)
 end
 
 hook.Add("OnPlayerPhysicsDrop", "Horde_TurretDrop", function (ply, ent, thrown)
     if ent:GetNWEntity("HordeOwner") and ent.Horde_TurretMinion then
-        -- Turrets should always stay straight.
-        local a = ent:GetAngles()
-        if ent:GetClass() == "npc_vj_horde_sniper_turret" then
-            ent:SetAngles(Angle(a.x,a.y,180))
-        elseif ent:GetClass() == "npc_vj_horde_rocket_turret" || ent:GetClass() == "npc_vj_horde_laser_turret" then
-            ent:SetAngles(angle_zero)
-        else
-            ent:SetAngles(Angle(0, a.y, 0))
-        end
-
         HORDE:DropTurret(ent)
     end
 end)
