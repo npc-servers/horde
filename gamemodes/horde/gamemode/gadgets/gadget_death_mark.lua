@@ -19,9 +19,11 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if CLIENT then return end
     if ply:Horde_GetGadget() ~= "gadget_death_mark" then return end
 
-    local ent = util.TraceLine(util.GetPlayerTrace(ply)).Entity
+    local ent = HORDE:traceSolidIgnoreAllies(ply, 32768).Entity
 
     if ent:IsValid() and ent:IsNPC() and (not ent:GetNWEntity("HordeOwner"):IsValid()) then
+        ply:Horde_SetGadgetCooldown(2)
+
         local id = ent:GetCreationID()
         timer.Remove("Horde_DeathMarkExpire" .. id)
         if ply.Horde_Death_Mark_Target and ply.Horde_Death_Mark_Target:IsValid() and ply.Horde_Death_Mark_Target ~= ent then
@@ -44,6 +46,8 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
             ent.Horde_Has_Death_Mark = nil
         end)
     else
+        ply:EmitSound( "items/suitchargeno1.wav" )
+        ply:Horde_SetGadgetCooldown(0.25)
         return true
     end
 end

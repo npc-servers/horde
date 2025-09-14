@@ -238,6 +238,9 @@ function HORDE:RaiseSpectre(ply, param, p2)
     if param and param.greater_spectre then
         spell_name = "raise_greater_spectre"
     end
+    if param and param.hulk_spectre then
+        spell_name = "raise_hulk_spectre"
+    end
     local level = ply:Horde_GetSpellUpgrade(spell_name)
     local p = {level = level}
     hook.Run("Horde_OnRaiseSpectre", ply, p)

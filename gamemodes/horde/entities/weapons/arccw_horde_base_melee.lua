@@ -1,13 +1,11 @@
 SWEP.Base = "arccw_base_melee"
 
 function SWEP:MeleeAttack(melee2)
-    local reach = 32 + self:GetBuff_Add("Add_MeleeRange") + self.MeleeRange
-    local dmg = self:GetBuff_Override("Override_MeleeDamage", self.MeleeDamage) or 20
+    local reach = melee2 and self.Melee2Range or self.MeleeRange
+    local dmg = melee2 and self.Melee2Damage or self.MeleeDamage
 
-    if melee2 then
-        reach = 32 + self:GetBuff_Add("Add_MeleeRange") + self.Melee2Range
-        dmg = self:GetBuff_Override("Override_MeleeDamage", self.Melee2Damage) or 20
-    end
+    reach = 32 + self:GetBuff_Add("Add_MeleeRange") + reach
+    dmg = self:GetBuff_Override("Override_MeleeDamage", dmg) or 20
 
     dmg = dmg * self:GetBuff_Mult("Mult_MeleeDamage")
 
@@ -35,8 +33,10 @@ function SWEP:MeleeAttack(melee2)
         })
     end
 
+    local hitent = tr.Entity
+
     -- Backstab damage if applicable
-    local backstab = tr.Hit and self:CanBackstab(melee2, tr.Entity)
+    local backstab = tr.Hit and self:CanBackstab(melee2, hitent)
     if backstab then
         if melee2 then
             local bs_dmg = self:GetBuff_Override("Override_Melee2DamageBackstab", self.Melee2DamageBackstab)
@@ -58,7 +58,7 @@ function SWEP:MeleeAttack(melee2)
     -- We need the second part for single player because SWEP:Think is ran shared in SP
     if !(game.SinglePlayer() and CLIENT) then
         if tr.Hit then
-            if tr.Entity:IsNPC() or tr.Entity:IsNextBot() or tr.Entity:IsPlayer() then
+            if hitent:IsNPC() or hitent:IsNextBot() or hitent:IsPlayer() then
                 self:MyEmitSound(self.MeleeHitNPCSound, 75, 100, 1, CHAN_USER_BASE + 2)
             else
                 self:MyEmitSound(self.MeleeHitSound, 75, 100, 1, CHAN_USER_BASE + 2)
@@ -75,37 +75,28 @@ function SWEP:MeleeAttack(melee2)
         end
     end
 
-    if SERVER and IsValid(tr.Entity) and (tr.Entity:IsNPC() or tr.Entity:IsPlayer() or tr.Entity:Health() > 0) then
+    if SERVER and IsValid(hitent) and (hitent:IsNPC() or hitent:IsPlayer() or hitent:Health() > 0) then
         local attacker = self:GetOwner()
         if !IsValid(attacker) then attacker = self end
 
-        self:FireBullets({
-            Attacker = attacker,
-            Inflictor = self,
-            Damage = dmg,
-            Tracer = -1,
-            Distance = reach,
-            Dir = tr.HitPos - self:GetOwner():GetShootPos(),
-            Src = self:GetOwner():GetShootPos(),
-            Callback = function(att, trb, dmginfo)
-                dmginfo:SetDamage(dmg)
-                dmginfo:SetDamageForce(self:GetOwner():GetRight() * -4912 + self:GetOwner():GetForward() * 9989)
-                dmginfo:SetDamageType(self:GetBuff_Override("Override_MeleeDamageType") or self.MeleeDamageType or DMG_CLUB)
+        local dmginfo = DamageInfo()
+        dmginfo:SetDamage(dmg)
+        dmginfo:SetAttacker(attacker)
+        dmginfo:SetInflictor(self)
+        dmginfo:SetDamageType(self:GetBuff_Override("Override_MeleeDamageType") or self.MeleeDamageType or DMG_CLUB)
+        dmginfo:SetDamagePosition(tr.HitPos)
+	dmginfo:SetDamageForce(self:GetOwner():GetRight() * -4912 + self:GetOwner():GetForward() * 9989)
 
-                if (not trb.Entity:IsValid()) or (not trb.Entity:IsNPC()) then
-                    tr.Entity:TakeDamageInfo(dmginfo)
-                end
-            end
-        })
+        hitent:DispatchTraceAttack(dmginfo, tr, tr.Normal)
 
-        if tr.Entity:GetClass() == "func_breakable_surf" then
-            tr.Entity:Fire("Shatter", "0.5 0.5 256")
+        if hitent:GetClass() == "func_breakable_surf" then
+            hitent:Fire("Shatter", "0.5 0.5 256")
         end
 
     end
 
-    if SERVER and IsValid(tr.Entity) and IsValid(self:GetOwner()) then
-        local phys = tr.Entity:GetPhysicsObject()
+    if SERVER and IsValid(hitent) and IsValid(self:GetOwner()) then
+        local phys = hitent:GetPhysicsObject()
         if IsValid(phys) then
             phys:ApplyForceOffset(self:GetOwner():GetAimVector() * 80 * phys:GetMass(), tr.HitPos)
         end

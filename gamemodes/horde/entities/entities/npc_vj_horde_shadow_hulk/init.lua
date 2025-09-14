@@ -6,7 +6,7 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/horde/hulk/hulk.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 100
+ENT.StartHealth = 200
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
@@ -53,6 +53,16 @@ ENT.EntitiesToNoCollide = {
 	"npc_vj_horde_combat_bot",
 	"npc_manhack"
 }
+
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
 
 ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75
@@ -119,7 +129,8 @@ function ENT:CustomOnInitialize()
     self:SetRenderMode(RENDERMODE_TRANSCOLOR)
     self:SetColor(Color(0, 0, 50, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
-	self:SetHealth(2 * (90 + 32 * self.properties.level))
+	self.StartHealth = math.floor(self.StartHealth + 85 * self.properties.level)
+	self:SetHealth(self.StartHealth)
 	self:AddRelationship("npc_manhack D_LI 99")
     --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end

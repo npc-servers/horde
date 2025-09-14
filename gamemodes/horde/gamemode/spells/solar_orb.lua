@@ -17,7 +17,7 @@ SPELL.Fire           = function (ply, wpn, charge_stage)
         ent:SetCharged(charge_stage - 1)
         local level = ply:Horde_GetSpellUpgrade("solar_orb")
         ent:SetSpellLevel(level)
-        ent:SetSpellBaseDamages({math.floor(25 + math.pow(level, 1.1) * 5.5), math.floor(10 + math.pow(level, 1.1) * 7)})
+        ent:SetSpellBaseDamages({math.floor(25 + (level ^ 1.1) * 5.5), math.floor(10 + (level ^ 1.1) * 7)})
         ent:SetPos( pos )
         ent:SetAngles( angles )
         hook.Run("Horde_OnDraconicCheck", ply, ent)
@@ -27,7 +27,7 @@ SPELL.Fire           = function (ply, wpn, charge_stage)
         if (!IsValid( phys )) then ent:Remove() return end
         local velocity = dir
         velocity:Normalize()
-        velocity = velocity * 1000
+        velocity = velocity * 2000
         if charge_stage == 4 then
             velocity = velocity * 1.25
         end
