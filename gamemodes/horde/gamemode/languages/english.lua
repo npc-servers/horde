@@ -356,7 +356,7 @@ Complexity: EASY
 
 {8} increased Fire damage resistance and immune to Ignite.
 Attacks have {5} chance to Ignite enemies.
-Regenerate a Molotov every 45 seconds.
+Regenerate a Molotov every 30 seconds.
 {1} increased Ignite damage. ({3} per level, up to {4}).
 
 Ignite base duration is {6} and deals damage over time based on hit damage.
@@ -1048,16 +1048,12 @@ LANGUAGE["Item_F2000"] = [[F2000]]
 LANGUAGE["Item_Desc_F2000"] = [[
 FN F2000.
 An ambidextrous bullpup rifle developed by FN.
-Equipped with an M203 underbarrel incendiary grenade launcher.
-Press USE+RELOAD to equip M203.
 ]]
 
 LANGUAGE["Item_Tavor"] = [[Tavor]]
 LANGUAGE["Item_Desc_Tavor"] = [[
 IWI Tavor-21.
 Designed to maximize reliability, durability, and simplicity.
-Equipped with an M203 underbarrel shock grenade launcher.
-Press USE+RELOAD to equip M203.
 ]]
 
 

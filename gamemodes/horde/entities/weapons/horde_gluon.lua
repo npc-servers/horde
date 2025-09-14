@@ -160,7 +160,7 @@ function SWEP:PrimaryAttack()
     bullet.Force = self.Primary.Force
     bullet.Damage = self.Primary.Damage
     bullet.AmmoType = self.Primary.Ammo
-    bullet.Distance = 1000
+    bullet.Distance = 2500
     bullet.Callback = function (ent, tr, dmginfo)
         dmginfo:SetDamageType(DMG_BURN)
         local dmg = DamageInfo()
