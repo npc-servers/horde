@@ -22,6 +22,22 @@ SWEP.DamageType = DMG_BURN
 SWEP.Recoil = 0.42
 SWEP.RecoilSide = 0.35
 
+SWEP.Firemodes = {
+    {
+        Mode = 3,
+        PrintName = "Incendiary"
+    },
+    {
+        Mode = 2,
+    },
+    {
+        Mode = 1,
+    },
+    {
+        Mode = 0
+    }
+}
+
 SWEP.ShootSound = "ArcCW_Horde.MW2.F2000_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.F2000_Mech"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.MW2.F2000_Fire_Sil"
@@ -64,6 +80,14 @@ SWEP.Attachments = {
         },
     },
 }
+
+function SWEP:Hook_ShouldNotFire()
+    if self:GetCurrentFiremode().Mode ~= 3 then
+        self.DamageType = DMG_BULLET
+    else
+        self.DamageType = DMG_BURN
+    end
+end
 
 sound.Add( {
     name = "ArcCW_Horde.MW2.F2000_Fire",

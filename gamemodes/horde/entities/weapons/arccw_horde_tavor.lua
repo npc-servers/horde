@@ -19,6 +19,22 @@ SWEP.Damage = 69
 SWEP.DamageMin = 59
 SWEP.DamageType = DMG_SHOCK
 
+SWEP.Firemodes = {
+    {
+        Mode = 3,
+        PrintName = "Shock"
+    },
+    {
+        Mode = 2,
+    },
+    {
+        Mode = 1,
+    },
+    {
+        Mode = 0
+    }
+}
+
 SWEP.ShootSound = "ArcCW_Horde.MW2.Tavor_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.Tavor_Mech"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.MW2.Tavor_Fire_Sil"
@@ -54,17 +70,39 @@ SWEP.Attachments = {
     },
 }
 
-if SERVER then
-    SWEP.Hook_BulletHit = function(wep, data)
-        local att = data.att
-        local entHit = data.tr.Entity
-
-        if HORDE:IsEnemy(entHit) then
-            entHit:Horde_AddDebuffBuildup(HORDE.Status_Shock, 4, att)
-        end
+function SWEP:Hook_ShouldNotFire()
+    if self:GetCurrentFiremode().Mode ~= 3 then
+        self.DamageType = DMG_BULLET
+    else
+        self.DamageType = DMG_SHOCK
     end
 end
 
+if SERVER then
+    SWEP.Hook_BulletHit = function(wep, data)
+        local att = data.att
+
+        local tr = data.tr
+        local entHit = tr.Entity
+        local hitPos = tr.HitPos
+
+        local bulletDmg = data.damage
+
+        if wep:GetCurrentFiremode().Mode == 3 then
+            if HORDE:IsEnemy(entHit) then
+                local elementDmg = DamageInfo()
+                elementDmg:SetDamage(bulletDmg * 0.1)
+                elementDmg:SetAttacker(att)
+                elementDmg:SetInflictor(wep)
+                elementDmg:SetDamageType(DMG_SHOCK)
+                elementDmg:SetDamagePosition(hitPos)
+
+                entHit:TakeDamageInfo(elementDmg)
+                entHit:Horde_AddDebuffBuildup(HORDE.Status_Shock, bulletDmg * 0.5, att)
+            end
+        end
+    end
+end
 sound.Add( {
     name = "ArcCW_Horde.MW2.Tavor_Fire",
     channel = CHAN_WEAPON,
