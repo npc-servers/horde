@@ -97,20 +97,11 @@ if SERVER then
 
         local tr = data.tr
         local entHit = tr.Entity
-        local hitPos = tr.HitPos
 
         local bulletDmg = data.damage
 
         if wep:GetCurrentFiremode().Mode == 3 then
             if HORDE:IsEnemy(entHit) then
-                local elementDmg = DamageInfo()
-                elementDmg:SetDamage(bulletDmg * 0.1)
-                elementDmg:SetAttacker(att)
-                elementDmg:SetInflictor(wep)
-                elementDmg:SetDamageType(DMG_REMOVENORAGDOLL)
-                elementDmg:SetDamagePosition(hitPos)
-
-                entHit:TakeDamageInfo(elementDmg)
                 entHit:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, bulletDmg * 0.5, att)
             end
         end
