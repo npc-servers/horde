@@ -12,7 +12,7 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "SCAR-LOS"
+SWEP.PrintName = "SCAR-L"
 
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_slog_scarlol.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_galil.mdl"
@@ -20,6 +20,23 @@ SWEP.WorldModel = "models/weapons/w_rif_galil.mdl"
 SWEP.Damage = 73
 SWEP.DamageMin = 62
 SWEP.DamageType = DMG_REMOVENORAGDOLL
+
+SWEP.Firemodes = {
+    {
+        Mode = 3,
+        PrintName = "Cryo"
+    },
+    {
+        Mode = 2,
+    },
+    {
+        Mode = 1,
+    },
+    {
+        Mode = 0
+    }
+}
+
 
 SWEP.ShootSound = "ArcCW_Horde.MW2.SCARLOS_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.SCARLOS_Mech"
@@ -66,13 +83,27 @@ SWEP.Attachments = {
     },
 }
 
+function SWEP:Hook_ShouldNotFire()
+    if self:GetCurrentFiremode().Mode ~= 3 then
+        self.DamageType = DMG_BULLET
+    else
+        self.DamageType = DMG_REMOVENORAGDOLL
+    end
+end
+
 if SERVER then
     SWEP.Hook_BulletHit = function(wep, data)
         local att = data.att
-        local entHit = data.tr.Entity
 
-        if HORDE:IsEnemy(entHit) then
-            entHit:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 4, att)
+        local tr = data.tr
+        local entHit = tr.Entity
+
+        local bulletDmg = data.damage
+
+        if wep:GetCurrentFiremode().Mode == 3 then
+            if HORDE:IsEnemy(entHit) then
+                entHit:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, bulletDmg * 0.5, att)
+            end
         end
     end
 end
