@@ -12,7 +12,7 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "SCAR-LOS"
+SWEP.PrintName = "SCAR-L"
 
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_slog_scarlol.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_galil.mdl"
