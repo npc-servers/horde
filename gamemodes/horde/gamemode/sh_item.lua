@@ -663,8 +663,8 @@ function HORDE:GetDefaultItemsData()
         "IWI Tavor-21.\nDesigned to maximize reliability, durability, and simplicity.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or electrofied rounds that deal Lightning damage and build up Shock.",
         { Assault = true, SpecOps = true, Reverend = true, Warden = true },
         10, 10, nil, nil, { Assault = 2, Warden = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING } )
-    HORDE:CreateItem( "Rifle", "SCAR-LOS", "arccw_horde_scarl", 3500, 8,
-        "FN SCAR-LOS.\nAn assault rifle developed by Belgian manufacturer FN Herstal.\nSpecialized \"LOS\" version, chambered in 5.56x45mm NATO.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or cryogenic rounds that deal Cold damage and build up Frostbite.",
+    HORDE:CreateItem( "Rifle", "SCAR-L", "arccw_horde_scarl", 3500, 8,
+        "FN SCAR-L.\nAn assault rifle developed by Belgian manufacturer FN Herstal.\nSpecialized compact version, chambered in 5.56x45mm NATO.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or cryogenic rounds that deal Cold damage and build up Frostbite.",
         { Assault = true, SpecOps = true, Reverend = true, Ghost = true, Gunslinger = true },
         15, 10, nil, nil, { Assault = 2, Ghost = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_COLD } )
     HORDE:CreateItem( "Rifle", "OSIPR", "arccw_horde_ar2", 3500, 9, "Overwatch Standard Issue Pulse Rifle.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or energy balls that deal Lightning damage and builds up Shock.",
