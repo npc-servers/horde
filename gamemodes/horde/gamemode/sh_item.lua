@@ -663,7 +663,7 @@ function HORDE:GetDefaultItemsData()
         "IWI Tavor-21.\nDesigned to maximize reliability, durability, and simplicity.",
         { Assault = true, SpecOps = true, Reverend = true, Warden = true },
         10, 10, nil, nil, { Assault = 2, Warden = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING } )
-    HORDE:CreateItem( "Rifle", "SCAR-LOS", "arccw_horde_scarl", 3500, 8,
+    HORDE:CreateItem( "Rifle", "Scar-LOS", "arccw_horde_scarl", 3500, 8,
         "FN SCAR-L.\nAn assault rifle developed by Belgian manufacturer FN Herstal.\nLight version, chambered in 5.56x45mm NATO.",
         { Assault = true, SpecOps = true, Reverend = true, Ghost = true, Gunslinger = true },
         15, 10, nil, nil, { Assault = 2, Ghost = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_COLD } )
