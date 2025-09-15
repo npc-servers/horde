@@ -24,7 +24,7 @@ SWEP.DamageType = DMG_REMOVENORAGDOLL
 SWEP.Firemodes = {
     {
         Mode = 3,
-        PrintName = "Frostbite"
+        PrintName = "Cryo"
     },
     {
         Mode = 2,
