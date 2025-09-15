@@ -656,15 +656,15 @@ function HORDE:GetDefaultItemsData()
         { Assault = true, SpecOps = true, Reverend = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "F2000", "arccw_horde_f2000", 3250, 7,
-        "FN F2000.\nAn ambidextrous bullpup rifle developed by FN.",
+        "FN F2000.\nAn ambidextrous bullpup rifle developed by FN.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or incendiary rounds that set enemies ablaze.",
         { Assault = true, SpecOps = true, Reverend = true, Cremator = true },
         10, 10, nil, nil, { Assault = 2, Cremator = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_FIRE } )
     HORDE:CreateItem( "Rifle", "Tar-21", "arccw_horde_tavor", 3250, 7,
-        "IWI Tavor-21.\nDesigned to maximize reliability, durability, and simplicity.",
+        "IWI Tavor-21.\nDesigned to maximize reliability, durability, and simplicity.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or electrofied rounds that deal Lightning damage and build up Shock.",
         { Assault = true, SpecOps = true, Reverend = true, Warden = true },
         10, 10, nil, nil, { Assault = 2, Warden = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING } )
-    HORDE:CreateItem( "Rifle", "Scar-LOS", "arccw_horde_scarl", 3500, 8,
-        "FN SCAR-L.\nAn assault rifle developed by Belgian manufacturer FN Herstal.\nLight version, chambered in 5.56x45mm NATO.",
+    HORDE:CreateItem( "Rifle", "SCAR-LOS", "arccw_horde_scarl", 3500, 8,
+        "FN SCAR-LOS.\nAn assault rifle developed by Belgian manufacturer FN Herstal.\nSpecialized \"LOS\" version, chambered in 5.56x45mm NATO.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or cryogenic rounds that deal Cold damage and build up Frostbite.",
         { Assault = true, SpecOps = true, Reverend = true, Ghost = true, Gunslinger = true },
         15, 10, nil, nil, { Assault = 2, Ghost = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_COLD } )
     HORDE:CreateItem( "Rifle", "OSIPR", "arccw_horde_ar2", 3500, 9, "Overwatch Standard Issue Pulse Rifle.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or energy balls that deal Lightning damage and builds up Shock.",
@@ -739,7 +739,7 @@ function HORDE:GetDefaultItemsData()
         { Medic = true, Hatcher = true },
         10, 10, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "Rifle", "M16A4", "arccw_horde_m16m203", 2250, 7,
-        "M16A4 equipped with an M203 underbarrel grenade launcher.\nPress USE+RELOAD to equip M203.",
+        "M16A4 equipped with specialized M203 underbarrel grenade launchers.\nPress USE+RELOAD to switch between the UBGL and weapon.",
         { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Demolition = true },
         10, 10, nil, nil, { Assault = 2, Demolition = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST, HORDE.DMG_FIRE, HORDE.DMG_COLD, HORDE.DMG_LIGHTNING } )
 
