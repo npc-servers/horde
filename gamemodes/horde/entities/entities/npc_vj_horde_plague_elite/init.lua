@@ -14,7 +14,6 @@ ENT.MoveOrHideOnDamageByEnemy = false
 ENT.DropWeaponOnDeath = false
 ENT.HasItemDropsOnDeath = false
 ENT.MeleeAttackDamage = 30
-ENT.WeaponSpread = 1
 ENT.Weapon_FiringDistanceFar = 1200
 ENT.HasWeaponBackAway = false
 ENT.CanCrouchOnWeaponAttack = false
