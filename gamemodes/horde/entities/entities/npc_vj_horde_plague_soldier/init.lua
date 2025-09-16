@@ -14,7 +14,6 @@ ENT.HitGroupFlinching_Values = {{HitGroup  = {HITGROUP_HEAD}, Animation = {"vjse
 ENT.MoveOrHideOnDamageByEnemy = false
 ENT.DropWeaponOnDeath = false
 ENT.HasItemDropsOnDeath = false
-ENT.WeaponSpread = 1
 ENT.Weapon_FiringDistanceFar = 1000
 ENT.HasWeaponBackAway = false
 ENT.CanCrouchOnWeaponAttack = false
@@ -23,6 +22,8 @@ ENT.WeaponReload_FindCover = false
 ENT.WaitForEnemyToComeOut = false
 ENT.HasGrenadeAttack = true
 ENT.GrenadeAttackEntity = "npc_grenade_frag"
+ENT.GrenadeAttackThrowDistance = 1000
+ENT.GrenadeAttackThrowDistanceClose = 500
 ENT.Horde_Plague_Soldier = true
 
 ENT.SoundTbl_FootStep = {
