@@ -51,7 +51,8 @@ CreateConVar("horde_enable_3d2d_icon", 1, nil, "Enables player icon renders.")
 
 CreateConVar("horde_testing_unlimited_class_change", 0, nil, "You can change a class for an unlimited times. Please use this only for testing purposes.")
 CreateConVar("horde_testing_display_damage", 0, FCVAR_ARCHIVE, "Display damage for testing.")
-CreateConVar("horde_display_damage", 1, FCVAR_ARCHIVE, "Display damage.")
+CreateConVar("horde_enable_damage_numbers", 1, FCVAR_ARCHIVE, "Enables damage numbers.")
+CreateConVar("horde_enable_debuff_text", 1, FCVAR_ARCHIVE, "Enables displaying debuffs done to enemies.")
 CreateConVar("horde_enable_health_gui", 1, FCVAR_ARCHIVE, "Enables health UI.")
 CreateConVar("horde_enable_ammo_gui", 1, FCVAR_ARCHIVE, "Enables ammo UI.")
 

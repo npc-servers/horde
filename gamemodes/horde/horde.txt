@@ -202,21 +202,13 @@
 		}
 		25
 		{
-			"name"		"horde_display_damage"
-			"text"		"Display damage."
-			"type"		"CheckBox"
-			"default"	"1"
-			"singleplayer" ""
-		}
-		26
-		{
 			"name"		"horde_arccw_attinv_free"
 			"text"		"(ArcCW Only) Free Attachments"
 			"type"		"CheckBox"
 			"default"	"1"
 			"singleplayer" ""
 		}
-		27
+		26
 		{
 			"name"		"horde_total_enemies_scaling"
 			"text"		"Forced enemy scaling multi."
