@@ -18,7 +18,7 @@ ENT.MeleeAttackDamage = 30
 ENT.Weapon_FiringDistanceFar = 1200
 ENT.HasWeaponBackAway = false
 ENT.CanCrouchOnWeaponAttack = false
-ENT.WeaponAttackSecondaryTimeUntilFire = 1.5
+ENT.WeaponAttackSecondaryTimeUntilFire = 1
 ENT.HasShootWhileMoving = false
 ENT.WeaponReload_FindCover = false
 ENT.MoveRandomlyWhenShooting = false
@@ -126,7 +126,7 @@ function ENT:CustomOnThink_AIEnabled()
 			end
 
 			if not IsValid(self.MiniBoss2) then
-				self.MiniBoss2 = ents.Create("npc_vj_horde_zombine")
+				self.MiniBoss2 = ents.Create("npc_vj_horde_plague_soldier")
 				self.MiniBoss2:SetPos( self:GetPos() + self:GetRight() * -50 + self:GetUp() * 5 )
 				self.MiniBoss2:Spawn()
 				self.MiniBoss2:SetOwner( self )
