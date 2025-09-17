@@ -9,6 +9,7 @@ ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
 ENT.AnimTbl_Run = {ACT_WALK}
 ENT.ConstantlyFaceEnemy_IfVisible = false
 ENT.ConstantlyFaceEnemy_IfAttacking = true
+ENT.CanDetectDangers = false
 ENT.BloodColor = "Red"
 ENT.MoveOrHideOnDamageByEnemy = false
 ENT.DropWeaponOnDeath = false
