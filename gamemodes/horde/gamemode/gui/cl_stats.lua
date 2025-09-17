@@ -592,7 +592,7 @@ function PANEL:Init()
         draw.SimpleText("Mutated Hunter with high health and damage.", 'Content', 100, 2350, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         
         draw.SimpleText("Plague Elite", 'Heading', 50, 2400, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-        draw.SimpleText("Mutated Combine elite soldier controlled by a parasite. Fires energy balls that explode on impact. Can summon Zombine and Plague Soldier minions.", 'Content', 100, 2450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Mutated Combine elite soldier controlled by a parasite. Fires energy balls that explode on impact. Can summon Plague Soldier minions.", 'Content', 100, 2450, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
         
         draw.SimpleText("Bosses", 'LargeTitle', 50, 2550, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
