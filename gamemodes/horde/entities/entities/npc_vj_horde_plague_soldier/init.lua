@@ -7,6 +7,7 @@ ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
 ENT.AnimTbl_Walk = {ACT_RUN}
 ENT.ConstantlyFaceEnemy_IfVisible = false
 ENT.ConstantlyFaceEnemy_IfAttacking = true
+ENT.CanDetectDangers = false
 ENT.BloodColor = "Red"
 ENT.CanFlinch = 1
 ENT.AnimTbl_Flinch = {"vjseq_flinchsmall"}
