@@ -10,7 +10,7 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Medic MP9N"
+SWEP.PrintName = "Medic MP9-N"
 
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
