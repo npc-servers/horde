@@ -2,9 +2,11 @@ if not ArcCWInstalled then return end
 if CLIENT then
     SWEP.WepSelectIcon = surface.GetTextureID("items/hl2/weapon_pistol.png")
     SWEP.WepSelectIconMat = Material("items/hl2/weapon_pistol.png")
-    killicon.AddAlias("arccw_horde_medic_9mm", "weapon_9mm")
+    killicon.AddAlias("arccw_horde_9mm", "weapon_9mm")
 end
+
 SWEP.Base = "arccw_base"
+
 SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
@@ -13,9 +15,8 @@ SWEP.WeaponCamBone = tag_camera
 SWEP.PrintName = "Medic 9mm"
 SWEP.Trivia_Class = "Pistol"
 SWEP.Trivia_Desc = "Standard issue pistol."
-
 SWEP.Trivia_Manufacturer = "Combine"
-SWEP.Trivia_Calibre = "9mm"
+SWEP.Trivia_Calibre = "9x19mm Parabellum"
 SWEP.Trivia_Mechanism = "Semi-Auto"
 SWEP.Trivia_Country = "Combine"
 SWEP.Trivia_Year = 2007
@@ -25,68 +26,61 @@ SWEP.Slot = 1
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/weapons/c_pistol.mdl"
-SWEP.MirrorVMWM = false
+SWEP.MirrorVMWM = true
 SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 SWEP.ViewModelFOV = 65
 
+SWEP.WorldModelOffset = {
+    pos = Vector(-21.5, 7, -3.5),
+    ang = Angle(-10, 0, 180)
+}
+
 SWEP.Damage = 20
 SWEP.DamageMin = 15
-SWEP.RangeMin = 15
 SWEP.Range = 25
 SWEP.Penetration = 2
 SWEP.DamageType = DMG_BULLET
-SWEP.ShootEntity = nil -- entity to fire, if any
+SWEP.ShootEntity = nil
 
+SWEP.ChamberSize = 0
+SWEP.Primary.ClipSize = 18
 
-SWEP.ChamberSize = 1
-SWEP.Primary.ClipSize = 18 -- DefaultClip is automatically set.
-SWEP.ExtendedClipSize = 18
-SWEP.ReducedClipSize = 18
+SWEP.Recoil = 0.2
+SWEP.RecoilSide = 0.12
+SWEP.RecoilPunch = 0
 
-SWEP.Recoil = 0.400
-SWEP.RecoilSide = 0.125
-SWEP.RecoilRise = 0.5
-SWEP.RecoilPunch = 1
-
-SWEP.Delay = 0.08 -- 60 / RPM.
-SWEP.Num = 1 -- number of shots per trigger pull.
+SWEP.Delay = 0.08
+SWEP.Num = 1
 SWEP.Firemodes = {
     {
         Mode = 1,
     }
 }
 
-SWEP.NPCWeaponType = {"weapon_ar2", "weapon_smg1"}
-SWEP.NPCWeight = 150
+SWEP.AccuracyMOA = 5
+SWEP.HipDispersion = 150
+SWEP.MoveDispersion = 200
 
-SWEP.AccuracyMOA = 0 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 50 -- inaccuracy added by hip firing.
-SWEP.MoveDispersion = 150
+SWEP.Primary.Ammo = "Pistol"
 
-SWEP.Primary.Ammo = "Pistol" -- what ammo type the gun uses
-
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
-
-SWEP.ShootSound =           ")weapons/pistol/pistol_fire2.wav"
-SWEP.DistantShootSound =    "^weapons/pistol/pistol_fire3.wav"
-SWEP.ShootSoundSilenced =   ")weapons/usp/usp1.wav"
+SWEP.ShootSound = "ArcCW_Horde.9mm_Fire"
+SWEP.ShootSoundSilenced = "ArcCW_Horde.9mm_Fire_Sil"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.ShellModel = "models/weapons/shell.mdl"
 SWEP.ShellScale = 0.5
 
-SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
-SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
+SWEP.MuzzleEffectAttachment = 1
+SWEP.CaseEffectAttachment = 2
 
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.8
 SWEP.SightTime = 0.125
 
 SWEP.IronSightStruct = {
-    Pos = Vector(0, 0, 0),
+    Pos = Vector(-1, 0, 2),
     Ang = Angle(0, 0, 0),
-    Magnification = 1.5,
+    Magnification = 1.25,
     SwitchToSound = "", -- sound that plays when switching to this sight
     ViewModelFOV = 40,
     CrosshairInSights = true
@@ -99,17 +93,17 @@ SWEP.HoldtypeSights = "pistol"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 
-SWEP.ActivePos = Vector(0, 0, 1)
+SWEP.ActivePos = Vector(0, -5, 1)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.CustomizePos = Vector(13.92, 1, -1.08)
-SWEP.CustomizeAng = Angle(6.8, 37.7, 10.3)
+SWEP.CustomizePos = Vector(7, -8, 1)
+SWEP.CustomizeAng = Angle(5, 30, 10)
 
-SWEP.HolsterPos = Vector(3, 0, 0)
-SWEP.HolsterAng = Angle(-10, 25, 0)
+SWEP.HolsterPos = Vector(3, -5, 0)
+SWEP.HolsterAng = Angle(-10, 25, -15)
 
-SWEP.SprintPos = Vector(0, 0, 1)
-SWEP.SprintAng = Angle(0, 0, 0)
+SWEP.SprintPos = Vector(0, -5, 1)
+SWEP.SprintAng = Angle(-10, 0, 0)
 
 SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
 SWEP.BarrelOffsetHip = Vector(2, 0, -2)
@@ -262,3 +256,20 @@ function SWEP:Hook_DrawHUD()
         pos.x - 15, pos.y - 15, Color(50, 200, 50), TEXT_ALIGN_LEFT)
     end
 end
+
+sound.Add( {
+    name = "ArcCW_Horde.Medic_9mm_Fire",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 90,
+    pitch = {98, 102},
+    sound = ")weapons/pistol/pistol_fire2.wav"
+} )
+sound.Add( {
+    name = "ArcCW_Horde.Medic_9mm_Fire_Sil",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/usp/usp1.wav"
+} )

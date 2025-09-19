@@ -3,14 +3,19 @@ if CLIENT then
     SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_go_mp9")
     killicon.Add("arccw_horde_mp9m", "arccw/weaponicons/arccw_go_mp9", Color(0, 0, 0, 255))
 end
+
 SWEP.Base = "arccw_go_mp9"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+
+SWEP.Spawnable = true
+SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "MP9N Medic PDW"
-SWEP.Trivia_Class = "PDW"
-SWEP.Slot = 2
+SWEP.PrintName = "Medic MP9-N"
+
+SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
+SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
+
+SWEP.RecoilPunch = 0
 
 SWEP.Firemodes = {
     {
@@ -18,13 +23,32 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
-SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp9.mdl"
+SWEP.Delay = 60 / 900
 
-SWEP.DamageMin = 13 -- damage done at maximum range
+SWEP.FirstShootSound = "ArcCW_Horde.GSO.MP9_Fire"
+SWEP.ShootSound = "ArcCW_Horde.GSO.MP9_Fire"
+SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.MP9_Fire_Sil"
+SWEP.DistantShootSound = ""
 
-SWEP.Delay = 60 / 900 -- 60 / RPM.
-SWEP.ShootVol = 75 -- volume of shoot sound
+SWEP.ActivePos = Vector(0, 0, 0)
+SWEP.ActiveAng = Angle(0, 0, 0)
+
+sound.Add( {
+    name = "ArcCW_Horde.GSO.MP9_Fire",
+    channel = CHAN_STATIC,
+    volume = 1.0,
+    level = 90,
+    pitch = 100,
+    sound = {")arccw_go/mp9/mp9_01.wav",")arccw_go/mp9/mp9_02.wav",")arccw_go/mp9/mp9_03.wav",")arccw_go/mp9/mp9_04.wav"}
+} )
+sound.Add( {
+    name = "ArcCW_Horde.GSO.MP9_Fire_Sil",
+    channel = CHAN_STATIC,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")arccw_go/mp5/mp5_01.wav"
+} )
 
 function SWEP:ChangeFiremode(pred)
     if self:GetNextSecondaryFire() > CurTime() then return end
@@ -65,7 +89,7 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
+    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 75, 100, 1, CHAN_WEAPON)
 
     self:SetNextSecondaryFire(CurTime() + 1)
     self:SetNextPrimaryFire(CurTime() + 0.25)
@@ -99,8 +123,6 @@ function SWEP:Hook_DrawHUD()
         local pos = nv_center(self.Horde_HealTarget):ToScreen()
         surface.SetDrawColor(Color(50, 200, 50))
         surface.DrawCircle(pos.x, pos.y, 30)
-        --surface.DrawLine(pos.x, 0, pos.x, ScrH())
-        --surface.DrawLine(0, pos.y, ScrW(), pos.y)
         draw.DrawText(self.Horde_HealTarget:Health(), "Trebuchet24",
         pos.x - 15, pos.y - 15, Color(50, 200, 50), TEXT_ALIGN_LEFT)
     end

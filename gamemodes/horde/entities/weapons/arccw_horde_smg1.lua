@@ -4,10 +4,13 @@ if CLIENT then
     SWEP.WepSelectIconMat = Material("items/hl2/weapon_smg1.png")
     killicon.AddAlias("arccw_horde_smg1", "weapon_smg1")
 end
+
 SWEP.Base = "arccw_base"
-SWEP.Spawnable = true -- this obviously has to be set to true
-SWEP.Category = "ArcCW - Horde" -- edit this if you like
+
+SWEP.Spawnable = true
+SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
+SWEP.WeaponCamBone = tag_camera
 
 SWEP.PrintName = "SMG-1"
 SWEP.Trivia_Class = "Submachine Gun"
@@ -35,25 +38,23 @@ SWEP.WorldModelOffset = {
 SWEP.DefaultBodygroups = "000000000000"
 
 SWEP.Damage = 25
-SWEP.DamageMin = 10 -- damage done at maximum range
-SWEP.Range = 50 -- in METRES
-SWEP.Penetration = 1
+SWEP.DamageMin = 10
+SWEP.Range = 50
+SWEP.Penetration = 4
 SWEP.DamageType = DMG_BULLET
-SWEP.ShootEntity = nil -- entity to fire, if any
-SWEP.MuzzleVelocity = 1000 -- projectile or phys bullet muzzle velocity
--- IN M/S
-SWEP.ChamberSize = 1 -- how many rounds can be chambered.
-SWEP.Primary.ClipSize = 45 -- DefaultClip is automatically set.
+SWEP.ShootEntity = nil
+
+SWEP.ChamberSize = 0
+SWEP.Primary.ClipSize = 45
 
 SWEP.PhysBulletMuzzleVelocity = 400
 
 SWEP.Recoil = 0.15
-SWEP.RecoilSide = 0.105
-SWEP.RecoilRise = 0.05
-SWEP.RecoilPunch = 1.5
+SWEP.RecoilSide = 0.1
+SWEP.RecoilPunch = 0
 
-SWEP.Delay = 60 / 600 -- 60 / RPM.
-SWEP.Num = 1 -- number of shots per trigger pull.
+SWEP.Delay = 0.08
+SWEP.Num = 1
 SWEP.Firemodes = {
     {
         Mode = 2,
@@ -66,26 +67,14 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.NPCWeaponType = "weapon_smg1"
-SWEP.NPCWeight = 100
+SWEP.AccuracyMOA = 10
+SWEP.HipDispersion = 300
+SWEP.MoveDispersion = 250
 
-SWEP.AccuracyMOA = -12 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 250 -- inaccuracy added by hip firing.
-SWEP.MoveDispersion = 75
+SWEP.Primary.Ammo = "Pistol"
 
-SWEP.Primary.Ammo = "Pistol" -- what ammo type the gun uses
-
-SWEP.ShootVol = 80 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
-
-SWEP.ShootSound = ")weapons/smg1/smg1_fire1.wav"
-SWEP.DistantShootSound = "^weapons/smg1/npc_smg1_fire1.wav"
-SWEP.ShootSoundSilenced = ")weapons/tmp/tmp-1.wav"
-
-SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
-SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
-SWEP.MeleeHitSound = "arccw_go/knife/knife_hitwall1.wav"
-SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
+SWEP.ShootSound = "ArcCW_Horde.SMG1_Fire"
+SWEP.ShootSoundSilenced = "ArcCW_Horde.SMG1_Fire_Sil"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
 SWEP.ShellModel = "models/weapons/rifleshell.mdl"
@@ -93,17 +82,17 @@ SWEP.ShellPitch = 100
 SWEP.ShellScale = 0.5
 SWEP.ShellRotateAngle = Angle(0, 180, 0)
 
-SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
-SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
+SWEP.MuzzleEffectAttachment = 1
+SWEP.CaseEffectAttachment = 2
 
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.75
 SWEP.SightTime = 0.275
 
 SWEP.IronSightStruct = {
-    Pos = Vector(0, 0, 0),
+    Pos = Vector(-1, 0, 0.5),
     Ang = Angle(0, 0, 0),
-    Magnification = 1.5,
+    Magnification = 1.25,
     SwitchToSound = "", -- sound that plays when switching to this sight
     ViewModelFOV = 40,
     CrosshairInSights = true
@@ -111,43 +100,23 @@ SWEP.IronSightStruct = {
 
 SWEP.HoldtypeHolstered = "passive"
 SWEP.HoldtypeActive = "smg"
-SWEP.HoldtypeSights = "smg"
+SWEP.HoldtypeSights = "rpg"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG1
 
-SWEP.ActivePos = Vector(0, 0, 0)
+SWEP.ActivePos = Vector(0, -2, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.CrouchPos = Vector(-4, 0, -1)
-SWEP.CrouchAng = Angle(0, 0, -10)
+SWEP.HolsterPos = Vector(3, -3, -1)
+SWEP.HolsterAng = Angle(-7, 30, -10)
 
-SWEP.HolsterPos = Vector(3, 3, 0)
-SWEP.HolsterAng = Angle(-7.036, 30.016, 0)
-
-SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
-SWEP.BarrelOffsetHip = Vector(2, 0, -2)
-
-SWEP.CustomizePos = Vector(8, 0, 1)
+SWEP.CustomizePos = Vector(8, -3, 1)
 SWEP.CustomizeAng = Angle(5, 30, 30)
 
 SWEP.BarrelLength = 24
 
-SWEP.AttachmentElements = {
-    ["rail"] = {
-        VMBodygroups = {{ind = 5, bg = 1}},
-        WMBodygroups = {{ind = 5, bg = 1}},
-    },
-}
-
 SWEP.ExtraSightDist = 10
 SWEP.GuaranteeLaser = true
-
-SWEP.WorldModelOffset = {
-    pos = Vector(-14, 6, -4),
-    ang = Angle(-10, 0, 180)
-}
-
-SWEP.MirrorVMWM = false
 
 SWEP.Attachments = {
     {
@@ -214,3 +183,20 @@ function SWEP:DrawWeaponSelection(x, y, w, h, a)
 
     surface.DrawTexturedRect(x, y, w, w / 2)
 end
+
+sound.Add( {
+    name = "ArcCW_Horde.SMG1_Fire",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 90,
+    pitch = {95, 105},
+    sound = ")weapons/smg1/smg1_fire1.wav"
+} )
+sound.Add( {
+    name = "ArcCW_Horde.SMG1_Fire_Sil",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/tmp/tmp-1.wav"
+} )

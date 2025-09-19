@@ -18,6 +18,19 @@ SWEP.WorldModel = "models/weapons/w_rif_m4a1.mdl"
 SWEP.Damage = 47
 SWEP.DamageMin = 39
 
+SWEP.Firemodes = {
+    {
+        Mode = 2,
+    },
+    {
+        Mode = 1,
+    },
+    {
+        Mode = 0
+    }
+}
+
+
 SWEP.ShootSound = "ArcCW_Horde.MW2.M16_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.M16_Mech"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.MW2.M16_Fire_Sil"

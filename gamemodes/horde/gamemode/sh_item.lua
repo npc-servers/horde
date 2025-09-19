@@ -564,13 +564,13 @@ function HORDE:GetDefaultItemsData()
         "MP5K-PDW.\nA more compact MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
         { Medic = true, Hatcher = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
-    HORDE:CreateItem( "SMG", "MP9 Medic PDW", "arccw_horde_mp9m", 2500, 4,
+    HORDE:CreateItem( "SMG", "Medic MP9-N", "arccw_horde_mp9m", 2500, 4,
         "Brügger & Thomet MP9.\nManufactured in Switzerland,\nthe MP9 is favored by private security firms world-wide.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
-        { Medic = true, Hatcher = true },
+        { Reverend = true, Medic = true, Hatcher = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
-    HORDE:CreateItem( "SMG", "MP7A1 Medic PDW", "arccw_horde_mp7m", 2500, 4,
+    HORDE:CreateItem( "SMG", "Medic MP7A1", "arccw_horde_mp7m", 2500, 4,
         "A modified version of the MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
-        { Medic = true, Hatcher = true },
+        { Reverend = true, Medic = true, Hatcher = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "SMG", "Vector Medic PDW", "arccw_horde_vector", 3000, 5,
         "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that provides a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",

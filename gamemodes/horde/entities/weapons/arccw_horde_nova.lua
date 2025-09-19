@@ -27,7 +27,7 @@ SWEP.RecoilPunch = 0
 
 SWEP.ShootSound = "ArcCW_Horde.GSO.Nova_Fire"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.Nova_Fire_Sil"
-SWEP.DistantShootSound = "ArcCW_Horde.GSO.Nova_Fire_Dist"
+SWEP.DistantShootSound = ""
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -69,13 +69,4 @@ sound.Add( {
     level = 75,
     pitch = 100,
     sound = ")arccw_go/m590_suppressed_fp.wav"
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Nova_Fire_Dist",
-    channel = CHAN_WEAPON,
-    volume = 0.25,
-    level = 140,
-    pitch = 100,
-    sound = "arccw_go/nova/nova-1-distant.wav"
-
 } )
