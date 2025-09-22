@@ -2,7 +2,7 @@ PERK.PrintName = "Rupture"
 PERK.Icon = "materials/perks/kamikaze.png"
 PERK.Description = [[
 Enemies killed have a 50% to explode upon death.
-Explosions deal 25% of an enemies max health. ]]
+Explosions deal 25% of an enemies max health.]]
 
 PERK.Hooks = {}
 PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
@@ -18,7 +18,7 @@ PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
 	    effect:SetOrigin( npcPos )
 	    util.Effect( "HelicopterMegaBomb", effect )
 
-	    victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.wav" or "horde/player/prototype/Explosion 1.wav", 140, math.random(95, 105), 1, CHAN_STATIC )
+	    victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.wav" or "horde/player/prototype/Explosion 1.wav", 140, math.random( 95, 105 ), 1, CHAN_STATIC )
 
 	    local dmg = DamageInfo()
 	    dmg:SetAttacker( killer )
