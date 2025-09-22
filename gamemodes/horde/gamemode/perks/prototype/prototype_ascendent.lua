@@ -3,7 +3,7 @@ PERK.Icon = "materials/perks/phase_walk.png"
 PERK.Description = [[
 Press SHIFT + E to Dash.
 Provides 100% evasion during Dash.
-Recharges 1 use after 3 seconds. Gain 3 Dash uses. ]]
+Recharges 1 use after 3 seconds. Gain 3 Dash uses.]]
 
 PERK.Hooks = {}
 
@@ -28,7 +28,7 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     end
 end
 
-PERK.Hooks.Horde_UseActivePerk = function ( ply )
+PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "prototype_ascendent" ) then return end
     if ply:Horde_GetPerkCharges() <= 0 then return true end
 
@@ -68,7 +68,7 @@ PERK.Hooks.Horde_UseActivePerk = function ( ply )
     end
 
     ply:SetLocalVelocity( vel )
-    ply:EmitSound( "horde/player/prototype/Dodge3.wav", 75, math.random(95, 105), 1, CHAN_AUTO )
+    ply:EmitSound( "horde/player/prototype/Dodge3.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
 
     ply.Horde_In_Quickstep = true
 
