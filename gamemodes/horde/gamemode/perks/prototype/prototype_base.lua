@@ -7,7 +7,7 @@ Complexity: MEDIUM
 
 Leech 1 health at close range.
 
-Has access to light weapons and shotguns. ]]
+Has access to light weapons and shotguns.]]
 
 PERK.Params = {
     [1] = { percent = true, level = 0.01, base = 0.25, max = 0.50, classname = "Prototype" },
