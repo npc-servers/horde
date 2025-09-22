@@ -1,7 +1,7 @@
 PERK.PrintName = "Rupture"
 PERK.Icon = "materials/perks/kamikaze.png"
 PERK.Description = [[
-Enemies killed have a 50% to explode upon death.
+Enemies killed have a 50% chance to explode upon death.
 Explosions deal 25% of an enemies max health.]]
 
 PERK.Hooks = {}
