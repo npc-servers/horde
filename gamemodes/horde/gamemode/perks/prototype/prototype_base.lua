@@ -28,13 +28,13 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
 end
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
-    if SERVER then
+    if SERVER and perk == "prototype_base" then
         ply:Horde_SetPerkLevelBonus( "prototype_base", math.min( 0.50, 0.25 + 0.01 * ply:Horde_GetLevel( "Prototype" ) ) )
     end
 end
 
 PERK.Hooks.Horde_OnSetMaxHealth = function( ply )
-    if SERVER then
+    if SERVER and perk == "prototype_base" then
         ply.Horde_PrototypeGetMaxHealth = ply:GetMaxHealth()
     end
 end
