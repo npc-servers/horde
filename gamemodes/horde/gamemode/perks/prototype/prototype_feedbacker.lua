@@ -3,7 +3,7 @@ PERK.Icon = "materials/perks/feedbacker.png"
 PERK.Description = [[
 Parries killing blows dealt as Physical damage.
 Feedbacker applies Stun and Shock in an area.
-Recharges after 12 seconds. ]]
+Recharges after 12 seconds.]]
 
 PERK.Hooks = {}
 
