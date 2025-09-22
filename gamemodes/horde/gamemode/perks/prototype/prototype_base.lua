@@ -17,26 +17,32 @@ PERK.Params = {
 }
 
 PERK.Hooks = {}
+
+if not SERVER then return end
+
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if SERVER and perk == "prototype_base" then
+    if perk == "prototype_base" then
     end
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if SERVER and perk == "prototype_base" then
+    if perk == "prototype_base" then
+        ply.Horde_PrototypeGetMaxHealth = nil
     end
 end
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
-    if SERVER and perk == "prototype_base" then
-        ply:Horde_SetPerkLevelBonus( "prototype_base", math.min( 0.50, 0.25 + 0.01 * ply:Horde_GetLevel( "Prototype" ) ) )
-    end
+    ply:Horde_SetPerkLevelBonus( "prototype_base", math.min( 0.50, 0.25 + 0.01 * ply:Horde_GetLevel( "Prototype" ) ) )
 end
 
 PERK.Hooks.Horde_OnSetMaxHealth = function( ply )
-    if SERVER and perk == "prototype_base" then
-        ply.Horde_PrototypeGetMaxHealth = ply:GetMaxHealth()
-    end
+    if not ply:Horde_GetPerk( "prototype_base" ) then return end
+    
+    timer.Simple( 0, function() 
+        if IsValid( ply ) then 
+            ply.Horde_PrototypeGetMaxHealth = ply:GetMaxHealth() 
+        end 
+    end )
 end
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
