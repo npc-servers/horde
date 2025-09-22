@@ -2,12 +2,13 @@ PERK.PrintName = "Rupture"
 PERK.Icon = "materials/perks/kamikaze.png"
 PERK.Description = [[
 Enemies killed have a 50% to explode upon death.
-Explosions deal 25% of an enemies max health.]]
+Explosions deal 25% of an enemies max health. ]]
 
 PERK.Hooks = {}
-PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, inflictor)
-    if not killer:Horde_GetPerk("prototype_rupture") then return end
-    if not IsValid( inflictor ) or inflictor:IsNPC() then return end -- Prevent infinite chains
+PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
+    if not killer:Horde_GetPerk( "prototype_rupture" ) then return end
+    if not IsValid( inflictor ) or inflictor:IsNPC() then return end
+
     local p = math.random()
     if p <= 0.5 then
 
@@ -17,7 +18,6 @@ PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, inflictor)
 	    effect:SetOrigin( npcPos )
 	    util.Effect( "HelicopterMegaBomb", effect )
 
-	    local randId = tostring( math.random( 1, 2 ) )
 	    victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.wav" or "horde/player/prototype/Explosion 1.wav", 140, math.random(95, 105), 1, CHAN_STATIC )
 
 	    local dmg = DamageInfo()
@@ -26,6 +26,7 @@ PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, inflictor)
 	    dmg:SetDamageType( DMG_BLAST )
 	    dmg:SetDamage( victim:GetMaxHealth() * 0.25 )
 	    dmg:SetDamageCustom( HORDE.DMG_PLAYER_FRIENDLY )
+
 	    util.BlastDamageInfo( dmg, npcPos, 300 )
     end
 end
