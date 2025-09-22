@@ -5,7 +5,7 @@ Complexity: MEDIUM
 
 {1} increased damage at close-range ({2} + {3} per level, up to {4}).
 
-Leech 1 health at close range.
+Leech 5 health at close range.
 
 Has access to light weapons and shotguns.]]
 
@@ -61,7 +61,7 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
         if dmginfo:GetDamage() <= 0 then return end
 
         ply:EmitSound( "horde/player/prototype/HpGet.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
-        HORDE:SelfHeal( ply, ply:Horde_GetPerk( "prototype_gluttonous_maw" ) and 5 or 1 )
+        HORDE:SelfHeal( ply, ply:Horde_GetPerk( "prototype_gluttonous_maw" ) and 10 or 5 )
     elseif sqrDist < 30000 then
         bonus.increase = bonus.increase + plyLevel / 2
 
@@ -70,7 +70,7 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
         if dmginfo:GetDamage() <= 0 then return end
 
         ply:EmitSound( "horde/player/prototype/HpGet.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
-        HORDE:SelfHeal( ply, 1 )
+        HORDE:SelfHeal( ply, 5 )
     elseif sqrDist < 45000 then
         bonus.increase = bonus.increase + plyLevel / 4
     elseif sqrDist < 60000 then
