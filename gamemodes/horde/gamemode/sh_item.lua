@@ -156,11 +156,11 @@ function HORDE:GetDefaultGadgets()
     HORDE:CreateGadgetItem( "gadget_corporate_mindset", 2000, 0, nil, { Survivor = 5, Assault = 5, Heavy = 5, Medic = 5, Demolition = 5, Ghost = 5, Engineer = 5, Berserker = 5, Warden = 5, Cremator = 5 } )
 
     -- Survivor --
-    HORDE:CreateGadgetItem( "gadget_vitality_booster", 2500, 1, { Survivor = true, Psycho = true }, { Survivor = 5 } )
-    HORDE:CreateGadgetItem( "gadget_damage_booster", 2500, 1, { Survivor = true, Psycho = true }, { Survivor = 10 } )
-    HORDE:CreateGadgetItem( "gadget_agility_booster", 2500, 1, { Survivor = true, Psycho = true }, { Survivor = 15 } )
-    HORDE:CreateGadgetItem( "gadget_resistance_booster", 2500, 1, { Survivor = true, Psycho = true }, { Survivor = 20 } )
-    HORDE:CreateGadgetItem( "gadget_ultimate_booster", 4000, 3, { Survivor = true, Psycho = true }, { Survivor = 25 } )
+    HORDE:CreateGadgetItem( "gadget_vitality_booster", 2500, 1, { Survivor = true, Psycho = true, Prototype = true }, { Survivor = 5 } )
+    HORDE:CreateGadgetItem( "gadget_damage_booster", 2500, 1, { Survivor = true, Psycho = true, Prototype = true }, { Survivor = 10 } )
+    HORDE:CreateGadgetItem( "gadget_agility_booster", 2500, 1, { Survivor = true, Psycho = true, Prototype = true }, { Survivor = 15 } )
+    HORDE:CreateGadgetItem( "gadget_resistance_booster", 2500, 1, { Survivor = true, Psycho = true, Prototype = true }, { Survivor = 20 } )
+    HORDE:CreateGadgetItem( "gadget_ultimate_booster", 4000, 3, { Survivor = true, Psycho = true, Prototype = true }, { Survivor = 25 } )
 
     -- Assault --
     HORDE:CreateGadgetItem( "gadget_iv_injection", 2000, 1, { Assault = true, SpecOps = true, Reverend = true }, { Assault = 5 } )
@@ -374,35 +374,35 @@ end
 function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Melee", "Combat Knife", "arccw_horde_knife", 100, 0,
         "A reliable bayonet.\nRMB to deal a heavy slash.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
     HORDE:CreateItem( "Melee", "Crowbar", "arccw_horde_crowbar", 750, 2,
         "A trusty crowbar.\nEasy to use.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
         10, -1, nil, "items/hl2/weapon_crowbar.png", nil, nil, { HORDE.DMG_BLUNT } )
     HORDE:CreateItem( "Melee", "Machete", "arccw_horde_machete", 750, 2,
         "A large machete.\nEasy to use.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Kunai", "arccw_horde_kunai", 1750, 2,
         "Ranged throwing knives.\nThrown blades are non-retrieveable\n knives recharge every 3 seconds, with a total of 3 knives",
-        { Survivor = true, Psycho = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, { Berserker = 1 }, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Fireaxe", "arccw_horde_axe", 1500, 4,
         "Fireaxe.\nHeavy, but can chop most enemies in half.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Stunstick", "arccw_horde_stunstick", 1500, 4,
         "Electric baton.\nDeals extra Lightning damage.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
         10, -1, nil, "items/hl2/weapon_stunstick.png", nil, nil, { HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Melee", "Katana", "arccw_horde_katana", 2000, 4,
         "Ninja sword.\nLong attack range and fast attack speed.",
-        { Survivor = true, Psycho = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Bat", "arccw_horde_bat", 2000, 4,
         "Sturdy baseball bat.\nHits like a truck.",
-        { Survivor = true, Psycho = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLUNT } )
     HORDE:CreateItem( "Melee", "Chainsaw", "arccw_horde_chainsaw", 2500, 6,
         "Brrrrrrrrrrrrrrrr.\n\nHold RMB to saw through enemies.\nDeals a lot more damage when using ammo.",
@@ -427,8 +427,8 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Pistol", "9mm", "arccw_horde_9mm", 50, 1,
         "Combine standard sidearm.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
-        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho", "Prototype" } )
     HORDE:CreateItem( "Pistol", "Medic 9mm", "arccw_horde_medic_9mm", 75, 1,
         "Modified 9mm that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing dart recharges every 0.5 second.",
         { Medic = true, Hatcher = true, Gunslinger = true },
@@ -447,23 +447,23 @@ function HORDE:GetDefaultItemsData()
         10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 0 }, nil, nil, nil, { HORDE.DMG_FIRE }, nil, nil, true ) -- This must be hidden
     HORDE:CreateItem( "Pistol", "Glock", "arccw_horde_glock", 750, 2,
         "Glock 17.\nSemi-automatic pistol manufactured in Austria.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_glock", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "USP", "arccw_horde_usp", 750, 2,
         "Universelle Selbstladepistole.\nA semi-automatic pistol developed in Germany by H&K.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_usp", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "P2000", "arccw_horde_p2000", 750, 2,
         "Heckler & Koch P2000.\nA serviceable first-round pistol made by H&K.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_p2000", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "P250", "arccw_horde_p250", 750, 2,
         "SIG Sauer P250.\nA low-recoil sidearm with a high rate of fire.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_p250", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "R8", "arccw_horde_r8", 750, 2,
         "R8 Revolver.\nDelivers a highly accurate and powerful round,\nbut at the expense of a lengthy trigger-pull.",
-        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true },
+        { Survivor = true, Psycho = true, Prototype = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_r8", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "M1911", "arccw_horde_m1911", 750, 2,
         "Colt 1911.\nStandard-issue sidearm for the United States Armed Forces.",
@@ -471,7 +471,7 @@ function HORDE:GetDefaultItemsData()
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Deagle", "arccw_horde_deagle", 750, 2,
         "Night Hawk .50C.\nAn iconic pistol that is diffcult to master.",
-        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true },
+        { Survivor = true, Psycho = true, Prototype = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_deagle", { Ghost = 1 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Anaconda", "arccw_horde_anaconda", 1000, 3,
         "Colt Anaconda.\nChambered for the powerful .44 Magnum.",
@@ -479,23 +479,23 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, nil, { Ghost = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "CZ75", "arccw_horde_cz75", 750, 2,
         "CZ 75.\nA semi-automatic pistol manufactured in Czech Republic.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_cz75", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "M9", "arccw_horde_m9", 750, 2,
         "Beretta M9.\nSidearm used by the United States Armed Forces.",
-        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true },
+        { Survivor = true, Psycho = true, Prototype = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_m9", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "FiveSeven", "arccw_horde_fiveseven", 750, 2,
         "ES Five-seven.\nA Belgian semi-automatic pistol made by FN Herstal.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_fiveseven", { Survivor = 1, Assault = 1, Heavy = 1, Medic = 1, Demolition = 1, Engineer = 1, Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Tec-9", "arccw_horde_tec9", 1000, 3,
         "A Swedish-made semi-automatic pistol.\nLethal in close quarters.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         8, -1, nil, "arccw/weaponicons/arccw_go_tec9", { Survivor = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Pistol", "Skorpion", "arccw_horde_skorpion", 1000, 3,
         "Sa vz. 61 Skorpion.\nDeveloped in 1959 by Miroslav Rybar and produced \nunder the official designation 'Samopal vzor 61'.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Cremator = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
 
     HORDE:CreateItem( "Pistol", "Dual M9", "arccw_horde_akimbo_m9", 1500, 4,
@@ -530,35 +530,35 @@ function HORDE:GetDefaultItemsData()
         5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
     HORDE:CreateItem( "SMG", "UZI", "arccw_horde_uzi", 1250, 3,
         "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab-sraeli War.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, nil, { Survivor = 3 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "MP40", "arccw_horde_mp40", 1250, 3,
         "Maschinenpistole 40.\nDeveloped in Nazi Germany and used extensively by the Axis powers during World War II.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "MAC-10", "arccw_horde_mac10", 1500, 4,
         "Military Armament Corporation Model 10.\nBoasts a high rate of fire,\nwith poor spread accuracy and high recoil as trade-offs.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, "arccw/weaponicons/arccw_go_mac10", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "MP5", "arccw_horde_mp5", 1500, 4,
         "Heckler & Koch MP5.\nOften imitated but never equaled,\nthe MP5 is perhaps the most versatile SMG in the world.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, "arccw/weaponicons/arccw_go_mp5", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "UMP45", "arccw_horde_ump", 1500, 4,
         "KM UMP45.\nA lighter and cheaper successor to the MP5.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, "arccw/weaponicons/arccw_go_ump", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "TMP", "arccw_horde_tmp", 1500, 4,
         "Steyr TMP.\nA select-fire 9×19mm Parabellum caliber machine pistol.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, nil, { Survivor = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "PP Bizon", "arccw_horde_bizon", 2000, 5,
         "PP-19 Bizon.\nOffers a high-capacity magazine that reloads quickly.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true },
         15, -1, nil, "arccw/weaponicons/arccw_go_bizon", { Assault = 1, Medic = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "P90", "arccw_horde_p90", 2000, 5,
         "ES C90.\nA Belgian bullpup PDW with a magazine of 50 rounds.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true },
         15, -1, nil, "arccw/weaponicons/arccw_go_p90", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "MP5K Medic PDW", "arccw_horde_mp5k",  2000, 4,
         "MP5K-PDW.\nA more compact MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
@@ -588,22 +588,22 @@ function HORDE:GetDefaultItemsData()
         2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Engineer", "Warden" } )
     HORDE:CreateItem( "Shotgun", "Nova", "arccw_horde_nova", 1000, 4,
         "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Masterkey", "arccw_horde_masterkey", 1250, 3,
         "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "M870", "arccw_horde_870", 1500, 4,
         "Remington 870 Shotgun.\nManufactured in the United States.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         10, -1, nil, "arccw/weaponicons/arccw_go_870", { Engineer = 1 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "MAG7", "arccw_horde_mag7", 1500, 4, "Techno Arms MAG-7.\nFires a specialized 60mm 12 gauge shell.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         10, -1, nil, "arccw/weaponicons/arccw_go_mag7", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "XM1014", "arccw_horde_m1014", 2000, 5,
         "Benelli M4 Super 90.\nFully automatic shotgun.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Trench Gun", "arccw_horde_trenchgun", 2250, 6,
         "Winchester Model 1200.\nShoots incendiary pellets.",
@@ -611,11 +611,11 @@ function HORDE:GetDefaultItemsData()
         15, -1, nil, nil, { Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_FIRE }, { HORDE.Infusion_Quality, HORDE.Infusion_Impaling } )
     HORDE:CreateItem( "Shotgun", "Double Barrel", "arccw_horde_doublebarrel", 2250, 5,
         "Double Barrel Shotgun.\nDevastating power at close range.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "SPAS-12", "arccw_horde_spas12", 2500, 6,
         "Franchi SPAS-12.\nA combat shotgun manufactured by Italian firearms company Franchi.",
-        { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         15, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Striker", "arccw_horde_striker", 2750, 7, "Armsel Striker.\nA 12-gauge shotgun with a revolving cylinder from South Africa.",
         { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
@@ -783,7 +783,7 @@ function HORDE:GetDefaultItemsData()
     -- Class specific grenades
     HORDE:CreateItem( "Explosive", "Frag Grenade", "weapon_frag", 10, 0,
         "A standard frag grenade.\nGood for crowd control.",
-        { Survivor = true, Psycho = true },
+        { Survivor = true, Psycho = true, Prototype = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLAST } )
     HORDE:CreateItem( "Explosive", "Stun Grenade", "arccw_horde_nade_stun", 100, 0,
         "A grenade that deals minor damage and stuns enemy for 3 seconds.\nStun cooldown is 10 seconds.",
@@ -1044,7 +1044,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Equipment", "Medkit", "weapon_horde_medkit", 50, 0,
         "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
-        nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, { "Survivor", "Psycho", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Cremator", "Artificer" } )
+        nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, { "Survivor", "Psycho", "Prototype", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Cremator", "Artificer" } )
     HORDE:CreateItem( "Equipment", "Health Vial", "item_healthvial", 15, 0,
         "A capsule filled with sticky green liquid.\nHeals instantly when picked up.",
         { Medic = true, Hatcher = true },
@@ -1057,7 +1057,7 @@ function HORDE:GetDefaultItemsData()
         nil, 10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_100.png" )
     HORDE:CreateItem( "Equipment", "Advanced Kevlar Armor", "armor_survivor", 1000, 0,
         "Distinguished Survivor armor.\n\nFills up 100% of your armor bar.\nProvides 5% increased damage resistance.",
-        { Survivor = true, Psycho = true },
+        { Survivor = true, Psycho = true, Prototype = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_survivor.png", { Survivor = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Assault Vest", "armor_assault", 1000, 0,
         "Distinguished Assault armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Ballistic damage resistance.",
