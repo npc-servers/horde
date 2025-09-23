@@ -3,7 +3,7 @@ PERK.Icon = "materials/perks/phase_walk.png"
 PERK.Description = [[
 Press SHIFT + E to Dash.
 Provides 100% evasion during Dash.
-Recharges 1 use after each kill.]]
+Recharges 1 use after 3 seconds.]]
 
 PERK.Hooks = {}
 
@@ -41,6 +41,13 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
 
     local max_charges = 3
     ply:Horde_SetPerkCharges( ply:Horde_GetPerkCharges() - 1 )
+
+    timer.Remove( "Horde_Prototype_Ascendent_Timer" .. id )
+    timer.Create( "Horde_Prototype_Ascendent_Timer" .. id, 3, 0, function ()
+        if not ply:IsValid() or not ply:Horde_GetPerk( "prototype_ascendent" ) then timer.Remove( "Horde_Prototype_Ascendent_Timer" .. id ) return end
+        if ply:Horde_GetPerkCharges() >= max_charges then timer.Remove( "Horde_Prototype_Ascendent_Timer" .. id ) return end
+        ply:Horde_SetPerkCharges( math.min ( max_charges, ply:Horde_GetPerkCharges() + 1 ) )
+    end )
 
     local dir = ply:GetForward()
     if ply:KeyDown( IN_MOVERIGHT ) then
@@ -85,11 +92,4 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if ply.Horde_In_Quickstep then
         bonus.evasion = bonus.evasion + 1.0
     end
-end
-
-PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
-    if not killer:Horde_GetPerk( "prototype_ascendent" ) then return end
-    if not IsValid( inflictor ) or inflictor:IsNPC() then return end
-
-    ply:Horde_SetPerkCharges( math.min ( max_charges, ply:Horde_GetPerkCharges() + 1 ) )
 end
