@@ -3,12 +3,14 @@ PERK.Icon = "materials/perks/phase_walk.png"
 PERK.Description = [[
 Press SHIFT + E to Dash.
 Provides 100% evasion during Dash.
-Recharges 1 use after 3 seconds. Gain 3 Dash uses.]]
+Recharges 1 use after each kill.]]
 
 PERK.Hooks = {}
 
+if not SERVER then return end
+
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if SERVER and perk == "prototype_ascendent" then
+    if perk == "prototype_ascendent" then
         ply:Horde_SetPerkCooldown( 3 )
         net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_Quickstep, 8 )
@@ -19,7 +21,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if SERVER and perk == "prototype_ascendent" then
+    if perk == "prototype_ascendent" then
         net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_Quickstep, 8 )
         net.WriteUInt( 0, 3 )
@@ -39,14 +41,6 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
 
     local max_charges = 3
     ply:Horde_SetPerkCharges( ply:Horde_GetPerkCharges() - 1 )
-
-    timer.Remove( "Horde_Ascendent_Charge_recovery" .. id )
-    timer.Create( "Horde_Ascendent_Charge_recovery" .. id, 3, 0, function ()
-        if not ply:IsValid() or not ply:Horde_GetPerk( "prototype_ascendent" ) then timer.Remove( "Horde_Ascendent_Charge_recovery" .. id ) return end
-        if ply:Horde_GetPerkCharges() >= max_charges then timer.Remove( "Horde_Ascendent_Charge_recovery" .. id ) return end
-
-        ply:Horde_SetPerkCharges( math.min ( max_charges, ply:Horde_GetPerkCharges() + 1 ) )
-    end)
 
     local dir = ply:GetForward()
     if ply:KeyDown( IN_MOVERIGHT ) then
@@ -68,7 +62,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     end
 
     ply:SetLocalVelocity( vel )
-    ply:EmitSound( "horde/player/prototype/Dodge3.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
+    ply:EmitSound( ")horde/player/prototype/Dodge3.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
 
     ply.Horde_In_Quickstep = true
 
@@ -91,4 +85,11 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if ply.Horde_In_Quickstep then
         bonus.evasion = bonus.evasion + 1.0
     end
+end
+
+PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
+    if not killer:Horde_GetPerk( "prototype_ascendent" ) then return end
+    if not IsValid( inflictor ) or inflictor:IsNPC() then return end
+
+    ply:Horde_SetPerkCharges( math.min ( max_charges, ply:Horde_GetPerkCharges() + 1 ) )
 end

@@ -3,9 +3,9 @@ PERK.Description = [[
 The Prototype class is a close-range fighter with unique abilities.
 Complexity: MEDIUM
 
-{1} increased damage at close-range ({2} + {3} per level, up to {4}).
+{1} increased Physical damage at close-range ({2} + {3} per level, up to {4}).
 
-Leech 1 health when near enemies.
+Leech health when near enemies.
 
 Has access to light weapons and shotguns.]]
 
@@ -19,11 +19,6 @@ PERK.Params = {
 PERK.Hooks = {}
 
 if not SERVER then return end
-
-PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if perk == "prototype_base" then
-    end
-end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if perk == "prototype_base" then
@@ -74,6 +69,6 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
     elseif sqrDist < 60000 then
         if not ply:Horde_GetPerk( "prototype_hemo_siphon" ) then return end
         HORDE:SelfHeal( ply, 1 )
-        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, math.random( 110, 115 ), 1, CHAN_AUTO )
+        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, math.random( 110, 120 ), 1, CHAN_AUTO )
     end
 end
