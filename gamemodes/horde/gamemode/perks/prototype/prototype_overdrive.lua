@@ -2,7 +2,8 @@ PERK.PrintName = "Overdrive"
 PERK.Icon = "materials/perks/chain_reaction.png"
 PERK.Description = [[
 For each 1% health gained above 50% of max health.
-Increases damage by 0.5% and movement speed by 0.2%.]]
+Increases damage by 0.4% and movement speed by 0.2%.
+Caps at 20% damage and 10% movement speed.]]
 
 PERK.Hooks = {}
 
@@ -12,7 +13,7 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
     local hpFrac = ply:Health() / ply:GetMaxHealth()
     if hpFrac <= 0.5 then return end
 
-	local dmgBonus = 0.25
+	local dmgBonus = 0.20
 	local dmgMult = math.min( dmgBonus, dmgBonus * hpFrac )
 
 	bonus.increase = bonus.increase + dmgMult
