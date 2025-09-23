@@ -44,7 +44,7 @@ PERK.Hooks.Horde_OnPlayerDamageTakenPost = function( ply, dmginfo )
     util.Effect( "horde_aerial_parry", effect, true, true )
 
     local randId = tostring( math.random( 1, 2 ) )
-    ply:EmitSound( "horde/player/prototype/punch_projectile.wav", 90, math.random( 95, 105 ), 1, CHAN_AUTO )
+    ply:EmitSound( ")horde/player/prototype/punch_projectile.wav", 90, math.random( 95, 105 ), 1, CHAN_AUTO )
 
     local nearbyEnts = ents.FindInSphere( plyPos, 225 )
     for _, ent in ipairs( nearbyEnts ) do
