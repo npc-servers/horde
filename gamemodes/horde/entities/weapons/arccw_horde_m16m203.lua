@@ -21,6 +21,7 @@ SWEP.DamageMin = 39
 SWEP.Firemodes = {
     {
         Mode = 2,
+        RunawayBurst = false, -- Override the base M16 settings.
     },
     {
         Mode = 1,
