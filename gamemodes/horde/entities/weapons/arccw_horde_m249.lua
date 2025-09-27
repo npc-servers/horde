@@ -24,6 +24,9 @@ SWEP.ShootSound = "ArcCW_Horde.GSO.M249_Fire"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.M249_Fire_Sil"
 SWEP.DistantShootSound = ""
 
+SWEP.ActivePos = Vector(0, 0, 0)
+SWEP.ActiveAng = Angle(0, 0, 0)
+
 SWEP.Jamming = false
 SWEP.HeatCapacity = false
 SWEP.HeatDissipation = false
