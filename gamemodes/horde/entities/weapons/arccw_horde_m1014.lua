@@ -44,7 +44,17 @@ SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true}
 
+local reloadMult = 0.6
+
 SWEP.Animations = {
+    ["sgreload_start"] = {
+        Source = "start_reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0,
+        Mult = reloadMult,
+    },
     ["sgreload_insert"] = {
         Source = "insert",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
@@ -52,8 +62,22 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        Mult = 0.9
+        Mult = reloadMult,
     },
+    ["sgreload_finish"] = {
+        Source = "end_reload",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.2,
+        Mult = reloadMult,
+    },
+    ["sgreload_finish_empty"] = {
+        Source = "end_reload_empty",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.2,
+        Mult = reloadMult,
+    }
 }
 
 sound.Add( {
@@ -66,9 +90,9 @@ sound.Add( {
 } )
 sound.Add( {
     name = "ArcCW_Horde.GSO.M1014_Fire_Sil",
-    channel = CHAN_STATIC,
+    channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
-    pitch = 100,
+    pitch = {100, 105},
     sound = ")arccw_go/m590_suppressed_fp.wav"
 } )
