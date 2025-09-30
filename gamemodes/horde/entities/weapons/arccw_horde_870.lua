@@ -34,16 +34,31 @@ SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true}
 
+local reloadMult = 0.75
+
 SWEP.Animations = {
     ["fire"] = {
         Source = "shoot",
-        Time = 0.5,
-        MinProgress = 0.5
+        Time = 0.45,
+        MinProgress = 0.45,
     },
     ["fire_iron"] = {
         Source = "idle",
-        Time = 0.5,
-        MinProgress = 0.5
+        Time = 0.45,
+        MinProgress = 0.45,
+    },
+    ["cycle"] = {
+        Source = "cycle",
+        ShellEjectAt = 0.15,
+        TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
+    },
+    ["sgreload_start"] = {
+        Source = "start_reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
+        LHIK = true,
+        LHIKIn = 0.5,
+        LHIKOut = 0,
+        Mult = reloadMult,
     },
     ["sgreload_insert"] = {
         Source = "insert",
@@ -52,14 +67,22 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0,
-        Mult = 0.95
+        Mult = reloadMult,
+    },
+    ["sgreload_finish"] = {
+        Source = "end_reload",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 1,
+        Mult = reloadMult,
     },
     ["sgreload_finish_empty"] = {
         Source = "end_reload_empty",
-        ShellEjectAt = 0.6,
         LHIK = true,
         LHIKIn = 0,
-        LHIKOut = 1
+        LHIKOut = 1,
+        ShellEjectAt = 0.5 * reloadMult,
+        Mult = reloadMult,
     },
 }
 
@@ -73,9 +96,9 @@ sound.Add( {
 } )
 sound.Add( {
     name = "ArcCW_Horde.GSO.M870_Fire_Sil",
-    channel = CHAN_STATIC,
+    channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
-    pitch = 100,
+    pitch = {100, 105},
     sound = ")arccw_go/m590_suppressed_fp.wav"
 } )
