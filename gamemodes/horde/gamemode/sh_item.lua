@@ -428,7 +428,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Pistol", "9mm", "arccw_horde_9mm", 50, 1,
         "Combine standard sidearm.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Cremator = true },
-        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho", "Prototype" } )
+        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
     HORDE:CreateItem( "Pistol", "Medic 9mm", "arccw_horde_medic_9mm", 75, 1,
         "Modified 9mm that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing dart recharges every 0.5 second.",
         { Medic = true, Hatcher = true, Gunslinger = true },
@@ -584,8 +584,8 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Shotgun", "Shotgun", "arccw_horde_shotgun", 100, 2,
         "A standard 12-Gauge shotgun.",
-        { Engineer = true, Warden = true, Cremator = true },
-        2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Engineer", "Warden" } )
+        { Prototype = true, Engineer = true, Warden = true, Cremator = true },
+        2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Prototype", "Engineer", "Warden" } )
     HORDE:CreateItem( "Shotgun", "Nova", "arccw_horde_nova", 1000, 4,
         "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
@@ -618,14 +618,14 @@ function HORDE:GetDefaultItemsData()
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         15, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Striker", "arccw_horde_striker", 2750, 7, "Armsel Striker.\nA 12-gauge shotgun with a revolving cylinder from South Africa.",
-        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
+        { Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true },
         15, -1, nil, nil, { Warden = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "HSG-1", "arccw_horde_hsg1", 3000, 8,
         "Modified version of the Kel-Tec KSG. \nUses a box magazine instead of being tube-fed.",
-        { Warden = true }, 15, -1, nil, nil, { Warden = 2 }, nil, { HORDE.DMG_BALLISTIC } )
+        { Prototype = true, Warden = true }, 15, -1, nil, nil, { Warden = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "AA12", "arccw_horde_aa12", 3750, 9,
         "Atchisson Assault Shotgun.\nDevastating firepower at close to medium range.",
-        { Heavy = true, Juggernaut = true, Warden = true }, 25, -1, nil, nil, { Warden = 3 }, nil, { HORDE.DMG_BALLISTIC } )
+        { Prototype = true, Heavy = true, Juggernaut = true, Warden = true }, 25, -1, nil, nil, { Warden = 3 }, nil, { HORDE.DMG_BALLISTIC } )
 
     HORDE:CreateItem( "Rifle", "AR15", "arccw_horde_ar15", 2000, 6,
         "AR-15 Style Rifle.\nA lightweight semi-automatic rifle based on the ArmaLite AR-15 design.",
