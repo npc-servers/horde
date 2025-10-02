@@ -5,7 +5,8 @@ Complexity: MEDIUM
 
 {1} increased Physical damage at close-range ({2} + {3} per level, up to {4}).
 
-Leech health when near enemies.
+Leech health at close-range.
+Leeching reduces 15% of buildup.
 
 Has full access to shotguns.]]
 
@@ -52,13 +53,13 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
 
     if sqrDist < 250 ^ 2 then
         bonus.increase = bonus.increase + plyLevel
-        ply:EmitSound( ")horde/player/prototype/Impacts_SIMPLE_003.wav", 75, math.random( 75, 85 ), 1, CHAN_WEAPON )
+        ply:EmitSound( ")horde/player/prototype/LimbBreak.wav", 75, 80, 0.5, CHAN_AUTO )
     elseif sqrDist < 375 ^ 2 then
         bonus.increase = bonus.increase + plyLevel / 2
-        ply:EmitSound( ")horde/player/prototype/Impacts_SIMPLE_003.wav", 75, math.random( 95, 105 ), 0.5, CHAN_WEAPON )
+        ply:EmitSound( ")horde/player/prototype/LimbBreak.wav", 75, 100, 0.3, CHAN_AUTO )
     elseif sqrDist < 500 ^ 2 then
         bonus.increase = bonus.increase + plyLevel / 4
-        ply:EmitSound( ")horde/player/prototype/Impacts_SIMPLE_003.wav", 75, math.random( 115, 125 ), 0.25, CHAN_WEAPON )
+        ply:EmitSound( ")horde/player/prototype/LimbBreak.wav", 75, 120, 0.15, CHAN_AUTO )
     elseif sqrDist < 750 ^ 2 then
         return
     end
@@ -68,10 +69,16 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
 
     if sqrDist < 250 ^ 2 then
         HORDE:SelfHeal( ply, ply:Horde_GetPerk( "prototype_gluttonous_maw" ) and 4 or 2 )
-        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
+        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, 100, 0.5, CHAN_AUTO )
+        for debuff, buildup in pairs( ply.Horde_Debuff_Buildup ) do
+            ply:Horde_ReduceDebuffBuildup( debuff, buildup * 0.15 )
+        end
     elseif sqrDist < 500 ^ 2 then
         if not ply:Horde_GetPerk( "prototype_hemo_siphon" ) then return end
         HORDE:SelfHeal( ply, 2 )
-        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, math.random( 115, 125 ), 0.5, CHAN_AUTO )
+        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, 120, 0.25, CHAN_AUTO )
+        for debuff, buildup in pairs( ply.Horde_Debuff_Buildup ) do
+            ply:Horde_ReduceDebuffBuildup( debuff, buildup * 0.05 )
+        end
     end
 end
