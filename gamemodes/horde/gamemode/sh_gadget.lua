@@ -2,6 +2,7 @@ if SERVER then
 util.AddNetworkString("Horde_Gadget")
 util.AddNetworkString("Horde_GadgetStartCooldown")
 util.AddNetworkString("Horde_GadgetChargesUpdate")
+util.AddNetworkString("Horde_Special_Upgrades")
 end
 
 HORDE.gadgets = HORDE.gadgets or {}
@@ -16,6 +17,18 @@ if CLIENT then
             ply:Horde_SetGadget(gadget)
         elseif mode == HORDE.NET_PERK_UNSET then
             ply:Horde_UnsetGadget()
+        end
+    end)
+
+    net.Receive("Horde_Special_Upgrades", function()
+        local mode = net.ReadUInt(HORDE.NET_PERK_BITS)
+        local ply = net.ReadEntity()
+        local upgrade = net.ReadString()
+        if not ply:IsValid() then return end
+        if mode == HORDE.NET_PERK_SET then
+            ply:Horde_SetSpecialUpgrade(upgrade)
+        elseif mode == HORDE.NET_PERK_UNSET then
+            ply:Horde_UnsetSpecialUpgrade(upgrade)
         end
     end)
 end
@@ -69,6 +82,46 @@ end
 
 function plymeta:Horde_GetGadget()
     return self.Horde_Gadget
+end
+
+function plymeta:Horde_SetSpecialUpgrade(upgrade)
+    if not self.Horde_Special_Upgrades then
+        self.Horde_Special_Upgrades = {}
+    end
+
+    self.Horde_Special_Upgrades[upgrade] = true
+    sound.Play("items/suitchargeok1.wav", self:GetPos())
+    if SERVER then
+        local item = HORDE.items[upgrade]
+        if item then
+            self:Horde_AddWeight(-item.weight)
+        end
+
+        net.Start("Horde_Special_Upgrades")
+            net.WriteUInt(HORDE.NET_PERK_SET, HORDE.NET_PERK_BITS)
+            net.WriteEntity(self)
+            net.WriteString(upgrade)
+        net.Broadcast()
+    end
+end
+
+function plymeta:Horde_UnsetSpecialUpgrade(upgrade)
+    if self.Horde_Special_Upgrades[upgrade] == nil then return end
+
+    if SERVER then
+        local item = HORDE.items[upgrade]
+        if item  and self.Horde_Special_Upgrades[upgrade] then
+            self:Horde_AddWeight(item.weight)
+            self:Horde_AddMoney(math.floor(0.75 * item.price))
+        end
+
+        net.Start("Horde_Special_Upgrades")
+            net.WriteUInt(HORDE.NET_PERK_UNSET, HORDE.NET_PERK_BITS)
+            net.WriteEntity(self)
+            net.WriteString(upgrade)
+        net.Broadcast()
+    end
+    self.Horde_Special_Upgrades[upgrade] = nil
 end
 
 function plymeta:Horde_SetGadget(gadget)

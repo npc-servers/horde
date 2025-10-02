@@ -268,7 +268,7 @@ function PANEL:SellDoClick()
         return
     end
     if not MySelf:Alive() then return end
-    if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties and (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_DROP or self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET)) then
+    if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties and (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_DROP or self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET or self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_SPECIAL_UPGRADE)) then
         Derma_Query("Sell Item?!", "Sell",
                 "Yes",
                 function()
@@ -930,7 +930,7 @@ function PANEL:Paint()
             return
         end
 
-        if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET and MySelf:Horde_GetGadget() == self.item.class) then
+        if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET and MySelf:Horde_GetGadget() == self.item.class) or (MySelf.Horde_Special_Upgrades and MySelf.Horde_Special_Upgrades[self.item.class]) then
             self.buy_btn:SetTextColor(Color(255,255,255))
             self.buy_btn:SetText("OWNED")
             self.buy_btn.Paint = function ()
