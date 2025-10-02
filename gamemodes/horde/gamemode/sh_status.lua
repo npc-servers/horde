@@ -44,6 +44,7 @@ HORDE:RegisterStatus("Hunter_Mark", "materials/status/hunter_mark.png", nil, nil
 HORDE:RegisterStatus("Smokescreen", "materials/perks/specops/smokescreen.png", nil, nil, true)
 HORDE:RegisterStatus("Flare", "materials/perks/specops/flare.png", nil, nil, true)
 HORDE:RegisterStatus("AAS_Perfume", "materials/perks/carcass/AAS_Perfume.png", nil, nil, true)
+HORDE:RegisterStatus("DarkEnergyBlast", "materials/perks/overlord/dark_energy_blast.png", nil, nil, true)
 
 HORDE:RegisterStatus("Tactical_Mode", "materials/status/tactical_mode.png")
 HORDE:RegisterStatus("Camoflague", "materials/status/camoflague.png")
@@ -62,6 +63,7 @@ HORDE:RegisterStatus("Hypertrophy", "materials/status/hypertrophy.png", true)
 HORDE:RegisterStatus("SolarFlux", "materials/perks/artificer/solar_flux.png", true)
 HORDE:RegisterStatus("Bio_Thruster", "materials/perks/carcass/bio_thruster.png", true)
 HORDE:RegisterStatus("Twin_Heart", "materials/perks/carcass/twin_heart.png", true)
+HORDE:RegisterStatus("Hysteria", "materials/perks/overlord/despair.png", true)
 
 HORDE:RegisterStatus("Fortify", "materials/perks/fortify.png")
 HORDE:RegisterStatus("Berserk", "materials/perks/berserk.png")
@@ -115,6 +117,7 @@ HORDE:RegisterStatus("Freeze", "materials/status/frostbite.png", nil, true)
 HORDE:RegisterStatus("Weaken", "materials/perks/crude_casing.png", nil, true)
 HORDE:RegisterStatus("Hinder", "materials/perks/sticky_compound.png", nil, true)
 HORDE:RegisterStatus("Hemorrhage", "materials/status/hemorrhage.png", nil, true)
+HORDE:RegisterStatus("Fear", "materials/status/fear.png", nil, true)
 
 HORDE.Status_Buildup_Sounds = {}
 HORDE.Status_Buildup_Sounds[HORDE.Status_Bleeding] = "horde/status/bleeding_buildup.ogg"

@@ -228,8 +228,34 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         elseif debuff == HORDE.Status_Break then
             self:Horde_AddBreakEffect(duration, inflictor)
         elseif debuff == HORDE.Status_Necrosis then
-            timer.Simple(0.5, function ()
-                self:SetHealth(1)
+            local id = self:EntIndex()
+            if not self.Necrosis_Stacks then
+                self.Necrosis_Stacks = 0
+            end
+            self.Necrosis_Stacks = self.Necrosis_Stacks + 1
+            timer.Create("NecrosisEffect" .. id, 0.5, 0, function()
+                if not self:IsValid() then 
+                    timer.Remove("NecrosisEffect" .. id)
+                    return
+                end
+                local ef = EffectData()
+                if self:IsValid() then
+                    ef:SetEntity(self)
+                    util.Effect("horde_fear01", ef)
+                end
+                local dmg = DamageInfo()
+                if inflictor and inflictor:IsValid() then
+                    dmg:SetAttacker(inflictor)
+                    dmg:SetInflictor(self)
+                else
+                    dmg:SetAttacker(self)
+                    dmg:SetInflictor(self)
+                end
+                dmg:SetDamageType(DMG_DIRECT)
+                dmg:SetDamageCustom(HORDE.DMG_CALCULATED)
+                dmg:SetDamagePosition(self:GetPos())
+                dmg:SetDamage(math.Clamp(self:Health() * 0.05, 1, 25) * self.Necrosis_Stacks)
+                self:TakeDamageInfo(dmg)
             end)
         elseif debuff == HORDE.Status_Freeze then
             self:Horde_AddFreezeEffect(duration)
