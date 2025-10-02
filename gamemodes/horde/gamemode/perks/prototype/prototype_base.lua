@@ -52,10 +52,13 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
 
     if sqrDist < 250 ^ 2 then
         bonus.increase = bonus.increase + plyLevel
+        ply:EmitSound( ")horde/player/prototype/Impacts_SIMPLE_003.wav", 75, math.random( 75, 85 ), 1, CHAN_WEAPON )
     elseif sqrDist < 375 ^ 2 then
         bonus.increase = bonus.increase + plyLevel / 2
+        ply:EmitSound( ")horde/player/prototype/Impacts_SIMPLE_003.wav", 75, math.random( 95, 105 ), 0.5, CHAN_WEAPON )
     elseif sqrDist < 500 ^ 2 then
         bonus.increase = bonus.increase + plyLevel / 4
+        ply:EmitSound( ")horde/player/prototype/Impacts_SIMPLE_003.wav", 75, math.random( 115, 125 ), 0.25, CHAN_WEAPON )
     elseif sqrDist < 750 ^ 2 then
         return
     end
@@ -69,6 +72,6 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, hitgroup, dmginfo )
     elseif sqrDist < 500 ^ 2 then
         if not ply:Horde_GetPerk( "prototype_hemo_siphon" ) then return end
         HORDE:SelfHeal( ply, 2 )
-        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, math.random( 115, 125 ), 1, CHAN_AUTO )
+        ply:EmitSound( ")horde/player/prototype/HpGet.wav", 75, math.random( 115, 125 ), 0.5, CHAN_AUTO )
     end
 end
