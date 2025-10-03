@@ -38,14 +38,14 @@ PERK.Params = {
     [4] = { percent = true, level = 0.01, max = 0.25, classname = "Overlord" },
     [5] = { value = 0.01, percent = true },
     [6] = { value = 0.25, percent = true },
-    
+
     [7] = { percent = true, value = 0.04 },
     [8] = { percent = true, value = 0.04 },
-    
+
     [9] = { value = 2 },
     [10] = { value = 5 },
     [11] = { value = 1 },
-    
+
     [12] = { value = 55 },
     [13] = { value = 5 },
     [14] = { value = 30 },
@@ -77,9 +77,9 @@ PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
             net.WriteUInt(0, 3)
             net.Send(ply)
         end
-        
+
         ply:Horde_RemoveOverlordPresence()
-        
+
         for _, ent in pairs(ents.FindByClass("projectile_horde_hyperblast_projectile")) do
             if ent:GetOwner() == ply then
                 ent:Remove()
@@ -127,7 +127,7 @@ PERK.Hooks.Horde_UseActivePerk = function(ply)
 
     local src = ply:GetPos() + Vector(0, 0, 50) + ply:GetEyeTrace().Normal * 5
 
-    if !rocket:IsValid() then print("!!! INVALID ROUND " .. rocket) return end
+    if not rocket:IsValid() then print("!!! INVALID ROUND " .. rocket) return end
 
     local rocketAng = Angle(ang.p, ang.y, ang.r)
 
@@ -143,10 +143,10 @@ PERK.Hooks.Horde_UseActivePerk = function(ply)
 
     rocket:Spawn()
     rocket:Activate()
-    if !rocket.NoPhys and rocket:GetPhysicsObject():IsValid() then
+    if not rocket.NoPhys and rocket:GetPhysicsObject():IsValid() then
         rocket:SetCollisionGroup(rocket.CollisionGroup or COLLISION_GROUP_DEBRIS)
         timer.Simple(0.1, function()
-            if !rocket:IsValid() then return end
+            if not rocket:IsValid() then return end
             rocket:GetPhysicsObject():SetVelocityInstantaneous(RealVelocity)
         end)
     end

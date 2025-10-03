@@ -12,16 +12,16 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if SERVER and perk == "overlord_dark_energy_blast" then
         ply:Horde_SetPerkCooldown(10)
         ply:Horde_SetPerkInternalCooldown(0)
-        
+
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_DarkEnergyBlast, 8)
             net.WriteUInt(1, 3)
         net.Send(ply)
-        
+
         net.Start("Horde_PerkStartCooldown")
             net.WriteUInt(ply:Horde_GetPerkInternalCooldown(), 8)
         net.Send(ply)
-        
+
         ply:Horde_SetMaxFearStack(ply:Horde_GetMaxFearStack() + 1)
     end
 end

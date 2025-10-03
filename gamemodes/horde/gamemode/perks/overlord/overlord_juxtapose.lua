@@ -13,21 +13,21 @@ PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if SERVER and perk == "overlord_juxtapose" then
         ply:Horde_SetPerkCooldown(15)
         ply:Horde_SetPerkInternalCooldown(0)
-        
+
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_DarkEnergyBlast, 8)
             net.WriteUInt(0, 3)
         net.Send(ply)
-        
+
         net.Start("Horde_SyncActivePerk")
             net.WriteUInt(HORDE.Status_Juxtapose, 8)
             net.WriteUInt(1, 3)
         net.Send(ply)
-        
+
         net.Start("Horde_PerkStartCooldown")
             net.WriteUInt(ply:Horde_GetPerkInternalCooldown(), 8)
         net.Send(ply)
-        
+
         ply:Horde_SetMaxFearStack(ply:Horde_GetMaxFearStack() + 1)
     end
 end
@@ -46,9 +46,9 @@ PERK.Hooks.Horde_UseActivePerk = function(ply)
     if not SERVER then return end
     if not ply:Horde_GetPerk("overlord_juxtapose") then return end
     if IsValid(ply.Horde_overlord_juxtapose) then return true end
-    
+
     sound.Play("horde/player/overlord/projection.mp3", ply:GetPos(), 100, math.random(80, 120))
-    
+
     ply.Horde_overlord_juxtapose = ents.Create("npc_vj_horde_overlord_projection")
     ply.Horde_overlord_juxtapose:SetPos(ply:GetPos() + ply:GetRight() * 45 + ply:GetForward() * 45 + Vector(0, 0, 20))
     ply.Horde_overlord_juxtapose:SetAngles(ply:GetAngles())
