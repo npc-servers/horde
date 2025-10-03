@@ -15,8 +15,7 @@ ENT.SightDistance = 10000                         -- How far it can see
 ENT.SightAngle = 180                               -- The sight angle | Example: 180 would make the it see all around it | Measured in degrees and then converted to radians
 ENT.TurningSpeed = 20                             -- How fast it can turn
 ENT.Bleeds = true                                 -- Does the SNPC bleed? (Blood decal, particle, etc.)
-ENT.BloodColor =
-"Red"                                             -- The blood type, this will determine what it should use (decal, particle, etc.)
+ENT.BloodColor = "Red"                                             -- The blood type, this will determine what it should use (decal, particle, etc.)
 ENT.HasBloodParticle = true                       -- Does it spawn a particle when damaged?
 ENT.HasBloodDecal = true                          -- Does it spawn a decal when damaged?
 ENT.HasBloodPool = false                          -- Does it have a blood pool?
@@ -24,10 +23,8 @@ ENT.Flinches = 0                                  -- 0 = No Flinch | 1 = Flinche
 ENT.FlinchingChance = 12                          -- chance of it flinching from 1 to x | 1 will make it always flinch
 ENT.FlinchingSchedules = { SCHED_FLINCH_PHYSICS } -- If self.FlinchUseACT is false the it uses this | Common: SCHED_BIG_FLINCH, SCHED_SMALL_FLINCH, SCHED_FLINCH_PHYSICS
 ENT.MoveWhenDamagedByEnemy = false                -- Should the SNPC move when being damaged by an enemy?
-ENT.MoveWhenDamagedByEnemySCHED1 =
-	SCHED_FORCED_GO_RUN                           -- The schedule it runs when MoveWhenDamagedByEnemy code is ran | The first # in math.random
-ENT.MoveWhenDamagedByEnemySCHED2 =
-	SCHED_FORCED_GO_RUN                           -- The schedule it runs when MoveWhenDamagedByEnemy code is ran | The second # in math.random
+ENT.MoveWhenDamagedByEnemySCHED1 = SCHED_FORCED_GO_RUN                           -- The schedule it runs when MoveWhenDamagedByEnemy code is ran | The first # in math.random
+ENT.MoveWhenDamagedByEnemySCHED2 = SCHED_FORCED_GO_RUN                           -- The schedule it runs when MoveWhenDamagedByEnemy code is ran | The second # in math.random
 ENT.NextMoveWhenDamagedByEnemy1 = 3               -- Next time it moves when getting damaged | The first # in math.random
 ENT.NextMoveWhenDamagedByEnemy2 = 3.5             -- Next time it moves when getting damaged | The second # in math.random
 ENT.HasAllies = true                              -- Put to false if you want it not to have any allies
@@ -41,8 +38,7 @@ ENT.GrenadeAttackThrowDistanceClose = 0         -- How close until it stops thro
 ENT.AnimTbl_GrenadeAttack = { "grenThrow" }       -- Grenade Attack Animations
 ENT.GrenadeAttackAnimationDelay = 0               -- It will wait certain amount of time before playing the animation
 ENT.GrenadeAttackAnimationStopAttacks = false      -- Should it stop attacks for a certain amount of time?
-ENT.GrenadeAttackEntity =
-"npc_grenade_frag"                                -- The entity that the SNPC throws | Half Life 2 Grenade: "npc_grenade_frag"
+ENT.GrenadeAttackEntity = "npc_grenade_frag"                                -- The entity that the SNPC throws | Half Life 2 Grenade: "npc_grenade_frag"
 ENT.FootStepTimeRun = 0.3                         -- Next foot step sound when it is running
 ENT.FootStepTimeWalk = 0.5                        -- Next foot step sound when it is walking
 ENT.CallForBackUpOnDamage = false                 -- Should the SNPC call for help when damaged? (Only happens if the SNPC hasn't seen a enemy)
