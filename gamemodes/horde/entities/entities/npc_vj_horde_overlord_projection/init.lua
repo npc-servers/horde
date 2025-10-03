@@ -51,9 +51,9 @@ ENT.PlayerFriendly = true
 ENT.CanShootWhenMoving = true
 ENT.ConstantlyFaceEnemy = true
 
-    -- ====== Item Drops On Death Variables ====== --
-ENT.HasItemDropsOnDeath = false -- Should it drop items on death?
-ENT.DropWeaponOnDeath = false -- Should it drop its weapon on death?
+-- ====== Item Drops On Death Variables ====== --
+ENT.HasItemDropsOnDeath = false     -- Should it drop items on death?
+ENT.DropWeaponOnDeath = false       -- Should it drop its weapon on death?
 
 ENT.SoundTbl_FootStep = {
     "npc/combine_soldier/gear1.wav",
@@ -61,7 +61,8 @@ ENT.SoundTbl_FootStep = {
     "npc/combine_soldier/gear3.wav",
     "npc/combine_soldier/gear4.wav",
     "npc/combine_soldier/gear5.wav",
-    "npc/combine_soldier/gear6.wav" }
+    "npc/combine_soldier/gear6.wav"
+}
 
 -- ====== Sound Pitch ====== --
 -- Higher number = Higher pitch | Lower number = Lower pitch
@@ -97,7 +98,7 @@ function ENT:CustomOnInitialize()
     self:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_PERFECT)
     self.Horde_Immune_Status_All = true
     self:Horde_AddOverlordPresence()
-    
+
     timer.Simple(15, function()
         if not self:IsValid() then return end
         self:NextThink(CurTime() + 2)
@@ -115,13 +116,13 @@ function ENT:DankRemove()
         self:Remove()
     end)
 end
---[[
+/*
 function ENT:OnRemove()
 end
 
 function ENT:RangeAttackCode()
 end
-]]
+*/
 /*-----------------------------------------------
     *** Copyright (c) 2012-2015 by DrVrej, All rights reserved. ***
     No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
