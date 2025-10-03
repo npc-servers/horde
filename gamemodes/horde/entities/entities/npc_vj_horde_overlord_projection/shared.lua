@@ -7,9 +7,10 @@ ENT.Purpose      = "Spawn it and fight with it!"
 ENT.Instructions = "Click on the spawnicon to spawn it."
 ENT.Category     = "Zombies"
 
-if (CLIENT) then
-    local Name = "Projection"
-    local LangName = "npc_vj_horde_overlord_projection"
-    language.Add(LangName, Name)
-    killicon.Add(LangName, "materials/perks/overlord/juxtapose.png", Color(255, 255, 255, 255))
+if CLIENT then
+    local name = "Projection"
+    local langName = "npc_vj_horde_overlord_projection"
+
+    language.Add( langName, name )
+    killicon.Add( langName, "materials/perks/overlord/juxtapose.png", color_white )
 end
