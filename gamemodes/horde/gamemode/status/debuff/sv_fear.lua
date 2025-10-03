@@ -8,41 +8,41 @@ function entmeta:Horde_AddFearStack(ply)
     if ply:Horde_GetPerk("overlord_doomed_presence") then
         self.Is_Doomed = true
     end
-    
+
     if ply:Horde_GetPerk("overlord_deatheater") then
         self.Horde_FearStack = ply:Horde_GetMaxFearStack()
     end
-    
+
     self.Horde_FearStack = math.max(self.Horde_FearStack, math.min(ply:Horde_GetMaxFearStack(), self.Horde_FearStack + 1))
     --hook.Run("Horde_PostFearApply", self, ply, HORDE.Status_Fear, self:GetPos(), self.Horde_FearStack)
     self.Horde_FearStackAdded = true
-    
+
     if ply:Horde_GetPerk("overlord_dispersion") then
         for debuff, buildup in pairs(ply.Horde_Debuff_Buildup) do
             ply:Horde_ReduceDebuffBuildup(debuff, 10)
         end
     end
-    
+
     if ply:Horde_GetPerk("overlord_militant") then
         self:Horde_SetFear_Agony_Multiplier(0.5)
     end
-    
+
     if ply:Horde_GetPerk("overlord_oppressor") then
         self:Horde_SetFear_Suffering_Multiplier(0.5)
     end
-    
+
     if ply.Horde_Special_Upgrades and ply.Horde_Special_Upgrades["module_agony"] then
         self:Horde_SetFearUpgrade_Agony_Multiplier(0.25)
     end
-    
+
     if ply.Horde_Special_Upgrades and ply.Horde_Special_Upgrades["module_suffering"] then
         self:Horde_SetFearUpgrade_Suffering_Multiplier(0.25)
     end
-    
+
     if ply.Is_Death_Incarnate_LoS then
         self:Horde_AddDebuffBuildup(HORDE.Status_Necrosis, 500, ply, self:GetPos())
     end
-    
+
     if ply.Horde_Special_Upgrades and ply.Horde_Special_Upgrades["module_terror"] then
         local stun_perc = 8
         local is_boss = 1
@@ -54,7 +54,7 @@ function entmeta:Horde_AddFearStack(ply)
         end
         self:Horde_AddDebuffBuildup(HORDE.Status_Stun, stun_perc, ply, self:GetPos())
     end
-    
+
     if ply.Horde_Special_Upgrades and ply.Horde_Special_Upgrades["module_nightmare"] then
         if not self.Is_Nightmare then
             self.Is_Nightmare = true
@@ -79,13 +79,13 @@ function entmeta:Horde_AddFearStack(ply)
             self:EmitSound("horde/status/bleeding_trigger.ogg")
         end
     end
-    
+
     local ef = EffectData()
     if self:IsValid() then
         ef:SetEntity(self)
         util.Effect("horde_fear03", ef)
     end
-    
+
     local id = self:GetCreationID()
     timer.Remove("Horde_FearEffect" .. id)
     timer.Create("Horde_FearEffect" .. id, 0.75, 0, function()
@@ -94,7 +94,7 @@ function entmeta:Horde_AddFearStack(ply)
         ef:SetEntity(self)
         util.Effect("horde_fear03", ef)
     end)
-    
+
     if self.Is_Doomed then return end 
     timer.Remove("Horde_FearTracker" .. self:GetCreationID())
     timer.Create("Horde_FearTracker" .. self:GetCreationID(), self:Horde_GetFearStackDuration(), 1, function()
@@ -191,7 +191,7 @@ hook.Add("Horde_OnPlayerDamage", "Horde_FearStackDamage", function(ply, npc, bon
             end
             Agonizing_Death_Multi = (0.04 * (1 + (Suffering_Multi + Suffering_Multi2)))
         end
-        
+
         bonus.more = bonus.more * math.max(1, 1 + npc:Horde_GetFearStack() * ((0.04 * (1 + (npc:Horde_GetFear_Agony_Multiplier() + npc:Horde_GetFearUpgrade_Agony_Multiplier()))) + Agonizing_Death_Multi))
     end
 end)
