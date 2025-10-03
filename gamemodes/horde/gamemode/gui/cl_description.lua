@@ -1038,12 +1038,11 @@ function PANEL:Paint()
             local x, y =  self.buy_btn:GetPos()
             y = y - self.buy_btn:GetTall()
             local start_pos = x + 15
-            local classes = {"Survivor", "Assault", "Heavy", "Medic", "Demolition", "Ghost", "Engineer", "Berserker", "Warden", "Cremator"}
-            for _, class in pairs(classes) do
+            for class, _ in pairs(HORDE.subclasses) do
                 local level = self.item.levels[class]
                 if level and level > 0 then
                     local rank, rank_level = HORDE:LevelToRank(level)
-                    local mat = Material(HORDE.classes[class].icon, "mips smooth")
+                    local mat = Material(HORDE.subclasses[class].Icon, "mips smooth")
                     surface.SetMaterial(mat) -- Use our cached material
                     surface.SetDrawColor(HORDE.Rank_Colors[rank])
                     surface.DrawTexturedRect(start_pos, y + 5, 40, 40)
