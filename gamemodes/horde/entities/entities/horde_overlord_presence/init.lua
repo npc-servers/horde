@@ -49,7 +49,6 @@ end
 
 function ENT:GetLingeringDuration()
     local linger = 0.1
-    local ply = self:GetPlayerParent()
     local cball = self:GetParent().LingeringDuration
     if cball and cball > 0 then
         linger = cball
@@ -58,7 +57,7 @@ function ENT:GetLingeringDuration()
 end
 
 function ENT:OnEntityEnter(ent)
-    if(!self:CheckCD(ent)) then return end
+    if not self:CheckCD(ent) then return end
     local ply = self:GetPlayerParent()
     if HORDE:IsEnemy(ent) then
         ent:Horde_AddFearStack(ply)
@@ -77,10 +76,7 @@ function ENT:OnEntityStay(ent)
 end
 
 function ENT:OnEntityExit(ent)
-    --if(!self:CheckCD(ent)) then return end
-    if HORDE:IsEnemy(ent) then
-        -- Dank
-    elseif ent:IsPlayer() then
+    if ent:IsPlayer() then
         ent:Horde_RemoveOverlordPresenceEffects()
     end
 end
@@ -92,16 +88,16 @@ function ENT:LoSCheckType(ent)
         originVector = owner:EyePos(),
         targetEntity = ent,
         advancedCheck = true,
-        }
+    }
     local ply = self:GetPlayerParent()
-    return (!HORDE.IsInSight(sData)) and not ply.Is_Death_Incarnate_LoS
+    return not HORDE.IsInSight(sData) and not ply.Is_Death_Incarnate_LoS
 end
 
 ENT.Entities = {}
 function ENT:CheckCD(ent)
     local ply = self:GetPlayerOwner()
     local cd = ply.Entities[ent:EntIndex()]
-    if(!cd) then
+    if not cd then
         return true
     else
         return cd < CurTime()
@@ -112,7 +108,7 @@ ENT.Entitieslingering = {}
 function ENT:CheckLingeringDuration(ent)
     local ply = self:GetPlayerOwner()
     local dur = ply.Entitieslingering[ent:EntIndex()]
-    if(!dur) then
+    if not dur then
         return true
     else
         return dur < CurTime()
@@ -124,13 +120,13 @@ ENT.OnEntityStayInterval = 0
 function ENT:Think()
     local tick = engine.TickCount()
     local ply = self:GetPlayerOwner()
-    
+
     local radius = self.Area_of_Effect_Radius
     for _, ent in ipairs(ents.FindInSphere(self:GetPos(), radius)) do
         if not IsValid(ply) then return end
         if self:LoSCheckType(ent) then continue end
         if HORDE:IsEnemy(ent) or ent:IsPlayer() then
-            if(!ply.EntitiesInside[ent:EntIndex()]) and self:CheckCD(ent) then
+            if not ply.EntitiesInside[ent:EntIndex()] and self:CheckCD(ent) then
                 self:OnEntityEnter(ent)
                 ply.Entities[ent:EntIndex()] = CurTime() + self:GetDelayInterval()
             end
@@ -146,22 +142,22 @@ function ENT:Think()
     end
     for entindex, tickcount in pairs(ply.EntitiesInside) do
         local entity = Entity(entindex)
-        if(!IsValid(entity)) then
+        if not IsValid(entity) then
             ply.EntitiesInside[entindex] = nil
             continue
         end
-        if(tickcount != tick) and self:CheckLingeringDuration(entity) then
+        if tickcount != tick and self:CheckLingeringDuration(entity) then
             ply.EntitiesInside[entindex] = nil
             self:OnEntityExit(entity)
         end
     end
     for entindex, tickcount in pairs(ply.Entitieslingering) do
         local entity = Entity(entindex)
-        if(!IsValid(entity)) then
+        if not IsValid(entity) then
             ply.Entitieslingering[entindex] = nil
             continue
         end
-        if self:CheckCD(entity) and (tickcount != tick) then
+        if self:CheckCD(entity) and tickcount != tick then
             ply.Entities[entindex] = CurTime() + self:GetDelayInterval()
             self:OnEntityStay(entity)
         end
@@ -171,11 +167,11 @@ function ENT:Think()
     end
     for entindex, tickcount in pairs(ply.Entities) do
         local entity = Entity(entindex)
-        if(!IsValid(entity)) then
+        if not IsValid(entity) then
             ply.Entities[entindex] = nil
         end
     end
-    
+
     self:NextThink(CurTime())
     return true
 end
