@@ -1,5 +1,5 @@
-AddCSLuaFile("shared.lua")
-include('shared.lua')
+AddCSLuaFile( "shared.lua" )
+include( "shared.lua" )
 /*-----------------------------------------------
     *** Copyright (c) 2012-2015 by DrVrej, All rights reserved. ***
     No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -75,46 +75,48 @@ ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75
 
 function ENT:CustomOnInitialize()
-    self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
+    self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
+
     if self.Is_Reinforcements then
-        self:SetMaxHealth(self.StartHealth * 0.5)
-        self:SetHealth(self:GetMaxHealth())
+        self:SetMaxHealth( self.StartHealth * 0.5 )
+        self:SetHealth( self:GetMaxHealth() )
     end
+
     local ply = self:GetOwner()
     if ply:Horde_GetGadget() == "gadget_shotgun_surgeon" then
-        self:SetSkin(1)
+        self:SetSkin( 1 )
     end
-    self:Give("weapon_vj_horde_projection_shotgun")
-    self:AddRelationship("player D_LI 99")
-    self:AddRelationship("ally D_LI 99")
-    self:AddRelationship("npc_turret_floor D_LI 99")
-    self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
-    self:AddRelationship("npc_manhack D_LI 99")
-    self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
-    self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
-    self:AddRelationship("npc_vj_horde_spectre D_LI 99")
-    self:AddRelationship("npc_vj_horde_antlion D_LI 99")
-    self:SetNPCState(NPC_STATE_COMBAT)
-    self:SetCurrentWeaponProficiency(WEAPON_PROFICIENCY_PERFECT)
+
+    self:Give( "weapon_vj_horde_projection_shotgun" )
+    self:AddRelationship( "player D_LI 99" )
+    self:AddRelationship( "ally D_LI 99" )
+    self:AddRelationship( "npc_vj_horde_combat_bot D_LI 99" )
+    self:AddRelationship( "npc_manhack D_LI 99" )
+    self:AddRelationship( "npc_vj_horde_vortigaunt D_LI 99" )
+    self:AddRelationship( "npc_vj_horde_rocket_turret D_LI 99" )
+    self:AddRelationship( "npc_vj_horde_spectre D_LI 99" )
+    self:AddRelationship( "npc_vj_horde_antlion D_LI 99" )
+    self:SetNPCState( NPC_STATE_COMBAT )
+    self:SetCurrentWeaponProficiency( WEAPON_PROFICIENCY_PERFECT )
     self.Horde_Immune_Status_All = true
     self:Horde_AddOverlordPresence()
 
-    timer.Simple(15, function()
+    timer.Simple( 15, function()
         if not self:IsValid() then return end
-        self:NextThink(CurTime() + 2)
+        self:NextThink( CurTime() + 2 )
         --self:Remove()
         self:DankRemove()
-    end)
+    end )
 end
 
 -- This is here for VJank base to not error out when it removes the entity the same frame the target targets something
 function ENT:DankRemove()
     --self:SetSchedule(SCHED_NPC_FREEZE)
-    self:NextThink(CurTime() + 2)
-    timer.Simple(1, function()
+    self:NextThink( CurTime() + 2 )
+    timer.Simple( 1, function()
         if not self:IsValid() then return end
         self:Remove()
-    end)
+    end )
 end
 /*
 function ENT:OnRemove()
@@ -129,4 +131,4 @@ end
     without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 
-VJ.AddNPC("Projection", "npc_vj_horde_overlord_projection", "Zombies")
+VJ.AddNPC( "Projection", "npc_vj_horde_overlord_projection", "Zombies" )
