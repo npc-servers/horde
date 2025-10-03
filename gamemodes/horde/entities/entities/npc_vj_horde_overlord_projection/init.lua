@@ -1,9 +1,9 @@
 AddCSLuaFile("shared.lua")
 include('shared.lua')
 /*-----------------------------------------------
-	*** Copyright (c) 2012-2015 by DrVrej, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
+    *** Copyright (c) 2012-2015 by DrVrej, All rights reserved. ***
+    No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
+    without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = "models/combine_soldier_prisonguard.mdl" -- Leave empty if using more than one model
 ENT.StartHealth = 125
@@ -56,12 +56,12 @@ ENT.HasItemDropsOnDeath = false -- Should it drop items on death?
 ENT.DropWeaponOnDeath = false -- Should it drop its weapon on death?
 
 ENT.SoundTbl_FootStep = {
-	"npc/combine_soldier/gear1.wav",
-	"npc/combine_soldier/gear2.wav",
-	"npc/combine_soldier/gear3.wav",
-	"npc/combine_soldier/gear4.wav",
-	"npc/combine_soldier/gear5.wav",
-	"npc/combine_soldier/gear6.wav" }
+    "npc/combine_soldier/gear1.wav",
+    "npc/combine_soldier/gear2.wav",
+    "npc/combine_soldier/gear3.wav",
+    "npc/combine_soldier/gear4.wav",
+    "npc/combine_soldier/gear5.wav",
+    "npc/combine_soldier/gear6.wav" }
 
 -- ====== Sound Pitch ====== --
 -- Higher number = Higher pitch | Lower number = Lower pitch
@@ -77,7 +77,7 @@ function ENT:CustomOnInitialize()
     self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
     if self.Is_Reinforcements then
         self:SetMaxHealth(self.StartHealth * 0.5)
-		self:SetHealth(self:GetMaxHealth())
+        self:SetHealth(self:GetMaxHealth())
     end
     local ply = self:GetOwner()
     if ply:Horde_GetGadget() == "gadget_shotgun_surgeon" then
@@ -123,9 +123,9 @@ function ENT:RangeAttackCode()
 end
 ]]
 /*-----------------------------------------------
-	*** Copyright (c) 2012-2015 by DrVrej, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
+    *** Copyright (c) 2012-2015 by DrVrej, All rights reserved. ***
+    No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
+    without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 
 VJ.AddNPC("Projection", "npc_vj_horde_overlord_projection", "Zombies")
