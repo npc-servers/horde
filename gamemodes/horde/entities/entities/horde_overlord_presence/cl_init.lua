@@ -27,7 +27,7 @@ function ENT:OnRemove()
     auras[self] = nil
 end
 
-hook.Add( "PreDrawRings", "DrawWardenRings", function()
+hook.Add( "PreDrawRings", "DrawOverlordRings", function()
     if next( auras ) == nil then return end
 
     local set = {}
