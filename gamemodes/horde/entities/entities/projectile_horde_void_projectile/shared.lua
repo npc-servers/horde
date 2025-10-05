@@ -42,10 +42,10 @@ function ENT:CustomOnInitialize()
     self.StartPos = self:GetPos()
 
     self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
-    self.ExplodeTimer = CurTime() + 0.4
+    self.ExplodeTimer = CurTime() + 0.6
 
     if self:GetCharged() == 1 then
-        self.ExplodeTimer = self.ExplodeTimer + 0.3
+        self.ExplodeTimer = self.ExplodeTimer + 0.6
     elseif self:GetCharged() == 2 then
         self.ExplodeTimer = self.ExplodeTimer + 0.6
     end
@@ -100,6 +100,20 @@ function ENT:Think()
             e:SetNormal(Vector(0,0,1))
             e:SetScale(0.6)
             util.Effect("cold_explosion", e, true, true)
+			
+			for _, ent in pairs(ents.FindInSphere(self:GetPos(), 150 )) do
+				if ent:IsPlayer() then
+				elseif ent:IsNPC() then
+					local dmg_splash = DamageInfo()
+					dmg_splash:SetAttacker(self.Owner)
+					dmg_splash:SetInflictor(self)
+					dmg_splash:SetDamageType(DMG_REMOVENORAGDOLL)
+					dmg_splash:SetDamage(self:GetSpellBaseDamage(1) * dmg_mult)
+					dmg_splash:SetDamageCustom(HORDE.DMG_PLAYER_FRIENDLY)
+					util.BlastDamageInfo(dmg_splash, self:GetPos(), 150)
+					ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg_splash:GetDamage()/2, self.Owner)
+				end
+			end
 
             local dmg_splash = DamageInfo()
             dmg_splash:SetAttacker(self.Owner)
@@ -193,17 +207,26 @@ function ENT:Detonate(hitpos, ent)
                 if (not tr.Entity:IsValid()) or (not tr.Entity:IsNPC()) then
                     if ent:IsNPC() then
                         ent:TakeDamageInfo(dmg)
+                        ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg:GetDamage()/2, self.Owner)
                     end
                 else
+                    tr.Entity:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg:GetDamage()/2, self.Owner)
                 end
 
-                local dmg_splash = DamageInfo()
-                dmg_splash:SetAttacker(self.Owner)
-                dmg_splash:SetInflictor(tr.Entity)
-                dmg_splash:SetDamageType(DMG_REMOVENORAGDOLL)
-                dmg_splash:SetDamage(self:GetSpellBaseDamage(2) * dmg_mult)
-                dmg_splash:SetDamageCustom(HORDE.DMG_SPLASH)
-                util.BlastDamageInfo(dmg_splash, self:GetPos(), 150 * radius_mult)
+				for _, ent in pairs(ents.FindInSphere(self:GetPos(), 150 * radius_mult)) do
+					if ent:IsPlayer() then
+					elseif ent:IsNPC() then
+						local dmg_splash = DamageInfo()
+						dmg_splash:SetAttacker(self.Owner)
+						dmg_splash:SetInflictor(tr.Entity)
+						dmg_splash:SetDamageType(DMG_REMOVENORAGDOLL)
+						dmg_splash:SetDamage(self:GetSpellBaseDamage(2) * dmg_mult)
+						dmg_splash:SetDamageCustom(HORDE.DMG_SPLASH)
+						util.BlastDamageInfo(dmg_splash, self:GetPos(), 150 * radius_mult)
+						ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, dmg_splash:GetDamage()/2, self.Owner)
+					end
+				end
+                
             end
         })
     --end

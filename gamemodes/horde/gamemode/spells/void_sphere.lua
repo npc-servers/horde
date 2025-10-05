@@ -35,22 +35,24 @@ SPELL.Fire           = function ( ply, _, charge_stage )
     local ar = ply:EyeAngles()
     if charge_stage == 1 then
 
-        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1200 )
+        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1400 )
 
     elseif charge_stage == 2 then
-
-        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1300 )
+	
+        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1400 )
         ar:RotateAroundAxis( ar:Up(), 15 )
 
-        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1300 )
+        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1400 )
         ar = ply:EyeAngles()
 
         ar:RotateAroundAxis( ar:Up(), -15 )
-        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1300 )
+        SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1400 )
+
 
     else
 
         SpawnProjectile( ply:EyePos() + ( ar:Forward() * 16 ), ar, ar:Forward() * 1400 )
+        ar = ply:EyeAngles()
 
     end
 
