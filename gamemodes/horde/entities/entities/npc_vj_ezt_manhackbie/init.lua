@@ -103,6 +103,7 @@ function ENT:CustomOnKilled(dmginfo,hitgroup)
 end
 
 ENT.EntitiesToNoCollide = {
+	"npc_manhack",
 	"npc_vj_alpha_gonome", 
 	"npc_vj_ezt_manhackbie", 
 	"npc_vj_ezt_shotbie", 
