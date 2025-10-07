@@ -65,16 +65,16 @@ SWEP.MeleeMissSound = {
     "horde/weapons/chainsaw/chainsaw_deselect1.ogg",
     "horde/weapons/chainsaw/chainsaw_deselect2.ogg"
 }
-SWEP.MeleeHitSound =
-    { "horde/weapons/chainsaw/chainsaw_impact_conc1.ogg",
+SWEP.MeleeHitSound = {
+    "horde/weapons/chainsaw/chainsaw_impact_conc1.ogg",
     "horde/weapons/chainsaw/chainsaw_impact_conc2.ogg",
-    "horde/weapons/chainsaw/chainsaw_impact_conc3.ogg", }
-SWEP.MeleeHitNPCSound =
-    { "horde/weapons/chainsaw/chainsaw_impact_flesh1.ogg",
+    "horde/weapons/chainsaw/chainsaw_impact_conc3.ogg",
+}
+SWEP.MeleeHitNPCSound = {
+    "horde/weapons/chainsaw/chainsaw_impact_flesh1.ogg",
     "horde/weapons/chainsaw/chainsaw_impact_flesh2.ogg",
-    "horde/weapons/chainsaw/chainsaw_impact_flesh3.ogg", }
-
-SWEP.NotForNPCs = true
+    "horde/weapons/chainsaw/chainsaw_impact_flesh3.ogg",
+}
 
 SWEP.Firemodes = {
     {
@@ -86,11 +86,9 @@ SWEP.Firemodes = {
 SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "melee2"
 
-SWEP.AttachmentElements = {
-}
+SWEP.AttachmentElements = {}
 
-SWEP.Attachments = {
-}
+SWEP.Attachments = {}
 
 SWEP.Animations = {
     ["idle"] = {
@@ -102,8 +100,8 @@ SWEP.Animations = {
         Time = 2,
         SoundTable = {
             {
-            s = "horde/weapons/chainsaw/Chainsaw_FalseStart1.ogg",
-            t = 0.1
+                s = "horde/weapons/chainsaw/Chainsaw_FalseStart1.ogg",
+                t = 0.1
             },
         },
     },
@@ -120,7 +118,7 @@ SWEP.Animations = {
 SWEP.IronSightStruct = false
 
 SWEP.ActivePos = Vector( 2, 5, -2 )
-SWEP.ActiveAng = Angle( -0, 0, -0 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
 SWEP.BashPreparePos = Vector( 0, 0, 0 )
 SWEP.BashPrepareAng = Angle( 0, 20, 0 )
@@ -132,12 +130,13 @@ SWEP.HolsterPos = Vector( 0, -3, -2 )
 SWEP.HolsterAng = Angle( -10, 0, 0 )
 
 function SWEP:Bash( melee2 )
-    if self:GetOwner():IsValid() and self:GetOwner():GetAmmoCount( self.Primary.Ammo ) > 0 then
+    local owner = self:GetOwner()
+    if owner:IsValid() and owner:GetAmmoCount( self.Primary.Ammo ) > 0 then
         self:SetClip1( 200 )
-        self:GetOwner():SetAmmo( self:GetOwner():GetAmmoCount( self.Primary.Ammo ) - 1, self.Primary.Ammo )
+        owner:SetAmmo( owner:GetAmmoCount( self.Primary.Ammo ) - 1, self.Primary.Ammo )
     end
 
-    local totalAmmo = self:Clip1() + self:GetOwner():GetAmmoCount( self.Primary.Ammo )
+    local totalAmmo = self:Clip1() + owner:GetAmmoCount( self.Primary.Ammo )
 
     if totalAmmo <= 0 then
         self.MeleeDamage = 130
@@ -152,7 +151,7 @@ function SWEP:Bash( melee2 )
             "horde/weapons/chainsaw/chainsaw_deselect1.ogg",
             "horde/weapons/chainsaw/chainsaw_deselect2.ogg"
         }
-        if self:GetOwner():GetAmmoCount( self.Primary.Ammo ) <= 0 and self:Clip1() > 0 then
+        if owner:GetAmmoCount( self.Primary.Ammo ) <= 0 and self:Clip1() > 0 then
             self:SetClip1( self:Clip1() - 1 )
         end
     end
@@ -206,15 +205,15 @@ function SWEP:Bash( melee2 )
 
     if melee2 then
         if self.HoldtypeActive == "pistol" or self.HoldtypeActive == "revolver" then
-            self:GetOwner():DoAnimationEvent( self.Melee2Gesture or ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE )
+            owner:DoAnimationEvent( self.Melee2Gesture or ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE )
         else
-            self:GetOwner():DoAnimationEvent( self.Melee2Gesture or ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
+            owner:DoAnimationEvent( self.Melee2Gesture or ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
         end
     else
         if self.HoldtypeActive == "pistol" or self.HoldtypeActive == "revolver" then
-            self:GetOwner():DoAnimationEvent( self.MeleeGesture or ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE )
+            owner:DoAnimationEvent( self.MeleeGesture or ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE )
         else
-            self:GetOwner():DoAnimationEvent( self.MeleeGesture or ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
+            owner:DoAnimationEvent( self.MeleeGesture or ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND )
         end
     end
 
@@ -227,8 +226,8 @@ function SWEP:Bash( melee2 )
     mat = mat * self:GetBuff_Mult( "Mult_MeleeAttackTime" ) * math.pow( mult, 1.5 )
 
     self:SetTimer( mat or ( 0.125 * mt ), function()
-        if not IsValid( self ) or not IsValid( self:GetOwner() ) then return end
-        if self:GetOwner():GetActiveWeapon() ~= self then return end
+        if not IsValid( self ) or not IsValid( owner ) then return end
+        if owner:GetActiveWeapon() ~= self then return end
 
         if CLIENT then
             self:OurViewPunch( -self.BashAng * 0.05 )
@@ -241,18 +240,19 @@ function SWEP:Bash( melee2 )
 end
 
 function SWEP:Reload()
-    if self:GetOwner():GetAmmoCount( self.Primary.Ammo ) <= 0 then return end
+    local owner = self:GetOwner()
+    if owner:GetAmmoCount( self.Primary.Ammo ) <= 0 then return end
     if self:Clip1() >= self:GetMaxClip1() then return end
 
-    self.Weapon:SendWeaponAnim( ACT_VM_HOLSTER )
+    self:SendWeaponAnim( ACT_VM_HOLSTER )
     self:SetNextPrimaryFire( CurTime() + 1 )
-    timer.Simple( 1, function ()
-        if not IsValid( self.Weapon ) or not IsValid( self:GetOwner() ) then return end
-        self.Weapon:SendWeaponAnim( ACT_VM_IDLE )
-        local ammo = self:GetOwner():GetAmmoCount( self.Primary.Ammo )
+    timer.Simple( 1, function()
+        if not IsValid( self ) or not IsValid( owner ) then return end
+        self:SendWeaponAnim( ACT_VM_IDLE )
+        local ammo = owner:GetAmmoCount( self.Primary.Ammo )
         local clip = math.min( self.Primary.ClipSize, ammo + self:Clip1() )
         local diff = clip - self:Clip1()
-        self:GetOwner():SetAmmo( ammo - diff, self.Primary.Ammo )
-        self.Weapon:SetClip1( clip )
+        owner:SetAmmo( ammo - diff, self.Primary.Ammo )
+        self:SetClip1( clip )
     end )
 end
