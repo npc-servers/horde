@@ -164,3 +164,42 @@ function ENT:RangeAttackCode_GetShootPos(projectile)
 end
 
 VJ.AddNPC("Xen Host Unit","npc_vj_horde_xen_host_unit", "Zombies")
+
+ENT.EntitiesToNoCollide = {
+	"npc_vj_alpha_gonome", 
+	"npc_vj_ezt_manhackbie", 
+	"npc_vj_ezt_shotbie", 
+	"npc_vj_ezt_weapbie", 
+	"npc_vj_horde_blight", 
+	"npc_vj_horde_breen", 
+	"npc_vj_horde_charred_zombine", 
+	"npc_vj_horde_crawler", 
+	"npc_vj_horde_exploder", 
+	"npc_vj_horde_fast_zombie",
+	"npc_vj_horde_gamma_gonome",
+	"npc_vj_horde_headcrab_baby",
+	"npc_vj_horde_hellknight",
+	"npc_vj_horde_hulk",
+	"npc_vj_horde_lesion",
+	"npc_vj_horde_plague_elite",
+	"npc_vj_horde_plague_platoon",
+	"npc_vj_horde_plague_soldier",
+	"npc_vj_horde_platoon_berserker",
+	"npc_vj_horde_platoon_demolitionist",
+	"npc_vj_horde_platoon_heavy",
+	"npc_vj_horde_poison_zombie",
+	"npc_vj_horde_scorcher",
+	"npc_vj_horde_screecher",
+	"npc_vj_horde_sprinter",
+	"npc_vj_horde_vomitter",
+	"npc_vj_horde_walker",
+	"npc_vj_horde_weeper",
+	"npc_vj_horde_xen_destroyer_unit",
+	"npc_vj_horde_xen_host_unit",
+	"npc_vj_horde_xen_necromancer_unit",
+	"npc_vj_horde_xen_psychic_unit",
+	"npc_vj_horde_yeti",
+	"npc_vj_horde_zombie_torso",
+	"npc_vj_horde_zombine",
+	"npc_vj_mutated_hulk"
+}
