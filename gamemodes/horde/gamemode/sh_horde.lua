@@ -203,8 +203,8 @@ RunConsoleCommand( "vj_npc_investigate", "0" )
 RunConsoleCommand( "vj_npc_melee_bleed", "0" )
 RunConsoleCommand( "vj_npc_melee_ply_dsp", "0" )
 RunConsoleCommand( "vj_npc_melee_ply_speed", "0" )
-RunConsoleCommand( "vj_npc_sight_xray ", "1" )
-RunConsoleCommand( "vj_npc_snd_plyspeed ", "0" )
+RunConsoleCommand( "vj_npc_sight_xray", "1" )
+RunConsoleCommand( "vj_npc_snd_plyspeed", "0" )
 RunConsoleCommand( "vj_npc_wander", "0" )
 
 -- Util functions
