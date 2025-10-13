@@ -193,12 +193,19 @@ end
 
 -- Disable Godmode
 RunConsoleCommand("sbox_godmode", "0")
-RunConsoleCommand("vj_npc_addfrags", "0")
-RunConsoleCommand("vj_npc_knowenemylocation", "1")
-RunConsoleCommand("vj_npc_bleedenemyonmelee", "0")
-RunConsoleCommand("vj_npc_nocallhelp", "1")
-RunConsoleCommand("vj_npc_nowandering", "1")
-RunConsoleCommand("vj_npc_nogib", "1") -- Since we use our own gibbing system, there should be no need to call for VJ Base gibbing system.
+
+-- VJ Base Commands
+RunConsoleCommand( "vj_npc_callhelp", "0" )
+RunConsoleCommand( "vj_npc_dangerdetection", "0" )
+RunConsoleCommand( "vj_npc_eat", "0" )
+RunConsoleCommand( "vj_npc_gib", "0" )
+RunConsoleCommand( "vj_npc_investigate", "0" )
+RunConsoleCommand( "vj_npc_melee_bleed", "0" )
+RunConsoleCommand( "vj_npc_melee_ply_dsp", "0" )
+RunConsoleCommand( "vj_npc_melee_ply_speed", "0" )
+RunConsoleCommand( "vj_npc_sight_xray ", "1" )
+RunConsoleCommand( "vj_npc_snd_plyspeed ", "0" )
+RunConsoleCommand( "vj_npc_wander", "0" )
 
 -- Util functions
 function HORDE:GiveAmmo(ply, wpn, count)
