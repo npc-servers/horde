@@ -1097,7 +1097,7 @@ function PANEL:Init()
         end
     end
     donate_btn.DoClick = function ()
-        gui.OpenURL("https://store.npcz.gg/")
+        gui.OpenURL("https://store.zmod.gg/")
     end
 
     local close_btn = vgui.Create("DButton", self)
