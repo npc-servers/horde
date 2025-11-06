@@ -268,7 +268,7 @@ function PANEL:SellDoClick()
         return
     end
     if not MySelf:Alive() then return end
-    if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties and (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_DROP or self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET)) then
+    if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties and (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_DROP or self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET or self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_SPECIAL_UPGRADE)) then
         Derma_Query("Sell Item?!", "Sell",
                 "Yes",
                 function()
@@ -930,7 +930,7 @@ function PANEL:Paint()
             return
         end
 
-        if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET and MySelf:Horde_GetGadget() == self.item.class) then
+        if MySelf:HasWeapon(self.item.class) or (self.item.entity_properties.type == HORDE.ENTITY_PROPERTY_GADGET and MySelf:Horde_GetGadget() == self.item.class) or (MySelf.Horde_Special_Upgrades and MySelf.Horde_Special_Upgrades[self.item.class]) then
             self.buy_btn:SetTextColor(Color(255,255,255))
             self.buy_btn:SetText("OWNED")
             self.buy_btn.Paint = function ()
@@ -1038,12 +1038,11 @@ function PANEL:Paint()
             local x, y =  self.buy_btn:GetPos()
             y = y - self.buy_btn:GetTall()
             local start_pos = x + 15
-            local classes = {"Survivor", "Assault", "Heavy", "Medic", "Demolition", "Ghost", "Engineer", "Berserker", "Warden", "Cremator"}
-            for _, class in pairs(classes) do
+            for class, _ in pairs(HORDE.subclasses) do
                 local level = self.item.levels[class]
                 if level and level > 0 then
                     local rank, rank_level = HORDE:LevelToRank(level)
-                    local mat = Material(HORDE.classes[class].icon, "mips smooth")
+                    local mat = Material(HORDE.subclasses[class].Icon, "mips smooth")
                     surface.SetMaterial(mat) -- Use our cached material
                     surface.SetDrawColor(HORDE.Rank_Colors[rank])
                     surface.DrawTexturedRect(start_pos, y + 5, 40, 40)
