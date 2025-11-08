@@ -18,7 +18,7 @@ SWEP.WorldModel = "models/weapons/w_shot_xm1014.mdl"
 SWEP.Damage = 43
 SWEP.DamageMin = 25
 SWEP.Range = 25
-SWEP.Penetration = 10
+SWEP.Penetration = 12
 
 SWEP.AccuracyMOA = 75
 
