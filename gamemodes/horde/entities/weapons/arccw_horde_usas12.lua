@@ -95,7 +95,7 @@ SWEP.MuzzleVelocity = 100000 -- projectile or phys bullet muzzle velocity
 
 -- Speed mult --
 
-SWEP.SpeedMult = 0.85
+SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.7
 SWEP.SightTime = 0.42
 SWEP.IronSightStruct = {
