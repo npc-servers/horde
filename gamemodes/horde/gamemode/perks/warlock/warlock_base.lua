@@ -1,5 +1,6 @@
 PERK.PrintName = "Warlock Base"
 PERK.Description = [[
+The Warlock is a slow spellcaster that focuses on highly destructive spells.
 COMPLEXITY: HIGH
 
 {1} increased maximum Mind. ({2} per level, up to {3}).
