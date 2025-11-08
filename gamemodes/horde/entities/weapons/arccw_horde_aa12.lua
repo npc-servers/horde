@@ -15,7 +15,7 @@ SWEP.PrintName = "AA-12"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2_2/c_aa12_1.mdl"
 SWEP.WorldModel = "models/weapons/w_shot_xm1014.mdl"
 
-SWEP.Damage = 45
+SWEP.Damage = 40
 SWEP.DamageMin = 26
 SWEP.Range = 40
 SWEP.Penetration = 3
