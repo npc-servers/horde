@@ -18,7 +18,7 @@ SWEP.WorldModel = "models/weapons/w_shot_xm1014.mdl"
 SWEP.Damage = 45
 SWEP.DamageMin = 26
 SWEP.Range = 40
-SWEP.Penetration = 10
+SWEP.Penetration = 3
 
 SWEP.Primary.ClipSize = 20
 
