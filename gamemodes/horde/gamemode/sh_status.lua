@@ -133,12 +133,12 @@ HORDE.Status_Trigger_Sounds[HORDE.Status_Break] = "horde/status/break_trigger.og
 HORDE.Status_Trigger_Sounds[HORDE.Status_Necrosis] = "horde/status/necrosis_trigger.ogg"
 
 HORDE.Debuff_Notifications = {
-    [HORDE.Status_Bleeding] = "You are inflicted by Bleeding.\nYour health is removed over time.",
-    [HORDE.Status_Ignite] = "You are inflicted by Ignite.\nYou take Fire damage over time.",
-    [HORDE.Status_Frostbite] = "You are inflicted by Frostbite.\nYour movement speed is reduced.",
-    [HORDE.Status_Shock] = "You are inflicted by Shock.\nYou take increased damage from all sources.",
-    [HORDE.Status_Break] = "You are inflicted by Break.\nYour health is reduced drastically and will recover slowly.",
-    [HORDE.Status_Decay] = "You are inflicted by Decay.\nYou cannot heal.",
+    [HORDE.Status_Bleeding] = "You are Bleeding.\nYour health is slowly draining.",
+    [HORDE.Status_Ignite] = "You are on fire!",
+    [HORDE.Status_Frostbite] = "You've been afflicted with Frostbite.\nYour movement speed is reduced.",
+    [HORDE.Status_Shock] = "You've been afflicted with Shock.\nYou take increased damage from all sources.",
+    [HORDE.Status_Break] = "You've been afflicted with Break.\nYour health is temporarily critical.",
+    [HORDE.Status_Decay] = "You've been afflicted with Decay.\nYou cannot heal.",
     [HORDE.Status_Psychosis] = "Y'ai 'ng'ngah, Yog-Sothoth h'ee - l'geb f'ai throdog uaaah.",
     [HORDE.Status_Necrosis] = "You are dying from Necrosis."
 }
