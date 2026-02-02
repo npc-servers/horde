@@ -45,6 +45,8 @@ HORDE:RegisterStatus("Smokescreen", "materials/perks/specops/smokescreen.png", n
 HORDE:RegisterStatus("Flare", "materials/perks/specops/flare.png", nil, nil, true)
 HORDE:RegisterStatus("AAS_Perfume", "materials/perks/carcass/AAS_Perfume.png", nil, nil, true)
 HORDE:RegisterStatus("DarkEnergyBlast", "materials/perks/overlord/dark_energy_blast.png", nil, nil, true)
+HORDE:RegisterStatus("Juxtapose", "materials/perks/overlord/juxtapose.png", nil, nil, true)
+HORDE:RegisterStatus("DarkEnergyBlast", "materials/perks/overlord/dark_energy_blast.png", nil, nil, true)
 
 HORDE:RegisterStatus("Tactical_Mode", "materials/status/tactical_mode.png")
 HORDE:RegisterStatus("Camoflague", "materials/status/camoflague.png")
