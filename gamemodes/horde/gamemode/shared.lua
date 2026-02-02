@@ -136,15 +136,12 @@ local HORDE_SHOULD_COLLIDE_KEY = "Horde_ShouldCollide"
 local HORDE_OWNER_KEY = "HordeOwner"
 
 function GM:ShouldCollide(ent1, ent2)
-    local ent1IsPlayer = getMetatable(ent1) == playerMeta
-    local ent2IsPlayer = getMetatable(ent2) == playerMeta
-
+    local ent1IsPlayer, ent2IsPlayer = getMetatable(ent1) == playerMeta, getMetatable(ent2) == playerMeta
     if ent1IsPlayer and ent2IsPlayer then
         return false
     end
 
-    local ent1Owner = ent_GetOwner(ent1)
-    local ent2Owner = ent_GetOwner(ent2)
+    local ent1Owner, ent2Owner = ent_GetOwner(ent1), ent_GetOwner(ent2)
 
     -- Player projectiles, Minion Projectiles, Minions
     local ent1IsFriendly = isValid(ent1Owner)
@@ -156,6 +153,7 @@ function GM:ShouldCollide(ent1, ent2)
 
     local ent1Class, ent2Class = ent_GetClass(ent1), ent_GetClass(ent2)
     local res = hook_Run(HORDE_SHOULD_COLLIDE_KEY, ent1Class, ent2Class)
+
     if res ~= nil then
         return res
     end
@@ -165,7 +163,7 @@ end
 
 function GM:PlayerButtonDown(ply, button)
     if (ply:Horde_GetMaxMind() <= 0) then return end
-    if button != KEY_F then return end
+    if button ~= KEY_F then return end
     if CLIENT then
 		if ( IsFirstTimePredicted() ) then ply.Horde_UseSpellUtlity = true end
 	else
@@ -176,7 +174,7 @@ end
 function GM:PlayerButtonUp(ply, button)
     if not IsFirstTimePredicted() then return end
     if (ply:Horde_GetMaxMind() <= 0) then return end
-    if button != KEY_F then return end
+    if button ~= KEY_F then return end
     ply.Horde_UseSpellUtlity = nil
 end
 --[[
