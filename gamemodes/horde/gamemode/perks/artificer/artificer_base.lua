@@ -1,5 +1,6 @@
 PERK.PrintName = "Artificer Base"
 PERK.Description = [[
+The Artificer Subclass is a Spellcaster centered around Fire and Lightning damage.
 COMPLEXITY: MEDIUM
 
 Inflicts Lightning buildup by {1} of base Lightning damage. ({2} + {3} per level, up to {4}).
