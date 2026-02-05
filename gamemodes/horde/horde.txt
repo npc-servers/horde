@@ -61,7 +61,7 @@
 			"name"		"horde_difficulty"
 			"text"		"Difficulty (1=INVASION, 2=APOCALYPSE, 3=SWARM, 4=HELL, 5=CHAOS, 6=HORDE)"
 			"type"		"Numeric"
-			"default"	"5"
+			"default"	"2"
 			"singleplayer" ""
 		}
 		8
