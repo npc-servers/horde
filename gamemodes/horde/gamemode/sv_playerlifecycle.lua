@@ -889,7 +889,7 @@ hook.Add("DoPlayerDeath", "Horde_DoPlayerDeath", function(victim)
         end end)
         return
     end
-    HORDE:SendNotification("You are dead. You will respawn next wave.", 1, victim)
+    HORDE:SendNotification("You are dead. A friendly player can revive you.", 1, victim)
     HORDE:CheckAlivePlayers()
 
     local tip = HORDE:GetTip()
