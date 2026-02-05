@@ -144,7 +144,7 @@ HORDE.Difficulty = {
         additionalAmmoBoxes = 2,
         hemorrhagePercentage = 0.5,
         xpMultiStart = 5.5,
-        xpMultiEnd = 8,
+        xpMultiEnd = 9,
     },
 }
 
