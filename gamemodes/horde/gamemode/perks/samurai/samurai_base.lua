@@ -1,6 +1,7 @@
 PERK.PrintName = "Samurai Base"
-PERK.Description =
-[[COMPLEXITY: HIGH
+PERK.Description =[[
+The Samurai Subclass trades Berserker's defense for speed and the ability to inflict Bleeding.
+COMPLEXITY: HIGH
 
 Inflicts Bleeding buildup by {1} of base Melee damage. ({2} + {3} per level, up to {4}).
 {5} increased Global damage resistance. ({6} per level, up to {7}).
