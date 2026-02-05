@@ -59,9 +59,9 @@
 		7
 		{
 			"name"		"horde_difficulty"
-			"text"		"Difficulty (1=Normal, 2=Hard, 3=Realism, 4=Nightmare, 5=Apocalypse)"
+			"text"		"Difficulty (1=CASUAL, 2=NORMAL, 3=MEDIUM, 4=ELITE-RUSH, 5=HARD, 6=VETERAN)"
 			"type"		"Numeric"
-			"default"	"1"
+			"default"	"3"
 			"singleplayer" ""
 		}
 		8
