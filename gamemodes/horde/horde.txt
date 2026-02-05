@@ -61,7 +61,7 @@
 			"name"		"horde_difficulty"
 			"text"		"Difficulty (1=CASUAL, 2=NORMAL, 3=MEDIUM, 4=ELITE-RUSH, 5=HARD, 6=VETERAN)"
 			"type"		"Numeric"
-			"default"	"2"
+			"default"	"3"
 			"singleplayer" ""
 		}
 		8
