@@ -1,5 +1,6 @@
 PERK.PrintName = "Gunslinger Base"
 PERK.Description = [[
+The Gunslinger Subclass centers around increased profits and power to pistols.
 {1} increased Pistol damage. ({2} per level, up to {3}).
 Your pistols can be upgraded in shop for increased damage.
 
