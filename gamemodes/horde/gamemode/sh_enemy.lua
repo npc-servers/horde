@@ -189,7 +189,6 @@ end
 
 function HORDE:GetDefaultEnemiesData ()
     -- HORDE:CreateEnemy( name, class, weight, wave, elite, health_scale, damage_scale, reward_scale, model_scale, color, weapon, spawn_limit, boss_properties, mutation, skin, model, spawn_min, gadget_drop )
-
     -- First Bosses
     HORDE:CreateEnemy("Mutated Hulk", "npc_vj_mutated_hulk", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 1.0, music = "#music/vlvx_song23.mp3", music_duration = 168}, nil, nil, nil, nil, {gadget = "gadget_unstable_injection", drop_rate = 0.5})
@@ -205,7 +204,6 @@ function HORDE:GetDefaultEnemiesData ()
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/hl1_song10.mp3", music_duration = 106}, "none", nil, nil, nil, {gadget = "gadget_matriarch_womb", drop_rate = 0.5})
     HORDE:CreateEnemy("Xen Necromancer Unit", "npc_vj_horde_xen_necromancer_unit", 1, 5, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/Wasteshredder.mp3", music_duration = 64})
-
     -- Final Bosses
     HORDE:CreateEnemy("Alpha Gonome", "npc_vj_alpha_gonome", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song21.mp3", music_duration = 150}, "fume")
@@ -219,7 +217,6 @@ function HORDE:GetDefaultEnemiesData ()
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 0.5, music = "#music/vlvx_song11.mp3", music_duration = 80}, "regenerator")
     HORDE:CreateEnemy("Plague Platoon","npc_vj_horde_plague_platoon", 1, 10, true, 1, 1, 10, 1, nil, nil, nil,
     {is_boss = true, end_wave = true, unlimited_enemies_spawn = true, enemies_spawn_threshold = 1.0, music = "#music/hl2_song16.mp3", music_duration = 152}, "none")
-
     if GetConVar( "horde_difficulty" ):GetInt() == 1 then -- CASUAL
         -- Wave 1
         HORDE:CreateEnemy("Walker",         "npc_vj_horde_walker",          1.00, 1, false, 1, 1, 1, 1)
@@ -306,7 +303,7 @@ function HORDE:GetDefaultEnemiesData ()
         HORDE:CreateEnemy("Armed H.E.V. Zombie",        "npc_vj_ezt_weapbie",           0.08, 10, false, 1, 1, 1, 1)
         HORDE:CreateEnemy("H.E.V. Zombie Shotgunner",   "npc_vj_ezt_shotbie",           0.08, 10, false, 1, 1, 1, 1)
         HORDE:CreateEnemy("Manhackbie",                 "npc_vj_ezt_manhackbie",        0.10, 10, false, 1, 1, 1, 1)
-    elseif GetConVar( "horde_difficulty" ):GetInt() == 4 then -- ELITE-RUSH
+    elseif GetConVar( "horde_difficulty" ):GetInt() == 6 then -- ELITE-RUSH
         -- Wave 1
         HORDE:CreateEnemy("Exploder", "npc_vj_horde_exploder", 1.00, 1, true, 1, 1, 1.5, 1)
         HORDE:CreateEnemy("Vomitter", "npc_vj_horde_vomitter", 0.15, 1, true, 1, 1, 1.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
@@ -534,7 +531,7 @@ function HORDE:GetDefaultEnemiesData ()
 --      HORDE:CreateEnemy("Lesser Hunter",              "npc_vj_ezo_archunter",         0.05 * 1.25, 10, true, 1, 1, 1.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
 --      HORDE:CreateEnemy("Hell Hunter",                "npc_vj_ezo_vorthunter",        0.02, 10, true, 1, 1, 3.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
         HORDE:CreateEnemy("Manhackbie",                 "npc_vj_ezt_manhackbie",        0.10, 10, false, 1, 1, 1, 1)
-        if GetConVar( "horde_difficulty" ):GetInt() == 5 or GetConVar( "horde_difficulty" ):GetInt() == 6 then -- CHAOS / VETERAN
+        if GetConVar( "horde_difficulty" ):GetInt() == 4 or GetConVar( "horde_difficulty" ):GetInt() == 5 then -- CHAOS / VETERAN
             -- Wave 1
             HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",         0.50, 1, false, 1, 1, 1, 1)
             HORDE:CreateEnemy("Fast Zombie",    "npc_vj_horde_fast_zombie",     0.25, 1, false, 1, 1, 1, 1)
@@ -577,9 +574,7 @@ function HORDE:GetDefaultEnemiesData ()
             HORDE:CreateEnemy("Plague Elite", "npc_vj_horde_plague_elite", 0.015, 8, true, 1, 1, 4, 1, nil, nil, nil, nil, nil, nil, nil, 1)
         end
     end
-
     HORDE:NormalizeEnemiesWeight()
-
     print("[HORDE] - Loaded ZMod enemy config.")
 end
 
