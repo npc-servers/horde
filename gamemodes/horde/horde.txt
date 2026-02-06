@@ -59,7 +59,7 @@
 		7
 		{
 			"name"		"horde_difficulty"
-			"text"		"Difficulty (1=CASUAL, 2=APOCALYPSE, 3=SWARM, 4=CHAOS, 5=VETERAN, 6=ELITE-RUSH)"
+			"text"		"Difficulty (1=CASUAL, 2=NORMAL, 3=MEDIUM, 4=HARD, 5=VETERAN, 6=ELITE-RUSH)"
 			"type"		"Numeric"
 			"default"	"3"
 			"singleplayer" ""
