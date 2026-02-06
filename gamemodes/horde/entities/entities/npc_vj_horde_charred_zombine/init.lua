@@ -2,10 +2,10 @@ AddCSLuaFile("shared.lua")
 include('shared.lua')
 
 ENT.Model = {"models/zombie/zombie_soldier.mdl"}
-ENT.StartHealth = 125
+ENT.StartHealth = 350
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
 ENT.BloodColor = "Red"
-ENT.MeleeAttackDamage = 15
+ENT.MeleeAttackDamage = 25
 ENT.AnimTbl_MeleeAttack = {"vjseq_fastattack"}
 ENT.MeleeAttackDistance = 40
 ENT.MeleeAttackDamageDistance = 60
