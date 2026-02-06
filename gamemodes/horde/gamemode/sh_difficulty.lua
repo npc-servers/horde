@@ -27,7 +27,7 @@ HORDE.Difficulty = {
         xpMultiEnd = 3,
     },
     [2] = {
-        name = "APOCALYPSE", -- Normal difficulty.
+        name = "NORMAL", -- Normal difficulty.
         damageMultiplier = 1.8,
         enemyCountMultiplier = 1,
         rewardMultiplier = 0.4,
@@ -51,7 +51,7 @@ HORDE.Difficulty = {
         xpMultiEnd = 5,
     },
     [3] = {
-        name = "SWARM", -- Medium difficulty, more enemies.
+        name = "MEDIUM", -- Medium difficulty, more enemies.
         damageMultiplier = 1.8,
         enemyCountMultiplier = 1.4,
         rewardMultiplier = 0.3,
@@ -75,7 +75,7 @@ HORDE.Difficulty = {
         xpMultiEnd = 5,
     },
     [4] = {
-        name = "CHAOS", -- Hard difficulty, 100% mutation for non-Elite.
+        name = "HARD", -- Hard difficulty, 100% mutation for non-Elite.
         damageMultiplier = 2,
         enemyCountMultiplier = 1.2,
         rewardMultiplier = 0.3,
