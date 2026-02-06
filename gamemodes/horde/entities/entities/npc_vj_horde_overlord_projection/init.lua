@@ -74,6 +74,9 @@ ENT.UseTheSameGeneralSoundPitch = true
 ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75
 
+ENT.Horde_Immune_Status_All = true
+ENT.Immune_AcidPoisonRadiation = true
+
 function ENT:CustomOnInitialize()
     self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
 
