@@ -536,7 +536,7 @@ function HORDE:GetDefaultEnemiesData ()
 --      HORDE:CreateEnemy("Lesser Hunter",              "npc_vj_ezo_archunter",         0.05 * 1.25, 10, true, 1, 1, 1.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
 --      HORDE:CreateEnemy("Hell Hunter",                "npc_vj_ezo_vorthunter",        0.02, 10, true, 1, 1, 3.5, 1, nil, nil, nil, nil, nil, nil, nil, 1)
         HORDE:CreateEnemy("Manhackbie",                 "npc_vj_ezt_manhackbie",        0.10, 10, false, 1, 1, 1, 1)
-        if GetConVar( "horde_difficulty" ):GetInt() == 4 or GetConVar( "horde_difficulty" ):GetInt() == 5 then -- CHAOS / VETERAN
+        if GetConVar( "horde_difficulty" ):GetInt() == 4 or GetConVar( "horde_difficulty" ):GetInt() == 5 then -- HARD / VETERAN
             -- Wave 1
             HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",         0.50, 1, false, 1, 1, 1, 1)
             HORDE:CreateEnemy("Fast Zombie",    "npc_vj_horde_fast_zombie",     0.25, 1, false, 1, 1, 1, 1)
