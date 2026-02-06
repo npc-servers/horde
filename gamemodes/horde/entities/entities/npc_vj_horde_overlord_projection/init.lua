@@ -101,7 +101,6 @@ function ENT:CustomOnInitialize()
     self:AddRelationship( "npc_vj_horde_antlion D_LI 99" )
     self:SetNPCState( NPC_STATE_COMBAT )
     self:SetCurrentWeaponProficiency( WEAPON_PROFICIENCY_PERFECT )
-    self.Horde_Immune_Status_All = true
     self:Horde_AddOverlordPresence()
 
     timer.Simple( 15, function()
