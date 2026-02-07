@@ -17,7 +17,7 @@ function ENT:Use(activator)
     if not self.Horde_Payload_Spawn then return end
     if activator:IsPlayer() then
         if activator:Horde_HasPayload() then
-            HORDE:SendNotification("You are already carrying something.", 1, self)
+            HORDE:SendNotification("You are already carrying something.", 1, activator)
             return
         end
         activator:Horde_SetPayloadSpawn(self.Horde_Payload_Spawn)
