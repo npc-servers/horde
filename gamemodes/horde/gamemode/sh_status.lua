@@ -144,7 +144,7 @@ HORDE.Debuff_Notifications = {
     [HORDE.Status_Shock] = "You've been afflicted with Shock.\nYou'll take increased damage from all sources.",
     [HORDE.Status_Break] = "You've been afflicted with Break.\nYour health is temporarily critical.",
     [HORDE.Status_Decay] = "You've been afflicted with Decay.\nYou cannot heal.",
-    [HORDE.Status_Psychosis] = "You see those slow guys? KILL THEM FASTER CAUSE YOU'RE MAD!",
+    [HORDE.Status_Psychosis] = "Y'ai 'ng'ngah, Yog-Sothoth h'ee - l'geb f'ai throdog uaaah.",
     [HORDE.Status_Necrosis] = "You are dying from Necrosis."
 }
 
