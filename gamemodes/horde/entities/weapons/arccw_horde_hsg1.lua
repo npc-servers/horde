@@ -38,11 +38,11 @@ SWEP.WorldModelOffset = {
 }
 SWEP.ViewModelFOV = 56
 
-SWEP.Damage = 42
+SWEP.Damage = 46
 SWEP.DamageMin = 27
 SWEP.Range = 50 -- in METRES
 SWEP.RangeMin = 25
-SWEP.Penetration = 2
+SWEP.Penetration = 14
 SWEP.DamageType = DMG_BUCKSHOT
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.MuzzleVelocity = 400 -- projectile or phys bullet muzzle velocity

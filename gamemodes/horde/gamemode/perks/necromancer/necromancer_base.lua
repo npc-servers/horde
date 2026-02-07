@@ -1,5 +1,6 @@
 PERK.PrintName = "Necromancer Base"
 PERK.Description = [[
+Fast spellcaster focused on ice based attacks and minions.
 COMPLEXITY: MEDIUM
 
 Inflicts Frostbite buildup by {1} of base Cold damage. ({2} + {3} per level, up to {4}).

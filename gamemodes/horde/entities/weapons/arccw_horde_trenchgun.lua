@@ -10,11 +10,11 @@ SWEP.Trivia_Class = "Shotgun"
 SWEP.Trivia_Desc = "Fires incendiary pellets."
 
 if CLIENT then
-SWEP.Trivia_Manufacturer = "M1887 Trench Gun"
+SWEP.Trivia_Manufacturer = "M1912 Trench Gun"
 SWEP.Trivia_Calibre = "12 Gauge"
 SWEP.Trivia_Mechanism = "Pump-Action"
 SWEP.Trivia_Country = "USA"
-SWEP.Trivia_Year = 1964
+SWEP.Trivia_Year = 1912
 end
 
 SWEP.Slot = 2
@@ -26,10 +26,10 @@ SWEP.MirrorVMWM = false
 SWEP.WorldModel = "models/weapons/w_shot_m3super90.mdl"
 SWEP.ViewModelFOV = 65
 
-SWEP.Damage = 30
+SWEP.Damage = 42
 SWEP.DamageMin = 15
 SWEP.Range = 800 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 1
+SWEP.Penetration = 10
 SWEP.DamageType = DMG_BURN
 SWEP.ShootEntity = nil -- entity to fire, if any
 

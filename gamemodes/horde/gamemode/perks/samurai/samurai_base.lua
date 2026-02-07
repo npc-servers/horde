@@ -1,6 +1,7 @@
 PERK.PrintName = "Samurai Base"
-PERK.Description =
-[[COMPLEXITY: HIGH
+PERK.Description =[[
+The Samurai focuses on Bleed buildup and Quickstep.
+COMPLEXITY: HIGH
 
 Inflicts Bleeding buildup by {1} of base Melee damage. ({2} + {3} per level, up to {4}).
 {5} increased Global damage resistance. ({6} per level, up to {7}).
