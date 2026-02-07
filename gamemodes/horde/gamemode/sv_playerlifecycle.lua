@@ -684,8 +684,6 @@ end)
 hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
     if ply.Horde_Fake_Respawn == true then return end
 
-    ply:SetCollisionGroup(15)
-
     timer.Simple(0, function() -- lua/includes/modules/player_manager.lua sets SetAvoidPlayer back to true
         if not IsValid(ply) then return end
 
