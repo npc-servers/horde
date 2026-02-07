@@ -114,7 +114,7 @@ local function GetTipsData()
         end
 
         AddTip("Fire damage increases Ignite buildup.")
-        AddTip("Ignite debuff obscures your vision and drains your health.")
+        AddTip("Ignite debuff rapidly drains your health with Fire damage.")
         AddTip("Cold damage increases Frosbite buildup.")
         AddTip("Frostbite debuff reduces your movement speed to a crawl.")
         AddTip("Lightning damage increases Shock buildup.")
@@ -122,10 +122,10 @@ local function GetTipsData()
         AddTip("Poison damage increases Break buildup.")
         AddTip("Break debuff temporarily drops your health to critical.")
         AddTip("Certain enemies and mutations can increase your Bleeding buildup.")
-        AddTip("Bleeding debuff drains your health over time.")
+        AddTip("Bleeding debuff slowly drains your health over time.")
         AddTip("Certain enemies and mutations can increase your Decay buildup.")
         AddTip("Decay debuff blocks all health recovery.")
-        AddTip("Necrosis will instantly down you.") 
+        AddTip("Necrosis will instantly kill you.") 
     end
 
     HORDE.tips = shuffle(HORDE.tips)
