@@ -1,5 +1,5 @@
 PERK.PrintName = "Samurai Base"
-PERK.Description =[[
+PERK.Description = [[
 The Samurai Subclass trades Berserker's defense for speed and the ability to inflict Bleeding.
 COMPLEXITY: HIGH
 
