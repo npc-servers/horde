@@ -1,5 +1,6 @@
 PERK.PrintName = "Necromancer Base"
 PERK.Description = [[
+The Necromancer Subclass can summon Cold based minions, along with their own Cold based spells.
 COMPLEXITY: MEDIUM
 
 Inflicts Frostbite buildup by {1} of base Cold damage. ({2} + {3} per level, up to {4}).

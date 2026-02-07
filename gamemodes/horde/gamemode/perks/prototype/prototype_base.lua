@@ -1,6 +1,6 @@
 PERK.PrintName = "Prototype Base"
 PERK.Description = [[
-The Prototype class is a close-range fighter with unique abilities.
+The Prototype Subclass is a close-range fighter with unique abilities.
 Complexity: MEDIUM
 
 {1} increased Physical damage at close-range ({2} + {3} per level, up to {4}).

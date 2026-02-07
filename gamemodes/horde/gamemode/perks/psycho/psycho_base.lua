@@ -1,5 +1,6 @@
 PERK.PrintName = "Psycho Base"
 PERK.Description = [[
+The Psycho Subclass can cut into it's own health to deal massive damage to enemies.
 {1} chance to deal a Critical Hit. ({2} + {3} per level, up to {4}).
 You deal 50% more damage on Critical Hit.
 
