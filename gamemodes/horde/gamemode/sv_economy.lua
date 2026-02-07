@@ -66,7 +66,7 @@ function plymeta:Horde_SetMaxWeight(weight)
             self.Horde_max_weight = weight
             self.Horde_weight = math.min(weight, self:Horde_GetWeight() - (old_max_weight - weight))
             timer.Simple(0, function()
-                self.Horde_RecalcWeight()
+                self:Horde_RecalcWeight()
             end)
             self:Horde_SyncEconomy()
         else
