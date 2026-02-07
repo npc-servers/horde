@@ -74,6 +74,9 @@ ENT.UseTheSameGeneralSoundPitch = true
 ENT.GeneralSoundPitch1 = 75
 ENT.GeneralSoundPitch2 = 75
 
+ENT.Horde_Immune_Status_All = true
+ENT.Immune_AcidPoisonRadiation = true
+
 function ENT:CustomOnInitialize()
     self:SetCollisionGroup( COLLISION_GROUP_PASSABLE_DOOR )
 
@@ -98,7 +101,6 @@ function ENT:CustomOnInitialize()
     self:AddRelationship( "npc_vj_horde_antlion D_LI 99" )
     self:SetNPCState( NPC_STATE_COMBAT )
     self:SetCurrentWeaponProficiency( WEAPON_PROFICIENCY_PERFECT )
-    self.Horde_Immune_Status_All = true
     self:Horde_AddOverlordPresence()
 
     timer.Simple( 15, function()
