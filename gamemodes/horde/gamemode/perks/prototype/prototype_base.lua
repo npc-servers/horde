@@ -1,6 +1,6 @@
 PERK.PrintName = "Prototype Base"
 PERK.Description = [[
-The Prototype Subclass is a danger close fighter with a unique regeneration ability.
+The Prototype Subclass is a close-range fighter with unique abilities.
 Complexity: MEDIUM
 
 {1} increased Physical damage at close-range ({2} + {3} per level, up to {4}).
