@@ -450,7 +450,7 @@ local function isSuitableSpawn( vec )
     return true
 end
 
-local function checkNodeOverlap( newNode, existingNodes )
+local function isNodeOverlapping( newNode, existingNodes )
     local nodeSize = math.max( maxs.x - mins.x, maxs.y - mins.y )
     local minDistanceBetweenNodes = nodeSize + 10
 
@@ -708,7 +708,7 @@ function HORDE:GetValidNodes( enemies )
 
     if HORDE.spawn_distribution == HORDE.SPAWN_UNIFORM then
         for _, node in pairs( HORDE.ai_nodes ) do
-            if isSuitableSpawn( node["pos"] ) and not checkNodeOverlap( node["pos"], valid_nodes ) then
+            if isSuitableSpawn( node["pos"] ) and not isNodeOverlapping( node["pos"], valid_nodes ) then
                 table.insert( valid_nodes, node["pos"] )
             end
         end
@@ -758,7 +758,7 @@ function HORDE:GetValidNodes( enemies )
                 end
             end
 
-            if isSuitableSpawn( nodePos ) and checkNodeOverlap( nodePos, valid_nodes ) then
+            if isSuitableSpawn( nodePos ) and not isNodeOverlapping( nodePos, valid_nodes ) then
                 table.insert( valid_nodes, nodePos )
             end
         end
