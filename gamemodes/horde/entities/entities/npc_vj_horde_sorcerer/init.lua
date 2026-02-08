@@ -82,7 +82,7 @@ function ENT:CustomOnThink()
 	self.AnimTbl_IdleStand = { self:IsOnFire() and ACT_IDLE_ON_FIRE or ACT_IDLE }
 	self.AnimTbl_Walk = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }
 	self.AnimTbl_Run = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }
-	
+
 	local enemyDistance = self.NearestPointToEnemyDistance
 
 	if not IsValid( self:GetEnemy() ) or enemyDistance > 1000 then return end
