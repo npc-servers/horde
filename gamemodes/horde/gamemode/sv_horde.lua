@@ -397,6 +397,7 @@ end
 local mins = Vector( -30, -30, 0 )
 local maxs = Vector( 30, 30, 80 )
 local heightOffset = Vector( 0, 0, 5 )
+local downwards = Vector( 0, 0, -maxs.z )
 
 local function isSuitableSpawn( vec )
     if not util.IsInWorld( vec ) then return false end
@@ -410,26 +411,58 @@ local function isSuitableSpawn( vec )
     } )
 
     if trace.Hit then
-        debugoverlay.Box( vec + heightOffset, mins, maxs, 1, Color( 255, 0, 0, 0 ) )
-        debugoverlay.Text( vec, tostring( trace.Entity ), 1, false )
+        -- debugoverlay.Box( vec + heightOffset, mins, maxs, 1, Color( 255, 0, 0, 0 ) )
+        -- debugoverlay.Text( vec, tostring( trace.Entity ), 1, false )
+
+        return false
+    end
+
+    local underTrace = util.TraceHull( {
+        start = vec + heightOffset,
+        endpos = vec + heightOffset + downwards,
+        mins = mins,
+        maxs = maxs,
+        mask = MASK_NPCSOLID,
+    } )
+
+    if underTrace.Hit and not underTrace.Entity:IsWorld() then
+        --debugoverlay.Box( vec + heightOffset + downwards, mins, maxs, 1, Color( 255, 0, 0, 0 ) )
+
         return false
     end
 
     local line1 = vec + heightOffset
-    local line2 = vec + Vector( 0, 0, -65 )
+    local line2 = vec + downwards
     local groundTrace = util.TraceLine( {
         start = line1,
         endpos = line2,
     } )
 
     if not groundTrace.Hit then
-        debugoverlay.Line( line1, line2, 1, Color( 255, 0, 0 ), true )
-        debugoverlay.Text( vec, "No ground", 1, false )
+        -- debugoverlay.Line( line1, line2, 1, Color( 255, 0, 0 ), true )
+        -- debugoverlay.Text( vec, "No ground", 1, false )
+
         return false
     end
 
-    debugoverlay.Box( vec, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
+    --debugoverlay.Box( vec, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
+
     return true
+end
+
+local function checkNodeOverlap( newNode, existingNodes )
+    local nodeSize = math.max( maxs.x - mins.x, maxs.y - mins.y )
+    local minDistanceBetweenNodes = nodeSize + 10
+
+    local minSqr = minDistanceBetweenNodes ^ 2
+    for _, other in ipairs( existingNodes ) do
+        if newNode:DistToSqr( other ) < minSqr then
+            return true
+        end
+    end
+
+    -- debugoverlay.Box( newNode, mins, maxs, 1, Color( 0, 255, 0, 0 ) )
+    return false
 end
 
 -- Spawns a Horde enemy at the give position.
@@ -675,8 +708,11 @@ function HORDE:GetValidNodes( enemies )
 
     if HORDE.spawn_distribution == HORDE.SPAWN_UNIFORM then
         for _, node in pairs( HORDE.ai_nodes ) do
-            table.insert( valid_nodes, node["pos"] )
+            if isSuitableSpawn( node["pos"] ) and not checkNodeOverlap( node["pos"], valid_nodes ) then
+                table.insert( valid_nodes, node["pos"] )
+            end
         end
+
         return valid_nodes
     end
 
@@ -714,22 +750,20 @@ function HORDE:GetValidNodes( enemies )
             end
         end
 
-        if not valid then
-            continue
-        end
+        if valid then
+            for _, enemy in pairs( enemies ) do
+                local dist = nodePos:Distance( enemy:GetPos() )
+                if dist <= HORDE.spawn_radius then
+                    goto cont
+                end
+            end
 
-        for _, enemy in pairs( enemies ) do
-            local dist = nodePos:Distance( enemy:GetPos() )
-            if dist <= HORDE.spawn_radius then
-                continue
+            if isSuitableSpawn( nodePos ) and checkNodeOverlap( nodePos, valid_nodes ) then
+                table.insert( valid_nodes, nodePos )
             end
         end
 
-        if not isSuitableSpawn( nodePos ) then
-            continue
-        end
-
-        table.insert( valid_nodes, nodePos )
+        ::cont::
     end
 
     return valid_nodes
