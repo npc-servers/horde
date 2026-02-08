@@ -13,7 +13,6 @@ GADGET.Hooks = {}
 local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
     timer.Simple( delay, function()
         if not IsValid( ply ) then return end
-        if ply:GetNoDraw() == false then return end
 
         local health = ply:Health()
         local armor = ply:Armor()
