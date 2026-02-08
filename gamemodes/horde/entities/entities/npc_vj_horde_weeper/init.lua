@@ -11,33 +11,36 @@ ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"} -- NPCs with the same class with be allied to each other
 ENT.BloodColor = "Red" -- The blood type, this will determine what it should use (decal, particle, etc.)
-ENT.HasMeleeAttack = true -- Should the SNPC have a melee attack?
-ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1} -- Melee Attack Animations
-ENT.MeleeAttackDistance = 32 -- How close does it have to be until it attacks?
-ENT.MeleeAttackDamageDistance = 60 -- How far does the damage go?
-ENT.TimeUntilMeleeAttackDamage = 0.4 -- This counted in seconds | This calculates the time until it hits something
-ENT.MeleeAttackDamage = 20
-ENT.SlowPlayerOnMeleeAttack = true -- If true, then the player will slow down
-ENT.SlowPlayerOnMeleeAttack_WalkSpeed = 100 -- Walking Speed when Slow Player is on
-ENT.SlowPlayerOnMeleeAttack_RunSpeed = 100 -- Running Speed when Slow Player is on
-ENT.SlowPlayerOnMeleeAttackTime = 5 -- How much time until player's Speed resets
-ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
+ENT.HasMeleeAttack = false -- Should the SNPC have a melee attack?
 ENT.FootStepTimeRun = 0.2 -- Next foot step sound when it is running
 ENT.FootStepTimeWalk = 0.3 -- Next foot step sound when it is walking
 ENT.AnimTbl_Run = {ACT_WALK}
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/stalker/stalker_footstep_left1.wav", "npc/stalker/stalker_footstep_left2.wav", "npc/stalker/stalker_footstep_right1.wav", "npc/stalker/stalker_footstep_right2.wav"}
-ENT.SoundTbl_Idle = {}
-ENT.SoundTbl_Alert = {}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"zsszombies/zmisc_pain1.wav","zsszombies/zmisc_pain2.wav","zsszombies/zmisc_pain3.wav","zsszombies/zmisc_pain4.wav","zsszombies/zmisc_pain5.wav","zsszombies/zmisc_pain6.wav"}
-ENT.SoundTbl_Death = {"zsszombies/zmisc_die1.wav","zsszombies/zmisc_die2.wav","zsszombies/zmisc_die3.wav"}
+ENT.SoundTbl_FootStep = {
+	"npc/stalker/stalker_footstep_left1.wav",
+	"npc/stalker/stalker_footstep_left2.wav",
+	"npc/stalker/stalker_footstep_right1.wav",
+	"npc/stalker/stalker_footstep_right2.wav"
+}
+ENT.SoundTbl_Idle = "npc/stalker/stalker_ambient01.wav"
+ENT.SoundTbl_Alert = {
+	"npc/stalker/stalker_alert1b.wav",
+	"npc/stalker/stalker_alert2b.wav",
+	"npc/stalker/stalker_alert3b.wav"
+}
+ENT.SoundTbl_Pain = {
+	"npc/stalker/stalker_pain1.wav",
+	"npc/stalker/stalker_pain2.wav",
+	"npc/stalker/stalker_pain3.wav"
+}
+ENT.SoundTbl_Death = {
+	"npc/stalker/stalker_die1.wav",
+	"npc/stalker/stalker_die2.wav"
+}
 ENT.GeneralSoundPitch1 = 30
 ENT.GeneralSoundPitch2 = 30
 
-ENT.FootStepSoundLevel = 55
 ENT.NextBlastTime = CurTime()
 ENT.NextBlastCooldown = 5
 ENT.AnimTbl_MeleeAttack = {}
