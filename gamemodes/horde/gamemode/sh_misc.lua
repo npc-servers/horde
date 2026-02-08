@@ -83,3 +83,11 @@ function HORDE:traceSolidIgnoreAllies(ply, range)
 
     return tr
 end
+
+-- No combine balls
+hook.Add("Horde_ShouldCollide", "Horde_Combine_Ball", function(ent1, ent2)
+    local entClass = "prop_combine_ball"
+    if ent1 == entClass or ent2 == entClass then
+        return false
+    end
+end)
