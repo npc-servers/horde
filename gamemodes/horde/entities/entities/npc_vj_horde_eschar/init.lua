@@ -1,5 +1,5 @@
-AddCSLuaFile("shared.lua")
-include('shared.lua')
+AddCSLuaFile( "shared.lua" )
+include( "shared.lua" )
 --[[---------------------------------------------
 	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -58,18 +58,16 @@ function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
-	if self:Health() < self:GetMaxHealth() / 2 then
-		if self.NextTick < CurTime() then
-			for _, ent in pairs( ents.FindInSphere( self:GetPos(), 150 ) ) do
-				if ent:IsPlayer() then
-					local Trace = util.TraceLine( {
-						start = self:WorldSpaceCenter(),
-						endpos = ent:WorldSpaceCenter(),
-						mask = MASK_SOLID_BRUSHONLY
-					} )
-					if not Trace.HitWorld then
-						ent:Horde_AddDebuffBuildup( HORDE.Status_Necrosis, 5, self )
-					end
+	if self:Health() < self:GetMaxHealth() / 2 and self.NextTick < CurTime() then
+		for _, ent in pairs( ents.FindInSphere( self:GetPos(), 150 ) ) do
+			if ent:IsPlayer() then
+				local Trace = util.TraceLine( {
+					start = self:WorldSpaceCenter(),
+					endpos = ent:WorldSpaceCenter(),
+					mask = MASK_SOLID_BRUSHONLY
+				} )
+				if not Trace.HitWorld then
+					ent:Horde_AddDebuffBuildup( HORDE.Status_Necrosis, 5, self )
 				end
 			end
 			local e = EffectData()
