@@ -42,7 +42,6 @@ SPELL.Fire           = function (ply, wpn, charge_stage)
         ply:DrawViewModel(true)
         p:Remove()
         ply:Spawn()
-        ply.Horde_Fake_Respawn = nil
         ply:SetPos(ply_pos)
         ply:SetAngles(ply_angles)
         ply.Horde_Invincible = nil
