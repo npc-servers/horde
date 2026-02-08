@@ -430,6 +430,8 @@ hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
         end
         net.Send(ply)
     end
+
+    ply.Horde_Fake_Respawn = nil
 end)
 
 hook.Add("PlayerDroppedWeapon", "Horde_Economy_Drop", function (ply, wpn)

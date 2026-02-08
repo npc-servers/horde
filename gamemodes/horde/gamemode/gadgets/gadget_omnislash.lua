@@ -36,7 +36,6 @@ local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
         end
 
         timer.Simple( 0, function()
-            ply.Horde_Fake_Respawn = nil
             ply:SetHealth( health )
             ply:SetArmor( armor )
         end )
