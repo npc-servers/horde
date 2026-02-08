@@ -121,7 +121,7 @@ function GM:PlayerSetModel(ply)
 end
 
 -- ~40% gain in GM:ShouldCollide() performance when these are cached
-local findMetaTable = findMetaTable
+local findMetaTable = FindMetaTable
 local entMeta = findMetaTable("Entity")
 local playerMeta = findMetaTable("Player")
 local ent_GetOwner = entMeta.GetOwner
