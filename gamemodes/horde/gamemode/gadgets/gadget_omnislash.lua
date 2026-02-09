@@ -10,35 +10,33 @@ GADGET.Active = true
 GADGET.Params = {}
 GADGET.Hooks = {}
 
-local function spawnPlayer( ply, plyPos, plyAng, plyVel, delay )
-    timer.Simple( delay, function()
-        if not IsValid( ply ) then return end
+local function spawnPlayer( ply, plyPos, plyAng, plyVel )
+    if not IsValid( ply ) then return end
 
-        local health = ply:Health()
-        local armor = ply:Armor()
-        local flashlightOn = ply:FlashlightIsOn()
+    local health = ply:Health()
+    local armor = ply:Armor()
+    local flashlightOn = ply:FlashlightIsOn()
 
-        ply.Horde_In_Omni = nil
-        ply:UnSpectate()
-        ply:Spawn()
-        ply:UnLock()
+    ply.Horde_In_Omni = nil
+    ply:UnSpectate()
+    ply:Spawn()
+    ply:UnLock()
 
-        ply:SetNoDraw( false )
-        ply:DrawViewModel( true )
-        ply:SetNoTarget( false )
+    ply:SetNoDraw( false )
+    ply:DrawViewModel( true )
+    ply:SetNoTarget( false )
 
-        ply:SetPos( plyPos )
-        ply:SetEyeAngles( plyAng )
-        ply:SetVelocity( plyVel )
+    ply:SetPos( plyPos )
+    ply:SetEyeAngles( plyAng )
+    ply:SetVelocity( plyVel )
 
-        if flashlightOn then -- Prevents the flashlight noise from happening if you had your flashlight off
-            ply:Flashlight( flashlightOn )
-        end
+    if flashlightOn then -- Prevents the flashlight noise from happening if you had your flashlight off
+        ply:Flashlight( flashlightOn )
+    end
 
-        timer.Simple( 0, function()
-            ply:SetHealth( health )
-            ply:SetArmor( armor )
-        end )
+    timer.Simple( 0, function()
+        ply:SetHealth( health )
+        ply:SetArmor( armor )
     end )
 end
 
@@ -80,7 +78,9 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
     local entPos = ent:GetPos()
     for i = 1, 15 do
         timer.Simple( i * 0.1, function ()
+            if not IsValid( ply ) then return end
             if not ply.Horde_In_Omni then return end
+
             if not IsValid( ent ) then
                 for _, nearbyEnt in pairs( ents.FindInSphere( entPos, 200 ) ) do
                     if HORDE:IsEnemy( nearbyEnt ) then
@@ -92,7 +92,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
                 end
 
                 if not IsValid( ent ) then
-                    spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
+                    spawnPlayer( ply, plyPos, plyAng, plyVel  )
                     return
                 end
             end
@@ -112,12 +112,12 @@ GADGET.Hooks.Horde_UseActiveGadget = function( ply )
                 util.Effect( "horde_omnislash_effect", ed, true, true )
                 p = ent:GetPos()
             else
-                spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
+                spawnPlayer( ply, plyPos, plyAng, plyVel )
                 return
             end
 
             if i == 15 then
-                spawnPlayer( ply, plyPos, plyAng, plyVel, 0.5 )
+                spawnPlayer( ply, plyPos, plyAng, plyVel )
             end
         end )
     end
