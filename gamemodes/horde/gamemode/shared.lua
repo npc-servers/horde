@@ -143,19 +143,28 @@ function GM:ShouldCollide(ent1, ent2)
 
     local ent1Owner, ent2Owner = ent_GetOwner(ent1), ent_GetOwner(ent2)
 
-    -- Player projectiles, Minion Projectiles, Minions
-    local ent1IsFriendly = isValid(ent1Owner)
-        and (ent1IsPlayer or isValid(ent_GetNWEntity(ent1Owner, HORDE_OWNER_KEY)))
-        or isValid(ent_GetNWEntity(ent1, HORDE_OWNER_KEY))
-    local ent2IsFriendly = isValid(ent2Owner)
-        and (ent2IsPlayer or isValid(ent_GetNWEntity(ent2Owner, HORDE_OWNER_KEY)))
-        or isValid(ent_GetNWEntity(ent2, HORDE_OWNER_KEY))
+    -- If statements and functions are slower here
+    local ent1IsFriendly = ent1IsPlayer -- Player Check
+        or isValid(ent1Owner) and (
+                getMetatable(ent1Owner) == playerMeta -- Player Projectile Check
+                or isValid(ent_GetNWEntity(ent1Owner, HORDE_OWNER_KEY)) -- Friendly Projectile Check
+            )
+        or isValid(ent_GetNWEntity(ent1, HORDE_OWNER_KEY)) -- Friendly Minion Check
+    local ent2IsFriendly = ent2IsPlayer -- Player Check
+        or isValid(ent2Owner) and (
+                getMetatable(ent2Owner) == playerMeta -- Player Projectile Check
+                or isValid(ent_GetNWEntity(ent2Owner, HORDE_OWNER_KEY)) -- Friendly Projectile Check
+            )
+        or isValid(ent_GetNWEntity(ent2, HORDE_OWNER_KEY)) -- Friendly Minion Check
 
     local ent1Class, ent2Class = ent_GetClass(ent1), ent_GetClass(ent2)
     local res = hook_Run(HORDE_SHOULD_COLLIDE_KEY, ent1Class, ent2Class)
-
     if res ~= nil then
         return res
+    end
+
+    if ent1IsFriendly and ent2IsFriendly then
+        return false
     end
 
     return true
