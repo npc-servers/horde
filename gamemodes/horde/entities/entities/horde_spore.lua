@@ -3,8 +3,8 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.Spawnable = false
 
-hook.Add( "Horde_ShouldCollide", "Horde_Ent_Spore_Alt", function( ent1, ent2 )
-    local entClass = "horde_spore_alt"
+hook.Add( "Horde_ShouldCollide", "Horde_Ent_Spore", function( ent1, ent2 )
+    local entClass = "horde_spore"
     if ent1 == entClass or ent2 == entClass then
         return true
     end
