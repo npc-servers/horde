@@ -136,7 +136,6 @@ function HORDE:GameEnd(status)
 
         net.Start("Horde_MatchMusic")
             net.WriteString( "#horde/music/match_defeat.mp3" )
-            net.WriteBool( true )
         net.Broadcast()
     end
 
@@ -146,7 +145,6 @@ function HORDE:GameEnd(status)
 
         net.Start("Horde_MatchMusic")
             net.WriteString( "#horde/music/match_victory.mp3" )
-            net.WriteBool( true )
         net.Broadcast()
     end
 
