@@ -130,12 +130,13 @@ function HORDE:GameEnd(status)
     if status == "DEFEAT" then
         HORDE:SendNotification("All players are dead!", 1)
 
-        net.Start( "Horde_MatchMusic" )
-            net.WriteString( "music/stingers/hl1_stinger_song28.mp3" )
-        net.Broadcast()
-
         net.Start("Horde_BossMusic")
             net.WriteBool( false )
+        net.Broadcast()
+
+        net.Start("Horde_MatchMusic")
+            net.WriteString( "#horde/music/match_defeat.mp3" )
+            net.WriteBool( true )
         net.Broadcast()
     end
 
@@ -143,8 +144,9 @@ function HORDE:GameEnd(status)
         net.Start("Horde_SaveAchievements")
         net.Broadcast()
 
-        net.Start( "Horde_MatchMusic" )
-            net.WriteString( "music/hl2_song6.mp3" )
+        net.Start("Horde_MatchMusic")
+            net.WriteString( "#horde/music/match_victory.mp3" )
+            net.WriteBool( true )
         net.Broadcast()
     end
 
