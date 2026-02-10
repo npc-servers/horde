@@ -5,6 +5,7 @@ util.AddNetworkString("Horde_HunterMarkHighlight")
 util.AddNetworkString("Horde_RemoveDeathMarkHighlight")
 util.AddNetworkString("Horde_RemoveHunterMarkHighlight")
 util.AddNetworkString("Horde_GameEnd")
+util.AddNetworkString("Horde_BossMusic")
 
 local horde_players_count = 0
 local horde_spawned_ammoboxes = {}
@@ -373,12 +374,13 @@ function HORDE:HardResetDirector()
     horde_boss_properties = nil
     horde_boss_reposition = false
     HORDE.horde_boss_name = nil
-    if boss_music_loop then
-        boss_music_loop:Stop()
-        boss_music_loop = nil
-    end
+	
+    net.Start("Horde_BossMusic")
+    net.WriteString( "End" )
+    net.Broadcast()
+	
     net.Start("Horde_SyncGameInfo")
-        net.WriteUInt(HORDE.current_wave, 16)
+    net.WriteUInt(HORDE.current_wave, 16)
     net.Broadcast()
 end
 
@@ -926,22 +928,15 @@ function HORDE:SpawnBoss(enemies, valid_nodes)
         table.insert(enemies, spawned_enemy)
 
         net.Start("Horde_SyncBossSpawned")
-            net.WriteString(enemy.name)
-            net.WriteInt(spawned_enemy:GetMaxHealth(),32)
-            net.WriteInt(spawned_enemy:Health(),32)
-            if enemy.boss_properties.music then
-                boss_music_loop = CreateSound(game.GetWorld(), enemy.boss_properties.music)
-                boss_music_loop:SetSoundLevel(0)
-                if enemy.boss_properties.music_duration and enemy.boss_properties.music_duration > 0 then
-                    timer.Create("Horde_BossMusic", enemy.boss_properties.music_duration, 0, function()
-                        boss_music_loop:Stop()
-                        boss_music_loop:Play()
-                    end)
-                end
-                boss_music_loop:Play()
-            end
+        net.WriteString(enemy.name)
+        net.WriteInt(spawned_enemy:GetMaxHealth(),32)
+        net.WriteInt(spawned_enemy:Health(),32)
         net.Broadcast()
 
+		net.Start("Horde_BossMusic")
+        net.WriteString( "Start" )
+        net.Broadcast()
+		
         net.Start( "Horde_HighlightRemainingEnemies" )
         net.WriteTable( { [spawned_enemy] = spawned_enemy:WorldSpaceCenter() } )
         net.Broadcast()
@@ -1215,10 +1210,9 @@ end
 
 -- Ends a wave.
 function HORDE:WaveEnd()
-    timer.Remove("Horde_BossMusic")
-    if boss_music_loop then
-        boss_music_loop:Stop()
-    end
+    net.Start("Horde_BossMusic")
+    net.WriteString( "End" )
+    net.Broadcast()
 
     HORDE.current_break_time = HORDE.total_break_time
     HORDE.horde_boss = nil
@@ -1241,16 +1235,7 @@ function HORDE:WaveEnd()
 
     if (HORDE.current_wave >= HORDE.max_waves) and (HORDE.endless == 0) then
         -- TODO: change this magic number
-        if boss_music_loop then boss_music_loop:Stop() end
         HORDE:GameEnd("VICTORY")
-
-        boss_music_loop = CreateSound(game.GetWorld(), "music/hl2_song23_suitsong3.mp3")
-        boss_music_loop:SetSoundLevel(0)
-        timer.Create("Horde_BossMusic", 43, 0, function()
-            boss_music_loop:Stop()
-            boss_music_loop:Play()
-        end)
-        boss_music_loop:Play()
     else
         HORDE:BroadcastBreakCountDownMessage(0, true)
         HORDE:SendNotification("Wave Completed!", 0)
