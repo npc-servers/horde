@@ -10,6 +10,7 @@ util.AddNetworkString("Horde_SyncGameInfo")
 util.AddNetworkString("Horde_SaveAchievements")
 util.AddNetworkString("Horde_SaveExtraAchievements")
 util.AddNetworkString("Horde_SyncClientExps")
+util.AddNetworkString("Horde_BossMusic")
 util.AddNetworkString("Horde_MatchMusic")
 
 HORDE.vote_remaining_time = 60
@@ -130,7 +131,11 @@ function HORDE:GameEnd(status)
         HORDE:SendNotification("All players are dead!", 1)
 
         net.Start( "Horde_MatchMusic" )
-        net.WriteString( "music/stingers/hl1_stinger_song28.mp3" )
+            net.WriteString( "music/stingers/hl1_stinger_song28.mp3" )
+        net.Broadcast()
+
+        net.Start("Horde_BossMusic")
+            net.WriteBool( false )
         net.Broadcast()
     end
 
@@ -139,7 +144,7 @@ function HORDE:GameEnd(status)
         net.Broadcast()
 
         net.Start( "Horde_MatchMusic" )
-        net.WriteString( "music/hl2_song6.mp3" )
+            net.WriteString( "music/hl2_song6.mp3" )
         net.Broadcast()
     end
 
