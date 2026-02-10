@@ -387,3 +387,38 @@ net.Receive("Horde_RenderHealer", function()
         heal_msg_cd = 5
     end
 end)
+
+-- W.I.P
+net.Receive( "Horde_BossMusic", function()
+    local status = net.ReadString()
+    HORDE:BossMusic( status )
+end )
+
+function HORDE:BossMusic( status )
+    local ply = LocalPlayer()
+    local music = {
+        "music/hl1_song10.mp3",
+        "music/hl2_song12_long.mp3",
+        "music/hl2_song16.mp3",
+        "music/hl2_song20_submix0.mp3",
+        "music/hl2_song20_submix4.mp3",
+        "music/hl2_song4.mp3"
+    }
+
+    if status == "Start" then
+        ply:EmitSound( "#" .. music[ math.random( 1, #music ) ] )
+    elseif status == "End" then
+        ply:StopSound( "#music/hl1_song10.mp3" )
+        ply:StopSound( "#music/hl2_song12_long.mp3" )
+        ply:StopSound( "#music/hl2_song16.mp3" )
+        ply:StopSound( "#music/hl2_song20_submix0.mp3" )
+        ply:StopSound( "#music/hl2_song20_submix4.mp3" )
+        ply:StopSound( "#music/hl2_song4.mp3" )
+    end
+end
+
+net.Receive( "Horde_MatchMusic", function()
+	local ply = LocalPlayer()
+    local soundFile = net.ReadString()
+	ply:EmitSound( "#" .. soundFile )
+end )
