@@ -308,7 +308,7 @@ net.Receive("Horde_RenderBreakCountDown", function()
     local num = net.ReadInt(8)
     local is_end_message = net.ReadBool()
     if is_end_message then
-        surface.PlaySound("buttons/button15.wav")
+        surface.PlaySound("hl1/fvox/blip.wav")
         center_panel_str = translate.Get("Game_Wave_Completed") .. "!"
         wave_str = nil
         return
