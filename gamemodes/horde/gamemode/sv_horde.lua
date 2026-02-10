@@ -375,12 +375,8 @@ function HORDE:HardResetDirector()
     horde_boss_reposition = false
     HORDE.horde_boss_name = nil
 	
-    net.Start("Horde_BossMusic")
-    net.WriteString( "End" )
-    net.Broadcast()
-	
     net.Start("Horde_SyncGameInfo")
-    net.WriteUInt(HORDE.current_wave, 16)
+        net.WriteUInt(HORDE.current_wave, 16)
     net.Broadcast()
 end
 
@@ -928,17 +924,18 @@ function HORDE:SpawnBoss(enemies, valid_nodes)
         table.insert(enemies, spawned_enemy)
 
         net.Start("Horde_SyncBossSpawned")
-        net.WriteString(enemy.name)
-        net.WriteInt(spawned_enemy:GetMaxHealth(),32)
-        net.WriteInt(spawned_enemy:Health(),32)
+            net.WriteString(enemy.name)
+            net.WriteInt(spawned_enemy:GetMaxHealth(),32)
+            net.WriteInt(spawned_enemy:Health(),32)
         net.Broadcast()
 
 		net.Start("Horde_BossMusic")
-        net.WriteString( "Start" )
+            net.WriteString( enemy.boss_properties.music )
+            net.WriteBool( true )
         net.Broadcast()
 		
         net.Start( "Horde_HighlightRemainingEnemies" )
-        net.WriteTable( { [spawned_enemy] = spawned_enemy:WorldSpaceCenter() } )
+            net.WriteTable( { [spawned_enemy] = spawned_enemy:WorldSpaceCenter() } )
         net.Broadcast()
 
         timer.Simple( 10, function()
@@ -1211,7 +1208,7 @@ end
 -- Ends a wave.
 function HORDE:WaveEnd()
     net.Start("Horde_BossMusic")
-    net.WriteString( "End" )
+        net.WriteBool( false )
     net.Broadcast()
 
     HORDE.current_break_time = HORDE.total_break_time
