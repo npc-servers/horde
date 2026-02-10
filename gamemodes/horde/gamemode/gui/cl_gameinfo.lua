@@ -388,8 +388,9 @@ net.Receive("Horde_RenderHealer", function()
     end
 end)
 
+local currentMusic
+
 net.Receive( "Horde_BossMusic", function()
-    local currentMusic
     local ply = LocalPlayer()
     local music = net.ReadString()
     local status = net.ReadBool()
