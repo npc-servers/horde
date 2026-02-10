@@ -390,30 +390,18 @@ end)
 
 -- W.I.P
 net.Receive( "Horde_BossMusic", function()
-    local status = net.ReadString()
-    HORDE:BossMusic( status )
+    local music = net.ReadString()
+    local status = net.ReadBool()
+    HORDE:BossMusic( music, status )
 end )
-
-function HORDE:BossMusic( status )
+function HORDE:BossMusic( music, status )
     local ply = LocalPlayer()
-    local music = {
-        "music/hl1_song10.mp3",
-        "music/hl2_song12_long.mp3",
-        "music/hl2_song16.mp3",
-        "music/hl2_song20_submix0.mp3",
-        "music/hl2_song20_submix4.mp3",
-        "music/hl2_song4.mp3"
-    }
-
-    if status == "Start" then
-        ply:EmitSound( "#" .. music[ math.random( 1, #music ) ] )
-    elseif status == "End" then
-        ply:StopSound( "#music/hl1_song10.mp3" )
-        ply:StopSound( "#music/hl2_song12_long.mp3" )
-        ply:StopSound( "#music/hl2_song16.mp3" )
-        ply:StopSound( "#music/hl2_song20_submix0.mp3" )
-        ply:StopSound( "#music/hl2_song20_submix4.mp3" )
-        ply:StopSound( "#music/hl2_song4.mp3" )
+    if status then
+        currentMusic = CreateSound( ply, music )
+        currentMusic:SetSoundLevel( 0 )
+        currentMusic:Play()
+    elseif not status then
+        currentMusic:Stop()
     end
 end
 
