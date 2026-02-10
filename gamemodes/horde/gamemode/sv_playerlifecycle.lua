@@ -10,6 +10,8 @@ util.AddNetworkString("Horde_SyncGameInfo")
 util.AddNetworkString("Horde_SaveAchievements")
 util.AddNetworkString("Horde_SaveExtraAchievements")
 util.AddNetworkString("Horde_SyncClientExps")
+util.AddNetworkString("Horde_BossMusic")
+util.AddNetworkString("Horde_MatchMusic")
 
 HORDE.vote_remaining_time = 60
 HORDE.game_end = nil
@@ -127,10 +129,22 @@ function HORDE:GameEnd(status)
 
     if status == "DEFEAT" then
         HORDE:SendNotification("All players are dead!", 1)
+
+        net.Start("Horde_BossMusic")
+            net.WriteBool( false )
+        net.Broadcast()
+
+        net.Start("Horde_MatchMusic")
+            net.WriteString( "#horde/music/match_defeat.mp3" )
+        net.Broadcast()
     end
 
     if status == "VICTORY" then
         net.Start("Horde_SaveAchievements")
+        net.Broadcast()
+
+        net.Start("Horde_MatchMusic")
+            net.WriteString( "#horde/music/match_victory.mp3" )
         net.Broadcast()
     end
 

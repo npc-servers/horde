@@ -308,7 +308,7 @@ net.Receive("Horde_RenderBreakCountDown", function()
     local num = net.ReadInt(8)
     local is_end_message = net.ReadBool()
     if is_end_message then
-        surface.PlaySound("HL1/fvox/blip.wav")
+        surface.PlaySound("hl1/fvox/blip.wav")
         center_panel_str = translate.Get("Game_Wave_Completed") .. "!"
         wave_str = nil
         return
@@ -322,11 +322,11 @@ net.Receive("Horde_RenderBreakCountDown", function()
                 HORDE.leader_board:SetVisible(false)
             end
             if num == 10 then
-                surface.PlaySound("HL1/fvox/ten.wav")
+                surface.PlaySound("hl1/fvox/ten.wav")
             elseif num == 5 then
-                surface.PlaySound("HL1/fvox/five.wav")
+                surface.PlaySound("hl1/fvox/five.wav")
             elseif num == 0 then
-                surface.PlaySound("ambient/alarms/manhack_alert_pass1.wav")
+                surface.PlaySound("ambient/alarms/warningbell1.wav")
             else
                 surface.PlaySound("horde/cd/" .. tostring(num) ..".mp3")
             end
@@ -387,3 +387,29 @@ net.Receive("Horde_RenderHealer", function()
         heal_msg_cd = 5
     end
 end)
+
+local currentMusic
+
+net.Receive( "Horde_BossMusic", function()
+    local ply = LocalPlayer()
+    local music = net.ReadString()
+    local status = net.ReadBool()
+    if not IsValid( ply ) then return end
+
+    if status then
+        currentMusic = music
+        ply:EmitSound( currentMusic, 0, 100, 1, CHAN_STATIC, SND_SHOULDPAUSE )
+    else
+        if not currentMusic then return end
+
+        ply:StopSound( currentMusic )
+    end
+end )
+
+net.Receive( "Horde_MatchMusic", function()
+    local ply = LocalPlayer()
+    local music = net.ReadString()
+    if not IsValid( ply ) then return end
+
+    ply:EmitSound( music, 0, 100, 1, CHAN_STATIC, SND_SHOULDPAUSE )
+end )
