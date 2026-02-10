@@ -388,17 +388,11 @@ net.Receive("Horde_RenderHealer", function()
     end
 end)
 
--- W.I.P
 net.Receive( "Horde_BossMusic", function()
+    local currentMusic
+    local ply = LocalPlayer()
     local music = net.ReadString()
     local status = net.ReadBool()
-    HORDE:BossMusic( music, status )
-end )
-
-local currentMusic
-
-function HORDE:BossMusic( music, status )
-    local ply = LocalPlayer()
     if not IsValid( ply ) then return end
 
     if status then
@@ -409,7 +403,7 @@ function HORDE:BossMusic( music, status )
 
         ply:StopSound( currentMusic )
     end
-end
+end )
 
 net.Receive( "Horde_MatchMusic", function()
     local ply = LocalPlayer()
