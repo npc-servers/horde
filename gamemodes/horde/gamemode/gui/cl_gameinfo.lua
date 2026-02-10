@@ -403,7 +403,7 @@ function HORDE:BossMusic( music, status )
 
     if status then
         currentMusic = music
-        ply:EmitSound( currentMusic )
+        ply:EmitSound( currentMusic, 0, 100, 1, CHAN_STATIC, SND_SHOULDPAUSE )
     else
         if not currentMusic then return end
 
@@ -416,5 +416,5 @@ net.Receive( "Horde_MatchMusic", function()
     local music = net.ReadString()
     if not IsValid( ply ) then return end
 
-    ply:EmitSound( music )
+    ply:EmitSound( music, 0, 100, 1, CHAN_STATIC, SND_SHOULDPAUSE )
 end )
