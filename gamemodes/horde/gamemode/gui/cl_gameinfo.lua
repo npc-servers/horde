@@ -308,7 +308,7 @@ net.Receive("Horde_RenderBreakCountDown", function()
     local num = net.ReadInt(8)
     local is_end_message = net.ReadBool()
     if is_end_message then
-        surface.PlaySound("HL1/fvox/blip.wav")
+        surface.PlaySound("buttons/button15.wav")
         center_panel_str = translate.Get("Game_Wave_Completed") .. "!"
         wave_str = nil
         return
@@ -322,11 +322,11 @@ net.Receive("Horde_RenderBreakCountDown", function()
                 HORDE.leader_board:SetVisible(false)
             end
             if num == 10 then
-                surface.PlaySound("HL1/fvox/ten.wav")
+                surface.PlaySound("hl1/fvox/ten.wav")
             elseif num == 5 then
-                surface.PlaySound("HL1/fvox/five.wav")
+                surface.PlaySound("hl1/fvox/five.wav")
             elseif num == 0 then
-                surface.PlaySound("ambient/alarms/manhack_alert_pass1.wav")
+                surface.PlaySound("ambient/alarms/warningbell1.wav")
             else
                 surface.PlaySound("horde/cd/" .. tostring(num) ..".mp3")
             end
@@ -394,19 +394,27 @@ net.Receive( "Horde_BossMusic", function()
     local status = net.ReadBool()
     HORDE:BossMusic( music, status )
 end )
+
+local currentMusic
+
 function HORDE:BossMusic( music, status )
     local ply = LocalPlayer()
+    if not IsValid( ply ) then return end
+
     if status then
-        currentMusic = CreateSound( ply, music )
-        currentMusic:SetSoundLevel( 0 )
-        currentMusic:Play()
-    elseif not status then
-        currentMusic:Stop()
+        currentMusic = music
+        ply:EmitSound( currentMusic )
+    else
+        if not currentMusic then return end
+
+        ply:StopSound( currentMusic )
     end
 end
 
 net.Receive( "Horde_MatchMusic", function()
-	local ply = LocalPlayer()
-    local soundFile = net.ReadString()
-	ply:EmitSound( "#" .. soundFile )
+    local ply = LocalPlayer()
+    local music = net.ReadString()
+    if not IsValid( ply ) then return end
+
+    ply:EmitSound( music )
 end )
