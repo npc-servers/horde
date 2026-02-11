@@ -51,15 +51,60 @@ PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
     ply:Horde_SetPerkLevelBonus( "paladin_base", 1.5 + math.min( 0.25, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
 end
 
-PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, _, bonus )
+PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
-    bonus.resistance = bonus.resistance + math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) )
+    local paladinResist = math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) )
+    local faithResist = 0
+
+    print(HORDE:IsPhysicalDamage( dmginfo ), ply.Horde_PaladinShielding)
+    if HORDE:IsPhysicalDamage( dmginfo ) and ply.Horde_PaladinShielding then
+        faithResist = 0.05 * ply:Horde_GetPaladinFaithStack()
+        ply:Horde_RemovePaladinFaithStack()
+    end
+
+    bonus.resistance = bonus.resistance + paladinResist + faithResist
 end
 
-PERK.Hooks.Horde_OnSetMaxHealth = function(ply, bonus)
-    if not SERVER then return end 
+PERK.Hooks.Horde_OnSetMaxHealth = function( ply, bonus )
+    if not SERVER then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
     bonus.increase = bonus.increase + 0.5
+end
+
+PERK.Hooks.PlayerButtonDown = function( ply, button )
+    if not SERVER then return end
+    if button ~= KEY_LALT then return end
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+
+    local timerName = "SlowWalkHold_" .. ply:SteamID64()
+
+    -- prevent regen
+    if timer.Exists( timerName ) then
+        timer.Remove( timerName )
+    end
+
+    ply.Horde_PaladinShielding = true
+end
+
+PERK.Hooks.PlayerButtonUp = function( ply, button )
+    if not SERVER then return end
+    if button ~= KEY_LALT then return end
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+
+    local timerName = "SlowWalkHold_" .. ply:SteamID64()
+    local secToStack = 3
+
+    timer.Create( timerName, secToStack, 0, function()
+        if not IsValid( ply ) then
+            timer.Remove( timerName )
+
+            return
+        end
+
+        ply:Horde_AddPaladinFaithStack()
+    end )
+
+    ply.Horde_PaladinShielding = nil
 end
