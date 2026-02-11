@@ -36,6 +36,19 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_base" then return end
 
     ply:Horde_AddPaladinAura()
+
+    -- TODO: move into function
+    local timerName = "SlowWalkHold_" .. ply:SteamID64()
+    local secToStack = 3
+    timer.Create( timerName, secToStack, 0, function()
+        if not IsValid( ply ) then
+            timer.Remove( timerName )
+
+            return
+        end
+
+        ply:Horde_AddPaladinFaithStack()
+    end )
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
@@ -43,6 +56,11 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if perk ~= "paladin_base" then return end
 
     ply:Horde_RemovePaladinAura()
+
+    local timerName = "SlowWalkHold_" .. ply:SteamID64()
+    if timer.Exists( timerName ) then
+        timer.Remove( timerName )
+    end
 end
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
@@ -95,6 +113,7 @@ PERK.Hooks.PlayerButtonUp = function( ply, button )
     local timerName = "SlowWalkHold_" .. ply:SteamID64()
     local secToStack = 3
 
+    -- TODO: move into function
     timer.Create( timerName, secToStack, 0, function()
         if not IsValid( ply ) then
             timer.Remove( timerName )
