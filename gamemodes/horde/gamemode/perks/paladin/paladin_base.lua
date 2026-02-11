@@ -57,7 +57,6 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     local paladinResist = math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) )
     local faithResist = 0
 
-    print(HORDE:IsPhysicalDamage( dmginfo ), ply.Horde_PaladinShielding)
     if HORDE:IsPhysicalDamage( dmginfo ) and ply.Horde_PaladinShielding then
         faithResist = 0.05 * ply:Horde_GetPaladinFaithStack()
         ply:Horde_RemovePaladinFaithStack()
