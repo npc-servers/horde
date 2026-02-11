@@ -31,9 +31,13 @@ PERK.Hooks = {}
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if not SERVER then return end
     if perk ~= "paladin_base" then return end
+
+    ply:Horde_AddPaladinAura()
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if not SERVER then return end
     if perk ~= "paladin_base" then return end
+
+    ply:Horde_RemovePaladinAura()
 end

@@ -93,6 +93,8 @@ HORDE:RegisterStatus("Damage_Shard", "materials/status/damage.png")
 HORDE:RegisterStatus("Agility_Shard", "materials/status/speed.png")
 HORDE:RegisterStatus("Assassin_Optics", "materials/status/gadget/assassin_optics.png")
 HORDE:RegisterStatus("Aegis", "materials/status/gadget/aegis.png")
+-- Paladin
+HORDE:RegisterStatus("PaladinAura", "materials/subclasses/paladin.png")
 
 HORDE:RegisterStatus("Armor_Survivor", "items/armor_survivor.png")
 HORDE:RegisterStatus("Armor_Assault", "items/armor_assault.png")
