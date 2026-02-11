@@ -1,8 +1,8 @@
 PERK.PrintName = "Paladin Base"
 PERK.Description = [[
 Stats:
-- Increase Sacred Aura's radius by 1% per rank level, up to 25%.
-- Increase Global damage resistance by 0.8% per rank level, up to 20%.
+{1} Increased Sacred Aura's radius (1% per rank level, up to 25%)
+{2} Increased Global damage resistance (0.8% per rank level, up to 20%)
 - Increase health by 50.
 
 Main Mechanics:
@@ -25,7 +25,10 @@ While shielding:
 - Lose 1 Faith stack upon taking Physical damage.
 
 Has only access to melee weapons.]]
-PERK.Params = {}
+PERK.Params = {
+    [1] = { percent = true, base = 0, level = 0.01, max = 0.25, classname = "Paladin" },
+    [2] = { percent = true, base = 0, level = 0.008, max = 0.20, classname = "Paladin" },
+}
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
@@ -46,4 +49,17 @@ PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
     if not SERVER then return end
 
     ply:Horde_SetPerkLevelBonus( "paladin_base", 1.5 + math.min( 0.25, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
+end
+
+PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, _, bonus )
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+
+    bonus.resistance = bonus.resistance + math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) )
+end
+
+PERK.Hooks.Horde_OnSetMaxHealth = function(ply, bonus)
+    if not SERVER then return end 
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+
+    bonus.increase = bonus.increase + 0.5
 end
