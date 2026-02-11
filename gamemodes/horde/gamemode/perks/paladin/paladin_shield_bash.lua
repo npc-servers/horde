@@ -9,9 +9,88 @@ PERK.Hooks = {}
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if not SERVER then return end
     if perk ~= "paladin_shield_bash" then return end
+
+    ply:Horde_SetPerkCooldown( 10 )
+    net.Start( "Horde_SyncActivePerk" )
+        net.WriteUInt( HORDE.Status_PaladinShieldBash, 8 )
+        net.WriteUInt( 1, 3 )
+    net.Send( ply )
+
+    ply.Horde_PaladinShieldBashHitTargets = {}
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     if not SERVER then return end
     if perk ~= "paladin_shield_bash" then return end
+
+    net.Start( "Horde_SyncActivePerk" )
+        net.WriteUInt( HORDE.Status_PaladinShieldBash, 8 )
+        net.WriteUInt( 0, 3 )
+    net.Send( ply )
+
+    ply.Horde_PaladinShieldBashHitTargets = nil
+end
+
+PERK.Hooks.Horde_OnPlayerDebuffApply = function ( ply, _, bonus )
+    if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
+    if not ply.Horde_PaladinShielding then return end
+
+    bonus.less = bonus.less * 0.25
+end
+
+PERK.Hooks.Horde_UseActivePerk = function( ply )
+    if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
+
+    ply.Horde_PaladinBashing = true
+
+    local forward = ply:GetForward()
+    local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1000 )
+    ply:SetLocalVelocity( forwardForce )
+
+    local bashDamage = 200
+    local bashKnockback = 1000
+    local bashKnockUp = 200
+
+    local bashDuration = 0.5
+
+    timer.Create( "PaladinBash_" .. ply:EntIndex(), 0.05, bashDuration / 0.05, function()
+        if not IsValid( ply ) or not ply.Horde_PaladinBashing then
+            timer.Remove( "PaladinBash_" .. ply:EntIndex() )
+
+            return
+        end
+
+        for _, target in ipairs( ents.FindInSphere( ply:GetPos(), 80 ) ) do
+            if IsValid( target ) and HORDE:IsEnemy( target ) and not ply.Horde_PaladinShieldBashHitTargets[target] then
+                local toTarget = ( target:GetPos() - ply:GetPos() ):GetNormalized()
+                local dot = ply:GetForward():Dot( toTarget )
+
+                if dot > 0.5 then
+                    ply:SetLocalVelocity( vector_origin )
+                    ply.Horde_PaladinShieldBashHitTargets[target] = true
+
+                    local dmginfo = DamageInfo()
+                    dmginfo:SetAttacker( ply )
+                    dmginfo:SetInflictor( ply )
+                    dmginfo:SetDamagePosition( target:GetPos() )
+                    dmginfo:SetDamage( bashDamage )
+                    dmginfo:SetDamageType( DMG_CLUB )
+                    target:TakeDamageInfo( dmginfo )
+
+                    local knockbackForce = ply:GetForward() * bashKnockback + Vector( 0, 0, bashKnockUp )
+                    target:SetVelocity( knockbackForce )
+
+                    ply:EmitSound( "horde/player/quickstep.ogg" )
+                    ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
+                end
+            end
+        end
+    end )
+
+    timer.Simple( bashDuration, function()
+        if IsValid( ply ) then
+            ply.Horde_PaladinBashing = nil
+            ply.Horde_PaladinShieldBashHitTargets = {}
+        end
+    end )
 end
