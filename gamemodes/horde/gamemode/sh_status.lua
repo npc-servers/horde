@@ -96,7 +96,8 @@ HORDE:RegisterStatus("Aegis", "materials/status/gadget/aegis.png")
 -- Paladin
 HORDE:RegisterStatus("PaladinAura", "materials/subclasses/paladin.png")
 HORDE:RegisterStatus("PaladinFaith", "materials/subclasses/paladin.png", true)
-HORDE:RegisterStatus("PaladinShieldBash", "materials/subclasses/paladin.png", nil, nil, true)
+HORDE:RegisterStatus("PaladinShieldBash", "materials/perks/paladin/shield_bash.png", nil, nil, true)
+HORDE:RegisterStatus("PaladinShieldBash", "materials/perks/paladin/smite.png", nil, nil, true)
 
 HORDE:RegisterStatus("Armor_Survivor", "items/armor_survivor.png")
 HORDE:RegisterStatus("Armor_Assault", "items/armor_assault.png")
