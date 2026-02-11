@@ -8,7 +8,7 @@ function entmeta:Horde_AddPaladinAura()
     ent:SetPos( self:GetPos() )
     ent:SetParent( self )
 
-    ent:Horde_SetPresenceRadius( self:Horde_GetPaladinAuraRadius() * ( 1 + self:Horde_GetPerkLevelBonus( "warden_base" ) ) )
+    ent:Horde_SetPresenceRadius( self:Horde_GetPaladinAuraRadius() * self:Horde_GetPerkLevelBonus( "paladin_base" ) )
 
     ent:Spawn()
     self.Horde_PaladinAura = ent

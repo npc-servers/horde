@@ -41,3 +41,9 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
 
     ply:Horde_RemovePaladinAura()
 end
+
+PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
+    if not SERVER then return end
+
+    ply:Horde_SetPerkLevelBonus( "paladin_base", 1.5 + math.min( 0.25, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
+end
