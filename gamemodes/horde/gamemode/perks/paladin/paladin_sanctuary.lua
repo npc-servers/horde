@@ -1,7 +1,7 @@
 PERK.PrintName = "Sanctuary"
 PERK.Icon = "materials/perks/paladin/sanctuary.png"
 PERK.Description = [[
-Immune to Necrosis
+Sacred Aura slowly decreases debuff buildups per second.
 When you're using Divine Shield, every player inside your Sacred Aura cannot take more damage than 50% of their health in one instance. ]]
 PERK.Hooks = {}
 
