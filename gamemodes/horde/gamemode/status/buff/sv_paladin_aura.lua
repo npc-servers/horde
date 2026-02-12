@@ -38,6 +38,10 @@ function plymeta:Horde_AddPaladinAuraEffects( provider )
     if not provider or not provider:IsValid() then return end
     self.Horde_PaladinAuraProvider = provider
 
+    if provider:Horde_GetPerk( "paladin_rallying_presence" ) then
+        self:Horde_SetHealthRegenPercentage( 0.02 )
+    end
+
     net.Start( "Horde_SyncStatus" )
         net.WriteUInt( HORDE.Status_PaladinAura, 8 )
         net.WriteUInt( 1, 8 )
@@ -47,15 +51,15 @@ end
 function plymeta:Horde_RemovePaladinAuraEffects()
     self.Horde_PaladinAuraProvider = nil
 
+    if provider:Horde_GetPerk( "paladin_rallying_presence" ) then
+        self:Horde_SetHealthRegenPercentage( 0.02 )
+    end
+
     net.Start( "Horde_SyncStatus" )
         net.WriteUInt( HORDE.Status_PaladinAura, 8 )
         net.WriteUInt( 1, 8 )
     net.Send( self )
 end
-
-hook.Add( "PlayerTick", "Horde_PaladinAura_Buff_CurTime", function( ply )
-    if not ply:Alive() then return end
-end )
 
 hook.Add( "Horde_ResetStatus", "Horde_PaladinAuraEffectsReset", function( ply )
     ply:Horde_RemovePaladinAuraEffects()
