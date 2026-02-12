@@ -197,7 +197,7 @@ function ENT:Think()
                         end
                     end
 
-                    if hasRallyingPresence and IsValid( ent ) and ent:IsPlayer() then
+                    if hasRallyingPresence and IsValid( ent ) and ent:IsPlayer() and ( ent:Health() < ent:GetMaxHealth() ) then
                         local healinfo = HealInfo:New( { amount = 2, healer = plyParent } )
                         HORDE:OnPlayerHeal( ent, healinfo )
                     end
