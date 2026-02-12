@@ -35,7 +35,7 @@ PERK.Hooks.Horde_OnPlayerDebuffApply = function ( ply, _, bonus )
     if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
     if not ply.Horde_PaladinShielding then return end
 
-    bonus.less = bonus.less * 0.25
+    bonus.less = bonus.less * 0.5
 end
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
