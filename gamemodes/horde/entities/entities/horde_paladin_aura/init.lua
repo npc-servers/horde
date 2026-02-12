@@ -168,7 +168,7 @@ function ENT:Think()
     local curTime = CurTime()
 
     if curTime > self.LastShock then
-        self.LastShock = curTime + 1
+        self.LastShock = curTime + 2
 
         local plyParent = self:GetPlayerParent()
         if plyParent and plyParent:Horde_GetPerk( "paladin_dawnbrinder" ) then
