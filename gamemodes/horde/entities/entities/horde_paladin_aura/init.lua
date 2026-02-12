@@ -175,8 +175,9 @@ function ENT:Think()
         if plyParent then
             local hasDawnbrinder = plyParent:Horde_GetPerk( "paladin_dawnbrinder" )
             local hasSanctuary = plyParent:Horde_GetPerk( "paladin_sanctuary" )
+            local hasRallyingPresence = plyParent:Horde_GetPerk( "paladin_rallying_presence" )
 
-            if hasDawnbrinder or hasSanctuary then
+            if hasDawnbrinder or hasSanctuary or hasSanctuary then
                 for entId, _ in pairs( ply.EntitiesInside ) do
                     local ent = Entity( entId )
                     if hasDawnbrinder and IsValid( ent ) and HORDE:IsEnemy( ent ) then
@@ -194,6 +195,11 @@ function ENT:Think()
                         for debuff, _ in pairs( ent.Horde_Debuff_Buildup ) do
                             ent:Horde_ReduceDebuffBuildup( debuff, 5 )
                         end
+                    end
+
+                    if hasRallyingPresence and IsValid( ent ) and ent:IsPlayer() then
+                        local healinfo = HealInfo:New( { amount = 2, healer = plyParent } )
+                        HORDE:OnPlayerHeal( ent, healinfo )
                     end
                 end
             end
