@@ -82,7 +82,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     bonus.resistance = bonus.resistance + paladinResist + faithResist
 end
 
-PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, dmginfo )
+PERK.Hooks.Horde_OnPlayerDamageTakenPost = function( ply, dmginfo )
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
     if not ply.Horde_PaladinShielding then return end
     if dmginfo:GetDamage() <= 0 then return end
