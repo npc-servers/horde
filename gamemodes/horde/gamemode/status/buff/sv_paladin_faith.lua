@@ -23,6 +23,8 @@ function plymeta:Horde_RemovePaladinFaithStack()
         net.WriteUInt( HORDE.Status_PaladinFaith, 8 )
         net.WriteUInt( self.Horde_PaladinFaithStack, 8 )
     net.Send( self )
+
+    hook.Run( "Horde_Paladin_OnLoseFaith", self )
 end
 
 function plymeta:Horde_GetPaladinFaithStack()
