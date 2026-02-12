@@ -381,60 +381,60 @@ end
 function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Melee", "Combat Knife", "arccw_horde_knife", 100, 0,
         "A reliable bayonet.\nRMB to deal a heavy slash.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
-        10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
+        10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja", "Paladin" } )
     HORDE:CreateItem( "Melee", "Crowbar", "arccw_horde_crowbar", 750, 2,
         "A trusty crowbar.\nEasy to use.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
         10, -1, nil, "items/hl2/weapon_crowbar.png", nil, nil, { HORDE.DMG_BLUNT } )
     HORDE:CreateItem( "Melee", "Machete", "arccw_horde_machete", 750, 2,
         "A large machete.\nEasy to use.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Kunai", "arccw_horde_kunai", 1750, 2,
         "Ranged throwing knives.\nThrown blades are non-retrieveable\n knives recharge every 3 seconds, with a total of 3 knives",
-        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 1 }, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Fireaxe", "arccw_horde_axe", 1500, 4,
         "Fireaxe.\nHeavy, but can chop most enemies in half.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Stunstick", "arccw_horde_stunstick", 1500, 4,
         "Electric baton.\nDeals extra Lightning damage.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
         10, -1, nil, "items/hl2/weapon_stunstick.png", nil, nil, { HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Melee", "Katana", "arccw_horde_katana", 2000, 4,
         "Ninja sword.\nLong attack range and fast attack speed.",
-        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Bat", "arccw_horde_bat", 2000, 4,
         "Sturdy baseball bat.\nHits like a truck.",
-        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Survivor = true, Psycho = true, Prototype = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BLUNT } )
     HORDE:CreateItem( "Melee", "Chainsaw", "arccw_horde_chainsaw", 2500, 6,
         "Brrrrrrrrrrrrrrrr.\n\nHold RMB to saw through enemies.\nDeals a lot more damage when using ammo.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 2 }, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Melee", "Inferno", "arccw_horde_inferno_blade", 2500, 6,
         "A blazing curved sword with hidden power.\n\nPress RMB to activate/deactivate the weapon.\n\nWhen deactivated, the weapon deals Slashing damage.\n\nWhen activated, the weapon deals extra splashing Fire damage.\nHowever, the user takes Fire damage over time.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Cremator = true },
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true, Cremator = true },
         10, -1, nil, nil, { Berserker = 2, Cremator = 2 }, nil, { HORDE.DMG_SLASH, HORDE.DMG_FIRE } )
     HORDE:CreateItem( "Melee", "Jötunn", "arccw_horde_jotuun", 2500, 6,
         "A cursed spiked mace forged with permafrost material.\n\nPress RMB to deliver a powerful ice blast.\nPerforming the ice blast increases Frostbite buildup on you.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 4 }, nil, { HORDE.DMG_BLUNT, HORDE.DMG_COLD } )
     HORDE:CreateItem( "Melee", "Mjölnir", "arccw_horde_mjollnir", 3000, 6,
         "A warhammer embued with electric energy.\n\nPress RMB to charge the weapon.\nCharged attack creates a lightning storm on impact.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 3 }, nil, { HORDE.DMG_BLUNT, HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Melee", "Zweihänder", "arccw_horde_zweihander", 3000, 8,
         "A heavy, large two-handed longsword.\nCan easily decapitate enemies in a full swing.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 5 }, nil, { HORDE.DMG_SLASH } )
 
     HORDE:CreateItem( "Pistol", "9mm", "arccw_horde_9mm", 50, 1,
         "Combine standard sidearm.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
     HORDE:CreateItem( "Pistol", "Medic 9mm", "arccw_horde_medic_9mm", 75, 1,
         "Modified 9mm that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing dart recharges every 0.5 second.",
@@ -599,7 +599,7 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Masterkey", "arccw_horde_masterkey", 1250, 3,
         "Usually seen mounted as an underbarrel shotgun intended for breaching doors\nthis Masterkey is fitted with a removeable grip\nfor use as an easily concealable shotgun.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true, Cremator = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "M870", "arccw_horde_870", 1500, 4,
         "Remington 870 Shotgun.\nManufactured in the United States.",
@@ -1088,7 +1088,7 @@ Hysteria lasts for 5 seconds and falls off sequentially.]],
 
     HORDE:CreateItem( "Equipment", "Medkit", "weapon_horde_medkit", 50, 0,
         "Rechargeble medkit.\nRMB to self-heal, LMB to heal others.",
-        nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, { "Survivor", "Psycho", "Prototype", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Overlord", "Cremator", "Artificer" } )
+        nil, 10, -1, nil, "items/weapon_medkit.png", nil, nil, nil, nil, { "Survivor", "Psycho", "Prototype", "Assault", "SpecOps", "Reverend", "Heavy", "Carcass", "Juggernaut", "Medic", "Hatcher", "Demolition", "Warlock", "Ghost", "Gunslinger", "Engineer", "Necromancer", "Berserker", "Samurai", "Cyborg Ninja", "Warden", "Overlord", "Paladin", "Cremator", "Artificer" } )
     HORDE:CreateItem( "Equipment", "Health Vial", "item_healthvial", 15, 0,
         "A capsule filled with sticky green liquid.\nHeals instantly when picked up.",
         { Medic = true, Hatcher = true },
