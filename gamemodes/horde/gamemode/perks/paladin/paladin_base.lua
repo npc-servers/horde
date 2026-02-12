@@ -102,6 +102,7 @@ PERK.Hooks.PlayerButtonDown = function( ply, button )
     if not SERVER then return end
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    ply.Horde_PaladinShielding = true
 
     local timerName = "SlowWalkHold_" .. ply:SteamID64()
 
@@ -109,14 +110,13 @@ PERK.Hooks.PlayerButtonDown = function( ply, button )
     if timer.Exists( timerName ) then
         timer.Remove( timerName )
     end
-
-    ply.Horde_PaladinShielding = true
 end
 
 PERK.Hooks.PlayerButtonUp = function( ply, button )
     if not SERVER then return end
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    ply.Horde_PaladinShielding = nil
 
     local timerName = "SlowWalkHold_" .. ply:SteamID64()
     local secToStack = 3
@@ -131,8 +131,6 @@ PERK.Hooks.PlayerButtonUp = function( ply, button )
 
         ply:Horde_AddPaladinFaithStack()
     end )
-
-    ply.Horde_PaladinShielding = nil
 end
 
 -- Armor on heal
