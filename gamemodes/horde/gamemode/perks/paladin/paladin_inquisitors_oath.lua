@@ -6,12 +6,24 @@ Killing an enemy gives you 1 stack of Faith.
 Melee hits leech 5% health.]]
 PERK.Hooks = {}
 
-PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if not SERVER then return end
-    if perk ~= "paladin_inquisitors_oath" then return end
+PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus )
+    if not ply:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
+    local faithStacks = ply:Horde_GetPaladinFaithStack()
+    if faithStacks == 0 then return end
+
+    bonus.increase = bonus.increase + 0.3 * faithStacks
 end
 
-PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if not SERVER then return end
-    if perk ~= "paladin_inquisitors_oath" then return end
+PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, _, _, _, dmginfo )
+    if not ply:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
+    if dmginfo:GetDamage() <= 0 then return end
+
+    local leech = ply:GetMaxHealth() * 0.05
+    HORDE:SelfHeal( ply, leech )
+end
+
+PERK.Hooks.Horde_OnEnemyKilled = function( _, killer )
+    if not killer:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
+
+    killer:Horde_AddPaladinFaithStack()
 end
