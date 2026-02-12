@@ -1,99 +1,155 @@
-AddCSLuaFile("shared.lua")
-include('shared.lua')
+AddCSLuaFile( "shared.lua" )
+include( "shared.lua" )
+--[[---------------------------------------------
+	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
+	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
+	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
+-----------------------------------------------]]
+ENT.Model = { "models/zombie/zombie_soldier.mdl" }
+ENT.StartHealth = 200
 
-ENT.Model = {"models/zombie/zombie_soldier.mdl"}
-ENT.StartHealth = 250
-ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
+ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
+
 ENT.BloodColor = "Red"
-ENT.MeleeAttackDamage = 25
-ENT.AnimTbl_MeleeAttack = {"vjseq_fastattack"}
-ENT.MeleeAttackDistance = 40
-ENT.MeleeAttackDamageDistance = 60
-ENT.TimeUntilMeleeAttackDamage = 0.3
-ENT.SlowPlayerOnMeleeAttack = true
-ENT.FootStepTimeRun = 1
-ENT.DisableFootStepOnWalk = true
-ENT.AlertSounds_OnlyOnce = true
-ENT.HasExtraMeleeAttackSounds = true
-ENT.HasImpactSounds = false
+ENT.CanFlinch = 1
 
-ENT.SoundTbl_FootStep = {"zsszombine/gear1.wav","zsszombine/gear2.wav","zsszombine/gear3.wav"}
-ENT.SoundTbl_Idle = {"zsszombine/idle1.wav","zsszombine/idle2.wav","zsszombine/idle3.wav","zsszombine/idle4.wav","zsszombine/idle5.wav"}
-ENT.SoundTbl_Alert = {"zsszombine/alert1.wav","zsszombine/alert2.wav","zsszombine/alert3.wav","zsszombine/alert4.wav","zsszombine/alert5.wav","zsszombine/alert6.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"zsszombine/attack1.wav","zsszombine/attack2.wav","zsszombine/attack3.wav","zsszombine/attack4.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"zsszombine/pain1.wav","zsszombine/pain2.wav","zsszombine/pain3.wav","zsszombine/pain4.wav"}
-ENT.SoundTbl_Death = {"zsszombine/die1.wav","zsszombine/die2.wav"}
+ENT.MeleeAttackDamage = 20
+ENT.MeleeAttackDistance = 30
+ENT.MeleeAttackDamageDistance = 70
+ENT.TimeUntilMeleeAttackDamage = false
+ENT.NextMeleeAttackTime = 1.5
+
+ENT.HasRangeAttack = false
+ENT.AnimTbl_RangeAttack = { "vjseq_pullgrenade" }
+ENT.NextRangeAttackTime = 10
+ENT.RangeDistance = 256
+ENT.RangeToMeleeDistance = 0
+ENT.DisableDefaultRangeAttackCode = true
+
+ENT.DisableFootStepSoundTimer = true
+
+ENT.Zombine_Max_Grenades = 1
+ENT.Zombine_Grenades_Pulled = 0
+ENT.Zombine_Charging = false
+---------------------------------------------------------------------------------------------------------------------------------------------
+ENT.SoundTbl_FootStep = {
+	"npc/zombine/gear1.wav",
+	"npc/zombine/gear2.wav",
+	"npc/zombine/gear3.wav"
+}
+ENT.SoundTbl_Idle = {
+	"npc/zombine/zombine_idle1.wav",
+	"npc/zombine/zombine_idle2.wav",
+	"npc/zombine/zombine_idle3.wav",
+	"npc/zombine/zombine_idle4.wav"
+}
+ENT.SoundTbl_Alert = {
+	"npc/zombine/zombine_alert1.wav",
+	"npc/zombine/zombine_alert2.wav",
+	"npc/zombine/zombine_alert3.wav",
+	"npc/zombine/zombine_alert4.wav",
+	"npc/zombine/zombine_alert5.wav",
+	"npc/zombine/zombine_alert6.wav",
+	"npc/zombine/zombine_alert7.wav"
+}
+ENT.SoundTbl_MeleeAttack = {
+	"npc/zombie/claw_strike1.wav",
+	"npc/zombie/claw_strike2.wav",
+	"npc/zombie/claw_strike3.wav"
+}
+ENT.SoundTbl_MeleeAttackMiss = {
+	")zsszombie/miss1.wav",
+	")zsszombie/miss2.wav",
+	")zsszombie/miss3.wav",
+	")zsszombie/miss4.wav"
+}
+ENT.SoundTbl_BeforeRangeAttack = {
+	"npc/zombine/zombine_readygrenade1.wav",
+	"npc/zombine/zombine_readygrenade2.wav"
+}
+ENT.SoundTbl_Pain = {
+	"npc/zombine/zombine_pain1.wav",
+	"npc/zombine/zombine_pain2.wav",
+	"npc/zombine/zombine_pain3.wav",
+	"npc/zombine/zombine_pain4.wav"
+}
+ENT.SoundTbl_Death = {
+	"npc/zombine/zombine_die1.wav",
+	"npc/zombine/zombine_die2.wav"
+}
+
+ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
 
-ENT.Critical = false
-ENT.CurrentGrenadeCount = 0
-ENT.GrenadeOut = false
-ENT.MaxGrenades = 1
-
+local sdCharge = { "npc/zombine/zombine_charge1.wav", "npc/zombine/zombine_charge2.wav" }
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	self:AddRelationship("npc_headcrab_fast D_LI 99")
-	self:AddRelationship("npc_headcrab_poison D_LI 99")
-	self:SetBodygroup(1,1)
+	self:SetBodygroup( 1, 1 )
 end
-function ENT:CustomOnThink_AIEnabled()
-	if IsValid(self.Grenade) then
-		self.AnimTbl_IdleStand = {VJ_SequenceToActivity(self,"idle_grenade")}
-		self.AnimTbl_Walk = {VJ_SequenceToActivity(self,"walk_all_grenade")}
-		self.AnimTbl_Run = {self.Critical and VJ_SequenceToActivity(self,"run_all_grenade") or VJ_SequenceToActivity(self,"walk_all_grenade")}
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnThink()
+	if self:Health() < self:GetMaxHealth() / 2 and not self.Zombine_Charging then
+		self.Zombine_Charging = true
+		self:PlaySoundSystem( "GeneralSpeech", sdCharge )
+	elseif self:Health() >= self:GetMaxHealth() / 2 and self.Zombine_Charging then
+		self.Zombine_Charging = false
+	end
+
+	if IsValid( self.Grenade ) then
+		self.AnimTbl_IdleStand = { VJ_SequenceToActivity( self, "idle_grenade" ) }
+		if self.Zombine_Charging then
+			self.AnimTbl_Walk = { VJ_SequenceToActivity( self, "run_all_grenade" ) }
+			self.AnimTbl_Run = { VJ_SequenceToActivity( self, "run_all_grenade" ) }
+		else
+			self.AnimTbl_Walk = { VJ_SequenceToActivity( self, "walk_all_grenade" ) }
+			self.AnimTbl_Run = { VJ_SequenceToActivity( self, "walk_all_grenade" ) }
+		end
+	elseif not IsValid( self.Grenade ) and self.Zombine_Charging then
+		self.AnimTbl_IdleStand = { ACT_IDLE }
+		self.AnimTbl_Walk = { ACT_RUN }
+		self.AnimTbl_Run = { ACT_RUN }
 	else
-		self.AnimTbl_IdleStand = {ACT_IDLE}
-		self.AnimTbl_Walk = {ACT_WALK}
-		self.AnimTbl_Run = {self.Critical and ACT_RUN or ACT_WALK}
+		self.AnimTbl_IdleStand = { ACT_IDLE }
+		self.AnimTbl_Walk = { ACT_WALK }
+		self.AnimTbl_Run = { ACT_WALK }
 	end
-	if not self.GrenadeOut and self.CurrentGrenadeCount < self.MaxGrenades then
-		if IsValid(self:GetEnemy()) and self.LatestEnemyDistance <= 200 and self:Health() < self:GetMaxHealth() / 4 then
-			self:CreateGrenade()
-		end
-	end
+
+	self.HasRangeAttack = self.Zombine_Grenades_Pulled < self.Zombine_Max_Grenades and self:Health() < self:GetMaxHealth() / 4
 end
-function ENT:CustomOnTakeDamage_AfterDamage(dmginfo,hitgroup)
-	self.Critical = self:Health() < self:GetMaxHealth() / 2
-	self.FootStepTimeRun = self.Critical and 0.5 or 1
-end
-function ENT:CustomOnKilled(dmginfo,hitgroup)
-	timer.Remove("GrenadeSpawn")
-	timer.Remove("GrenadeReset")
-	if IsValid(self.Grenade) then
-		local att = self:GetAttachment(self:LookupAttachment("grenade_attachment"))
-		self.Grenade:SetOwner(NULL)
-		self.Grenade:SetParent(NULL)
-		self.Grenade:Fire("ClearParent")
-		self.Grenade:SetMoveType(MOVETYPE_VPHYSICS)
-		self.Grenade:SetPos(att.Pos)
-		self.Grenade:SetAngles(att.Ang)
-		local phys = self.Grenade:GetPhysicsObject()
-		if IsValid(phys) then
-			phys:EnableGravity(true)
-			phys:Wake()
-		end
+---------------------------------------------------------------------------------------------------------------------------------------------
+local getEventName = util.GetAnimEventNameByID
+--
+function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+	local eventName = getEventName( ev )
+	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then
+		self:FootStepSoundCode()
+	elseif eventName == "AE_ZOMBIE_ATTACK_LEFT" or eventName == "AE_ZOMBIE_ATTACK_RIGHT" or eventName == "AE_ZOMBIE_ATTACK_BOTH" then
+		self:MeleeAttackCode()
+	elseif eventName == "AE_ZOMBINE_PULLPIN" then
+		self:ZombineGrenadeCode()
 	end
 end
-function ENT:CreateGrenade()
-	self:VJ_ACT_PLAYACTIVITY("pullgrenade",true,false,true)
-	self.GrenadeOut = true
-	timer.Create("GrenadeSpawn",0.5,1,function()
-		if IsValid(self) then
-			self.CurrentGrenadeCount = self.CurrentGrenadeCount + 1
-			self.Grenade = ents.Create("npc_grenade_frag")
-			self.Grenade:SetOwner(self)
-			self.Grenade:SetParent(self)
-			self.Grenade:Fire("SetParentAttachment","grenade_attachment",0)
-			self.Grenade:Spawn()
-			self.Grenade:Activate()
-			self.Grenade:Input("SetTimer",self:GetOwner(),self:GetOwner(),3)
-			self.Grenade.VJ_IsPickedUpDanger = true
-			timer.Create("GrenadeReset",3.5,1,function()
-				if IsValid(self) then
-					self.GrenadeOut = false
-				end
-			end)
-		end
-	end)
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:MultipleMeleeAttacks()
+	if IsValid( self.Grenade ) or self.Zombine_Charging then
+		self.AnimTbl_MeleeAttack = { "vjseq_fastattack" }
+	else
+		self.AnimTbl_MeleeAttack = { "vjseq_attacka", "vjseq_attackb", "vjseq_attackc", "vjseq_attackd", "vjseq_attacke", "vjseq_attackf" }
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:ZombineGrenadeCode()
+	if not IsValid( self ) then return end
+
+	self.Zombine_Grenades_Pulled = self.Zombine_Grenades_Pulled + 1
+
+	self.Grenade = ents.Create( "npc_grenade_frag" )
+	self.Grenade:SetOwner( self )
+	self.Grenade:SetParent( self )
+	self.Grenade:Fire( "SetParentAttachment", "grenade_attachment", 0 )
+	self.Grenade:Spawn()
+	self.Grenade:Activate()
+	self.Grenade:Input( "SetTimer", self:GetOwner(), self:GetOwner(), 3 )
+	self.Grenade.VJ_IsPickedUpDanger = true
 end

@@ -13,13 +13,14 @@ ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 ENT.BloodColor = "Red"
 ENT.CanFlinch = 1
 
-ENT.HasMeleeAttack = true
-ENT.MeleeAttackDamage = 15
+ENT.MeleeAttackDamage = 25
 ENT.AnimTbl_MeleeAttack = { "vjseq_attacka", "vjseq_attackb", "vjseq_attackc", "vjseq_attackd", "vjseq_attacke", "vjseq_attackf" }
-ENT.TimeUntilMeleeAttackDamage = 1
+ENT.MeleeAttackDistance = 32
+ENT.MeleeAttackDamageDistance = 65
+ENT.TimeUntilMeleeAttackDamage = false
+ENT.NextMeleeAttackTime = 2
 
-ENT.FootStepTimeRun = 0.8
-ENT.FootStepTimeWalk = 0.8
+ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
 	")zsszombie/foot1.wav",
@@ -38,11 +39,36 @@ ENT.SoundTbl_MeleeAttackMiss = {
 	")zsszombie/miss3.wav",
 	")zsszombie/miss4.wav"
 }
+
+ENT.FootStepSoundLevel = 65
+
+ENT.GeneralSoundPitch1 = 100
+
+local sdFootScuff = { "npc/zombie/foot_slide1.wav", "npc/zombie/foot_slide2.wav", "npc/zombie/foot_slide3.wav" }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnThink()
-	self.AnimTbl_IdleStand = { self:IsOnFire() and ACT_IDLE_ON_FIRE or ACT_IDLE }
-	self.AnimTbl_Walk = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }
-	self.AnimTbl_Run = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }
+	if self:IsOnFire() then
+		self.AnimTbl_IdleStand = { ACT_IDLE_ON_FIRE }
+		self.AnimTbl_Walk = { ACT_WALK_ON_FIRE }
+		self.AnimTbl_Run = { ACT_WALK_ON_FIRE }
+	else
+		self.AnimTbl_IdleStand = { ACT_IDLE }
+		self.AnimTbl_Walk = { ACT_WALK }
+		self.AnimTbl_Run = { ACT_WALK }
+	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+local getEventName = util.GetAnimEventNameByID
+--
+function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+	local eventName = getEventName( ev )
+	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then
+		self:FootStepSoundCode()
+	elseif eventName == "AE_ZOMBIE_SCUFF_LEFT" or eventName == "AE_ZOMBIE_SCUFF_RIGHT" then
+		self:FootStepSoundCode( sdFootScuff )
+	elseif eventName == "AE_ZOMBIE_ATTACK_LEFT" or eventName == "AE_ZOMBIE_ATTACK_RIGHT" or eventName == "AE_ZOMBIE_ATTACK_BOTH" then
+		self:MeleeAttackCode()
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo, hitgroup )

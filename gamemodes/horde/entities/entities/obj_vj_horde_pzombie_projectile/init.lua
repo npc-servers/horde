@@ -50,9 +50,6 @@ function ENT:CustomOnPhysicsCollide(data, phys)
 			e:Horde_AddDebuffBuildup(HORDE.Status_Break, 20, attacker)
 		end
 	end
-	if data.HitEntity:IsPlayer() then
-		data.HitEntity:Horde_AddDebuffBuildup(HORDE.Status_Break, 80, attacker)
-	end
 	self:OnCollideSoundCode()
 	if self.PaintDecalOnDeath == true && VJ_PICK(self.DecalTbl_DeathDecals) != false && self.AlreadyPaintedDeathDecal == false then
 		self.AlreadyPaintedDeathDecal = true
