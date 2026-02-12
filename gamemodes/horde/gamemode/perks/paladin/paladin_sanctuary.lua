@@ -31,8 +31,11 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if not ( physicalDmg or isElementalDamage( dmginfo ) ) then return end
     if dmginfo:GetDamage() <= 0 then return end
 
-    local protectors = getProtectingPaladins( ply )
-    if not protectors then return end
+    if not ply:Horde_GetPerk( "horde_sanctuary" ) then
+        local protectors = getProtectingPaladins( ply )
+
+        if not protectors then return end
+    end
 
     local dmg = dmginfo:GetDamage()
     local maxHP = ply:GetMaxHealth()
