@@ -20,7 +20,7 @@ function ENT:Initialize()
     self:SetNoDraw( true )
     self:SetCollisionGroup( COLLISION_GROUP_IN_VEHICLE )
 
-    self.LastShock = 0
+    self.LastSecond = 0
 end
 
 function ENT:GetPlayerOwner()
@@ -167,22 +167,34 @@ function ENT:Think()
 
     local curTime = CurTime()
 
-    if curTime > self.LastShock then
-        self.LastShock = curTime + 2
+    -- TODO: Fix this
+    if curTime > self.LastSecond then
+        self.LastSecond = curTime + 2
 
         local plyParent = self:GetPlayerParent()
-        if plyParent and plyParent:Horde_GetPerk( "paladin_dawnbrinder" ) then
-            for entId, _ in pairs( ply.EntitiesInside ) do
-                local ent = Entity( entId )
-                if IsValid( ent ) and HORDE:IsEnemy( ent ) then
-                    lightningdmginfo:SetAttacker( plyParent )
-                    lightningdmginfo:SetInflictor( plyParent )
+        if plyParent then
+            local hasDawnbrinder = plyParent:Horde_GetPerk( "paladin_dawnbrinder" )
+            local hasSanctuary = plyParent:Horde_GetPerk( "paladin_sanctuary" )
 
-                    local entPos = ent:GetPos()
-                    lightningdmginfo:SetDamagePosition( entPos )
+            if hasDawnbrinder or hasSanctuary then
+                for entId, _ in pairs( ply.EntitiesInside ) do
+                    local ent = Entity( entId )
+                    if hasDawnbrinder and IsValid( ent ) and HORDE:IsEnemy( ent ) then
+                        lightningdmginfo:SetAttacker( plyParent )
+                        lightningdmginfo:SetInflictor( plyParent )
 
-                    ent:TakeDamageInfo( lightningdmginfo )
-                    ent:Horde_AddDebuffBuildup( HORDE.Status_Shock, 2, plyParent, entPos )
+                        local entPos = ent:GetPos()
+                        lightningdmginfo:SetDamagePosition( entPos )
+
+                        ent:TakeDamageInfo( lightningdmginfo )
+                        ent:Horde_AddDebuffBuildup( HORDE.Status_Shock, 2, plyParent, entPos )
+                    end
+
+                    if hasSanctuary and IsValid( ent ) and ent:IsPlayer() then
+                        for debuff, _ in pairs( ent.Horde_Debuff_Buildup ) do
+                            ent:Horde_ReduceDebuffBuildup( debuff, 5 )
+                        end
+                    end
                 end
             end
         end
