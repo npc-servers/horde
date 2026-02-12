@@ -822,7 +822,7 @@ function HORDE:GetDefaultItemsData()
         100, -1, nil, nil, nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Explosive", "EMP Grenade", "arccw_horde_nade_emp", 100, 0,
         "A grenade that deals rapid Lightning damage in the area.\nYou are safe from the EMP blast.",
-        { Warden = true, Overlord = true },
+        { Warden = true, Overlord = true, Paladin = true },
         100, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Explosive", "Molotov", "arccw_horde_nade_molotov", 100, 0,
         "Generates a pool of fire on impact.\nSets everything on fire within its effect.",
