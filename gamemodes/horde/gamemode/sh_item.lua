@@ -211,10 +211,10 @@ function HORDE:GetDefaultGadgets()
     HORDE:CreateGadgetItem( "gadget_omnislash", 3250, 2, { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true }, { Berserker = 25 }, { HORDE.DMG_SLASH } )
 
     -- Warden --
-    HORDE:CreateGadgetItem( "gadget_solar_array", 2000, 1, { Warden = true }, { Warden = 5 } )
-    HORDE:CreateGadgetItem( "gadget_projectile_launcher_shock", 2500, 2, { Warden = true }, { Warden = 10 }, { HORDE.DMG_LIGHTNING } )
-    HORDE:CreateGadgetItem( "gadget_watchtower_pack", 2500, 1, { Warden = true }, { Warden = 15 } )
-    HORDE:CreateGadgetItem( "gadget_shock_nova", 3000, 2, { Warden = true }, { Warden = 20 }, { HORDE.DMG_LIGHTNING } )
+    HORDE:CreateGadgetItem( "gadget_solar_array", 2000, 1, { Warden = true, Paladin = true }, { Warden = 5 } )
+    HORDE:CreateGadgetItem( "gadget_projectile_launcher_shock", 2500, 2, { Warden = true, Paladin = true }, { Warden = 10 }, { HORDE.DMG_LIGHTNING } )
+    HORDE:CreateGadgetItem( "gadget_watchtower_pack", 2500, 1, { Warden = true, Paladin = true }, { Warden = 15 } )
+    HORDE:CreateGadgetItem( "gadget_shock_nova", 3000, 2, { Warden = true, Paladin = true }, { Warden = 20 }, { HORDE.DMG_LIGHTNING } )
 
     -- Overlord Gadgets --
     HORDE:CreateGadgetItem( "gadget_shotgun_surgeon", 2000, 1, { Overlord = true, }, { Overlord = 5 } )
