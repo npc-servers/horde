@@ -27,10 +27,6 @@ local function getProtectingPaladins( ply )
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
-    local physicalDmg = HORDE:IsPhysicalDamage( dmginfo )
-    if not ( physicalDmg or isElementalDamage( dmginfo ) ) then return end
-    if dmginfo:GetDamage() <= 0 then return end
-
     if not ply:Horde_GetPerk( "horde_sanctuary" ) then
         local protectors = getProtectingPaladins( ply )
 
@@ -42,3 +38,5 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
 
     bonus.block = bonus.block + math.max( 0, dmg - maxHP * 0.5 )
 end
+
+-- Aura debuff reduction is in paladin_sacred_aura/init
