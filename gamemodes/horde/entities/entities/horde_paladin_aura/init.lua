@@ -177,7 +177,7 @@ function ENT:Think()
             local hasSanctuary = plyParent:Horde_GetPerk( "paladin_sanctuary" )
             local hasRallyingPresence = plyParent:Horde_GetPerk( "paladin_rallying_presence" )
 
-            if hasDawnbrinder or hasSanctuary or hasSanctuary then
+            if hasDawnbrinder or hasSanctuary or hasRallyingPresence then
                 for entId, _ in pairs( ply.EntitiesInside ) do
                     local ent = Entity( entId )
                     if hasDawnbrinder and IsValid( ent ) and HORDE:IsEnemy( ent ) then
