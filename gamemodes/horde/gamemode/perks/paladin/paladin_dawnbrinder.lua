@@ -6,12 +6,6 @@ Increase Smite's damage by 100%
 Sacred Aura deals Lightning damage per second to every enemy inside it.]]
 PERK.Hooks = {}
 
-PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if not SERVER then return end
-    if perk ~= "paladin_dawnbrinder" then return end
-end
+-- Smite cooldown is handled in paladin_smite
 
-PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if not SERVER then return end
-    if perk ~= "paladin_dawnbrinder" then return end
-end
+-- Aura lightning damage is handled in horde_paladin_aura/init

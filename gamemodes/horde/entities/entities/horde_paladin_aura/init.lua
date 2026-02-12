@@ -19,6 +19,8 @@ end
 function ENT:Initialize()
     self:SetNoDraw( true )
     self:SetCollisionGroup( COLLISION_GROUP_IN_VEHICLE )
+
+    self.LastShock = 0
 end
 
 function ENT:GetPlayerOwner()
@@ -104,6 +106,11 @@ end
 
 ENT.EntitiesInside = {}
 ENT.OnEntityStayInterval = 0
+
+local lightningdmginfo = DamageInfo()
+lightningdmginfo:SetDamage( 2 )
+lightningdmginfo:SetDamageType( DMG_SHOCK )
+
 function ENT:Think()
     local tick = engine.TickCount()
     local ply = self:GetPlayerOwner()
@@ -158,7 +165,30 @@ function ENT:Think()
         end
     end
 
-    self:NextThink( CurTime() )
+    local curTime = CurTime()
+
+    if curTime > self.LastShock then
+        self.LastShock = curTime + 1
+
+        local plyParent = self:GetPlayerParent()
+        if plyParent and plyParent:Horde_GetPerk( "paladin_dawnbrinder" ) then
+            for entId, _ in pairs( ply.EntitiesInside ) do
+                local ent = Entity( entId )
+                if IsValid( ent ) and HORDE:IsEnemy( ent ) then
+                    lightningdmginfo:SetAttacker( plyParent )
+                    lightningdmginfo:SetInflictor( plyParent )
+
+                    local entPos = ent:GetPos()
+                    lightningdmginfo:SetDamagePosition( entPos )
+
+                    ent:TakeDamageInfo( lightningdmginfo )
+                    ent:Horde_AddDebuffBuildup( HORDE.Status_Shock, 2, plyParent, entPos )
+                end
+            end
+        end
+    end
+
+    self:NextThink( curTime )
     return true
 end
 

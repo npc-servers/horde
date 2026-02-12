@@ -10,7 +10,12 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if not SERVER then return end
     if perk ~= "paladin_smite" then return end
 
-    ply:Horde_SetPerkCooldown( 10 )
+    if not ply:Horde_GetPerk( "paladin_dawnbrinder" ) then
+        ply:Horde_SetPerkCooldown( 5 )
+    else
+        ply:Horde_SetPerkCooldown( 10 )
+    end
+
     net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_PaladinSmite, 8 )
         net.WriteUInt( 1, 3 )
@@ -55,11 +60,16 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not entsInside then return end
 
     local healPercent = 0.2
+    local damage = 200
+
+    if not ply:Horde_GetPerk( "paladin_dawnbrinder" ) then
+        damage = damage * 2
+    end
 
     local lightningdmginfo = DamageInfo()
     lightningdmginfo:SetAttacker( ply )
     lightningdmginfo:SetInflictor( ply )
-    lightningdmginfo:SetDamage( 200 )
+    lightningdmginfo:SetDamage( damage )
     lightningdmginfo:SetDamageType( DMG_SHOCK )
 
     for entId, _ in pairs( entsInside ) do
