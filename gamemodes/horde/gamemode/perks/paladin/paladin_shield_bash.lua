@@ -38,6 +38,14 @@ PERK.Hooks.Horde_OnPlayerDebuffApply = function ( ply, _, bonus )
     bonus.less = bonus.less * 0.5
 end
 
+local bashKnockback = 1000
+local bashKnockUp = Vector( 0, 0, 200 )
+local bashDuration = 0.5
+
+local bashDmginfo = DamageInfo()
+bashDmginfo:SetDamage( bashDamage )
+bashDmginfo:SetDamageType( DMG_CLUB )
+
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
 
@@ -47,12 +55,6 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1000 )
     ply:SetLocalVelocity( forwardForce )
 
-    local bashDamage = 200
-    local bashKnockback = 1000
-    local bashKnockUp = 200
-
-    local bashDuration = 0.5
-
     timer.Create( "PaladinBash_" .. ply:EntIndex(), 0.05, bashDuration / 0.05, function()
         if not IsValid( ply ) or not ply.Horde_PaladinBashing then
             timer.Remove( "PaladinBash_" .. ply:EntIndex() )
@@ -60,25 +62,25 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
             return
         end
 
-        for _, target in ipairs( ents.FindInSphere( ply:GetPos(), 80 ) ) do
+        local plyPos = ply:GetPos()
+        for _, target in ipairs( ents.FindInSphere( plyPos, 80 ) ) do
             if IsValid( target ) and HORDE:IsEnemy( target ) and not ply.Horde_PaladinShieldBashHitTargets[target] then
-                local toTarget = ( target:GetPos() - ply:GetPos() ):GetNormalized()
+                local targetPos = target:GetPos()
+                local toTarget = ( targetPos - plyPos ):GetNormalized()
                 local dot = ply:GetForward():Dot( toTarget )
 
                 if dot > 0.5 then
                     ply:SetLocalVelocity( vector_origin )
                     ply.Horde_PaladinShieldBashHitTargets[target] = true
 
-                    local dmginfo = DamageInfo()
-                    dmginfo:SetAttacker( ply )
-                    dmginfo:SetInflictor( ply )
-                    dmginfo:SetDamagePosition( target:GetPos() )
-                    dmginfo:SetDamage( bashDamage )
-                    dmginfo:SetDamageType( DMG_CLUB )
-                    target:TakeDamageInfo( dmginfo )
+                    bashDmginfo:SetAttacker( ply )
+                    bashDmginfo:SetInflictor( ply )
+                    bashDmginfo:SetDamagePosition( targetPos )
+                    target:TakeDamageInfo( bashDmginfo )
 
-                    local knockbackForce = ply:GetForward() * bashKnockback + Vector( 0, 0, bashKnockUp )
+                    local knockbackForce = ply:GetForward() * bashKnockback + bashKnockUp
                     target:SetVelocity( knockbackForce )
+                    target:Horde_AddDebuffBuildup( HORDE.Status_Shock, 1000, ply, targetPos )
 
                     ply:EmitSound( "horde/player/quickstep.ogg" )
                     ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
