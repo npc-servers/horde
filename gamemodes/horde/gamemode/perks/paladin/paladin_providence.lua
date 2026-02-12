@@ -89,7 +89,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     bonus.resistance = bonus.resistance + res
 end
 
-PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, _, _, _, dmginfo )
+PERK.Hooks.Horde_OnPlayerDamageTakenPost = function( ply, dmginfo )
     local physicalDmg = HORDE:IsPhysicalDamage( dmginfo )
     if not ( physicalDmg or isElementalDamage( dmginfo ) ) then return end
     if dmginfo:GetDamage() <= 0 then return end
