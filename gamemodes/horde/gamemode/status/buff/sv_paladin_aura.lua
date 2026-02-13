@@ -6,7 +6,7 @@ function entmeta:Horde_AddPaladinAura()
 
     local ent = ents.Create( "horde_paladin_aura" )
     ent:SetPos( self:GetPos() )
-    ent:SetParent( self )
+    ent:SetOwner( self )
 
     ent:Horde_SetPresenceRadius( self:Horde_GetPaladinAuraRadius() * self:Horde_GetPerkLevelBonus( "paladin_base" ) )
 
@@ -24,6 +24,18 @@ function entmeta:Horde_RemovePaladinAura()
     timer.Simple( 0, function()
         self:Horde_RemovePaladinAuraEffects()
     end )
+end
+
+function plymeta:Horde_PaladinIsEntityInsideAura( ent )
+    if self == ent then return true end
+
+    local aura = self.Horde_PaladinAura
+    if not IsValid( aura ) then return false end
+
+    local entities = aura.Entities
+    if not entities or not entities[ent] then return false end
+
+    return true
 end
 
 function plymeta:Horde_SetPaladinAuraRadius( radius )

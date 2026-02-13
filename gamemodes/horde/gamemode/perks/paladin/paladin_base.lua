@@ -140,8 +140,7 @@ PERK.Hooks.Horde_PostOnPlayerHeal = function( ply, healinfo )
     if not healer:Horde_GetPerk( "paladin_base" ) then return end
 
     -- Check if inside aura and if aura is owned by healer
-    local paladinAuraProvider = ply.Horde_PaladinAuraProvider
-    if not IsValid( paladinAuraProvider ) or paladinAuraProvider ~= healer then return end
+    if not healer:Horde_PaladinIsEntityInsideAura( ply ) then return end
 
     -- Give 50% of healing as armor
     if ply:Armor() == ply:GetMaxArmor() then return end
