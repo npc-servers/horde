@@ -63,6 +63,11 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
             return
         end
 
+        bashDmginfo:SetDamage( dmgAmt )
+        bashDmginfo:SetDamageType( dmgType )
+        bashDmginfo:SetAttacker( ply )
+        bashDmginfo:SetInflictor( ply )
+
         local plyPos = ply:GetPos()
         for _, target in ipairs( ents.FindInSphere( plyPos, 80 ) ) do
             if IsValid( target ) and HORDE:IsEnemy( target ) and not ply.Horde_PaladinShieldBashHitTargets[target] then
@@ -74,10 +79,6 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
                     ply:SetLocalVelocity( vector_origin )
                     ply.Horde_PaladinShieldBashHitTargets[target] = true
 
-                    bashDmginfo:SetDamage( dmgAmt )
-                    bashDmginfo:SetDamageType( dmgType )
-                    bashDmginfo:SetAttacker( ply )
-                    bashDmginfo:SetInflictor( ply )
                     bashDmginfo:SetDamagePosition( targetPos )
                     target:TakeDamageInfo( bashDmginfo )
 
