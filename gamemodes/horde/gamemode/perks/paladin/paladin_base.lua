@@ -60,7 +60,6 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_base" then return end
 
     ply:Horde_AddPaladinAura()
-
     removeFaithTimer( ply )
 end
 
