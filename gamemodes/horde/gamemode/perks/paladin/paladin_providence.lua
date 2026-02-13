@@ -1,8 +1,8 @@
 PERK.PrintName = "Providence"
 PERK.Icon = "materials/perks/paladin/providence.png"
 PERK.Description = [[
-Your Divine Shield also protects everyone inside your Sacred Aura in the same way as you.
-Additionally if enemies hit allies protected by your Divine Shield, they take Blunt damage.]]
+Divine Shield also protects everyone inside your Sacred Aura. 
+Enemies hitting protected allies take Blunt damage.]]
 PERK.Hooks = {}
 
 local function isElementalDamage( dmginfo )

@@ -2,7 +2,8 @@ PERK.PrintName = "Sanctuary"
 PERK.Icon = "materials/perks/paladin/sanctuary.png"
 PERK.Description = [[
 Sacred Aura slowly decreases debuff buildups per second.
-When you're using Divine Shield, every player inside your Sacred Aura cannot take more damage than 50% of their health in one instance. ]]
+Divine Shield prevents all players inside Sacred Aura from
+taking damage higher than 50% of their health.]]
 PERK.Hooks = {}
 
 local function insideAura( ply, insideAuraPly )

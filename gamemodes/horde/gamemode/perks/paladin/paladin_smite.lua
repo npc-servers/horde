@@ -1,9 +1,9 @@
 PERK.PrintName = "Smite"
 PERK.Icon = "materials/perks/paladin/smite.png"
 PERK.Description = [[
-Press Shift + E to empower your next attack.
-Empowered attack deals additional 200 Lightning damage to every enemy inside your Sacred Aura, healing allies inside for 20% health and clearing all player debuffs.
-Cooldown: 10 seconds.]]
+Press Shift + E to make your next melee hit deal additional 200 AOE 
+Lightning damage, healing nearby allies by 20% health and clearing 
+all debuffs from them. Cooldown: 10 seconds.]]
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
