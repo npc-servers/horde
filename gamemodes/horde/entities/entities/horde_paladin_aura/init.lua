@@ -22,6 +22,7 @@ function ENT:Initialize()
     self:PhysWake()
 
     self.CachedOwner = self:GetOwner()
+    self.Entities[self.CachedOwner] = CurTime()
 end
 
 function ENT:StartTouch( ent )
