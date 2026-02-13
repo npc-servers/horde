@@ -25,6 +25,8 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     bonus.resistance = bonus.resistance + 0.03
 end
 
+local healPercent = 0.02
+
 PERK.Hooks.Horde_Paladin_OnLoseFaith = function( ply )
     if not ply:Horde_GetPerk( "paladin_protectors_oath" ) then return end
 
@@ -34,11 +36,7 @@ PERK.Hooks.Horde_Paladin_OnLoseFaith = function( ply )
     local entsInside = aura.Entities
     if not entsInside then return end
 
-    local healPercent = 0.02
-
-    for entId, _ in pairs( entsInside ) do
-        local ent = Entity( entId )
-
+    for ent, _ in pairs( entsInside ) do
         if IsValid( ent ) and ent:IsPlayer() then
             local healinfo = HealInfo:New( { amount = ent:GetMaxHealth() * healPercent, healer = ply } )
             HORDE:OnPlayerHeal( ent, healinfo )
