@@ -92,6 +92,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "paladin_smite" ) then return end
 
     ply.Horde_PaladinEmpowered = true
+
     net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_PaladinEmpowered, 8 )
         net.WriteUInt( 1, 3 )
