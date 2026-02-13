@@ -11,6 +11,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_shield_bash" then return end
 
     ply:Horde_SetPerkCooldown( 10 )
+
     net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_PaladinShieldBash, 8 )
         net.WriteUInt( 1, 3 )
