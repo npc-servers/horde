@@ -1,20 +1,14 @@
 PERK.PrintName = "Paladin Base"
 PERK.Description = [[
-Stats:
 {1} Increased Sacred Aura's radius (1% per rank level, up to 25%)
 {2} Increased Global damage resistance (0.8% per rank level, up to 20%)
-- Increase health by 50.
-
-Main Mechanics:
+Health increased by 50.
 
 - "Sacred Aura"
-
 You're surrounded with Sacred Aura, a yellow-colored zone. 
 Whenever allies within the aura are healed by you, they gain Armor equal to 50% of your healing they receive.
 
-
 - "Divine Shield"
-
 Regenerate 1 Faith stack per 3 seconds. You can have up to 10 Faith stacks.
 Faith stacks are used by "Divine Shield" ability, but doesn't do anything on their own.
 
