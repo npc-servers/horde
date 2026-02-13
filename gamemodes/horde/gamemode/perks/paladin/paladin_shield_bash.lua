@@ -44,8 +44,8 @@ local bashKnockUp = Vector( 0, 0, 200 )
 local bashDuration = 0.5
 
 local bashDmginfo = DamageInfo()
-bashDmginfo:SetDamage( 200 )
-bashDmginfo:SetDamageType( DMG_CLUB )
+local dmgAmt = 200
+local dmgType = DMG_CLUB
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
@@ -74,6 +74,8 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
                     ply:SetLocalVelocity( vector_origin )
                     ply.Horde_PaladinShieldBashHitTargets[target] = true
 
+                    bashDmginfo:SetDamage( dmgAmt )
+                    bashDmginfo:SetDamageType( dmgType )
                     bashDmginfo:SetAttacker( ply )
                     bashDmginfo:SetInflictor( ply )
                     bashDmginfo:SetDamagePosition( targetPos )

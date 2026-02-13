@@ -69,8 +69,8 @@ end
 local thinkInterval = 2
 
 local lightningdmginfo = DamageInfo()
-lightningdmginfo:SetDamage( 2 )
-lightningdmginfo:SetDamageType( DMG_SHOCK )
+local dmgAmt = 2
+local dmgType = DMG_SHOCK
 
 function ENT:Think()
     local owner = self.CachedOwner
@@ -89,13 +89,17 @@ function ENT:Think()
 
     if not ( hasDawnbrinder or hasSanctuary or hasRallyingPresence ) then return end
 
+    if hasDawnbrinder then
+        lightningdmginfo:SetDamage( dmgAmt )
+        lightningdmginfo:SetDamageType( dmgType )
+        lightningdmginfo:SetAttacker( owner )
+        lightningdmginfo:SetInflictor( owner )
+    end
+
     for ent, _ in pairs( self.Entities ) do
         if IsValid( ent ) then
             if HORDE:IsEnemy( ent ) then
                 if hasDawnbrinder then
-                    lightningdmginfo:SetAttacker( owner )
-                    lightningdmginfo:SetInflictor( owner )
-
                     local entPos = ent:GetPos()
                     lightningdmginfo:SetDamagePosition( entPos )
 
