@@ -31,13 +31,14 @@ PERK.Hooks.Horde_Paladin_OnLoseFaith = function( ply )
     local aura = ply.Horde_PaladinAura
     if not aura then return end
 
-    local entsInside = aura.EntitiesInside
+    local entsInside = aura.Entities
     if not entsInside then return end
 
     local healPercent = 0.02
 
     for entId, _ in pairs( entsInside ) do
         local ent = Entity( entId )
+
         if IsValid( ent ) and ent:IsPlayer() then
             local healinfo = HealInfo:New( { amount = ent:GetMaxHealth() * healPercent, healer = ply } )
             HORDE:OnPlayerHeal( ent, healinfo )
