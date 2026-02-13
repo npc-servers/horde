@@ -35,13 +35,6 @@ local secondsToStackFaith = 3
 
 local SHIELDING_TIMER_NAME = "Horde_PaladinShielding"
 
-local function removeFaithTimer( ply )
-    local timerName = SHIELDING_TIMER_NAME .. ply:SteamID64()
-    if timer.Exists( timerName ) then
-        timer.Remove( timerName )
-    end
-end
-
 local function createFaithTimer( ply )
     local timerName = SHIELDING_TIMER_NAME .. ply:SteamID64()
     timer.Create( timerName, secondsToStackFaith, 0, function()
@@ -53,6 +46,43 @@ local function createFaithTimer( ply )
 
         ply:Horde_AddPaladinFaithStack()
     end )
+end
+
+local function removeFaithTimer( ply )
+    local timerName = SHIELDING_TIMER_NAME .. ply:SteamID64()
+    if timer.Exists( timerName ) then
+        timer.Remove( timerName )
+    end
+end
+
+local function addShieldingStatus( ply, recursive )
+    net.Start( "Horde_SyncStatus" )
+        net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
+        net.WriteUInt( 1, 8 )
+    net.Send( ply )
+
+    if not recursive and ply:Horde_GetPerk( "paladin_providence" ) then
+        for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
+            if ent:IsPlayer() then
+                addShieldingStatus( ent, true )
+            end
+        end
+    end
+end
+
+local function removeShieldingStatus( ply, recursive )
+    net.Start( "Horde_SyncStatus" )
+        net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
+        net.WriteUInt( 0, 8 )
+    net.Send( ply )
+
+    if not recursive and ply:Horde_GetPerk( "paladin_providence" ) then
+        for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
+            if ent:IsPlayer() then
+                removeShieldingStatus( ent, true )
+            end
+        end
+    end
 end
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
@@ -69,6 +99,7 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
 
     ply:Horde_RemovePaladinAura()
     removeFaithTimer( ply )
+    removeShieldingStatus( ply )
 end
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
@@ -112,8 +143,8 @@ PERK.Hooks.PlayerButtonDown = function( ply, button )
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
     ply.Horde_PaladinShielding = true
 
-    -- prevent regen
     removeFaithTimer( ply )
+    addShieldingStatus( ply )
 end
 
 PERK.Hooks.PlayerButtonUp = function( ply, button )
@@ -123,6 +154,7 @@ PERK.Hooks.PlayerButtonUp = function( ply, button )
     ply.Horde_PaladinShielding = nil
 
     createFaithTimer( ply )
+    removeShieldingStatus( ply )
 end
 
 -- Armor on heal
