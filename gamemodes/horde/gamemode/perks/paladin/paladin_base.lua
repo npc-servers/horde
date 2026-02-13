@@ -25,6 +25,8 @@ PERK.Params = {
 }
 PERK.Hooks = {}
 
+if not SERVER then return end
+
 local secondsToStackFaith = 3
 
 local SHIELDING_TIMER_NAME = "Horde_PaladinShielding"
@@ -86,7 +88,6 @@ local function removeShieldingStatus( ply, recursive )
 end
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if not SERVER then return end
     if perk ~= "paladin_base" then return end
 
     ply:Horde_AddPaladinAura()
@@ -94,7 +95,6 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if not SERVER then return end
     if perk ~= "paladin_base" then return end
 
     ply:Horde_RemovePaladinAura()
@@ -103,8 +103,6 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
 end
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
-    if not SERVER then return end
-
     ply:Horde_SetPerkLevelBonus( "paladin_base_auraradius", 1.5 + math.min( 0.25, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
     ply:Horde_SetPerkLevelBonus( "paladin_base_globalresist", math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
 end
@@ -126,14 +124,12 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
 end
 
 PERK.Hooks.Horde_OnSetMaxHealth = function( ply, bonus )
-    if not SERVER then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
     bonus.add = bonus.add + 50
 end
 
 PERK.Hooks.PlayerButtonDown = function( ply, button )
-    if not SERVER then return end
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
     ply.Horde_PaladinShielding = true
@@ -143,7 +139,6 @@ PERK.Hooks.PlayerButtonDown = function( ply, button )
 end
 
 PERK.Hooks.PlayerButtonUp = function( ply, button )
-    if not SERVER then return end
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
     ply.Horde_PaladinShielding = nil
