@@ -12,6 +12,11 @@ function entmeta:Horde_AddPaladinAura()
 
     ent:Spawn()
     self.Horde_PaladinAura = ent
+
+    net.Start( "Horde_SyncStatus" )
+        net.WriteUInt( HORDE.Status_PaladinAura, 8 )
+        net.WriteUInt( 1, 8 )
+    net.Send( self )
 end
 
 function entmeta:Horde_RemovePaladinAura()
