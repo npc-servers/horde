@@ -116,18 +116,13 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
 
     if ply.Horde_PaladinShielding and HORDE:IsPhysicalDamage( dmginfo ) then
         faithResist = 0.05 * ply:Horde_GetPaladinFaithStack()
+
+        if dmginfo:GetDamage() > 0 then
+            ply:Horde_RemovePaladinFaithStack()
+        end
     end
 
     bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus( "paladin_base_globalresist" ) + faithResist
-end
-
-PERK.Hooks.Horde_OnPlayerDamageTakenPost = function( ply, dmginfo )
-    if not ply:Horde_GetPerk( "paladin_base" ) then return end
-    if not ply.Horde_PaladinShielding then return end
-    if dmginfo:GetDamage() <= 0 then return end
-    if not HORDE:IsPhysicalDamage( dmginfo ) then return end
-
-    ply:Horde_RemovePaladinFaithStack()
 end
 
 PERK.Hooks.Horde_OnSetMaxHealth = function( ply, bonus )
