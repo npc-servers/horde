@@ -49,7 +49,7 @@ function plymeta:Horde_RemovePaladinAuraEffects()
 
     net.Start( "Horde_SyncStatus" )
         net.WriteUInt( HORDE.Status_PaladinAura, 8 )
-        net.WriteUInt( 1, 8 )
+        net.WriteUInt( 0, 8 )
     net.Send( self )
 end
 
