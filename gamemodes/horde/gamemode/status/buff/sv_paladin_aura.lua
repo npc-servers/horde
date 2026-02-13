@@ -26,18 +26,6 @@ function entmeta:Horde_RemovePaladinAura()
     end )
 end
 
-function plymeta:Horde_PaladinIsEntityInsideAura( ent )
-    if self == ent then return true end
-
-    local aura = self.Horde_PaladinAura
-    if not IsValid( aura ) then return false end
-
-    local entities = aura.Entities
-    if not entities or not entities[ent] then return false end
-
-    return true
-end
-
 function plymeta:Horde_SetPaladinAuraRadius( radius )
     self.Horde_PaladinAuraRadius = radius
 end
