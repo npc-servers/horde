@@ -19,8 +19,8 @@ local function insideAura( ply, insideAuraPly )
     local aura = ply.Horde_PaladinAura
     if not aura then return false end
 
-    local entsInside = aura.EntitiesInside
-    if not ( entsInside or entsInside[insideAuraPly:EntIndex()] ) then return false end
+    local entsInside = aura.Entities
+    if not ( entsInside or entsInside[insideAuraPly] ) then return false end
 
     return true
 end

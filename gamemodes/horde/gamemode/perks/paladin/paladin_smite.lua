@@ -56,7 +56,7 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     local aura = ply.Horde_PaladinAura
     if not aura then return end
 
-    local entsInside = aura.EntitiesInside
+    local entsInside = aura.Entities
     if not entsInside then return end
 
     local healPercent = 0.2
