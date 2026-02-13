@@ -81,7 +81,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
 
                     local knockbackForce = ply:GetForward() * bashKnockback + bashKnockUp
                     target:SetVelocity( knockbackForce )
-                    target:Horde_AddDebuffBuildup( HORDE.Status_Shock, 1000, ply, targetPos )
+                    target:Horde_AddDebuffBuildup( HORDE.Status_Stun, 1000, ply, targetPos )
 
                     ply:EmitSound( "horde/player/quickstep.ogg" )
                     ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
