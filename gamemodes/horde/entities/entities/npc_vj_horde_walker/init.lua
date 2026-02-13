@@ -11,7 +11,6 @@ ENT.Model = {
 	"models/zombie/zclassic_03.mdl",
 	"models/zombie/zclassic_04.mdl",
 	"models/zombie/zclassic_05.mdl",
-	-- "models/zombie/zclassic_06.mdl", Model has broken bones.
 	"models/zombie/zclassic_07.mdl",
 	"models/zombie/zclassic_08.mdl",
 	"models/zombie/zclassic_09.mdl",
@@ -153,21 +152,28 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+local entMeta = FindMetaTable( "Entity" )
+local entIsOnFire = entMeta.IsOnFire
+local actIdle = ACT_IDLE
+local actWalk = ACT_WALK
+--
 function ENT:CustomOnThink()
-	if self:IsOnFire() then
-		self.AnimTbl_IdleStand = { ACT_IDLE_ON_FIRE }
-		self.AnimTbl_Walk = { ACT_WALK_ON_FIRE }
-		self.AnimTbl_Run = { ACT_WALK_ON_FIRE }
+	if entIsOnFire( self ) then
+		local fireIdle = ACT_IDLE_ON_FIRE
+		local fireWalk = ACT_WALK_ON_FIRE
+		self.AnimTbl_IdleStand = { fireIdle }
+		self.AnimTbl_Run = { fireWalk }
+		self.AnimTbl_Walk = { fireWalk }
 	else
-		self.AnimTbl_IdleStand = { ACT_IDLE }
-		self.AnimTbl_Walk = { ACT_WALK }
-		self.AnimTbl_Run = { ACT_WALK }
+		self.AnimTbl_IdleStand = { actIdle }
+		self.AnimTbl_Run = { actWalk }
+		self.AnimTbl_Walk = { actWalk }
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local getEventName = util.GetAnimEventNameByID
 --
-function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
 	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then
 		self:FootStepSoundCode()

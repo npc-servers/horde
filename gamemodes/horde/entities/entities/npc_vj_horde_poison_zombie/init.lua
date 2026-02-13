@@ -5,7 +5,7 @@ include( "shared.lua" )
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
-ENT.Model = { "models/zombie/poison.mdl" }
+ENT.Model = "models/zombie/poison.mdl"
 ENT.StartHealth = 500
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
@@ -82,19 +82,26 @@ function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+local entMeta = FindMetaTable( "Entity" )
+local entIsOnFire = entMeta.IsOnFire
+local sequenceToActivity = VJ_SequenceToActivity
+local actWalk = ACT_WALK
+--
 function ENT:CustomOnThink()
-	if self:IsOnFire() then
-		self.AnimTbl_Walk = { VJ_SequenceToActivity( self, "firewalk" ) }
-		self.AnimTbl_Run = { VJ_SequenceToActivity( self, "firewalk" ) }
+	if entIsOnFire( self ) then
+		local fireWalk = "firewalk"
+		local fireWalkAnim = sequenceToActivity( self, fireWalk )
+		self.AnimTbl_Run = { fireWalkAnim }
+		self.AnimTbl_Walk = { fireWalkAnim }
 	else
-		self.AnimTbl_Walk = { ACT_WALK }
-		self.AnimTbl_Run = { ACT_WALK }
+		self.AnimTbl_Run = { actWalk }
+		self.AnimTbl_Walk = { actWalk }
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local getEventName = util.GetAnimEventNameByID
 --
-function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
 	if eventName == "AE_ZOMBIE_STEP_LEFT" then
 		self:FootStepSoundCode()

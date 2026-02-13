@@ -5,7 +5,7 @@ include( "shared.lua" )
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
-ENT.Model = { "models/zombie/zombie_soldier.mdl" }
+ENT.Model = "models/zombie/zombie_soldier.mdl"
 ENT.StartHealth = 200
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
@@ -88,6 +88,11 @@ function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+local sequenceToActivity = VJ_SequenceToActivity
+local actIdle = ACT_IDLE
+local actRun = ACT_RUN
+local actWalk = ACT_WALK
+--
 function ENT:CustomOnThink()
 	if self:Health() < self:GetMaxHealth() / 2 and not self.Zombine_Charging then
 		self.Zombine_Charging = true
@@ -97,22 +102,20 @@ function ENT:CustomOnThink()
 	end
 
 	if IsValid( self.Grenade ) then
-		self.AnimTbl_IdleStand = { VJ_SequenceToActivity( self, "idle_grenade" ) }
-		if self.Zombine_Charging then
-			self.AnimTbl_Walk = { VJ_SequenceToActivity( self, "run_all_grenade" ) }
-			self.AnimTbl_Run = { VJ_SequenceToActivity( self, "run_all_grenade" ) }
-		else
-			self.AnimTbl_Walk = { VJ_SequenceToActivity( self, "walk_all_grenade" ) }
-			self.AnimTbl_Run = { VJ_SequenceToActivity( self, "walk_all_grenade" ) }
-		end
-	elseif not IsValid( self.Grenade ) and self.Zombine_Charging then
-		self.AnimTbl_IdleStand = { ACT_IDLE }
-		self.AnimTbl_Walk = { ACT_RUN }
-		self.AnimTbl_Run = { ACT_RUN }
+		local grenadeIdle = "idle_grenade"
+		local grenadeIdleAnim = sequenceToActivity( self, grenadeIdle )
+		local grenadeRun = "run_all_grenade"
+		local grenadeRunAnim = sequenceToActivity( self, grenadeRun )
+		local grenadeWalk = "walk_all_grenade"
+		local grenadeWalkAnim = sequenceToActivity( self, grenadeWalk )
+
+		self.AnimTbl_IdleStand = { grenadeIdleAnim }
+		self.AnimTbl_Run = { self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim }
+		self.AnimTbl_Walk = { self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim }
 	else
-		self.AnimTbl_IdleStand = { ACT_IDLE }
-		self.AnimTbl_Walk = { ACT_WALK }
-		self.AnimTbl_Run = { ACT_WALK }
+		self.AnimTbl_IdleStand = { actIdle }
+		self.AnimTbl_Run = { self.Zombine_Charging and actRun or actWalk }
+		self.AnimTbl_Walk = { self.Zombine_Charging and actRun or actWalk }
 	end
 
 	self.HasRangeAttack = self.Zombine_Grenades_Pulled < self.Zombine_Max_Grenades and self:Health() < self:GetMaxHealth() / 4
@@ -120,7 +123,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local getEventName = util.GetAnimEventNameByID
 --
-function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
 	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then
 		self:FootStepSoundCode()

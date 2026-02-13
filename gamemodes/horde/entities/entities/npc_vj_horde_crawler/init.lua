@@ -5,7 +5,7 @@ include( "shared.lua" )
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
-ENT.Model = { "models/zombie/zm_fast.mdl" }
+ENT.Model = "models/zombie/zm_fast.mdl"
 ENT.StartHealth = 50
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
@@ -75,7 +75,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local getEventName = util.GetAnimEventNameByID
 --
-function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev ) 
 	if eventName == "AE_FASTZOMBIE_GALLOP_LEFT" or eventName == "AE_FASTZOMBIE_GALLOP_RIGHT" then
 		self:FootStepSoundCode()
