@@ -22,7 +22,7 @@ ENT.NextMeleeAttackTime = 2
 
 ENT.HasRangeAttack = true
 ENT.RangeAttackEntityToSpawn = "obj_vj_horde_pzombie_projectile"
-ENT.AnimTbl_RangeAttack = { "vjseq_throw" }
+ENT.AnimTbl_RangeAttack = "vjseq_throw"
 ENT.RangeDistance = 800
 ENT.RangeToMeleeDistance = 250
 ENT.TimeUntilRangeAttackProjectileRelease = false
@@ -31,7 +31,7 @@ ENT.RangeAttackPos_Up = 40
 
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.SoundTbl_FootStep = { "npc/zombie_poison/pz_left_foot1.wav" }
+ENT.SoundTbl_FootStep = "npc/zombie_poison/pz_left_foot1.wav"
 ENT.SoundTbl_Idle = {
 	"npc/zombie_poison/pz_idle2.wav",
 	"npc/zombie_poison/pz_idle3.wav",
@@ -60,7 +60,7 @@ ENT.SoundTbl_BeforeRangeAttack = {
 	"npc/zombie_poison/pz_warn1.wav",
 	"npc/zombie_poison/pz_warn2.wav"
 }
-ENT.SoundTbl_RangeAttack = { "npc/antlion_grub/squashed.wav" }
+ENT.SoundTbl_RangeAttack = "npc/antlion_grub/squashed.wav"
 ENT.SoundTbl_Pain = {
 	"npc/zombie_poison/pz_pain1.wav",
 	"npc/zombie_poison/pz_pain2.wav",
@@ -74,8 +74,8 @@ ENT.SoundTbl_Death = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
-
-local sdFootScuff = { "npc/zombie_poison/pz_right_foot1.wav" }
+--
+local sdFootScuff = "npc/zombie_poison/pz_right_foot1.wav"
 local sdThrow = { "npc/zombie_poison/pz_throw2.wav", "npc/zombie_poison/pz_throw3.wav" }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
@@ -85,14 +85,15 @@ end
 local entMeta = FindMetaTable( "Entity" )
 local entIsOnFire = entMeta.IsOnFire
 local sequenceToActivity = VJ_SequenceToActivity
+local seqFireWalk = "firewalk"
 local actWalk = ACT_WALK
 --
 function ENT:CustomOnThink()
 	if entIsOnFire( self ) then
-		local fireWalk = "firewalk"
-		local fireWalkAnim = sequenceToActivity( self, fireWalk )
-		self.AnimTbl_Run = fireWalkAnim
-		self.AnimTbl_Walk = fireWalkAnim
+		local actFireWalk = sequenceToActivity( self, seqFireWalk )
+
+		self.AnimTbl_Run = actFireWalk
+		self.AnimTbl_Walk = actFireWalk
 	else
 		self.AnimTbl_Run = actWalk
 		self.AnimTbl_Walk = actWalk
@@ -103,6 +104,7 @@ local getEventName = util.GetAnimEventNameByID
 --
 function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
+
 	if eventName == "AE_ZOMBIE_STEP_LEFT" then
 		self:FootStepSoundCode()
 	elseif eventName == "AE_ZOMBIE_STEP_RIGHT" then

@@ -13,7 +13,7 @@ ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 ENT.BloodColor = "Red"
 
 ENT.MeleeAttackDamage = 15
-ENT.AnimTbl_MeleeAttack = { "vjseq_br2_attack" }
+ENT.AnimTbl_MeleeAttack = "vjseq_br2_attack"
 ENT.MeleeAttackDistance = 32
 ENT.MeleeAttackDamageDistance = 85
 ENT.TimeUntilMeleeAttackDamage = false
@@ -40,8 +40,8 @@ ENT.SoundTbl_Idle = {
 	"npc/fast_zombie/idle2.wav",
 	"npc/fast_zombie/idle3.wav"
 }
-ENT.SoundTbl_Alert = { "npc/fast_zombie/fz_alert_close1.wav" }
-ENT.SoundTbl_BeforeMeleeAttack = { "npc/fast_zombie/leap1.wav" }
+ENT.SoundTbl_Alert = "npc/fast_zombie/fz_alert_close1.wav"
+ENT.SoundTbl_BeforeMeleeAttack = "npc/fast_zombie/leap1.wav"
 ENT.SoundTbl_MeleeAttack = {
 	"npc/zombie/claw_strike1.wav",
 	"npc/zombie/claw_strike2.wav",
@@ -62,8 +62,8 @@ ENT.SoundTbl_LeapAttackDamage = {
 	"npc/zombie/claw_strike2.wav",
 	"npc/zombie/claw_strike3.wav"
 }
-ENT.SoundTbl_Pain = { "npc/fast_zombie/fz_frenzy1.wav" }
-ENT.SoundTbl_Death = { "npc/fast_zombie/wake1.wav" }
+ENT.SoundTbl_Pain = "npc/fast_zombie/fz_frenzy1.wav"
+ENT.SoundTbl_Death = "npc/fast_zombie/wake1.wav"
 
 ENT.FootStepSoundLevel = 65
 

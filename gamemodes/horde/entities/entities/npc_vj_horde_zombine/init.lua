@@ -20,7 +20,7 @@ ENT.TimeUntilMeleeAttackDamage = false
 ENT.NextMeleeAttackTime = 1.5
 
 ENT.HasRangeAttack = false
-ENT.AnimTbl_RangeAttack = { "vjseq_pullgrenade" }
+ENT.AnimTbl_RangeAttack = "vjseq_pullgrenade"
 ENT.NextRangeAttackTime = 10
 ENT.RangeDistance = 256
 ENT.RangeToMeleeDistance = 0
@@ -81,7 +81,7 @@ ENT.SoundTbl_Death = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
-
+--
 local sdCharge = { "npc/zombine/zombine_charge1.wav", "npc/zombine/zombine_charge2.wav" }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
@@ -89,42 +89,57 @@ function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local sequenceToActivity = VJ_SequenceToActivity
+local seqGrenadeIdle = "idle_grenade"
+local seqGrenadeRun = "run_all_grenade"
+local seqGrenadeWalk = "walk_all_grenade"
 local actIdle = ACT_IDLE
 local actRun = ACT_RUN
 local actWalk = ACT_WALK
 --
 function ENT:CustomOnThink()
-	if self:Health() < self:GetMaxHealth() / 2 and not self.Zombine_Charging then
+	local healthHalf = self:Health() < self:GetMaxHealth() / 2
+	local healthQuarter = self:Health() < self:GetMaxHealth() / 4
+
+	if healthHalf and not self.Zombine_Charging then
 		self.Zombine_Charging = true
+
 		self:PlaySoundSystem( "GeneralSpeech", sdCharge )
-	elseif self:Health() >= self:GetMaxHealth() / 2 and self.Zombine_Charging then
+	elseif not healthHalf and self.Zombine_Charging then
 		self.Zombine_Charging = false
 	end
 
 	if IsValid( self.Grenade ) then
-		local grenadeIdle = "idle_grenade"
-		local grenadeIdleAnim = sequenceToActivity( self, grenadeIdle )
-		local grenadeRun = "run_all_grenade"
-		local grenadeRunAnim = sequenceToActivity( self, grenadeRun )
-		local grenadeWalk = "walk_all_grenade"
-		local grenadeWalkAnim = sequenceToActivity( self, grenadeWalk )
+		local actGrenadeIdle = sequenceToActivity( self, seqGrenadeIdle )
+		local actGrenadeRun = sequenceToActivity( self, seqGrenadeRun )
+		local actGrenadeWalk = sequenceToActivity( self, seqGrenadeWalk )
 
-		self.AnimTbl_IdleStand = { grenadeIdleAnim }
-		self.AnimTbl_Run = self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim
-		self.AnimTbl_Walk = self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim
+		self.AnimTbl_IdleStand = { actGrenadeIdle }
+		if self.Zombine_Charging then
+			self.AnimTbl_Run = actGrenadeRun
+			self.AnimTbl_Walk = actGrenadeRun
+		else
+			self.AnimTbl_Run = actGrenadeWalk
+			self.AnimTbl_Walk = actGrenadeWalk
+		end
 	else
 		self.AnimTbl_IdleStand = { actIdle }
-		self.AnimTbl_Run = self.Zombine_Charging and actRun or actWalk
-		self.AnimTbl_Walk = self.Zombine_Charging and actRun or actWalk
+		if self.Zombine_Charging then
+			self.AnimTbl_Run = actRun
+			self.AnimTbl_Walk = actRun
+		else
+			self.AnimTbl_Run = actWalk
+			self.AnimTbl_Walk = actWalk
+		end
 	end
 
-	self.HasRangeAttack = self.Zombine_Grenades_Pulled < self.Zombine_Max_Grenades and self:Health() < self:GetMaxHealth() / 4
+	self.HasRangeAttack = self.Zombine_Grenades_Pulled < self.Zombine_Max_Grenades and healthQuarter
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local getEventName = util.GetAnimEventNameByID
 --
 function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
+
 	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then
 		self:FootStepSoundCode()
 	elseif eventName == "AE_ZOMBIE_ATTACK_LEFT" or eventName == "AE_ZOMBIE_ATTACK_RIGHT" or eventName == "AE_ZOMBIE_ATTACK_BOTH" then
@@ -134,12 +149,42 @@ function ENT:CustomOnHandleAnimEvent( ev )
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+local attackFast = "vjseq_fastattack"
+local attackNormal = {
+	"vjseq_attacka",
+	"vjseq_attackb",
+	"vjseq_attackc",
+	"vjseq_attackd",
+	"vjseq_attacke",
+	"vjseq_attackf"
+}
+--
 function ENT:MultipleMeleeAttacks()
 	if IsValid( self.Grenade ) or self.Zombine_Charging then
-		self.AnimTbl_MeleeAttack = { "vjseq_fastattack" }
+		self.AnimTbl_MeleeAttack = attackFast
 	else
-		self.AnimTbl_MeleeAttack = { "vjseq_attacka", "vjseq_attackb", "vjseq_attackc", "vjseq_attackd", "vjseq_attacke", "vjseq_attackf" }
+		self.AnimTbl_MeleeAttack = attackNormal
 	end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnKilled()
+	if not IsValid( self.Grenade ) then return end
+
+	local att = self:GetAttachment( self:LookupAttachment( "grenade_attachment" ) )
+
+	self.Grenade:SetOwner( NULL )
+	self.Grenade:SetParent( NULL )
+	self.Grenade:Fire( "ClearParent" )
+	self.Grenade:SetMoveType( MOVETYPE_VPHYSICS )
+	self.Grenade:SetPos( att.Pos )
+	self.Grenade:SetAngles( att.Ang )
+
+	local phys = self.Grenade:GetPhysicsObject()
+
+	if not IsValid( phys ) then return end
+
+	phys:EnableGravity( true )
+	phys:Wake()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:ZombineGrenadeCode()
@@ -155,4 +200,6 @@ function ENT:ZombineGrenadeCode()
 	self.Grenade:Activate()
 	self.Grenade:Input( "SetTimer", self:GetOwner(), self:GetOwner(), 3 )
 	self.Grenade.VJ_IsPickedUpDanger = true
+
+	VJ_EmitSound( self, "weapons/grenade/tick1.wav" )
 end

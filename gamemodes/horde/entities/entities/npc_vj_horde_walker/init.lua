@@ -5,6 +5,7 @@ include( "shared.lua" )
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
+ENT.StartHealth = 80
 ENT.Model = {
 	"models/zombie/zclassic_01.mdl",
 	"models/zombie/zclassic_02.mdl",
@@ -19,7 +20,6 @@ ENT.Model = {
 	"models/zombie/zclassic_12.mdl",
 	"models/zombie/classic.mdl"
 }
-ENT.StartHealth = 80
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 
@@ -27,11 +27,18 @@ ENT.BloodColor = "Red"
 ENT.CanFlinch = 1
 
 ENT.MeleeAttackDamage = 25
-ENT.AnimTbl_MeleeAttack = { "vjseq_attacka", "vjseq_attackb", "vjseq_attackc", "vjseq_attackd", "vjseq_attacke", "vjseq_attackf" }
 ENT.MeleeAttackDistance = 32
 ENT.MeleeAttackDamageDistance = 65
 ENT.TimeUntilMeleeAttackDamage = false
 ENT.NextMeleeAttackTime = 2
+ENT.AnimTbl_MeleeAttack = {
+	"vjseq_attacka",
+	"vjseq_attackb",
+	"vjseq_attackc",
+	"vjseq_attackd",
+	"vjseq_attacke",
+	"vjseq_attackf"
+}
 
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,10 +98,9 @@ ENT.SoundTbl_Death = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
-
+--
 local sdFootScuff = { "npc/zombie/foot_slide1.wav", "npc/zombie/foot_slide2.wav", "npc/zombie/foot_slide3.wav" }
 
--- Variant
 local sdClassic_Idle = {
 	"npc/zombie/zombie_voice_idle1.wav",
 	"npc/zombie/zombie_voice_idle2.wav",
@@ -141,8 +147,10 @@ local sdClassic_Death = {
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	local myModel = self:GetModel()
+
 	if myModel == "models/zombie/classic.mdl" then
 		self:SetBodygroup( 1, 1 )
+
 		self.SoundTbl_Idle = sdClassic_Idle
 		self.SoundTbl_Alert = sdClassic_Alert
 		self.SoundTbl_BeforeMeleeAttack = sdClassic_BeforeMeleeAttack
@@ -154,16 +162,16 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local entMeta = FindMetaTable( "Entity" )
 local entIsOnFire = entMeta.IsOnFire
+local actFireIdle = ACT_IDLE_ON_FIRE
+local actFireWalk = ACT_WALK_ON_FIRE
 local actIdle = ACT_IDLE
 local actWalk = ACT_WALK
 --
 function ENT:CustomOnThink()
 	if entIsOnFire( self ) then
-		local fireIdle = ACT_IDLE_ON_FIRE
-		local fireWalk = ACT_WALK_ON_FIRE
-		self.AnimTbl_IdleStand = { fireIdle }
-		self.AnimTbl_Run = fireWalk
-		self.AnimTbl_Walk = fireWalk
+		self.AnimTbl_IdleStand = { actFireIdle }
+		self.AnimTbl_Run = actFireWalk
+		self.AnimTbl_Walk = actFireWalk
 	else
 		self.AnimTbl_IdleStand = { actIdle }
 		self.AnimTbl_Run = actWalk
@@ -175,6 +183,7 @@ local getEventName = util.GetAnimEventNameByID
 --
 function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
+
 	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then
 		self:FootStepSoundCode()
 	elseif eventName == "AE_ZOMBIE_SCUFF_LEFT" or eventName == "AE_ZOMBIE_SCUFF_RIGHT" then

@@ -13,7 +13,7 @@ ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 ENT.BloodColor = "Red"
 
 ENT.MeleeAttackDamage = 5
-ENT.AnimTbl_MeleeAttack = { "vjseq_melee" }
+ENT.AnimTbl_MeleeAttack = "vjseq_melee"
 ENT.MeleeAttackDistance = 32
 ENT.MeleeAttackDamageDistance = 85
 ENT.TimeUntilMeleeAttackDamage = false
