@@ -8,7 +8,7 @@ ENT.Spawnable = false
 ENT.Entities = {}
 
 function ENT:Initialize()
-    local vecRadius = Vector( self.Area_of_Effect_Radius, self.Area_of_Effect_Radius, self.Area_of_Effect_Radius )
+    local vecRadius = Vector( self.Radius, self.Radius, self.Radius )
     self:SetCollisionBounds( -vecRadius, vecRadius )
     self:SetCollisionGroup( COLLISION_GROUP_IN_VEHICLE )
     self:SetMoveType( MOVETYPE_VPHYSICS )
@@ -44,13 +44,13 @@ function ENT:EndTouch( ent )
     end
 end
 
-function ENT:Horde_SetPresenceRadius( radius )
-    self.Area_of_Effect_Radius = radius
+function ENT:Horde_SetAuraRadius( radius )
+    self.Radius = radius
     self:SetCircleRadius( radius + 36 ) -- +36 so it visually seems right
 end
 
-function ENT:Horde_GetPresenceRadius()
-    return self.Area_of_Effect_Radius
+function ENT:Horde_GetAuraRadius()
+    return self.Radius
 end
 
 function ENT:OnRemove()
