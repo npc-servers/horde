@@ -98,9 +98,12 @@ ENT.SoundTbl_Death = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
---
-local sdFootScuff = { "npc/zombie/foot_slide1.wav", "npc/zombie/foot_slide2.wav", "npc/zombie/foot_slide3.wav" }
 
+local sdFootScuff = {
+	"npc/zombie/foot_slide1.wav",
+	"npc/zombie/foot_slide2.wav",
+	"npc/zombie/foot_slide3.wav"
+}
 local sdClassic_Idle = {
 	"npc/zombie/zombie_voice_idle1.wav",
 	"npc/zombie/zombie_voice_idle2.wav",

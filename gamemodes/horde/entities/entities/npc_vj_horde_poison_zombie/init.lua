@@ -74,7 +74,7 @@ ENT.SoundTbl_Death = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
---
+
 local sdFootScuff = "npc/zombie_poison/pz_right_foot1.wav"
 local sdThrow = { "npc/zombie_poison/pz_throw2.wav", "npc/zombie_poison/pz_throw3.wav" }
 ---------------------------------------------------------------------------------------------------------------------------------------------

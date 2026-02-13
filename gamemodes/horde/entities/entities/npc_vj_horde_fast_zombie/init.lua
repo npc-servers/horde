@@ -77,6 +77,7 @@ local getEventName = util.GetAnimEventNameByID
 --
 function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
+
 	if eventName == "AE_FASTZOMBIE_GALLOP_LEFT" or eventName == "AE_FASTZOMBIE_GALLOP_RIGHT" then
 		self:FootStepSoundCode()
 	elseif eventName == "AE_ZOMBIE_ATTACK_LEFT" or eventName == "AE_ZOMBIE_ATTACK_RIGHT" then

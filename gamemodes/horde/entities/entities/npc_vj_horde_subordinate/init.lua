@@ -50,8 +50,12 @@ ENT.SoundTbl_MeleeAttackMiss = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
---
-local sdFootScuff = { "npc/zombie/foot_slide1.wav", "npc/zombie/foot_slide2.wav", "npc/zombie/foot_slide3.wav" }
+
+local sdFootScuff = {
+	"npc/zombie/foot_slide1.wav",
+	"npc/zombie/foot_slide2.wav",
+	"npc/zombie/foot_slide3.wav"
+}
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local entMeta = FindMetaTable( "Entity" )
 local entIsOnFire = entMeta.IsOnFire
@@ -74,7 +78,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local getEventName = util.GetAnimEventNameByID
 --
-function ENT:CustomOnHandleAnimEvent( ev, evTime, evCycle, evType, evOptions )
+function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
 
 	if eventName == "AE_ZOMBIE_STEP_LEFT" or eventName == "AE_ZOMBIE_STEP_RIGHT" then

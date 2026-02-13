@@ -81,7 +81,7 @@ ENT.SoundTbl_Death = {
 ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
---
+
 local sdCharge = { "npc/zombine/zombine_charge1.wav", "npc/zombine/zombine_charge2.wav" }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
@@ -109,15 +109,16 @@ function ENT:CustomOnThink()
 	end
 
 	if IsValid( self.Grenade ) then
-		local actGrenadeIdle = sequenceToActivity( self, seqGrenadeIdle )
-		local actGrenadeRun = sequenceToActivity( self, seqGrenadeRun )
-		local actGrenadeWalk = sequenceToActivity( self, seqGrenadeWalk )
+		self.AnimTbl_IdleStand = { sequenceToActivity( self, seqGrenadeIdle ) }
 
-		self.AnimTbl_IdleStand = { actGrenadeIdle }
 		if self.Zombine_Charging then
+			local actGrenadeRun = sequenceToActivity( self, seqGrenadeRun )
+
 			self.AnimTbl_Run = actGrenadeRun
 			self.AnimTbl_Walk = actGrenadeRun
 		else
+			local actGrenadeWalk = sequenceToActivity( self, seqGrenadeWalk )
+
 			self.AnimTbl_Run = actGrenadeWalk
 			self.AnimTbl_Walk = actGrenadeWalk
 		end
