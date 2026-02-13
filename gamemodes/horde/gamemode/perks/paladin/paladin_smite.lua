@@ -80,6 +80,11 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
         elseif ent:IsPlayer() then
             local healinfo = HealInfo:New( { amount = ent:GetMaxHealth() * healPercent, healer = ply } )
             HORDE:OnPlayerHeal( ent, healinfo )
+
+            for debuff, _ in pairs( ent.Horde_Debuff_Buildup ) do
+                ent:Horde_RemoveDebuff( debuff )
+                ent:Horde_ReduceDebuffBuildup( debuff, 100000 )
+            end
         end
     end
 end
