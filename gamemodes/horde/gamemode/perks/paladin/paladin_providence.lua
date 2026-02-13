@@ -20,16 +20,17 @@ local function insideAura( ply, insideAuraPly )
     if not aura then return false end
 
     local entsInside = aura.Entities
-    if not ( entsInside or entsInside[insideAuraPly] ) then return false end
+    if not entsInside or not entsInside[insideAuraPly] then return false end
 
     return true
 end
 
 local function getProtectingPaladins( ply )
+    -- TODO: Rework this
     local protectors = {}
 
     for _, auraPly in ipairs( player.GetAll() ) do
-        if auraPly:Horde_GetPerk( "horde_providence" ) and insideAura( auraPly, ply ) and auraPly.Horde_PaladinShielding then
+        if auraPly:Horde_GetPerk( "paladin_providence" ) and insideAura( auraPly, ply ) and auraPly.Horde_PaladinShielding then
             table.insert( protectors, auraPly )
         end
     end
@@ -38,9 +39,10 @@ local function getProtectingPaladins( ply )
 end
 
 local bluntReflect = DamageInfo()
-bluntReflect:SetDamageType( DMG_CLUB )
+local dmgType = DMG_CLUB
 
 local function reflectDmg( protector, attacker, dmg )
+    bluntReflect:SetDamageType( dmgType )
     bluntReflect:SetDamage( dmg )
     bluntReflect:SetAttacker( protector )
     bluntReflect:SetInflictor( protector )
@@ -57,6 +59,11 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     local physicalDmg = HORDE:IsPhysicalDamage( dmginfo )
     if not ( physicalDmg or isElementalDamage( dmginfo ) ) then return end
 
+    local attacker = dmginfo:GetAttacker()
+
+    -- Prevent friendly fire
+    if attacker:IsPlayer() and attacker ~= ply then return end
+
     local protectors = getProtectingPaladins( ply )
     local faith = 0
     local highestFaithProtector = nil
@@ -66,8 +73,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
 
     for _, protector in ipairs( protectors ) do
         -- Multiple shielding paladins will be able to reflect the damage back but this can be changed
-        local attacker = dmginfo:GetAttacker()
-        if attacker then reflectDmg( protector, attacker, dmginfo:GetDamage() ) end
+        if IsValid( attacker ) then reflectDmg( protector, attacker, dmginfo:GetDamage() ) end
 
         if faith <= 0 then
             local protectorFaith = protector:Horde_GetPaladinFaithStack()
@@ -79,11 +85,13 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
             end
         end
 
-        ply.Horde_HighestFaithProtector = highestFaithProtector
-
         if faith >= 10 then
             break
         end
+    end
+
+    if dmginfo:GetDamage() > 0 and highestFaith > 0 then
+        highestFaithProtector:Horde_RemovePaladinFaithStack()
     end
 
     local res = physicalDmg and faith * physicalResist or elementalResist
