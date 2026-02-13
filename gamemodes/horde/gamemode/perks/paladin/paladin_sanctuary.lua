@@ -18,7 +18,7 @@ end
 
 local function getProtectingPaladins( ply )
     for _, auraPly in ipairs( player.GetAll() ) do
-        if auraPly:Horde_GetPerk( "paladin_sanctuary" ) and insideAura( auraPly, ply ) and auraPly.Horde_PaladinShielding then
+        if auraPly:Horde_GetPerk( "paladin_sanctuary" ) and insideAura( auraPly, ply ) then
             return true
         end
     end
