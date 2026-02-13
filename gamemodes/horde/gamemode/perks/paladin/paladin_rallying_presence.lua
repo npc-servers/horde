@@ -15,24 +15,17 @@ local function insideAura( ply, insideAuraPly )
     return true
 end
 
-local function getProtectingPaladins( ply )
-    local protectors = {}
-    for _, auraPly in ipairs( player.GetAll() ) do
-        if insideAura( auraPly, ply ) and auraPly:Horde_GetPerk( "paladin_rallying_presence" ) then
-            table.insert( protectors, auraPly )
-        end
-    end
-
-    return protectors
-end
-
 local dmgPercentIncrease = 0.25
 
 PERK.Hooks.OnPlayerDamage = function( ply, _, bonus )
     if ply:Health() < ply:GetMaxHealth() then return end
 
     if not ply:Horde_GetPerk( "paladin_rallying_presence" ) then
-        local protectors = getProtectingPaladins( ply )
+        for _, auraPly in ipairs( player.GetAll() ) do
+            if insideAura( auraPly, ply ) and auraPly:Horde_GetPerk( "paladin_rallying_presence" ) then
+                return true
+            end
+        end
 
         if not protectors then return end
     end

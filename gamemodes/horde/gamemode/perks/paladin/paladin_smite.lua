@@ -38,6 +38,9 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     net.Send( ply )
 end
 
+local smiteDmg = DamageInfo()
+smiteDmg:SetDamageType( DMG_SHOCK )
+
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not ply:Horde_GetPerk( "paladin_smite" ) then return end
     if not ply.Horde_PaladinEmpowered then return end
@@ -66,16 +69,13 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
         damage = damage * 2
     end
 
-    local lightningdmginfo = DamageInfo()
-    lightningdmginfo:SetAttacker( ply )
-    lightningdmginfo:SetInflictor( ply )
-    lightningdmginfo:SetDamage( damage )
-    lightningdmginfo:SetDamageType( DMG_SHOCK )
-
     for entId, _ in pairs( entsInside ) do
         local ent = Entity( entId )
         if IsValid( ent ) then
             if HORDE:IsEnemy( ent ) then
+                lightningdmginfo:SetAttacker( ply )
+                lightningdmginfo:SetInflictor( ply )
+                lightningdmginfo:SetDamage( damage )
                 lightningdmginfo:SetDamagePosition( ent:GetPos() )
                 ent:TakeDamageInfo( lightningdmginfo )
             elseif ent:IsPlayer() then
