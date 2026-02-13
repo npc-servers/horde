@@ -66,62 +66,106 @@ function ENT:OnRemove()
 end
 
 -- Cache for perf
-local thinkInterval = 2
+local plyMeta = FindMetaTable( "Player" )
+local entMeta = FindMetaTable( "Entity" )
+local dmginfo = FindMetaTable( "CTakeDamageInfo" )
+
+local ply_Horde_GetPerk = plyMeta.Horde_GetPerk
+local ply_Horde_ReduceDebuffBuildup = plyMeta.Horde_ReduceDebuffBuildup
+
+local ent_Health = entMeta.Health
+local ent_GetMaxHealth = entMeta.GetMaxHealth
+local ent_GetPos = entMeta.GetPos
+local ent_NextThink = entMeta.NextThink
+local ent_TakeDamageInfo = entMeta.TakeDamageInfo
+local ent_Horde_AddDebuffBuildup = entMeta.Horde_AddDebuffBuildup
+
+local dmginfo_SetDamage = dmginfo.SetDamage
+local dmginfo_SetDamageType = dmginfo.SetDamageType
+local dmginfo_SetAttacker = dmginfo.SetAttacker
+local dmginfo_SetInflictor = dmginfo.SetInflictor
+local dmginfo_SetDamagePosition = dmginfo.SetDamagePosition
+
+local HORDE = HORDE
+local horde_IsEnemy = HORDE.IsEnemy
+local horde_OnPlayerHeal = HORDE.OnPlayerHeal
+
+local STATUS_SHOCK = HORDE.Status_Shock
+local STATUS_BUILDUP = 2
+local DEBUFF_REDUCTION = 5
+local HEAL_PERCENT = 0.02
+local THINK_INTERVAL = 2
+local LIGHTNING_DMG_AMOUNT = 2
+local LIGHTNING_DMG_TYPE = DMG_SHOCK
+
+local PERK_DAWNBRINDER = "paladin_dawnbrinder"
+local PERK_SANCTUARY = "paladin_sanctuary"
+local PERK_RALLYING_PRESENCE = "paladin_rallying_presence"
 
 local lightningdmginfo = DamageInfo()
-local dmgAmt = 2
-local dmgType = DMG_SHOCK
+
+local CurTime = CurTime
+local IsValid = IsValid
+local pairs = pairs
+
+local HealInfo = HealInfo
+local healInfo_New = HealInfo.New
 
 function ENT:Think()
     local owner = self.CachedOwner
+    local curTime = CurTime()
 
     if not owner then
-        self:NextThink( CurTime() + thinkInterval )
+        ent_NextThink( self, curTime + THINK_INTERVAL )
 
         return true
     end
 
-    local curTime = CurTime()
+    local hasDawnbrinder = ply_Horde_GetPerk( owner, PERK_DAWNBRINDER )
+    local hasSanctuary = ply_Horde_GetPerk( owner, PERK_SANCTUARY )
+    local hasRallyingPresence = ply_Horde_GetPerk( owner, PERK_RALLYING_PRESENCE )
 
-    local hasDawnbrinder = owner:Horde_GetPerk( "paladin_dawnbrinder" )
-    local hasSanctuary = owner:Horde_GetPerk( "paladin_sanctuary" )
-    local hasRallyingPresence = owner:Horde_GetPerk( "paladin_rallying_presence" )
+    if not ( hasDawnbrinder or hasSanctuary or hasRallyingPresence ) then
+        ent_NextThink( self, curTime + THINK_INTERVAL )
 
-    if not ( hasDawnbrinder or hasSanctuary or hasRallyingPresence ) then return end
+        return true
+    end
 
     if hasDawnbrinder then
-        lightningdmginfo:SetDamage( dmgAmt )
-        lightningdmginfo:SetDamageType( dmgType )
-        lightningdmginfo:SetAttacker( owner )
-        lightningdmginfo:SetInflictor( owner )
+        dmginfo_SetDamage( lightningdmginfo, LIGHTNING_DMG_AMOUNT )
+        dmginfo_SetDamageType( lightningdmginfo, LIGHTNING_DMG_TYPE )
+        dmginfo_SetAttacker( lightningdmginfo, owner )
+        dmginfo_SetInflictor( lightningdmginfo, owner )
     end
 
     for ent, _ in pairs( self.Entities ) do
         if IsValid( ent ) then
-            if HORDE:IsEnemy( ent ) then
+            if horde_IsEnemy( HORDE, ent ) then
                 if hasDawnbrinder then
-                    local entPos = ent:GetPos()
-                    lightningdmginfo:SetDamagePosition( entPos )
+                    local entPos = ent_GetPos( ent )
+                    dmginfo_SetDamagePosition( lightningdmginfo, entPos )
 
-                    ent:TakeDamageInfo( lightningdmginfo )
-                    ent:Horde_AddDebuffBuildup( HORDE.Status_Shock, 2, owner, entPos )
+                    ent_TakeDamageInfo( ent, lightningdmginfo )
+                    ent_Horde_AddDebuffBuildup( ent, STATUS_SHOCK, STATUS_BUILDUP, owner, entPos )
                 end
             elseif ent:IsPlayer() then
                 if hasSanctuary then
                     for debuff, _ in pairs( ent.Horde_Debuff_Buildup ) do
-                        ent:Horde_ReduceDebuffBuildup( debuff, 5 )
+                        ply_Horde_ReduceDebuffBuildup( ent, debuff, DEBUFF_REDUCTION )
                     end
                 end
 
-                if hasRallyingPresence and ent:Health() < ent:GetMaxHealth() then
-                    local healinfo = HealInfo:New( { amount = 2, healer = owner } )
-                    HORDE:OnPlayerHeal( ent, healinfo )
+                if hasRallyingPresence then
+                    local maxHealth = ent_GetMaxHealth( ent )
+                    if ent_Health( ent ) < maxHealth then
+                        horde_OnPlayerHeal( HORDE, ent, healInfo_New( HealInfo, { amount = maxHealth * HEAL_PERCENT, healer = owner } ) )
+                    end
                 end
             end
         end
     end
 
-    self:NextThink( curTime + thinkInterval )
+    ent_NextThink( self, curTime + THINK_INTERVAL )
 
     return true
 end
