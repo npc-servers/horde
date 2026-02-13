@@ -91,11 +91,11 @@ function ENT:CustomOnThink()
 	if entIsOnFire( self ) then
 		local fireWalk = "firewalk"
 		local fireWalkAnim = sequenceToActivity( self, fireWalk )
-		self.AnimTbl_Run = { fireWalkAnim }
-		self.AnimTbl_Walk = { fireWalkAnim }
+		self.AnimTbl_Run = fireWalkAnim
+		self.AnimTbl_Walk = fireWalkAnim
 	else
-		self.AnimTbl_Run = { actWalk }
-		self.AnimTbl_Walk = { actWalk }
+		self.AnimTbl_Run = actWalk
+		self.AnimTbl_Walk = actWalk
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

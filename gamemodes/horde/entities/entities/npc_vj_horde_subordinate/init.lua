@@ -56,12 +56,12 @@ function ENT:CustomOnThink()
 		local fireIdle = ACT_IDLE_ON_FIRE
 		local fireWalk = ACT_WALK_ON_FIRE
 		self.AnimTbl_IdleStand = { fireIdle }
-		self.AnimTbl_Run = { fireWalk }
-		self.AnimTbl_Walk = { fireWalk }
+		self.AnimTbl_Run = fireWalk
+		self.AnimTbl_Walk = fireWalk
 	else
 		self.AnimTbl_IdleStand = { actIdle }
-		self.AnimTbl_Run = { actWalk }
-		self.AnimTbl_Walk = { actWalk }
+		self.AnimTbl_Run = actWalk
+		self.AnimTbl_Walk = actWalk
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

@@ -110,12 +110,12 @@ function ENT:CustomOnThink()
 		local grenadeWalkAnim = sequenceToActivity( self, grenadeWalk )
 
 		self.AnimTbl_IdleStand = { grenadeIdleAnim }
-		self.AnimTbl_Run = { self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim }
-		self.AnimTbl_Walk = { self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim }
+		self.AnimTbl_Run = self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim
+		self.AnimTbl_Walk = self.Zombine_Charging and grenadeRunAnim or grenadeWalkAnim
 	else
 		self.AnimTbl_IdleStand = { actIdle }
-		self.AnimTbl_Run = { self.Zombine_Charging and actRun or actWalk }
-		self.AnimTbl_Walk = { self.Zombine_Charging and actRun or actWalk }
+		self.AnimTbl_Run = self.Zombine_Charging and actRun or actWalk
+		self.AnimTbl_Walk = self.Zombine_Charging and actRun or actWalk
 	end
 
 	self.HasRangeAttack = self.Zombine_Grenades_Pulled < self.Zombine_Max_Grenades and self:Health() < self:GetMaxHealth() / 4
