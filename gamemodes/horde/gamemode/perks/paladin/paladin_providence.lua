@@ -5,12 +5,21 @@ Divine Shield also protects everyone inside your Sacred Aura.
 Enemies hitting protected allies take Blunt damage.]]
 PERK.Hooks = {}
 
+if not SERVER then return end
+
+local horde = HORDE
+local horde_IsFireDamage = horde.IsFireDamage
+local horde_IsColdDamage = horde.IsColdDamage
+local horde_IsLightningDamage = horde.IsLightningDamage
+local horde_IsPoisonDamage = horde.IsPoisonDamage
+local horde_IsBlastDamage = horde.IsBlastDamage
+
 local function isElementalDamage( dmginfo )
-    if HORDE:IsFireDamage( dmginfo ) then return true end
-    if HORDE:IsColdDamage( dmginfo ) then return true end
-    if HORDE:IsLightningDamage( dmginfo ) then return true end
-    if HORDE:IsPoisonDamage( dmginfo ) then return true end
-    if HORDE:IsBlastDamage( dmginfo ) then return true end -- May remove later
+    if horde_IsFireDamage( horde, dmginfo ) then return true end
+    if horde_IsColdDamage( horde, dmginfo ) then return true end
+    if horde_IsLightningDamage( horde, dmginfo ) then return true end
+    if horde_IsPoisonDamage( horde, dmginfo ) then return true end
+    if horde_IsBlastDamage( horde, dmginfo ) then return true end -- May remove later
 
     return false
 end
