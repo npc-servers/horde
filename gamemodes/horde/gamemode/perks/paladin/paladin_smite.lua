@@ -70,20 +70,16 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
         damage = damage * 2
     end
 
-    for entId, _ in pairs( entsInside ) do
-        local ent = Entity( entId )
-
-        if IsValid( ent ) then
-            if HORDE:IsEnemy( ent ) then
-                lightningdmginfo:SetAttacker( ply )
-                lightningdmginfo:SetInflictor( ply )
-                lightningdmginfo:SetDamage( damage )
-                lightningdmginfo:SetDamagePosition( ent:GetPos() )
-                ent:TakeDamageInfo( lightningdmginfo )
-            elseif ent:IsPlayer() then
-                local healinfo = HealInfo:New( { amount = ent:GetMaxHealth() * healPercent, healer = ply } )
-                HORDE:OnPlayerHeal( ent, healinfo )
-            end
+    for ent, _ in pairs( entsInside ) do
+        if HORDE:IsEnemy( ent ) then
+            smiteDmg:SetAttacker( ply )
+            smiteDmg:SetInflictor( ply )
+            smiteDmg:SetDamage( damage )
+            smiteDmg:SetDamagePosition( ent:GetPos() )
+            ent:TakeDamageInfo( smiteDmg )
+        elseif ent:IsPlayer() then
+            local healinfo = HealInfo:New( { amount = ent:GetMaxHealth() * healPercent, healer = ply } )
+            HORDE:OnPlayerHeal( ent, healinfo )
         end
     end
 end
