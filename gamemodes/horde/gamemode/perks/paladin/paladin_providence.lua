@@ -29,7 +29,7 @@ local function getProtectingPaladins( ply )
     local protectors = {}
 
     for _, auraPly in ipairs( player.GetAll() ) do
-        if insideAura( auraPly, ply ) and auraPly:Horde_GetPerk( "horde_providence" ) and auraPly.Horde_PaladinShielding then
+        if auraPly:Horde_GetPerk( "horde_providence" ) and insideAura( auraPly, ply ) and auraPly.Horde_PaladinShielding then
             table.insert( protectors, auraPly )
         end
     end
@@ -61,6 +61,8 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     local faith = 0
     local highestFaithProtector = nil
     local highestFaith = -1
+
+    if table.IsEmpty( protectors ) then return end
 
     for _, protector in ipairs( protectors ) do
         -- Multiple shielding paladins will be able to reflect the damage back but this can be changed
