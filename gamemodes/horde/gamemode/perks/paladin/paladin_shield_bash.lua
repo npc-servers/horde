@@ -6,8 +6,9 @@ Press Shift + E to deal 200 Blunt damage, stun and knockback enemies.
 Cooldown: 10 seconds.]]
 PERK.Hooks = {}
 
+if not SERVER then return end
+
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if not SERVER then return end
     if perk ~= "paladin_shield_bash" then return end
 
     ply:Horde_SetPerkCooldown( 10 )
@@ -21,7 +22,6 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if not SERVER then return end
     if perk ~= "paladin_shield_bash" then return end
 
     net.Start( "Horde_SyncActivePerk" )

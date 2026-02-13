@@ -6,6 +6,8 @@ Divine Shield prevents all players inside Sacred Aura from
 taking damage higher than 50% of their health.]]
 PERK.Hooks = {}
 
+if not SERVER then return end
+
 local function insideAura( ply, insideAuraPly )
     local aura = ply.Horde_PaladinAura
     if not aura then return false end

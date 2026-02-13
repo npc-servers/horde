@@ -6,8 +6,9 @@ Lightning damage, healing nearby allies by 20% health and clearing
 all debuffs from them. Cooldown: 10 seconds.]]
 PERK.Hooks = {}
 
+if not SERVER then return end
+
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
-    if not SERVER then return end
     if perk ~= "paladin_smite" then return end
 
     if not ply:Horde_GetPerk( "paladin_dawnbrinder" ) then
@@ -23,7 +24,6 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
-    if not SERVER then return end
     if perk ~= "paladin_smite" then return end
 
     net.Start( "Horde_SyncActivePerk" )

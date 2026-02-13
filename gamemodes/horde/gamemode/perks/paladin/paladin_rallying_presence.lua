@@ -5,12 +5,14 @@ All players inside Sacred Aura deal 25% more damage when their health is full.
 All players inside Sacred Aura regenerate 2% health if their health is lower than full.]]
 PERK.Hooks = {}
 
+if not SERVER then return end
+
 local function insideAura( ply, insideAuraPly )
     local aura = ply.Horde_PaladinAura
     if not aura then return false end
 
     local entsInside = aura.Entities
-    if not ( entsInside or entsInside[insideAuraPly] ) then return false end
+    if not entsInside or not entsInside[insideAuraPly] then return false end
 
     return true
 end
