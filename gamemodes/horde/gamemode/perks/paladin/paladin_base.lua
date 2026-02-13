@@ -28,7 +28,6 @@ PERK.Hooks = {}
 if not SERVER then return end
 
 local secondsToStackFaith = 3
-
 local SHIELDING_TIMER_NAME = "Horde_PaladinShielding"
 
 local function createFaithTimer( ply )
@@ -163,6 +162,9 @@ PERK.Hooks.Horde_PostOnPlayerHeal = function( ply, healinfo )
     end
 
     -- Give 50% of healing as armor
-    if ply:Armor() == ply:GetMaxArmor() then return end
-    ply:SetArmor( math.Min( ply:GetMaxArmor(), ply:Armor() + healinfo.amount / 2 ) )
+    local armor = ply:Armor()
+    local maxArmor = ply:GetMaxArmor()
+
+    if armor == maxArmor then return end
+    ply:SetArmor( math.Min( maxArmor, armor + healinfo.amount / 2 ) )
 end
