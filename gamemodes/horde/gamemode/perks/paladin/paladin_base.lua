@@ -56,6 +56,9 @@ local function addShieldingStatus( ply, recursive )
     net.Send( ply )
 
     if not recursive and ply:Horde_GetPerk( "paladin_providence" ) then
+        local aura = ply.Horde_PaladinAura
+        if not aura then return end
+
         for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
             if ent:IsPlayer() then
                 addShieldingStatus( ent, true )
@@ -71,6 +74,9 @@ local function removeShieldingStatus( ply, recursive )
     net.Send( ply )
 
     if not recursive and ply:Horde_GetPerk( "paladin_providence" ) then
+        local aura = ply.Horde_PaladinAura
+        if not aura then return end
+
         for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
             if ent:IsPlayer() then
                 removeShieldingStatus( ent, true )
@@ -84,7 +90,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_base" then return end
 
     ply:Horde_AddPaladinAura()
-    removeFaithTimer( ply )
+    createFaithTimer( ply )
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
