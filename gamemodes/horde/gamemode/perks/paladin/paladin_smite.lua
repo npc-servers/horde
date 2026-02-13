@@ -47,6 +47,7 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
 
     ply.Horde_PaladinEmpowered = nil
+
     net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_PaladinEmpowered, 8 )
         net.WriteUInt( 0, 3 )
@@ -71,6 +72,7 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
 
     for entId, _ in pairs( entsInside ) do
         local ent = Entity( entId )
+
         if IsValid( ent ) then
             if HORDE:IsEnemy( ent ) then
                 lightningdmginfo:SetAttacker( ply )
