@@ -11,28 +11,26 @@ local function insideAura( ply, insideAuraPly )
     if not aura then return false end
 
     local entsInside = aura.Entities
-    if not ( entsInside or entsInside[insideAuraPly] ) then return false end
+    if not entsInside or not entsInside[insideAuraPly] then return false end
 
     return true
 end
 
 local function getProtectingPaladins( ply )
-    local protectors = {}
-
     for _, auraPly in ipairs( player.GetAll() ) do
-        if insideAura( auraPly, ply ) and auraPly:Horde_GetPerk( "horde_sanctuary" ) and auraPly.Horde_PaladinShielding then
-            table.insert( protectors, auraPly )
+        if auraPly:Horde_GetPerk( "paladin_sanctuary" ) and insideAura( auraPly, ply ) and auraPly.Horde_PaladinShielding then
+            return true
         end
     end
 
-    return protectors
+    return false
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
-    if not ply:Horde_GetPerk( "horde_sanctuary" ) then
-        local protectors = getProtectingPaladins( ply )
+    if not ply:Horde_GetPerk( "paladin_sanctuary" ) then
+        local protected = getProtectingPaladins( ply )
 
-        if not protectors then return end
+        if not protected then return end
     end
 
     local dmg = dmginfo:GetDamage()
