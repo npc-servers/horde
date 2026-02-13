@@ -74,20 +74,20 @@ end
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
     if not SERVER then return end
 
-    ply:Horde_SetPerkLevelBonus( "paladin_base", 1.5 + math.min( 0.25, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
+    ply:Horde_SetPerkLevelBonus( "paladin_base_auraradius", 1.5 + math.min( 0.25, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
+    ply:Horde_SetPerkLevelBonus( "paladin_base_globalresist", 1.5 + math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) ) )
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
-    local paladinResist = math.min( 0.20, 0.01 * ply:Horde_GetLevel( "Paladin" ) )
     local faithResist = 0
 
     if ply.Horde_PaladinShielding and HORDE:IsPhysicalDamage( dmginfo ) then
         faithResist = 0.05 * ply:Horde_GetPaladinFaithStack()
     end
 
-    bonus.resistance = bonus.resistance + paladinResist + faithResist
+    bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus( "paladin_base_globalresist" ) + faithResist
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTakenPost = function( ply, dmginfo )
