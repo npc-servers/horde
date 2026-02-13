@@ -39,7 +39,8 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
 end
 
 local smiteDmg = DamageInfo()
-smiteDmg:SetDamageType( DMG_SHOCK )
+local dmgAmt = 200
+local dmgType = DMG_SHOCK
 
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not ply:Horde_GetPerk( "paladin_smite" ) then return end
@@ -64,17 +65,19 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     if not entsInside then return end
 
     local healPercent = 0.2
-    local damage = 200
+    local damage = dmgAmt
 
     if not ply:Horde_GetPerk( "paladin_dawnbrinder" ) then
         damage = damage * 2
     end
 
+    smiteDmg:SetDamageType( dmgType )
+    smiteDmg:SetAttacker( ply )
+    smiteDmg:SetInflictor( ply )
+    smiteDmg:SetDamage( damage )
+
     for ent, _ in pairs( entsInside ) do
         if HORDE:IsEnemy( ent ) then
-            smiteDmg:SetAttacker( ply )
-            smiteDmg:SetInflictor( ply )
-            smiteDmg:SetDamage( damage )
             smiteDmg:SetDamagePosition( ent:GetPos() )
             ent:TakeDamageInfo( smiteDmg )
         elseif ent:IsPlayer() then
