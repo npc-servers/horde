@@ -11,9 +11,7 @@ if not SERVER then return end
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_smite" then return end
 
-    if ply:Horde_GetPerk( "paladin_dawnbrinder" ) then
-        ply:Horde_SetPerkCooldown( 5 )
-    else
+    if not ply:Horde_GetPerk( "paladin_dawnbrinder" ) then
         ply:Horde_SetPerkCooldown( 10 )
     end
 
