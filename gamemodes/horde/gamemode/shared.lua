@@ -170,6 +170,30 @@ function GM:ShouldCollide(ent1, ent2)
     return true
 end
 
+local function freezeProp(ent)
+    if not IsValid(ent) then return end
+
+    ent:SetSolid(SOLID_NONE)
+
+    local phys = ent:GetPhysicsObject()
+    if IsValid(phys) then
+        phys:EnableMotion(false)
+        phys:Sleep()
+    end
+end
+
+hook.Add("InitPostEntity", "Horde_FreezeMapProps", function()
+    timer.Simple(3, function() -- Let props fall into place then freeze them
+        for _, ent in ipairs(ents.FindByClass("prop_physics")) do
+            freezeProp(ent)
+        end
+
+        for _, ent in ipairs(ents.FindByClass("prop_physics_multiplayer")) do
+            freezeProp(ent)
+        end
+    end)
+end)
+
 function GM:PlayerButtonDown(ply, button)
     if (ply:Horde_GetMaxMind() <= 0) then return end
     if button ~= KEY_F then return end
