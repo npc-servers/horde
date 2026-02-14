@@ -30,6 +30,8 @@ if not SERVER then return end
 local secondsToStackFaith = 3
 local SHIELDING_TIMER_NAME = "Horde_PaladinShielding"
 
+local shieldCooldown = 0.15
+
 local function createFaithTimer( ply )
     local timerName = SHIELDING_TIMER_NAME .. ply:SteamID64()
     timer.Create( timerName, secondsToStackFaith, 0, function()
@@ -131,7 +133,18 @@ end
 PERK.Hooks.PlayerButtonDown = function( ply, button )
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
+
+    local curTime = CurTime()
+
+    if ply.Horde_PaladinLastShielding and ply.Horde_PaladinLastShielding > curTime then
+        HORDE:SendNotification( "Stop Spamming!", 1, ply )
+        ply.Horde_PaladinLastShielding = curTime + shieldCooldown
+
+        return
+    end
+
     ply.Horde_PaladinShielding = true
+    ply.Horde_PaladinLastShielding = curTime + shieldCooldown
 
     removeFaithTimer( ply )
     addShieldingStatus( ply )
@@ -140,6 +153,8 @@ end
 PERK.Hooks.PlayerButtonUp = function( ply, button )
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    if not ply.Horde_PaladinShielding then return end
+
     ply.Horde_PaladinShielding = nil
 
     createFaithTimer( ply )
