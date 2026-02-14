@@ -18,7 +18,10 @@ local function insideAura( ply, insideAuraPly )
 end
 
 local function isProtected( ply )
-    for _, auraPly in ipairs( player.GetAll() ) do
+    local players = player.GetAll()
+
+    for i = 1, #players do
+        local auraPly = players[i]
         if auraPly:Horde_GetPerk( "paladin_rallying_presence" ) and insideAura( auraPly, ply ) then
             return true
         end

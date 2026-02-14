@@ -35,10 +35,11 @@ local function insideAura( ply, insideAuraPly )
 end
 
 local function getProtectingPaladins( ply )
-    -- TODO: Rework this
     local protectors = {}
+    local players = player.GetAll()
 
-    for _, auraPly in ipairs( player.GetAll() ) do
+    for i = 1, #players do
+        local auraPly = players[i]
         if auraPly:Horde_GetPerk( "paladin_providence" ) and insideAura( auraPly, ply ) and auraPly.Horde_PaladinShielding then
             table.insert( protectors, auraPly )
         end

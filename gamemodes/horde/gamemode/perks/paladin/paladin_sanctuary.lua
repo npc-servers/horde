@@ -18,8 +18,11 @@ local function insideAura( ply, insideAuraPly )
     return true
 end
 
-local function getProtectingPaladins( ply )
-    for _, auraPly in ipairs( player.GetAll() ) do
+local function isProtected( ply )
+    local players = player.GetAll()
+
+    for i = 1, #players do
+        local auraPly = players[i]
         if auraPly:Horde_GetPerk( "paladin_sanctuary" ) and insideAura( auraPly, ply ) then
             return true
         end
@@ -29,11 +32,7 @@ local function getProtectingPaladins( ply )
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
-    if not ply:Horde_GetPerk( "paladin_sanctuary" ) then
-        local protected = getProtectingPaladins( ply )
-
-        if not protected then return end
-    end
+    if not ply:Horde_GetPerk( "paladin_sanctuary" ) and not isProtected( ply ) then return end
 
     local dmg = dmginfo:GetDamage()
     local maxHP = ply:GetMaxHealth()
