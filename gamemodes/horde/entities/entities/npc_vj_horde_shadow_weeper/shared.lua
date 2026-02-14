@@ -1,6 +1,6 @@
 ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
-ENT.PrintName 		= "Hulk Spectre"
+ENT.PrintName 		= "Weeper Spectre"
 ENT.Author 			= "DrVrej"
 ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
 ENT.Purpose 		= "Spawn it and fight with it!"
@@ -8,12 +8,12 @@ ENT.Instructions 	= "Click on the spawnicon to spawn it."
 ENT.Category		= "Horde"
 
 if CLIENT then
-	local Name = "Hulk Spectre"
-	local LangName = "npc_vj_horde_shadow_hulk"
+	local Name = "Weeper Spectre"
+	local LangName = "npc_vj_horde_shadow_weeper"
 
 	language.Add( LangName, Name )
-	killicon.Add( LangName, "HUD/killicons/default", Color( 255, 80, 0, 255 ) )
+	killicon.Add( LangName, "HUD/killicons/default", Color( 255, 80, 0 ) )
 
-	language.Add( "#" .. LangName, Name )
+	language.Add( "#" .. LangName, Name)
 	killicon.Add( "#" .. LangName, "HUD/killicons/default", Color( 255, 80, 0, 255 ) )
 end
