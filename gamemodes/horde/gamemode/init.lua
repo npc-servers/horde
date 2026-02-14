@@ -125,6 +125,9 @@ include("status/debuff/sv_hemorrhage.lua")
 include("status/debuff/sv_fear.lua")
 include("status/buff/sv_presence_fear.lua")
 include("status/buff/sv_hysteria.lua")
+-- Paladin
+include("status/buff/sv_paladin_aura.lua")
+include("status/buff/sv_paladin_faith.lua")
 
 include("obj_entity_extend_sv.lua")
 include("sv_difficulty.lua")
