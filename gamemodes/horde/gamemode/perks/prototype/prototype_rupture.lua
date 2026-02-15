@@ -10,23 +10,22 @@ PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
     if not IsValid( inflictor ) or inflictor:IsNPC() then return end
 
     local p = math.random()
-    if p <= 0.5 then
+    if not p <= 0.5 then return end
 
-    	local npcPos = victim:GetPos()
+	local npcPos = victim:GetPos()
 
-    	local effect = EffectData()
-	    effect:SetOrigin( npcPos )
-	    util.Effect( "HelicopterMegaBomb", effect )
+	local effect = EffectData()
+	effect:SetOrigin( npcPos )
+	util.Effect( "horde_hemo_explosion", effect )
 
-	    victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.wav" or "horde/player/prototype/Explosion 1.wav", 140, math.random( 95, 105 ), 1, CHAN_STATIC )
+	victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.wav" or "horde/player/prototype/Explosion 1.wav", 140, math.random( 95, 105 ), 1, CHAN_STATIC )
 
-	    local dmg = DamageInfo()
-	    dmg:SetAttacker( killer )
-	    dmg:SetInflictor( victim )
-	    dmg:SetDamageType( DMG_BLAST )
-	    dmg:SetDamage( victim:GetMaxHealth() * 0.25 )
-	    dmg:SetDamageCustom( HORDE.DMG_PLAYER_FRIENDLY )
+	local dmg = DamageInfo()
+	dmg:SetAttacker( killer )
+	dmg:SetInflictor( victim )
+	dmg:SetDamageType( DMG_BLAST )
+	dmg:SetDamage( victim:GetMaxHealth() * 0.25 )
+	dmg:SetDamageCustom( HORDE.DMG_PLAYER_FRIENDLY )
 
-	    util.BlastDamageInfo( dmg, npcPos, 300 )
-    end
+	util.BlastDamageInfo( dmg, npcPos, 300 )
 end
