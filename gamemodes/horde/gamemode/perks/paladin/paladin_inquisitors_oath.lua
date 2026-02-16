@@ -11,7 +11,7 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus )
     local faithStacks = ply:Horde_GetPaladinFaithStack()
     if faithStacks == 0 then return end
 
-    bonus.increase = bonus.increase + 0.3 * faithStacks
+    bonus.increase = bonus.increase + 0.03 * faithStacks
 end
 
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, _, _, _, dmginfo )
