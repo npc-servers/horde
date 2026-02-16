@@ -124,6 +124,14 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus( "paladin_base_globalresist" ) + faithResist
 end
 
+PERK.Hooks.StartCommand = function( ply, cmd )
+    if not ply:Alive() then return end
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    if not ply.Horde_PaladinShielding then return end
+
+    cmd:RemoveKey( IN_SPEED )
+end
+
 PERK.Hooks.Horde_OnSetMaxHealth = function( ply, bonus )
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
