@@ -108,7 +108,7 @@ function HORDE:LoadRank(ply)
 				else
 					local class_name = HORDE.order_to_class_name[order]
 					ply:Horde_SetLevel(class_name, level)
-					ply:Horde_SetExp(class_name, exp)
+					ply:Horde_SetExp(class_name, exp, "loading")
 				end
             end
 
@@ -121,14 +121,14 @@ function HORDE:LoadRank(ply)
 				else
 					local class_name = HORDE.order_to_subclass_name[tostring(order)]
 					ply:Horde_SetLevel(class_name, level)
-					ply:Horde_SetExp(class_name, exp)
+					ply:Horde_SetExp(class_name, exp, "loading")
 				end
 				::cont::
 			end
 		else
 			for _, class in pairs(HORDE.classes) do
 				ply:Horde_SetLevel(class.name, 0)
-                ply:Horde_SetExp(class.name, 0)
+                ply:Horde_SetExp(class.name, 0, "loading")
             end
 		end
 	strm:Close()
@@ -176,6 +176,6 @@ hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn 
 			end
 		end
 
-		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMult ) )
+		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMult ), "kill" )
 	end
 end )

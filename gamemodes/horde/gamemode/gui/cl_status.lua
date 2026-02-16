@@ -34,6 +34,29 @@ local function DrawTextWithShadow(text, font, x, y, col, align_x, align_y)
     draw.TextShadow({text=text, font=font, pos = {x,y}, xalign = align_x, yalign = align_y, color=col}, ScreenScale(1), 100)
 end
 
+local function drawCircularProgress(x, y, radius, progress, thickness, color)
+    local startAngle = -90
+    local endAngle = startAngle + 360 * progress
+    local segments = math.max(48, math.floor(radius * 1.5))
+
+    surface.SetDrawColor(color)
+    draw.NoTexture()
+
+    for i = 0, segments - 1 do
+        local angle1 = math.rad(startAngle + (endAngle - startAngle) * (i / segments))
+        local angle2 = math.rad(startAngle + (endAngle - startAngle) * ((i + 1) / segments))
+
+        local poly = {
+            {x = x + math.cos(angle1) * radius, y = y + math.sin(angle1) * radius},
+            {x = x + math.cos(angle2) * radius, y = y + math.sin(angle2) * radius},
+            {x = x + math.cos(angle2) * (radius - thickness), y = y + math.sin(angle2) * (radius - thickness)},
+            {x = x + math.cos(angle1) * (radius - thickness), y = y + math.sin(angle1) * (radius - thickness)}
+        }
+
+        surface.DrawPoly(poly)
+    end
+end
+
 -- Stack < 0 means disabled
 -- Stack = 0 means enabled for non-stacking status
 local status_icon_s = ScreenScale(15)
@@ -307,17 +330,24 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         draw.RoundedBox(10, airgap, ScrH() - ScreenScale(33) - airgap, airgap + ScreenScale(70), ScreenScale(26) + airgap, Color(40,40,40,150))
 
         -- Draw Class
-        local subclass = HORDE.subclasses[MySelf:Horde_GetCurrentSubclass()]
-        if not subclass then subclass = HORDE.subclasses[HORDE.Class_Survivor] end
+        local curClass = MySelf:Horde_GetCurrentSubclass()
+        local subclass = HORDE.subclasses[curClass]
+        if not subclass then
+            curClass = HORDE.Class_Survivor
+            subclass = HORDE.subclasses[curClass]
+        end
         local display_name = subclass.PrintName
         local class_icon = Material(subclass.Icon, "mips smooth")
         local level = MySelf:Horde_GetLevel(display_name)
+        local exp = MySelf:Horde_GetExp(display_name)
+        local expToNext = HORDE:GetExpToNextLevel(level + 1)
         local rank, rank_level = HORDE:LevelToRank(level)
         local class_icon_s = ScreenScale(24)
-        surface.SetMaterial(class_icon)
-        surface.SetDrawColor(HORDE.Rank_Colors[rank])
         local class_icon_x = airgap + ScreenScale(4)
         local class_icon_y = ScrH() - airgap - ScreenScale(28)
+        drawCircularProgress(class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, class_icon_s * 0.48, exp / expToNext, 3, Color(0,136,199))
+        surface.SetMaterial(class_icon)
+        surface.SetDrawColor(HORDE.Rank_Colors[rank])
         surface.DrawTexturedRect(class_icon_x, class_icon_y, class_icon_s, class_icon_s)
         if rank == HORDE.Rank_Master then
             draw.SimpleText(rank_level, "Trebuchet18", class_icon_x, class_icon_y, HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -621,6 +651,79 @@ function HORDE:PlayMoneyNotification(diff, money)
             main:Remove()
         end)
     end)
+end
+
+HORDE.xpNotifications = HORDE.xpNotifications or {}
+
+function HORDE:PlayXPNotification(diff, label)
+    if GetConVarNumber("horde_enable_health_gui") == 0 then return end
+    if diff == 0 then return end
+    
+    local existing = HORDE.xpNotifications[label or "default"]
+    
+    if existing and IsValid(existing.panel) then
+        existing.amount = existing.amount + diff
+        existing.displayUntil = CurTime() + 2
+        existing.fadeStart = existing.displayUntil
+        return
+    end
+    
+    for _, notif in pairs(HORDE.xpNotifications) do
+        if IsValid(notif.panel) then
+            notif.yOffset = (notif.yOffset or 0) + ScreenScale(8)
+        end
+    end
+    
+    local main = vgui.Create("DPanel")
+    local x = ScreenScale(6)
+    local y = ScrH() - ScreenScale(6) - ScreenScale(42)
+    
+    main:SetSize(ScreenScale(100), ScreenScale(10))
+    main:SetPos(x, y)
+    
+    local notif = {
+        panel = main,
+        amount = diff,
+        label = label,
+        yOffset = 0,
+        createdAt = CurTime(),
+        displayUntil = CurTime() + 2,
+        fadeStart = CurTime() + 1
+    }
+    
+    HORDE.xpNotifications[label or "default"] = notif
+    
+    main.Paint = function()
+        local text = "+" .. notif.amount .. "xp"
+        if notif.label then
+            text = text .. " (" .. notif.label .. ")"
+        end
+        draw.SimpleText(text, fontweight, 0, 0, Color(0,136,199), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
+    end
+    
+    main.Think = function(self)
+        local now = CurTime()
+        local elapsed = now - notif.createdAt
+        local alpha = 255
+        local x_new = x
+        
+        if elapsed < 0.25 then
+            alpha = (elapsed / 0.25) * 255
+        elseif now >= notif.fadeStart then
+            local fadeElapsed = now - notif.fadeStart
+            if fadeElapsed >= 0.4 then
+                self:Remove()
+                HORDE.xpNotifications[label or "default"] = nil
+                return
+            end
+            local fadeProg = fadeElapsed / 0.4
+            alpha = 255 * (1 - fadeProg)
+            x_new = x - ScreenScale(50) * fadeProg
+        end
+        
+        self:SetAlpha(alpha)
+        self:SetPos(x_new, y - notif.yOffset)
+    end
 end
 
 -- Override health, armor and ammo
