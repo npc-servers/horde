@@ -31,7 +31,9 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if ply:Horde_GetPaladinFaithStack() <= 0 then return end
     if not isElementalDamage( dmginfo ) then return end
 
-    bonus.resistance = bonus.resistance + 0.03
+    local faith = ply:Horde_GetPaladinFaithStack()
+
+    bonus.resistance = bonus.resistance + faith * 0.03
 end
 
 local healPercent = 0.02
