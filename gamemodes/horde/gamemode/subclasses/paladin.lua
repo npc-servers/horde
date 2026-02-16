@@ -8,8 +8,8 @@ Paladin is a tanky melee shieldbearer, using his shield and aura to protect and 
 banishing his enemies.]]
 SUBCLASS.BasePerk = "paladin_base"
 SUBCLASS.Perks = {
-    [1] = { title = "Placeholder 1", choices = { "paladin_shield_bash", "paladin_smite" } },
-    [2] = { title = "Placeholder 2", choices = { "paladin_protectors_oath", "paladin_inquisitors_oath" } },
-    [3] = { title = "Placeholder 3", choices = { "paladin_providence", "paladin_dawnbrinder" } },
-    [4] = { title = "Placeholder 4", choices = { "paladin_sanctuary", "paladin_rallying_presence" } },
+    [1] = { title = "Enlightment", choices = { "paladin_shield_bash", "paladin_smite" } },
+    [2] = { title = "Pledge", choices = { "paladin_protectors_oath", "paladin_inquisitors_oath" } },
+    [3] = { title = "Valour", choices = { "paladin_providence", "paladin_dawnbrinder" } },
+    [4] = { title = "Beacon of Hope", choices = { "paladin_sanctuary", "paladin_rallying_presence" } },
 }
