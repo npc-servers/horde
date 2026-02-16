@@ -63,7 +63,7 @@ local function addShieldingStatus( ply, recursive )
         if not aura then return end
 
         for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
-            if ent:IsPlayer() then
+            if ent:IsPlayer() and ply:Horde_GetCurrentSubclass() ~= "Paladin" then
                 addShieldingStatus( ent, true )
             end
         end
@@ -81,7 +81,7 @@ local function removeShieldingStatus( ply, recursive )
         if not aura then return end
 
         for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
-            if ent:IsPlayer() then
+            if ent:IsPlayer() and ply:Horde_GetCurrentSubclass() ~= "Paladin" then
                 removeShieldingStatus( ent, true )
             end
         end

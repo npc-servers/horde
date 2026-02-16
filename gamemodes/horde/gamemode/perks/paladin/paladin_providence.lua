@@ -25,6 +25,8 @@ local function isElementalDamage( dmginfo )
 end
 
 local function insideAura( ply, insideAuraPly )
+    if ply == insideAuraPly then return false end
+
     local aura = ply.Horde_PaladinAura
     if not aura then return false end
 
@@ -75,17 +77,29 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if attacker:IsPlayer() and attacker ~= ply then return end
 
     local protectors = getProtectingPaladins( ply )
+    if table.IsEmpty( protectors ) then return end
+
+    -- Prevent stacking of paladin aura
+    if ply:Horde_GetCurrentSubclass() == "Paladin" then
+        for _, protector in ipairs( protectors ) do
+            -- Multiple shielding paladins will be able to reflect the damage back but this can be changed
+            if IsValid( attacker ) then
+                reflectDmg( protector, attacker, dmginfo:GetDamage() )
+            end
+        end
+
+        return
+    end
+
     local faith = 0
     local highestFaithProtector = nil
     local highestFaith = -1
-
-    if table.IsEmpty( protectors ) then return end
 
     for _, protector in ipairs( protectors ) do
         -- Multiple shielding paladins will be able to reflect the damage back but this can be changed
         if IsValid( attacker ) then reflectDmg( protector, attacker, dmginfo:GetDamage() ) end
 
-        if faith <= 0 then
+        if faith <= 0 and faith < 10 then
             local protectorFaith = protector:Horde_GetPaladinFaithStack()
             faith = math.min( maxFaith, faith + protectorFaith )
 
@@ -94,17 +108,13 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
                 highestFaithProtector = protector
             end
         end
-
-        if faith >= 10 then
-            break
-        end
     end
 
     if dmginfo:GetDamage() > 0 and highestFaith > 0 then
         highestFaithProtector:Horde_RemovePaladinFaithStack()
     end
 
-    local res = physicalDmg and faith * physicalResist or elementalResist
+    local res = physicalDmg and faith * physicalResist or faith * elementalResist
 
     bonus.resistance = bonus.resistance + res
 end
@@ -122,7 +132,10 @@ end
 local shieldBashDebuffRes = 0.5
 
 PERK.Hooks.Horde_OnPlayerDebuffApply = function( ply, _, bonus )
+    if ply:Horde_GetCurrentSubclass() == "Paladin" then return end
+
     local protectors = getProtectingPaladins( ply )
+    if table.IsEmpty( protectors ) then return end
 
     local debuffRes = false
 
