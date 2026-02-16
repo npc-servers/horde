@@ -1,7 +1,7 @@
 PERK.PrintName = "Rallying Presence"
 PERK.Icon = "materials/perks/paladin/rallying_presence.png"
 PERK.Description = [[
-All players inside Sacred Aura deal 25% more damage when their health is full.
+All players inside Sacred Aura deal 20% more damage when their health is full.
 All players inside Sacred Aura regenerate 2% health if their health is lower than full.]]
 PERK.Hooks = {}
 
@@ -30,7 +30,7 @@ local function isProtected( ply )
     return false
 end
 
-local dmgPercentIncrease = 0.25
+local dmgPercentIncrease = 0.20
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus )
     if ply:Health() < ply:GetMaxHealth() then return end
