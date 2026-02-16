@@ -44,7 +44,7 @@ local bashKnockUp = Vector( 0, 0, 200 )
 local bashDuration = 0.5
 
 local bashDmginfo = DamageInfo()
-local dmgAmt = 200
+local dmgAmt = 100
 local dmgType = DMG_CLUB
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
@@ -84,7 +84,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
 
                     local knockbackForce = ply:GetForward() * bashKnockback + bashKnockUp
                     target:SetVelocity( knockbackForce )
-                    target:Horde_AddDebuffBuildup( HORDE.Status_Stun, 1000, ply, targetPos )
+                    target:Horde_AddDebuffBuildup( HORDE.Status_Stun, 19208, ply, targetPos )
 
                     ply:EmitSound( "horde/player/quickstep.ogg" )
                     ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
