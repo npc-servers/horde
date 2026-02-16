@@ -42,6 +42,8 @@ function plymeta:Horde_SetExp(class_name, exp, label)
     if not self.Horde_Exps then self.Horde_Exps = {} end
     if not class_name then return end
 
+    local diff = 0 + math.max(0, exp - self:Horde_GetExp(class_name))
+
     self.Horde_Exps[class_name] = exp
 
     local level = self:Horde_GetLevel(class_name)
@@ -55,7 +57,8 @@ function plymeta:Horde_SetExp(class_name, exp, label)
         net.Start("Horde_SyncExp")
             net.WriteString(class_name)
             net.WriteUInt(exp, 32)
-            net.WriteString(label)
+            net.WriteString(label or "")
+            net.WriteUInt(diff or 0, 32)
         net.Send(self)
     end
 end
@@ -167,14 +170,15 @@ if CLIENT then
         local exp = net.ReadUInt(32)
         local ply = LocalPlayer()
         local label = net.ReadString()
+        local diff = net.ReadUInt(32)
 
         if not ply:IsValid() then return end
 
         if not ply.Horde_Exps then ply.Horde_Exps = {} end
         ply.Horde_Exps[class_name] = exp
 
-        if label ~= "loading" then
-            HORDE:PlayXPNotification( exp, label )
+        if label ~= "" and diff ~= 0 then
+            HORDE:PlayXPNotification(diff, label)
         end
     end)
 
