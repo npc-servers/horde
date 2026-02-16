@@ -61,6 +61,7 @@ local function addShieldingStatus( ply, recursive )
     if recursive then return end
 
     ply:ScreenFade( SCREENFADE.STAYOUT, Color( 255, 255, 0, 10 ), 0.2, 5 )
+    ply:EmitSound( "horde/spells/negative_burst.ogg" )
 
     if ply:Horde_GetPerk( "paladin_providence" ) then
         local aura = ply.Horde_PaladinAura
