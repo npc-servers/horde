@@ -92,8 +92,6 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     end
 
     local faith = 0
-    local highestFaithProtector = nil
-    local highestFaith = -1
 
     for _, protector in ipairs( protectors ) do
         -- Multiple shielding paladins will be able to reflect the damage back but this can be changed
@@ -103,15 +101,10 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
             local protectorFaith = protector:Horde_GetPaladinFaithStack()
             faith = math.min( maxFaith, faith + protectorFaith )
 
-            if protectorFaith > highestFaith then
-                highestFaith = protectorFaith
-                highestFaithProtector = protector
+            if dmginfo:GetDamage() > 0 and protectorFaith > 0 then
+                protectorFaith:Horde_RemovePaladinFaithStack()
             end
         end
-    end
-
-    if dmginfo:GetDamage() > 0 and highestFaith > 0 then
-        highestFaithProtector:Horde_RemovePaladinFaithStack()
     end
 
     local res = physicalDmg and faith * physicalResist or faith * elementalResist
