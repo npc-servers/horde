@@ -176,6 +176,6 @@ hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn 
 			end
 		end
 
-		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMult ), "kill" )
+		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMult ), "Kill" )
 	end
 end )
