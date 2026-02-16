@@ -186,7 +186,7 @@ hook.Add( "Horde_PostOnPlayerHeal", "Horde_GiveExp", function( ply, healinfo )
     if not ply:IsPlayer() then return end
 
     local healer = healinfo.healer
-    if not IsValid(healinfo.healer) then return end
+    if not IsValid( healinfo.healer ) then return end
     if healer == ply then return end
 
     local subClass = healer:Horde_GetCurrentSubclass()
