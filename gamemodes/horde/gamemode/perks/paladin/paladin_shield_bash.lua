@@ -56,6 +56,8 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1000 )
     ply:SetLocalVelocity( forwardForce )
 
+    ply:EmitSound( "horde/spells/charge.ogg" )
+
     timer.Create( "PaladinBash_" .. ply:EntIndex(), 0.05, bashDuration / 0.05, function()
         if not IsValid( ply ) or not ply.Horde_PaladinBashing then
             timer.Remove( "PaladinBash_" .. ply:EntIndex() )
