@@ -60,11 +60,6 @@ function ENT:StartTouch(entity)
             end
         end
 
-        local owner = self:GetOwner()
-        if IsValid(owner) and owner:IsPlayer() and owner ~= ply then
-            hook.Run("Horde_AmmoboxDoExp", owner)
-        end
-
         if given_ammo or given_ammo2 then
             self.Removing = true
             self:Remove()
