@@ -17,6 +17,7 @@ end
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, _, _, _, dmginfo )
     if not ply:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
     if dmginfo:GetDamage() <= 0 then return end
+    if not HORDE:IsPhysicalDamage( dmginfo ) then return end
 
     local leech = ply:GetMaxHealth() * 0.05
     HORDE:SelfHeal( ply, leech )
