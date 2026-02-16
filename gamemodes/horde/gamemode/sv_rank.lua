@@ -200,3 +200,19 @@ hook.Add( "Horde_PostOnPlayerHeal", "Horde_GiveExp", function( ply, healinfo )
 
     healer:Horde_SetExp( subClass, healer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMulti ), "Healed Player" )
 end )
+
+hook.Add( "Horde_AmmoboxDoExp", "Horde_GiveExp", function( ply )
+    if HORDE.current_wave <= 0 then return end
+    if not IsValid( ply ) then return end
+
+    local subClass = ply:Horde_GetCurrentSubclass()
+    if ply:Horde_GetLevel( subClass ) >= maxLevel then return end
+
+    local wavePercent = HORDE.current_wave / HORDE.max_waves
+    local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
+    local expMulti = roundXpMulti * expMultiConvar:GetInt()
+
+    local rewardMulti = 10
+
+    ply:Horde_SetExp( subClass, ply:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMulti ), "Resupplied Player" )
+end )
