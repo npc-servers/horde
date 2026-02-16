@@ -58,7 +58,11 @@ local function addShieldingStatus( ply, recursive )
         net.WriteUInt( 1, 8 )
     net.Send( ply )
 
-    if not recursive and ply:Horde_GetPerk( "paladin_providence" ) then
+    if recursive then return end
+
+    ply:ScreenFade( SCREENFADE.STAYOUT, Color( 255, 255, 0, 10 ), 0.2, 5 )
+
+    if ply:Horde_GetPerk( "paladin_providence" ) then
         local aura = ply.Horde_PaladinAura
         if not aura then return end
 
@@ -76,7 +80,11 @@ local function removeShieldingStatus( ply, recursive )
         net.WriteUInt( 0, 8 )
     net.Send( ply )
 
-    if not recursive and ply:Horde_GetPerk( "paladin_providence" ) then
+    if recursive then return end
+
+    ply:ScreenFade( SCREENFADE.PURGE, Color( 255, 255, 0, 0 ), 0.1, 0.1 )
+
+    if ply:Horde_GetPerk( "paladin_providence" ) then
         local aura = ply.Horde_PaladinAura
         if not aura then return end
 
