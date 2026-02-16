@@ -663,6 +663,7 @@ function HORDE:PlayXPNotification(diff, label)
     
     if existing and IsValid(existing.panel) then
         existing.amount = existing.amount + diff
+        existing.count = existing.count + 1
         existing.displayUntil = CurTime() + 2
         existing.fadeStart = existing.displayUntil
         return
@@ -684,6 +685,7 @@ function HORDE:PlayXPNotification(diff, label)
     local notif = {
         panel = main,
         amount = diff,
+        count = 1,
         label = label,
         yOffset = 0,
         createdAt = CurTime(),
@@ -696,7 +698,11 @@ function HORDE:PlayXPNotification(diff, label)
     main.Paint = function()
         local text = "+" .. notif.amount .. "xp"
         if notif.label then
-            text = text .. " (" .. notif.label .. ")"
+            if notif.count > 1 then
+                text = text .. " (" .. notif.label .. " " .. notif.count .. "x)"
+            else
+                text = text .. " (" .. notif.label .. ")"
+            end
         end
         draw.SimpleText(text, fontweight, 0, 0, Color(0,136,199), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
     end
