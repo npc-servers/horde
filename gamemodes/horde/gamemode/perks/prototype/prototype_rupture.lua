@@ -10,7 +10,7 @@ PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
     if not IsValid( inflictor ) or inflictor:IsNPC() then return end
 
     local p = math.random()
-    if not p <= 0.5 then return end
+    if p > 0.5 then return end
 
 	local npcPos = victim:GetPos()
 
