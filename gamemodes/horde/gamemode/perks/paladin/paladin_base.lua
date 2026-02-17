@@ -15,6 +15,7 @@ Faith stacks are used by "Divine Shield" ability, but doesn't do anything on the
 Hold ALT (walk button) to use your "Divine Shield".
 While shielding:
 - You disable passive Faith stack regeneration, described above.
+- You cannot sprint.
 - Gain 5% Physical damage resistance per Faith stack.
 - Lose 1 Faith stack upon taking Physical damage.
 
