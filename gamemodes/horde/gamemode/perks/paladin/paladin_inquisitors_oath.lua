@@ -8,7 +8,7 @@ PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, dmginfo, bonus )
     if not ply:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
-    if not HORDE:IsPhysicalDamage( dmginfo ) then return end
+    if not HORDE:IsMeleeDamage( dmginfo ) then return end
     local faithStacks = ply:Horde_GetPaladinFaithStack()
     if faithStacks == 0 then return end
 
@@ -18,7 +18,7 @@ end
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, _, _, _, dmginfo )
     if not ply:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
     if dmginfo:GetDamage() <= 0 then return end
-    if not HORDE:IsPhysicalDamage( dmginfo ) then return end
+    if not HORDE:IsMeleeDamage( dmginfo ) then return end
 
     local leech = ply:GetMaxHealth() * 0.05
     HORDE:SelfHeal( ply, leech )
