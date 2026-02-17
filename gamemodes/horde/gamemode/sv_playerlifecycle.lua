@@ -561,15 +561,16 @@ function HORDE:PlayerInit(ply)
     ply.Horde_Status = {}
     ply:PrintMessage(HUD_PRINTTALK, "Use '!help' to see special commands!")
 
-    ply:Horde_SyncExp()
+    ply:Horde_SyncAllLevels()
+
     for _, other_ply in pairs(player.GetAll()) do
         if other_ply == ply then goto cont end
         local subclass = other_ply:Horde_GetCurrentSubclass()
         if not subclass then goto cont end
-        net.Start("Horde_SyncExp")
+
+        net.Start("Horde_SyncLevel")
             net.WriteEntity(other_ply)
             net.WriteString(subclass)
-            net.WriteUInt(other_ply:Horde_GetExp(subclass), 32)
             net.WriteUInt(other_ply:Horde_GetLevel(subclass), 8)
         net.Send(ply)
 

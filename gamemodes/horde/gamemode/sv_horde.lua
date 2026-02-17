@@ -1291,8 +1291,6 @@ function HORDE:WaveEnd()
         ply:Horde_SetGivenStarterWeapons(nil)
         ply:Horde_ApplyPerksForClass()
         HORDE:SaveRank(ply)
-
-        ply:Horde_SyncExp()
         HORDE:TryAddTopTen(ply)
     end
 
