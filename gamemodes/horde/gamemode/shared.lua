@@ -170,8 +170,25 @@ function GM:ShouldCollide(ent1, ent2)
     return true
 end
 
+-- Maps always load props in the same order
+local excludedFreezeProps = {
+    ["hr_bloodshedmall_fsfix"] = {
+        [300] = true,
+    },
+    ["hr_bloodshedmall_fsobj"] = {
+        [302] = true,
+    },
+}
+
+local map = game.GetMap()
+
 local function freezeProp(ent)
     if not IsValid(ent) then return end
+
+    local excluded = excludedFreezeProps[map]
+    if excluded and excluded[ent:EntIndex()] then
+        return
+    end
 
     ent:SetSolid(SOLID_NONE)
 
