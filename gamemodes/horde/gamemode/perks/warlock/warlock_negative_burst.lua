@@ -5,7 +5,7 @@ Shockwave deals damage based on spell mind cost.]]
 PERK.Icon = "materials/perks/warlock/negative_burst.png"
 PERK.Params = {}
 PERK.Hooks = {}
-PERK.Hooks.Horde_OnSpellFire = function ( ply, wpn, stage, spell )
+PERK.Hooks.Horde_OnSpellFire = function( ply, wpn, stage, spell )
     if ply:Horde_GetPerk( "warlock_negative_burst" ) then
         local mind_cost = spell.Mind[stage]
         local damage_amount = math.max( mind_cost * 5, 100 )
