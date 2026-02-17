@@ -63,6 +63,19 @@ function plymeta:Horde_SetExp(class_name, exp, label)
     end
 end
 
+function plymeta:Horde_GiveExp(class_name, exp, label)
+    if not self:IsValid() then return end
+    if not self.Horde_Exps then self.Horde_Exps = {} end
+    if not class_name then return end
+
+    local extraXp = self.Horde_ExtraXP or 0
+    local whole = math.floor(exp + extraXp)
+
+    self.Horde_ExtraXP = math.max(0, extraXp + exp - whole)
+
+    self:Horde_SetExp(class_name, self:Horde_GetExp(class_name) + whole, label)
+end
+
 function plymeta:Horde_GetLevel(class_name)
     if not self.Horde_Levels then self.Horde_Levels = {} end
     return self.Horde_Levels[class_name] or 0

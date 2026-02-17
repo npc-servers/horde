@@ -39,15 +39,15 @@ end
 local plymeta = FindMetaTable("Player")
 
 function plymeta:Horde_AddHealAmount(amount)
-    if not self.Horde_HealAmount then self.Horde_HealAmount = 0 end
-    self.Horde_HealAmount = self.Horde_HealAmount + amount
-    if self.Horde_HealAmount >= 100 then
-        self.Horde_HealAmount = 0
-        if HORDE.current_wave <= 0 then return end
-		local class_name = self:Horde_GetClass().name
-		if self:Horde_GetLevel(class_name) >= HORDE.max_level then return end
-		self:Horde_SetExp(class_name, self:Horde_GetExp(class_name) + 1)
-    end
+    if HORDE.current_wave <= 0 then return end
+    if amount < 0 then return end
+
+    local class_name = self:Horde_GetCurrentSubclass()
+    if self:Horde_GetLevel(class_name) >= HORDE.max_level then return end
+
+    local percentage = 0.25
+
+    self:Horde_GiveExp(class_name, percentage * amount, "Healed Player")
 end
 
 -- Call this if you want Horde to recognize your healing

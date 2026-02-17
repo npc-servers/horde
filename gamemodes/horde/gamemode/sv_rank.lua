@@ -176,28 +176,6 @@ hook.Add( "Horde_OnEnemyKilled", "Horde_GiveExp", function( victim, killer, wpn 
 			end
 		end
 
-		dealer:Horde_SetExp( subClass, dealer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMult ), "Kill" )
+		dealer:Horde_GiveExp( subClass, expMulti * rewardMult, "Kill" )
 	end
-end )
-
-hook.Add( "Horde_PostOnPlayerHeal", "Horde_GiveExp", function( ply, healinfo )
-    if HORDE.current_wave <= 0 then return end
-
-    if not ply:IsPlayer() then return end
-
-    local healer = healinfo.healer
-    if not IsValid( healinfo.healer ) then return end
-    if not healer:IsPlayer() then return end
-    if healer == ply then return end
-
-    local subClass = healer:Horde_GetCurrentSubclass()
-    if healer:Horde_GetLevel( subClass ) >= maxLevel then return end
-
-    local wavePercent = HORDE.current_wave / HORDE.max_waves
-    local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
-    local expMulti = roundXpMulti * expMultiConvar:GetInt()
-
-    local rewardMulti = 0.01 * healinfo.amount
-
-    healer:Horde_SetExp( subClass, healer:Horde_GetExp( subClass ) + math.ceil( expMulti * rewardMulti ), "Healed Player" )
 end )
