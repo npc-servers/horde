@@ -27,6 +27,6 @@ PERK.Hooks.Horde_OnSpellFire = function (ply, wpn, stage, spell)
         local e = EffectData()
             e:SetOrigin( o )
             e:SetRadius( r )
-        util.Effect("horde_negative_burst", e, true, true)
+        util.Effect( "horde_negative_burst", e, true, true )
     end
 end
