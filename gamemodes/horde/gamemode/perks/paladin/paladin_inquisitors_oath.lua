@@ -6,7 +6,7 @@ Killing an enemy gives you 1 stack of Faith.
 Melee hits leech 5% health.]]
 PERK.Hooks = {}
 
-PERK.Hooks.Horde_OnPlayerDamage = function( ply, dmginfo, bonus )
+PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
     if not ply:Horde_GetPerk( "paladin_inquisitors_oath" ) then return end
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
     local faithStacks = ply:Horde_GetPaladinFaithStack()
