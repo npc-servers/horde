@@ -2,8 +2,8 @@ PERK.PrintName = "Shield Bash"
 PERK.Icon = "materials/perks/paladin/shield_bash.png"
 PERK.Description = [[
 Divine Shield reduce debuff buildups by 50%.
-Press Shift + E to deal 200 Blunt damage, stun and knockback enemies.
-Cooldown: 10 seconds.]]
+Press Shift + E dash forward, dealing 200 Blunt damage, stunning
+and pushing enemies you hit away. Cooldown: 10 seconds.]]
 PERK.Hooks = {}
 
 if not SERVER then return end
