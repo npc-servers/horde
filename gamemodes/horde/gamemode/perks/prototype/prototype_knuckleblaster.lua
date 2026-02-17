@@ -27,7 +27,9 @@ end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if not ply_Horde_GetPerk( ply, "prototype_knuckleblaster" ) then return end
-    if dmginfo:GetAttacker():IsPlayer() then return end
+
+    local attacker = dmginfo:GetAttacker()
+    if IsValid( attacker ) and attacker:IsPlayer() then return end
     
     if dmginfo:GetDamage() <= 0 then return end
     if not HORDE:IsPhysicalDamage( dmginfo ) then return end
