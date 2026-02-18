@@ -432,11 +432,14 @@ if SERVER then
 		owner:Horde_AddMoney( 50 )
 		owner:Horde_SyncEconomy()
 
-		local wavePercent = HORDE.current_wave / HORDE.max_waves
-		local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
-		local expMulti = roundXpMulti * expMultiConvar:GetInt()
+		local subclass = owner:Horde_GetCurrentSubclass()
+		if owner:Horde_GetLevel( subclass ) < maxLevel then
+			local wavePercent = HORDE.current_wave / HORDE.max_waves
+			local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
+			local expMulti = roundXpMulti * expMultiConvar:GetInt()
 
-		owner:Horde_GiveExp( owner:Horde_GetCurrentSubclass(), 25 * expMulti, "Reviving a Player" )
+			owner:Horde_GiveExp( subclass, 25 * expMulti, "Reviving a Player" )
+		end
 
 		net.Start( "horde_medkit_player_revived" )
 			net.WriteString( ply:GetName() ) -- Revived player name
