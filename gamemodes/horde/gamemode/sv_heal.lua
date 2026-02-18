@@ -39,16 +39,25 @@ end
 
 local plymeta = FindMetaTable( "Player" )
 
+local expMultiConvar = GetConVar( "horde_experience_multiplier" )
+local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
+local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
+local endMinusStartXp = endXpMult - startXpMult
+local maxLevel = HORDE.max_level
+local healXpPercentage = 1
+
 function plymeta:Horde_AddHealAmount( amount )
     if HORDE.current_wave <= 0 then return end
     if amount < 0 then return end
 
-    local class_name = self:Horde_GetCurrentSubclass()
-    if self:Horde_GetLevel( class_name ) >= HORDE.max_level then return end
+    local subclass = self:Horde_GetCurrentSubclass()
+    if self:Horde_GetLevel( subclass ) >= maxLevel then return end
 
-    local percentage = 0.25
+    local wavePercent = HORDE.current_wave / HORDE.max_waves
+    local roundXpMult = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
+    local expMult = roundXpMult * expMultiConvar:GetInt()
 
-    self:Horde_GiveExp( class_name, percentage * amount, "Healed Player" )
+    self:Horde_GiveExp( subclass, healXpPercentage * amount * expMult, "Healed Player" )
 end
 
 -- Call this if you want Horde to recognize your healing
