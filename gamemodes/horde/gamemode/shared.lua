@@ -120,22 +120,100 @@ function GM:PlayerSetModel(ply)
     player_manager.RunClass( ply, "SetModel" )
 end
 
+-- ~40% gain in GM:ShouldCollide() performance when these are cached
+local findMetaTable = FindMetaTable
+local entMeta = findMetaTable("Entity")
+local playerMeta = findMetaTable("Player")
+local ent_GetOwner = entMeta.GetOwner
+local ent_GetNWEntity = entMeta.GetNWEntity
+local ent_GetClass = entMeta.GetClass
+
+local isValid = IsValid
+local hook_Run = hook.Run
+local getMetatable = getmetatable
+
+local HORDE_SHOULD_COLLIDE_KEY = "Horde_ShouldCollide"
+local HORDE_OWNER_KEY = "HordeOwner"
+
 function GM:ShouldCollide(ent1, ent2)
-    -- Ulti: Yes, this does prevents bullets from colliding with teammates somehow
-    if ent1:IsPlayer() or ent2:IsPlayer() then
-        if ent1:IsPlayer() and ent2:IsPlayer() then return false end
-        -- No combine balls
-        if ent1:GetClass() == "prop_combine_ball" or ent2:GetClass() == "prop_combine_ball" then return false end
-        local res = hook.Run("Horde_ShouldCollide", ent1, ent2)
-        if res ~= nil then return res end
+    local ent1IsPlayer, ent2IsPlayer = getMetatable(ent1) == playerMeta, getMetatable(ent2) == playerMeta
+    if ent1IsPlayer and ent2IsPlayer then
+        return false
+    end
+
+    local ent1Owner, ent2Owner = ent_GetOwner(ent1), ent_GetOwner(ent2)
+
+    -- If statements and functions are slower here
+    local ent1IsFriendly = ent1IsPlayer -- Player Check
+        or isValid(ent1Owner) and (
+                getMetatable(ent1Owner) == playerMeta -- Player Projectile Check
+                or isValid(ent_GetNWEntity(ent1Owner, HORDE_OWNER_KEY)) -- Friendly Projectile Check
+            )
+        or isValid(ent_GetNWEntity(ent1, HORDE_OWNER_KEY)) -- Friendly Minion Check
+    local ent2IsFriendly = ent2IsPlayer -- Player Check
+        or isValid(ent2Owner) and (
+                getMetatable(ent2Owner) == playerMeta -- Player Projectile Check
+                or isValid(ent_GetNWEntity(ent2Owner, HORDE_OWNER_KEY)) -- Friendly Projectile Check
+            )
+        or isValid(ent_GetNWEntity(ent2, HORDE_OWNER_KEY)) -- Friendly Minion Check
+
+    local ent1Class, ent2Class = ent_GetClass(ent1), ent_GetClass(ent2)
+    local res = hook_Run(HORDE_SHOULD_COLLIDE_KEY, ent1Class, ent2Class)
+    if res ~= nil then
+        return res
+    end
+
+    if ent1IsFriendly and ent2IsFriendly then
+        return false
     end
 
     return true
 end
 
+-- Maps always load props in the same order
+local excludedFreezeProps = {
+    ["hr_bloodshedmall_fsfix"] = {
+        [300] = true,
+    },
+    ["hr_bloodshedmall_fsobj"] = {
+        [302] = true,
+    },
+}
+
+local map = game.GetMap()
+
+local function freezeProp(ent)
+    if not IsValid(ent) then return end
+
+    local excluded = excludedFreezeProps[map]
+    if excluded and excluded[ent:EntIndex()] then
+        return
+    end
+
+    ent:SetSolid(SOLID_NONE)
+
+    local phys = ent:GetPhysicsObject()
+    if IsValid(phys) then
+        phys:EnableMotion(false)
+        phys:Sleep()
+    end
+end
+
+hook.Add("InitPostEntity", "Horde_FreezeMapProps", function()
+    timer.Simple(3, function() -- Let props fall into place then freeze them
+        for _, ent in ipairs(ents.FindByClass("prop_physics")) do
+            freezeProp(ent)
+        end
+
+        for _, ent in ipairs(ents.FindByClass("prop_physics_multiplayer")) do
+            freezeProp(ent)
+        end
+    end)
+end)
+
 function GM:PlayerButtonDown(ply, button)
     if (ply:Horde_GetMaxMind() <= 0) then return end
-    if button != KEY_F then return end
+    if button ~= KEY_F then return end
     if CLIENT then
 		if ( IsFirstTimePredicted() ) then ply.Horde_UseSpellUtlity = true end
 	else
@@ -146,7 +224,7 @@ end
 function GM:PlayerButtonUp(ply, button)
     if not IsFirstTimePredicted() then return end
     if (ply:Horde_GetMaxMind() <= 0) then return end
-    if button != KEY_F then return end
+    if button ~= KEY_F then return end
     ply.Horde_UseSpellUtlity = nil
 end
 --[[

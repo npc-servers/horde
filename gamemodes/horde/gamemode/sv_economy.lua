@@ -66,7 +66,8 @@ function plymeta:Horde_SetMaxWeight(weight)
             self.Horde_max_weight = weight
             self.Horde_weight = math.min(weight, self:Horde_GetWeight() - (old_max_weight - weight))
             timer.Simple(0, function()
-                self.Horde_RecalcWeight()
+                if not IsValid(self) then return end
+                self:Horde_RecalcWeight()
             end)
             self:Horde_SyncEconomy()
         else
@@ -366,20 +367,17 @@ function plymeta:Horde_RecalcWeight()
 end
 
 hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
-    if ply.Horde_Fake_Respawn == true then return end
     hook.Run("Horde_ResetStatus", ply)
     net.Start("Horde_ClearStatus")
     net.Send(ply)
 
     HORDE.refresh_living_players = true
 
-    if HORDE.start_game and HORDE.current_break_time <= 0 then
-        if ply:IsValid() then
-            local ret = hook.Run( "Horde_OnPlayerShouldRespawnDuringWave", ply )
-            if not ret then
-                ply:KillSilent()
-                HORDE:SendNotification("You will respawn next wave.", 0, ply)
-            end
+    if ply:IsValid() and not ply.Horde_Fake_Respawn and HORDE.start_game and HORDE.current_break_time <= 0 then
+        local ret = hook.Run( "Horde_OnPlayerShouldRespawnDuringWave", ply )
+        if not ret then
+            ply:KillSilent()
+            HORDE:SendNotification("You will respawn next wave.", 0, ply)
         end
     end
 
@@ -418,7 +416,7 @@ hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
     -- Reapply armor bonus if present
     ply:Horde_SetMaxArmor()
     ply:Horde_SyncEconomy()
-    if ply:Alive() and not (HORDE.start_game and HORDE.current_break_time <= 0) then
+    if ply:Alive() and not ply.Horde_Fake_Respawn and not (HORDE.start_game and HORDE.current_break_time <= 0) then
         HORDE:GiveStarterWeapons(ply)
     end
 
@@ -432,6 +430,8 @@ hook.Add("PlayerSpawn", "Horde_Economy_Sync", function (ply)
         end
         net.Send(ply)
     end
+
+    ply.Horde_Fake_Respawn = nil
 end)
 
 hook.Add("PlayerDroppedWeapon", "Horde_Economy_Drop", function (ply, wpn)

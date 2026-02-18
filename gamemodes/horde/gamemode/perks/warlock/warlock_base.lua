@@ -1,5 +1,6 @@
 PERK.PrintName = "Warlock Base"
 PERK.Description = [[
+The Warlock Subclass is able to conduct slow, but highly powerful spells.
 COMPLEXITY: HIGH
 
 {1} increased maximum Mind. ({2} per level, up to {3}).

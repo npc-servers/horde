@@ -1,6 +1,6 @@
 PERK.PrintName = "Carcass Base"
 PERK.Description = [[
-The Carcass class uses its high health and regeneration for various effects.
+The Carcass Subclass sacrifices all firepower for unmatched strength and agility.
 Complexity: HIGH
 
 {1} increased maximum health. ({2} + {3} per level, up to {4}).

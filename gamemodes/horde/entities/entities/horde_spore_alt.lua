@@ -3,6 +3,13 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.Spawnable = false
 
+hook.Add( "Horde_ShouldCollide", "Horde_Ent_Spore_Alt", function( ent1, ent2 )
+    local entClass = "horde_spore_alt"
+    if ent1 == entClass || ent2 == entClass then
+        return true
+    end
+end )
+
 function ENT:Draw()
 self.Entity:DrawModel()
 end

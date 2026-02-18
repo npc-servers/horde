@@ -10,6 +10,8 @@ util.AddNetworkString("Horde_SyncGameInfo")
 util.AddNetworkString("Horde_SaveAchievements")
 util.AddNetworkString("Horde_SaveExtraAchievements")
 util.AddNetworkString("Horde_SyncClientExps")
+util.AddNetworkString("Horde_BossMusic")
+util.AddNetworkString("Horde_MatchMusic")
 
 HORDE.vote_remaining_time = 60
 HORDE.game_end = nil
@@ -127,10 +129,22 @@ function HORDE:GameEnd(status)
 
     if status == "DEFEAT" then
         HORDE:SendNotification("All players are dead!", 1)
+
+        net.Start("Horde_BossMusic")
+            net.WriteBool( false )
+        net.Broadcast()
+
+        net.Start("Horde_MatchMusic")
+            net.WriteString( "#horde/music/match_defeat.mp3" )
+        net.Broadcast()
     end
 
     if status == "VICTORY" then
         net.Start("Horde_SaveAchievements")
+        net.Broadcast()
+
+        net.Start("Horde_MatchMusic")
+            net.WriteString( "#horde/music/match_victory.mp3" )
         net.Broadcast()
     end
 
@@ -547,15 +561,16 @@ function HORDE:PlayerInit(ply)
     ply.Horde_Status = {}
     ply:PrintMessage(HUD_PRINTTALK, "Use '!help' to see special commands!")
 
-    ply:Horde_SyncExp()
+    ply:Horde_SyncAllLevels()
+
     for _, other_ply in pairs(player.GetAll()) do
         if other_ply == ply then goto cont end
         local subclass = other_ply:Horde_GetCurrentSubclass()
         if not subclass then goto cont end
-        net.Start("Horde_SyncExp")
+
+        net.Start("Horde_SyncLevel")
             net.WriteEntity(other_ply)
             net.WriteString(subclass)
-            net.WriteUInt(other_ply:Horde_GetExp(subclass), 32)
             net.WriteUInt(other_ply:Horde_GetLevel(subclass), 8)
         net.Send(ply)
 
@@ -683,8 +698,6 @@ end)
 
 hook.Add("PlayerSpawn", "Horde_PlayerInitialSpawn", function(ply)
     if ply.Horde_Fake_Respawn == true then return end
-
-    ply:SetCollisionGroup(15)
 
     timer.Simple(0, function() -- lua/includes/modules/player_manager.lua sets SetAvoidPlayer back to true
         if not IsValid(ply) then return end
@@ -889,7 +902,7 @@ hook.Add("DoPlayerDeath", "Horde_DoPlayerDeath", function(victim)
         end end)
         return
     end
-    HORDE:SendNotification("You are dead. You will respawn next wave.", 1, victim)
+    HORDE:SendNotification("You are dead. A friendly player can revive you.", 1, victim)
     HORDE:CheckAlivePlayers()
 
     local tip = HORDE:GetTip()
