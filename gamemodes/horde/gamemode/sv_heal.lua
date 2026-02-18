@@ -57,12 +57,16 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
     if not ply:IsPlayer() then return end
     if not ply:Alive() then return end
 
-    if ply:Health() >= ply:GetMaxHealth() * ( 1 + healinfo:GetOverHealPercentage() ) then return end
+    local health = ply:Health()
+    local maxHealth = ply:GetMaxHealth() * ( 1 + healinfo:GetOverHealPercentage() )
+
+    if health >= maxHealth then return end
 
     hook.Run( "Horde_OnPlayerHeal", ply, healinfo )
     hook.Run( "Horde_PostOnPlayerHeal", ply, healinfo )
 
     local healer = healinfo:GetHealer()
+    local healAmount = healinfo:GetHealAmount()
 
     if healer:IsPlayer() and healer:IsValid() then
         local heal_mult = 1
@@ -76,9 +80,9 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
             end
         end
 
-        if healer ~= ply and not HORDE:InBreak() and ply:Health() < ply:GetMaxHealth() * ( 1 + healinfo:GetOverHealPercentage() ) then
+        if healer ~= ply and not HORDE:InBreak() then
             if not ply:Horde_GetPerk( "psycho_base" ) then
-                healer:Horde_AddMoney( math.min( healinfo:GetHealAmount() * 0.75 ) )
+                healer:Horde_AddMoney( math.min( healAmount * 0.75 ) )
                 healer:Horde_SyncEconomy()
             end
 
@@ -86,12 +90,12 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
                 net.WriteString( healer:GetName() )
             net.Send( ply )
 
-            healer:Horde_AddHealAmount( healinfo:GetHealAmount() )
+            healer:Horde_AddHealAmount( healAmount )
         end
 
-        ply:SetHealth( math.min( ply:GetMaxHealth() * ( 1 + healinfo:GetOverHealPercentage() ), ply:Health() + heal_mult * healinfo:GetHealAmount() ) )
+        ply:SetHealth( math.min( maxHealth, health + heal_mult * healAmount ) )
     else
-        ply:SetHealth( math.min( ply:GetMaxHealth() * ( 1 + healinfo:GetOverHealPercentage() ), ply:Health() + healinfo:GetHealAmount() ) )
+        ply:SetHealth( math.min( maxHealth, health + healAmount ) )
 
         return
     end
@@ -99,11 +103,11 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
     if not HORDE.player_heal[healer:SteamID()] then HORDE.player_heal[healer:SteamID()] = 0 end
 
     if healer:SteamID() ~= ply:SteamID() then
-        HORDE.player_heal[healer:SteamID()] = HORDE.player_heal[healer:SteamID()] + healinfo:GetHealAmount()
+        HORDE.player_heal[healer:SteamID()] = HORDE.player_heal[healer:SteamID()] + healAmount
     end
 
     if silent then
-        healer:Horde_AddHealAmount( healinfo:GetHealAmount() )
+        healer:Horde_AddHealAmount( healAmount )
 
         return
     end
