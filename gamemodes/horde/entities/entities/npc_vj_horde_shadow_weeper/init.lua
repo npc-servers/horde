@@ -105,8 +105,7 @@ end
 
 function ENT:CustomOnInitialize()
 	self:SetModelScale(self:GetModelScale() * 1.25, 0)
-
-	self:SetCollisionBounds(Vector(0, 0, 0), Vector(0, 0, 0))
+	self:SetCollisionBounds(Vector(16, 16, 72), Vector(-16, -16, 0))
 	self.AnimTbl_Run = ACT_RUN
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
