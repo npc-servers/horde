@@ -73,7 +73,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
         local healingApplied = 0
         local currWeapon = HORDE:GetCurrentWeapon( healer )
 
-        if currWeapon and currWeapon:IsValid() and ply.Horde_Infusions then
+        if IsValid( currWeapon ) and ply.Horde_Infusions then
             local infusion = ply.Horde_Infusions[currWeapon:GetClass()]
 
             if infusion and infusion == HORDE.Infusion_Rejuvenating then
