@@ -50,7 +50,13 @@ SPELL.Fire           = function (ply, wpn, charge_stage)
             max_targets = 1
         end
         for _, target in pairs(ents.FindInSphere(ply.Horde_Floating_Chaos:GetPos(), 1000)) do
-            if HORDE:IsEnemy(target) and max_targets > 0 then
+            local sData = {
+                checkmode = 2,
+                originVector = pos,
+                targetEntity = target,
+            }
+
+            if HORDE:IsEnemy(target) and HORDE.IsInSight(sData) and max_targets > 0 then
                 SpawnProjectile(pos, Angle(0,0,0),  target:GetPos() + target:OBBCenter() - pos, p)
                 fired = true
                 max_targets = max_targets - 1
