@@ -185,7 +185,7 @@ function ENT:Detonate()
 				self:ApplyHealingOverTime(ent, owner, 15)
 			elseif ent:IsValid() and ent:IsNPC() then
 				self:ApplyDamageOverTime(ent, owner, 50)
-				ent:Horde_AddDebuffBuildup(HORDE.Status_Break, dmg:GetDamage(), owner, self:GetPos())
+				ent:Horde_AddDebuffBuildup(HORDE.Status_Break, dmg:GetDamage(), owner, ent:GetPos())
 			end
 		end
 		self:Remove()
