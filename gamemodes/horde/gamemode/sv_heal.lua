@@ -85,7 +85,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
 
         if healer ~= ply and not HORDE:InBreak() then
             if not ply:Horde_GetPerk( "psycho_base" ) then
-                healer:Horde_AddMoney( math.min( diff * 0.75 ) )
+                healer:Horde_AddMoney( math.min( healingApplied * 0.75 ) )
                 healer:Horde_SyncEconomy()
             end
 
