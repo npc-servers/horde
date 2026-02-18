@@ -70,6 +70,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
 
     if healer:IsPlayer() and healer:IsValid() then
         local healMult = 1
+        local healingApplied = 0
         local curr_weapon = HORDE:GetCurrentWeapon( healer )
 
         if curr_weapon and curr_weapon:IsValid() and ply.Horde_Infusions then
@@ -80,9 +81,11 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
             end
         end
 
+        healingApplied = math.min( maxHealth, health + healMult * healAmount ) - health
+
         if healer ~= ply and not HORDE:InBreak() then
             if not ply:Horde_GetPerk( "psycho_base" ) then
-                healer:Horde_AddMoney( math.min( healAmount * 0.75 ) )
+                healer:Horde_AddMoney( math.min( diff * 0.75 ) )
                 healer:Horde_SyncEconomy()
             end
 
@@ -90,7 +93,8 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
                 net.WriteString( healer:GetName() )
             net.Send( ply )
 
-            healer:Horde_AddHealAmount( healAmount )
+            HORDE.player_heal[healer:SteamID()] = ( HORDE.player_heal[healer:SteamID()] or 0 ) + healingApplied
+            healer:Horde_AddHealAmount( healingApplied )
         end
 
         ply:SetHealth( math.min( maxHealth, health + healMult * healAmount ) )
@@ -100,17 +104,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
         return
     end
 
-    if healer ~= ply then
-        HORDE.player_heal[healer:SteamID()] = ( HORDE.player_heal[healer:SteamID()] or 0 ) + healAmount
-    end
-
-    if silent then
-        healer:Horde_AddHealAmount( healAmount )
-
-        return
-    end
-
-    if ply:GetInfoNum( "horde_heal_flash", 1 ) == 1 then
+    if not silent and ply:GetInfoNum( "horde_heal_flash", 1 ) == 1 then
         ply:ScreenFade( SCREENFADE.IN, Color( 50, 200, 50, 5 ), 0.15, 0 )
     end
 end
