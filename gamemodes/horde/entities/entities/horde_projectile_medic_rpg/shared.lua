@@ -223,6 +223,7 @@ function ENT:ApplyDamageOverTime(ent, attacker, amount)
 		dmg:SetInflictor(inflictor)
 		dmg:SetDamageType(DMG_NERVEGAS)
 		dmg:SetDamage(amount)
+		dmg:SetDamagePosition(ent:GetPos())
 		ent:TakeDamageInfo(dmg)
 	end)
 end
