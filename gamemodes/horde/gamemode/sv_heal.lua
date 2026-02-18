@@ -25,7 +25,7 @@ function HealInfo:SetHealer( healer )
     self.healer = healer
 end
 
-function HealInfo:GetHealer( healer )
+function HealInfo:GetHealer()
     return self.healer
 end
 
@@ -108,12 +108,12 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
         return
     end
 
-    if ply:GetInfoNum( "horde_heal_flash", 1) == 1 then
+    if ply:GetInfoNum( "horde_heal_flash", 1 ) == 1 then
         ply:ScreenFade( SCREENFADE.IN, Color( 50, 200, 50, 5 ), 0.15, 0 )
     end
 end
 
-function HORDE:OnAntlionHeal( npc, healinfo, silent )
+function HORDE:OnAntlionHeal( npc, healinfo )
     hook.Run( "Horde_OnAntlionHeal", npc, healinfo )
 
     npc:Horde_Evolve( healinfo:GetHealAmount() * 1.5 )
