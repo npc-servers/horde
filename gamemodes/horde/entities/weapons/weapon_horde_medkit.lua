@@ -426,6 +426,8 @@ if SERVER then
 		owner:Horde_AddMoney( 50 )
 		owner:Horde_SyncEconomy()
 
+		owner:Horde_GiveExp( owner:Horde_GetCurrentSubclass(), 25, "Reviving a Player" )
+
 		net.Start( "horde_medkit_player_revived" )
 			net.WriteString( ply:GetName() ) -- Revived player name
 			net.WriteColor( team.GetColor( ply:Team() ) ) -- Revived player color
