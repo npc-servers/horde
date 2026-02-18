@@ -69,14 +69,14 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
     local healAmount = healinfo:GetHealAmount()
 
     if healer:IsPlayer() and healer:IsValid() then
-        local heal_mult = 1
+        local healMult = 1
         local curr_weapon = HORDE:GetCurrentWeapon( healer )
 
         if curr_weapon and curr_weapon:IsValid() and ply.Horde_Infusions then
             local infusion = ply.Horde_Infusions[curr_weapon:GetClass()]
 
             if infusion and infusion == HORDE.Infusion_Rejuvenating then
-                heal_mult = 1.25
+                healMult = 1.25
             end
         end
 
@@ -93,7 +93,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
             healer:Horde_AddHealAmount( healAmount )
         end
 
-        ply:SetHealth( math.min( maxHealth, health + heal_mult * healAmount ) )
+        ply:SetHealth( math.min( maxHealth, health + healMult * healAmount ) )
     else
         ply:SetHealth( math.min( maxHealth, health + healAmount ) )
 
