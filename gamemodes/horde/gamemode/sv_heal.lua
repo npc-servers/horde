@@ -79,7 +79,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
                 healer:Horde_SyncEconomy()
             end
             net.Start( "Horde_RenderHealer" )
-            net.WriteString( healer:GetName() )
+                net.WriteString( healer:GetName() )
             net.Send( ply )
             healer:Horde_AddHealAmount( healinfo:GetHealAmount() )
         end
@@ -99,9 +99,9 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
         healer:Horde_AddHealAmount( healinfo:GetHealAmount() )
         return
     end
-	if ply:GetInfoNum( "horde_heal_flash", 1) == 1 then
-	    ply:ScreenFade( SCREENFADE.IN, Color( 50, 200, 50, 5 ), 0.15, 0 )
-	end
+    if ply:GetInfoNum( "horde_heal_flash", 1) == 1 then
+        ply:ScreenFade( SCREENFADE.IN, Color( 50, 200, 50, 5 ), 0.15, 0 )
+    end
 end
 
 function HORDE:OnAntlionHeal( npc, healinfo, silent )
