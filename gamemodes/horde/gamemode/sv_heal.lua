@@ -57,10 +57,10 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
     if not ply:IsPlayer() then return end
     if not ply:Alive() then return end
 
+    if ply:Health() >= ply:GetMaxHealth() * ( 1 + healinfo:GetOverHealPercentage() ) then return end
+
     hook.Run( "Horde_OnPlayerHeal", ply, healinfo )
     hook.Run( "Horde_PostOnPlayerHeal", ply, healinfo )
-
-    if ply:GetMaxHealth() <= ply:Health() and healinfo:GetOverHealPercentage() <= 0 then return end
 
     local healer = healinfo:GetHealer()
 
