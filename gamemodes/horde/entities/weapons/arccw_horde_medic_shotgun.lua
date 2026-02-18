@@ -264,7 +264,7 @@ SWEP.Animations = {
     },
 }
 
-hook.Add("Horde_ShouldCollide", "Horde_Medic_Rifle", function(ent1, ent2)
+hook.Add("Horde_ShouldCollide", "Horde_MedicShotgun", function(ent1, ent2)
     local entClass = "arccw_horde_medic_shotgun"
     if ent1 == entClass or ent2 == entClass then
         return true
