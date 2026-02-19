@@ -272,3 +272,36 @@ function HORDE:SimpleParticleSystem(particle_name, pos, angles, parent)
     p:Fire( "start", "", 0 )
     return p
 end
+
+local function freezeProp(ent)
+    if not IsValid(ent) then return end
+
+    local propHealth = ent:GetInternalVariable("health")
+    if propHealth ~= nil and propHealth > 0 then return end
+
+    local model = ent:GetModel()
+    if not model then return end
+
+    local dyn = ents.Create("prop_dynamic")
+    dyn:SetModel(model)
+    dyn:SetPos(ent:GetPos())
+    dyn:SetAngles(ent:GetAngles())
+    dyn:SetSkin(ent:GetSkin() or 0)
+    dyn:SetColor(ent:GetColor())
+    dyn:SetMaterial(ent:GetMaterial())
+    dyn:Spawn()
+
+    ent:Remove()
+end
+
+hook.Add("InitPostEntity", "Horde_FreezeMapProps", function()
+    timer.Simple(3, function() -- Let props fall into place then replace with prop_dynamic
+        for _, ent in ipairs(ents.FindByClass("prop_physics")) do
+            freezeProp(ent)
+        end
+
+        for _, ent in ipairs(ents.FindByClass("prop_physics_multiplayer")) do
+            freezeProp(ent)
+        end
+    end)
+end)
