@@ -273,35 +273,45 @@ function HORDE:SimpleParticleSystem(particle_name, pos, angles, parent)
     return p
 end
 
-local function freezeProp(ent)
+local function makePropVulnerable(ent)
     if not IsValid(ent) then return end
+    if ent:GetMaxHealth() ~= 1 or ent:Health() ~= 0 then return end
+    if not ent:GetModel() then return end
 
-    local propHealth = ent:GetInternalVariable("health")
-    if propHealth ~= nil and propHealth > 0 then return end
+    local mass = 0
+    local phys = ent:GetPhysicsObject()
 
-    local model = ent:GetModel()
-    if not model then return end
+    if IsValid(phys) then
+        mass = phys:GetMass()
+    end
 
-    local dyn = ents.Create("prop_dynamic")
-    dyn:SetModel(model)
-    dyn:SetPos(ent:GetPos())
-    dyn:SetAngles(ent:GetAngles())
-    dyn:SetSkin(ent:GetSkin() or 0)
-    dyn:SetColor(ent:GetColor())
-    dyn:SetMaterial(ent:GetMaterial())
-    dyn:Spawn()
-
-    ent:Remove()
+    ent.Horde_PropHealth = math.max(1, mass)
 end
 
-hook.Add("InitPostEntity", "Horde_FreezeMapProps", function()
-    timer.Simple(3, function() -- Let props fall into place then replace with prop_dynamic
-        for _, ent in ipairs(ents.FindByClass("prop_physics")) do
-            freezeProp(ent)
-        end
+hook.Add("InitPostEntity", "Horde_MakeMapPropsVulnerable", function()
+    for _, ent in ipairs(ents.FindByClass("prop_physics")) do
+        makePropVulnerable(ent)
+    end
 
-        for _, ent in ipairs(ents.FindByClass("prop_physics_multiplayer")) do
-            freezeProp(ent)
-        end
-    end)
+    for _, ent in ipairs(ents.FindByClass("prop_physics_multiplayer")) do
+        makePropVulnerable(ent)
+    end
+end)
+
+hook.Add("EntityTakeDamage", "Horde_PropDamage", function(ent, dmginfo)
+    local entHp = ent.Horde_PropHealth
+    if not entHp then return end
+
+    local dmg = dmginfo:GetDamage()
+    if dmg < 0 then return end
+
+    ent.Horde_PropHealth = entHp - dmg
+
+    if entHp <= 0 then
+        local effectdata = EffectData()
+        effectdata:SetOrigin(ent:GetPos())
+        util.Effect("kamikaze_explosion", effectdata, true, true)
+
+        ent:Fire("break")
+    end
 end)
