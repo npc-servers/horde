@@ -5,7 +5,7 @@ include('shared.lua')
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = {"models/horde/hulk/hulk.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
+ENT.Model = {"models/zombie/classic.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
 ENT.StartHealth = 200
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,53 +19,31 @@ ENT.MeleeAttackDistance = 35 -- How close does it have to be until it attacks?
 ENT.MeleeAttackDamageDistance = 95 -- How far does the damage go?
 ENT.TimeUntilMeleeAttackDamage = 0.8 -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDamage = 30
+ENT.MeleeAttackDamageType = DMG_SLASH
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
-ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL -- The type of damage it should do
 ENT.HasLeapAttack = false -- Should the SNPC have a leap attack?
 ENT.FootStepTimeRun = 0.4 -- Next foot step sound when it is running
 ENT.FootStepTimeWalk = 0.4 -- Next foot step sound when it is walking
-ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
-ENT.MeleeAttackKnockBack_Forward1 = 100 -- How far it will push you forward | First in math.random
-ENT.MeleeAttackKnockBack_Forward2 = 130 -- How far it will push you forward | Second in math.random
-ENT.MeleeAttackKnockBack_Up1 = 250 -- How far it will push you up | First in math.random
-ENT.MeleeAttackKnockBack_Up2 = 260 -- How far it will push you up | Second in math.random
+--ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
+--ENT.MeleeAttackKnockBack_Forward1 = 100 -- How far it will push you forward | First in math.random
+--ENT.MeleeAttackKnockBack_Forward2 = 130 -- How far it will push you forward | Second in math.random
+--ENT.MeleeAttackKnockBack_Up1 = 250 -- How far it will push you up | First in math.random
+--ENT.MeleeAttackKnockBack_Up2 = 260 -- How far it will push you up | Second in math.random
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_FootStep = {"npc/zombie/foot1.wav","npc/zombie/foot2.wav","npc/zombie/foot3.wav"}
-ENT.SoundTbl_Breath = nil
---EN--T.SoundTbl_Idle = {"npc/zombie_poison/pz_idle2.wav","npc/zombie_poison/pz_idle3.wav","npc/zombie_poison/pz_idle4.wav"}
---ENT.SoundTbl_Alert = {"npc/zombie_poison/pz_warn1.wav","npc/zombie_poison/pz_warn2.wav"}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_Idle = {"npc/zombie/zombie_voice_idle1.wav","npc/zombie/zombie_voice_idle2.wav","npc/zombie/zombie_voice_idle3.wav","npc/zombie/zombie_voice_idle4.wav","npc/zombie/zombie_voice_idle5.wav","npc/zombie/zombie_voice_idle6.wav"}
+ENT.SoundTbl_Alert = {"npc/zombie/zombie_alert1.wav","npc/zombie/zombie_alert2.wav","npc/zombie/zombie_alert3.wav"}
+ENT.SoundTbl_MeleeAttack = {"npc/zombie/zo_attack1.wav","npc/zombie/zo_attack2.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
+ENT.SoundTbl_Pain = {"npc/zombie/zombie_pain1.wav","npc/zombie/zombie_pain2.wav","npc/zombie/zombie_pain3.wav","npc/zombie/zombie_pain4.wav","npc/zombie/zombie_pain5.wav","npc/zombie/zombie_pain6.wav"}
+ENT.SoundTbl_Death = {"npc/zombie/zombie_die1.wav","npc/zombie/zombie_die2.wav","npc/zombie/zombie_die3.wav"}
 ENT.SoundTbl_Pain = nil
 
-ENT.EntitiesToNoCollide = {
-	"player",
-	"npc_vj_horde_spectre",
-	"npc_vj_horde_antlion",
-	"npc_vj_horde_smg_turret",
-	"npc_vj_horde_shotgun_turret",
-	"npc_vj_horde_rocket_turret",
-	"npc_vj_horde_laster_turret",
-	"npc_vj_horde_class_survivor",
-	"npc_vj_horde_class_assault",
-	"npc_vj_horde_vortigaunt",
-	"npc_vj_horde_combat_bot",
-	"npc_manhack"
-}
-
-ENT.Horde_Immune_Status = {
-	[HORDE.Status_Bleeding] = true,
-	[HORDE.Status_Frostbite] = true,
-	[HORDE.Status_Ignite] = false,
-	[HORDE.Status_Break] = true,
-	[HORDE.Status_Necrosis] = true,
-	[HORDE.Status_Hemorrhage] = true,
-}
-ENT.Immune_AcidPoisonRadiation = true
-
-ENT.GeneralSoundPitch1 = 75
-ENT.GeneralSoundPitch2 = 75
+ENT.GeneralSoundPitch1 = 100
+ENT.GeneralSoundPitch2 = 100
+ENT.HasDeathRagdoll = false
+ENT.HasGibOnDeath = true
 ENT.HasAllies = true
 
 ENT.VJFriendly = false
@@ -78,7 +56,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
+		dmg:SetDamageType(DMG_GENERIC)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
@@ -108,31 +86,63 @@ function ENT:Roar()
 end
 
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(35, 35, 20), Vector(-35, -35, 0))
+	-- self:SetBodygroup(1,1)
+	self.AnimationPlaybackRate = (1 + (0.2 * self.properties.level))
+	self:SetCollisionBounds(Vector(16, 16, 72), Vector(-16, -16, 0))
 	self.AnimTbl_Run = ACT_RUN
-	self.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
-    if self.properties.abyssal_might == true then
+	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
-		timer.Simple(0.5, function() self:Roar() end)
+		timer.Simple(0.5, function()  self:Roar() end)
 		timer.Remove("Horde_FlayerRoar" .. id)
 		timer.Create("Horde_FlayerRoar" .. id, 10, 0, function ()
 			if not IsValid(self) then return end
 			self:Roar()
 		end)
-    end
+	end
 	local e = EffectData()
-		e:SetOrigin(self:GetPos())
-		e:SetNormal(Vector(0,0,1))
-		e:SetScale(0.25)
+	e:SetOrigin(self:GetPos())
+	e:SetNormal(Vector(0,0,1))
+	e:SetScale(0.25)
 	util.Effect("abyssal_roar", e, true, true)
-    self:SetRenderMode(RENDERMODE_TRANSCOLOR)
-    self:SetColor(Color(120, 230, 230, 200))
-	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
-	self.StartHealth = math.floor(self.StartHealth + 85 * self.properties.level)
-	self:SetHealth(self.StartHealth)
+	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
+	self:SetColor(Color(120, 230, 230, 200))
+	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
+	self:SetHealth(200)
+	self:AddRelationship("npc_turret_floor D_LI 99")
+	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
 	self:AddRelationship("npc_manhack D_LI 99")
-    --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+	self:AddRelationship("npc_vj_horde_vortigaunt D_LI 99")
+	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
+	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
+	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+end
+
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
+    local e = EffectData()
+        e:SetOrigin(self:GetPos())
+    --util.Effect("exploder_explosion", e, true, true)
+
+    local dmg = DamageInfo()
+    dmg:SetInflictor(self)
+    dmg:SetAttacker(self)
+    dmg:SetDamageType(DMG_REMOVENORAGDOLL)
+    dmg:SetDamage(50)
+    util.BlastDamageInfo(dmg, self:GetPos(), 200)
+	
+	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
+			if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
+				ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
+			end
+		end
+	
+	local e = EffectData()
+			e:SetOrigin(self:GetPos())
+			e:SetNormal(Vector(0,0,1))
+			e:SetScale(1)
+	util.Effect("weeper_blast", e, true, true)
+
+   -- sound.Play("vj_acid/acid_splat.wav", self:GetPos())
 end
 
 function ENT:DoEntityRelationshipCheck()
@@ -199,12 +209,12 @@ function ENT:DoEntityRelationshipCheck()
 						end
 					end
 				end
-
+				
 				if vPlayer then
 					entFri = true
 					self:AddEntityRelationship(v, D_LI, 99)
 				end
-				if vClass == "npc_vj_horde_smg_turret" or vClass == "npc_vj_horde_combat_bot" or vClass == "npc_vj_horde_vortigaunt" or vClass == "npc_manhack" then
+				if vClass == "npc_turret_floor" or vClass == "npc_vj_horde_combat_bot" or vClass == "npc_vj_horde_vortigaunt" or vClass == "npc_manhack" then
 					entFri = true
 					self:AddEntityRelationship(v, D_LI, 99)
 				else
@@ -286,7 +296,7 @@ function ENT:DoEntityRelationshipCheck()
 						self.TakingCoverT = CurTime() + 0.2
 					end
 				end
-
+				
 				-- HasOnPlayerSight system, used to do certain actions when it sees the player
 				if self.HasOnPlayerSight == true && v:Alive() &&(CurTime() > self.OnPlayerSightNextT) && (vDistanceToMy < self.OnPlayerSightDistance) && self:Visible(v) && (mySDir:Dot((v:GetPos() - myPos):GetNormalized()) > mySAng) then
 					-- 0 = Run it every time | 1 = Run it only when friendly to player | 2 = Run it only when enemy to player
@@ -402,4 +412,4 @@ function ENT:MeleeAttackCode(isPropAttack, attackDist, customEnt)
 	end
 end
 
-VJ.AddNPC("Shadow Hulk","npc_vj_horde_shadow_hulk", "Horde")
+VJ.AddNPC("Phantasm","npc_vj_horde_phantasm", "Horde")
