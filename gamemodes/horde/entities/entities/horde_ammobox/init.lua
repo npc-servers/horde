@@ -21,48 +21,51 @@ function ENT:Initialize()
 end
 
 function ENT:StartTouch(entity)
-    if not self.Removing and entity:IsPlayer() and entity:Alive() and not entity:IsBot() then
-        local given_ammo = false
-        local given_ammo2 = false
-        local ply = entity
-        for _, wpn in pairs(entity:GetWeapons()) do
-            local ammo_id = wpn:GetPrimaryAmmoType()
-            local ammo_id2 = wpn:GetSecondaryAmmoType()
-            local clip_size2 = wpn:GetMaxClip2()
-            
-            -- Secondary Magazine size check
-            if clip_size2 > 0 then
-                clip_size2 = clip_size2
-            elseif ammo_id2 >= 1 then
-                clip_size2 = 1
-            end
-            
-            -- Primary ammo
-            if wpn.Primary and wpn.Primary.MaxAmmo then
-                if wpn.Primary.MaxAmmo > ply:GetAmmoCount(ammo_id) and ply:GetAmmoCount(ammo_id) >= 0 then
-                    local given = HORDE:GiveAmmo(entity, wpn, 2)
-                    given_ammo = given_ammo or given
-                end
-            elseif ply:GetAmmoCount(ammo_id) < 9999 then
+    if self.Removing then return end
+    if not entity:Alive() then return end
+    if entity:IsBot() then return end
+    if not entity:IsPlayer() then return end
+
+    local given_ammo = false
+    local given_ammo2 = false
+    local ply = entity
+    for _, wpn in pairs(entity:GetWeapons()) do
+        local ammo_id = wpn:GetPrimaryAmmoType()
+        local ammo_id2 = wpn:GetSecondaryAmmoType()
+        local clip_size2 = wpn:GetMaxClip2()
+        
+        -- Secondary Magazine size check
+        if clip_size2 > 0 then
+            clip_size2 = clip_size2
+        elseif ammo_id2 >= 1 then
+            clip_size2 = 1
+        end
+        
+        -- Primary ammo
+        if wpn.Primary and wpn.Primary.MaxAmmo then
+            if wpn.Primary.MaxAmmo > ply:GetAmmoCount(ammo_id) and ply:GetAmmoCount(ammo_id) >= 0 then
                 local given = HORDE:GiveAmmo(entity, wpn, 2)
                 given_ammo = given_ammo or given
             end
-            
-            -- Secondary ammo and ArcCW underbarrels
-            if wpn.Secondary and wpn.Secondary.MaxAmmo then
-                if wpn.Secondary.MaxAmmo > ply:GetAmmoCount(ammo_id2) and ammo_id2 >= 0 then
-                    local given2 = ply:GiveAmmo(clip_size2, ammo_id2, false)
-                    given_ammo2 = given_ammo2 or given2
-                end
-            elseif ply:GetAmmoCount(ammo_id2) < 9999 then
+        elseif ply:GetAmmoCount(ammo_id) < 9999 then
+            local given = HORDE:GiveAmmo(entity, wpn, 2)
+            given_ammo = given_ammo or given
+        end
+        
+        -- Secondary ammo and ArcCW underbarrels
+        if wpn.Secondary and wpn.Secondary.MaxAmmo then
+            if wpn.Secondary.MaxAmmo > ply:GetAmmoCount(ammo_id2) and ammo_id2 >= 0 then
                 local given2 = ply:GiveAmmo(clip_size2, ammo_id2, false)
                 given_ammo2 = given_ammo2 or given2
             end
+        elseif ply:GetAmmoCount(ammo_id2) < 9999 then
+            local given2 = ply:GiveAmmo(clip_size2, ammo_id2, false)
+            given_ammo2 = given_ammo2 or given2
         end
+    end
 
-        if given_ammo or given_ammo2 then
-            self.Removing = true
-            self:Remove()
-        end
+    if given_ammo or given_ammo2 then
+        self.Removing = true
+        self:Remove()
     end
 end
