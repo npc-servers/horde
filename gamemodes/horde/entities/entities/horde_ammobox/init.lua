@@ -10,6 +10,10 @@ local mages = {
     ["Artificer"] = true,
 }
 
+local ammoBlacklist = {
+    ["weapon_horde_medkit"] = true,
+}
+
 function ENT:Initialize()
     self:SetColor( Color( 0, 255, 0 ) )
     self:SetModel( "models/items/boxmrounds.mdl" )
@@ -45,37 +49,39 @@ function ENT:StartTouch( entity )
         end
     else
         for _, wpn in pairs( entity:GetWeapons() ) do
-            local ammo_id = wpn:GetPrimaryAmmoType()
-            local ammo_id2 = wpn:GetSecondaryAmmoType()
-            local clip_size2 = wpn:GetMaxClip2()
+            if not ammoBlacklist[wpn:GetClass()] then
+                local ammo_id = wpn:GetPrimaryAmmoType()
+                local ammo_id2 = wpn:GetSecondaryAmmoType()
+                local clip_size2 = wpn:GetMaxClip2()
 
-            -- Secondary Magazine size check
-            if clip_size2 > 0 then
-                clip_size2 = clip_size2
-            elseif ammo_id2 >= 1 then
-                clip_size2 = 1
-            end
+                -- Secondary Magazine size check
+                if clip_size2 > 0 then
+                    clip_size2 = clip_size2
+                elseif ammo_id2 >= 1 then
+                    clip_size2 = 1
+                end
 
-            -- Primary ammo
-            if wpn.Primary and wpn.Primary.MaxAmmo then
-                if wpn.Primary.MaxAmmo > entity:GetAmmoCount( ammo_id ) and entity:GetAmmoCount( ammo_id ) >= 0 then
+                -- Primary ammo
+                if wpn.Primary and wpn.Primary.MaxAmmo then
+                    if wpn.Primary.MaxAmmo > entity:GetAmmoCount( ammo_id ) and entity:GetAmmoCount( ammo_id ) >= 0 then
+                        local given = HORDE:GiveAmmo( entity, wpn, 2 )
+                        shouldRemove = shouldRemove or given
+                    end
+                elseif entity:GetAmmoCount( ammo_id ) < 9999 then
                     local given = HORDE:GiveAmmo( entity, wpn, 2 )
                     shouldRemove = shouldRemove or given
                 end
-            elseif entity:GetAmmoCount( ammo_id ) < 9999 then
-                local given = HORDE:GiveAmmo( entity, wpn, 2 )
-                shouldRemove = shouldRemove or given
-            end
 
-            -- Secondary ammo and ArcCW underbarrels
-            if wpn.Secondary and wpn.Secondary.MaxAmmo then
-                if wpn.Secondary.MaxAmmo > entity:GetAmmoCount( ammo_id2 ) and ammo_id2 >= 0 then
+                -- Secondary ammo and ArcCW underbarrels
+                if wpn.Secondary and wpn.Secondary.MaxAmmo then
+                    if wpn.Secondary.MaxAmmo > entity:GetAmmoCount( ammo_id2 ) and ammo_id2 >= 0 then
+                        local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
+                        shouldRemove = shouldRemove or given2
+                    end
+                elseif entity:GetAmmoCount( ammo_id2 ) < 9999 then
                     local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
                     shouldRemove = shouldRemove or given2
                 end
-            elseif entity:GetAmmoCount( ammo_id2 ) < 9999 then
-                local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
-                shouldRemove = shouldRemove or given2
             end
         end
     end
