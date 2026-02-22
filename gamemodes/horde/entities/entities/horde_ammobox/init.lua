@@ -12,7 +12,7 @@ function ENT:Initialize()
     self:SetSolid( SOLID_VPHYSICS )
     self:SetMoveType( MOVETYPE_VPHYSICS )
     self:SetCollisionGroup( COLLISION_GROUP_WEAPON )
-    self:SetModelScale( 1.5 )
+    self:SetModelScale( 1.5, 0 )
     self:SetTrigger( true )
     self:UseTriggerBounds( true, 4 )
 
