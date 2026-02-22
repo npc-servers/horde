@@ -1,26 +1,26 @@
-AddCSLuaFile("shared.lua")
-AddCSLuaFile("cl_init.lua")
-include("shared.lua")
+AddCSLuaFile( "shared.lua" )
+AddCSLuaFile( "cl_init.lua" )
+include( "shared.lua" )
 
 ENT.CleanupPriority = 2
 
 function ENT:Initialize()
-    self:SetColor(Color(0, 255, 0))
-    self:SetModel("models/items/boxmrounds.mdl")
-    self:PhysicsInit(SOLID_VPHYSICS)
+    self:SetColor( Color( 0, 255, 0 ) )
+    self:SetModel( "models/items/boxmrounds.mdl" )
+    self:PhysicsInit( SOLID_VPHYSICS )
 
-    self:SetSolid(SOLID_VPHYSICS)
-    self:SetMoveType(MOVETYPE_VPHYSICS)
-    self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
-    self:SetModelScale(1.5)
-    self:SetTrigger(true)
-    self:UseTriggerBounds(true, 4)
+    self:SetSolid( SOLID_VPHYSICS )
+    self:SetMoveType( MOVETYPE_VPHYSICS )
+    self:SetCollisionGroup( COLLISION_GROUP_WEAPON )
+    self:SetModelScale( 1.5 )
+    self:SetTrigger( true )
+    self:UseTriggerBounds( true, 4 )
 
     self.Removing = false
     self:PhysWake()
 end
 
-function ENT:StartTouch(entity)
+function ENT:StartTouch( entity )
     if self.Removing then return end
     if not entity:Alive() then return end
     if not entity:IsPlayer() then return end
@@ -28,7 +28,7 @@ function ENT:StartTouch(entity)
     local given_ammo = false
     local given_ammo2 = false
 
-    for _, wpn in pairs(entity:GetWeapons()) do
+    for _, wpn in pairs( entity:GetWeapons() ) do
         local ammo_id = wpn:GetPrimaryAmmoType()
         local ammo_id2 = wpn:GetSecondaryAmmoType()
         local clip_size2 = wpn:GetMaxClip2()
@@ -42,23 +42,23 @@ function ENT:StartTouch(entity)
 
         -- Primary ammo
         if wpn.Primary and wpn.Primary.MaxAmmo then
-            if wpn.Primary.MaxAmmo > entity:GetAmmoCount(ammo_id) and entity:GetAmmoCount(ammo_id) >= 0 then
-                local given = HORDE:GiveAmmo(entity, wpn, 2)
+            if wpn.Primary.MaxAmmo > entity:GetAmmoCount( ammo_id ) and entity:GetAmmoCount( ammo_id ) >= 0 then
+                local given = HORDE:GiveAmmo( entity, wpn, 2 )
                 given_ammo = given_ammo or given
             end
-        elseif entity:GetAmmoCount(ammo_id) < 9999 then
-            local given = HORDE:GiveAmmo(entity, wpn, 2)
+        elseif entity:GetAmmoCount( ammo_id ) < 9999 then
+            local given = HORDE:GiveAmmo( entity, wpn, 2 )
             given_ammo = given_ammo or given
         end
 
         -- Secondary ammo and ArcCW underbarrels
         if wpn.Secondary and wpn.Secondary.MaxAmmo then
-            if wpn.Secondary.MaxAmmo > entity:GetAmmoCount(ammo_id2) and ammo_id2 >= 0 then
-                local given2 = entity:GiveAmmo(clip_size2, ammo_id2, false)
+            if wpn.Secondary.MaxAmmo > entity:GetAmmoCount( ammo_id2 ) and ammo_id2 >= 0 then
+                local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
                 given_ammo2 = given_ammo2 or given2
             end
-        elseif entity:GetAmmoCount(ammo_id2) < 9999 then
-            local given2 = entity:GiveAmmo(clip_size2, ammo_id2, false)
+        elseif entity:GetAmmoCount( ammo_id2 ) < 9999 then
+            local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
             given_ammo2 = given_ammo2 or given2
         end
     end
