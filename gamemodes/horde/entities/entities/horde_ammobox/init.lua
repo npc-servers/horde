@@ -25,8 +25,7 @@ function ENT:StartTouch( entity )
     if not entity:Alive() then return end
     if not entity:IsPlayer() then return end
 
-    local given_ammo = false
-    local given_ammo2 = false
+    local shouldRemove = false
 
     for _, wpn in pairs( entity:GetWeapons() ) do
         local ammo_id = wpn:GetPrimaryAmmoType()
@@ -44,26 +43,26 @@ function ENT:StartTouch( entity )
         if wpn.Primary and wpn.Primary.MaxAmmo then
             if wpn.Primary.MaxAmmo > entity:GetAmmoCount( ammo_id ) and entity:GetAmmoCount( ammo_id ) >= 0 then
                 local given = HORDE:GiveAmmo( entity, wpn, 2 )
-                given_ammo = given_ammo or given
+                shouldRemove = shouldRemove or given
             end
         elseif entity:GetAmmoCount( ammo_id ) < 9999 then
             local given = HORDE:GiveAmmo( entity, wpn, 2 )
-            given_ammo = given_ammo or given
+            shouldRemove = shouldRemove or given
         end
 
         -- Secondary ammo and ArcCW underbarrels
         if wpn.Secondary and wpn.Secondary.MaxAmmo then
             if wpn.Secondary.MaxAmmo > entity:GetAmmoCount( ammo_id2 ) and ammo_id2 >= 0 then
                 local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
-                given_ammo2 = given_ammo2 or given2
+                shouldRemove = shouldRemove or given2
             end
         elseif entity:GetAmmoCount( ammo_id2 ) < 9999 then
             local given2 = entity:GiveAmmo( clip_size2, ammo_id2, false )
-            given_ammo2 = given_ammo2 or given2
+            shouldRemove = shouldRemove or given2
         end
     end
 
-    if given_ammo or given_ammo2 then
+    if shouldRemove then
         self.Removing = true
         self:Remove()
     end
