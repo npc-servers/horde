@@ -10,6 +10,13 @@ local mages = {
     ["Artificer"] = true,
 }
 
+local expMultiConvar = GetConVar( "horde_experience_multiplier" )
+local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
+local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
+local endMinusStartXp = endXpMult - startXpMult
+local maxLevel = HORDE.max_level
+local maxWave = HORDE.max_waves
+
 function ENT:Initialize()
     self:SetColor( Color( 0, 255, 0 ) )
     self:SetModel( "models/items/boxmrounds.mdl" )
@@ -24,6 +31,22 @@ function ENT:Initialize()
 
     self.Removing = false
     self:PhysWake()
+end
+
+function ENT:DoGiveXp( ply )
+    if HORDE:InBreak() then return end
+
+    local curWave = HORDE.current_wave
+    if curWave <= 0 then return end
+
+    local class = ply:Horde_GetCurrentSubclass()
+    if ply:Horde_GetLevel( class ) >= maxLevel then return end
+
+    local wavePercent = curWave / maxWave
+    local roundXpMult = startXpMult + wavePercent * endMinusStartXp
+    local expMult = roundXpMult * expMultiConvar:GetInt() / 2
+
+    ply:Horde_GiveExp( class, 5 * expMult, "Player Resupplied" )
 end
 
 function ENT:StartTouch( entity )
@@ -81,6 +104,12 @@ function ENT:StartTouch( entity )
     end
 
     if shouldRemove then
+        local owner = self:GetOwner()
+
+        if IsValid( owner ) and owner:IsPlayer() then
+            self:DoGiveXp( owner )
+        end
+
         self.Removing = true
         self:Remove()
     end
