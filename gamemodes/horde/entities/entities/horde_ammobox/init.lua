@@ -23,7 +23,6 @@ end
 function ENT:StartTouch(entity)
     if self.Removing then return end
     if not entity:Alive() then return end
-    if entity:IsBot() then return end
     if not entity:IsPlayer() then return end
 
     local given_ammo = false
