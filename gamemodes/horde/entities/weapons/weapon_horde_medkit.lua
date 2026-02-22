@@ -438,7 +438,7 @@ if SERVER then
 			local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
 			local expMulti = roundXpMulti * expMultiConvar:GetInt()
 
-			owner:Horde_GiveExp( subclass, 25 * expMulti, "Reviving a Player" )
+			owner:Horde_GiveExp( subclass, 12 * expMulti, "Reviving a Player" )
 		end
 
 		net.Start( "horde_medkit_player_revived" )
