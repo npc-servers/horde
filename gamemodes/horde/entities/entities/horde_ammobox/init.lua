@@ -1,10 +1,10 @@
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("cl_init.lua")
 include("shared.lua")
+
 ENT.CleanupPriority = 2
 
 function ENT:Initialize()
-
     self:SetColor(Color(0, 255, 0))
     self:SetModel("models/items/boxmrounds.mdl")
     self:PhysicsInit(SOLID_VPHYSICS)
