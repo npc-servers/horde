@@ -541,7 +541,7 @@ net.Receive("Horde_BuyItem", function (len, ply)
                 ply:SelectWeapon(class)
             elseif item.entity_properties.type == HORDE.ENTITY_PROPERTY_GIVE then
                 -- Give entity
-                if GetConVar("horde_default_item_config"):GetInt() == 1 and class == "item_battery" then
+                if GetConVar("horde_default_item_config"):GetInt() == 1 and class == "horde_armor_battery" then
                     -- Prevent distribution of batteries.
                     if ply:Armor() >= ply:GetMaxArmor() then return end
                 end

@@ -1093,7 +1093,7 @@ Hysteria lasts for 5 seconds and falls off sequentially.]],
         "A capsule filled with sticky green liquid.\nHeals instantly when picked up.",
         { Medic = true, Hatcher = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 5 }, nil )
-    HORDE:CreateItem( "Equipment", "Kevlar Armor Battery", "item_battery", 160, 0,
+    HORDE:CreateItem( "Equipment", "Kevlar Armor Battery", "horde_armor_battery", 160, 0,
         "Armor battery.\nEach one provides 15 armor. Personal use only.",
         nil, 10, -1, { type = HORDE.ENTITY_PROPERTY_GIVE }, "items/armor_15.png" )
     HORDE:CreateItem( "Equipment", "Full Kevlar Armor", "armor100", 1000, 0,

@@ -40,7 +40,7 @@ ENT.GrenadeAttackEntity = "npc_grenade_frag" -- The entity that the SNPC throws 
 ENT.DropWeaponOnDeath = false
 ENT.HasItemDropsOnDeath = true
 ENT.ItemDropsOnDeathChance = 4
-ENT.ItemDropsOnDeath_EntityList = {"item_battery","horde_ammobox"}
+ENT.ItemDropsOnDeath_EntityList = {"horde_armor_battery","horde_ammobox"}
 
 -- ====== Flinching Code ====== --
 ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
