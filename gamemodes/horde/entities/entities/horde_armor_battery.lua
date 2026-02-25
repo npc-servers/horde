@@ -29,4 +29,12 @@ end
 function ENT:StartTouch( ent )
     if self.Removing then return end
     if not ent:IsPlayer() then return end
+    if ent:Armor() >= ent:GetMaxArmor() then return end
+
+    local owner = self:GetOwner() or self
+    ent:Horde_GiveArmor( 15, owner )
+
+    self:EmitSound( "items/battery_pickup.wav" )
+
+    self:Remove()
 end
