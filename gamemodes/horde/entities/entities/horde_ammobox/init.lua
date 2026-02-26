@@ -96,7 +96,7 @@ function ENT:StartTouch( entity )
     if shouldRemove then
         local owner = self:GetOwner()
 
-        if IsValid( owner ) and owner:IsPlayer() then
+        if IsValid( owner ) and entity ~= owner and owner:IsPlayer() then
             self:DoGiveXp( owner )
         end
 
