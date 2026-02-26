@@ -190,7 +190,7 @@ sound.Add( {
     volume = 1.0,
     level = 90,
     pitch = {95, 105},
-    sound = ")weapons/smg1/smg1_fire1.wav"
+    sound = ")weapons/smg1/smg1_fire1.ogg"
 } )
 sound.Add( {
     name = "ArcCW_Horde.SMG1_Fire_Sil",

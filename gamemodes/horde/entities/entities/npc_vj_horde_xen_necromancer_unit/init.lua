@@ -23,9 +23,9 @@ ENT.AlertSounds_OnlyOnce = true
 ENT.HasImpactSounds = false
 
 ENT.SoundTbl_FootStep = {
-	"npc/vort/vort_foot1.wav",
-	"npc/vort/vort_foot2.wav",
-	"npc/vort/vort_foot3.wav",
+	"npc/vort/vort_foot1.ogg",
+	"npc/vort/vort_foot2.ogg",
+	"npc/vort/vort_foot3.ogg",
 	"npc/vort/vort_foot4.wav"
 }
 ENT.SoundTbl_BeforeMeleeAttack = {
@@ -40,27 +40,27 @@ ENT.SoundTbl_MeleeAttackMiss = {
 ENT.SoundTbl_BeforeRangeAttack = { "horde/spells/void_charge.ogg" }
 ENT.SoundTbl_RangeAttack = { "horde/weapons/void_projector/void_spear_launch.ogg" }
 ENT.SoundTbl_CombatIdle = {
-	"aslave/slv_word1.wav",
-	"aslave/slv_word2.wav",
-	"aslave/slv_word3.wav",
-	"aslave/slv_word4.wav",
-	"aslave/slv_word5.wav",
-	"aslave/slv_word6.wav",
-	"aslave/slv_word7.wav",
-	"aslave/slv_word8.wav"
+	"aslave/slv_word1.ogg",
+	"aslave/slv_word2.ogg",
+	"aslave/slv_word3.ogg",
+	"aslave/slv_word4.ogg",
+	"aslave/slv_word5.ogg",
+	"aslave/slv_word6.ogg",
+	"aslave/slv_word7.ogg",
+	"aslave/slv_word8.ogg"
 }
 ENT.SoundTbl_Alert = {
-	"aslave/slv_alert1.wav",
-	"aslave/slv_alert3.wav",
-	"aslave/slv_alert4.wav"
+	"aslave/slv_alert1.ogg",
+	"aslave/slv_alert3.ogg",
+	"aslave/slv_alert4.ogg"
 }
 ENT.SoundTbl_Pain = {
-	"aslave/slv_pain1.wav",
-	"aslave/slv_pain2.wav"
+	"aslave/slv_pain1.ogg",
+	"aslave/slv_pain2.ogg"
 }
 ENT.SoundTbl_Death = {
-	"aslave/slv_die1.wav",
-	"aslave/slv_die2.wav"
+	"aslave/slv_die1.ogg",
+	"aslave/slv_die2.ogg"
 }
 
 ENT.BeforeRangeAttackSoundLevel = 100

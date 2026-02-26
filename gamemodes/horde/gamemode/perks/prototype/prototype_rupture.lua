@@ -18,7 +18,7 @@ PERK.Hooks.Horde_OnEnemyKilled = function( victim, killer, inflictor )
 	effect:SetOrigin( npcPos )
 	util.Effect( "horde_hemo_explosion", effect )
 
-	victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.wav" or "horde/player/prototype/Explosion 1.wav", 140, math.random( 95, 105 ), 1, CHAN_STATIC )
+	victim:EmitSound( victim:Horde_IsElite() and "horde/player/prototype/Explosion 2.ogg" or "horde/player/prototype/Explosion 1.ogg", 140, math.random( 95, 105 ), 1, CHAN_STATIC )
 
 	local dmg = DamageInfo()
 	dmg:SetAttacker( killer )

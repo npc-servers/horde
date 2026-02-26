@@ -78,8 +78,8 @@ SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 SWEP.ShootVol = 110 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = ")weapons/arccw/waw_mp40/mp40_st_f.wav"
-SWEP.ShootMechSound = ")weapons/arccw/waw_mp40/mp40_st_act.wav"
+SWEP.ShootSound = ")weapons/arccw/waw_mp40/mp40_st_f.ogg"
+SWEP.ShootMechSound = ")weapons/arccw/waw_mp40/mp40_st_act.ogg"
 SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/p90_sil.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
@@ -272,9 +272,9 @@ SWEP.Animations = {
         LHIKIn = 0.2,
         LHIKOut = 0.2,
         SoundTable = {
-            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_out.wav", t = 18 / 30, c = CHAN_ITEM},
-            {s = "weapons/arccw/waw_mp40/fly_colt45_futz.wav", t = 51 / 30, c = CHAN_ITEM},
-            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_in.wav", t = 61 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_out.ogg", t = 18 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_colt45_futz.ogg", t = 51 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_in.ogg", t = 61 / 30, c = CHAN_ITEM},
         },
     },
     ["reload_empty"] = {
@@ -285,10 +285,10 @@ SWEP.Animations = {
         LHIKIn = 0.2,
         LHIKOut = 0.2,
         SoundTable = {
-            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_out.wav", t = 18 / 30, c = CHAN_ITEM},
-            {s = "weapons/arccw/waw_mp40/fly_colt45_futz.wav", t = 51 / 30, c = CHAN_ITEM},
-            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_in.wav", t = 61 / 30, c = CHAN_ITEM},
-            {s = "weapons/arccw/waw_mp40/fly_mp40_charge.wav", t = 80 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_out.ogg", t = 18 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_colt45_futz.ogg", t = 51 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_mp40_mag_in.ogg", t = 61 / 30, c = CHAN_ITEM},
+            {s = "weapons/arccw/waw_mp40/fly_mp40_charge.ogg", t = 80 / 30, c = CHAN_ITEM},
         },
     },
 }

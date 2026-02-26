@@ -58,7 +58,7 @@ PERK.Hooks.Horde_UseActivePerk = function (ply)
             net.Start("Horde_Antimatter_Shield_Deploy")
                 net.WriteEntity(ent)
             net.Broadcast()
-            sound.Play("weapons/physcannon/physcannon_pickup.wav", ply:GetPos())
+            sound.Play("weapons/physcannon/physcannon_pickup.ogg", ply:GetPos())
         else
             return true
         end

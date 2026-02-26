@@ -96,7 +96,7 @@ ENT.BodySd = {"snpc/hunterarc/body_medium_impact_hard1.wav", "snpc/hunterarc/bod
 ENT.SoundTbl_Death = {"snpc/hunterarc/hunter_die2.wav", "snpc/hunterarc/hunter_die3.wav",}
 ENT.SoundTbl_BeforeMeleeAttack = {"snpc/hunterarc/hunter_prestrike1.wav"}
 ENT.SoundTbl_MeleeAttack = {"snpc/hunterarc/flechette_flesh_impact1.wav", "snpc/hunterarc/flechette_flesh_impact2.wav", "snpc/hunterarc/flechette_flesh_impact3.wav", "snpc/hunterarc/flechette_flesh_impact4.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"npc/zombie/claw_miss1.wav", "npc/zombie/claw_miss2.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"npc/zombie/claw_miss1.ogg", "npc/zombie/claw_miss2.ogg"}
 ENT.UseTheSameGeneralSoundPitch = true
 ENT.GeneralSoundPitch1 = 90
 ENT.GeneralSoundPitch2 = 95
@@ -355,7 +355,7 @@ end
 function ENT:CustomRangeAttackCode_BeforeProjectileSpawn(projectile)
 	local attid = self:LookupAttachment("minigunbase")
 	ParticleEffectAttach("hunter_muzzle_flash", 4, self, attid) --PATTACH_POINT_FOLLOW
-	self:EmitSound("snpc/hunterarc/ministrider_fire1.wav", 110, math.random(90, 110), 0.66, CHAN_WEAPON)
+	self:EmitSound("snpc/hunterarc/ministrider_fire1.ogg", 110, math.random(90, 110), 0.66, CHAN_WEAPON)
 end
 
 function ENT:RangeAttackCode_GetShootPos(projectile)

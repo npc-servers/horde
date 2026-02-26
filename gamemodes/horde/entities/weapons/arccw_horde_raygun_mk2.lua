@@ -264,22 +264,22 @@ sound.Add({
     channel = CHAN_STATIC,
     level = 100,
     sound = {
-        "^weapons/arccw/bo2_raygunmk2/fire1.wav",
-        "^weapons/arccw/bo2_raygunmk2/fire2.wav",
-        "^weapons/arccw/bo2_raygunmk2/fire3.wav",
+        "^weapons/arccw/bo2_raygunmk2/fire1.ogg",
+        "^weapons/arccw/bo2_raygunmk2/fire2.ogg",
+        "^weapons/arccw/bo2_raygunmk2/fire3.ogg",
     }
 })
 sound.Add({
     name = "ArcCW_BO2.RGMK2_In",
     channel = CHAN_ITEM,
     level = 70,
-    sound = "^weapons/arccw/bo2_raygunmk2/in.wav"
+    sound = "^weapons/arccw/bo2_raygunmk2/in.ogg"
 })
 sound.Add({
     name = "ArcCW_BO2.RGMK2_Out",
     channel = CHAN_ITEM,
     level = 70,
-    sound = "^weapons/arccw/bo2_raygunmk2/out.wav"
+    sound = "^weapons/arccw/bo2_raygunmk2/out.ogg"
 })
 sound.Add({
     name = "ArcCW_BO2.RGMK2_Raise",

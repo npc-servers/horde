@@ -19,7 +19,7 @@ SWEP.NPC_SecondaryFireEnt = "obj_vj_horde_cball"
 SWEP.NPC_SecondaryFireChance = 1
 SWEP.NPC_SecondaryFireDistance = 1500
 SWEP.NPC_SecondaryFireNext = VJ_Set(15, 18)
-SWEP.NPC_SecondaryFireSound = { ")weapons/irifle/irifle_fire2.wav" }
+SWEP.NPC_SecondaryFireSound = { ")weapons/irifle/irifle_fire2.ogg" }
 
 SWEP.HasDryFireSound = false
 
@@ -166,7 +166,7 @@ function SWEP:NPC_SecondaryFire()
 		phys:SetVelocity(owner:CalculateProjectile("Line", pos, owner.EnemyData.LastVisiblePos, 1000))
 	end
 
-	VJ_CreateSound(self, "weapons/irifle/irifle_fire2.wav", 100)
+	VJ_CreateSound(self, "weapons/irifle/irifle_fire2.ogg", 100)
 end
 
 

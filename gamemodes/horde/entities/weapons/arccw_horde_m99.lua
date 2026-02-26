@@ -244,47 +244,47 @@ sound.Add({
 	name = 			"KF_m99_Boltback",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_BoltBack.wav"
+	sound = 			"weapons/kf_m99/M99_Boltback.ogg"
 })
 sound.Add({
 	name = 			"KF_m99_Bullet_Insert",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_Bullet_Insert.wav"
+	sound = 			"weapons/kf_m99/m99_bullet_insert.ogg"
 })
 sound.Add({
 	name = 			"KF_m99_Select",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_Select.wav"
+	sound = 			"weapons/kf_m99/m99_select.ogg"
 })
 sound.Add({
 	name = 			"KF_m99_Boltforward",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_BoltForward.wav"
+	sound = 			"weapons/kf_m99/M99_Boltforward.ogg"
 })
 sound.Add({
 	name = 			"KF_m99_Bullet",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_Bullet.wav"
+	sound = 			"weapons/kf_m99/M99_bullet.ogg"
 })
 sound.Add({
 	name = 			"KF_m99_BoltDown",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_BoltDown.wav"
+	sound = 			"weapons/kf_m99/M99_Boltdown.ogg"
 })
 sound.Add({
 	name = 			"KF_m99_BoltUp",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m99/M99_BoltUp.wav"
+	sound = 			"weapons/kf_m99/M99_Boltup.ogg"
 })
 sound.Add({
 	name = 			"KF_m99.Fire",
 	channel = 		CHAN_WEAPON,
 	volume = 		1.0,
-	sound = 			{ "weapons/kf_m99/M99_Fire_S.wav"}
+	sound = 			{ "weapons/kf_m99/m99_fire_s.ogg"}
 })

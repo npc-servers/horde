@@ -83,7 +83,7 @@ SWEP.DistantShootSound = "weapons/arccw/ak47/ak47-1-distant.wav"
 SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/weapons/arccw/irifleshell.mdl"
 
-SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
+SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.ogg"
 SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
 SWEP.MeleeHitSound = "arccw_go/knife/knife_hitwall1.wav"
 SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"

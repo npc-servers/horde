@@ -41,12 +41,12 @@ ENT.MeleeAttackKnockBack_Forward2 = 130 -- How far it will push you forward | Se
 
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/fast_zombie/foot1.wav","npc/fast_zombie/foot2.wav","npc/fast_zombie/foot3.wav","npc/fast_zombie/foot4.wav"}
+ENT.SoundTbl_FootStep = {"npc/fast_zombie/foot1.ogg","npc/fast_zombie/foot2.ogg","npc/fast_zombie/foot3.ogg","npc/fast_zombie/foot4.wav"}
 ENT.SoundTbl_Breath = {"npc/fast_zombie/breathe_loop1.wav"}
 ENT.SoundTbl_Alert = {"npc/fast_zombie/fz_alert_close1.wav"}
-ENT.SoundTbl_MeleeAttack = {"npc/fast_zombie/claw_strike1.wav","npc/fast_zombie/claw_strike2.wav","npc/fast_zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttack = {"npc/fast_zombie/claw_strike1.ogg","npc/fast_zombie/claw_strike2.ogg","npc/fast_zombie/claw_strike3.ogg"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_LeapAttackDamage = {"npc/fast_zombie/claw_strike1.wav","npc/fast_zombie/claw_strike2.wav","npc/fast_zombie/claw_strike3.wav"}
+ENT.SoundTbl_LeapAttackDamage = {"npc/fast_zombie/claw_strike1.ogg","npc/fast_zombie/claw_strike2.ogg","npc/fast_zombie/claw_strike3.ogg"}
 ENT.SoundTbl_Pain = {"npc/fast_zombie/idle1.wav","npc/fast_zombie/idle2.wav","npc/fast_zombie/idle3.wav"}
 ENT.SoundTbl_Death = {"npc/fast_zombie/wake1.wav"}
 

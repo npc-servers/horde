@@ -142,7 +142,7 @@ function SWEP:Bash( melee2 )
         self.MeleeDamage = 130
         self.Melee2Damage = 0
         self.MeleeMissSound = {
-            "horde/weapons/crowbar/cbar_miss1.wav",
+            "horde/weapons/crowbar/cbar_miss1.ogg",
         }
     else
         self.MeleeDamage = 160

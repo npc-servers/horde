@@ -75,7 +75,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
         rocket:Launch()
     end
 
-    sound.Play("weapons/ar2/ar2_altfire.wav", ply:GetPos())
+    sound.Play("weapons/ar2/ar2_altfire.ogg", ply:GetPos())
     
     timer.Simple(5, function()
         if not rocket:IsValid() then return end

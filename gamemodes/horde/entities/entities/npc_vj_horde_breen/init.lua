@@ -63,7 +63,7 @@ ENT.AnimTbl_Flinch = {"Flinch"} -- If it uses normal based animation, use this
 -- Leave blank if you don't want any sounds to play
 
 
-ENT.SoundTbl_BeforeRangeAttack = {"npc/attack_helicopter/aheli_charge_up.wav"}
+ENT.SoundTbl_BeforeRangeAttack = {"npc/attack_helicopter/aheli_charge_up.ogg"}
 ENT.SoundTbl_FootStep = {"horde/gonome/gonome_step1.ogg","horde/gonome/gonome_step2.ogg","horde/gonome/gonome_step3.ogg","horde/gonome/gonome_step4.ogg"}
 ENT.SoundTbl_Idle = {"horde/gonome/gonome_idle1.ogg","horde/gonome/gonome_idle2.ogg", "vo/citadel/br_youneedme.wav", "vo/citadel/br_youfool.wav"}
 ENT.SoundTbl_MeleeAttack = {"horde/gonome/gonome_melee1.ogg","horde/gonome/gonome_melee2.ogg"}

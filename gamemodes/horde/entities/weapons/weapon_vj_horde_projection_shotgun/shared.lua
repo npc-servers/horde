@@ -43,7 +43,7 @@ SWEP.Secondary.Automatic = true -- Is it automatic?
 SWEP.Secondary.Ammo = "Buckshot" -- Ammo type
 	-- Reload Settings ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.HasReloadSound = true -- Does it have a reload sound? Remember even if this is set to false, the animation sound will still play!
-SWEP.ReloadSound = {"weapons/shotgun/shotgun_reload1.wav","weapons/shotgun/shotgun_reload2.wav","weapons/shotgun/shotgun_reload3.wav"}
+SWEP.ReloadSound = {"weapons/shotgun/shotgun_reload1.ogg","weapons/shotgun/shotgun_reload2.ogg","weapons/shotgun/shotgun_reload3.wav"}
 SWEP.Reload_TimeUntilAmmoIsSet = 0 -- Time until ammo is set to the weapon
 SWEP.Primary.Tracer = 0
 SWEP.Primary.DisableBulletCode = false

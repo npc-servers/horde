@@ -43,9 +43,9 @@ ENT.AnimTbl_MeleeAttack = {
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
-	")zsszombie/foot1.wav",
-	")zsszombie/foot2.wav",
-	")zsszombie/foot3.wav",
+	")zsszombie/foot1.ogg",
+	")zsszombie/foot2.ogg",
+	")zsszombie/foot3.ogg",
 	")zsszombie/foot4.wav"
 }
 ENT.SoundTbl_Idle = {
@@ -57,9 +57,9 @@ ENT.SoundTbl_Idle = {
 	")zsszombie/zombie_idle6.wav"
 }
 ENT.SoundTbl_Alert = {
-	")zsszombie/zombie_alert1.wav",
-	")zsszombie/zombie_alert2.wav",
-	")zsszombie/zombie_alert3.wav",
+	")zsszombie/zombie_alert1.ogg",
+	")zsszombie/zombie_alert2.ogg",
+	")zsszombie/zombie_alert3.ogg",
 	")zsszombie/zombie_alert4.wav"
 }
 ENT.SoundTbl_MeleeAttack = {
@@ -77,19 +77,19 @@ ENT.SoundTbl_MeleeAttackMiss = {
 	")zsszombie/miss4.wav"
 }
 ENT.SoundTbl_Pain = {
-	")zsszombie/zombie_pain1.wav",
-	")zsszombie/zombie_pain2.wav",
-	")zsszombie/zombie_pain3.wav",
-	")zsszombie/zombie_pain4.wav",
-	")zsszombie/zombie_pain5.wav",
-	")zsszombie/zombie_pain6.wav",
+	")zsszombie/zombie_pain1.ogg",
+	")zsszombie/zombie_pain2.ogg",
+	")zsszombie/zombie_pain3.ogg",
+	")zsszombie/zombie_pain4.ogg",
+	")zsszombie/zombie_pain5.ogg",
+	")zsszombie/zombie_pain6.ogg",
 	")zsszombie/zombie_pain7.wav",
 	")zsszombie/zombie_pain8.wav"
 }
 ENT.SoundTbl_Death = {
-	")zsszombie/zombie_die1.wav",
-	")zsszombie/zombie_die2.wav",
-	")zsszombie/zombie_die3.wav",
+	")zsszombie/zombie_die1.ogg",
+	")zsszombie/zombie_die2.ogg",
+	")zsszombie/zombie_die3.ogg",
 	")zsszombie/zombie_die4.wav",
 	")zsszombie/zombie_die5.wav",
 	")zsszombie/zombie_die6.wav"
@@ -100,52 +100,52 @@ ENT.FootStepSoundLevel = 65
 ENT.GeneralSoundPitch1 = 100
 
 local sdFootScuff = {
-	"npc/zombie/foot_slide1.wav",
-	"npc/zombie/foot_slide2.wav",
-	"npc/zombie/foot_slide3.wav"
+	"npc/zombie/foot_slide1.ogg",
+	"npc/zombie/foot_slide2.ogg",
+	"npc/zombie/foot_slide3.ogg"
 }
 local sdClassic_Idle = {
-	"npc/zombie/zombie_voice_idle1.wav",
-	"npc/zombie/zombie_voice_idle2.wav",
-	"npc/zombie/zombie_voice_idle3.wav",
-	"npc/zombie/zombie_voice_idle4.wav",
-	"npc/zombie/zombie_voice_idle5.wav",
-	"npc/zombie/zombie_voice_idle6.wav",
-	"npc/zombie/zombie_voice_idle7.wav",
-	"npc/zombie/zombie_voice_idle8.wav",
+	"npc/zombie/zombie_voice_idle1.ogg",
+	"npc/zombie/zombie_voice_idle2.ogg",
+	"npc/zombie/zombie_voice_idle3.ogg",
+	"npc/zombie/zombie_voice_idle4.ogg",
+	"npc/zombie/zombie_voice_idle5.ogg",
+	"npc/zombie/zombie_voice_idle6.ogg",
+	"npc/zombie/zombie_voice_idle7.ogg",
+	"npc/zombie/zombie_voice_idle8.ogg",
 	"npc/zombie/zombie_voice_idle9.wav",
-	"npc/zombie/zombie_voice_idle10.wav",
-	"npc/zombie/zombie_voice_idle11.wav",
-	"npc/zombie/zombie_voice_idle12.wav",
-	"npc/zombie/zombie_voice_idle13.wav",
-	"npc/zombie/zombie_voice_idle14.wav"
+	"npc/zombie/zombie_voice_idle10.ogg",
+	"npc/zombie/zombie_voice_idle11.ogg",
+	"npc/zombie/zombie_voice_idle12.ogg",
+	"npc/zombie/zombie_voice_idle13.ogg",
+	"npc/zombie/zombie_voice_idle14.ogg"
 }
 local sdClassic_Alert = {
-	"npc/zombie/zombie_alert1.wav",
-	"npc/zombie/zombie_alert2.wav",
-	"npc/zombie/zombie_alert3.wav"
+	"npc/zombie/zombie_alert1.ogg",
+	"npc/zombie/zombie_alert2.ogg",
+	"npc/zombie/zombie_alert3.ogg"
 }
 local sdClassic_BeforeMeleeAttack = {
-	"npc/zombie/zo_attack1.wav",
-	"npc/zombie/zo_attack2.wav"
+	"npc/zombie/zo_attack1.ogg",
+	"npc/zombie/zo_attack2.ogg"
 }
 local sdClassic_MeleeAttack = {
-	"npc/zombie/claw_strike1.wav",
-	"npc/zombie/claw_strike2.wav",
-	"npc/zombie/claw_strike3.wav"
+	"npc/zombie/claw_strike1.ogg",
+	"npc/zombie/claw_strike2.ogg",
+	"npc/zombie/claw_strike3.ogg"
 }
 local sdClassic_Pain = {
-	"npc/zombie/zombie_pain1.wav",
-	"npc/zombie/zombie_pain2.wav",
-	"npc/zombie/zombie_pain3.wav",
-	"npc/zombie/zombie_pain4.wav",
-	"npc/zombie/zombie_pain5.wav",
-	"npc/zombie/zombie_pain6.wav"
+	"npc/zombie/zombie_pain1.ogg",
+	"npc/zombie/zombie_pain2.ogg",
+	"npc/zombie/zombie_pain3.ogg",
+	"npc/zombie/zombie_pain4.ogg",
+	"npc/zombie/zombie_pain5.ogg",
+	"npc/zombie/zombie_pain6.ogg"
 }
 local sdClassic_Death = {
-	"npc/zombie/zombie_die1.wav",
-	"npc/zombie/zombie_die2.wav",
-	"npc/zombie/zombie_die3.wav"
+	"npc/zombie/zombie_die1.ogg",
+	"npc/zombie/zombie_die2.ogg",
+	"npc/zombie/zombie_die3.ogg"
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()

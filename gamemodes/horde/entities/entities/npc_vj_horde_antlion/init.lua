@@ -67,7 +67,7 @@ ENT.RangeAttackPos_Up = 75 -- Up/Down spawning position for range attack
 ENT.CanFlinch = 0
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/antlion/foot1.wav","npc/antlion/foot2.wav","npc/antlion/foot3.wav","npc/antlion/foot4.wav"}
+ENT.SoundTbl_FootStep = {"npc/antlion/foot1.ogg","npc/antlion/foot2.ogg","npc/antlion/foot3.ogg","npc/antlion/foot4.wav"}
 ENT.SoundTbl_Idle = {"npc/antlion/idle1.wav","npc/antlion/idle2.wav","npc/antlion/idle3.wav","npc/antlion/idle4.wav","npc/antlion/idle5.wav"}
 ENT.SoundTbl_Alert = {"npc/antlion/attack_double1.wav","npc/antlion/attack_double2.wav","npc/antlion/attack_double3.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {""}

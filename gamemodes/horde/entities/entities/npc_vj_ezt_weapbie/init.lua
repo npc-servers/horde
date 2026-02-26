@@ -46,16 +46,16 @@ ENT.ItemDropsOnDeath_EntityList = {"item_battery","horde_ammobox"}
 ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
 ENT.HasOnPlayerSightSounds = true -- If set to false, it won't play the saw player sounds
 ENT.IdleSounds_PlayOnAttacks = true -- It will be able to continue and play idle sounds when it performs an attack
-ENT.SoundTbl_FootStep = {"npc/xenbie/foot1.wav", "npc/xenbie/foot2.wav", "npc/xenbie/foot3.wav"}
-ENT.SoundTbl_Idle = {"npc/xenbie/zo_idle1.wav", "npc/xenbie/zo_idle2.wav", "npc/xenbie/zo_idle3.wav", "npc/xenbie/zo_idle4.wav", "npc/hevzombie/zvox2.wav", "npc/hevzombie/zvox3.wav", "npc/hevzombie/zvox4.wav", "npc/hevzombie/zvox5.wav", "npc/hevzombie/zvox6.wav", "npc/hevzombie/zvox7.wav", "npc/hevzombie/zvox8.wav", "npc/hevzombie/zvox9.wav", "npc/hevzombie/zvox13.wav", "npc/hevzombie/zvox14.wav", "npc/hevzombie/zvox15.wav"}
+ENT.SoundTbl_FootStep = {"npc/xenbie/foot1.ogg", "npc/xenbie/foot2.ogg", "npc/xenbie/foot3.ogg"}
+ENT.SoundTbl_Idle = {"npc/xenbie/zo_idle1.ogg", "npc/xenbie/zo_idle2.ogg", "npc/xenbie/zo_idle3.ogg", "npc/xenbie/zo_idle4.ogg", "npc/hevzombie/zvox2.ogg", "npc/hevzombie/zvox3.ogg", "npc/hevzombie/zvox4.ogg", "npc/hevzombie/zvox5.ogg", "npc/hevzombie/zvox6.ogg", "npc/hevzombie/zvox7.ogg", "npc/hevzombie/zvox8.ogg", "npc/hevzombie/zvox9.ogg", "npc/hevzombie/zvox13.ogg", "npc/hevzombie/zvox14.ogg", "npc/hevzombie/zvox15.ogg"}
 ENT.SoundTbl_Alert = {"npc/zombie_poison/pz_alert1.wav", "npc/zombie_poison/pz_alert2.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"npc/xenbie/zo_attack1.wav", "npc/xenbie/zo_attack2.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"npc/xenbie/claw_miss1.wav", "npc/xenbie/claw_miss2.wav"}
-ENT.SoundTbl_OnPlayerSight = {"npc/xenbie/zombie_alert1.wav", "npc/xenbie/zombie_alert2.wav", "npc/xenbie/zombie_alert3.wav"}
-ENT.SoundTbl_CombatIdle = {"npc/fast_zombie/fz_alert_close1.wav", "npc/hevzombie/zvox2.wav", "npc/hevzombie/zvox3.wav", "npc/hevzombie/zvox4.wav", "npc/hevzombie/zvox5.wav", "npc/hevzombie/zvox6.wav", "npc/hevzombie/zvox7.wav", "npc/hevzombie/zvox8.wav", "npc/hevzombie/zvox9.wav", "npc/hevzombie/zvox13.wav", "npc/hevzombie/zvox14.wav", "npc/hevzombie/zvox15.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"npc/xenbie/zo_attack1.ogg", "npc/xenbie/zo_attack2.ogg"}
+ENT.SoundTbl_MeleeAttackMiss = {"npc/xenbie/claw_miss1.ogg", "npc/xenbie/claw_miss2.ogg"}
+ENT.SoundTbl_OnPlayerSight = {"npc/xenbie/zombie_alert1.ogg", "npc/xenbie/zombie_alert2.ogg", "npc/xenbie/zombie_alert3.ogg"}
+ENT.SoundTbl_CombatIdle = {"npc/fast_zombie/fz_alert_close1.wav", "npc/hevzombie/zvox2.ogg", "npc/hevzombie/zvox3.ogg", "npc/hevzombie/zvox4.ogg", "npc/hevzombie/zvox5.ogg", "npc/hevzombie/zvox6.ogg", "npc/hevzombie/zvox7.ogg", "npc/hevzombie/zvox8.ogg", "npc/hevzombie/zvox9.ogg", "npc/hevzombie/zvox13.ogg", "npc/hevzombie/zvox14.ogg", "npc/hevzombie/zvox15.ogg"}
 ENT.SoundTbl_WeaponReload = {"npc/fast_zombie/fz_frenzy1.wav"}
-ENT.SoundTbl_Pain = {"npc/xenbie/zo_pain1.wav", "npc/xenbie/zo_pain2.wav", "npc/xenbie/zo_pain3.wav", "npc/xenbie/zo_pain4.wav", "npc/xenbie/zo_pain5.wav", "npc/xenbie/zo_pain7.wav", "npc/xenbie/zo_pain8.wav"}
-ENT.SoundTbl_Death = {"npc/xenbie/zombie_die1.wav", "npc/xenbie/zombie_die2.wav", "npc/xenbie/zombie_die3.wav"}
+ENT.SoundTbl_Pain = {"npc/xenbie/zo_pain1.wav", "npc/xenbie/zo_pain2.wav", "npc/xenbie/zo_pain3.ogg", "npc/xenbie/zo_pain4.ogg", "npc/xenbie/zo_pain5.ogg", "npc/xenbie/zo_pain7.ogg", "npc/xenbie/zo_pain8.ogg"}
+ENT.SoundTbl_Death = {"npc/xenbie/zombie_die1.ogg", "npc/xenbie/zombie_die2.ogg", "npc/xenbie/zombie_die3.ogg"}
 ENT.CombatIdleSoundChance = 1
 ENT.IdleSoundChance = 1
 ENT.NextSoundTime_Idle = {2, 3}
@@ -171,5 +171,5 @@ end
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnDeath_AfterCorpseSpawned(dmginfo, hitgroup, GetCorpse)
-	VJ_EmitSound(self, "npc/hevzombie/zvoxflatline.wav", 90, 100) --
+	VJ_EmitSound(self, "npc/hevzombie/zvoxflatline.ogg", 90, 100) --
 end

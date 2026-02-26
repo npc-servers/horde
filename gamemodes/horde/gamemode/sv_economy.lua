@@ -1027,7 +1027,7 @@ net.Receive("Horde_BuyItemUpgrade", function (len, ply)
         ply:Horde_AddMoney(-price)
         ply:Horde_SetUpgrade(class, ply:Horde_GetUpgrade(class) + 1)
         ply:Horde_SyncEconomy()
-        sound.Play("items/battery_pickup.wav", ply:GetPos())
+        sound.Play("items/battery_pickup.ogg", ply:GetPos())
         if class == "horde_pheropod" then
             ply:GetWeapon("horde_pheropod"):UpgradeReset()
         end

@@ -50,19 +50,19 @@ SWEP.Melee2Time = 1
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
 
 SWEP.MeleeSwingSound = {
-    "horde/weapons/crowbar/cbar_miss1.wav",
+    "horde/weapons/crowbar/cbar_miss1.ogg",
 }
 SWEP.MeleeMissSound = {
-    "horde/weapons/crowbar/cbar_miss1.wav",
+    "horde/weapons/crowbar/cbar_miss1.ogg",
 }
 SWEP.MeleeHitSound = {
     "weapons/crowbar/crowbar_impact1.wav",
     "weapons/crowbar/crowbar_impact2.wav",
 }
 SWEP.MeleeHitNPCSound = {
-    "horde/weapons/crowbar/cbar_hitbod1.wav",
-    "horde/weapons/crowbar/cbar_hitbod2.wav",
-    "horde/weapons/crowbar/cbar_hitbod3.wav",
+    "horde/weapons/crowbar/cbar_hitbod1.ogg",
+    "horde/weapons/crowbar/cbar_hitbod2.ogg",
+    "horde/weapons/crowbar/cbar_hitbod3.ogg",
 }
 
 SWEP.NotForNPCs = true

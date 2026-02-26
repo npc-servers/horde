@@ -43,16 +43,16 @@ ENT.DisableDefaultRangeAttackCode = true
 ENT.FootStepTimeRun = 0.25
 ENT.FootStepTimeWalk = 0.75
 
-ENT.SoundTbl_FootStep = {"npc/vort/vort_foot1.wav","npc/vort/vort_foot2.wav","npc/vort/vort_foot3.wav","npc/vort/vort_foot4.wav"}
+ENT.SoundTbl_FootStep = {"npc/vort/vort_foot1.ogg","npc/vort/vort_foot2.ogg","npc/vort/vort_foot3.ogg","npc/vort/vort_foot4.wav"}
 
 ENT.SoundTbl_Idle = {"vo/npc/vortigaunt/vortigese02.wav","vo/npc/vortigaunt/vortigese03.wav","vo/npc/vortigaunt/vortigese04.wav","vo/npc/vortigaunt/vortigese05.wav","vo/npc/vortigaunt/vortigese07.wav","vo/npc/vortigaunt/vortigese08.wav"}
 ENT.SoundTbl_IdleDialogue = {"vo/npc/vortigaunt/vques01.wav","vo/npc/vortigaunt/vques03.wav","vo/npc/vortigaunt/vques04.wav","vo/npc/vortigaunt/vques05.wav","vo/npc/vortigaunt/vques06.wav","vo/npc/vortigaunt/vques07.wav","vo/npc/vortigaunt/vques09.wav","vo/npc/vortigaunt/vques10.wav"}
 ENT.SoundTbl_IdleDialogueAnswer = {"vo/npc/vortigaunt/vanswer01.wav","vo/npc/vortigaunt/vanswer02.wav","vo/npc/vortigaunt/vanswer03.wav","vo/npc/vortigaunt/vanswer04.wav","vo/npc/vortigaunt/vanswer05.wav","vo/npc/vortigaunt/vanswer06.wav","vo/npc/vortigaunt/vanswer07.wav","vo/npc/vortigaunt/vanswer08.wav","vo/npc/vortigaunt/vanswer09.wav","vo/npc/vortigaunt/vanswer10.wav","vo/npc/vortigaunt/vanswer11.wav","vo/npc/vortigaunt/vanswer12.wav","vo/npc/vortigaunt/vanswer13.wav","vo/npc/vortigaunt/vanswer14.wav","vo/npc/vortigaunt/vanswer15.wav","vo/npc/vortigaunt/vanswer16.wav","vo/npc/vortigaunt/vanswer17.wav","vo/npc/vortigaunt/vanswer18.wav"}
 ENT.SoundTbl_CombatIdle = {"vo/npc/vortigaunt/vortigese02.wav","vo/npc/vortigaunt/vortigese03.wav","vo/npc/vortigaunt/vortigese04.wav","vo/npc/vortigaunt/vortigese05.wav","vo/npc/vortigaunt/vortigese07.wav","vo/npc/vortigaunt/vortigese08.wav"}
 ENT.SoundTbl_OnReceiveOrder = {"vo/npc/vortigaunt/affirmed.wav"}
-ENT.SoundTbl_FollowPlayer = {"vo/npc/vortigaunt/leadon.wav","vo/npc/vortigaunt/onward.wav","vo/npc/vortigaunt/yesforward.wav"}
-ENT.SoundTbl_UnFollowPlayer = {"vo/npc/vortigaunt/servebetterhere.wav","vo/npc/vortigaunt/willremain.wav"}
-ENT.SoundTbl_Alert = {"vo/npc/vortigaunt/caution.wav","vo/npc/vortigaunt/forward.wav","vo/npc/vortigaunt/standclear.wav","vo/npc/vortigaunt/ware.wav"}
+ENT.SoundTbl_FollowPlayer = {"vo/npc/vortigaunt/leadon.wav","vo/npc/vortigaunt/onward.wav","vo/npc/vortigaunt/yesforward.ogg"}
+ENT.SoundTbl_UnFollowPlayer = {"vo/npc/vortigaunt/servebetterhere.wav","vo/npc/vortigaunt/willremain.ogg"}
+ENT.SoundTbl_Alert = {"vo/npc/vortigaunt/caution.wav","vo/npc/vortigaunt/forward.ogg","vo/npc/vortigaunt/standclear.wav","vo/npc/vortigaunt/ware.wav"}
 ENT.SoundTbl_OnKilledEnemy = {"vo/npc/vortigaunt/passon.wav","vo/npc/vortigaunt/returntoall.wav","vo/npc/vortigaunt/returnvoid.wav","vo/npc/vortigaunt/tethercut.wav","vo/npc/vortigaunt/tothevoid.wav","vo/npc/vortigaunt/troubleus.wav","vo/npc/vortigaunt/undeserving.wav"}
 
 ENT.IdleSoundChance = 5

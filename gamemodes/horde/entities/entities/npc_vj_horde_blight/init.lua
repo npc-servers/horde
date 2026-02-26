@@ -21,13 +21,13 @@ ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch on
 ENT.AnimTbl_Flinch = {ACT_FLINCH_PHYSICS} -- If it uses normal based animation, use this
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/zombie/foot1.wav","npc/zombie/foot2.wav","npc/zombie/foot3.wav"}
-ENT.SoundTbl_Idle = {"npc/zombie/zombie_voice_idle1.wav","npc/zombie/zombie_voice_idle2.wav","npc/zombie/zombie_voice_idle3.wav","npc/zombie/zombie_voice_idle4.wav","npc/zombie/zombie_voice_idle5.wav","npc/zombie/zombie_voice_idle6.wav"}
-ENT.SoundTbl_Alert = {"npc/zombie/zombie_alert1.wav","npc/zombie/zombie_alert2.wav","npc/zombie/zombie_alert3.wav"}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/zo_attack1.wav","npc/zombie/zo_attack2.wav"}
+ENT.SoundTbl_FootStep = {"npc/zombie/foot1.ogg","npc/zombie/foot2.ogg","npc/zombie/foot3.ogg"}
+ENT.SoundTbl_Idle = {"npc/zombie/zombie_voice_idle1.ogg","npc/zombie/zombie_voice_idle2.ogg","npc/zombie/zombie_voice_idle3.ogg","npc/zombie/zombie_voice_idle4.ogg","npc/zombie/zombie_voice_idle5.ogg","npc/zombie/zombie_voice_idle6.ogg"}
+ENT.SoundTbl_Alert = {"npc/zombie/zombie_alert1.ogg","npc/zombie/zombie_alert2.ogg","npc/zombie/zombie_alert3.ogg"}
+ENT.SoundTbl_MeleeAttack = {"npc/zombie/zo_attack1.ogg","npc/zombie/zo_attack2.ogg"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"npc/zombie/zombie_pain1.wav","npc/zombie/zombie_pain2.wav","npc/zombie/zombie_pain3.wav","npc/zombie/zombie_pain4.wav","npc/zombie/zombie_pain5.wav","npc/zombie/zombie_pain6.wav"}
-ENT.SoundTbl_Death = {"npc/zombie/zombie_die1.wav","npc/zombie/zombie_die2.wav","npc/zombie/zombie_die3.wav"}
+ENT.SoundTbl_Pain = {"npc/zombie/zombie_pain1.ogg","npc/zombie/zombie_pain2.ogg","npc/zombie/zombie_pain3.ogg","npc/zombie/zombie_pain4.ogg","npc/zombie/zombie_pain5.ogg","npc/zombie/zombie_pain6.ogg"}
+ENT.SoundTbl_Death = {"npc/zombie/zombie_die1.ogg","npc/zombie/zombie_die2.ogg","npc/zombie/zombie_die3.ogg"}
 
 ENT.GeneralSoundPitch1 = 100
 ENT.GeneralSoundPitch2 = 100

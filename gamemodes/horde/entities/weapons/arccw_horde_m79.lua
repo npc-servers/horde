@@ -202,29 +202,29 @@ sound.Add({
 	name = 			"KF_m79_lift",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m79/M79_Reload_000.wav"
+	sound = 			"weapons/kf_m79/m79_reload_000.ogg"
 })
 sound.Add({
 	name = 			"KF_m79_magout",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m79/M79_Reload_022.wav"
+	sound = 			"weapons/kf_m79/m79_reload_022.ogg"
 })
 sound.Add({
 	name = 			"KF_m79_magin",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m79/M79_Reload_064.wav"
+	sound = 			"weapons/kf_m79/m79_reload_064.ogg"
 })
 sound.Add({
 	name = 			"KF_m79_swing",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_m79/M79_Reload_082.wav"
+	sound = 			"weapons/kf_m79/m79_reload_082.ogg"
 })
 sound.Add({
 	name = 			"KF_m79.Fire",
 	channel = 		CHAN_WEAPON,
 	volume = 		1.0,
-	sound = 			{ "weapons/kf_m79/M79_fireST01.wav", "weapons/kf_m79/M79_fireST02.wav", "weapons/kf_m79/M79_fireST03.wav"}
+	sound = 			{ "weapons/kf_m79/m79_firest01.ogg", "weapons/kf_m79/m79_firest02.ogg", "weapons/kf_m79/m79_firest03.ogg"}
 })

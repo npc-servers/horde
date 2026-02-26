@@ -21,7 +21,7 @@ SWEP.Spawnable					= true
 SWEP.AdminSpawnable				= false
 	-- NPC Settings ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.NPC_HasSecondaryFire = false -- Can the weapon have a secondary fire?
-SWEP.NPC_SecondaryFireSound = {"weapons/ar2/ar2_altfire.wav"} -- The sound it plays when the secondary fire is used
+SWEP.NPC_SecondaryFireSound = {"weapons/ar2/ar2_altfire.ogg"} -- The sound it plays when the secondary fire is used
 	-- Primary Fire ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.Primary.Damage				= 0 -- Damage
 SWEP.Primary.ClipSize			= 20 -- Max amount of bullets per clip
@@ -47,7 +47,7 @@ SWEP.Primary.DisableBulletCode = true
 function SWEP:CustomOnSecondaryAttack()
 	local owner = self:GetOwner()
 	owner:ViewPunch(Angle(-self.Primary.Recoil *3, 0, 0))
-	VJ_EmitSound(self, "weapons/ar2/ar2_altfire.wav", 85)
+	VJ_EmitSound(self, "weapons/ar2/ar2_altfire.ogg", 85)
 
 	local proj = ents.Create(self.NPC_SecondaryFireEnt)
 	proj:SetPos(owner:GetShootPos())

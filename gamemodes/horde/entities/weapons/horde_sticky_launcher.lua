@@ -43,7 +43,7 @@ SWEP.IdleTimer = CurTime()
 SWEP.Recoil = 0
 SWEP.RecoilTimer = CurTime()
 
-SWEP.Primary.Sound = Sound("horde/weapons/sticky_launcher/stickybomblauncher_shoot.wav")
+SWEP.Primary.Sound = Sound("horde/weapons/sticky_launcher/stickybomblauncher_shoot.ogg")
 SWEP.Primary.ClipSize = 8
 SWEP.Primary.DefaultClip = 32
 SWEP.Primary.Automatic = true
@@ -52,7 +52,7 @@ SWEP.Primary.TakeAmmo = 1
 SWEP.Primary.Delay = 0.6
 SWEP.Primary.Force = 1200
 
-SWEP.ReloadSound = Sound("horde/weapons/sticky_launcher/stickybomblauncher_reload.wav")
+SWEP.ReloadSound = Sound("horde/weapons/sticky_launcher/stickybomblauncher_reload.ogg")
 
 SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.DefaultClip = -1
@@ -184,7 +184,7 @@ function SWEP:SecondaryAttack()
             end
         end
         self.Stickies = {}
-        self.Owner:EmitSound("horde/weapons/sticky_launcher/stickybomblauncher_det.wav")
+        self.Owner:EmitSound("horde/weapons/sticky_launcher/stickybomblauncher_det.ogg")
     end
 end
 
@@ -204,7 +204,7 @@ end
 function SWEP:Think()
     if CLIENT then return end
     if self.Reloading == 1 and self.ReloadingTimer <= CurTime() and self.Weapon:Clip1() < self.Primary.ClipSize and self.Weapon:Ammo1() > 0 then
-        self.Owner:EmitSound("horde/weapons/sticky_launcher/stickybomblauncher_reload.wav")
+        self.Owner:EmitSound("horde/weapons/sticky_launcher/stickybomblauncher_reload.ogg")
         self.Weapon:SendWeaponAnim( ACT_VM_RELOAD )
         self.Weapon:SetClip1( self.Weapon:Clip1() + 1 )
         self.Owner:RemoveAmmo( 1, self.Primary.Ammo, false )

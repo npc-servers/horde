@@ -20,9 +20,9 @@ ENT.FootStepTimeRun = 0.8
 ENT.FootStepTimeWalk = 0.8
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
-	")zsszombie/foot1.wav",
-	")zsszombie/foot2.wav",
-	")zsszombie/foot3.wav",
+	")zsszombie/foot1.ogg",
+	")zsszombie/foot2.ogg",
+	")zsszombie/foot3.ogg",
 	")zsszombie/foot4.wav"
 }
 ENT.SoundTbl_Idle = {

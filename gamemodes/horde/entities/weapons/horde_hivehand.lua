@@ -13,9 +13,9 @@ name = "Weapon_HL_Hivehand.Single",
 channel = CHAN_WEAPON,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = { "horde/weapons/hornet/ag_fire1.wav",
-"horde/weapons/hornet/ag_fire2.wav",
-"horde/weapons/hornet/ag_fire3.wav" }
+sound = { "horde/weapons/hornet/ag_fire1.ogg",
+"horde/weapons/hornet/ag_fire2.ogg",
+"horde/weapons/hornet/ag_fire3.ogg" }
 } )
 sound.Add(
 {
@@ -23,9 +23,9 @@ name = "Weapon_HL_Hivehand.Buzz",
 channel = CHAN_ITEM,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = { "horde/hornet/ag_buzz1.wav",
-"horde/weapons/hornet/ag_buzz2.wav",
-"horde/weapons/hornet/ag_buzz3.wav" }
+sound = { "horde/hornet/ag_buzz1.ogg",
+"horde/weapons/hornet/ag_buzz2.ogg",
+"horde/weapons/hornet/ag_buzz3.ogg" }
 } )
 sound.Add(
 {
@@ -33,9 +33,9 @@ name = "Weapon_HL_Hivehand.Hit",
 channel = CHAN_ITEM,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = { "horde/weapons/hornet/ag_hornethit1.wav",
-"horde/weapons/hornet/ag_hornethit2.wav",
-"horde/weapons/hornet/ag_hornethit3.wav" }
+sound = { "horde/weapons/hornet/ag_hornethit1.ogg",
+"horde/weapons/hornet/ag_hornethit2.ogg",
+"horde/weapons/hornet/ag_hornethit3.ogg" }
 } )
 
 SWEP.PrintName = "Hivehand"
