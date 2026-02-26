@@ -136,11 +136,11 @@ end
 local function armorerDoGiveXp( armorer, armorGiven )
     if armorGiven < 0 then return end
 
-    if HORDE.current_wave <= 0 then return end
-    if HORDE:InBreak() then return end
-
     if not IsValid( armorer ) then return end
     if not armorer:IsPlayer() then return end
+
+    if HORDE.current_wave <= 0 then return end
+    if HORDE:InBreak() then return end
 
     local subclass = armorer:Horde_GetCurrentSubclass()
     if armorer:Horde_GetLevel( subclass ) >= maxLevel then return end
