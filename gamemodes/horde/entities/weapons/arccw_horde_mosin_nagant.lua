@@ -546,10 +546,10 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/mono_00.ogg",
-        "^weapons/arccw/waw_mosin/mono_01.ogg",
-        "^weapons/arccw/waw_mosin/mono_02.ogg",
-        "^weapons/arccw/waw_mosin/mono_03.ogg",
+        "^weapons/arccw/waw_mosin/mono_00.wav",
+        "^weapons/arccw/waw_mosin/mono_01.wav",
+        "^weapons/arccw/waw_mosin/mono_02.wav",
+        "^weapons/arccw/waw_mosin/mono_03.wav",
     }
 } )
 sound.Add( {
@@ -558,7 +558,7 @@ channel = CHAN_WEAPON,
 volume = 1.0,
 level = 100,
 sound = {
-    "^weapons/arccw/waw_mosin/ringoff.ogg",
+    "^weapons/arccw/waw_mosin/ringoff.wav",
 }
 } )
 sound.Add( {
@@ -567,7 +567,7 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/mech.ogg",
+        "^weapons/arccw/waw_mosin/mech.wav",
     }
 } )
 sound.Add( {
@@ -576,7 +576,7 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/up.ogg",
+        "^weapons/arccw/waw_mosin/up.wav",
     }
 } )
 sound.Add( {
@@ -585,7 +585,7 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/back.ogg",
+        "^weapons/arccw/waw_mosin/back.wav",
     }
 } )
 sound.Add( {
@@ -594,7 +594,7 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/fwd.ogg",
+        "^weapons/arccw/waw_mosin/fwd.wav",
     }
 } )
 sound.Add( {
@@ -603,7 +603,7 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/rechamber.ogg",
+        "^weapons/arccw/waw_mosin/rechamber.wav",
     }
 } )
 sound.Add( {
@@ -612,7 +612,7 @@ sound.Add( {
     volume = 0.5,
     level = 20,
     sound = {
-        "^weapons/arccw/waw_mosin/eject.ogg",
+        "^weapons/arccw/waw_mosin/eject.wav",
     }
 } )
 sound.Add( {
@@ -621,7 +621,7 @@ sound.Add( {
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/waw_mosin/bullet.ogg",
+        "^weapons/arccw/waw_mosin/bullet.wav",
     }
 } )
 

@@ -24,7 +24,7 @@ SWEP.Primary.ClipSize = 6
 SWEP.Primary.Ammo = "Buckshot"
 
 SWEP.Primary.DisableBulletCode = true
-SWEP.Primary.Sound = "^horde/weapons/plague/shotgun_fire.ogg"
+SWEP.Primary.Sound = "^horde/weapons/plague/shotgun_fire.wav"
 SWEP.Primary.SoundLevel = 140
 SWEP.Primary.SoundPitch	= VJ_Set( 100, 105 )
 SWEP.Primary.HasDistantSound = false

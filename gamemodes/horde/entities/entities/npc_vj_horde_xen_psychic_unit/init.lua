@@ -77,12 +77,12 @@ ENT.PushProps = true -- Should it push props when trying to move?
     -- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.SoundTbl_FootStep = {"horde/kingpin/kingpin_step01.ogg","horde/kingpin/kingpin_step02.ogg","horde/kingpin/kingpin_step03.ogg"}
-ENT.SoundTbl_Breath = {"horde/kingpin/kingpin_breath01.ogg","horde/kingpin/kingpin_breath02.ogg"}
-ENT.SoundTbl_Idle = {"horde/kingpin/kingpin_idle01.ogg","horde/kingpin/kingpin_idle02.ogg"}
-ENT.SoundTbl_Alert = {"horde/kingpin/kingpin_alert.ogg"}
+ENT.SoundTbl_Breath = {"horde/kingpin/kingpin_breath01.mp3","horde/kingpin/kingpin_breath02.mp3"}
+ENT.SoundTbl_Idle = {"horde/kingpin/kingpin_idle01.mp3","horde/kingpin/kingpin_idle02.mp3"}
+ENT.SoundTbl_Alert = {"horde/kingpin/kingpin_alert.mp3"}
 ENT.SoundTbl_BeforeMeleeAttack = {"horde/kingpin/kingpin_melee.ogg"}
 ENT.SoundTbl_MeleeAttackMiss = {"horde/kingpin/kingpin_meleemiss01.ogg","horde/kingpin/kingpin_meleemiss02.ogg"}
-ENT.SoundTbl_Pain = {"horde/kingpin/kingpin_injured01.ogg","horde/kingpin/kingpin_injured02.ogg","horde/kingpin/kingpin_injured03.ogg"}
+ENT.SoundTbl_Pain = {"horde/kingpin/kingpin_injured01.mp3","horde/kingpin/kingpin_injured02.mp3","horde/kingpin/kingpin_injured03.mp3"}
 ENT.SoundTbl_Death = {"horde/kingpin/kingpin_death01.ogg"}
 
 
@@ -111,7 +111,7 @@ function ENT:CustomOnInitialize()
 	--self:SetShieldPower(100)
 	--self:ActivateShield()
 	self.NextChangeTime = CurTime() + 15
-	self:EmitSound("horde/kingpin/kingpin_alert.ogg", 3000, 100, 2, CHAN_STATIC)
+	self:EmitSound("horde/kingpin/kingpin_alert.mp3", 3000, 100, 2, CHAN_STATIC)
 end
 
 function ENT:DisableShield()

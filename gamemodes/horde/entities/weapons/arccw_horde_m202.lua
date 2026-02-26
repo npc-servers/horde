@@ -274,10 +274,10 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_m202/fire1.ogg",
-        "^weapons/arccw/bo1_m202/fire2.ogg",
-        "^weapons/arccw/bo1_m202/fire3.ogg",
-        "^weapons/arccw/bo1_m202/fire4.ogg",
+        "^weapons/arccw/bo1_m202/fire1.wav",
+        "^weapons/arccw/bo1_m202/fire2.wav",
+        "^weapons/arccw/bo1_m202/fire3.wav",
+        "^weapons/arccw/bo1_m202/fire4.wav",
     }
 } )
 sound.Add( {
@@ -287,7 +287,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_m202/mech.ogg",
+        "^weapons/arccw/bo1_m202/mech.wav",
     }
 } )
 sound.Add( {
@@ -297,7 +297,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_m202/flip_sight.ogg",
+        "^weapons/arccw/bo1_m202/flip_sight.wav",
     }
 } )
 sound.Add( {
@@ -349,7 +349,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_m202/up.ogg",
+        "^weapons/arccw/bo1_m202/up.wav",
     }
 } )
 sound.Add( {
@@ -359,7 +359,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_m202/down.ogg",
+        "^weapons/arccw/bo1_m202/down.wav",
     }
 } )
 sound.Add( {

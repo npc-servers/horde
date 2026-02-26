@@ -229,7 +229,7 @@ net.Receive("Horde_BuySpellUpgrade", function (len, ply)
         ply:Horde_AddMoney(-price)
         ply:Horde_SetSpellUpgrade(class, ply:Horde_GetSpellUpgrade(class) + 1)
         ply:Horde_SyncEconomy()
-        sound.Play("items/battery_pickup.ogg", ply:GetPos())
+        sound.Play("items/battery_pickup.wav", ply:GetPos())
     end
 end)
 

@@ -297,28 +297,28 @@ sound.Add({
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
-    sound = "^weapons/arccw/bo1_chinalake/fire.ogg"
+    sound = "^weapons/arccw/bo1_chinalake/fire.wav"
 })
 sound.Add({
     name = "ArcCW_BO1.CL_Back",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
-    sound = "^weapons/arccw/bo1_chinalake/back.ogg"
+    sound = "^weapons/arccw/bo1_chinalake/back.wav"
 })
 sound.Add({
     name = "ArcCW_BO1.CL_Fwd",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
-    sound = "^weapons/arccw/bo1_chinalake/forward.ogg"
+    sound = "^weapons/arccw/bo1_chinalake/forward.wav"
 })
 sound.Add({
     name = "ArcCW_BO1.CL_Sight",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 100,
-    sound = "^weapons/arccw/bo1_chinalake/sight.ogg"
+    sound = "^weapons/arccw/bo1_chinalake/sight.wav"
 })
 sound.Add({
     name = "ArcCW_BO1.CL_Shell",
@@ -326,7 +326,7 @@ sound.Add({
     volume = 1.0,
     level = 100,
     sound = {
-        "^weapons/arccw/bo1_chinalake/load1.ogg",
-        "^weapons/arccw/bo1_chinalake/load2.ogg"
+        "^weapons/arccw/bo1_chinalake/load1.wav",
+        "^weapons/arccw/bo1_chinalake/load2.wav"
     }
 })

@@ -83,5 +83,5 @@ sound.Add({
     name = "ARCCW_GO_GRENADE.PullPin_Grenade",
     channel = 16,
     volume = 1.0,
-    sound = "arccw_go/hegrenade/pinpull.ogg"
+    sound = "arccw_go/hegrenade/pinpull.wav"
 })

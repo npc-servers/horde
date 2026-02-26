@@ -35,10 +35,10 @@ ENT.NextRangeAttackTime = 10 -- How much time until it can use a range attack?
 
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/zombie/foot1.ogg","npc/zombie/foot2.ogg","npc/zombie/foot3.ogg"}
+ENT.SoundTbl_FootStep = {"npc/zombie/foot1.wav","npc/zombie/foot2.wav","npc/zombie/foot3.wav"}
 --ENT.SoundTbl_Breath = {"npc/zombie_poison/pz_breathe_loop1.ogg"}
 ENT.SoundTbl_Alert = {"horde/bloodsquid/bc_attackgrowl1.ogg","horde/bloodsquid/bc_attackgrowl2.ogg","horde/bloodsquid/bc_attackgrowl3.ogg"}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.ogg","npc/zombie/claw_strike2.ogg","npc/zombie/claw_strike3.ogg"}
+ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 ENT.SoundTbl_Pain = {"horde/bloodsquid/bc_pain1.ogg","horde/bloodsquid/bc_pain2.ogg","horde/bloodsquid/bc_pain3.ogg"}
 ENT.SoundTbl_Death = {"horde/bloodsquid/bc_die1.ogg","horde/bloodsquid/bc_die2.ogg"}

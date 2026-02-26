@@ -30,9 +30,9 @@ ENT.LeapAttackVelocityUp = 200
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
-	")zsszombie/foot1.ogg",
-	")zsszombie/foot2.ogg",
-	")zsszombie/foot3.ogg",
+	")zsszombie/foot1.wav",
+	")zsszombie/foot2.wav",
+	")zsszombie/foot3.wav",
 	")zsszombie/foot4.wav"
 }
 ENT.SoundTbl_Idle = {
@@ -43,9 +43,9 @@ ENT.SoundTbl_Idle = {
 ENT.SoundTbl_Alert = "npc/fast_zombie/fz_alert_close1.wav"
 ENT.SoundTbl_BeforeMeleeAttack = "npc/fast_zombie/leap1.wav"
 ENT.SoundTbl_MeleeAttack = {
-	"npc/zombie/claw_strike1.ogg",
-	"npc/zombie/claw_strike2.ogg",
-	"npc/zombie/claw_strike3.ogg"
+	"npc/zombie/claw_strike1.wav",
+	"npc/zombie/claw_strike2.wav",
+	"npc/zombie/claw_strike3.wav"
 }
 ENT.SoundTbl_MeleeAttackMiss = {
 	"zsszombie/miss1.wav",
@@ -58,9 +58,9 @@ ENT.SoundTbl_LeapAttackJump = {
 	"npc/fast_zombie/leap1.wav"
 }
 ENT.SoundTbl_LeapAttackDamage = {
-	"npc/zombie/claw_strike1.ogg",
-	"npc/zombie/claw_strike2.ogg",
-	"npc/zombie/claw_strike3.ogg"
+	"npc/zombie/claw_strike1.wav",
+	"npc/zombie/claw_strike2.wav",
+	"npc/zombie/claw_strike3.wav"
 }
 ENT.SoundTbl_Pain = "npc/fast_zombie/fz_frenzy1.wav"
 ENT.SoundTbl_Death = "npc/fast_zombie/wake1.wav"

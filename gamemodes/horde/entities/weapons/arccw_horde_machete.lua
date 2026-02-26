@@ -55,21 +55,21 @@ SWEP.Melee2Time = 1.1
 SWEP.Melee2Gesture = ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2
 
 SWEP.MeleeSwingSound = {
-    "horde/weapons/machete/machete_swing_miss1.ogg",
-    "horde/weapons/machete/machete_swing_miss2.ogg"
+    "horde/weapons/machete/machete_swing_miss1.mp3",
+    "horde/weapons/machete/machete_swing_miss2.mp3"
 }
 SWEP.MeleeMissSound = {
-    "horde/weapons/machete/machete_swing_miss1.ogg",
-    "horde/weapons/machete/machete_swing_miss2.ogg"
+    "horde/weapons/machete/machete_swing_miss1.mp3",
+    "horde/weapons/machete/machete_swing_miss2.mp3"
 }
 SWEP.MeleeHitSound = {
-    "horde/weapons/machete/machete_impact_world1.ogg",
-    "horde/weapons/machete/machete_impact_world2.ogg"
+    "horde/weapons/machete/machete_impact_world1.mp3",
+    "horde/weapons/machete/machete_impact_world2.mp3"
 }
 SWEP.MeleeHitNPCSound = {
-    "horde/weapons/machete/melee_machete_01.ogg",
-    "horde/weapons/machete/melee_machete_02.ogg",
-    "horde/weapons/machete/melee_machete_03.ogg"
+    "horde/weapons/machete/melee_machete_01.mp3",
+    "horde/weapons/machete/melee_machete_02.mp3",
+    "horde/weapons/machete/melee_machete_03.mp3"
 }
 
 SWEP.NotForNPCs = true
