@@ -217,23 +217,23 @@ sound.Add({
 	name = 			"KF_m32_open",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 		"horde/weapons/gl/m32_reload_000.ogg"
+	sound = 		"horde/weapons/gl/M32_Reload_000.mp3"
 })
 sound.Add({
 	name = 			"KF_m32_close",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 		"horde/weapons/gl/m32_reload_280.ogg"
+	sound = 		"horde/weapons/gl/M32_Reload_280.mp3"
 })
 sound.Add({
 	name = 			"KF_m32_insert",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 		"horde/weapons/gl/M32_Reload_049.ogg"
+	sound = 		"horde/weapons/gl/M32_Reload_049.mp3"
 })
 sound.Add({
 	name = 			"KF_m32.Fire",
 	channel = 		CHAN_WEAPON,
 	volume = 		1.0,
-	sound = 		"horde/weapons/gl/fire.ogg"
+	sound = 		"horde/weapons/gl/fire.mp3"
 })

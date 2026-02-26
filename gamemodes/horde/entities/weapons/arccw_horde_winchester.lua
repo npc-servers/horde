@@ -316,14 +316,14 @@ sound.Add({
     name = "Weapon_73.Pump",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/winchester1873/w73pump.ogg"
+    sound = "weapons/arccw/winchester1873/w73pump.mp3"
 })
 
 sound.Add({
     name = "Weapon_73.Insertshell",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/winchester1873/w73insertshell.ogg"
+    sound = "weapons/arccw/winchester1873/w73insertshell.mp3"
 })
 if not ArcCWInstalled then return end
 if CLIENT then
