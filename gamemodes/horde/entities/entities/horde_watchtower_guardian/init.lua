@@ -83,7 +83,7 @@ function ENT:Think()
     if curTime >= self.Horde_NextShockAttack + self.Horde_ShockAttackInterval then
         for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
             if ent:IsValid() and ent:IsPlayer() then
-                ent:SetArmor(math.min(ent:GetMaxArmor(), ent:Armor() + 1))
+                ent:Horde_GiveArmor(1, self.Horde_Owner)
             end
         end
         self.Horde_NextShockAttack = curTime
