@@ -30,8 +30,7 @@ local function DrawTextWithShadow(text, font, x, y, col, align_x, align_y)
     if not col then col = color_white end
     if not align_x then align_x = TEXT_ALIGN_LEFT end
     if not align_y then align_y = TEXT_ALIGN_TOP end
-    draw.SimpleText(text, font, x, y, col, align_x, align_y)
-    draw.TextShadow({text=text, font=font, pos = {x,y}, xalign = align_x, yalign = align_y, color=col}, ScreenScale(1), 100)
+    draw.SimpleTextOutlined(text, font, x, y, col, align_x, align_y, 1, Color(0, 0, 0, 200))
 end
 
 local function drawCircularProgress(x, y, radius, progress, thickness, color)
@@ -326,8 +325,12 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
     local icon_x = airgap + ScreenScale(34)
     local icon_y = ScrH() - airgap - ScreenScale(31)
     if GetConVarNumber("horde_enable_health_gui") == 1 then
-        draw.RoundedBox(10, airgap, ScrH() - ScreenScale(33) - airgap, airgap + ScreenScale(25), ScreenScale(26) + airgap, Color(40,40,40,150))
-        draw.RoundedBox(10, airgap, ScrH() - ScreenScale(33) - airgap, airgap + ScreenScale(70), ScreenScale(26) + airgap, Color(40,40,40,150))
+        -- Panel
+        local panelX = airgap
+        local panelW = ScreenScale(118)
+        local panelH = ScreenScale(36) + airgap
+        local panelY = ScrH() - panelH - airgap
+        draw.RoundedBox(8, panelX, panelY, panelW, panelH, Color(20, 20, 20, 180))
 
         -- Draw Class
         local curClass = MySelf:Horde_GetCurrentSubclass()
@@ -342,21 +345,21 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         local exp = MySelf:Horde_GetExp(display_name)
         local expToNext = HORDE:GetExpToNextLevel(level + 1)
         local rank, rank_level = HORDE:LevelToRank(level)
-        local class_icon_s = ScreenScale(24)
-        local class_icon_x = airgap + ScreenScale(4)
-        local class_icon_y = ScrH() - airgap - ScreenScale(28)
-        drawCircularProgress(class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, class_icon_s * 0.48, exp / expToNext, 3, Color(0,136,199))
+        local class_icon_s = ScreenScale(26)
+        local class_icon_x = panelX + ScreenScale(4)
+        local class_icon_y = panelY + (panelH - class_icon_s) / 2
+        drawCircularProgress(class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, class_icon_s * 0.52, exp / expToNext, 3, Color(0,136,199))
         surface.SetMaterial(class_icon)
         surface.SetDrawColor(HORDE.Rank_Colors[rank])
         surface.DrawTexturedRect(class_icon_x, class_icon_y, class_icon_s, class_icon_s)
         if rank == HORDE.Rank_Master then
-            draw.SimpleText(rank_level, "Trebuchet18", class_icon_x, class_icon_y, HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            draw.SimpleText(rank_level, "Trebuchet18", class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         else
             if rank_level > 0 then
                 local star = Material("star.png", "mips smooth")
                 surface.SetMaterial(star)
                 local x_pos = class_icon_x
-                local y_pos = class_icon_y + ScreenScale(12)
+                local y_pos = class_icon_y + ScreenScale(13)
                 for i = 0, rank_level - 1 do
                     surface.DrawTexturedRect(x_pos - ScreenScale(3), y_pos, ScreenScale(4), ScreenScale(4))
                     y_pos = y_pos - ScreenScale(3)
@@ -364,44 +367,81 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
             end
         end
 
-        if MySelf:Health() <= 30 then
-            colhp = Color(150, 0, 0)
-        elseif MySelf:Health() < 50 then
-            colhp = Color(255, 185, 185)
-        end
-
+        -- Smooth lerp health/armor/mind values
         local use_mind = MySelf:Horde_GetMaxMind() > 0
         if MySelf:Alive() then
-            vhp = MySelf:Health()
+            vhp   = Lerp(FrameTime() * 10, vhp, MySelf:Health())
             if use_mind then
-                vmind = MySelf:Horde_GetMind()
+                vmind  = Lerp(FrameTime() * 10, vmind, MySelf:Horde_GetMind())
             else
-                varmor = MySelf:Armor()
+                varmor = Lerp(FrameTime() * 10, varmor, MySelf:Armor())
             end
         else
-            vhp = 0
-            varmor = 0
+            vhp   = Lerp(FrameTime() * 10, vhp, 0)
+            varmor = Lerp(FrameTime() * 10, varmor, 0)
+            vmind  = Lerp(FrameTime() * 10, vmind, 0)
         end
 
+        local maxhp = math.max(MySelf:GetMaxHealth(), 1)
+        local hpPct = math.Clamp(vhp / maxhp, 0, 1)
 
-        local icon_s = ScreenScale(15)
-
-        surface.SetMaterial(hp)
-        surface.SetDrawColor(colhp)
-        surface.DrawTexturedRect(icon_x, icon_y, icon_s, icon_s)
-
-        if use_mind then
-            surface.SetMaterial(mind)
-            draw.SimpleText(tostring(math.Round(vmind)), font, icon_x + icon_s + ScreenScale(1), icon_y + ScreenScale(14), color_white)
+        -- HP bar color: green → yellow → red, low-HP pulse
+        local function LerpCol(t, a, b)
+            return Color(a.r + (b.r - a.r) * t, a.g + (b.g - a.g) * t, a.b + (b.b - a.b) * t)
+        end
+        local hpColor
+        if hpPct > 0.6 then
+            hpColor = LerpCol(math.Remap(hpPct, 0.6, 1.0, 0, 1), Color(200, 200, 50), Color(70, 200, 70))
+        elseif hpPct > 0.3 then
+            hpColor = LerpCol(math.Remap(hpPct, 0.3, 0.6, 0, 1), Color(210, 70, 50), Color(200, 200, 50))
         else
-            surface.SetMaterial(armor)
-            draw.SimpleText(tostring(math.Round(varmor)), font, icon_x + icon_s + ScreenScale(1), icon_y + ScreenScale(14), color_white)
+            local pulse = 0.65 + 0.35 * math.abs(math.sin(CurTime() * 4))
+            hpColor = Color(math.floor(210 * pulse), math.floor(40 * pulse), 40)
         end
+        colhp = hpColor
 
-        surface.SetDrawColor(color_white)
-        surface.DrawTexturedRect(icon_x, icon_y + ScreenScale(14), icon_s, icon_s)
+        -- Bar layout
+        local icon_s = ScreenScale(10)
+        local barX  = class_icon_x + class_icon_s + ScreenScale(4)
+        local barW  = (panelX + panelW) - barX - icon_s - ScreenScale(8)
+        local barH  = ScreenScale(10)
+        local barGap = ScreenScale(6)
+        local barY_hp  = panelY + (panelH - barH * 2 - barGap) / 2
+        local barY_sec = barY_hp + barH + barGap
 
-        draw.SimpleText(tostring(math.Round(vhp)), font, icon_x + icon_s + ScreenScale(1), icon_y - ScreenScale(0.5), colhp)
+        -- HP row
+        draw.RoundedBox(4, barX, barY_hp, barW, barH, Color(10, 10, 10, 220))
+        if hpPct > 0 then
+            draw.RoundedBox(4, barX, barY_hp, math.max(barW * hpPct, ScreenScale(1)), barH, hpColor)
+        end
+        DrawTextWithShadow(math.Round(vhp) .. " / " .. maxhp, "HealthInfo2", barX + barW / 2, barY_hp + barH / 2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        surface.SetMaterial(hp)
+        surface.SetDrawColor(hpColor)
+        surface.DrawTexturedRect(barX + barW + ScreenScale(4), barY_hp + (barH - icon_s) / 2, icon_s, icon_s)
+
+        -- Armor / Mind row
+        local secVal, secMax, secColor, secMat
+        if use_mind then
+            secVal   = vmind
+            secMax   = math.max(MySelf:Horde_GetMaxMind(), 1)
+            secColor = Color(90, 150, 240)
+            secMat   = mind
+        else
+            secVal   = varmor
+            secMax   = 100
+            secColor = Color(120, 195, 235)
+            secMat   = armor
+        end
+        local secPct = math.Clamp(secVal / secMax, 0, 1)
+
+        draw.RoundedBox(4, barX, barY_sec, barW, barH, Color(10, 10, 10, 220))
+        if secPct > 0 then
+            draw.RoundedBox(4, barX, barY_sec, math.max(barW * secPct, ScreenScale(1)), barH, secColor)
+        end
+        DrawTextWithShadow(math.Round(secVal) .. " / " .. secMax, "HealthInfo2", barX + barW / 2, barY_sec + barH / 2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        surface.SetMaterial(secMat)
+        surface.SetDrawColor(secColor)
+        surface.DrawTexturedRect(barX + barW + ScreenScale(4), barY_sec + (barH - icon_s) / 2, icon_s, icon_s)
     end
 
     if GetConVarNumber("horde_enable_ammo_gui") == 1 then
