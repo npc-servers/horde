@@ -4,12 +4,6 @@ include( "shared.lua" )
 
 ENT.CleanupPriority = 2
 
-local mages = {
-    ["Warlock"] = true,
-    ["Necromancer"] = true,
-    ["Artificer"] = true,
-}
-
 local expMultiConvar = GetConVar( "horde_experience_multiplier" )
 local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
 local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
@@ -54,18 +48,14 @@ function ENT:StartTouch( entity )
     if not entity:Alive() then return end
     if not entity:IsPlayer() then return end
 
-    local class = entity:Horde_GetCurrentSubclass()
+    local maxMind = entity:Horde_GetMaxMind()
     local shouldRemove = false
 
-    if mages[class] then
-        local maxMind = entity:Horde_GetMaxMind()
+    if maxMind > 0 then
+        local mind = entity:Horde_GetMind()
+        entity:Horde_SetMind( math.min( maxMind, mind + maxMind * 0.1 ) )
 
-        if maxMind > 0 then
-            local mind = entity:Horde_GetMind()
-            entity:Horde_SetMind( math.min( maxMind, mind + maxMind * 0.1 ) )
-
-            shouldRemove = shouldRemove or mind < maxMind
-        end
+        shouldRemove = shouldRemove or mind < maxMind
     else
         for _, wpn in pairs( entity:GetWeapons() ) do
             local ammo_id = wpn:GetPrimaryAmmoType()
