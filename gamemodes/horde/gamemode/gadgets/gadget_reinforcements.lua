@@ -18,7 +18,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     if ply:Horde_GetGadget() ~= "gadget_reinforcements" then return end
     if IsValid(ply.Horde_overlord_reinforcements) then return true end
     
-    sound.Play("horde/player/overlord/projection.mp3", ply:GetPos(), 100, math.random(80, 120))
+    sound.Play("horde/player/overlord/projection.ogg", ply:GetPos(), 100, math.random(80, 120))
     
     ply.Horde_overlord_reinforcements = ents.Create("npc_vj_horde_overlord_projection")
     ply.Horde_overlord_reinforcements:SetPos(ply:GetPos() + ply:GetRight() * -45 + ply:GetForward() * 45 + Vector(0, 0, 20))
