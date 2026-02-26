@@ -411,7 +411,7 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
 
         -- HP row
         draw.RoundedBox(4, barX, barY_hp, barW, barH, Color(10, 10, 10, 220))
-        if hpPct > 0 then
+        if math.Round(vhp) > 0 then
             draw.RoundedBox(4, barX, barY_hp, math.max(barW * hpPct, ScreenScale(1)), barH, hpColor)
         end
         DrawTextWithShadow(math.Round(vhp) .. " / " .. maxhp, "HealthInfo2", barX + barW / 2, barY_hp + barH / 2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -435,7 +435,7 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         local secPct = math.Clamp(secVal / secMax, 0, 1)
 
         draw.RoundedBox(4, barX, barY_sec, barW, barH, Color(10, 10, 10, 220))
-        if secPct > 0 then
+        if math.Round(secVal) > 0 then
             draw.RoundedBox(4, barX, barY_sec, math.max(barW * secPct, ScreenScale(1)), barH, secColor)
         end
         DrawTextWithShadow(math.Round(secVal) .. " / " .. secMax, "HealthInfo2", barX + barW / 2, barY_sec + barH / 2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
