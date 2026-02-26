@@ -156,7 +156,7 @@ PERK.Hooks.Horde_UseActivePerk = function(ply)
         rocket:Launch()
     end
 
-    sound.Play("weapons/ar2/ar2_altfire.wav", ply:GetPos())
+    sound.Play("weapons/ar2/ar2_altfire.ogg", ply:GetPos())
 end
 
 PERK.Hooks.DoPlayerDeath = function (ply)

@@ -248,46 +248,46 @@ sound.Add({
     volume = 1.0,
     level = 100,
     --pitch = {95, 110},
-    sound = "^weapons/arccw/bo1_raygun/fire.wav"
+    sound = "^weapons/arccw/bo1_raygun/fire.ogg"
 })
 sound.Add({
     name = "ArcCW_BO1.RayGun_In",
     channel = CHAN_ITEM,
     level = 70,
-    sound = "^weapons/arccw/bo1_raygun/in.wav"
+    sound = "^weapons/arccw/bo1_raygun/in.ogg"
 })
 
 sound.Add({
     name = "ArcCW_BO1.RayGun_Out",
     channel = CHAN_ITEM,
     level = 70,
-    sound = "^weapons/arccw/bo1_raygun/out.wav"
+    sound = "^weapons/arccw/bo1_raygun/out.ogg"
 })
 
 sound.Add({
     name = "ArcCW_BO1.RayGun_Open",
     channel = CHAN_ITEM,
     level = 70,
-    sound = "^weapons/arccw/bo1_raygun/open.wav"
+    sound = "^weapons/arccw/bo1_raygun/open.ogg"
 })
 
 sound.Add({
     name = "ArcCW_BO1.RayGun_Close",
     channel = CHAN_ITEM,
     level = 70,
-    sound = "^weapons/arccw/bo1_raygun/close.wav"
+    sound = "^weapons/arccw/bo1_raygun/close.ogg"
 })
 
 sound.Add({
     name = "ArcCW_BO1.RayGun_Obtain",
     channel = CHAN_USER_BASE + 1,
     level = 100,
-    sound = "^weapons/arccw/bo1_raygun/obtain.wav"
+    sound = "^weapons/arccw/bo1_raygun/obtain.ogg"
 })
 
 sound.Add({
     name = "ArcCW_BO1.RayGun_Splash",
     channel = CHAN_USER_BASE + 1,
     level = 70,
-    sound = "^weapons/arccw/bo1_raygun/splash.wav"
+    sound = "^weapons/arccw/bo1_raygun/splash.ogg"
 })

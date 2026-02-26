@@ -26,7 +26,7 @@ SWEP.Primary.ClipSize = 1
 SWEP.Primary.Ammo = "RPG_Round"
 
 SWEP.Primary.DisableBulletCode = true
-SWEP.Primary.Sound = "^horde/weapons/plague/rpg_fire.wav"
+SWEP.Primary.Sound = "^horde/weapons/plague/rpg_fire.ogg"
 SWEP.Primary.SoundLevel = 140
 SWEP.Primary.SoundPitch	= VJ_Set( 100, 105 )
 SWEP.Primary.HasDistantSound = false

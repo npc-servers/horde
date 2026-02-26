@@ -505,11 +505,11 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/fire1.wav",
-        "^weapons/arccw/bo1_skorpion/fire2.wav",
-        "^weapons/arccw/bo1_skorpion/fire3.wav",
-        "^weapons/arccw/bo1_skorpion/fire4.wav",
-        "^weapons/arccw/bo1_skorpion/fire5.wav",
+        "^weapons/arccw/bo1_skorpion/fire1.ogg",
+        "^weapons/arccw/bo1_skorpion/fire2.ogg",
+        "^weapons/arccw/bo1_skorpion/fire3.ogg",
+        "^weapons/arccw/bo1_skorpion/fire4.ogg",
+        "^weapons/arccw/bo1_skorpion/fire5.ogg",
     }
 } )
 sound.Add( {
@@ -519,7 +519,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/ringoff_f.wav",
+        "^weapons/arccw/bo1_skorpion/ringoff_f.ogg",
     }
 } )
 sound.Add( {
@@ -529,7 +529,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/ringoff_r.wav",
+        "^weapons/arccw/bo1_skorpion/ringoff_r.ogg",
     }
 } )
 sound.Add( {
@@ -539,7 +539,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/in.wav",
+        "^weapons/arccw/bo1_skorpion/in.ogg",
     }
 } )
 sound.Add( {
@@ -549,7 +549,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/out.wav",
+        "^weapons/arccw/bo1_skorpion/out.ogg",
     }
 } )
 sound.Add( {
@@ -559,7 +559,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/pull.wav",
+        "^weapons/arccw/bo1_skorpion/pull.ogg",
     }
 } )
 sound.Add( {
@@ -569,7 +569,7 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/fwd.wav",
+        "^weapons/arccw/bo1_skorpion/fwd.ogg",
     }
 } )
 sound.Add( {
@@ -579,6 +579,6 @@ sound.Add( {
     level = 100,
     --pitch = {95, 110},
     sound = {
-        "^weapons/arccw/bo1_skorpion/futz.wav",
+        "^weapons/arccw/bo1_skorpion/futz.ogg",
     }
 } )

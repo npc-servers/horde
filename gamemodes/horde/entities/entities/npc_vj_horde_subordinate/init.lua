@@ -30,15 +30,15 @@ ENT.AnimTbl_MeleeAttack = {
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
-	")zsszombie/foot1.wav",
-	")zsszombie/foot2.wav",
-	")zsszombie/foot3.wav",
+	")zsszombie/foot1.ogg",
+	")zsszombie/foot2.ogg",
+	")zsszombie/foot3.ogg",
 	")zsszombie/foot4.wav"
 }
 ENT.SoundTbl_MeleeAttack = {
-	"npc/zombie/claw_strike1.wav",
-	"npc/zombie/claw_strike2.wav",
-	"npc/zombie/claw_strike3.wav"
+	"npc/zombie/claw_strike1.ogg",
+	"npc/zombie/claw_strike2.ogg",
+	"npc/zombie/claw_strike3.ogg"
 }
 ENT.SoundTbl_MeleeAttackMiss = {
 	")zsszombie/miss1.wav",
@@ -52,9 +52,9 @@ ENT.FootStepSoundLevel = 65
 ENT.GeneralSoundPitch1 = 100
 
 local sdFootScuff = {
-	"npc/zombie/foot_slide1.wav",
-	"npc/zombie/foot_slide2.wav",
-	"npc/zombie/foot_slide3.wav"
+	"npc/zombie/foot_slide1.ogg",
+	"npc/zombie/foot_slide2.ogg",
+	"npc/zombie/foot_slide3.ogg"
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local entMeta = FindMetaTable( "Entity" )

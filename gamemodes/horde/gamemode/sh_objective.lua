@@ -48,7 +48,7 @@ end
 function plymeta:Horde_SetPayloadSpawn(payload)
     self.Horde_Payload_Spawn = payload
     HORDE:SendNotificationObjective(HORDE.OBJECTIVE_PAYLOAD, self:Name():sub(1,20) .. " picked up " .. (payload.Horde_Payload_Label or "the payload") .."!")
-    sound.Play("horde/objective/gunpickup2.wav", self:GetPos())
+    sound.Play("horde/objective/gunpickup2.ogg", self:GetPos())
 
     net.Start("Horde_SyncStatus")
         net.WriteUInt(HORDE.Status_HasPayload, 8)

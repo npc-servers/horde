@@ -34,19 +34,19 @@ ENT.SoundTbl_FootStep = {
 	"npc/zombine/gear3.wav"
 }
 ENT.SoundTbl_Combat_Idle = {
-	"npc/combine_soldier/assault1.wav",
-	"npc/combine_soldier/assault2.wav",
-	"npc/combine_soldier/assault3.wav"
+	"npc/combine_soldier/assault1.ogg",
+	"npc/combine_soldier/assault2.ogg",
+	"npc/combine_soldier/assault3.ogg"
 }
 ENT.SoundTbl_Alert = {
-	"npc/combine_soldier/go_alert1.wav",
-	"npc/combine_soldier/go_alert2.wav",
-	"npc/combine_soldier/go_alert3.wav"
+	"npc/combine_soldier/go_alert1.ogg",
+	"npc/combine_soldier/go_alert2.ogg",
+	"npc/combine_soldier/go_alert3.ogg"
 }
 ENT.SoundTbl_GrenadeAttack = {
-	"npc/combine_soldier/throw_grenade1.wav",
-	"npc/combine_soldier/throw_grenade2.wav",
-	"npc/combine_soldier/throw_grenade3.wav"
+	"npc/combine_soldier/throw_grenade1.ogg",
+	"npc/combine_soldier/throw_grenade2.ogg",
+	"npc/combine_soldier/throw_grenade3.ogg"
 }
 ENT.SoundTbl_Pain = {
 	"npc/zombine/zombine_pain1.wav",
@@ -66,10 +66,10 @@ ENT.GeneralSoundPitch1 = 100
 ENT.NextSummonTime = CurTime()
 ENT.NextSummonCooldown = 15
 
-local sdCombine_Radio_On = "npc/combine_soldier/clik.wav"
-local sdCombine_Radio_Off = "npc/combine_soldier/click_off.wav"
-local sdPlague_Summon = "npc/combine_soldier/go.wav"
-local sdPlague_Die = "npc/combine_soldier/click_terminated.wav"
+local sdCombine_Radio_On = "npc/combine_soldier/clik.ogg"
+local sdCombine_Radio_Off = "npc/combine_soldier/click_off.ogg"
+local sdPlague_Summon = "npc/combine_soldier/go.ogg"
+local sdPlague_Die = "npc/combine_soldier/click_terminated.ogg"
 
 function ENT:CustomOnInitialize()
 	self:SetModelScale( 1.25 )

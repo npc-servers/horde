@@ -57,9 +57,9 @@ SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "ar2"
 
-SWEP.ShootSound = {")weapons/bo1_m14/m14_fire_close_1.wav",")weapons/bo1_m14/m14_fire_close_2.wav",")weapons/bo1_m14/m14_fire_close_3.wav",")weapons/bo1_m14/m14_fire_close_4.wav",")weapons/bo1_m14/m14_fire_close_5.wav"}
-SWEP.DistantShootSound = {")weapons/bo1_m14/m14_fire_dist_1.wav",")weapons/bo1_m14/m14_fire_dist_2.wav",")weapons/bo1_m14/m14_fire_dist_3.wav",")weapons/bo1_m14/m14_fire_dist_4.wav",")weapons/bo1_m14/m14_fire_dist_5.wav"}
-SWEP.ShootSoundSilenced = {")weapons/bo1_m14/m14_fire_silenced_1.wav",")weapons/bo1_m14/m14_fire_silenced_2.wav",")weapons/bo1_m14/m14_fire_silenced_3.wav",")weapons/bo1_m14/m14_fire_silenced_4.wav",")weapons/bo1_m14/m14_fire_silenced_5.wav"}
+SWEP.ShootSound = {")weapons/bo1_m14/m14_fire_close_1.ogg",")weapons/bo1_m14/m14_fire_close_2.ogg",")weapons/bo1_m14/m14_fire_close_3.ogg",")weapons/bo1_m14/m14_fire_close_4.ogg",")weapons/bo1_m14/m14_fire_close_5.ogg"}
+SWEP.DistantShootSound = {")weapons/bo1_m14/m14_fire_dist_1.ogg",")weapons/bo1_m14/m14_fire_dist_2.ogg",")weapons/bo1_m14/m14_fire_dist_3.ogg",")weapons/bo1_m14/m14_fire_dist_4.ogg",")weapons/bo1_m14/m14_fire_dist_5.ogg"}
+SWEP.ShootSoundSilenced = {")weapons/bo1_m14/m14_fire_silenced_1.ogg",")weapons/bo1_m14/m14_fire_silenced_2.ogg",")weapons/bo1_m14/m14_fire_silenced_3.ogg",")weapons/bo1_m14/m14_fire_silenced_4.ogg",")weapons/bo1_m14/m14_fire_silenced_5.ogg"}
 
 SWEP.MuzzleEffect = "muzzleflash_3"
 
@@ -218,36 +218,36 @@ SWEP.Animations = {
 sound.Add({
     name = "ArcCw_Horde_M14.BoltBack",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_bolt_back.wav"
+    sound = "weapons/bo1_m14/m14_reload_bolt_back.ogg"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.BoltRelease",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_bolt_release.wav"
+    sound = "weapons/bo1_m14/m14_reload_bolt_release.ogg"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.Foley",
     channel = CHAN_ITEM,
     volume = 0.5,
-    sound = {"weapons/bo1_m14/m14_foley_1.wav","weapons/bo1_m14/m14_foley_2.wav","weapons/bo1_m14/m14_foley_3.wav","weapons/bo1_m14/m14_foley_4.wav"}
+    sound = {"weapons/bo1_m14/m14_foley_1.ogg","weapons/bo1_m14/m14_foley_2.ogg","weapons/bo1_m14/m14_foley_3.ogg","weapons/bo1_m14/m14_foley_4.ogg"}
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagIn1",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_in_1.wav"
+    sound = "weapons/bo1_m14/m14_reload_mag_in_1.ogg"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagIn2",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_in_2.wav"
+    sound = "weapons/bo1_m14/m14_reload_mag_in_2.ogg"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagOut",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_out.wav"
+    sound = "weapons/bo1_m14/m14_reload_mag_out.ogg"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagRattle",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_rattle.wav"
+    sound = "weapons/bo1_m14/m14_reload_mag_rattle.ogg"
 })

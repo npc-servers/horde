@@ -21,7 +21,7 @@ SWEP.Spawnable					= true
 SWEP.AdminSpawnable				= false
 	-- NPC Settings ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.NPC_HasSecondaryFire = false -- Can the weapon have a secondary fire?
-SWEP.NPC_SecondaryFireSound = {"weapons/ar2/ar2_altfire.wav"} -- The sound it plays when the secondary fire is used
+SWEP.NPC_SecondaryFireSound = {"weapons/ar2/ar2_altfire.ogg"} -- The sound it plays when the secondary fire is used
 	-- Primary Fire ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.Primary.Damage				= 0 -- Damage
 SWEP.Primary.ClipSize			= 6 -- Max amount of bullets per clip
@@ -29,7 +29,7 @@ SWEP.Primary.Delay				= 0.9  -- Time until it can shoot again
 SWEP.Primary.Automatic			= false -- Is it automatic?
 SWEP.Primary.Ammo				= "SMG1" -- Ammo type
 SWEP.Primary.Sound				= {"vj_weapons/hl2_357/357_single1.wav","vj_weapons/hl2_357/357_single2.wav","vj_weapons/hl2_357/357_single3.wav"}
-SWEP.Primary.DistantSound		= {"weapons/357/357_fire2.wav"}
+SWEP.Primary.DistantSound		= {"weapons/357/357_fire2.ogg"}
 SWEP.Primary.DistantSoundVolume	= 0.7 -- Distant sound volume
 SWEP.NPC_TimeUntilFireExtraTimers = {0.9, 1.8, 2.7} -- Extra timers, which will make the gun fire again! | The seconds are counted after the self.NPC_TimeUntilFire!
 SWEP.PrimaryEffects_MuzzleAttachment = 1
@@ -41,14 +41,14 @@ SWEP.Secondary.Automatic = false -- Is it automatic?
 SWEP.Secondary.Ammo = nil -- Ammo type
 	-- Reload Settings ---------------------------------------------------------------------------------------------------------------------------------------------
 SWEP.HasReloadSound = false -- Does it have a reload sound? Remember even if this is set to false, the animation sound will still play!
-SWEP.ReloadSound = "weapons/pistol/pistol_reload1.wav"
+SWEP.ReloadSound = "weapons/pistol/pistol_reload1.ogg"
 SWEP.Primary.Tracer = 0
 SWEP.Primary.DisableBulletCode = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function SWEP:CustomOnSecondaryAttack()
 	local owner = self:GetOwner()
 	owner:ViewPunch(Angle(-self.Primary.Recoil *3, 0, 0))
-	VJ_EmitSound(self, "weapons/ar2/ar2_altfire.wav", 85)
+	VJ_EmitSound(self, "weapons/ar2/ar2_altfire.ogg", 85)
 
 	local proj = ents.Create(self.NPC_SecondaryFireEnt)
 	proj:SetPos(owner:GetShootPos())

@@ -520,35 +520,35 @@ sound.Add({
 	name = 			"KF_winchester_pump",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_winchester/Rifle_Reload_242.wav"
+	sound = 			"weapons/kf_winchester/rifle_reload_242.ogg"
 })
 sound.Add({
 	name = 			"KF_winchester_foley",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_winchester/Rifle_Reload_000.wav"
+	sound = 			"weapons/kf_winchester/rifle_reload_000.ogg"
 })
 sound.Add({
 	name = 			"KF_winchester_bolt",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			{ "weapons/kf_winchester/winchester_pump_1.wav", "weapons/kf_winchester/winchester_pump_2.wav", "weapons/kf_winchester/winchester_pump_3.wav", "weapons/kf_winchester/winchester_pump_4.wav" }
+	sound = 			{ "weapons/kf_winchester/winchester_pump_1.ogg", "weapons/kf_winchester/winchester_pump_2.ogg", "weapons/kf_winchester/winchester_pump_3.ogg", "weapons/kf_winchester/winchester_pump_4.ogg" }
 })
 sound.Add({
 	name = 			"KF_winchester_draw",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_winchester/Rifle_Pickup.wav"
+	sound = 			"weapons/kf_winchester/Rifle_Pickup.ogg"
 })
 sound.Add({
 	name = 			"KF_winchester_insert",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			{ "weapons/kf_winchester/Rifle_Reload_014.wav", "weapons/kf_winchester/Rifle_Reload_037.wav", "weapons/kf_winchester/Rifle_Reload_060.wav", "weapons/kf_winchester/Rifle_Reload_083.wav", "weapons/kf_winchester/Rifle_Reload_107.wav", "weapons/kf_winchester/Rifle_Reload_130.wav", "weapons/kf_winchester/Rifle_Reload_151.wav", "weapons/kf_winchester/Rifle_Reload_176.wav", "weapons/kf_winchester/Rifle_Reload_199.wav", "weapons/kf_winchester/Rifle_Reload_224.wav"}
+	sound = 			{ "weapons/kf_winchester/rifle_reload_014.ogg", "weapons/kf_winchester/rifle_reload_037.ogg", "weapons/kf_winchester/rifle_reload_060.ogg", "weapons/kf_winchester/rifle_reload_083.ogg", "weapons/kf_winchester/rifle_reload_107.ogg", "weapons/kf_winchester/rifle_reload_130.ogg", "weapons/kf_winchester/rifle_reload_151.ogg", "weapons/kf_winchester/rifle_reload_176.ogg", "weapons/kf_winchester/rifle_reload_199.ogg", "weapons/kf_winchester/rifle_reload_224.ogg"}
 })
 sound.Add({
 	name = 			"KF_winchester.Fire",
 	channel = 		CHAN_WEAPON,
 	volume = 		1.0,
-	sound = 			{ "weapons/kf_winchester/Rifle_FireST1.wav", "weapons/kf_winchester/Rifle_FireST2.wav", "weapons/kf_winchester/Rifle_FireST3.wav", "weapons/kf_winchester/Rifle_FireST4.wav"}
+	sound = 			{ "weapons/kf_winchester/rifle_firest1.ogg", "weapons/kf_winchester/rifle_firest2.ogg", "weapons/kf_winchester/rifle_firest3.ogg", "weapons/kf_winchester/rifle_firest4.ogg"}
 })

@@ -44,7 +44,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     effect:SetOrigin( plyPos )
     util.Effect( "HelicopterMegaBomb", effect )
 
-    ply:EmitSound( "horde/player/prototype/Explosion Wave.wav", 140, math.random(95, 105), 1, CHAN_STATIC )
+    ply:EmitSound( "horde/player/prototype/Explosion Wave.ogg", 140, math.random(95, 105), 1, CHAN_STATIC )
 
     local dmgTaken = dmginfo:GetDamage()
     local dmg = DamageInfo()

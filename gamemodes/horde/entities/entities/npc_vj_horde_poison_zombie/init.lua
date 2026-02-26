@@ -31,7 +31,7 @@ ENT.RangeAttackPos_Up = 40
 
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.SoundTbl_FootStep = "npc/zombie_poison/pz_left_foot1.wav"
+ENT.SoundTbl_FootStep = "npc/zombie_poison/pz_left_foot1.ogg"
 ENT.SoundTbl_Idle = {
 	"npc/zombie_poison/pz_idle2.wav",
 	"npc/zombie_poison/pz_idle3.wav",
@@ -46,9 +46,9 @@ ENT.SoundTbl_BeforeMeleeAttack = {
 	"npc/zombie_poison/pz_warn2.wav"
 }
 ENT.SoundTbl_MeleeAttack = {
-	"npc/zombie/claw_strike1.wav",
-	"npc/zombie/claw_strike2.wav",
-	"npc/zombie/claw_strike3.wav"
+	"npc/zombie/claw_strike1.ogg",
+	"npc/zombie/claw_strike2.ogg",
+	"npc/zombie/claw_strike3.ogg"
 }
 ENT.SoundTbl_MeleeAttackMiss = {
 	"zsszombie/miss1.wav",
@@ -75,7 +75,7 @@ ENT.FootStepSoundLevel = 65
 
 ENT.GeneralSoundPitch1 = 100
 
-local sdFootScuff = "npc/zombie_poison/pz_right_foot1.wav"
+local sdFootScuff = "npc/zombie_poison/pz_right_foot1.ogg"
 local sdThrow = { "npc/zombie_poison/pz_throw2.wav", "npc/zombie_poison/pz_throw3.wav" }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()

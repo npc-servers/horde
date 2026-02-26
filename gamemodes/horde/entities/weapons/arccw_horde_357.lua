@@ -71,7 +71,7 @@ SWEP.Primary.Ammo = "357" -- what ammo type the gun uses
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound =			{"weapons/357/357_fire2.wav", "weapons/357/357_fire3.wav"}
+SWEP.ShootSound =			{"weapons/357/357_fire2.ogg", "weapons/357/357_fire3.ogg"}
 --SWEP.DistantShootSound =	"weapons/fesiugmw2/fire_distant/anaconda.wav"
 SWEP.DistantShootSound = "arccw_go/revolver/revolver-1_distant.wav"
 
@@ -182,7 +182,7 @@ SWEP.Animations = {
         Time = 3,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_REVOLVER,
         SoundTable = {
-						{s = "weapons/pistol/357_reload1.wav", t = 0},
+						{s = "weapons/pistol/357_reload1.ogg", t = 0},
                         {s = "weapons/pistol/357_reload3.wav", t = 0.4},
                         {s = "weapons/pistol/357_reload4.wav", t = 0.8},
 					},

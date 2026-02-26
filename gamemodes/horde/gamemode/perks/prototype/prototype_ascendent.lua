@@ -69,7 +69,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     end
 
     ply:SetLocalVelocity( vel )
-    ply:EmitSound( ")horde/player/prototype/Dodge3.wav", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
+    ply:EmitSound( ")horde/player/prototype/Dodge3.ogg", 75, math.random( 95, 105 ), 1, CHAN_AUTO )
 
     ply.Horde_In_Quickstep = true
 

@@ -72,7 +72,7 @@ SWEP.Primary.Ammo = "ar2" -- what ammo type the gun uses
 SWEP.ShootVol = 115 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "weapons/arccw/winchester1873/w73-1.wav"
+SWEP.ShootSound = "weapons/arccw/winchester1873/w73-1.ogg"
 SWEP.ShootSoundSilenced = "arccw_go/mosin_suppressed_fp.wav"
 SWEP.DistantShootSound = "arccw_go/ssg08/ssg08-1-distant.wav"
 
@@ -316,14 +316,14 @@ sound.Add({
     name = "Weapon_73.Pump",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/winchester1873/w73pump.mp3"
+    sound = "weapons/arccw/winchester1873/w73pump.ogg"
 })
 
 sound.Add({
     name = "Weapon_73.Insertshell",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/winchester1873/w73insertshell.mp3"
+    sound = "weapons/arccw/winchester1873/w73insertshell.ogg"
 })
 if not ArcCWInstalled then return end
 if CLIENT then

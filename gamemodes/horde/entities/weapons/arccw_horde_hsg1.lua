@@ -285,29 +285,29 @@ sound.Add({
     name = 			"KF_Ksg.pullforward",
     channel = 		CHAN_STATIC,
     volume = 		1.0,
-    sound = 			"weapons/kf_ksg/KSG_Pullfwd.wav"
+    sound = 			"weapons/kf_ksg/KSG_Pullfwd.ogg"
 })
 sound.Add({
     name = 			"KF_Ksg.pullback",
     channel = 		CHAN_STATIC,
     volume = 		1.0,
-    sound = 			"weapons/kf_ksg/KSG_Pullback.wav"
+    sound = 			"weapons/kf_ksg/KSG_Pullback.ogg"
 })
 sound.Add({
     name = 			"KF_Ksg.magout",
     channel = 		CHAN_STATIC,
     volume = 		1.0,
-    sound = 			"weapons/kf_ksg/KSG_Magout.wav"
+    sound = 			"weapons/kf_ksg/KSG_Magout.ogg"
 })
 sound.Add({
     name = 			"KF_Ksg.magin",
     channel = 		CHAN_STATIC,
     volume = 		1.0,
-    sound = 			"weapons/kf_ksg/KSG_Magin.wav"
+    sound = 			"weapons/kf_ksg/KSG_Magin.ogg"
 })
 sound.Add({
     name = 			"KF_Ksg.Fire",
     channel = 		CHAN_WEAPON,
     volume = 		1.0,
-    sound = 			{ "weapons/kf_ksg/KSG_Fire_S.wav"}
+    sound = 			{ "weapons/kf_ksg/ksg_fire_s.ogg"}
 })
