@@ -6,7 +6,7 @@ if (!file.Exists("autorun/vj_base_autorun.lua","LUA")) then return end
 --------------------------------------------------*/
 function EFFECT:Init(data)
 	self.Pos = data:GetOrigin()
-	sound.Play("weapons/explode4.wav", self.Pos, 80, math.random(70, 90))
+	sound.Play("^weapons/explode4.wav", self.Pos, 80, math.random(70, 90))
 	local radius = data:GetRadius()
 	local Emitter = ParticleEmitter(self.Pos)
 	if Emitter == nil then return end
