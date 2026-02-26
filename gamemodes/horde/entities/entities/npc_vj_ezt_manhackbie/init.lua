@@ -23,13 +23,13 @@ ENT.FlinchChance = 1
 ENT.AnimTbl_Flinch = {"vjges_flinch1","vjges_flinch2","vjges_flinch3"}
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/xzombie/foot1.ogg","npc/xzombie/foot2.ogg","npc/xzombie/foot3.ogg"}
-ENT.SoundTbl_Idle = {"npc/xzombie/zombie_voice_idle1.ogg","npc/xzombie/zombie_voice_idle2.ogg","npc/xzombie/zombie_voice_idle3.ogg","npc/xzombie/zombie_voice_idle4.ogg","npc/xzombie/zombie_voice_idle5.ogg","npc/xzombie/zombie_voice_idle6.ogg","npc/xzombie/zombie_voice_idle7.ogg","npc/xzombie/zombie_voice_idle8.ogg","npc/xzombie/zombie_voice_idle10.ogg"}
-ENT.SoundTbl_Alert = {"npc/xzombie/zombie_alert1.ogg","npc/xzombie/zombie_alert2.ogg","npc/xzombie/zombie_alert3.ogg"}
-ENT.SoundTbl_BeforeMeleeAttack = {"npc/xzombie/zo_attack1.ogg","npc/xzombie/zo_attack2.ogg"}
+ENT.SoundTbl_FootStep = {"npc/xzombie/foot1.wav","npc/xzombie/foot2.wav","npc/xzombie/foot3.wav"}
+ENT.SoundTbl_Idle = {"npc/xzombie/zombie_voice_idle1.wav","npc/xzombie/zombie_voice_idle2.wav","npc/xzombie/zombie_voice_idle3.wav","npc/xzombie/zombie_voice_idle4.wav","npc/xzombie/zombie_voice_idle5.wav","npc/xzombie/zombie_voice_idle6.wav","npc/xzombie/zombie_voice_idle7.wav","npc/xzombie/zombie_voice_idle8.wav","npc/xzombie/zombie_voice_idle10.wav"}
+ENT.SoundTbl_Alert = {"npc/xzombie/zombie_alert1.wav","npc/xzombie/zombie_alert2.wav","npc/xzombie/zombie_alert3.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"npc/xzombie/zo_attack1.wav","npc/xzombie/zo_attack2.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"npc/xzombie/zombie_pain1.ogg","npc/xzombie/zombie_pain2.ogg","npc/xzombie/zombie_pain3.ogg","npc/xzombie/zombie_pain4.ogg"}
-ENT.SoundTbl_Death = {"npc/xzombie/zombie_die1.ogg","npc/xzombie/zombie_die2.ogg","npc/xzombie/zombie_die3.ogg"}
+ENT.SoundTbl_Pain = {"npc/xzombie/zombie_pain1.wav","npc/xzombie/zombie_pain2.wav","npc/xzombie/zombie_pain3.wav","npc/xzombie/zombie_pain4.wav"}
+ENT.SoundTbl_Death = {"npc/xzombie/zombie_die1.wav","npc/xzombie/zombie_die2.wav","npc/xzombie/zombie_die3.wav"}
 ENT.Manhack = NULL
 ENT.ManhackPullT = 0
 ENT.hasmanhack = false

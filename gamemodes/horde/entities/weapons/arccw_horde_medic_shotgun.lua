@@ -412,23 +412,23 @@ sound.Add({
 	name = 			"KF_trench_pumpforward",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_trench/TrenchGun_Pump_forward.ogg"
+	sound = 			"weapons/kf_trench/TrenchGun_Pump_Forward.wav"
 })
 sound.Add({
 	name = 			"KF_trench_pumpback",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			"weapons/kf_trench/TrenchGun_Pump_back.ogg"
+	sound = 			"weapons/kf_trench/TrenchGun_Pump_Back.wav"
 })
 sound.Add({
 	name = 			"KF_trench_insert",
 	channel = 		CHAN_STATIC,
 	volume = 		1.0,
-	sound = 			{ "weapons/kf_trench/trenchgun_bullet_insert_01.ogg", "weapons/kf_trench/trenchgun_bullet_insert_02.ogg", "weapons/kf_trench/trenchgun_bullet_insert_03.ogg"}
+	sound = 			{ "weapons/kf_trench/TrenchGun_Bullet_Insert_01.wav", "weapons/kf_trench/TrenchGun_Bullet_Insert_02.wav", "weapons/kf_trench/TrenchGun_Bullet_Insert_03.wav"}
 })
 sound.Add({
 	name = 			"KF_trench.Fire",
 	channel = 		CHAN_WEAPON,
 	volume = 		1.0,
-	sound = 			"weapons/kf_trench/kf_shotgun_dragon_fire_s.ogg"
+	sound = 			"weapons/kf_trench/KF_Shotgun_Dragon_Fire_S.wav"
 })

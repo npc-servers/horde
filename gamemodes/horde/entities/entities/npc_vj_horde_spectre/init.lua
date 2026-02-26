@@ -39,13 +39,13 @@ ENT.FootStepTimeRun = 0.4 -- Next foot step sound when it is running
 ENT.FootStepTimeWalk = 0.6 -- Next foot step sound when it is walking
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/fast_zombie/foot1.ogg","npc/fast_zombie/foot2.ogg","npc/fast_zombie/foot3.ogg","npc/fast_zombie/foot4.wav"}
+ENT.SoundTbl_FootStep = {"npc/fast_zombie/foot1.wav","npc/fast_zombie/foot2.wav","npc/fast_zombie/foot3.wav","npc/fast_zombie/foot4.wav"}
 ENT.SoundTbl_Breath = nil
 --ENT.SoundTbl_Alert = {"npc/fast_zombie/fz_alert_close1.wav"}
-ENT.SoundTbl_MeleeAttack = {"npc/fast_zombie/claw_strike1.ogg","npc/fast_zombie/claw_strike2.ogg","npc/fast_zombie/claw_strike3.ogg"}
+ENT.SoundTbl_MeleeAttack = {"npc/fast_zombie/claw_strike1.wav","npc/fast_zombie/claw_strike2.wav","npc/fast_zombie/claw_strike3.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 --ENT.SoundTbl_LeapAttackJump = {"npc/fast_zombie/fz_scream1.wav"}
-ENT.SoundTbl_LeapAttackDamage = {"npc/fast_zombie/claw_strike1.ogg","npc/fast_zombie/claw_strike2.ogg","npc/fast_zombie/claw_strike3.ogg"}
+ENT.SoundTbl_LeapAttackDamage = {"npc/fast_zombie/claw_strike1.wav","npc/fast_zombie/claw_strike2.wav","npc/fast_zombie/claw_strike3.wav"}
 ENT.SoundTbl_Pain = nil
 --ENT.SoundTbl_Death = {"npc/fast_zombie/wake1.wav"}
 

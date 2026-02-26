@@ -72,7 +72,7 @@ SWEP.Primary.Ammo = "ar2" -- what ammo type the gun uses
 SWEP.ShootVol = 115 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "weapons/arccw/winchester1873/w73-1.ogg"
+SWEP.ShootSound = "weapons/arccw/winchester1873/w73-1.wav"
 SWEP.ShootSoundSilenced = "arccw_go/mosin_suppressed_fp.wav"
 SWEP.DistantShootSound = "arccw_go/ssg08/ssg08-1-distant.wav"
 

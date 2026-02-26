@@ -82,7 +82,7 @@ SWEP.Primary.Ammo = "XBowBolt" -- what ammo type the gun uses
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "weapons/crossbow/fire1.ogg"
+SWEP.ShootSound = "weapons/crossbow/fire1.wav"
 SWEP.ShootSoundSilenced = nil
 SWEP.DistantShootSound = nil
 
@@ -187,7 +187,7 @@ SWEP.Animations = {
         LHIKIn = 0.5,
         LHIKOut = 0.2,
         SoundTable = {
-            {s = {"weapons/crossbow/bolt_load1.ogg", "weapons/crossbow/bolt_load2.ogg"}, t = 0},
+            {s = {"weapons/crossbow/bolt_load1.wav", "weapons/crossbow/bolt_load2.wav"}, t = 0},
         }
     },
 }

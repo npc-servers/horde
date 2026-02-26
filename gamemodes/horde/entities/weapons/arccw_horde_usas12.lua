@@ -71,11 +71,11 @@ SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 SWEP.MagID = "usas" -- the magazine pool this gun draws from
 
 SWEP.ShootSound = "weapons/arccw/eap/usas/fixedfire.ogg"
-SWEP.ShootSoundSilenced = "weapons/arccw/eap/usas/suppressed-3.ogg"
+SWEP.ShootSoundSilenced = "weapons/arccw/eap/usas/suppressed-3.wav"
 
 SWEP.IsShotgun = true
 
-SWEP.MeleeSwingSound = "weapons/arccw/m249/m249_draw.ogg"
+SWEP.MeleeSwingSound = "weapons/arccw/m249/m249_draw.wav"
 SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
 SWEP.MeleeHitSound = "weapons/arccw/knife/knife_hitwall1.wav"
 SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
@@ -367,7 +367,7 @@ sound.Add({
 	name = 			"eap_usas.magout",
 	channel = 		CHAN_AUTO,
 	volume = 		1.0,
-	sound = 			"weapons/arccw/eap/usas/clipout.ogg"
+	sound = 			"weapons/arccw/eap/usas/clipout.wav"
 })
 
 sound.Add({

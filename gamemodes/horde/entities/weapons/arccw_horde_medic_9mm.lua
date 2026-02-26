@@ -163,7 +163,7 @@ SWEP.Animations = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         SoundTable = {
-            {s = "weapons/pistol/pistol_reload1.ogg", t = 0},
+            {s = "weapons/pistol/pistol_reload1.wav", t = 0},
         },
         LHIK = true,
         LHIKIn = 0.25,
@@ -263,7 +263,7 @@ sound.Add( {
     volume = 1.0,
     level = 90,
     pitch = {98, 102},
-    sound = ")weapons/pistol/pistol_fire2.ogg"
+    sound = ")weapons/pistol/pistol_fire2.wav"
 } )
 sound.Add( {
     name = "ArcCW_Horde.Medic_9mm_Fire_Sil",

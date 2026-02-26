@@ -72,9 +72,9 @@ SWEP.Primary.Ammo = "AlyxGun"
 SWEP.MagID = "m2" -- the magazine pool this gun draws from
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
-SWEP.ShootSound = "weapons/arccw/50cal/50cal_fire.ogg"
+SWEP.ShootSound = "weapons/arccw/50cal/50cal_fire.wav"
 SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw/50cal/50cal_fire_trail.ogg"
+SWEP.DistantShootSound = "weapons/arccw/50cal/50cal_fire_trail.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_5"
 
@@ -201,7 +201,7 @@ SWEP.Animations = {
         Source = "pull out this whore",
         SoundTable = {
             {
-                s = "weapons/arccw/m249/m249_draw.ogg",
+                s = "weapons/arccw/m249/m249_draw.wav",
                 t = 0
             }
         },
@@ -245,33 +245,33 @@ sound.Add({
     name = "Weapon_ARCCW_M2.Charge",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/50cal/50cal_charge.ogg"
+    sound = "weapons/arccw/50cal/50cal_charge.wav"
 })
 
 sound.Add({
     name = "Weapon_ARCCW_M2.Lift",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/50cal/50cal_lift.ogg"
+    sound = "weapons/arccw/50cal/50cal_lift.wav"
 })
 
 sound.Add({
     name = "Weapon_ARCCW_M2.MagSlap",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/50cal/50cal_magslap.ogg"
+    sound = "weapons/arccw/50cal/50cal_magslap.wav"
 })
 
 sound.Add({
     name = "Weapon_ARCCW_M2.Magin",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/50cal/50cal_magin.ogg"
+    sound = "weapons/arccw/50cal/50cal_magin.wav"
 })
 
 sound.Add({
     name = "Weapon_ARCCW_M2.MagLift",
     channel = CHAN_ITEM,
     volume = 1.0,
-    sound = "weapons/arccw/50cal/50cal_lift.ogg"
+    sound = "weapons/arccw/50cal/50cal_lift.wav"
 })

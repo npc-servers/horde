@@ -53,9 +53,9 @@ ENT.SoundTbl_Alert = {
 	"npc/zombine/zombine_alert7.wav"
 }
 ENT.SoundTbl_MeleeAttack = {
-	"npc/zombie/claw_strike1.ogg",
-	"npc/zombie/claw_strike2.ogg",
-	"npc/zombie/claw_strike3.ogg"
+	"npc/zombie/claw_strike1.wav",
+	"npc/zombie/claw_strike2.wav",
+	"npc/zombie/claw_strike3.wav"
 }
 ENT.SoundTbl_MeleeAttackMiss = {
 	")zsszombie/miss1.wav",

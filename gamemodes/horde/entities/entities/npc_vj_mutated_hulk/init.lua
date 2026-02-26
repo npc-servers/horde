@@ -35,11 +35,11 @@ ENT.MeleeAttackKnockBack_Up1 = 250 -- How far it will push you up | First in mat
 ENT.MeleeAttackKnockBack_Up2 = 260 -- How far it will push you up | Second in math.random
     -- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
-ENT.SoundTbl_FootStep = {"npc/zombie/foot1.ogg","npc/zombie/foot2.ogg","npc/zombie/foot3.ogg"}
+ENT.SoundTbl_FootStep = {"npc/zombie/foot1.wav","npc/zombie/foot2.wav","npc/zombie/foot3.wav"}
 ENT.SoundTbl_Breath = {"npc/zombie_poison/pz_breathe_loop1.wav"}
 ENT.SoundTbl_Idle = {"npc/zombie_poison/pz_idle2.wav","npc/zombie_poison/pz_idle3.wav","npc/zombie_poison/pz_idle4.wav"}
 ENT.SoundTbl_Alert = {"npc/zombie_poison/pz_warn1.wav","npc/zombie_poison/pz_warn2.wav"}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.ogg","npc/zombie/claw_strike2.ogg","npc/zombie/claw_strike3.ogg"}
+ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
 ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
 ENT.SoundTbl_Pain = {"npc/zombie_poison/pz_pain1.wav","npc/zombie_poison/pz_pain2.wav","npc/zombie_poison/pz_pain3.wav"}
 ENT.SoundTbl_Death = {"npc/zombie_poison/pz_die1.wav","npc/zombie_poison/pz_die2.wav"}

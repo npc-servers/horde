@@ -114,5 +114,5 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     end
     ent:SetHealth( math.min( ent:GetMaxHealth(), ent:GetMaxHealth() * 0.05 + ent:Health() ) )
 
-    ply:EmitSound( "weapons/physcannon/physcannon_pickup.ogg" )
+    ply:EmitSound( "weapons/physcannon/physcannon_pickup.wav" )
 end

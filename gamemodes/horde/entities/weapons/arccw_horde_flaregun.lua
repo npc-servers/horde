@@ -75,7 +75,7 @@ SWEP.Primary.Ammo = "357" -- what ammo type the gun uses
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "vj_weapons/flare/fire.ogg"
+SWEP.ShootSound = "vj_weapons/flare/fire.wav"
 SWEP.ShootSoundSilenced = "vj_weapons/flare/fire_dist.wav"
 SWEP.DistantShootSound = "vj_weapons/flare/fire_dist.wav"
 

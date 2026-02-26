@@ -24,9 +24,9 @@ ENT.FootStepTimeWalk = 0.8
 ENT.NextSummonTime = 0
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
-	")zsszombie/foot1.ogg",
-	")zsszombie/foot2.ogg",
-	")zsszombie/foot3.ogg",
+	")zsszombie/foot1.wav",
+	")zsszombie/foot2.wav",
+	")zsszombie/foot3.wav",
 	")zsszombie/foot4.wav"
 }
 ENT.SoundTbl_Idle = {
@@ -38,9 +38,9 @@ ENT.SoundTbl_Idle = {
 	")zsszombie/zombie_idle6.wav"
 }
 ENT.SoundTbl_Alert = {
-	")zsszombie/zombie_alert1.ogg",
-	")zsszombie/zombie_alert2.ogg",
-	")zsszombie/zombie_alert3.ogg",
+	")zsszombie/zombie_alert1.wav",
+	")zsszombie/zombie_alert2.wav",
+	")zsszombie/zombie_alert3.wav",
 	")zsszombie/zombie_alert4.wav"
 }
 ENT.SoundTbl_MeleeAttack = {
@@ -58,19 +58,19 @@ ENT.SoundTbl_MeleeAttackMiss = {
 	")zsszombie/miss4.wav"
 }
 ENT.SoundTbl_Pain = {
-	")zsszombie/zombie_pain1.ogg",
-	")zsszombie/zombie_pain2.ogg",
-	")zsszombie/zombie_pain3.ogg",
-	")zsszombie/zombie_pain4.ogg",
-	")zsszombie/zombie_pain5.ogg",
-	")zsszombie/zombie_pain6.ogg",
+	")zsszombie/zombie_pain1.wav",
+	")zsszombie/zombie_pain2.wav",
+	")zsszombie/zombie_pain3.wav",
+	")zsszombie/zombie_pain4.wav",
+	")zsszombie/zombie_pain5.wav",
+	")zsszombie/zombie_pain6.wav",
 	")zsszombie/zombie_pain7.wav",
 	")zsszombie/zombie_pain8.wav"
 }
 ENT.SoundTbl_Death = {
-	")zsszombie/zombie_die1.ogg",
-	")zsszombie/zombie_die2.ogg",
-	")zsszombie/zombie_die3.ogg",
+	")zsszombie/zombie_die1.wav",
+	")zsszombie/zombie_die2.wav",
+	")zsszombie/zombie_die3.wav",
 	")zsszombie/zombie_die4.wav",
 	")zsszombie/zombie_die5.wav",
 	")zsszombie/zombie_die6.wav"
