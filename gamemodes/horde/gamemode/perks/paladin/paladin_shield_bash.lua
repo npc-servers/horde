@@ -43,7 +43,6 @@ local bashKnockback = 1000
 local bashKnockUp = Vector( 0, 0, 200 )
 local bashDuration = 0.5
 
-local bashDmginfo = DamageInfo()
 local dmgAmt = 200
 local dmgType = DMG_CLUB
 
@@ -65,6 +64,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
             return
         end
 
+        local bashDmginfo = DamageInfo()
         bashDmginfo:SetDamage( dmgAmt )
         bashDmginfo:SetDamageType( dmgType )
         bashDmginfo:SetAttacker( ply )
