@@ -1,8 +1,9 @@
 PERK.PrintName = "Protector's Oath"
 PERK.Icon = "materials/perks/paladin/protectors_oath.png"
 PERK.Description = [[
-Losing a stack of Faith makes you heal all allies inside your Sacred Aura for 2% health.
-Divine Shield provides additional 3% to all elemental resistances per Faith stack.]]
+Losing Faith stacks heals you and all allies inside your Sacred Aura by 2% health.
+Divine Shield provides 3% to all elemental resistances per Faith stack.
+Regenerate Faith stacks even while using Divine Shield.]]
 PERK.Hooks = {}
 
 if not SERVER then return end

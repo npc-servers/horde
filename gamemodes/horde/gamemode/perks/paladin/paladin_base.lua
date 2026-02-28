@@ -151,6 +151,7 @@ end
 PERK.Hooks.PlayerButtonDown = function( ply, button )
     if button ~= KEY_LALT then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    if ply:Horde_GetPerk( "paladin_protectors_oath" ) then return end
 
     local curTime = CurTime()
 
