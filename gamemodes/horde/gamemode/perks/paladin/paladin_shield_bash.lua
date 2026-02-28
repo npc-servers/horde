@@ -70,7 +70,9 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
         bashDmginfo:SetAttacker( ply )
         bashDmginfo:SetInflictor( ply )
 
+        local hit = false
         local plyPos = ply:GetPos()
+
         for _, target in ipairs( ents.FindInSphere( plyPos, 80 ) ) do
             if IsValid( target ) and HORDE:IsEnemy( target ) and not ply.Horde_PaladinShieldBashHitTargets[target] then
                 local targetPos = target:GetPos()
@@ -88,10 +90,14 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
                     target:SetVelocity( knockbackForce )
                     target:Horde_AddDebuffBuildup( HORDE.Status_Stun, 19208, ply, targetPos )
 
-                    ply:EmitSound( "horde/player/quickstep.ogg" )
-                    ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
+                    hit = true
                 end
             end
+        end
+
+        if hit then
+            ply:EmitSound( "horde/player/quickstep.ogg" )
+            ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
         end
     end )
 
