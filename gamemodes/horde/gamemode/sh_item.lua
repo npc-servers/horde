@@ -586,7 +586,7 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Shotgun", "Medic Shotgun", "arccw_horde_medic_shotgun", 2250, 5,
         "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
-        { Medic = true, Hatcher = true, Warden = true, Overlord = true },
+        { Prototype = true, Medic = true, Hatcher = true, Warden = true, Overlord = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
 
     HORDE:CreateItem( "Shotgun", "Shotgun", "arccw_horde_shotgun", 100, 2,
@@ -614,7 +614,7 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Trench Gun", "arccw_horde_trenchgun", 2250, 6,
         "Winchester Model 1200.\nShoots incendiary pellets.",
-        { Warden = true, Overlord = true, Cremator = true },
+        { Prototype = true, Warden = true, Overlord = true, Cremator = true },
         15, -1, nil, nil, { Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_FIRE }, { HORDE.Infusion_Quality, HORDE.Infusion_Impaling } )
     HORDE:CreateItem( "Shotgun", "Double Barrel", "arccw_horde_doublebarrel", 2250, 5,
         "Double Barrel Shotgun.\nDevastating power at close range.",
@@ -665,15 +665,15 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Rifle", "F2000", "arccw_horde_f2000", 3250, 7,
         "FN F2000.\nAn ambidextrous bullpup rifle developed by FN.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or incendiary rounds that set enemies ablaze.",
         { Assault = true, SpecOps = true, Reverend = true, Cremator = true },
-        10, 10, nil, nil, { Assault = 2, Cremator = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_FIRE } )
+        10, -1, nil, nil, { Assault = 2, Cremator = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_FIRE } )
     HORDE:CreateItem( "Rifle", "Tar-21", "arccw_horde_tavor", 3250, 7,
         "IWI Tavor-21.\nDesigned to maximize reliability, durability, and simplicity.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or electrofied rounds that deal Lightning damage and build up Shock.",
         { Assault = true, SpecOps = true, Reverend = true, Warden = true, Overlord = true },
-        10, 10, nil, nil, { Assault = 2, Warden = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING } )
+        10, -1, nil, nil, { Assault = 2, Warden = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING } )
     HORDE:CreateItem( "Rifle", "SCAR-L", "arccw_horde_scarl", 3500, 8,
         "FN SCAR-L.\nAn assault rifle developed by Belgian manufacturer FN Herstal.\nSpecialized compact version, chambered in 5.56x45mm NATO.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or cryogenic rounds that deal Cold damage and build up Frostbite.",
         { Assault = true, SpecOps = true, Reverend = true, Ghost = true, Gunslinger = true },
-        15, 10, nil, nil, { Assault = 2, Ghost = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_COLD } )
+        15, -1, nil, nil, { Assault = 2, Ghost = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_COLD } )
     HORDE:CreateItem( "Rifle", "OSIPR", "arccw_horde_ar2", 3500, 9, "Overwatch Standard Issue Pulse Rifle.\n\nPress ZOOM or B to change firemode.\nFires regular ballistic ammo or energy balls that deal Lightning damage and builds up Shock.",
         { Assault = true, SpecOps = true, Reverend = true, Warden = true, Overlord = true },
         15, -1, nil, "items/hl2/weapon_ar2.png", { Assault = 5 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_LIGHTNING } )

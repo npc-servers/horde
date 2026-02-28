@@ -18,9 +18,19 @@ surface.CreateFont("Horde_Ready", { font = font, size = ScreenScale(5) * font_sc
 surface.CreateFont("Horde_Cd", { font = bold_font, size = ScreenScale(8) * font_scale, extended = true })
 surface.CreateFont("Horde_Wave_Banner", { font = bold_font, size = ScreenScale(15) * font_scale, extended = true })
 surface.CreateFont("Horde_Javeline", { font = "Arial", size = ScreenScale(8), extended = true })
+surface.CreateFont("Horde_WaveLabel", { font = font, size = ScreenScale(4.5) * font_scale, extended = true })
+surface.CreateFont("Horde_WaveNum",   { font = bold_font, size = ScreenScale(9) * font_scale, extended = true })
 
 local width = ScreenScale(100)
 local height = ScreenScale(15)
+
+-- Enemy count tracking for the progress bar
+local enemy_count     = 0
+local enemy_max_count = 0
+local center_panel_mode = "text" -- "text" | "enemies" | "boss" | "objectives"
+local objectives_count = 0
+local objectives_max   = 0
+
 local center_panel = vgui.Create("DPanel")
 local center_panel_str = ""
 center_panel:SetSize(width, height)
@@ -28,8 +38,52 @@ center_panel:SetPos(ScreenScale(6), ScreenScale(23))
 center_panel.Paint = function (w, h)
     if GetConVarNumber("horde_enable_client_gui") == 0 then return end
     if center_panel_str == "" then return end
-    draw.RoundedBox(10, 0, 0, width, height, Color(40,40,40,200))
-    draw.SimpleText(center_panel_str, "Info", ScreenScale(50), ScreenScale(7), Color(255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    local BAR_H   = math.max(3, math.floor(height * 0.12))
+    local TEXT_Y  = (height - BAR_H) / 2
+    local diff    = HORDE.Difficulty and HORDE.Difficulty[HORDE.CurrentDifficulty]
+    local diff_name = diff and diff.name or ""
+    local diff_col  = (diff and diff.color) or Color(200, 200, 200)
+
+    draw.RoundedBox(8, 0, 0, width, height, Color(20, 20, 20, 220))
+
+    if center_panel_mode == "enemies" and enemy_max_count > 0 then
+        -- Progress bar at the bottom (enemies remaining)
+        local fraction = math.Clamp(enemy_count / enemy_max_count, 0, 1)
+        draw.RoundedBox(4, 0, height - BAR_H, width, BAR_H, Color(50, 50, 50, 200))
+        draw.RoundedBox(4, 0, height - BAR_H, width * fraction, BAR_H, Color(220, 80, 60, 230))
+        -- Difficulty label (left) and enemy count (right)
+        if diff_name ~= "" then
+            draw.SimpleText(diff_name, "Info", ScreenScale(6), TEXT_Y, diff_col, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+        draw.SimpleText(translate.Get("Game_Enemies") .. ": " .. tostring(enemy_count), "Info", width - ScreenScale(5), TEXT_Y, Color(255, 255, 255), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+
+    elseif center_panel_mode == "boss" then
+        -- Red left stripe for boss
+        surface.SetDrawColor(220, 20, 60, 255)
+        surface.DrawRect(0, 0, 3, height)
+        if diff_name ~= "" then
+            draw.SimpleText(diff_name, "Info", ScreenScale(6), TEXT_Y, diff_col, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+        draw.SimpleText("BOSS", "Info", width / 2, TEXT_Y, Color(220, 20, 60), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    elseif center_panel_mode == "objectives" then
+        -- Progress bar for objectives
+        if objectives_max > 0 then
+            local frac = math.Clamp(objectives_count / objectives_max, 0, 1)
+            draw.RoundedBox(4, 0, height - BAR_H, width, BAR_H, Color(50, 50, 50, 200))
+            draw.RoundedBox(4, 0, height - BAR_H, width * frac, BAR_H, Color(84, 107, 255, 230))
+        end
+        surface.SetDrawColor(84, 107, 255, 255)
+        surface.DrawRect(0, 0, 3, height - BAR_H)
+        if diff_name ~= "" then
+            draw.SimpleText(diff_name, "Info", ScreenScale(6), TEXT_Y, diff_col, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+        draw.SimpleText("Objectives: " .. tonumber(objectives_count) .. "/" .. tonumber(objectives_max), "Info", width - ScreenScale(5), TEXT_Y, Color(255, 255, 255), TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
+
+    else
+        draw.SimpleText(center_panel_str, "Info", width / 2, height / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    end
 end
 
 local ammobox_refresh_count = 0
@@ -46,18 +100,32 @@ timer.Simple(5, function ()
     local ammoMaterial = Material("materials/ammo.png", "mips smooth")
     corner_panel.Paint = function ()
         if GetConVarNumber("horde_enable_client_gui") == 0 then return end
-        draw.RoundedBox(10, 0, 0, width - height - ScreenScale(2), height, Color(40,40,40,200))
+        local panel_w = width - height - ScreenScale(2)
+
+        draw.RoundedBox(8, 0, 0, panel_w, height, Color(20, 20, 20, 220))
+
         if (HORDE.current_wave <= 0) or (wave_str == nil) then
-        	draw.SimpleText(translate.Get("Game_Preparing..."), "Info", ScreenScale(45), ScreenScale(7), Color(255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            draw.SimpleText(translate.Get("Game_Preparing..."), "Info", panel_w / 2, height / 2, Color(180, 180, 180), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         else
-        	draw.SimpleText("WAVE " .. wave_str, "Info", ScreenScale(45), ScreenScale(7), Color(255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            -- Measure both pieces so they sit centered together
+            surface.SetFont("Horde_WaveLabel")
+            local lw = surface.GetTextSize("WAVE ")
+            surface.SetFont("Horde_WaveNum")
+            local nw = surface.GetTextSize(wave_str)
+            local start_x = math.floor((panel_w - lw - nw) / 2)
+            draw.SimpleText("WAVE ", "Horde_WaveLabel", start_x,        height / 2, Color(160, 160, 160), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            draw.SimpleText(wave_str,  "Horde_WaveNum",   start_x + lw,  height / 2, Color(255, 210, 100), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+            -- Gold accent bar at bottom
+            surface.SetDrawColor(255, 200, 80, 180)
+            surface.DrawRect(0, height - 2, panel_w, 2)
         end
-        draw.RoundedBox(10, width - height, 0, height, height, Color(40,40,40,200))
+
+        draw.RoundedBox(8, width - height, 0, height, height, Color(20, 20, 20, 220))
         if ammobox_refresh_count > 5 then
-            draw.RoundedBox(10, width - height, height * (1 - ammobox_refresh_count / HORDE.ammobox_refresh_interval), height, height * (ammobox_refresh_count / HORDE.ammobox_refresh_interval), HORDE.color_crimson_dark)
+            draw.RoundedBox(8, width - height, height * (1 - ammobox_refresh_count / HORDE.ammobox_refresh_interval), height, height * (ammobox_refresh_count / HORDE.ammobox_refresh_interval), HORDE.color_crimson_dark)
         end
-        surface.SetDrawColor(255, 255, 255, 255) -- Set the drawing color
-        surface.SetMaterial(ammoMaterial) -- Use our cached material
+        surface.SetDrawColor(255, 255, 255, 255)
+        surface.SetMaterial(ammoMaterial)
         surface.DrawTexturedRect(width - height + ScreenScale(2), ScreenScale(2), ScreenScale(10), ScreenScale(10))
     end
 end)
@@ -339,9 +407,14 @@ net.Receive("Horde_RenderBreakCountDown", function()
         end
     end
     if num == 0 then
+        -- Reset enemy progress tracking for the new wave
+        enemy_count     = 0
+        enemy_max_count = 0
+        center_panel_mode = "text"
         center_panel_str = translate.Format("Game_Wave_Has_Started", tostring(HORDE.current_wave)) .. "!"
         timer.Simple(1, function() HORDE:PlayWaveNotification(HORDE.current_wave) end)
     else
+        center_panel_mode = "text"
         center_panel_str = translate.Format("Game_Next_Wave_Starts_In", num)
     end
 end)
@@ -350,27 +423,45 @@ net.Receive("Horde_RenderEnemiesCount", function()
     local is_boss = net.ReadBool()
     wave_str = net.ReadString()
     local count = net.ReadUInt(12)
+    enemy_count = count
+    if count > enemy_max_count then enemy_max_count = count end
     if is_boss then
-        center_panel_str = "|" .. HORDE.Difficulty[HORDE.CurrentDifficulty].name .. "|  " .. "BOSS"
+        is_boss_wave = true
+        center_panel_mode = "boss"
     else
-        center_panel_str = "|" .. HORDE.Difficulty[HORDE.CurrentDifficulty].name .. "|  " .. translate.Get("Game_Enemies") .. ": " .. tostring(count)
+        is_boss_wave = false
+        center_panel_mode = "enemies"
+    end
+    -- Keep center_panel_str updated for fallback / other callers
+    local diff_name = HORDE.Difficulty and HORDE.Difficulty[HORDE.CurrentDifficulty] and HORDE.Difficulty[HORDE.CurrentDifficulty].name or ""
+    if is_boss then
+        center_panel_str = "|" .. diff_name .. "|  BOSS"
+    else
+        center_panel_str = "|" .. diff_name .. "|  " .. translate.Get("Game_Enemies") .. ": " .. tostring(count)
     end
 end)
 
 net.Receive("Horde_RenderObjectives", function()
     local count = net.ReadUInt(4)
     local max_count = net.ReadUInt(4)
-    center_panel_str = "|" .. HORDE.Difficulty[HORDE.CurrentDifficulty].name .. "|  " .. "Objectives: " .. tonumber(count) .. "/" .. tonumber(max_count)
+    objectives_count = count
+    objectives_max   = max_count
+    center_panel_mode = "objectives"
+    local diff_name = HORDE.Difficulty and HORDE.Difficulty[HORDE.CurrentDifficulty] and HORDE.Difficulty[HORDE.CurrentDifficulty].name or ""
+    center_panel_str = "|" .. diff_name .. "|  Objectives: " .. tonumber(count) .. "/" .. tonumber(max_count)
 end)
 
 net.Receive("Horde_RenderGameResult", function()
     local status = net.ReadString()
     local wave = net.ReadUInt(32)
+    center_panel_mode = "text"
     center_panel_str = translate.Get("Game_Result_" .. status) .. "! " .. translate.Get("Game_Wave") .. ": " .. tostring(wave)
 end)
 
 net.Receive("Horde_SyncEscapeStart", function ()
-    center_panel_str = "|" .. HORDE.Difficulty[HORDE.CurrentDifficulty].name .. "|  " .. "Escape!"
+    center_panel_mode = "text"
+    local diff_name = HORDE.Difficulty and HORDE.Difficulty[HORDE.CurrentDifficulty] and HORDE.Difficulty[HORDE.CurrentDifficulty].name or ""
+    center_panel_str = "|" .. diff_name .. "|  Escape!"
 end)
 
 local heal_msg_cd = 0

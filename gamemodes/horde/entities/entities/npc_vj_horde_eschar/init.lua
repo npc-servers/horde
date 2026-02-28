@@ -70,12 +70,13 @@ function ENT:CustomOnThink()
 					ent:Horde_AddDebuffBuildup( HORDE.Status_Necrosis, 5, self )
 				end
 			end
-			local e = EffectData()
-			e:SetOrigin( self:GetPos() )
-			util.Effect( "blight_mini_explosion", e, true, true )
 
 			self.NextTick = CurTime() + 0.5
 		end
+
+		local e = EffectData()
+		e:SetOrigin( self:GetPos() )
+		util.Effect( "blight_mini_explosion", e, true, true )
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

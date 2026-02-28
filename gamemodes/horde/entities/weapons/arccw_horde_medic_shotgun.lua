@@ -264,6 +264,13 @@ SWEP.Animations = {
     },
 }
 
+hook.Add("Horde_ShouldCollide", "Horde_MedicShotgun", function(ent1, ent2)
+    local entClass = "arccw_horde_medic_shotgun"
+    if ent1 == entClass or ent2 == entClass then
+        return true
+    end
+end)
+
 function SWEP:DoPrimaryFire(isent, data)
     local clip = self:Clip1()
     if self:HasBottomlessClip() then
