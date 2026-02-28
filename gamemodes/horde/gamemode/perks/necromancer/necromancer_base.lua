@@ -135,3 +135,40 @@ PERK.Hooks.Horde_PrecomputePerkLevelBonus = function(ply)
         ply:Horde_SetPerkLevelBonus("necromancer_base_minion_damage", math.min(0.20, 0.01 * ply:Horde_GetLevel("Necromancer")))
     end
 end
+
+PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
+    if not SERVER then return end
+    if not IsValid(target) then return end
+    if not HORDE:IsPlayerOrMinion(target) then return end
+
+    local owner = target:GetNWEntity("HordeOwner")
+    if not IsValid(owner) then return end
+    if not owner:Horde_GetPerk("necromancer_base") then return end
+
+    local hpGatePercentage = 1 / 6 * target:GetMaxHealth()
+    local curTime = CurTime()
+
+    local data = target.Horde_HealthGateData
+    if not data or curTime - data.lastResetTime >= 2 then
+        target.Horde_HealthGateData = {
+            damageAccumulated = 0,
+            lastResetTime = curTime
+        }
+
+        data = target.Horde_HealthGateData
+    end
+
+    PrintTable(data)
+    PrintTable(target.Horde_HealthGateData)
+
+    local newAccumulated = data.damageAccumulated + dmginfo:GetDamage()
+
+    if newAccumulated > hpGatePercentage then
+        local allowedDamage = math.max( 0, hpGatePercentage - data.damageAccumulated )
+        dmginfo:SetDamage( allowedDamage )
+
+        data.damageAccumulated = hpGatePercentage
+    else
+        data.damageAccumulated = newAccumulated
+    end
+end

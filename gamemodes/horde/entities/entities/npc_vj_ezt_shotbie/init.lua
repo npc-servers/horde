@@ -35,7 +35,7 @@ ENT.HasBloodPool = false -- Does it have a blood pool?
 ENT.DropWeaponOnDeath = false
 ENT.HasItemDropsOnDeath = true
 ENT.ItemDropsOnDeathChance = 4
-ENT.ItemDropsOnDeath_EntityList = {"item_battery","horde_ammobox"}
+ENT.ItemDropsOnDeath_EntityList = {"horde_armor_battery","horde_ammobox"}
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 -- ====== Flinching Code ====== --

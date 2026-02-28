@@ -436,7 +436,7 @@ if SERVER then
 		if owner:Horde_GetLevel( subclass ) < maxLevel then
 			local wavePercent = HORDE.current_wave / HORDE.max_waves
 			local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
-			local expMulti = roundXpMulti * expMultiConvar:GetInt()
+			local expMulti = roundXpMulti * expMultiConvar:GetInt() / 2
 
 			owner:Horde_GiveExp( subclass, 25 * expMulti, "Reviving a Player" )
 		end

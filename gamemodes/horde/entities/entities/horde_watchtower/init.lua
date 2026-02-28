@@ -63,6 +63,7 @@ function ENT:Think()
         end
         self.Horde_Ammobox = ents.Create("horde_ammobox")
         self.Horde_Ammobox:SetPos(self:GetPos() - self:GetAngles():Forward() * 30)
+        self.Horde_Ammobox:SetOwner(self.Horde_Owner)
         self.Horde_Ammobox:Spawn()
         if SERVER and self.Horde_Owner:IsPlayer() then
             hook.Run("Horde_WardenWatchtower", self.Horde_Owner, self)
