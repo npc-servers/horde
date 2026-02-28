@@ -36,7 +36,6 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     net.Send( ply )
 end
 
-local smiteDmg = DamageInfo()
 local dmgAmt = 200
 local dmgType = DMG_SHOCK
 
@@ -69,6 +68,7 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
         damage = damage * 2
     end
 
+    local smiteDmg = DamageInfo()
     smiteDmg:SetDamageType( dmgType )
     smiteDmg:SetAttacker( ply )
     smiteDmg:SetInflictor( ply )
