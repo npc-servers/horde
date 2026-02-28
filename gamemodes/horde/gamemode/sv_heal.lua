@@ -45,7 +45,7 @@ local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
 local endMinusStartXp = endXpMult - startXpMult
 local maxLevel = HORDE.max_level
 local healXpPercentage = 0.25
-local armorXpPercentage = 0.25
+local armorXpPercentage = 0.02
 
 function plymeta:Horde_AddHealAmount( amount )
     if HORDE.current_wave <= 0 then return end
@@ -147,9 +147,11 @@ local function armorerDoGiveXp( armorer, armorGiven )
 
     local wavePercent = HORDE.current_wave / HORDE.max_waves
     local roundXpMult = startXpMult + wavePercent * endMinusStartXp
-    local expMult = roundXpMult * expMultiConvar:GetInt()
+    local expMult = roundXpMult * expMultiConvar:GetInt() / 2
 
-    armorer:Horde_GiveExp( subclass, armorXpPercentage * armorGiven * expMult, "Provided Armor" )
+    local rewardMult = armorXpPercentage * armorGiven * math.max( 1, expMult )
+
+    armorer:Horde_GiveExp( subclass, rewardMult, "Provided Armor" )
 end
 
 function plymeta:Horde_GiveArmor( armorAmount, armorer )
