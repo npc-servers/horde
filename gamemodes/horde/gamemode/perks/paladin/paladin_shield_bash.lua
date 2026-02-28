@@ -96,6 +96,10 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
         end
 
         if hit then
+            local effect = EffectData()
+                effect:SetOrigin( ply:GetPos() + Vector( 0, 0, 45 ) + ply:GetForward() * 40 )
+            util.Effect( "horde_aerial_parry", effect, true, true )
+
             ply:EmitSound( "horde/player/quickstep.ogg" )
             ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
         end
