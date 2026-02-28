@@ -102,8 +102,7 @@ local PERK_DAWNBRINDER = "paladin_dawnbrinder"
 local PERK_SANCTUARY = "paladin_sanctuary"
 local PERK_RALLYING_PRESENCE = "paladin_rallying_presence"
 
-local lightningdmginfo = DamageInfo()
-
+local DamageInfo = DamageInfo
 local CurTime = CurTime
 local IsValid = IsValid
 local pairs = pairs
@@ -131,7 +130,10 @@ function ENT:Think()
         return true
     end
 
+    local lightningdmginfo
+
     if hasDawnbrinder then
+        lightningdmginfo = DamageInfo()
         dmginfo_SetDamage( lightningdmginfo, LIGHTNING_DMG_AMOUNT )
         dmginfo_SetDamageType( lightningdmginfo, LIGHTNING_DMG_TYPE )
         dmginfo_SetAttacker( lightningdmginfo, owner )
