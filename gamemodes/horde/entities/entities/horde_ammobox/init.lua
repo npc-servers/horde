@@ -40,7 +40,7 @@ function ENT:DoGiveXp( ply )
     local roundXpMult = startXpMult + wavePercent * endMinusStartXp
     local expMult = roundXpMult * expMultiConvar:GetInt() / 2
 
-    ply:Horde_GiveExp( class, 5 * expMult, "Player Resupplied" )
+    ply:Horde_GiveExp( class, 2 * expMult, "Player Resupplied" )
 end
 
 function ENT:StartTouch( entity )
