@@ -74,6 +74,13 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, _, _, dmginfo )
     smiteDmg:SetInflictor( ply )
     smiteDmg:SetDamage( damage )
 
+    local effectPos = npc and npc:GetPos() or dmginfo:GetDamagePosition()
+
+    local effect = EffectData()
+        effect:SetOrigin( effectPos )
+        effect:SetRadius( 100 )
+    util.Effect( "paladin_smite", effect, true, true )
+
     for ent, _ in pairs( entsInside ) do
         if HORDE:IsEnemy( ent ) then
             smiteDmg:SetDamagePosition( ent:GetPos() )
