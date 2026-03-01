@@ -2,16 +2,13 @@ resource.AddWorkshop( "3048110979" )
 
 -- HORDE: Custom Spells
 resource.AddWorkshop( "3078047587" )
--- Custom Chat
-resource.AddWorkshop( "2799307109" )
+
 -- [ArcCW] Arctic's Customizable Weapons (Base)
 resource.AddWorkshop( "2131057232" )
 -- [ArcCW] Gunsmith Offensive
 resource.AddWorkshop( "2257255110" )
 -- [ArcCW] Modern Warfare 2
 resource.AddWorkshop( "2135529088" )
--- HORDE: Custom Spells
-resource.AddWorkshop( "3078047587" )
 
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
