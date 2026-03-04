@@ -247,16 +247,24 @@ function HORDE:RaiseSpectre(ply, param, p2)
     hook.Run("Horde_OnRaiseSpectre", ply, p)
 
     local spectres_count = 0
+
     if ply.Horde_drop_entities["npc_vj_horde_spectre"] then
         spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_spectre"]
-    elseif ply.Horde_drop_entities["npc_vj_horde_phantasm"] then
+    end
+
+    if ply.Horde_drop_entities["npc_vj_horde_phantasm"] then
         spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_phantasm"]
-    elseif ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] then
+    end
+
+    if ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] then
         if param and param.hulk_spectre and ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] >= 1 then
             return true
         end
+
         spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"]
-    elseif ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] then
+    end
+
+    if ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] then
         if param and param.weeper_spectre and ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] >= 1 then
             return true
         end
