@@ -40,6 +40,21 @@ ENT.SoundTbl_Pain = {"npc/zombie/zombie_pain1.wav","npc/zombie/zombie_pain2.wav"
 ENT.SoundTbl_Death = {"npc/zombie/zombie_die1.wav","npc/zombie/zombie_die2.wav","npc/zombie/zombie_die3.wav"}
 ENT.SoundTbl_Pain = nil
 
+ENT.EntitiesToNoCollide = {
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
+	"npc_vj_horde_vortigaunt",
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
+}
+
 ENT.GeneralSoundPitch1 = 100
 ENT.GeneralSoundPitch2 = 100
 ENT.HasDeathRagdoll = false
