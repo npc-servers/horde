@@ -36,6 +36,9 @@ function ENT:RewardOwner( ply )
     local class = ply:Horde_GetCurrentSubclass()
     if ply:Horde_GetLevel( class ) >= maxLevel then return end
 
+    ply:Horde_AddMoney( 10 )
+    ply:Horde_SyncEconomy()
+
     local wavePercent = curWave / maxWave
     local roundXpMult = startXpMult + wavePercent * endMinusStartXp
     local expMult = roundXpMult * expMultiConvar:GetInt() / 2
