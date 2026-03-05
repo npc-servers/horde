@@ -133,7 +133,7 @@ function HORDE:SelfHeal( ply, amount )
     HORDE:OnPlayerHeal( ply, healinfo )
 end
 
-local function armorerDoGiveXp( armorer, armorGiven )
+local function rewardArmorer( armorer, armorGiven )
     if armorGiven < 0 then return end
 
     if not IsValid( armorer ) then return end
@@ -169,7 +169,7 @@ function plymeta:Horde_GiveArmor( armorAmount, armorer )
     local armorDiff = armorGiven - armorAmount
 
     if armorer ~= self then
-        armorerDoGiveXp( armorer, armorDiff )
+        rewardArmorer( armorer, armorDiff )
     end
 
     self:SetArmor( armorGiven )
