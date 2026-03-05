@@ -48,7 +48,6 @@ local healXpPercentage = 0.15
 local armorXpPercentage = 0.06
 
 function plymeta:Horde_AddHealAmount( amount )
-    if HORDE.current_wave <= 0 then return end
     if amount < 0 then return end
 
     local subclass = self:Horde_GetCurrentSubclass()
@@ -93,7 +92,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
 
         healingApplied = math.min( maxHealth, health + healMult * healAmount ) - health
 
-        if healer ~= ply and not HORDE:InBreak() then
+        if healer ~= ply and HORDE.current_wave > 0 and not HORDE:InBreak() then
             if not ply:Horde_GetPerk( "psycho_base" ) then
                 healer:Horde_AddMoney( healingApplied * 0.75 )
                 healer:Horde_SyncEconomy()
