@@ -95,7 +95,7 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
 
         if healer ~= ply and not HORDE:InBreak() then
             if not ply:Horde_GetPerk( "psycho_base" ) then
-                healer:Horde_AddMoney( math.min( healingApplied * 0.75 ) )
+                healer:Horde_AddMoney( healingApplied * 0.75 )
                 healer:Horde_SyncEconomy()
             end
 
@@ -145,7 +145,7 @@ local function rewardArmorer( armorer, armorGiven )
     local subclass = armorer:Horde_GetCurrentSubclass()
     if armorer:Horde_GetLevel( subclass ) >= maxLevel then return end
 
-    armorer:Horde_AddMoney( math.min( armorGiven * 0.75 ) )
+    armorer:Horde_AddMoney( armorGiven * 0.75 )
     armorer:Horde_SyncEconomy()
 
     local wavePercent = HORDE.current_wave / HORDE.max_waves
