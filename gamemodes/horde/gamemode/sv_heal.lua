@@ -145,6 +145,9 @@ local function armorerDoGiveXp( armorer, armorGiven )
     local subclass = armorer:Horde_GetCurrentSubclass()
     if armorer:Horde_GetLevel( subclass ) >= maxLevel then return end
 
+    armorer:Horde_AddMoney( math.min( armorGiven * 0.75 ) )
+    armorer:Horde_SyncEconomy()
+
     local wavePercent = HORDE.current_wave / HORDE.max_waves
     local roundXpMult = startXpMult + wavePercent * endMinusStartXp
     local expMult = roundXpMult * expMultiConvar:GetInt() / 2
