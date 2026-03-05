@@ -45,7 +45,7 @@ local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
 local endMinusStartXp = endXpMult - startXpMult
 local maxLevel = HORDE.max_level
 local healXpPercentage = 0.15
-local armorXpPercentage = 0.06
+local armorXpPercentage = 0.1
 
 function plymeta:Horde_AddHealAmount( amount )
     if amount < 0 then return end
