@@ -44,11 +44,10 @@ local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
 local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
 local endMinusStartXp = endXpMult - startXpMult
 local maxLevel = HORDE.max_level
-local healXpPercentage = 0.02
-local armorXpPercentage = 0.02
+local healXpPercentage = 0.15
+local armorXpPercentage = 0.1
 
 function plymeta:Horde_AddHealAmount( amount )
-    if HORDE.current_wave <= 0 then return end
     if amount < 0 then return end
 
     local subclass = self:Horde_GetCurrentSubclass()
@@ -93,9 +92,9 @@ function HORDE:OnPlayerHeal( ply, healinfo, silent )
 
         healingApplied = math.min( maxHealth, health + healMult * healAmount ) - health
 
-        if healer ~= ply and not HORDE:InBreak() then
+        if healer ~= ply and HORDE.current_wave > 0 and not HORDE:InBreak() then
             if not ply:Horde_GetPerk( "psycho_base" ) then
-                healer:Horde_AddMoney( math.min( healingApplied * 0.75 ) )
+                healer:Horde_AddMoney( healingApplied * 0.75 )
                 healer:Horde_SyncEconomy()
             end
 
@@ -133,7 +132,7 @@ function HORDE:SelfHeal( ply, amount )
     HORDE:OnPlayerHeal( ply, healinfo )
 end
 
-local function armorerDoGiveXp( armorer, armorGiven )
+local function rewardArmorer( armorer, armorGiven )
     if armorGiven < 0 then return end
 
     if not IsValid( armorer ) then return end
@@ -144,6 +143,9 @@ local function armorerDoGiveXp( armorer, armorGiven )
 
     local subclass = armorer:Horde_GetCurrentSubclass()
     if armorer:Horde_GetLevel( subclass ) >= maxLevel then return end
+
+    armorer:Horde_AddMoney( armorGiven * 0.75 )
+    armorer:Horde_SyncEconomy()
 
     local wavePercent = HORDE.current_wave / HORDE.max_waves
     local roundXpMult = startXpMult + wavePercent * endMinusStartXp
@@ -166,7 +168,7 @@ function plymeta:Horde_GiveArmor( armorAmount, armorer )
     local armorDiff = armorGiven - armorAmount
 
     if armorer ~= self then
-        armorerDoGiveXp( armorer, armorDiff )
+        rewardArmorer( armorer, armorDiff )
     end
 
     self:SetArmor( armorGiven )

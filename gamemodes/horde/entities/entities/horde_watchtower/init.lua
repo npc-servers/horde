@@ -29,6 +29,8 @@ function ENT:Initialize()
     self.Horde_Idle = false
     self.Horde_Immune_Status_All = true
 
+    self:SetUseType(SIMPLE_USE)
+
     if self.Horde_Owner:Horde_GetPerk("warden_restock") then
         self.Horde_ThinkInterval = 15
     end
@@ -43,7 +45,7 @@ end
 function ENT:Think()
     local curTime = CurTime()
 
-    if not self.Horde_Idle then
+    if not self:IsPlayerHolding() and not self.Horde_Idle then
         local curPos = self:GetPos()
         if curPos:DistToSqr(self.Horde_LastMovePos) > 1 then
             self.Horde_IdleStart = curTime
@@ -87,46 +89,24 @@ function ENT:Think()
     self:NextThink(curTime + 0.1)
 end
 
-hook.Add("PlayerUse", "PickUpWatchtower", function(ply, ent)
-    if not HORDE:IsWatchTower(ent) then return end
-    if not ent:GetNWEntity("HordeOwner"):IsValid() then return end
-    if ent:GetNWEntity("HordeOwner") ~= ply then return false end
-    if not ent.Horde_WatchtowerPickupCd then
-        ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
-    else
-        if ent.Horde_WatchtowerPickupCd > CurTime() then
-            return
-        else
-            if ent.Horde_WatchtowerPickedUp then
-                ply:DropObject(ent)
-                ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
-                ent.Horde_WatchtowerPickedUp = nil
-                return
-            end
-        end
-    end
-    if not ply.IsHoldingObject then
-        local p = ent:GetPos()
-        p.z = ply:GetPos().z + 12
-        ent:SetPos(p)
-        local a = ply:GetAngles()
-        ent:SetAngles(Angle(0, a.y, 0))
-        ply:PickupObject(ent)
-    end
-    ent.Horde_WatchtowerPickedUp = ply
-    ent.Horde_WatchtowerPickupCd = CurTime() + 0.5
-end )
+function ENT:Use(activator)
+    local owner = self.Horde_Owner
+    if not IsValid(owner) then return end
+    if activator ~= owner then return end
 
-hook.Add("OnPlayerPhysicsPickup","DetectPickup", function(ply, ent)
-    local phys = ent:GetPhysicsObject()
+    local p = self:GetPos()
+    p.z = activator:GetPos().z + 12
+    self:SetPos(p)
+
+    local a = activator:GetAngles()
+    self:SetAngles(Angle(0, a.y, 0))
+
+    activator:PickupObject(self)
+
+    local phys = self:GetPhysicsObject()
     if IsValid(phys) then
         phys:EnableMotion(true)
-        ent.Horde_Idle = false
     end
 
-    ply.IsHoldingObject = true
-end)
-
-hook.Add("OnPlayerPhysicsDrop","Detectdrop", function(ply, ent)
-    ply.IsHoldingObject = nil
-end)
+    self.Horde_Idle = false
+end

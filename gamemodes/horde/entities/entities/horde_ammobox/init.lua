@@ -27,7 +27,7 @@ function ENT:Initialize()
     self:PhysWake()
 end
 
-function ENT:DoGiveXp( ply )
+function ENT:RewardOwner( ply )
     if HORDE:InBreak() then return end
 
     local curWave = HORDE.current_wave
@@ -35,6 +35,9 @@ function ENT:DoGiveXp( ply )
 
     local class = ply:Horde_GetCurrentSubclass()
     if ply:Horde_GetLevel( class ) >= maxLevel then return end
+
+    ply:Horde_AddMoney( 10 )
+    ply:Horde_SyncEconomy()
 
     local wavePercent = curWave / maxWave
     local roundXpMult = startXpMult + wavePercent * endMinusStartXp
@@ -97,7 +100,7 @@ function ENT:StartTouch( entity )
         local owner = self:GetOwner()
 
         if IsValid( owner ) and entity ~= owner and owner:IsPlayer() then
-            self:DoGiveXp( owner )
+            self:RewardOwner( owner )
         end
 
         self.Removing = true

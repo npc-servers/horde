@@ -1,4 +1,5 @@
 if SERVER then
+    util.AddNetworkString("Horde_XPNotification")
     util.AddNetworkString("Horde_SyncExp")
     util.AddNetworkString("Horde_SyncLevel")
     util.AddNetworkString("Horde_SyncAllLevels")
@@ -37,12 +38,10 @@ function plymeta:Horde_GetExp(class_name)
     return self.Horde_Exps[class_name] or 0
 end
 
-function plymeta:Horde_SetExp(class_name, exp, label)
+function plymeta:Horde_SetExp(class_name, exp)
     if not self:IsValid() then return end
     if not self.Horde_Exps then self.Horde_Exps = {} end
     if not class_name then return end
-
-    local diff = 0 + math.max(0, exp - self:Horde_GetExp(class_name))
 
     self.Horde_Exps[class_name] = exp
 
@@ -57,8 +56,6 @@ function plymeta:Horde_SetExp(class_name, exp, label)
         net.Start("Horde_SyncExp")
             net.WriteString(class_name)
             net.WriteUInt(exp, 32)
-            net.WriteString(label or "")
-            net.WriteUInt(diff or 0, 32)
         net.Send(self)
     end
 end
@@ -74,6 +71,15 @@ function plymeta:Horde_GiveExp(class_name, exp, label)
     self.Horde_ExtraXP = math.max(0, extraXp + exp - whole)
 
     self:Horde_SetExp(class_name, self:Horde_GetExp(class_name) + whole, label)
+
+    if CLIENT then return end
+    if exp <= 0 then return end
+    if not label or label == "" then return end
+
+    net.Start("Horde_XPNotification")
+        net.WriteString(label)
+        net.WriteDouble(exp, 32)
+    net.Send(self)
 end
 
 function plymeta:Horde_GetLevel(class_name)
@@ -178,21 +184,27 @@ function HORDE:LevelToRank(level)
 end
 
 if CLIENT then
+    net.Receive( "Horde_XPNotification", function()
+        local ply = LocalPlayer()
+        local label = net.ReadString()
+        local diff = net.ReadDouble()
+
+        if not ply:IsValid() then return end
+        if label == "" then return end
+        if diff <= 0 then return end
+
+        HORDE:PlayXPNotification(diff, label)
+    end )
+
     net.Receive("Horde_SyncExp", function()
         local class_name = net.ReadString()
         local exp = net.ReadUInt(32)
         local ply = LocalPlayer()
-        local label = net.ReadString()
-        local diff = net.ReadUInt(32)
 
         if not ply:IsValid() then return end
 
         if not ply.Horde_Exps then ply.Horde_Exps = {} end
         ply.Horde_Exps[class_name] = exp
-
-        if label ~= "" and diff ~= 0 then
-            HORDE:PlayXPNotification(diff, label)
-        end
     end)
 
     net.Receive("Horde_SyncLevel", function()
