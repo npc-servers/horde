@@ -6,9 +6,9 @@ function EFFECT:Init( ed )
     local emitter2 = ParticleEmitter( vOrig, true )
     sound.Play( "ambient/explosions/explode_4.wav", vOrig, 80, math.random( 70, 90 ) )
 
-    for i=1,8 do
+    for _ = 1, 8 do
         local flash = self.Emitter:Add( "effects/combinemuzzle2_dark", vOrig )
-        if (flash) then
+        if flash then
             flash:SetColor( 255, 255, 0 )
             flash:SetVelocity( VectorRand():GetNormal() * math.random( 10, 30 ) )
             flash:SetRoll( math.Rand( 0, 360 ) )
@@ -22,7 +22,7 @@ function EFFECT:Init( ed )
         end
 
         local quake = self.Emitter:Add( "effects/splashwake3", vOrig )
-        if (quake) then
+        if quake then
             quake:SetColor( 255, 255, 0 )
             quake:SetVelocity( VectorRand():GetNormal() * math.random( 10, 30 ) )
             quake:SetRoll( math.Rand( 0, 360 ) )
@@ -38,7 +38,7 @@ function EFFECT:Init( ed )
 
     local ringstart = vOrig + normal * 10
     local particle
-    for i=1, 3 do
+    for i = 1, 3 do
         particle = emitter2:Add( "effects/select_ring", ringstart )
         particle:SetDieTime( 0.1 + i * 0.1 )
         particle:SetColor( 255, 255, 0 )
