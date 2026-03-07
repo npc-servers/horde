@@ -158,9 +158,6 @@ PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
         data = target.Horde_HealthGateData
     end
 
-    PrintTable(data)
-    PrintTable(target.Horde_HealthGateData)
-
     local newAccumulated = data.damageAccumulated + dmginfo:GetDamage()
 
     if newAccumulated > hpGatePercentage then
