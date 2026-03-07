@@ -41,7 +41,7 @@ function ENT:EndTouch( ent )
     self.Entities[ent] = nil
 
     if ent:IsPlayer() then
-        ent:Horde_RemovePaladinAuraEffects()
+        ent:Horde_RemovePaladinAuraEffects( self:GetOwner() )
     end
 end
 

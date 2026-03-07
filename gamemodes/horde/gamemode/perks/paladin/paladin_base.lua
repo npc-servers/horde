@@ -54,10 +54,14 @@ local function removeFaithTimer( ply )
 end
 
 local function addShieldingStatus( ply, recursive )
-    net.Start( "Horde_SyncStatus" )
-        net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
-        net.WriteUInt( 1, 8 )
-    net.Send( ply )
+    ply.Horde_PaladinShieldCount = ( ply.Horde_PaladinShieldCount or 0 ) + 1
+
+    if ply.Horde_PaladinShieldCount == 1 then
+        net.Start( "Horde_SyncStatus" )
+            net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
+            net.WriteUInt( 1, 8 )
+        net.Send( ply )
+    end
 
     if recursive then return end
 
@@ -68,8 +72,8 @@ local function addShieldingStatus( ply, recursive )
         local aura = ply.Horde_PaladinAura
         if not aura then return end
 
-        for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
-            if ent:IsPlayer() and ply:Horde_GetCurrentSubclass() ~= "Paladin" then
+        for ent, _ in pairs( aura.Entities ) do
+            if ent:IsPlayer() and ent:Horde_GetCurrentSubclass() ~= "Paladin" then
                 addShieldingStatus( ent, true )
             end
         end
@@ -77,10 +81,16 @@ local function addShieldingStatus( ply, recursive )
 end
 
 local function removeShieldingStatus( ply, recursive )
-    net.Start( "Horde_SyncStatus" )
-        net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
-        net.WriteUInt( 0, 8 )
-    net.Send( ply )
+    ply.Horde_PaladinShieldCount = ( ply.Horde_PaladinShieldCount or 0 ) - 1
+
+    if ply.Horde_PaladinShieldCount <= 0 then
+        ply.Horde_PaladinShieldCount = nil
+
+        net.Start( "Horde_SyncStatus" )
+            net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
+            net.WriteUInt( 0, 8 )
+        net.Send( ply )
+    end
 
     if recursive then return end
 
@@ -91,7 +101,7 @@ local function removeShieldingStatus( ply, recursive )
         if not aura then return end
 
         for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
-            if ent:IsPlayer() and ply:Horde_GetCurrentSubclass() ~= "Paladin" then
+            if ent:IsPlayer() and ent:Horde_GetCurrentSubclass() ~= "Paladin" then
                 removeShieldingStatus( ent, true )
             end
         end
