@@ -736,7 +736,7 @@ function HORDE:PlayXPNotification(diff, label)
     HORDE.xpNotifications[label or "default"] = notif
     
     main.Paint = function()
-        local text = "+" .. notif.amount .. "xp"
+        local text = "+" .. math.Round(notif.amount, 2) .. "xp"
         if notif.label then
             if notif.count > 1 then
                 text = text .. " (" .. notif.label .. " " .. notif.count .. "x)"
