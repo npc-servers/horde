@@ -208,12 +208,7 @@ function scoreboard:show()
 		thirdPerson:SetTextColor( Color( 255, 255, 255 ) )
 
 		function thirdPerson:DoClick()
-			-- Weird global from Simple Third Person
-			local frame = vgui.Create( "DFrame" )
-			BuildMenu( frame )
-			frame:SetSize( 300, 200 )
-			frame:Center()
-			frame:MakePopup()
+			RunConsoleCommand( "simple_thirdperson_menu" )
 		end
 
 		function thirdPerson:Paint( w, h )
