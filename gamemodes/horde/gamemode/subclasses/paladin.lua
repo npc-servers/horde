@@ -4,8 +4,8 @@ SUBCLASS.ParentClass = HORDE.Class_Warden
 SUBCLASS.Icon = "subclasses/paladin.png"
 SUBCLASS.Description = [[
 Warden Subclass.
-Paladin is a tanky melee shieldbearer, using his shield and aura to protect and support his allies or use it for self defense,
-banishing his enemies.]]
+Paladin is a tanky melee shieldbearer, using their shield and aura to protect and support their allies or use it for self defense,
+banishing their enemies.]]
 SUBCLASS.BasePerk = "paladin_base"
 SUBCLASS.Perks = {
     [1] = { title = "Enlightment", choices = { "paladin_shield_bash", "paladin_smite" } },
