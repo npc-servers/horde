@@ -55,61 +55,6 @@ local function removeFaithTimer( ply )
     end
 end
 
-local function addShieldingStatus( ply, recursive )
-    ply.Horde_PaladinShieldCount = ( ply.Horde_PaladinShieldCount or 0 ) + 1
-
-    if ply.Horde_PaladinShieldCount == 1 then
-        net.Start( "Horde_SyncStatus" )
-            net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
-            net.WriteUInt( 1, 8 )
-        net.Send( ply )
-    end
-
-    if recursive then return end
-
-    ply:ScreenFade( SCREENFADE.STAYOUT, Color( 255, 255, 0, 10 ), 0.2, 5 )
-    ply:EmitSound( "horde/spells/negative_burst.ogg" )
-
-    if ply:Horde_GetPerk( "paladin_providence" ) then
-        local aura = ply.Horde_PaladinAura
-        if not aura then return end
-
-        for ent, _ in pairs( aura.Entities ) do
-            if ent:IsPlayer() and ent:Horde_GetCurrentSubclass() ~= "Paladin" then
-                addShieldingStatus( ent, true )
-            end
-        end
-    end
-end
-
-local function removeShieldingStatus( ply, recursive )
-    ply.Horde_PaladinShieldCount = ( ply.Horde_PaladinShieldCount or 0 ) - 1
-
-    if ply.Horde_PaladinShieldCount <= 0 then
-        ply.Horde_PaladinShieldCount = nil
-
-        net.Start( "Horde_SyncStatus" )
-            net.WriteUInt( HORDE.Status_PaladinShielding, 8 )
-            net.WriteUInt( 0, 8 )
-        net.Send( ply )
-    end
-
-    if recursive then return end
-
-    ply:ScreenFade( SCREENFADE.PURGE, Color( 255, 255, 0, 0 ), 0.1, 0.1 )
-
-    if ply:Horde_GetPerk( "paladin_providence" ) then
-        local aura = ply.Horde_PaladinAura
-        if not aura then return end
-
-        for ent, _ in pairs( ply.Horde_PaladinAura.Entities ) do
-            if ent:IsPlayer() and ent:Horde_GetCurrentSubclass() ~= "Paladin" then
-                removeShieldingStatus( ent, true )
-            end
-        end
-    end
-end
-
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_base" then return end
 
@@ -122,7 +67,7 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
 
     ply:Horde_RemovePaladinAura()
     removeFaithTimer( ply )
-    removeShieldingStatus( ply )
+    ply:Horde_RemovePaladinShield()
 end
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
@@ -178,7 +123,7 @@ PERK.Hooks.KeyPress = function( ply, key )
 
     if not ply:Horde_GetPerk( "paladin_protectors_oath" ) then removeFaithTimer( ply ) end
 
-    addShieldingStatus( ply )
+    ply:Horde_AddPaladinShield()
 end
 
 PERK.Hooks.KeyRelease = function( ply, key )
@@ -189,7 +134,7 @@ PERK.Hooks.KeyRelease = function( ply, key )
     ply.Horde_PaladinShielding = nil
 
     createFaithTimer( ply )
-    removeShieldingStatus( ply )
+    ply:Horde_RemovePaladinShield()
 end
 
 -- Armor on heal
