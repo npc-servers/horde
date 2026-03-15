@@ -30,7 +30,7 @@ function plymeta:Horde_RemovePaladinFaithStack()
     effect:SetOrigin( self:GetPos() + Vector( 0, 0, 30 ) )
 
     util.Effect( "horde_faith_loss", effect, true, true )
-    self:EmitSound( "horde/player/focus_slash.ogg"   )
+    self:EmitSound( "horde/player/focus_slash.ogg" )
 end
 
 function plymeta:Horde_GetPaladinFaithStack()
