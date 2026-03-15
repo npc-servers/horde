@@ -1,8 +1,8 @@
 PERK.PrintName = "Dawnbrinder"
 PERK.Icon = "materials/perks/paladin/dawnbrinder.png"
 PERK.Description = [[
-Reduce Smite's cooldown by 50%
-Increase Smite's damage by 100%
+Reduce Smite cooldown by 50%
+Increase Smite damage by 100%
 Sacred Aura deals Lightning damage per second to every enemy inside it.]]
 PERK.Hooks = {}
 
