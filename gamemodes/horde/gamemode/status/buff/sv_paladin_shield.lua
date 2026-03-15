@@ -13,7 +13,7 @@ function plymeta:Horde_AddPaladinShield( recursive )
     if recursive then return end
 
     self:ScreenFade( SCREENFADE.STAYOUT, Color( 255, 255, 0, 10 ), 0.2, 5 )
-    self:EmitSound( "horde/spells/negative_burst.ogg" )
+    self:EmitSound( ")horde/spells/negative_burst.ogg" )
 
     if self:Horde_GetPerk( "paladin_providence" ) then
         local aura = self.Horde_PaladinAura
