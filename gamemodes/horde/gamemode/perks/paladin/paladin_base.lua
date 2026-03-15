@@ -28,6 +28,8 @@ PERK.Hooks = {}
 
 if not SERVER then return end
 
+local IN_WALK = IN_WALK
+
 local secondsToStackFaith = 3
 local SHIELDING_TIMER_NAME = "Horde_PaladinShielding"
 
@@ -158,8 +160,8 @@ PERK.Hooks.Horde_OnSetMaxHealth = function( ply, bonus )
     bonus.add = bonus.add + 50
 end
 
-PERK.Hooks.PlayerButtonDown = function( ply, button )
-    if button ~= KEY_LALT then return end
+PERK.Hooks.KeyPress = function( ply, key )
+    if key ~= IN_WALK then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
     local curTime = CurTime()
@@ -179,8 +181,8 @@ PERK.Hooks.PlayerButtonDown = function( ply, button )
     addShieldingStatus( ply )
 end
 
-PERK.Hooks.PlayerButtonUp = function( ply, button )
-    if button ~= KEY_LALT then return end
+PERK.Hooks.KeyRelease = function( ply, key )
+    if key ~= IN_WALK then return end
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
     if not ply.Horde_PaladinShielding then return end
 
