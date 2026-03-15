@@ -102,7 +102,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
 
     ply.Horde_PaladinEmpowered = true
 
-    ply:EmitSound( "horde/spells/solar_storm_charge.ogg" )
+    ply:EmitSound( ")horde/spells/solar_storm_charge.ogg" )
 
     net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_PaladinEmpowered, 8 )
