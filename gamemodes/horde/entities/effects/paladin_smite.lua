@@ -4,7 +4,7 @@ function EFFECT:Init( ed )
     local radius = ed:GetRadius()
     self.Emitter = ParticleEmitter( vOrig )
     local emitter2 = ParticleEmitter( vOrig, true )
-    sound.Play( "ambient/explosions/explode_4.wav", vOrig, 80, math.random( 70, 90 ) )
+    sound.Play( ")ambient/explosions/explode_4.wav", vOrig, 80, math.random( 70, 90 ) )
 
     for _ = 1, 8 do
         local flash = self.Emitter:Add( "effects/combinemuzzle2_dark", vOrig )
