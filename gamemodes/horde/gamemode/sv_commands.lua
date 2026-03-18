@@ -557,11 +557,11 @@ concommand.Add("horde_testing_spawn_enemy_raw", function (ply, cmd, args)
         spawned_enemy:Give(weapon)
     end
 
-
     spawned_enemy:SetLagCompensated(true)
     if tobool(mutation) then
         timer.Simple(0.1, function() spawned_enemy:Horde_SetMutation(mutation) end)
     end
+
 end)
 
 
