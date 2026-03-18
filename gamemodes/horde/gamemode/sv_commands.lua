@@ -359,7 +359,6 @@ concommand.Add("horde_testing_spawn_enemy", function (ply, cmd, args)
     local player_count = args[4]
     local enemy = HORDE.enemies[tostring(name) .. tostring(wave)]
     local npc_info = list.Get("NPC")[enemy.class]
-  --  PrintTable(enemy)
 
     if not npc_info then
         print("[HORDE] NPC does not exist in ", list.Get("NPC"))
