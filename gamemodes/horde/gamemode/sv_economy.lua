@@ -795,7 +795,6 @@ net.Receive("Horde_SellItem", function (len, ply)
     if not ply:IsValid() then return end
     local class = net.ReadString()
     local canSell, why = hook.Call("CanSell", HORDE, ply, class)
-    print(class)
     if canSell == false then
         HORDE:SendNotification(why or "You can't sell this.", 1, ply)
         return
