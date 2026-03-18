@@ -483,10 +483,10 @@ end)
 
 concommand.Add("horde_testing_spawn_enemy_raw", function (ply, cmd, args)
     if not ply:IsSuperAdmin() then HORDE:SendNotificationDenyAccess(ply) return end
-    local player_cunt = args[1]
+    local player_count = args[1]
     local class, is_elite, weapon, mutation, health_scale, damage_scale, reward_scale, model_scale, boss_properties = args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10]
 
-    if not tobool(player_cunt) or not tobool(class) then
+    if not tobool(player_count) or not tobool(class) then
             MsgC(Color( 255, 59, 173, 200),"- arguments: player count scaling, entity class, is an elite, weapon, mutation, health scale, damage scale, reward scale, model scale, is a boss\n - not all of these have to be filled out, just player scale (1 to 8) and entity class name is necessary. \n - used to spawn npcs for testing by manually filling in a bunch of variables that would normally be grabbed from the list definied in sh_enemy.lua. \n ")
         return
     end
@@ -518,7 +518,7 @@ concommand.Add("horde_testing_spawn_enemy_raw", function (ply, cmd, args)
     end
 
     -- Health settings
-    local horde_players_count = player_cunt or table.Count(player.GetAll())
+    local horde_players_count = player_count or player.GetCount()
     if tobool(is_elite) then
         spawned_enemy:Horde_SetElite()
         local scale1
