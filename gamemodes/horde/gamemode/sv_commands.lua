@@ -554,17 +554,19 @@ concommand.Add("horde_testing_spawn_enemy_raw", function (ply, cmd, args)
     end
 
     if tobool(weapon) then
-        if weapon == "none" then return end
+        if weapon == "none" then return
     else
         spawned_enemy:Give(weapon)
+        end
     end
 
 
     spawned_enemy:SetLagCompensated(true)
     if tobool(mutation) then
-        if mutation == "none" then return end
+        if mutation == "none" then return
     else
         timer.Simple(0.1, function() spawned_enemy:Horde_SetMutation(mutation) end)
+        end
     end
 end)
 
