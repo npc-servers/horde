@@ -6,7 +6,7 @@ include( "shared.lua" )
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
 ENT.Model = { "models/zombie/classic_gal_boss.mdl" }
-ENT.StartHealth = 750
+ENT.StartHealth = 450
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 
@@ -78,6 +78,12 @@ ENT.SoundTbl_Death = {
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local defAng = Angle( 0, 0, 0 )
 --
+
+function ENT:CustomOnInitialize()
+	self:SetModelScale(1.2, 0)
+
+end
+
 function ENT:CustomOnThink()
 	self.AnimTbl_IdleStand = { self:IsOnFire() and ACT_IDLE_ON_FIRE or ACT_IDLE }
 	self.AnimTbl_Walk = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }

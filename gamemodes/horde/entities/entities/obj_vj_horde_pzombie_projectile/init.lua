@@ -18,13 +18,14 @@ function ENT:CustomPhysicsObjectOnInitialize(phys)
 	phys:EnableDrag(false)
 	phys:SetMass(1)
 	phys:EnableGravity(false)
-	timer.Simple(1, function ()
-		if self:IsValid() then self:Remove() end
+	timer.Simple(0.8, function ()
+		if self:IsValid() then phys:EnableGravity(true) end
+	end)
+	timer.Simple(2, function ()
+		if self:IsValid() then self:Remove() end --redundancy to ensure it despawns if it somehow gets stuck in some way
 	end)
 end
-function ENT:CustomOnInitialize()
-	ParticleEffectAttach("blood_impact_green_01", PATTACH_ABSORIGIN_FOLLOW, self, 0)
-end
+
 function ENT:DeathEffects(data,phys)
 	local effectdata = EffectData()
 	effectdata:SetOrigin(data.HitPos)
@@ -43,7 +44,7 @@ function ENT:CustomOnPhysicsCollide(data, phys)
     dmg:SetAttacker(attacker)
 	dmg:SetInflictor(self)
 	dmg:SetDamageType(DMG_GENERIC)
-	dmg:SetDamage(20)
+	dmg:SetDamage(15)
 	util.BlastDamageInfo(dmg, self:GetPos(), 150)
 	for _, e in pairs(ents.FindInSphere(self:GetPos(), 180)) do
 		if e:IsPlayer() then
