@@ -101,7 +101,7 @@ function ENT:CustomOnThink()
 		self.AnimTbl_Run = actWalk
 		self.AnimTbl_Walk = actWalk
 	end
-	if (self.TimeSinceSpawn + 10) <= CurTime() and self.RangeAttackGrace then
+	if (self.TimeSinceSpawn + 5) <= CurTime() and self.RangeAttackGrace then
 		self.HasRangeAttack = true
 		self.RangeAttackGrace = false
 	end
