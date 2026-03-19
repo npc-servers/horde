@@ -178,7 +178,11 @@ end
 function plymeta:Horde_AddMoney(money)
     if not self:IsValid() or not money then return end
     if not self.Horde_money then self.Horde_money = 0 end
-    self.Horde_money = self.Horde_money + money
+    if self.Horde_money + money >= 65535 then
+        self.Horde_money = 65535
+    else
+        self.Horde_money = self.Horde_money + money
+    end
 end
 
 function plymeta:Horde_AddWeight(weight)
