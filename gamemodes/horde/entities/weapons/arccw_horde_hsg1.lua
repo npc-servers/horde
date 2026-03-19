@@ -226,15 +226,15 @@ SWEP.Animations = {
     Time = 10,
     },
     ["enter_sight"] = {
-        Source = "idle",
+        Source = "irons",
         Time = 0,
         },
     ["idle_sights"] = {
-        Source = "idle",
-        Time = 4096, -- this is to prevent the constant jittering caused by adsing with an animation time of 0
-        }, --nobody is adsing long enough without firing or releasing ads to see the animation progress, if this does not suffice please increase this number or seek a psychiatrist
+        Source = "irons",
+        Time = 1,
+        },
         ["exit_sight"] = {
-            Source = "idle",
+            Source = "irons",
             Time = 0,
             },
     ["draw"] = {

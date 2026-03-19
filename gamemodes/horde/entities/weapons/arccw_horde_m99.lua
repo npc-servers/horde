@@ -51,13 +51,13 @@ SWEP.Primary.ClipSize = 1 -- DefaultClip is automatically set.
 SWEP.ExtendedClipSize = 1
 SWEP.ReducedClipSize = 1
 
-SWEP.Recoil = 5
-SWEP.RecoilSide = 5
+SWEP.Recoil = 6
+SWEP.RecoilSide = 4
 SWEP.VisualRecoilMult = 5
 SWEP.RecoilRise = 5
-SWEP.RecoilPunch = 0
+SWEP.RecoilPunch = 0.2
 
-SWEP.Delay = 60 / 75 -- 60 / RPM.
+SWEP.Delay = 60 / 100 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
     {
@@ -194,16 +194,16 @@ SWEP.Animations = {
     Time = 10,
     },
     ["enter_sight"] = {
-        Source = "idle",
-        Time = 0,
+        Source = "irons",
+        Time = 1,
         },
     ["idle_sights"] = {
-        Source = "idle",
-        Time = 0,
+        Source = "irons",
+        Time = 1,
         },
         ["exit_sight"] = {
-            Source = "idle",
-            Time = 0,
+            Source = "irons",
+            Time = 1,
             },
     ["draw"] = {
         Source = "draw",
