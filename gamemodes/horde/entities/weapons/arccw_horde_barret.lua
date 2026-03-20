@@ -28,29 +28,31 @@ SWEP.UseHands = true
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_barrett_1.mdl"
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
-    pos = Vector(0, 5, -8),
+    pos = Vector(-5.5, 5, -7),
     ang = Angle(-10, 0, 180),
-    scale = 1.25
+    scale = 1.05
 }
 SWEP.ViewModelFOV = 65
 
 SWEP.Damage = 1000
 SWEP.DamageMin = 1000
 SWEP.Range = 4000 -- in METRES
-SWEP.Penetration = 22
+SWEP.Penetration = 100
 
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 5 -- DefaultClip is automatically set.
 
+SWEP.Recoil = 4.2
+SWEP.RecoilSide = 1
 SWEP.VisualRecoilMult = 0
-SWEP.Recoil = 0.75
-SWEP.RecoilSide = 0
+SWEP.RecoilRise = 4.2
+SWEP.RecoilPunch = 0.22
 
 SWEP.AccuracyMOA = 0.01 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 800 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 100
 
-SWEP.Delay = 1 -- 60 / RPM.
+SWEP.Delay = 60 / 175 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
     {
