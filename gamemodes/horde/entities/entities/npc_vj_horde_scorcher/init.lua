@@ -23,7 +23,7 @@ ENT.FootStepTimeWalk = 0.5 -- Next foot step sound when it is walking
 ENT.AnimTbl_Walk = {ACT_WALK} -- Set the walking animations | Put multiple to let the base pick a random animation when it moves
 ENT.AnimTbl_Run = {ACT_WALK} -- Set the running animations | Put multiple to let the base pick a random animation when it moves
 
-ENT.HasRangeAttack = true -- Should the SNPC have a range attack?
+ENT.HasRangeAttack = false -- Should the SNPC have a range attack?
 ENT.AnimTbl_RangeAttack = {"range"} -- Range Attack Animations
 ENT.RangeAttackEntityToSpawn = "obj_vj_horde_scorcher_projectile" -- The entity that is spawned when range attacking
 ENT.RangeDistance = 850 -- This is how far away it can shoot
@@ -52,6 +52,11 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_headcrab_poison D_LI 99")
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
 	self:SetModelScale(1.15, 0)
+		timer.Simple( 5, function()
+		if IsValid( self ) then
+			self.HasRangeAttack = true
+		end
+	end )
 end
 
 function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
