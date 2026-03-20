@@ -44,24 +44,6 @@ SWEP.ReloadSound = {"weapons/smg1/smg1_reload.wav"}
 SWEP.Primary.Tracer = 0
 SWEP.Primary.DisableBulletCode = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function SWEP:CustomOnSecondaryAttack()
-	local owner = self:GetOwner()
-	owner:ViewPunch(Angle(-self.Primary.Recoil *3, 0, 0))
-	VJ_EmitSound(self, "weapons/ar2/ar2_altfire.wav", 85)
-
-	local proj = ents.Create(self.NPC_SecondaryFireEnt)
-	proj:SetPos(owner:GetShootPos())
-	proj:SetAngles(owner:GetAimVector():Angle())
-	proj:SetOwner(owner)
-	proj:Spawn()
-	proj:Activate()
-	local phys = proj:GetPhysicsObject()
-	if IsValid(phys) then
-		phys:Wake()
-		phys:SetVelocity(owner:GetAimVector() * 2000)
-	end
-	return true
-end
 
 function SWEP:CustomOnPrimaryAttack_BeforeShoot()
 	if CLIENT then return end

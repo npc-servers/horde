@@ -6,28 +6,28 @@ include( "shared.lua" )
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
 ENT.Model = "models/zombie/poison.mdl"
-ENT.StartHealth = 500
+ENT.StartHealth = 250
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 
 ENT.BloodColor = "Red"
 ENT.CanFlinch = 1
 
-ENT.MeleeAttackDamage = 40
+ENT.MeleeAttackDamage = 20
 ENT.AnimTbl_MeleeAttack = { "vjseq_melee_01", "vjseq_melee_03" }
 ENT.MeleeAttackDistance = 32
 ENT.MeleeAttackDamageDistance = 85
 ENT.TimeUntilMeleeAttackDamage = false
 ENT.NextMeleeAttackTime = 2
 
-ENT.HasRangeAttack = true
+ENT.HasRangeAttack = false
 ENT.RangeAttackEntityToSpawn = "obj_vj_horde_pzombie_projectile"
 ENT.AnimTbl_RangeAttack = "vjseq_throw"
 ENT.RangeDistance = 800
 ENT.RangeToMeleeDistance = 250
 ENT.TimeUntilRangeAttackProjectileRelease = false
 ENT.NextRangeAttackTime = 10
-ENT.RangeAttackPos_Up = 40
+ENT.RangeAttackPos_Up = 50
 
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -77,9 +77,15 @@ ENT.GeneralSoundPitch1 = 100
 
 local sdFootScuff = "npc/zombie_poison/pz_right_foot1.wav"
 local sdThrow = { "npc/zombie_poison/pz_throw2.wav", "npc/zombie_poison/pz_throw3.wav" }
+
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )
+	timer.Simple( 5, function()
+		if IsValid( self ) then
+			self.HasRangeAttack = true
+		end
+	end )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local entMeta = FindMetaTable( "Entity" )
@@ -117,3 +123,8 @@ function ENT:CustomOnHandleAnimEvent( ev )
 		self:RangeAttackCode()
 	end
 end
+function ENT:RangeAttackCode_GetShootPos(projectile)
+	local startPos = projectile:GetPos()
+	return self:CalculateProjectile("Line", startPos, self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter() + Vector(0,0,22), 650)
+end
+

@@ -6,7 +6,7 @@ include( "shared.lua" )
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
 ENT.Model = { "models/horde/zombie/zm_draggy.mdl" }
-ENT.StartHealth = 125
+ENT.StartHealth = 110
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 

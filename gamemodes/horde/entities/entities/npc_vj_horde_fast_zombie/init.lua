@@ -11,22 +11,22 @@ ENT.StartHealth = 40
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 
 ENT.BloodColor = "Red"
-
 ENT.MeleeAttackDamage = 15
 ENT.AnimTbl_MeleeAttack = "vjseq_br2_attack"
 ENT.MeleeAttackDistance = 32
-ENT.MeleeAttackDamageDistance = 85
+ENT.MeleeAttackDamageDistance = 50
 ENT.TimeUntilMeleeAttackDamage = false
 ENT.NextMeleeAttackTime = 1.5
 
-ENT.HasLeapAttack = true
+ENT.HasLeapAttack = false
+ENT.LeapAttackDamage = 13
 ENT.AnimTbl_LeapAttack = ACT_JUMP
 ENT.LeapAttackExtraTimers = { 0.2, 0.4, 0.6, 0.8, 1 }
 ENT.TimeUntilLeapAttackVelocity = 0.2
 ENT.LeapDistance = 300
 ENT.LeapAttackVelocityForward = 250
 ENT.LeapAttackVelocityUp = 200
-
+ENT.NextLeapAttackTime = 3
 ENT.DisableFootStepSoundTimer = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
@@ -71,10 +71,16 @@ ENT.GeneralSoundPitch1 = 100
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )
+	timer.Simple( self.NextLeapAttackTime, function()
+		if IsValid( self ) then
+			self.HasLeapAttack = true
+		end
+	end )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+
 local getEventName = util.GetAnimEventNameByID
---
+-- 
 function ENT:CustomOnHandleAnimEvent( ev )
 	local eventName = getEventName( ev )
 
@@ -83,4 +89,13 @@ function ENT:CustomOnHandleAnimEvent( ev )
 	elseif eventName == "AE_ZOMBIE_ATTACK_LEFT" or eventName == "AE_ZOMBIE_ATTACK_RIGHT" then
 		self:MeleeAttackCode()
 	end
+end
+
+
+
+function ENT:CustomLeapAttackHitDetection()
+	local obbmin = self:OBBMins() - Vector(20,20,2)
+	local obbmax = self:OBBMaxs() + Vector(20,20,2)
+	local pos = self:GetPos() + (self:GetForward() * 18)
+	return ents.FindInBox(pos + obbmin, pos + obbmax)
 end
