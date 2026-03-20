@@ -44,7 +44,7 @@ SWEP.Primary.ClipSize = 5 -- DefaultClip is automatically set.
 
 SWEP.Recoil = 4.2
 SWEP.RecoilSide = 1
-SWEP.VisualRecoilMult = 5
+SWEP.VisualRecoilMult = 0
 SWEP.RecoilRise = 4.2
 SWEP.RecoilPunch = 0.22
 
