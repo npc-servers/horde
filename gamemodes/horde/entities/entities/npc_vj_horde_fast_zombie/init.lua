@@ -71,16 +71,13 @@ ENT.GeneralSoundPitch1 = 100
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )
-	self.LeapAttackGrace = true
-	self.TimeSinceSpawn = CurTime()
+	timer.Simple( self.NextLeapAttackTime, function()
+		if IsValid( self ) then
+			self.HasLeapAttack = true
+		end
+	end )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnThink()
-	if (self.TimeSinceSpawn + 3) <= CurTime() and self.LeapAttackGrace then
-		self.HasLeapAttack = true
-		self.LeapAttackGrace = false
-	end
-end
 
 local getEventName = util.GetAnimEventNameByID
 -- 

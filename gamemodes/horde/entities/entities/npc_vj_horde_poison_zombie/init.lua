@@ -81,8 +81,11 @@ local sdThrow = { "npc/zombie_poison/pz_throw2.wav", "npc/zombie_poison/pz_throw
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )
-	self.RangeAttackGrace = true
-	self.TimeSinceSpawn = CurTime()
+	timer.Simple( 5, function()
+		if IsValid( self ) then
+			self.HasRangeAttack = true
+		end
+	end )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local entMeta = FindMetaTable( "Entity" )
@@ -100,10 +103,6 @@ function ENT:CustomOnThink()
 	else
 		self.AnimTbl_Run = actWalk
 		self.AnimTbl_Walk = actWalk
-	end
-	if (self.TimeSinceSpawn + 5) <= CurTime() and self.RangeAttackGrace then
-		self.HasRangeAttack = true
-		self.RangeAttackGrace = false
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
