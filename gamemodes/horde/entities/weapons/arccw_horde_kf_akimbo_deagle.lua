@@ -78,14 +78,14 @@ SWEP.HoldtypeCustomize = "duel"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_DUEL
 
-SWEP.ActivePos = Vector(0, 1.5, 0)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 0, 1.5, 0 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.HolsterPos = Vector(0, 4, -0.5)
-SWEP.HolsterAng = Angle(-12, 0, 0)
+SWEP.HolsterPos = Vector( 0, 4, -0.5 )
+SWEP.HolsterAng = Angle( -12, 0, 0 )
 
-SWEP.CustomizePos = Vector(0, 4, -5)
-SWEP.CustomizeAng = Angle(15, 0, 0)
+SWEP.CustomizePos = Vector( 0, 4, -5 )
+SWEP.CustomizeAng = Angle( 15, 0, 0 )
 
 SWEP.Attachments = {
     {
@@ -102,26 +102,24 @@ SWEP.Attachments = {
         FreeSlot = true,
         Bone = "Gun",
         Offset = {
-            vpos = Vector(3, -0.4, 1.3),
-            vang = Angle(0, 0, 0),
-            wpos = Vector(8.625, 2, -2),
-            wang = Angle(0, 0, 180)
+            vpos = Vector( 3, -0.4, 1.3 ),
+            vang = Angle( 0, 0, 0 ),
         },
         NoWM = true,
     },
 }
 
 SWEP.Animations = {
-	[ "draw" ] = {
+	["draw"] = {
 		Source = "draw",
 		SoundTable = {
 			{ s = "horde/weapons/kf_deagle/50ae_select.wav", t = 1 / 30 },
 		}
 	},
-	[ "holster" ] = {
+	["holster"] = {
 		Source = "holster"
 	},
-	[ "reload" ] = {
+	["reload"] = {
 		Source = "reload",
 		TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
 		SoundTable = {
@@ -133,13 +131,13 @@ SWEP.Animations = {
 			{ s = "horde/weapons/kf_deagle/50ae_reload_055.wav", t = 92 / 35 },
 		}
 	},
-	[ "fire" ] = {
+	["fire"] = {
 		Source = "fire_r"
 	},
-	[ "fire2" ] = {
+	["fire2"] = {
 		Source = "fire_l"
 	},
-	[ "idle" ] = {
+	["idle"] = {
 		Source = "idle"
 	},
 }
