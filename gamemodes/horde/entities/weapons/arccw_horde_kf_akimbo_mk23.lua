@@ -45,9 +45,9 @@ SWEP.RecoilVMShake = 0
 
 SWEP.Delay = 60 / 500
 SWEP.Firemodes = {
-	{
-		Mode = 1,
-	}
+    {
+        Mode = 1,
+    }
 }
 
 SWEP.NotForNPCS = true
@@ -92,7 +92,7 @@ SWEP.Attachments = {
         PrintName = "Perk",
         Slot = "go_perk"
     },
-	{
+    {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
@@ -106,37 +106,37 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	["draw"] = {
-		Source = "draw",
-		SoundTable = {
-			{ s = "horde/weapons/kf_mk23/mk23_select.wav", t = 1 / 30 },
-		}
-	},
-	["holster"] = {
-		Source = "holster"
-	},
-	["reload"] = {
-		Source = "reload",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
-		SoundTable = {
-			{ s = "horde/weapons/kf_mk23/mk23_chamberback.wav", t = 1 / 40 },
-			{ s = "horde/weapons/kf_mk23/mk23_cliprelease.wav", t = 6 / 40 },
-			{ s = "horde/weapons/kf_mk23/mk23_clipinsert.wav", t = 34 / 40 },
-			{ s = "horde/weapons/kf_mk23/mk23_chamberback.wav", t = 52 / 40 },
-			{ s = "horde/weapons/kf_mk23/mk23_chamberforward.wav", t = 64 / 40 },
-			{ s = "horde/weapons/kf_mk23/mk23_clipinsert.wav", t = 80 / 40 },
-			{ s = "horde/weapons/kf_mk23/mk23_chamberhit.wav", t = 110 / 40 },
-		}
-	},
-	["fire"] = {
-		Source = "fire_r"
-	},
-	["fire2"] = {
-		Source = "fire_l"
-	},
-	["idle"] = {
-		Source = "idle"
-	},
+    ["draw"] = {
+        Source = "draw",
+        SoundTable = {
+            { s = "horde/weapons/kf_mk23/mk23_select.wav", t = 1 / 30 },
+        }
+    },
+    ["holster"] = {
+        Source = "holster"
+    },
+    ["reload"] = {
+        Source = "reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
+        SoundTable = {
+            { s = "horde/weapons/kf_mk23/mk23_chamberback.wav", t = 1 / 40 },
+            { s = "horde/weapons/kf_mk23/mk23_cliprelease.wav", t = 6 / 40 },
+            { s = "horde/weapons/kf_mk23/mk23_clipinsert.wav", t = 34 / 40 },
+            { s = "horde/weapons/kf_mk23/mk23_chamberback.wav", t = 52 / 40 },
+            { s = "horde/weapons/kf_mk23/mk23_chamberforward.wav", t = 64 / 40 },
+            { s = "horde/weapons/kf_mk23/mk23_clipinsert.wav", t = 80 / 40 },
+            { s = "horde/weapons/kf_mk23/mk23_chamberhit.wav", t = 110 / 40 },
+        }
+    },
+    ["fire"] = {
+        Source = "fire_r"
+    },
+    ["fire2"] = {
+        Source = "fire_l"
+    },
+    ["idle"] = {
+        Source = "idle"
+    },
 }
 
 SWEP.Hook_SelectFireAnimation = function( wep, data )
@@ -144,5 +144,5 @@ SWEP.Hook_SelectFireAnimation = function( wep, data )
 end
 
 SWEP.O_Hook_Override_MuzzleEffectAttachment = function( wep, data )
-	if wep:GetNthShot() % 2 == 0 then return { current = 2 } else return { current = 1 } end
+    if wep:GetNthShot() % 2 == 0 then return { current = 2 } else return { current = 1 } end
 end

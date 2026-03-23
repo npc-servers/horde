@@ -46,9 +46,9 @@ SWEP.RecoilVMShake = 0
 
 SWEP.Delay = 60 / 200
 SWEP.Firemodes = {
-	{
-		Mode = 1,
-	}
+    {
+        Mode = 1,
+    }
 }
 
 SWEP.Primary.Ammo = "357"
@@ -95,7 +95,7 @@ SWEP.Attachments = {
         PrintName = "Perk",
         Slot = "go_perk"
     },
-	{
+    {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
@@ -109,38 +109,38 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	["draw"] = {
-		Source = "draw",
-		SoundTable = {
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_select.wav", t = 1 / 30 },
-		}
-	},
-	["holster"] = {
-		Source = "holster"
-	},
-	["reload"] = {
-		Source = "reload",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
-		SoundTable = {
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_open.wav", t = 1 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_eject.wav", t = 16 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_insert.wav", t = 62 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_close.wav", t = 78 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_open.wav", t = 104 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_eject.wav", t = 122 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_insert.wav", t = 148 / 40 },
-			{ s = ")horde/weapons/kf_revolver/wep_revolver_foley_close.wav", t = 165 / 40 },
-		}
-	},
-	["fire"] = {
-		Source = "fire_r"
-	},
-	["fire2"] = {
-		Source = "fire_l"
-	},
-	["idle"] = {
-		Source = "idle"
-	},
+    ["draw"] = {
+        Source = "draw",
+        SoundTable = {
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_select.wav", t = 1 / 30 },
+        }
+    },
+    ["holster"] = {
+        Source = "holster"
+    },
+    ["reload"] = {
+        Source = "reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
+        SoundTable = {
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_open.wav", t = 1 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_eject.wav", t = 16 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_insert.wav", t = 62 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_close.wav", t = 78 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_open.wav", t = 104 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_eject.wav", t = 122 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_insert.wav", t = 148 / 40 },
+            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_close.wav", t = 165 / 40 },
+        }
+    },
+    ["fire"] = {
+        Source = "fire_r"
+    },
+    ["fire2"] = {
+        Source = "fire_l"
+    },
+    ["idle"] = {
+        Source = "idle"
+    },
 }
 
 SWEP.Hook_SelectFireAnimation = function( wep, data )
@@ -148,5 +148,5 @@ SWEP.Hook_SelectFireAnimation = function( wep, data )
 end
 
 SWEP.O_Hook_Override_MuzzleEffectAttachment = function( wep, data )
-	if wep:GetNthShot() % 2 == 0 then return { current = 2 } else return { current = 1 } end
+    if wep:GetNthShot() % 2 == 0 then return { current = 2 } else return { current = 1 } end
 end
