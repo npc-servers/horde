@@ -309,7 +309,7 @@ function plymeta:Horde_SyncEconomy()
 
         net.Start( "horde_sync_money" )
             net.WriteEntity( self )
-            net.WriteUInt( selfTbl.Horde_money, 16 )
+            net.WriteUInt( selfTbl.Horde_money, 18 )
         net.Broadcast()
     end
 
