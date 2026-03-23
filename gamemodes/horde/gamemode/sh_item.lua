@@ -280,9 +280,9 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_tec9"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_skorpion"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_tmp"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_akimbo_glock17"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_akimbo_m9"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_akimbo_deagle"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_kf_akimbo_deagle"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_kf_akimbo_mk23"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_kf_akimbo_revolver"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_raygun_mk2"].infusions = ballistic_infusions_light
 
     --HORDE.items["arccw_horde_flaregun"].infusions = {HORDE.Infusion_Chrono, HORDE.Infusion_Quality}
@@ -505,16 +505,16 @@ function HORDE:GetDefaultItemsData()
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
 
-    HORDE:CreateItem( "Pistol", "Dual M9", "arccw_horde_akimbo_m9", 1500, 4,
-        "Dual Beretta M9.\nA pair of pistols used by the United States Armed Forces.",
+    HORDE:CreateItem( "Pistol", "Akimbo Desert Eagles", "arccw_horde_kf_akimbo_deagle", 2000, 4,
+        "Pair of Desert Eagles wielded akimbo style.\nWarm up those wrists!",
         { Ghost = true, Gunslinger = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "Pistol", "Dual Glock17", "arccw_horde_akimbo_glock17", 1750, 5,
-        "Dual Glock 17.\nA pair of pistols widely used by law enforcements.",
+    HORDE:CreateItem( "Pistol", "Akimbo MK23s", "arccw_horde_kf_akimbo_mk23", 1500, 5,
+        "Pair of MK23s wielded akimbo style.\nAction hero approved!",
         { Ghost = true, Gunslinger = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "Pistol", "Dual Deagle", "arccw_horde_akimbo_deagle", 2000, 6,
-        "Dual Night Hawk .50C.\nA pair of handcannons that are difficult to master.",
+    HORDE:CreateItem( "Pistol", "Akimbo Revolvers", "arccw_horde_kf_akimbo_revolver", 1750, 6,
+        "Pair of standard revolvers wielded akimbo style.\nA classic gunfigher's combo!",
         { Ghost = true, Gunslinger = true },
         5, -1, nil, nil, { Ghost = 1 }, nil, { HORDE.DMG_BALLISTIC } )
 
