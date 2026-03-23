@@ -1,0 +1,15 @@
+VertexlitGeneric
+{
+	$basetexture	"models/horde/weapons/kf/revolver/Revolver_D"
+	$bumpmap		"models/horde/weapons/kf/shared/$identitynormalmap"
+	$phongexponent	"55"
+
+	"$blendtintbybasealpha" "1"
+	"$phong" "1"
+	"$phongboost" "0"
+	"$phongalbedotint" "2"
+	"$PhongFresnelRanges" "[ 2 5 4 ]"
+	"$envmap" "env_cubemap"
+	$envmapfresnel "0.01"
+	$envmaptint "[ .01 .01 .01 ]"
+}

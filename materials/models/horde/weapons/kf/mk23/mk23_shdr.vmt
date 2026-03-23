@@ -1,0 +1,22 @@
+VertexlitGeneric
+{
+	$basetexture	"models/horde/weapons/kf/mk23/MK23_D"
+	$bumpmap		"models/horde/weapons/kf/shared/$identitynormalmap"
+	$phongexponent	"44"
+
+	"$blendtintbybasealpha" "1"
+	"$phong" "1"
+	"$phongboost" "0"
+	"$phongalbedotint" "2"
+	"$PhongFresnelRanges" "[ 2 5 4 ]"
+	"$envmap" "env_cubemap"
+	$envmapfresnel "0.01"
+	$envmaptint "[ .01 .01 .01 ]"
+
+	"$emissiveBlendEnabled" "1"
+	$EmissiveBlendTexture 		vgui/white
+	"$emissiveBlendBaseTexture" "models/horde/weapons/kf/mk23/MK23_sights_alpha"
+	"$emissiveBlendFlowTexture" "dev/null"
+	"$emissiveBlendTint" "[1 1 1]"
+	"$emissiveBlendStrength" "1"
+}
