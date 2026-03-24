@@ -15,15 +15,15 @@ SWEP.PrintName = "RPD"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2_2/c_rpd_1.mdl"
 SWEP.WorldModel = "models/weapons/arccw/fesiugmw2_2/c_rpd_1.mdl"
 
-SWEP.Damage = 45
-SWEP.DamageMin = 33
+SWEP.Damage = 67
+SWEP.DamageMin = 57
 
 SWEP.Primary.ClipSize = 150
 
 SWEP.Recoil = 0.4
 SWEP.RecoilSide = 0.2
 
-SWEP.Delay = 60 / 700
+SWEP.Delay = 60 / 750
 
 SWEP.ShootSound = "ArcCW_Horde.MW2.RPD_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.RPD_Mech"

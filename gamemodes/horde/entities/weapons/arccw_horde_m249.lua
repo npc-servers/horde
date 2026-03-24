@@ -14,9 +14,10 @@ SWEP.PrintName = "M249 SAW"
 
 SWEP.ViewModel = "models/weapons/arccw_go/v_mach_m249para.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_mach_m249para.mdl"
-
-SWEP.Primary.ClipSize = 100
-
+SWEP.Damage = 51
+SWEP.DamageMin = 41
+SWEP.Primary.ClipSize = 150
+SWEP.Delay = 60 / 900
 SWEP.RecoilPunch = 0
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.M249_Fire"

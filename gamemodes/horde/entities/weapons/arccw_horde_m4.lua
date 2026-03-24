@@ -17,7 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_rif_m4a1.mdl"
 
 SWEP.Damage = 60
 SWEP.DamageMin = 45
-
+SWEP.Penetration = 15
 SWEP.Recoil = 0.3
 SWEP.RecoilSide = 0.25
 SWEP.RecoilPunch = 0

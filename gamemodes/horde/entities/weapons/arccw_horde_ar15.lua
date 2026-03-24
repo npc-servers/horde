@@ -15,8 +15,9 @@ SWEP.PrintName = "AR-15"
 SWEP.ViewModel = "models/weapons/arccw_go/v_rif_car15.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_rif_car15.mdl"
 
-SWEP.Damage = 42
-SWEP.DamageMin = 32
+SWEP.Damage = 47
+SWEP.DamageMin = 37
+SWEP.Penetration = 15
 
 SWEP.RecoilPunch = 0
 

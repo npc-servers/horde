@@ -34,10 +34,10 @@ SWEP.WorldModelOffset = {
 SWEP.MirrorVMWM = true
 SWEP.ViewModelFOV = 65
 
-SWEP.Damage = 25
-SWEP.DamageMin = 20
-SWEP.Range = 750 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 3
+SWEP.Damage = 52
+SWEP.DamageMin = 42
+SWEP.Range = 1000 * 0.025  -- GAME UNITS * 0.025 = METRES
+SWEP.Penetration = 10
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 
@@ -362,7 +362,7 @@ function SWEP:ChangeFiremode(pred)
 
     ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
 
-    self:SetNextSecondaryFire(CurTime() + 1.5)
+    self:SetNextSecondaryFire(CurTime() + 1.2)
     return true
 end
 

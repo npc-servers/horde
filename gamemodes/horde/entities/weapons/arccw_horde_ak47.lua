@@ -17,7 +17,7 @@ SWEP.WorldModel = "models/weapons/w_rif_ak47.mdl"
 
 SWEP.Damage = 68
 SWEP.DamageMin = 50
-
+SWEP.Penetration = 18
 SWEP.Recoil = 0.45
 SWEP.RecoilSide = 0.35
 SWEP.RecoilPunch = 0

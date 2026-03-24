@@ -18,7 +18,7 @@ SWEP.WorldModel = "models/weapons/w_rif_ak47.mdl"
 SWEP.Damage = 69
 SWEP.DamageMin = 59
 SWEP.DamageType = DMG_SHOCK
-
+SWEP.Penetration = 15
 SWEP.Firemodes = {
     {
         Mode = 3,

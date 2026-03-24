@@ -15,8 +15,8 @@ SWEP.PrintName = "PP-19 Bizon-2"
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_bizon.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_bizon.mdl"
 
-SWEP.Damage = 45
-SWEP.DamageMin = 32
+SWEP.Damage = 46
+SWEP.DamageMin = 33
 
 SWEP.RecoilPunch = 0
 
@@ -31,6 +31,57 @@ SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true, ["go_foregrip"] = true, ["go_foregrip_angled"] = true, ["go_foregrip_ergo"] = true, ["go_foregrip_snatch"] = true, ["go_foregrip_stubby"] = true}
+
+SWEP.Animations = {
+    ["idle"] = {
+        Source = "idle"
+    },
+    ["draw"] = {
+        Source = "draw",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.5,
+    },
+    ["ready"] = {
+        Source = "ready",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.5,
+    },
+    ["fire"] = {
+        Source = "shoot",
+        Time = 0.5,
+        ShellEjectAt = 0,
+    },
+    ["fire_iron"] = {
+        Source = "shoot_iron",
+        Time = 0.5,
+        ShellEjectAt = 0,
+    },
+    ["reload"] = {
+        Source = "reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        Checkpoints = {16, 30},
+        FrameRate = 30,
+        Time = 2.15,
+        LHIK = true,
+        LHIKIn = 0.7,
+        LHIKOut = 0.4,
+    },
+    ["reload_empty"] = {
+        Source = "reload_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        Checkpoints = {16, 30, 55},
+        FrameRate = 30,
+        Time = 2.5,
+        LHIK = true,
+        LHIKIn = 0.7,
+        LHIKOut = 0.4,
+    },
+    ["enter_inspect"] = false,
+    ["idle_inspect"] = false,
+    ["exit_inspect"] = false,
+}
 
 sound.Add( {
     name = "ArcCW_Horde.GSO.Bizon_Fire",

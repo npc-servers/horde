@@ -32,7 +32,7 @@ SWEP.WorldModelOffset = {
 SWEP.Damage = 100
 SWEP.DamageMin = 70
 SWEP.Range = 1250 * 0.025
-SWEP.Penetration = 5
+SWEP.Penetration = 20
 SWEP.DamageType = DMG_BULLET
 
 SWEP.ChamberSize = 0

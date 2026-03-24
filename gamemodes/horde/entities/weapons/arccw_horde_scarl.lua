@@ -20,7 +20,7 @@ SWEP.WorldModel = "models/weapons/w_rif_galil.mdl"
 SWEP.Damage = 73
 SWEP.DamageMin = 62
 SWEP.DamageType = DMG_REMOVENORAGDOLL
-
+SWEP.Penetration = 22
 SWEP.Firemodes = {
     {
         Mode = 3,

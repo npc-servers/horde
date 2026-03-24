@@ -18,7 +18,7 @@ SWEP.WorldModel = "models/weapons/w_rif_famas.mdl"
 SWEP.Damage = 67
 SWEP.DamageMin = 57
 SWEP.DamageType = DMG_BURN
-
+SWEP.Penetration = 15
 SWEP.Recoil = 0.42
 SWEP.RecoilSide = 0.35
 

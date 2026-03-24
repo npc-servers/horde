@@ -16,10 +16,10 @@ SWEP.Slot = 2
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_p90.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_p90.mdl"
 
-SWEP.Damage = 42
-SWEP.DamageMin = 30
-SWEP.Penetration = 12
-
+SWEP.Damage = 44
+SWEP.DamageMin = 36
+SWEP.Penetration = 20
+SWEP.HoldtypeActive = "revolver"
 SWEP.RecoilPunch = 0
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.P90_Fire"
@@ -29,7 +29,71 @@ SWEP.DistantShootSound = ""
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
-
+SWEP.Animations = {
+    ["idle"] = {
+        Source = "idle"
+    },
+    ["draw"] = {
+        Source = "draw",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.5,
+    },
+    ["ready"] = {
+        Source = "ready",
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 0.5,
+    },
+    ["fire"] = {
+        Source = "shoot",
+        Time = 0.5,
+        ShellEjectAt = 0,
+    },
+    ["fire_iron"] = {
+        Source = "idle",
+        Time = 0.5,
+        ShellEjectAt = 0,
+    },
+    ["reload"] = {
+        Source = "reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        Checkpoints = {16, 30},
+        FrameRate = 30,
+        Time = 1.76,
+        LHIK = true,
+        LHIKIn = 0.4,
+        LHIKOut = 1,
+    },
+    ["reload_empty"] = {
+        Source = "reload_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        Checkpoints = {16, 30, 55},
+        FrameRate = 30,
+        Time = 2.06,
+        LHIK = true,
+        LHIKIn = 0.4,
+        LHIKOut = 0.4,
+    },
+    ["reload_smallmag"] = {
+        Source = "reload_smallmag",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        Checkpoints = {16, 30},
+        FrameRate = 30,
+        LHIK = true,
+        LHIKIn = 0.7,
+        LHIKOut = 0.7,
+    },
+    ["reload_smallmag_empty"] = {
+        Source = "reload_smallmag_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        Checkpoints = {16, 30, 55},
+        FrameRate = 30,
+        LHIK = true,
+        LHIKIn = 0.7,
+        LHIKOut = 0.8,
+    },
+}
 sound.Add( {
     name = "ArcCW_Horde.GSO.P90_Fire",
     channel = CHAN_STATIC,

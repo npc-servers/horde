@@ -17,7 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_rif_sg556.mdl"
 
 SWEP.Damage = 64
 SWEP.DamageMin = 48
-
+SWEP.Penetration = 17
 SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 650

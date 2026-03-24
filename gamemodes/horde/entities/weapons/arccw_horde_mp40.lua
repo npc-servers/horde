@@ -38,7 +38,7 @@ SWEP.Damage = 31
 SWEP.DamageMin = 14 -- damage done at maximum range
 SWEP.Range = 90 -- in METRES
 SWEP.RangeMin = 25
-
+SWEP.Penetration = 8
 SWEP.Penetration = 4
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any

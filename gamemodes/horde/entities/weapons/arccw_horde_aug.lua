@@ -17,7 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_rif_aug.mdl"
 
 SWEP.Damage = 62
 SWEP.DamageMin = 46
-
+SWEP.Penetration = 15
 SWEP.Primary.ClipSize = 42
 
 SWEP.Recoil = 0.4
