@@ -438,12 +438,12 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_bo_asp", 10, 1,
         "Low profile pistol.\nThis one is chambered in a special cartridge, designed for melee fighters.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
-        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
-    CreateItem( "Pistol", "CZ75", "arccw_horde_bo_cz75", 10, 1,
+        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
+    HORDE:CreateItem( "Pistol", "CZ75", "arccw_horde_bo_cz75", 10, 1,
         "Fully automatic pistol.",
         { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
-    CreateItem( "Pistol", "Makarov", "arccw_horde_bo_cz75", 10, 1,
+    HORDE:CreateItem( "Pistol", "Makarov", "arccw_horde_bo_makarov", 10, 1,
         "Standard pistol of Soviet design.\nThis one is loaded with healing darts.",
         { Medic = true, Hatcher = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Medic", "Hatcher" } )
