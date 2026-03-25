@@ -431,19 +431,19 @@ function HORDE:GetDefaultItemsData()
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         10, -1, nil, nil, { Berserker = 5 }, nil, { HORDE.DMG_SLASH } )
 
-    HORDE:CreateItem( "Pistol", "M1911 Starter", "arccw_horde_bo_1911", 10, 1,
+    HORDE:CreateItem( "Pistol", "M1911", "arccw_horde_bo_1911", 10, 1,
         "Classic starter weapon for any zombie environment.",
         { Survivor = true, Psycho = true, Prototype = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Survivor", "Prototype", "Psycho", "Demolition", "Ghost", "Gunslinger", "Engineer", "Warden", "Overlord", "Cremator" } )
-    HORDE:CreateItem( "Pistol", "ASP Starter", "arccw_horde_bo_asp", 10, 1,
+    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_bo_asp", 10, 1,
         "Low profile pistol.\nThis one is chambered in a special cartridge, designed for melee fighters.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
-    HORDE:CreateItem( "Pistol", "CZ75 Starter", "arccw_horde_bo_cz75", 10, 1,
+    HORDE:CreateItem( "Pistol", "CZ", "arccw_horde_bo_cz75", 10, 1,
         "Fully automatic pistol.",
         { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
-    HORDE:CreateItem( "Pistol", "Makarov Starter", "arccw_horde_bo_makarov", 10, 1,
+    HORDE:CreateItem( "Pistol", "Makarov", "arccw_horde_bo_makarov", 10, 1,
         "Standard pistol of Soviet design.\nThis one is loaded with healing darts.",
         { Medic = true, Hatcher = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Medic", "Hatcher" } )
@@ -467,7 +467,7 @@ function HORDE:GetDefaultItemsData()
         "R8 Revolver.\nDelivers a highly accurate and powerful round,\nbut at the expense of a lengthy trigger-pull.",
         { Survivor = true, Psycho = true, Prototype = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_r8", nil, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "Pistol", "M1911", "arccw_horde_m1911", 750, 2,
+    HORDE:CreateItem( "Pistol", "M1911 Tac", "arccw_horde_m1911", 750, 2,
         "Colt 1911.\nStandard-issue sidearm for the United States Armed Forces.",
         { Ghost = true, Gunslinger = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
