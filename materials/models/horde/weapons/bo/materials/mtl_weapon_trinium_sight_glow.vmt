@@ -1,0 +1,5 @@
+UnlitGeneric
+{
+	$basetexture 			"models\horde\weapons\bo\common\tritium"
+	$additive 1
+}
