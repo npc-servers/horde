@@ -75,6 +75,9 @@ SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_aug/silenced/sweet_00.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
+SWEP.SpeedMult = 1
+SWEP.SightedSpeedMult = 0.95
+
 SWEP.IronSightStruct = {
     Pos = Vector(-1.9846, 0.582, 1.241),
     Ang = Angle(0, 0, 0),

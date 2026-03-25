@@ -11,7 +11,7 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCW - Horde"
 SWEP.Slot = 1
 
-SWEP.PrintName = "CZ-75"
+SWEP.PrintName = "CZ75"
 SWEP.Trivia_Class = "Pistol"
 SWEP.Trivia_Desc = "Fully automatic pistol."
 SWEP.Trivia_Manufacturer = "CZUB"
@@ -75,6 +75,9 @@ SWEP.DistantShootSound = ")horde/weapons/bo_cz75/ringoff_00.wav"
 SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_aug/silenced/sweet_00.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
+
+SWEP.SpeedMult = 1
+SWEP.SightedSpeedMult = 0.95
 
 SWEP.IronSightStruct = {
     Pos = Vector(-2.0004, 0.582, 1.796),
