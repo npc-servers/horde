@@ -1,8 +1,7 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("items/hl2/weapon_pistol.png")
-    SWEP.WepSelectIconMat = Material("items/hl2/weapon_pistol.png")
-    killicon.AddAlias("arccw_horde_bo_makarov", "weapon_pistol")
+    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_go_p2000" )
+    killicon.Add( "arccw_horde_bo_makarov", "arccw/weaponicons/arccw_go_p2000", Color( 0, 0, 0, 255 ) )
 end
 
 SWEP.Base = "arccw_base"
@@ -76,7 +75,7 @@ SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_aug/silenced/sweet_00.wav"
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
 SWEP.SpeedMult = 1
-SWEP.SightedSpeedMult = 0.95
+SWEP.SightedSpeedMult = 0.9
 
 SWEP.IronSightStruct = {
     Pos = Vector(-1.9846, 0.582, 1.241),
