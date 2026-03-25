@@ -1,3 +1,9 @@
+if not ArcCWInstalled then return end
+
+AddCSLuaFile()
+
+local att = {}
+
 att.PrintName = "Silencer"
 att.Icon = Material( "arccw/hud/atts/default.png", "mips smooth" )
 att.Description = "Reduces muzzleflash and sound profile."

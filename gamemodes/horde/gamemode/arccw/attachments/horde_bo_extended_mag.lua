@@ -1,3 +1,9 @@
+if not ArcCWInstalled then return end
+
+AddCSLuaFile()
+
+local att = {}
+
 att.PrintName = "Extended Magazine"
 att.Icon = Material( "arccw/hud/atts/default.png", "mips smooth" )
 att.Description = "Extra bullets for your magazine!"
