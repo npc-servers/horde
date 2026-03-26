@@ -24,6 +24,7 @@ jobs:
           rm -fv $GITHUB_WORKSPACE/project/LICENSE
           rm -fv $GITHUB_WORKSPACE/project/README
           rm -rf $GITHUB_WORKSPACE/project/lua
+          rm -rf "$GITHUB_WORKSPACE"/project/gamemodes/*/gamemode/*.fgd
 
       - uses: CFC-Servers/gmod-upload@master
         with:
