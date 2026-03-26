@@ -12,11 +12,12 @@ SWEP.AdminOnly = false
 
 SWEP.PrintName = "Negev"
 
-SWEP.ViewModel = "models/weapons/arccw_go/v_mach_negev.mdl"
-SWEP.WorldModel = "models/weapons/arccw_go/v_mach_negev.mdl"
+SWEP.ViewModel = "models/horde/weapons/c_horde_mach_negev.mdl"
+SWEP.WorldModel = "models/horde/weapons/c_horde_mach_negev.mdl"
 
 SWEP.RecoilPunch = 0
-
+SWEP.Damage = 56
+SWEP.DamageMin = 46
 SWEP.Delay = 60 / 700
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.Negev_Fire"
@@ -32,6 +33,59 @@ SWEP.HeatCapacity = false
 SWEP.HeatDissipation = false
 SWEP.HeatLockout = false
 SWEP.HeatDelayTime = false
+
+SWEP.AttachmentElements = {
+    ["rs_none"] = {
+        VMBodygroups = {{ind = 6, bg = 1}},
+    },
+    ["ubrms"] = {
+        VMBodygroups = {{ind = 5, bg = 1}},
+    },
+    ["tacms"] = {
+        VMBodygroups = {{ind = 8, bg = 1}},
+    },
+    ["fh_none"] = {
+        VMBodygroups = {{ind = 2, bg = 3}},
+    },
+    ["go_negev_belt_100"] = {
+        VMBodygroups = {
+            {ind = 0, bg = 1},
+            {ind = 4, bg = 1},
+            {ind = 3, bg = 1},
+        },
+    },
+    ["horde_negev_hemo_belt"] = {
+        VMBodygroups = {
+            {ind = 4, bg = 2},
+            {ind = 3, bg = 2},
+        },
+    },
+    ["go_negev_barrel_short"] = {
+        VMBodygroups = {
+        {ind = 1, bg = 1},
+        {ind = 2, bg = 1}},
+        AttPosMods = {
+            [5] = {vpos = Vector(0, -5.1, 19)},
+        }
+    },
+    ["go_negev_barrel_long"] = {
+        VMBodygroups = {
+        {ind = 1, bg = 2},
+        {ind = 2, bg = 2}},
+        AttPosMods = {
+            [5] = {vpos = Vector(0, -5.1, 29.5)},
+        }
+    },
+    ["go_negev_stock_in"] = {
+        VMBodygroups = {{ind = 7, bg = 1}},
+    },
+    ["go_stock_none"] = {
+        VMBodygroups = {{ind = 7, bg = 2}},
+    },
+    ["go_stock"] = {
+        VMBodygroups = {{ind = 7, bg = 2}},
+    },
+}
 
 sound.Add( {
     name = "ArcCW_Horde.GSO.Negev_Fire",

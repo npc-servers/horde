@@ -26,8 +26,8 @@ SWEP.WorldModelOffset = {
 SWEP.WorldModel = "models/weapons/w_rif_sg552.mdl"
 SWEP.ViewModelFOV = 65
 
-SWEP.Damage = 34
-SWEP.DamageMin = 20
+SWEP.Damage = 65
+SWEP.DamageMin = 55
 SWEP.RangeMin = 1800 * 0.025 -- GAME UNITS * 0.025 = METRES
 SWEP.Range = 2300 * 0.025 -- GAME UNITS * 0.025 = METRES
 SWEP.Penetration = 7
@@ -681,10 +681,10 @@ function SWEP:ChangeFiremode(pred)
 
         for _, ent in pairs(ents.FindInSphere(tr.HitPos, 100)) do
             if ent:IsPlayer() then
-                local healinfo = HealInfo:New({amount=20, healer=self.Owner})
+                local healinfo = HealInfo:New({amount=25, healer=self.Owner})
                 HORDE:OnPlayerHeal(ent, healinfo)
             elseif ent:GetClass() == "npc_vj_horde_antlion" then
-                local healinfo = HealInfo:New({amount=20, healer=self.Owner})
+                local healinfo = HealInfo:New({amount=25, healer=self.Owner})
                 HORDE:OnAntlionHeal(ent, healinfo)
             elseif ent:IsNPC() then
                 local dmg = DamageInfo()
@@ -701,7 +701,6 @@ function SWEP:ChangeFiremode(pred)
     ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
 
     self:SetNextSecondaryFire(CurTime() + 1.5)
-    self:SetNextPrimaryFire(CurTime() + 0.25)
     return true
 end
 

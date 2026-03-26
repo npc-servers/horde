@@ -551,11 +551,11 @@ function HORDE:GetDefaultItemsData()
         "Heckler & Koch MP5.\nOften imitated but never equaled,\nthe MP5 is perhaps the most versatile SMG in the world.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, "arccw/weaponicons/arccw_go_mp5", nil, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "SMG", "UMP45", "arccw_horde_ump", 1500, 4,
+    HORDE:CreateItem( "SMG", "UMP45", "arccw_horde_ump", 2250, 4,
         "KM UMP45.\nA lighter and cheaper successor to the MP5.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, "arccw/weaponicons/arccw_go_ump", nil, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "SMG", "TMP", "arccw_horde_tmp", 1500, 4,
+    HORDE:CreateItem( "SMG", "TMP", "arccw_horde_tmp", 1750, 4,
         "Steyr TMP.\nA select-fire 9×19mm Parabellum caliber machine pistol.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, nil, { Survivor = 2 }, nil, { HORDE.DMG_BALLISTIC } )
@@ -571,16 +571,16 @@ function HORDE:GetDefaultItemsData()
         "MP5K-PDW.\nA more compact MP5 equipped with a healing dart launcher.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 0.8 second cooldown.",
         { Medic = true, Hatcher = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
-    HORDE:CreateItem( "SMG", "Medic MP9-N", "arccw_horde_mp9m", 2500, 4,
-        "Brügger & Thomet MP9.\nManufactured in Switzerland,\nthe MP9 is favored by private security firms world-wide.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
+    HORDE:CreateItem( "SMG", "Medic MP9-N", "arccw_horde_mp9m", 1500, 4,
+        "Brügger & Thomet MP9.\nManufactured in Switzerland,\nthe MP9 is favored by private security firms world-wide.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 7 health and has a 0.6 second cooldown.",
         { Reverend = true, Medic = true, Hatcher = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "SMG", "Medic MP7A1", "arccw_horde_mp7m", 2500, 4,
-        "A modified version of the MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
+        "A modified version of the MP7A1 for medical purposes.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 15 health and has a 1 second cooldown.",
         { Reverend = true, Medic = true, Hatcher = true },
         8, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "SMG", "Vector Medic PDW", "arccw_horde_vector", 3000, 5,
-        "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that provides a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
+        "KRISS Vector Gen I equipped with a medical dart launcher.\nUses an unconventional blowback system that provides a high firerate with low recoil.\n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 20 health and has a 1.2 second cooldown.",
         { Medic = true, Hatcher = true },
         8, -1, nil, nil, { Medic = 3 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
 
@@ -742,7 +742,7 @@ function HORDE:GetDefaultItemsData()
         { Medic = true, Hatcher = true, Ghost = true, Gunslinger = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "ACR Medic AR", "arccw_horde_medic_acr", 3000, 8,
-        "Remington Adaptive Combat Rifle.\nEquipped with healing dart and medic grenade launcher.\n\nPress USE+RELOAD to equip medic grenade launcher.\nPress B or ZOOM to fire healing dart.\nHealing dart heals 20 health and has a 1.5 second cooldown.",
+        "Remington Adaptive Combat Rifle.\nEquipped with healing dart and medic grenade launcher.\n\nPress USE+RELOAD to equip medic grenade launcher.\nPress B or ZOOM to fire healing dart.\nHealing dart heals 25 health and has a 1.5 second cooldown.",
         { Medic = true, Hatcher = true },
         10, 10, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "Rifle", "M16A4", "arccw_horde_m16m203", 2250, 7,

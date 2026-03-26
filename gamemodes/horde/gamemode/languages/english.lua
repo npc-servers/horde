@@ -1261,7 +1261,7 @@ LANGUAGE["Item_Desc_MP7A1 Medic PDW"] = [[
 A modified version of the MP7A1 for medical purposes.
 
 Press B or ZOOM to fire healing darts.
-Healing dart heals 10 health and has a 1 second cooldown.
+Healing dart heals 15 health and has a 1 second cooldown.
 ]]
 
 LANGUAGE["Item_Vector Medic PDW"] = [[Vector Medic PDW]]
@@ -1270,7 +1270,7 @@ KRISS Vector Gen I equipped with a medical dart launcher.
 Uses an unconventional blowback system that provides a high firerate with low recoil.
 
 Press B or ZOOM to fire healing darts.
-Healing dart heals 20 health and has a 1.5 second cooldown.
+Healing dart heals 20 health and has a 1.2 second cooldown.
 ]]
 
 LANGUAGE["Item_Chainsaw"] = [[Chainsaw]]

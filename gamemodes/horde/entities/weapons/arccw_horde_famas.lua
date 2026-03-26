@@ -17,7 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_rif_famas.mdl"
 
 SWEP.Damage = 50
 SWEP.DamageMin = 40
-
+SWEP.Penetration = 15
 SWEP.RecoilRise = 0.4
 SWEP.RecoilPunch = 0
 

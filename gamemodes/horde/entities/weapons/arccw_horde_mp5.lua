@@ -14,7 +14,8 @@ SWEP.PrintName = "MP5A3"
 
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp5.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp5.mdl"
-
+SWEP.Damage = 35
+SWEP.DamageMin = 25
 SWEP.RecoilPunch = 0
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.MP5_Fire"

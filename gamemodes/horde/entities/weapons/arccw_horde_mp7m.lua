@@ -14,7 +14,8 @@ SWEP.PrintName = "Medic MP7A1"
 
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp7.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp7.mdl"
-
+SWEP.Damage = 50
+SWEP.DamageMin = 40
 SWEP.RecoilPunch = 0
 
 SWEP.Firemodes = {
@@ -70,10 +71,10 @@ function SWEP:ChangeFiremode(pred)
 
         for _, ent in pairs(ents.FindInSphere(tr.HitPos, 100)) do
             if ent:IsPlayer() then
-                local healinfo = HealInfo:New({amount = 10, healer = ply})
+                local healinfo = HealInfo:New({amount = 15, healer = ply})
                 HORDE:OnPlayerHeal(ent, healinfo)
             elseif ent:GetClass() == "npc_vj_horde_antlion" then
-                local healinfo = HealInfo:New({amount = 10, healer = ply})
+                local healinfo = HealInfo:New({amount = 15, healer = ply})
                 HORDE:OnAntlionHeal(ent, healinfo)
             elseif ent:IsNPC() then
                 local dmg = DamageInfo()
@@ -90,7 +91,6 @@ function SWEP:ChangeFiremode(pred)
     ply:EmitSound("horde/weapons/mp7m/heal.ogg", 75, 100, 1, CHAN_WEAPON)
 
     self:SetNextSecondaryFire(CurTime() + 1)
-    self:SetNextPrimaryFire(CurTime() + 0.25)
     return true
 end
 

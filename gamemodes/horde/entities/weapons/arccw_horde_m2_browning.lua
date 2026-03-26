@@ -26,8 +26,8 @@ SWEP.WorldModel = "models/horde/weapons/arccw/w_50cal_12.mdl"
 SWEP.ViewModelFOV = 60
 SWEP.DefaultBodygroups = "0000000"
 
-SWEP.Damage = 100
-SWEP.DamageMin = 80 -- damage done at maximum range
+SWEP.Damage = 130
+SWEP.DamageMin = 110 -- damage done at maximum range
 SWEP.Range = 500 -- in METRES
 SWEP.Penetration = 50
 SWEP.DamageType = DMG_BULLET

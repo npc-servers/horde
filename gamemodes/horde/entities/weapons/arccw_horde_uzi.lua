@@ -41,10 +41,10 @@ SWEP.ExtendedClipSize = 48
 SWEP.ReducedClipSize = 16
 
 SWEP.VisualRecoilMult = 0
-SWEP.Recoil = 0.60
-SWEP.RecoilSide = 0.55
+SWEP.Recoil = 0.50
+SWEP.RecoilSide = 0.45
 SWEP.RecoilRise = 0
-
+SWEP.Penetration = 6
 SWEP.Delay = 60 / 950-- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
@@ -204,7 +204,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Perk",
-        Slot = "go_perk"
+        Slot = {"go_perk", "go_perk_smg"}
     },
     {
         PrintName = "Camouflage",

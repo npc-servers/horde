@@ -15,9 +15,9 @@ SWEP.PrintName = "UMP-45"
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_ump45.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_ump45.mdl"
 
-SWEP.Damage = 38
-SWEP.DamageMin = 28
-
+SWEP.Damage = 53
+SWEP.DamageMin = 43
+SWEP.Penetration = 15
 SWEP.RecoilPunch = 0
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.UMP_Fire"
