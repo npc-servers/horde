@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/horde/april_fooling/shared/dark"
+	"$selfillum"	1
+}

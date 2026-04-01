@@ -1,0 +1,23 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/horde/april_fooling/shared/glow"
+                "$halflambert"                 "1"
+                "$selfillum" "1"
+				
+$surfaceprop metal
+
+ 	"$phong" "1"
+	"$phongexponent" "8"
+	"$phongboost"	"3"
+	"$phongfresnelranges"	"[0.05 0.5 1]"
+	"$phongalbedotint" "1"
+
+	"$rimlight" "1" 
+	"$rimlightexponent" "0.5" 
+	"$rimlightboost" "3.5" 
+	"$rimmask" 1	
+
+$diffuseexp 1.5
+
+	
+}
