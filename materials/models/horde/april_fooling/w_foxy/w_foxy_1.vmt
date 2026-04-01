@@ -1,0 +1,16 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/horde/april_fooling/w_foxy/w_foxy_1"
+	"$bumpmap"	"models/horde/april_fooling/shared/norm"
+	
+	$surfaceprop metal
+
+ 	"$phong" "1"
+	"$phongexponent" "8"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[0.05 0.5 1]"
+	"$phongalbedotint" "1"
+
+$halflambert 0
+$diffuseexp 1.5
+}
