@@ -252,7 +252,7 @@ SWEP.Animations = {
 	}
 }
 
-hook.Add( "Horde_ShouldCollide", "Horde_Medic_Rifle", function( ent1, ent2 )
+hook.Add( "Horde_ShouldCollide", "Horde_Medic_Makarov", function( ent1, ent2 )
     local entClass = "arccw_horde_bo_makarov"
 
     if ent1 == entClass or ent2 == entClass then
@@ -325,7 +325,7 @@ function SWEP:DoPrimaryFire( isent, data )
     end
 end
 
-hook.Add( "Hook_BulletHit", "Horde_MakarovHeal", function( wpn, data )
+hook.Add( "Hook_BulletHit", "Horde_Makarov_Heal", function( wpn, data )
     if wpn:GetClass() == "arccw_horde_bo_makarov" then
         if SERVER and ( data.tr.Entity:IsPlayer() ) then
         	local healinfo = HealInfo:New( { amount = 5, healer = wpn:GetOwner() } )
