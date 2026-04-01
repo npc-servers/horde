@@ -35,6 +35,9 @@ ENT.FootStepTimeWalk = 1
 
 ENT.IdleSounds_PlayOnAttacks = true
 ENT.OnlyDoKillEnemyWhenClear = false
+
+ENT.ItemDropsOnDeathChance = 4
+ENT.ItemDropsOnDeath_EntityList = { "horde_ammobox" }
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
 	"npc/footsteps/hardboot_generic1.wav",

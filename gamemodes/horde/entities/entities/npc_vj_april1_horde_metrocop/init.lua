@@ -19,6 +19,8 @@ ENT.FootStepTimeRun = 0.4
 ENT.FootStepTimeWalk = 1
 
 ENT.OnlyDoKillEnemyWhenClear = false
+
+ENT.HasItemDropsOnDeath = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
 	"npc/metropolice/gear1.wav",

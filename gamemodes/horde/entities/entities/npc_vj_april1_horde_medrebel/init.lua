@@ -37,6 +37,8 @@ ENT.FootStepTimeWalk = 1
 
 ENT.IdleSounds_PlayOnAttacks = true
 ENT.OnlyDoKillEnemyWhenClear = false
+
+ENT.HasItemDropsOnDeath = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.SoundTbl_FootStep = {
 	"npc/footsteps/hardboot_generic1.wav",
