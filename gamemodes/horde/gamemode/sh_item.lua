@@ -588,11 +588,11 @@ function HORDE:GetDefaultItemsData()
         { Prototype = true, Medic = true, Hatcher = true, Warden = true, Overlord = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
 
-    HORDE:CreateItem( "Shotgun", "Stakeout", "arccw_horde_bo_stakeout", 100, 1,
+    HORDE:CreateItem( "Shotgun", "Stakeout", "arccw_horde_bo_stakeout", 100, 3,
         "Modified version of the Ithaca 37 shotgun.",
         { Prototype = true, Warden = true, Overlord = true },
         2, -1, nil, "arccw/weaponicons/arccw_horde_bo_stakeout", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Prototype", "Warden", "Overlord" } )
-    HORDE:CreateItem( "Shotgun", "Stakeout Incendiary", "arccw_horde_bo_stakeout_fire", 100, 1,
+    HORDE:CreateItem( "Shotgun", "Stakeout Incendiary", "arccw_horde_bo_stakeout_fire", 100, 3,
         "Modified version of the Ithaca 37 shotgun loaded with Dragon's Breath rounds.\nA novelty for committing war crimes against the NVA.",
         { Cremator = true },
         2, -1, nil, "arccw/weaponicons/arccw_horde_bo_stakeout", nil, nil, { HORDE.DMG_BLAST }, nil, { "Cremator" } )
@@ -753,7 +753,7 @@ function HORDE:GetDefaultItemsData()
         { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Demolition = true },
         10, 10, nil, nil, { Assault = 2, Demolition = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST, HORDE.DMG_FIRE, HORDE.DMG_COLD, HORDE.DMG_LIGHTNING } )
 
-    HORDE:CreateItem( "MG", "HK21", "arccw_horde_bo_hk21", 100, 1,
+    HORDE:CreateItem( "MG", "HK21", "arccw_horde_bo_hk21", 100, 6,
         "Low-capacity light machine gun.",
         { Heavy = true, Juggernaut = true },
         2, -1, nil, "arccw/weaponicons/arccw_horde_bo_hk21", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Heavy", "Juggernaut" } )
