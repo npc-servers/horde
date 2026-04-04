@@ -5,8 +5,8 @@ AddCSLuaFile()
 local att = {}
 
 att.PrintName = "Extended Magazine"
-att.Icon = Material( "arccw/hud/atts/default.png", "mips smooth" )
-att.Description = "Extra bullets for your magazine!"
+att.Icon = Material( "entities/acwatt_go_ak_mag_40.png", "mips smooth" )
+att.Description = "Magazine with high ammo capacity."
 att.Desc_Pros = {}
 att.Desc_Cons = {}
 att.Slot = "horde_bo_ammo"

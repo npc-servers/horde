@@ -1,7 +1,7 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_go_cz75" )
-    killicon.Add( "arccw_horde_bo_cz75", "arccw/weaponicons/arccw_go_cz75", Color( 0, 0, 0, 255 ) )
+    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_horde_bo_cz75" )
+    killicon.Add( "arccw_horde_bo_cz75", "arccw/weaponicons/arccw_horde_bo_cz75", Color( 0, 0, 0, 255 ) )
 end
 
 SWEP.Base = "arccw_base"
@@ -20,7 +20,7 @@ SWEP.Trivia_Country = "Czech Republic"
 SWEP.Trivia_Year = "1975"
 
 SWEP.ViewModel = "models/horde/weapons/bo/cz75/viewmodel.mdl"
-SWEP.WorldModel = "models/horde/weapons/bo/cz75/worldmodel.mdl"
+SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 
 SWEP.DefaultBodygroups = "00001000"
 
@@ -29,11 +29,11 @@ SWEP.DamageMin = 12
 SWEP.Range = 50
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 12
-SWEP.ExtendedClipSize = 20
+SWEP.Primary.ClipSize = 15
+SWEP.ExtendedClipSize = 30
 
-SWEP.Recoil = 0.6
-SWEP.RecoilSide = 0.3
+SWEP.Recoil = 0.35
+SWEP.RecoilSide = 0.12
 SWEP.RecoilRise = 0.1
 SWEP.MaxRecoilBlowback = 0
 SWEP.VisualRecoilMult = 0
@@ -42,7 +42,7 @@ SWEP.RecoilPunchBackMax = 0
 SWEP.RecoilPunchBackMaxSights = 0
 SWEP.RecoilVMShake = 0
 
-SWEP.Delay = 60 / 600
+SWEP.Delay = 60 / 800
 SWEP.Firemodes = {
 	{
 		Mode = 2,
@@ -51,9 +51,11 @@ SWEP.Firemodes = {
 
 SWEP.NotForNPCS = true
 
-SWEP.AccuracyMOA = 10
-SWEP.HipDispersion = 350
+SWEP.AccuracyMOA = 15
+SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 50
+
+SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
 	")horde/weapons/bo_cz75/shot_00.wav",
@@ -64,14 +66,14 @@ SWEP.ShootSound = {
 }
 SWEP.LowShootSound = "horde/weapons/bo_cz75/lfe_00.wav"
 SWEP.ShootSoundSilenced = {
-	")horde/weapons/bo_m16/silenced/silenced_00.wav",
-	")horde/weapons/bo_m16/silenced/silenced_01.wav",
-	")horde/weapons/bo_m16/silenced/silenced_02.wav",
-	")horde/weapons/bo_m16/silenced/silenced_03.wav"
+	")horde/weapons/bo_shared/silenced/aug_silenced_00.wav",
+	")horde/weapons/bo_shared/silenced/aug_silenced_01.wav",
+	")horde/weapons/bo_shared/silenced/aug_silenced_02.wav",
+	")horde/weapons/bo_shared/silenced/aug_silenced_03.wav"
 }
-SWEP.LowShootSoundSilenced = "horde/weapons/bo_shared/wpn_lfe_sweet_02.wav"
+SWEP.LowShootSoundSilenced = "horde/weapons/bo_shared/silenced/aug_lfe_00.wav"
 SWEP.DistantShootSound = ")horde/weapons/bo_cz75/ringoff_00.wav"
-SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_aug/silenced/sweet_00.wav"
+-- SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_shared/silenced/aug_sweet_00.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -152,7 +154,7 @@ SWEP.Animations = {
 	["ready"] = {
 		Source = "reg_draw_first",
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Pickup", t = 1 / 35 },
+			{ s = "ArcCW_Horde_BO_CZ75.Pickup", t = 1 / 35 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_slide_back.wav", t = 9 / 35 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_slide_forward.wav", t = 17 / 35 },
 		}
@@ -160,13 +162,13 @@ SWEP.Animations = {
 	["draw"] = {
 		Source = "reg_draw",
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Rattle", t = 1 / 40 },
+			{ s = "ArcCW_Horde_BO_CZ75.Rattle", t = 1 / 40 },
 		}
 	},
 	["draw_empty"] = {
 		Source = "reg_draw_empty",
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Rattle", t = 1 / 40 },
+			{ s = "ArcCW_Horde_BO_CZ75.Rattle", t = 1 / 40 },
 		}
 	},
 	["holster"] = {
@@ -179,8 +181,8 @@ SWEP.Animations = {
 		Source = "reg_reload",
 		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 17 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 1 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 17 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_out.wav", t = 6 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_futz.wav", t = 21 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_in.wav", t = 25 / 25 },
@@ -190,8 +192,8 @@ SWEP.Animations = {
 		Source = "reg_reload_ext",
 		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 17 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 1 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 17 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_out.wav", t = 6 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_futz.wav", t = 21 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_in.wav", t = 25 / 25 },
@@ -201,9 +203,9 @@ SWEP.Animations = {
 		Source = "reg_reload_empty",
 		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 17 / 25 },
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 32 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 1 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 17 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 32 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_out.wav", t = 6 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_futz.wav", t = 18 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_in.wav", t = 25 / 25 },
@@ -215,9 +217,9 @@ SWEP.Animations = {
 		Source = "reg_reload_empty_ext",
 		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
 		SoundTable = {
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 17 / 25 },
-			{ s = "ArcCW_Horde_BO_1911.Reload", t = 32 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 1 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 17 / 25 },
+			{ s = "ArcCW_Horde_BO_CZ75.Reload", t = 32 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_out.wav", t = 6 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_futz.wav", t = 18 / 25 },
 			{ s = "horde/weapons/bo_cz75/reload/fly_cz75_mag_in.wav", t = 25 / 25 },
@@ -257,6 +259,39 @@ SWEP.Animations = {
 	}
 }
 
+sound.Add( {
+    name = "ArcCW_Horde_BO_CZ75.Reload",
+    volume = 1.0,
+    sound = {
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+    }
+} )
+
+sound.Add( {
+    name = "ArcCW_Horde_BO_CZ75.Pickup",
+    volume = 1.0,
+    sound = {
+    	")horde/weapons/bo_shared/foley/pickup_00.wav",
+    	")horde/weapons/bo_shared/foley/pickup_01.wav",
+    	")horde/weapons/bo_shared/foley/pickup_02.wav"
+    }
+} )
+
+sound.Add( {
+    name = "ArcCW_Horde_BO_CZ75.Rattle",
+    volume = 1.0,
+    sound = {
+    	")horde/weapons/bo_shared/foley/rattle_00.wav",
+    	")horde/weapons/bo_shared/foley/rattle_01.wav",
+    	")horde/weapons/bo_shared/foley/rattle_02.wav",
+    	")horde/weapons/bo_shared/foley/rattle_03.wav",
+    	")horde/weapons/bo_shared/foley/rattle_04.wav"
+    }
+} )
+
 function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverride )
     local fsound = self.ShootSound
     local lsound = self.LowShootSound
@@ -289,7 +324,7 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     if pitchoverride then pitch = pitchoverride end
 
     if fsound then self:MyEmitSound( fsound, volume, pitch, 1, CHAN_STATIC ) end
-    if lsound then self:MyEmitSound( lsound, 65, 100, 1, CHAN_BODY ) end
+    if lsound then self:MyEmitSound( lsound, 75, 100, 0.5, CHAN_BODY ) end
     if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
 
     local data = {

@@ -5,8 +5,8 @@ AddCSLuaFile()
 local att = {}
 
 att.PrintName = "Silencer"
-att.Icon = Material( "arccw/hud/atts/default.png", "mips smooth" )
-att.Description = "Reduces muzzleflash and sound profile."
+att.Icon = Material( "entities/acwatt_go_supp_rotor43.png", "mips smooth" )
+att.Description = "Standard sound suppressor."
 att.Desc_Pros = {}
 att.Desc_Cons = {}
 att.Slot = "horde_bo_muzzle"
@@ -17,6 +17,8 @@ att.Override_MuzzleEffect = "muzzleflash_suppressed"
 
 att.Mult_AccuracyMOA = 1.1
 att.Mult_SightTime = 1.05
+
+att.Mult_Range = 1.05
 
 att.ActivateElements = { "silencer" }
 
