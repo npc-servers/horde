@@ -170,3 +170,10 @@ hook.Add("HUDPaint", "Horde_DrawIndicators2D", function()
 		end
 	end
 end)
+
+net.Receive( "Horde_HitSounds", function()
+    local ply = LocalPlayer()
+    if not IsValid( ply ) or not GetConVar("horde_enable_damage_sounds"):GetBool() then return end
+
+    surface.PlaySound( "horde/player/hit.wav" )
+end )
