@@ -64,7 +64,7 @@ SWEP.ShootSound = {
 	")horde/weapons/bo_asp/shot_04.wav"
 }
 SWEP.LowShootSound = ")horde/weapons/bo_asp/lfe_00.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo_asp/ringoff_00.wav"
+SWEP.DistantShootSound = ")horde/weapons/bo_shared/skorpion_ringoff_00.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 

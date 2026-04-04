@@ -19,7 +19,7 @@ SWEP.Trivia_Mechanism = "Roller-Delayed"
 SWEP.Trivia_Country = "Germany"
 SWEP.Trivia_Year = "1961"
 
-SWEP.ViewModel = "models/ma85_bo/hk21/viewmodel.mdl"
+SWEP.ViewModel = "models/horde/weapons/bo/hk21/viewmodel.mdl"
 SWEP.WorldModel = "models/weapons/w_snip_g3sg1.mdl"
 
 SWEP.Damage = 40
@@ -68,7 +68,7 @@ SWEP.ShootSoundSilenced = {
 	")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
 	")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/lfe_00.wav"
+SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
 SWEP.DistantShootSound = {
 	")horde/weapons/bo_shared/famas_dist_00.wav",
 	")horde/weapons/bo_shared/famas_dist_01.wav",

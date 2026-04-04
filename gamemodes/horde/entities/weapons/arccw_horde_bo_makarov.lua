@@ -64,14 +64,15 @@ SWEP.ShootSound = {
 }
 SWEP.LowShootSound = ")horde/weapons/bo_makarov/lfe_00.wav"
 SWEP.ShootSoundSilenced = {
-	")horde/weapons/bo_m16/silenced/silenced_00.wav",
-	")horde/weapons/bo_m16/silenced/silenced_01.wav",
-	")horde/weapons/bo_m16/silenced/silenced_02.wav",
-	")horde/weapons/bo_m16/silenced/silenced_03.wav"
+	")horde/weapons/bo_shared/silenced/m16_silenced_00.wav",
+	")horde/weapons/bo_shared/silenced/m16_silenced_01.wav",
+	")horde/weapons/bo_shared/silenced/m16_silenced_02.wav",
+	")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
+	")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
 }
 SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
 SWEP.DistantShootSound = ")horde/weapons/bo_makarov/ringoff_00.wav"
-SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_aug/silenced/sweet_00.wav"
+SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_shared/silenced/aug_sweet_00.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 

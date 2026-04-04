@@ -19,7 +19,7 @@ SWEP.Trivia_Mechanism = "Pump-Action"
 SWEP.Trivia_Country = "United States"
 SWEP.Trivia_Year = "1933"
 
-SWEP.ViewModel = "models/ma85_bo/stakeout/viewmodel.mdl"
+SWEP.ViewModel = "models/horde/weapons/bo/stakeout/viewmodel.mdl"
 SWEP.WorldModel = "models/weapons/w_shotgun.mdl"
 
 SWEP.Range = 50
