@@ -1,7 +1,7 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_mw2_m1911" )
-    killicon.Add( "arccw_horde_m1911", "arccw/weaponicons/arccw_mw2_m1911", Color( 0, 0, 0, 255 ) )
+    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_horde_bo_1911" )
+    killicon.Add( "arccw_horde_bo_1911", "arccw/weaponicons/arccw_horde_bo_1911", Color( 0, 0, 0, 255 ) )
 end
 
 SWEP.Base = "arccw_base"
@@ -20,7 +20,7 @@ SWEP.Trivia_Country = "United States"
 SWEP.Trivia_Year = "1911"
 
 SWEP.ViewModel = "models/horde/weapons/bo/1911/viewmodel.mdl"
-SWEP.WorldModel = "models/horde/weapons/bo/1911/worldmodel.mdl"
+SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 
 SWEP.Damage = 34
 SWEP.DamageMin = 14
@@ -30,8 +30,8 @@ SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 7
 SWEP.ExtendedClipSize = 12
 
-SWEP.Recoil = 0.9
-SWEP.RecoilSide = 0.4
+SWEP.Recoil = 0.7
+SWEP.RecoilSide = 0.35
 SWEP.RecoilRise = 0.1
 SWEP.MaxRecoilBlowback = 0
 SWEP.VisualRecoilMult = 0
@@ -49,9 +49,11 @@ SWEP.Firemodes = {
 
 SWEP.NotForNPCS = true
 
-SWEP.AccuracyMOA = 10
-SWEP.HipDispersion = 350
+SWEP.AccuracyMOA = 5
+SWEP.HipDispersion = 200
 SWEP.MoveDispersion = 100
+
+SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
 	")horde/weapons/bo_1911/shot_00.wav",
@@ -60,14 +62,14 @@ SWEP.ShootSound = {
 	")horde/weapons/bo_1911/shot_03.wav",
 	")horde/weapons/bo_1911/shot_04.wav"
 }
-SWEP.LowShootSound = "horde/weapons/bo_shared/wpn_lfe_sweet_02.wav"
+SWEP.LowShootSound = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
 SWEP.ShootSoundSilenced = {
 	")horde/weapons/bo_m16/silenced/silenced_00.wav",
 	")horde/weapons/bo_m16/silenced/silenced_01.wav",
 	")horde/weapons/bo_m16/silenced/silenced_02.wav",
 	")horde/weapons/bo_m16/silenced/silenced_03.wav"
 }
-SWEP.LowShootSoundSilenced = "horde/weapons/bo_shared/wpn_lfe_sweet_02.wav"
+SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
 SWEP.DistantShootSound = ")horde/weapons/bo_1911/ringoff_00.wav"
 SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_aug/silenced/sweet_00.wav"
 
@@ -255,10 +257,10 @@ sound.Add( {
     name = "ArcCW_Horde_BO_1911.Reload",
     volume = 1.0,
     sound = {
-    	"horde/weapons/bo_shared/reload/fly_gear_reload_plr_00.wav",
-    	"horde/weapons/bo_shared/reload/fly_gear_reload_plr_01.wav",
-    	"horde/weapons/bo_shared/reload/fly_gear_reload_plr_02.wav",
-    	"horde/weapons/bo_shared/reload/fly_gear_reload_plr_03.wav"
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
+    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
     }
 } )
 
@@ -316,7 +318,7 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     if pitchoverride then pitch = pitchoverride end
 
     if fsound then self:MyEmitSound( fsound, volume, pitch, 1, CHAN_STATIC ) end
-    if lsound then self:MyEmitSound( lsound, 65, 100, 1, CHAN_BODY ) end
+    if lsound then self:MyEmitSound( lsound, 75, 100, 0.5, CHAN_BODY ) end
     if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
 
     local data = {
