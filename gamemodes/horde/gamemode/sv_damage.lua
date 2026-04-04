@@ -59,9 +59,6 @@ function HORDE:ApplyDamage(npc, hitgroup, dmginfo)
         dmginfo:ScaleDamage(bonus.more * (1 + bonus.increase))
         dmginfo:AddDamage(bonus.post_add)
         dmginfo:SetDamageCustom(HORDE.DMG_CALCULATED)
-        if hitgroup == HITGROUP_HEAD then
-            sound.Play("horde/player/headshot.ogg", npc:GetPos())
-        end
         return
     end
     hook.Run("Horde_OnPlayerDamage", ply, npc, bonus, hitgroup, dmginfo)
