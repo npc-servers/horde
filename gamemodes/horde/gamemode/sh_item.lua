@@ -431,21 +431,25 @@ function HORDE:GetDefaultItemsData()
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 5 }, nil, { HORDE.DMG_SLASH } )
 
-    HORDE:CreateItem( "Pistol", "M1911", "arccw_horde_bo_1911", 10, 1,
-        "Classic starter weapon for any zombie environment.",
+    HORDE:CreateItem( "Pistol", "USP-9", "arccw_horde_9mm", 100, 1,
+        "Standard 9mm pistol for any zombie environment.",
         { Survivor = true, Psycho = true, Prototype = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Survivor", "Prototype", "Psycho", "Demolition", "Ghost", "Gunslinger", "Engineer", "Warden", "Overlord", "Cremator" } )
-    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_bo_asp", 10, 1,
-        "Low profile pistol.\nThis one is chambered in a special cartridge, designed for melee fighters.",
+    HORDE:CreateItem( "Pistol", "USP-9 R.I.P", "arccw_horde_9mmrip", 100, 1,
+        "Standard 9mm pistol for melee fighters.\nLoaded with Rapidly Invasive Projectiles that inflict Slashing damage.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
-    HORDE:CreateItem( "Pistol", "CZ", "arccw_horde_bo_cz75", 10, 1,
-        "Fully automatic pistol.",
-        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
-        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
-    HORDE:CreateItem( "Pistol", "Makarov", "arccw_horde_bo_makarov", 10, 1,
-        "Standard pistol of Soviet design.\nThis one is loaded with healing darts.",
-        { Medic = true, Hatcher = true },
+    HORDE:CreateItem( "Pistol", "Flame Revolver", "arccw_horde_flamepistol", 100, 1,
+        "357 Revolver modified for pyromaniacs.\n Loaded with flares packed with white phosphorus.",
+        { Cremator = true, Gunslinger = true },
+         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Cremator", "Gunslinger" } )
+    HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 1,
+        "Standard 357 Revolver.\n Boasts superior stopping power compared to the standard 9mm.",
+        { Cremator = true, Gunslinger = true },
+        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Ghost", "Gunslinger" } )
+    HORDE:CreateItem( "Pistol", "USP-9M", "arccw_horde_medic_9mm", 100, 1,
+        "Standard 9mm pistol for combat medics.\nThis one is loaded with healing darts.\n Press suitzoom (default:b) to fire stronger darts that have a minor splash.",
+        { Medic = true, Hatcher = true, Gunslinger = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Medic", "Hatcher" } )
     HORDE:CreateItem( "Pistol", "Glock", "arccw_horde_glock", 750, 2,
         "Glock 17.\nSemi-automatic pistol manufactured in Austria.",
@@ -525,9 +529,13 @@ function HORDE:GetDefaultItemsData()
         "Raygun Mark II.\nSecond iteration of the classic Ray Gun, now in the format of a burst-fire laser.",
         { Gunslinger = true, Engineer = true, Warden = true, Overlord = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
-
+    
+    HORDE:CreateItem( "SMG", "PDW", "arccw_horde_smg1", 1250, 3,
+        "Standard Personal Defense Weapon made for suppressive fire.\n Offers great firepower, but pales in comparison to the proper MP7.",
+        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
+        8, -1, nil, nil, { Survivor = 3 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "UZI", "arccw_horde_uzi", 1250, 3,
-        "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab-sraeli War.",
+        "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab-Israeli War.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, nil, { Survivor = 3 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "SMG", "MP40", "arccw_horde_mp40", 1250, 3,
@@ -579,7 +587,11 @@ function HORDE:GetDefaultItemsData()
         "Modified Winchester 1897.\nFires special darts that heal players on hit. \n\nPress B or ZOOM to fire healing darts.\nHealing dart heals 10 health and has a 1 second cooldown.",
         { Prototype = true, Medic = true, Hatcher = true, Warden = true, Overlord = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
-
+    
+    HORDE:CreateItem( "Shotgun", "M3 Tactical", "arccw_horde_shotgun", 100, 2,
+        "Standard M3 shotgun.\nItalian pump-action 20-gauge shotgun.",
+        { Prototype = true, Engineer = true, Warden = true, Overlord = true },
+        10, -1, nil, "arccw/weaponicons/arccw_go_nova", nil, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Shotgun", "Nova", "arccw_horde_nova", 1000, 4,
         "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true, Overlord = true },
