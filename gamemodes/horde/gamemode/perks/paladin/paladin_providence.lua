@@ -64,7 +64,7 @@ local function reflectDmg( protector, attacker, dmg )
 end
 
 local maxFaith = 10
-local elementalResist = 0.03
+local elementalResist = 0.04
 local physicalResist = 0.05
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )

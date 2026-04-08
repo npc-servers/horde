@@ -1,9 +1,9 @@
 PERK.PrintName = "Protector's Oath"
 PERK.Icon = "materials/perks/paladin/protectors_oath.png"
 PERK.Description = [[
-Losing Faith stacks heals you and all allies inside your Sacred Aura by 2% health.
-Divine Shield provides 3% to all elemental resistances per Faith stack.
-Regenerate Faith stacks even while using Divine Shield.]]
+Losing Faith stacks heals you and all allies inside your Sacred Aura by 5% health.
+Divine Shield provides 4% to all elemental resistances per Faith stack.
+You can still regenerate Faith stacks, even when shielding.]]
 PERK.Hooks = {}
 
 if not SERVER then return end
@@ -34,10 +34,10 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
 
     local faith = ply:Horde_GetPaladinFaithStack()
 
-    bonus.resistance = bonus.resistance + faith * 0.03
+    bonus.resistance = bonus.resistance + faith * 0.04
 end
 
-local healPercent = 0.02
+local healPercent = 0.05
 
 PERK.Hooks.Horde_Paladin_OnLoseFaith = function( ply )
     if not ply:Horde_GetPerk( "paladin_protectors_oath" ) then return end

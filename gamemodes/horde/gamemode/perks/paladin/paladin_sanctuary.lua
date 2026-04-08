@@ -1,9 +1,9 @@
 PERK.PrintName = "Sanctuary"
 PERK.Icon = "materials/perks/paladin/sanctuary.png"
 PERK.Description = [[
-Sacred Aura slowly decreases debuff buildups per second.
-Divine Shield prevents all players inside Sacred Aura from
-taking damage higher than 50% of their health.]]
+Sacred Aura decreases debuff buildups over time.
+When using Divine Shield, all players inside your Sacred Aura
+can't take damage higher than their 30% max health.]]
 PERK.Hooks = {}
 
 if not SERVER then return end
@@ -37,7 +37,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     local dmg = dmginfo:GetDamage()
     local maxHP = ply:GetMaxHealth()
 
-    bonus.block = bonus.block + math.max( 0, dmg - maxHP * 0.5 )
+    bonus.block = bonus.block + math.max( 0, dmg - maxHP * 0.3 )
 end
 
 -- Aura debuff reduction is in paladin_sacred_aura/init

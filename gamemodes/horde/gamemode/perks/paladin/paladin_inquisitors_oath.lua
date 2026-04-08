@@ -3,7 +3,7 @@ PERK.Icon = "materials/perks/paladin/inquisitors_oath.png"
 PERK.Description = [[
 Increase damage dealt by 3% for every Faith stack you currently have. (max. 30%)
 Killing an enemy gives you 1 stack of Faith.
-Melee hits leech 5% health.]]
+Melee hits leech 10% health.]]
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
@@ -20,7 +20,7 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, _, _, _, dmginfo )
     if dmginfo:GetDamage() <= 0 then return end
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
 
-    local leech = ply:GetMaxHealth() * 0.05
+    local leech = ply:GetMaxHealth() * 0.1
     HORDE:SelfHeal( ply, leech )
 end
 
