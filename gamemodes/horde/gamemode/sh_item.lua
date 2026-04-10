@@ -1133,7 +1133,7 @@ Hysteria lasts for 5 seconds and falls off sequentially.]],
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_berserker.png", { Berserker = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Riot Armor", "armor_warden", 1000, 0,
         "Distinguished Warden armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Shock and Sonic damage resistance.",
-        { Warden = true, Overlord = true },
+        { Warden = true, Overlord = true, Paladin = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_warden.png", { Warden = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Molten Armor", "armor_cremator", 1000, 0,
         "Distinguished Cremator armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Fire damage resistance.",
