@@ -165,3 +165,13 @@ PERK.Hooks.Horde_PostOnPlayerHeal = function( ply, healinfo )
     if armor == maxArmor then return end
     ply:SetArmor( math.Min( maxArmor, armor + healinfo.amount / 2 ) )
 end
+
+-- Break immunity
+PERK.Hooks.Horde_OnPlayerDebuffApply = function( ply, debuff, bonus )
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    if debuff ~= HORDE.Status_Break then return end
+
+    bonus.apply = 0
+
+    return true
+end
