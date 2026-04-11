@@ -89,11 +89,12 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     end
 
     bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus( "paladin_base_globalresist" ) + faithResist
-	
-	if HORDE:IsPoisonDamage( dmginfo ) then
-		bonus.resistance = bonus.resistance + 1.0
-		return
-	end	
+
+    if HORDE:IsPoisonDamage( dmginfo ) then
+        bonus.resistance = bonus.resistance + 1.0
+
+        return
+    end
 end
 
 PERK.Hooks.StartCommand = function( ply, cmd )
