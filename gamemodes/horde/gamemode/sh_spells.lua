@@ -314,7 +314,6 @@ function HORDE:RaiseSpectre(ply, param, p2)
     end)
 
     -- Special case for turrets
-    local id = ent:GetCreationID()
     ent:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
 
     -- Count Minions
