@@ -233,6 +233,32 @@ net.Receive("Horde_BuySpellUpgrade", function (len, ply)
     end
 end)
 
+local spectres = {
+    "npc_vj_horde_spectre", -- also includes greater spectre
+    "npc_vj_horde_phantasm"
+}
+
+local ultSpectres = {
+    "npc_vj_horde_shadow_hulk",
+    "npc_vj_horde_shadow_weeper"
+}
+
+local function getSpectreCount(ply, ult)
+    local spectreCount = 0
+
+    local dropEnts = ply.Horde_drop_entities
+
+    for _, spectre in ipairs(ult and ultSpectres or spectres) do
+        local dropEnt = dropEnts[spectre]
+
+        if dropEnt then
+            spectreCount = spectreCount + dropEnt
+        end
+    end
+
+    return spectreCount
+end
+
 function HORDE:RaiseSpectre(ply, param, p2)
     local spell_name = "raise_spectre"
     if param and param.greater_spectre then
@@ -246,34 +272,20 @@ function HORDE:RaiseSpectre(ply, param, p2)
     local p = {level = level}
     hook.Run("Horde_OnRaiseSpectre", ply, p)
 
-    local spectres_count = 0
+    if param and (param.hulk_spectre or param.weeper_spectre) then
+        local spectreCount = getSpectreCount(ply, true)
 
-    if ply.Horde_drop_entities["npc_vj_horde_spectre"] then
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_spectre"]
-    end
-
-    if ply.Horde_drop_entities["npc_vj_horde_phantasm"] then
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_phantasm"]
-    end
-
-    if ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] then
-        if param and param.hulk_spectre and ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] >= 1 then
+        if spectreCount >= ply.Horde_Ult_Spectre_Max_Count then
             return true
         end
+    else
+        local spectreCount = getSpectreCount(ply)
 
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"]
-    end
-
-    if ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] then
-        if param and param.weeper_spectre and ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] >= 1 then
+        if spectreCount >= ply.Horde_Spectre_Max_Count then
             return true
         end
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"]
     end
 
-    if spectres_count >= ply.Horde_Spectre_Max_Count then
-        return true
-    end
     ply:EmitSound("horde/spells/raise.ogg")
     local ent
     if param then
