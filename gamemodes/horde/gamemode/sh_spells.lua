@@ -272,7 +272,10 @@ function HORDE:RaiseSpectre(ply, param, p2)
     local p = {level = level}
     hook.Run("Horde_OnRaiseSpectre", ply, p)
 
+    local isUlt = false
+
     if param and (param.hulk_spectre or param.weeper_spectre) then
+        isUlt = true
         local spectreCount = getSpectreCount(ply, true)
 
         if spectreCount >= ply.Horde_Ult_Spectre_Max_Count then
@@ -329,14 +332,14 @@ function HORDE:RaiseSpectre(ply, param, p2)
     ent:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
 
     -- Count Minions
-    ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() + 1)
+    ply:Horde_SetSpectreCount(ply:Horde_GetSpectreCount(isUlt) + 1, isUlt)
 
     ent:CallOnRemove("Horde_EntityRemoved", function()
         if ent:IsValid() and ply:IsValid() then
             timer.Remove("Horde_MinionCollision" .. ent:GetCreationID())
             ply:Horde_RemoveDropEntity(ent:GetClass(), ent:GetCreationID())
             ply:Horde_SyncEconomy()
-            ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() - 1)
+            ply:Horde_SetSpectreCount(ply:Horde_GetSpectreCount(isUlt) - 1, isUlt)
         end
     end)
 end
