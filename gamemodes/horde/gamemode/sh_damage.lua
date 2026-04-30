@@ -44,15 +44,15 @@ HORDE.DMG_TYPE_ICON = {
 
 HORDE.DMG_COLOR = {
     [HORDE.DMG_PHYSICAL] = Color(255, 255, 255),
-    [HORDE.DMG_SLASH] =  Color(255, 255, 255),
-    [HORDE.DMG_BLUNT] =  Color(255, 255, 255),
-    [HORDE.DMG_BALLISTIC] =  Color(255, 255, 255),
-    [HORDE.DMG_FIRE] = Color(255,51,51),
-    [HORDE.DMG_COLD] = Color(0,191,255),
-    [HORDE.DMG_LIGHTNING] = Color(255,215,0),
+    [HORDE.DMG_SLASH] = Color(255, 255, 255),
+    [HORDE.DMG_BLUNT] = Color(255, 255, 255),
+    [HORDE.DMG_BALLISTIC] = Color(255, 255, 255),
+    [HORDE.DMG_FIRE] = Color(255, 51, 51),
+    [HORDE.DMG_COLD] = Color(0, 191, 255),
+    [HORDE.DMG_LIGHTNING] = Color(255, 255, 0),
     [HORDE.DMG_POISON] = Color(255, 0, 255),
-    [HORDE.DMG_BLAST] = Color(255,140,0),
-    [HORDE.DMG_PURE] = Color(255,255,255),
+    [HORDE.DMG_BLAST] = Color(255, 140, 0),
+    [HORDE.DMG_PURE] = Color(255, 255, 255),
 }
 
 HORDE.STATUS_COLOR = {
