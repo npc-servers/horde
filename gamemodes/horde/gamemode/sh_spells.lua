@@ -233,6 +233,7 @@ net.Receive("Horde_BuySpellUpgrade", function (len, ply)
     end
 end)
 
+-- TODO: dynamically add spectres and ult spectres
 local spectres = {
     "npc_vj_horde_spectre", -- also includes greater spectre
     "npc_vj_horde_phantasm"
@@ -243,6 +244,7 @@ local ultSpectres = {
     "npc_vj_horde_shadow_weeper"
 }
 
+-- TODO: dynamically add spectre spells
 local spectreSpells = {
     greater_spectre = "raise_greater_spectre",
     phantasm_spectre = "raise_phantasm",
@@ -355,12 +357,24 @@ function HORDE:RaiseSpectre(ply, param, p2)
     end)
 end
 
+local removeSpectres = {}
+
+for _, spectre in ipairs(spectres) do
+    removeSpectres[spectre] = true
+end
+
+for _, spectre in ipairs(ultSpectres) do
+    removeSpectres[spectre] = true
+end
+
 function HORDE:RemoveSpectres(ply)
-    if HORDE.player_drop_entities[ply:SteamID()] then
-        for _, ent in pairs(HORDE.player_drop_entities[ply:SteamID()]) do
-            if IsValid( ent ) and ent:IsNPC() and (ent:GetClass() == "npc_vj_horde_spectre" or ent:GetClass() == "npc_vj_horde_shadow_hulk") then
-                ent:Remove()
-            end
+    local dropEnts = HORDE.player_drop_entities[ply:SteamID()]
+
+    if not dropEnts then return end
+
+    for _, ent in pairs(dropEnts) do
+        if IsValid(ent) and ent:IsNPC() and removeSpectres[ent:GetClass()] then
+            ent:Remove()
         end
     end
 end
