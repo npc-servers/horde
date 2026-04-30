@@ -243,6 +243,13 @@ local ultSpectres = {
     "npc_vj_horde_shadow_weeper"
 }
 
+local spectreSpells = {
+    greater_spectre = "raise_greater_spectre",
+    phantasm_spectre = "raise_phantasm",
+    hulk_spectre = "raise_hulk_spectre",
+    weeper_spectre = "raise_shadow_weeper",
+}
+
 local function getSpectreCount(ply, ult)
     local spectreCount = 0
 
@@ -261,11 +268,15 @@ end
 
 function HORDE:RaiseSpectre(ply, param, p2)
     local spell_name = "raise_spectre"
-    if param and param.greater_spectre then
-        spell_name = "raise_greater_spectre"
-    end
-    if param and param.hulk_spectre then
-        spell_name = "raise_hulk_spectre"
+
+    if param then
+        for key, spell in pairs(spectreSpells) do
+            if param[key] then
+                spell_name = spell
+
+                break
+            end
+        end
     end
 
     local level = ply:Horde_GetSpellUpgrade(spell_name)
