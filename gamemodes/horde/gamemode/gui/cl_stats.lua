@@ -794,7 +794,7 @@ function PANEL:Init()
 
             local perk = HORDE.perks[choice]
             local icon = perk.Icon or HORDE.subclasses[class].Icon
-            drawStatPerk(perk.PrintName, 100, 370 + y, HORDE.subclasses[class].Icon)
+            drawStatPerk(perk.PrintName, 100, 370 + y, icon)
 
             y = y + 50
             ::cont::
