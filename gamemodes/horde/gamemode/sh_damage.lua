@@ -151,10 +151,27 @@ function HORDE:CalcResistance(ply, stats, dmgtype, horde_dmgtype)
     stats[horde_dmgtype] = 1 - bonus.less * (1 - bonus.resistance)
 end
 
-function HORDE:CalcImmunity(ply, stats, debuff)
+function HORDE:CalcStatusResistance(ply, stats, debuff)
     local bonus = {apply = 1, less = 1}
     hook.Run("Horde_OnPlayerDebuffApply", ply, debuff, bonus)
-    stats[debuff] = 1 - bonus.apply
+
+    if ply.Horde_Immune_Status_All then
+        stats[debuff] = 1 + (1 - bonus.less)
+
+        return
+    end
+
+    if ply.Horde_Immune_Status and ply.Horde_Immune_Status[debuff] then
+        stats[debuff] = 1 + (1 - bonus.less)
+
+        return
+    end
+
+    if bonus.apply == 0 then
+        stats[debuff] = 1 + (1 - bonus.less)
+    else
+        stats[debuff] = 1 - bonus.less
+    end
 end
 
 net.Receive("Horde_GetStats", function (len, ply)
@@ -182,12 +199,12 @@ net.Receive("Horde_GetStats", function (len, ply)
     hook.Run("Horde_PlayerMoveBonus", ply, bonus_walk, bonus_run, bonus_jump)
     stats["speed"] = math.max(bonus_walk.more + bonus_walk.increase, bonus_run.more + bonus_run.increase, bonus_jump.more + bonus_jump.increase)
 
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Bleeding)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Ignite)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Frostbite)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Shock)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Break)
-    HORDE:CalcImmunity(ply, stats, HORDE.Status_Necrosis)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Bleeding)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Ignite)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Frostbite)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Shock)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Break)
+    HORDE:CalcStatusResistance(ply, stats, HORDE.Status_Necrosis)
 
     net.Start("Horde_GiveStats")
         net.WriteTable(stats)
