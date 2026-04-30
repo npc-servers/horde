@@ -56,14 +56,16 @@ HORDE.DMG_COLOR = {
 }
 
 HORDE.STATUS_COLOR = {
-    [HORDE.Status_Decay] = Color(50, 150, 50),
-    [HORDE.Status_Necrosis] = Color(204, 204, 255),
     [HORDE.Status_Bleeding] = HORDE.color_crimson_violet,
-    [HORDE.Status_Freeze] = HORDE.DMG_COLOR[HORDE.DMG_COLD],
+    [HORDE.Status_Ignite] = HORDE.DMG_COLOR[HORDE.DMG_FIRE],
     [HORDE.Status_Frostbite] = HORDE.DMG_COLOR[HORDE.DMG_COLD],
     [HORDE.Status_Shock] = HORDE.DMG_COLOR[HORDE.DMG_LIGHTNING],
-    [HORDE.Status_Stun] = Color(255, 255, 0),
     [HORDE.Status_Break] = HORDE.DMG_COLOR[HORDE.DMG_POISON],
+    [HORDE.Status_Decay] = Color(50, 150, 50),
+    [HORDE.Status_Necrosis] = Color(204, 204, 255),
+    [HORDE.Status_Stun] = Color(255, 255, 0),
+    [HORDE.Status_Freeze] = HORDE.DMG_COLOR[HORDE.DMG_COLD],
+    [HORDE.Status_Hemorrhage] = HORDE.color_crimson_violet,
 }
 
 function HORDE:GetDamageType(dmginfo)
