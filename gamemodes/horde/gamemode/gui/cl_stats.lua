@@ -1079,6 +1079,14 @@ function PANEL:Init()
     discord_btn.DoClick = function ()
         gui.OpenURL("https://discord.gg/npc")
     end
+    discord_btn.OnCursorEntered = function ()
+        surface.PlaySound("UI/buttonrollover.wav")
+        discord_hovered = true
+    end
+    discord_btn.OnCursorExited = function ()
+        surface.PlaySound("UI/buttonrollover.wav")
+        discord_hovered = false
+    end
 
     local donate_btn = vgui.Create("DButton", self)
     local donate_activated = false
@@ -1098,6 +1106,14 @@ function PANEL:Init()
     end
     donate_btn.DoClick = function ()
         gui.OpenURL("https://store.zmod.gg/")
+    end
+    donate_btn.OnCursorEntered = function ()
+        surface.PlaySound("UI/buttonrollover.wav")
+        donate_hovered = true
+    end
+    donate_btn.OnCursorExited = function ()
+        surface.PlaySound("UI/buttonrollover.wav")
+        donate_hovered = false
     end
 
     local close_btn = vgui.Create("DButton", self)
