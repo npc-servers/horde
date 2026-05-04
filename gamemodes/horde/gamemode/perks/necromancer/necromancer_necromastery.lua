@@ -1,6 +1,6 @@
 PERK.PrintName = "Necromastery"
 PERK.Description =
-[[+{1} to maximum Spectres alive.
+[[+{1} to maximum ultimate Spectres alive.
 Minion spells have {2} reduced cooldown.]]
 PERK.Icon = "materials/perks/necromancer/necromastery.png"
 PERK.Params = {

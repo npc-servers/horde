@@ -39,6 +39,7 @@ function UpdateSpectreMaxCount(ply)
 
     local level_bonus = math.min(5, math.floor(ply:Horde_GetLevel("Necromancer") / 5))
     local count = 1 + level_bonus
+    local ultCount = 1
 
     if ply:Horde_GetPerk("necromancer_hollow_essence") then
         count = count + 1
@@ -46,11 +47,13 @@ function UpdateSpectreMaxCount(ply)
     if ply:Horde_GetPerk("necromancer_abyssal_might") then
         count = count + 1
     end
+
     if ply:Horde_GetPerk("necromancer_necromastery") then
-        count = count + 1
+        ultCount = ultCount + 1
     end
 
     ply.Horde_Spectre_Max_Count = count
+    ply.Horde_Ult_Spectre_Max_Count = ultCount
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)

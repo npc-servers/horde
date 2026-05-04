@@ -125,6 +125,8 @@ include("status/debuff/sv_hemorrhage.lua")
 include("status/debuff/sv_fear.lua")
 include("status/buff/sv_presence_fear.lua")
 include("status/buff/sv_hysteria.lua")
+-- Necromancer
+include("status/buff/sv_necromancer_spectre.lua")
 -- Paladin
 include("status/buff/sv_paladin_aura.lua")
 include("status/buff/sv_paladin_faith.lua")

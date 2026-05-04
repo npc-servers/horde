@@ -233,47 +233,75 @@ net.Receive("Horde_BuySpellUpgrade", function (len, ply)
     end
 end)
 
+-- TODO: dynamically add spectres and ult spectres
+local spectres = {
+    "npc_vj_horde_spectre", -- also includes greater spectre
+    "npc_vj_horde_phantasm"
+}
+
+local ultSpectres = {
+    "npc_vj_horde_shadow_hulk",
+    "npc_vj_horde_shadow_weeper"
+}
+
+-- TODO: dynamically add spectre spells
+local spectreSpells = {
+    greater_spectre = "raise_greater_spectre",
+    phantasm_spectre = "raise_phantasm",
+    hulk_spectre = "raise_hulk_spectre",
+    weeper_spectre = "raise_shadow_weeper",
+}
+
+local function getSpectreCount(ply, ult)
+    local spectreCount = 0
+
+    local dropEnts = ply.Horde_drop_entities
+
+    for _, spectre in ipairs(ult and ultSpectres or spectres) do
+        local dropEnt = dropEnts[spectre]
+
+        if dropEnt then
+            spectreCount = spectreCount + dropEnt
+        end
+    end
+
+    return spectreCount
+end
+
 function HORDE:RaiseSpectre(ply, param, p2)
     local spell_name = "raise_spectre"
-    if param and param.greater_spectre then
-        spell_name = "raise_greater_spectre"
-    end
-    if param and param.hulk_spectre then
-        spell_name = "raise_hulk_spectre"
+
+    if param then
+        for key, spell in pairs(spectreSpells) do
+            if param[key] then
+                spell_name = spell
+
+                break
+            end
+        end
     end
 
     local level = ply:Horde_GetSpellUpgrade(spell_name)
     local p = {level = level}
     hook.Run("Horde_OnRaiseSpectre", ply, p)
 
-    local spectres_count = 0
+    local isUlt = false
 
-    if ply.Horde_drop_entities["npc_vj_horde_spectre"] then
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_spectre"]
-    end
+    if param and (param.hulk_spectre or param.weeper_spectre) then
+        isUlt = true
+        local spectreCount = getSpectreCount(ply, true)
 
-    if ply.Horde_drop_entities["npc_vj_horde_phantasm"] then
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_phantasm"]
-    end
-
-    if ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] then
-        if param and param.hulk_spectre and ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"] >= 1 then
+        if spectreCount >= ply.Horde_Ult_Spectre_Max_Count then
             return true
         end
+    else
+        local spectreCount = getSpectreCount(ply)
 
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_shadow_hulk"]
-    end
-
-    if ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] then
-        if param and param.weeper_spectre and ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"] >= 1 then
+        if spectreCount >= ply.Horde_Spectre_Max_Count then
             return true
         end
-        spectres_count = spectres_count + ply.Horde_drop_entities["npc_vj_horde_shadow_weeper"]
     end
 
-    if spectres_count >= ply.Horde_Spectre_Max_Count then
-        return true
-    end
     ply:EmitSound("horde/spells/raise.ogg")
     local ent
     if param then
@@ -314,28 +342,39 @@ function HORDE:RaiseSpectre(ply, param, p2)
     end)
 
     -- Special case for turrets
-    local id = ent:GetCreationID()
     ent:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
 
     -- Count Minions
-    ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() + 1)
+    ply:Horde_SetSpectreCount(ply:Horde_GetSpectreCount(isUlt) + 1, isUlt)
 
     ent:CallOnRemove("Horde_EntityRemoved", function()
         if ent:IsValid() and ply:IsValid() then
             timer.Remove("Horde_MinionCollision" .. ent:GetCreationID())
             ply:Horde_RemoveDropEntity(ent:GetClass(), ent:GetCreationID())
             ply:Horde_SyncEconomy()
-            ply:Horde_SetMinionCount(ply:Horde_GetMinionCount() - 1)
+            ply:Horde_SetSpectreCount(ply:Horde_GetSpectreCount(isUlt) - 1, isUlt)
         end
     end)
 end
 
+local removeSpectres = {}
+
+for _, spectre in ipairs(spectres) do
+    removeSpectres[spectre] = true
+end
+
+for _, spectre in ipairs(ultSpectres) do
+    removeSpectres[spectre] = true
+end
+
 function HORDE:RemoveSpectres(ply)
-    if HORDE.player_drop_entities[ply:SteamID()] then
-        for _, ent in pairs(HORDE.player_drop_entities[ply:SteamID()]) do
-            if IsValid( ent ) and ent:IsNPC() and (ent:GetClass() == "npc_vj_horde_spectre" or ent:GetClass() == "npc_vj_horde_shadow_hulk") then
-                ent:Remove()
-            end
+    local dropEnts = HORDE.player_drop_entities[ply:SteamID()]
+
+    if not dropEnts then return end
+
+    for _, ent in pairs(dropEnts) do
+        if IsValid(ent) and ent:IsNPC() and removeSpectres[ent:GetClass()] then
+            ent:Remove()
         end
     end
 end
