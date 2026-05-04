@@ -190,7 +190,6 @@ function SWEP:DealDamage()
 		end
 
 		dmginfo:ScaleDamage((1 + bonus.increase) * bonus.more)
-
 		local uppercut = false
 		local reinforced = owner:Horde_GetPerk("carcass_reinforced_arms")
 		local lvl = owner:Horde_GetUpgrade("horde_carcass")
@@ -656,29 +655,64 @@ function SWEP:Think()
 end
 
 if CLIENT then
-	surface.CreateFont("Carcass_velocity", { font = "Trebuchet18", size = ScreenScale(5.7), weight = 1000, extended = true, blursize = 0, scanlines = 0, antialias = false, underline = false, italic = false, strikeout = false, symbol = false, rotary = false, shadow = false, additive = false, outline = true, })
+	surface.CreateFont( "Carcass_velocity", { font = "Trebuchet18", size = ScreenScale( 5.7 ), weight = 1000, extended = true, blursize = 0, scanlines = 0, antialias = false, underline = false, italic = false, strikeout = false, symbol = false, rotary = false, shadow = false, additive = false, outline = true, } )
 end
 
 function SWEP:DrawHUD()
 	if CLIENT then
-		local CLR_W = Color(255, 255, 255, 230)
 		local owner = self:GetOwner()
-		local vel = owner:GetVelocity():Length()
-		local veltext = "Velocity:"
-		local velocity =  math.Truncate( vel, 0)
-		local grappendix = owner:Horde_GetPerk("carcass_grappendix")
+		if tobool( owner:GetInfoNum( "horde_carcass_spedometer", 1 ) ) then
+			local CLR_W = Color( 255, 255, 255, 175 )
 
-		draw.RoundedBoxEx(10, (ScrW() / 2) - ScreenScale(14), ScrH() / 1.8 + ScreenScale(1), ScreenScale(30), ScreenScale(12), Color(146,16,92,100), true, false, false, true)
-		draw.RoundedBoxEx(10, (ScrW() / 2) - ScreenScale(15), ScrH() / 1.8, ScreenScale(30), ScreenScale(12), Color(40,40,40,150), true, false, false, true)
-		if grappendix and vel >= 400 and owner:Horde_GetGadget() ~= "gadget_exoskeleton" then
-			CLR_W = Color(0, 255, 179, 230)
-		elseif grappendix and vel >= 400 and ((vel < 1000) or (vel > 1020 )) and owner:Horde_GetGadget() == "gadget_exoskeleton" then
-			CLR_W = Color(0, 255, 179, 230)
-		elseif vel >= 360 then
-			CLR_W = Color(21, 255, 0, 230)
-		else
-			CLR_W = Color(255, 0, 0, 230)
+			local vel = owner:GetVelocity():Length()
+			local veltext = "Velocity:"
+			local velocity =  math.Truncate( vel, 0 )
+			local grappendix = owner:Horde_GetPerk( "carcass_grappendix" )
+			local spedometer_x = owner:GetInfoNum( "horde_carcass_spedometer_x", 2 )
+			local spedometer_y = owner:GetInfoNum( "horde_carcass_spedometer_y", 1.8 )
+			local style = owner:GetInfoNum( "horde_carcass_spedometer_style", 1 )
+			local clampedVel = math.Clamp( vel / 10, 0, 350 )
+			local alpha = 255
+
+			if style == 1 then
+				draw.RoundedBox( 10, ( ScrW() / spedometer_x ) - ScreenScale( 15 ), ScrH() / spedometer_y + ScreenScale( 0.2 ), ScreenScale( 30 ), ScreenScale( 12 ), Color( 40, 40, 40, 150 ) )
+			end
+
+			if style == 2 then
+				draw.RoundedBoxEx( 10, ( ScrW() / spedometer_x ) - ScreenScale( 14 ), ScrH() / spedometer_y + ScreenScale( 1 ), ScreenScale( 30 ), ScreenScale( 12 ), Color( 146, 16, 92, 100 ), true, false, false, true )
+				draw.RoundedBoxEx(10, ( ScrW() / spedometer_x ) - ScreenScale( 15 ), ScrH() / spedometer_y, ScreenScale( 30 ), ScreenScale( 12 ), Color( 40, 40, 40, 150 ), true, false, false, true )
+			end
+
+			if style <= 2 then --changes to alpha based on style choice have to be defined before color changes
+				alpha = 230
+			else
+				alpha = 150
+			end
+			if vel >= 2000 then
+				CLR_W = Color( 0, 255, 255, alpha )
+			elseif grappendix and vel >= 400 and owner:Horde_GetGadget() ~= "gadget_exoskeleton" then
+				CLR_W = Color( 0, 255, 179, alpha )
+			elseif grappendix and vel >= 400 and ( ( vel < 1000 ) or ( vel > 1020 ) ) and owner:Horde_GetGadget() == "gadget_exoskeleton" then
+				CLR_W = Color( 0, 255, 179, alpha )
+			elseif vel >= 360 then
+				CLR_W = Color( 21, 255, 0, alpha )
+			else
+				CLR_W = Color( 255, 0, 0, alpha )
+			end
+
+			if style <= 2 then
+				draw.DrawText( veltext .. "\n" .. velocity, "Carcass_velocity", ScrW() / spedometer_x, ScrH() / spedometer_y, CLR_W, TEXT_ALIGN_CENTER, true )
+			end
+
+			if style == 3 then
+				draw.RoundedBoxEx( 20, ( ScrW() / spedometer_x ) - ( clampedVel / 4 ) + ScreenScale( 1 ), ScrH() / spedometer_y + ScreenScale( 1 ), clampedVel / 2, ScreenScale( 5 ), Color( 40, 40, 40, 150 ), true, false, false, true )
+				draw.RoundedBoxEx( 20, ( ScrW() / spedometer_x ) - ( clampedVel / 4 ), ScrH() / spedometer_y, clampedVel / 2, ScreenScale( 5 ), CLR_W, true, false, false, true )
+			end
+
+			if style == 4 then
+				draw.RoundedBoxEx( 20, ( ScrW() / spedometer_x ) + ScreenScale( 1 ), ( ScrH() / spedometer_y ) - ( clampedVel / 4 ) + ScreenScale( 1 ), ScreenScale( 5 ), clampedVel / 2, Color( 40, 40, 40, 150 ), true, false, false, true )
+				draw.RoundedBoxEx( 20, ScrW() / spedometer_x, ( ScrH() / spedometer_y ) - ( clampedVel / 4 ), ScreenScale( 5 ), clampedVel / 2, CLR_W, true, false, false, true )
+			end
 		end
-		draw.DrawText(veltext .. "\n" .. velocity, "Carcass_velocity", ScrW() / 2, ScrH() / 1.8, CLR_W, TEXT_ALIGN_CENTER, true)
 	end
 end

@@ -65,6 +65,10 @@ if CLIENT then
     CreateClientConVar("horde_disable_default_gadget_use_key", 0, FCVAR_ARCHIVE, "Disable default key bind for active gadgets.")
     CreateClientConVar("horde_heal_flash", "1", true, true, "Allows for a player's screen to flash to notify them when they're being healed.")
     CreateClientConVar("horde_show_leaderboard", "0", true, false, "Enables forcibly displaying the leaderboard for ranks.")
+    CreateClientConVar( "horde_carcass_spedometer", "1", true, true, "Enable/Disable the Velocity spedometer for Carcass's fists", 0, 1)
+    CreateClientConVar( "horde_carcass_spedometer_x", "2", true, true, "Changes the horizontal position of the spedometer. default 2", 0, 100 )
+    CreateClientConVar( "horde_carcass_spedometer_y", "1.8", true, true, "Changes the height at which the spedometer is positioned. default 1.8",0, 100)
+    CreateClientConVar( "horde_carcass_spedometer_style", "1", true, true, "Changes the style of spedometer. 1 and 2 displays Velocity numerically, and 3 and 4 display Velocity using a bar. Default 1.", 1, 4)
 end
 
 if SERVER then
