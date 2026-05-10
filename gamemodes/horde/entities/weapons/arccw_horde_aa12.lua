@@ -20,6 +20,7 @@ SWEP.DamageMin = 26
 SWEP.Range = 40
 SWEP.Penetration = 10
 
+SWEP.Delay = 60 / 300 -- 60 / RPM.
 SWEP.Primary.ClipSize = 20
 
 SWEP.AccuracyMOA = 100
