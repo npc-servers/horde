@@ -49,6 +49,18 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 
     ply:Horde_SetPerkCooldown( 0 )
 
+    ply:Horde_SetMindRegenTick( 0.25 )
+    ply:SetMaxArmor( 0 )
+
+    timer.Simple( 0, function()
+        if not IsValid( ply ) or not ply:Alive() then return end
+
+        local bonus = { increase = 0, more = 1, add = 0 }
+        hook.Run( "Horde_OnSetMaxMind", ply, bonus )
+        ply:Horde_SetMaxMind( 100 * bonus.more * ( 1 + bonus.increase ) + bonus.add )
+        ply:Horde_SetMind( ply:Horde_GetMaxMind() )
+    end )
+
     ply.Horde_magic = {}
     ply.Horde_cooldown = {
         [1] = 0,
@@ -60,6 +72,11 @@ end
 
 PERK.Hooks.Horde_OnUnSetPerk = function( ply, perk )
     if perk ~= "spellsword_base" then return end
+
+    ply:Horde_SetMaxMind( 0 )
+    ply:Horde_SetMind( 0 )
+    ply:Horde_SetMindRegenTick( 0 )
+    ply:SetMaxArmor( 100 )
 
     ply.Horde_magic = nil
 end
