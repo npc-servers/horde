@@ -1,4 +1,4 @@
-function EFFECT:Init(effectdata)
+function EFFECT:Init( effectdata )
 	local pos = effectdata:GetOrigin()
 	local normal = Vector( 0, 0, 1 )
 	local scale = 1
@@ -32,7 +32,7 @@ function EFFECT:Init(effectdata)
 		particle:SetAngles( normal:Angle() )
 	end
 
-	for i = 1, 2 do
+	for _ = 1, 2 do
 		local smoke = emitter:Add( "particles/smokey", pos )
 		smoke:SetGravity( Vector( 0, 0, 1500 ) )
 		smoke:SetDieTime( math.Rand( 0.5, 1 ) )
