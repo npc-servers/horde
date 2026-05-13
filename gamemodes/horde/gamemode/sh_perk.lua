@@ -206,6 +206,7 @@ if game.SinglePlayer() then
 else
     if CLIENT then
     hook.Add("PlayerButtonDown", "Horde_UseKeyAndShift", function(ply, key)
+        if not IsFirstTimePredicted() then return end
         if (key == KEY_E) and input.IsButtonDown(KEY_LSHIFT) then
             ply:ConCommand("horde_use_perk_skill")
         end
