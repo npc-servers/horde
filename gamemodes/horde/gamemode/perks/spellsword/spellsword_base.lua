@@ -62,12 +62,6 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     end )
 
     ply.Horde_magic = {}
-    ply.Horde_cooldown = {
-        [1] = 0,
-        [2] = 0,
-        [3] = 0,
-        [4] = 0,
-    }
 end
 
 PERK.Hooks.Horde_OnUnSetPerk = function( ply, perk )
@@ -82,12 +76,10 @@ PERK.Hooks.Horde_OnUnSetPerk = function( ply, perk )
 end
 
 local function insertkey( ply, value )
-    if ply.Horde_cooldown[value] >= CurTime() then return end
     if #ply.Horde_magic >= 4 then
         table.remove( ply.Horde_magic, 1 )
     end
 
-    ply.Horde_cooldown[value] = CurTime() + -1
     table.insert( ply.Horde_magic, value )
 
     net.Start( "Horde_SpellSword_SyncCombo" )
@@ -266,6 +258,18 @@ local incantations = {
         cost = 0,
         func = function( ply )
             ply:Horde_AddBarrierStack( 10 )
+        end
+    },
+    ["2,3,3,2"] = {
+        name = "Goodberry",
+        cost = 30,
+        func = function( ply )
+            for _ = 1, 3 do
+                local Goodberry = ents.Create( "horde_healthvial" )
+                Goodberry:SetPos( ply:GetPos() + Vector( math.random( 100 ), math.random( 100 ), 5 ) )
+                Goodberry:SetOwner( ply )
+                Goodberry:Spawn()
+            end
         end
     },
 
