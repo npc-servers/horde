@@ -27,8 +27,8 @@ if CLIENT then
         magic = net.ReadTable() or {}
     end )
 
-    local bgW = 150
-    local bgH = 50
+    local bgW = 60
+    local bgH = 28
     local bgCol = Color( 50, 50, 50, 150 )
 
     hook.Add( "HUDPaint", "Horde_Spellsword_HUD", function()
@@ -44,7 +44,7 @@ if CLIENT then
         local key3 = magic[3] or 0
         local key4 = magic[4] or 0
 
-        draw.RoundedBox( 0, keyPosX - bgW / 2, keyPosY + bgH / 2, bgW, bgH, bgCol )
+        draw.RoundedBox( 0, keyPosX - bgW / 2, keyPosY + bgH / 2 - 24 / 2 - 2, bgW, bgH, bgCol )
         draw.DrawText( key1 .. key2 .. key3 .. key4, "Trebuchet24", keyPosX, keyPosY, color_white, TEXT_ALIGN_CENTER )
     end )
 end
@@ -73,7 +73,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     ply:SetMaxArmor( 0 )
 
     -- TODO: Change these variables later
-    ply.Horde_magic = {}
+    ply.Horde_magic = ply.Horde_magic or {}
     ply.Horde_magicCooldowns = ply.Horde_magicCooldowns or {}
 
     timer.Simple( 0, function()
@@ -135,9 +135,9 @@ PERK.Hooks.KeyPress = function( ply, key )
     end
 end
 
---[[ 1 is combat incantations, 2 is buff/debuff incantations, 3 is special incantations, 4 is movement incantations. ]]
-
 --[[
+1 is combat incantations, 2 is buff/debuff incantations, 3 is utility incantations, 4 is movement incantations.
+
 ["0,0,0,0"] = {
     name = string,
     cost = int,
@@ -149,10 +149,10 @@ end
 local incantations = {
     ["1,1,1,1"] = {
         name = "Explosion",
-        cost = 10,
+        cost = 15,
         cooldown = 0,
         func = function( ply )
-            util.BlastDamage( ply, ply, ply:EyePos(), 150, 250 )
+            util.BlastDamage( ply, ply, ply:EyePos(), 150, 150 )
             local explosion = ents.Create( "env_explosion" )
             explosion:SetPos( ply:GetPos() )
             explosion:SetOwner( ply )
@@ -164,8 +164,8 @@ local incantations = {
     },
     ["1,1,2,3"] = {
         name = "Shocking Grasp",
-        cost = 40,
-        cooldown = 10,
+        cost = 45,
+        cooldown = 5,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -176,13 +176,13 @@ local incantations = {
 
             if not tr.Hit then return end
             if not IsValid( tr.Entity ) then return end
-            if not HORDE:IsEnemy( tr.Entity ) or tr.Entity:Horde_IsElite() then return end
+            if not HORDE:IsEnemy( tr.Entity ) then return end
 
             local dmg = DamageInfo()
             dmg:SetAttacker( ply )
             dmg:SetInflictor( ply )
             dmg:SetDamageType( DMG_SHOCK )
-            dmg:SetDamage( 100 )
+            dmg:SetDamage( 200 )
 
             tr.Entity:EmitSound( "ArcCW_Horde.GSO.TASER.Hit" )
             tr.Entity:Horde_AddDebuffBuildup( HORDE.Status_Stun, 5000, ply )
@@ -211,8 +211,8 @@ local incantations = {
     },
     ["1,4,1,3"] = {
         name = "Magic Missile",
-        cost = 30,
-        cooldown = 10,
+        cost = 35,
+        cooldown = 15,
         func = function( ply )
             for i = 1, 3 do
                 timer.Simple( i * 0.2, function()
@@ -235,7 +235,7 @@ local incantations = {
     ["1,4,4,3"] = {
         name = "Mini Black Hole",
         cost = 80,
-        cooldown = 25,
+        cooldown = 35,
         func = function( ply )
             local pos = ply:EyePos()
 
@@ -276,8 +276,8 @@ local incantations = {
     },
     ["1,4,4,4"] = {
         name = "Launch",
-        cost = 30,
-        cooldown = 5,
+        cost = 20,
+        cooldown = 3,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -295,7 +295,7 @@ local incantations = {
     },
     ["1,1,3,4"] = {
         name = "Firework",
-        cost = 40,
+        cost = 30,
         cooldown = 10,
         func = function( ply )
             local tr = util.TraceLine( {
@@ -326,35 +326,67 @@ local incantations = {
             explosion:Fire( "Explode", 0, 0 )
         end
     },
-    ["2,2,1,1"] = {
+    ["2,2,2,3"] = {
         name = "Absorb Elements",
-        cost = 30,
+        cost = 35,
+         cooldown = 5,
         func = function( ply )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 20 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 20 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Shock, 20 )
-        end -- jank with cost and bleed effect https://youtu.be/oiJt4glvwXY
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Shock, 35 )
+        end
     },
     ["2,2,3,1"] = {
         name = "Gentle Repose",
         cost = 40,
+         cooldown = 10,
         func = function( ply )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Decay, 40 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Necrosis, 40 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Decay, 50 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Necrosis, 50 )
             ply:Horde_AddDebuffBuildup( HORDE.Status_Break, 25, ply )
         end
     },
     ["2,2,2,2"] = {
         name = "",
         cost = 25,
+        cooldown = 3,
         func = function( ply )
-            ply:Horde_AddBarrierStack( 10 )
+            ply:Horde_AddBarrierStack( 15 )
+        end
+    },
+    ["2,2,3,3"] = {
+        name = "",
+        cost = 15,
+        cooldown = 10,
+        func = function( ply )
+            local rf = RecipientFilter()
+            rf:AddPlayer( ply )
+            ply:EmitSound( "horde/music/plague_demolitionist.mp3", 50, 100, 1, CHAN_AUTO, SND_NOFLAGS, 1, rf )
+        end
+    },
+    ["2,2,3,1"] = {
+        name = "Find Familiar",
+        cost = 40,
+        cooldown = 10,
+        func = function( ply )
+            local headcrab = ents.Create( "npc_vj_horde_headcrab" )
+            headcrab:SetPos( ply:GetPos() + ply:GetForward() * 50 + Vector( 0, 0, 1 ) * 10 )
+            headcrab:Spawn()
+            headcrab:SetNWEntity( "HordeOwner", ply )
+            headcrab:CallOnRemove( "explodecrab", function( ent )
+                local explosion = ents.Create( "env_explosion" )
+                explosion:SetPos( ent:GetPos() )
+                explosion:Spawn()
+                explosion:SetKeyValue( "iMagnitude", "0" )
+                explosion:Fire( "Explode", 0, 0 )
+                util.BlastDamage( ent, ent, headcrab:EyePos(), 50, 250 )
+            end )
         end
     },
     ["2,2,3,2"] = {
         name = "Goodberry",
         cost = 30,
-        cooldown = 10,
+        cooldown = 15,
         func = function( ply )
             for _ = 1, 3 do
                 local Goodberry = ents.Create( "horde_healthvial" )
@@ -368,7 +400,7 @@ local incantations = {
     -- flight
     ["4,4,3,3"] = {
         name = "Longstrider",
-        cost = 15,
+        cost = 10,
         func = function( ply )
             local forward = ply:GetForward()
             local forwardForce = forward * ( ply:IsOnGround() and 1500 or 1000 )
@@ -377,7 +409,7 @@ local incantations = {
     },
     ["3,3,4,4"] = {
         name = "Expeditious Retreat",
-        cost = 15,
+        cost = 10,
         func = function( ply )
             local forward = ply:GetForward()
             local forwardForce = forward * ( ply:IsOnGround() and -1500 or -1000 )
@@ -386,7 +418,7 @@ local incantations = {
     },
     ["4,4,4,4"] = {
         name = "Catapult",
-        cost = 20,
+        cost = 150,
         func = function( ply )
             ply:SetLocalVelocity( Vector( 0, 0, 2500 ) )
         end
@@ -395,7 +427,8 @@ local incantations = {
     -- swap
     ["3,4,4,3"] = {
         name = "",
-        cost = 160,
+        cost = 180,
+        cooldown = 100,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -415,7 +448,8 @@ local incantations = {
     },
     ["4,3,3,4"] = {
         name = "",
-        cost = 170,
+        cost = 180,
+        cooldown = 100,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -434,9 +468,10 @@ local incantations = {
         end
     },
     -- teleport to
-    ["4,4,3,2"] = {
+    ["4,4,3,1"] = {
         name = "",
         cost = 60,
+        cooldown = 25,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -454,7 +489,8 @@ local incantations = {
     },
     ["2,3,4,4"] = {
         name = "",
-        cost = 70,
+        cost = 60,
+        cooldown = 25,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -471,6 +507,26 @@ local incantations = {
         end
     },
 }
+
+local function failCast( ply, msg )
+    HORDE:SendNotification( msg, 1, ply )
+    ply:EmitSound( "items/suitchargeno1.wav" )
+end
+
+local function castSpell( ply, incantation, curMind, curHP, healthCost )
+    incantation.func( ply )
+
+    ply:ChatPrint( "Casted " .. incantation.name )
+
+    if healthCost and healthCost > 0 then
+        ply:SetHealth( curHP - healthCost )
+        ply:Horde_SetMind( 0 )
+
+        return
+    end
+
+    ply:Horde_SetMind( curMind - incantation.cost )
+end
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
@@ -499,9 +555,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
         local curTime = CurTime()
 
         if ply.Horde_magicCooldowns[key] and ply.Horde_magicCooldowns[key] >= curTime then
-            local text = string.format( "%s is on cooldown for %i more seconds", incantation.name, ply.Horde_magicCooldowns[key] - curTime )
-            HORDE:SendNotification( text, 1, ply )
-            ply:EmitSound( "items/suitchargeno1.wav" )
+            failCast( ply, string.format( "%s is on cooldown for %i more seconds", incantation.name, ply.Horde_magicCooldowns[key] - curTime ) )
 
             return
         end
@@ -510,14 +564,30 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     end
 
     local curMind = ply:Horde_GetMind()
+
     if incantation.cost > curMind then
-        HORDE:SendNotification( "You do not have enough mind to cast this spell!", 1, ply )
-        ply:EmitSound( "items/suitchargeno1.wav" )
+        if ply:Horde_GetGadget() ~= "gadget_blood_sacrifice" then
+            failCast( ply, "You do not have enough mind to cast this spell!" )
+
+            return
+        end
+
+        local remaining = incantation.cost - curMind
+        local hp = ply:Health()
+
+        if remaining >= hp then
+            failCast( ply, "You do not have enough mind and hp to cast this spell!" )
+
+            return
+        end
+
+        incantation.func( ply )
+        ply:ChatPrint( "Casted " .. incantation.name )
+        ply:SetHealth( hp - remaining )
+        ply:Horde_SetMind( 0 )
 
         return
     end
 
-    incantation.func( ply )
-    ply:ChatPrint( "Casted " .. incantation.name )
-    ply:Horde_SetMind( math.max( 0, ply:Horde_GetMind() - incantation.cost ), Entity( 0 ), Entity( 0 ) )
+    castSpell( ply, incantation )
 end
