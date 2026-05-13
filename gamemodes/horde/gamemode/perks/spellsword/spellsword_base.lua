@@ -16,28 +16,25 @@ PERK.Params = {
 PERK.Hooks = {}
 
 if CLIENT then
-    PERK.Hooks.Horde_OnSetPerk = function( _, perk )
-        if perk ~= "spellsword_base" then return end
+    local magic = {}
 
-        local magic = {}
-        net.Receive( "Horde_SpellSword_SyncCombo", function()
-            magic = net.ReadTable() or {}
-        end )
+    net.Receive( "Horde_SpellSword_SyncCombo", function()
+        magic = net.ReadTable() or {}
+    end )
 
-        hook.Add( "HUDPaint", "Horde_Spellsword_HUD", function()
-            local m1 = magic[1] or 0
-            local m2 = magic[2] or 0
-            local m3 = magic[3] or 0
-            local m4 = magic[4] or 0
-            draw.RoundedBox( 0, ScrW() - 410, ScrH() - 80, 150, 50, Color( 50, 50, 50, 150 ) )
-            draw.DrawText( m1 .. m2 .. m3 .. m4, "Trebuchet24", ScrW() - 410 + 150 / 2, ScrH() - 62, color_white, TEXT_ALIGN_CENTER )
-        end )
-    end
+    hook.Add( "HUDPaint", "Horde_Spellsword_HUD", function()
+        if not MySelf:Horde_GetPerk( "spellsword_base" ) then
+            return
+        end
 
-    PERK.Hooks.Horde_OnUnSetPerk = function( _, perk )
-        if perk ~= "spellsword_base" then return end
-        hook.Remove( "HUDPaint", "Horde_Spellsword_HUD" )
-    end
+        local key1 = magic[1] or 0
+        local key2 = magic[2] or 0
+        local key3 = magic[3] or 0
+        local key4 = magic[4] or 0
+
+        draw.RoundedBox( 0, ScrW() - 410, ScrH() - 80, 150, 50, Color( 50, 50, 50, 150 ) )
+        draw.DrawText( key1 .. key2 .. key3 .. key4, "Trebuchet24", ScrW() - 410 + 150 / 2, ScrH() - 62, color_white, TEXT_ALIGN_CENTER )
+    end )
 end
 
 if not SERVER then return end
@@ -52,6 +49,8 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     ply:Horde_SetMindRegenTick( 0.25 )
     ply:SetMaxArmor( 0 )
 
+    ply.Horde_magic = {}
+
     timer.Simple( 0, function()
         if not IsValid( ply ) or not ply:Alive() then return end
 
@@ -59,9 +58,11 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
         hook.Run( "Horde_OnSetMaxMind", ply, bonus )
         ply:Horde_SetMaxMind( 100 * bonus.more * ( 1 + bonus.increase ) + bonus.add )
         ply:Horde_SetMind( ply:Horde_GetMaxMind() )
-    end )
 
-    ply.Horde_magic = {}
+        net.Start( "Horde_SpellSword_SyncCombo" )
+            net.WriteTable( ply.Horde_magic )
+        net.Send( ply )
+    end )
 end
 
 PERK.Hooks.Horde_OnUnSetPerk = function( ply, perk )
