@@ -123,6 +123,7 @@ end
 ["0,0,0,0"] = {
     name = string,
     cost = int,
+    cooldown = int,
     func = function
 }
 ]]
@@ -142,6 +143,16 @@ local incantations = {
             ply:Horde_AddDebuffBuildup( HORDE.Status_Ignite, 50, ply )
         end
     },
+    ["1,3,1,4"] = {
+        name = "Explosion",
+        cost = 0,
+        func = function( ply )
+            local magicbolt = ents.Create( "prop_physics" )
+            magicbolt:SetModel( "models/props_phx/amraam.mdl" )
+            magicbolt:SetPos( ply:EyePos() )
+            magicbolt:Spawn()
+        end
+    },
     ["1,4,4,3"] = {
         name = "Mini Black Hole",
         cost = 0,
@@ -150,7 +161,7 @@ local incantations = {
 
             sound.Play( "horde/spells/black_hole.ogg", pos, 100, 50, 1, CHAN_AUTO )
             local trail = ents.Create( "info_particle_system" )
-            trail:SetKeyValue( "effect_name", "black_hole" )
+            trail:SetKeyValue( "effect_name", "tiny_black_hole_core" )
             trail:SetOwner( ply )
             trail:SetPos( pos )
             trail:SetAngles( ply:GetAngles() )
