@@ -1,6 +1,6 @@
 SUBCLASS.PrintName = "Spellsword" -- Required
 SUBCLASS.UnlockCost = 0
-SUBCLASS.ParentClass = HORDE.Class_Demolition -- Required for any new classes
+SUBCLASS.ParentClass = HORDE.Class_Berserker -- Required for any new classes
 SUBCLASS.Icon = "subclasses/warlock.png" -- Required
 SUBCLASS.Description = [[
 Berserker subclass.

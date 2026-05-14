@@ -326,6 +326,7 @@ local incantations = {
             explosion:Fire( "Explode", 0, 0 )
         end
     },
+    -- 
     ["2,2,2,3"] = {
         name = "Absorb Elements",
         cost = 35,
@@ -357,11 +358,26 @@ local incantations = {
     ["2,2,3,3"] = {
         name = "",
         cost = 15,
-        cooldown = 10,
+        cooldown = 5,
         func = function( ply )
             local rf = RecipientFilter()
             rf:AddPlayer( ply )
-            ply:EmitSound( "horde/music/plague_demolitionist.mp3", 50, 100, 1, CHAN_AUTO, SND_NOFLAGS, 1, rf )
+            local ranmusic = {
+                "horde/music/alpha_gonome.mp3",
+                "horde/music/gamma_gonome.mp3",
+                "horde/music/hell_knight.mp3",
+                "horde/music/mutated_hulk.mp3",
+                "horde/music/plague_berserker.mp3",
+                "horde/music/plague_demolitionist.mp3",
+                "horde/music/plague_heavy.mp3",
+                "horde/music/plague_platoon.mp3",
+                "horde/music/wallace_breen.mp3",
+                "horde/music/xen_destroyer_unit.mp3",
+                "horde/music/xen_host_unit.mp3",
+                "horde/music/xen_psychic_unit.mp3",
+                "horde/music/xen_reanimator_unit.mp3"
+            }
+            ply:EmitSound( ranmusic[math.random( 1, #ranmusic )], 50, 100, 1, CHAN_AUTO, SND_NOFLAGS, 1, rf )
         end
     },
     ["2,2,3,1"] = {
@@ -526,7 +542,7 @@ local function castSpell( ply, incantation, curMind, curHP, healthCost )
     end
 
     ply:Horde_SetMind( curMind - incantation.cost )
-end
+end --this making errors with mind cost
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
