@@ -40,7 +40,7 @@ function ENT:PhysicsCollide(data, phys)
     util.Effect( "Explosion", effect, true, true )
 
     if IsValid( data.HitEntity ) and HORDE:IsEnemy( data.HitEntity ) then
-        data.HitEntity:Horde_AddDebuffBuildup( HORDE.Status_Break, 45, ply )
+        data.HitEntity:Horde_AddDebuffBuildup( HORDE.Status_Break, 10, ply )
     end
 
     util.BlastDamage( self, self:GetOwner() or self, pos, 50, 75 )

@@ -210,6 +210,10 @@ function HORDE:GetDefaultGadgets()
     HORDE:CreateGadgetItem( "gadget_hemocannon", 3000, 3, { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true }, { Berserker = 20 }, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateGadgetItem( "gadget_omnislash", 3250, 2, { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true }, { Berserker = 25 }, nil, { HORDE.DMG_SLASH } )
 
+    -- Spellsword --
+    HORDE:CreateGadgetItem( "gadget_unstable_casting", 2000, 1, { Spellsword = true, }, { Spellsword = 5 } )
+    HORDE:CreateGadgetItem( "gadget_blood_sacrifice", 2500, 2, { Spellsword = true, }, { Spellsword = 10 } )
+
     -- Warden --
     HORDE:CreateGadgetItem( "gadget_solar_array", 2000, 1, { Warden = true, Paladin = true }, { Warden = 5 } )
     HORDE:CreateGadgetItem( "gadget_projectile_launcher_shock", 2500, 2, { Warden = true, Paladin = true }, { Warden = 10 }, nil, { HORDE.DMG_LIGHTNING } )

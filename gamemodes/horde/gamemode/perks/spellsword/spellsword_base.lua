@@ -154,12 +154,12 @@ local incantations = {
         cost = 15,
         cooldown = 0,
         func = function( ply )
-            util.BlastDamage( ply, ply, ply:EyePos(), 150, 150 )
+            util.BlastDamage( ply, ply, ply:EyePos(), 100, 150 )
             local explosion = ents.Create( "env_explosion" )
             explosion:SetPos( ply:GetPos() )
             explosion:SetOwner( ply )
             explosion:Spawn()
-            explosion:SetKeyValue( "iMagnitude", "50" )
+            explosion:SetKeyValue( "iMagnitude", "35" )
             explosion:Fire( "Explode", 0, 0 )
             ply:Horde_AddDebuffBuildup( HORDE.Status_Ignite, 50, ply )
         end
@@ -167,7 +167,7 @@ local incantations = {
     ["1,1,2,3"] = {
         name = "Shocking Grasp",
         cost = 45,
-        cooldown = 5,
+        cooldown = 10,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -194,7 +194,7 @@ local incantations = {
     ["1,4,1,2"] = {
         name = "Witch Bolt",
         cost = 15,
-        cooldown = 3,
+        cooldown = 0,
         func = function( ply )
             local ar = ply:EyeAngles()
 
@@ -211,7 +211,7 @@ local incantations = {
             end
         end
     },
-    ["1,4,1,3"] = {
+    ["1,4,1,1"] = {
         name = "Magic Missile",
         cost = 35,
         cooldown = 15,
@@ -236,8 +236,8 @@ local incantations = {
     },
     ["1,4,4,3"] = {
         name = "Mini Black Hole",
-        cost = 80,
-        cooldown = 35,
+        cost = 145,
+        cooldown = 50,
         func = function( ply )
             local pos = ply:EyePos()
 
@@ -279,7 +279,7 @@ local incantations = {
     ["1,4,4,4"] = {
         name = "Launch",
         cost = 20,
-        cooldown = 3,
+        cooldown = 5,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -331,7 +331,7 @@ local incantations = {
     ["2,2,2,3"] = {
         name = "Absorb Elements",
         cost = 35,
-         cooldown = 5,
+         cooldown = 15,
         func = function( ply )
             ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 35 )
             ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 35 )
@@ -349,15 +349,15 @@ local incantations = {
         end
     },
     ["2,2,2,2"] = {
-        name = "",
-        cost = 25,
-        cooldown = 3,
+        name = "Mage Armor",
+        cost = 35,
+        cooldown = 20,
         func = function( ply )
-            ply:Horde_AddBarrierStack( 15 )
+            ply:Horde_AddBarrierStack( 25 )
         end
     },
     ["2,2,3,3"] = {
-        name = "",
+        name = "Heroism",
         cost = 15,
         cooldown = 5,
         func = function( ply )
@@ -388,6 +388,7 @@ local incantations = {
         func = function( ply )
             local headcrab = ents.Create( "npc_vj_horde_headcrab" )
             headcrab:SetPos( ply:GetPos() + ply:GetForward() * 50 + Vector( 0, 0, 1 ) * 10 )
+            headcrab:SetOwner( ply )
             headcrab:Spawn()
             headcrab:SetNWEntity( "HordeOwner", ply )
             headcrab:CallOnRemove( "explodecrab", function( ent )
@@ -398,12 +399,15 @@ local incantations = {
                 explosion:Fire( "Explode", 0, 0 )
                 util.BlastDamage( ent, ent, headcrab:EyePos(), 50, 250 )
             end )
+            timer.Simple( 30, function ()
+                if headcrab:IsValid() then headcrab:Remove() end
+            end )
         end
     },
     ["2,2,3,2"] = {
         name = "Goodberry",
         cost = 30,
-        cooldown = 15,
+        cooldown = 25,
         func = function( ply )
             for _ = 1, 3 do
                 local Goodberry = ents.Create( "horde_healthvial" )
@@ -413,17 +417,28 @@ local incantations = {
             end
         end
     },
+    ["3,2,2,1"] = {
+        name = "Invisibility",
+        cost = 130,
+        cooldown = 35,
+        func = function( ply )
+            ply:SetNoTarget( true )
+            timer.Simple( 5, function ()
+                ply:SetNoTarget( false )
+            end )
+        end
+    },
     ["2,4,4,2"] = {
         name = "Haste",
-        cost = 60,
+        cost = 65,
         cooldown = 30,
         func = function( ply )
-            ply:Horde_AddHaste( 30 )
+            ply:Horde_AddHaste( 25 )
             ply.spellsword_haste = true
 
             local sid64 = ply:SteamID64()
             timer.Remove( "Horde_RemoveSpellswordHaste" .. sid64 )
-            timer.Create( "Horde_RemoveSpellswordHaste" .. sid64, 30, 1, function()
+            timer.Create( "Horde_RemoveSpellswordHaste" .. sid64, 25, 1, function()
                 if IsValid( ply ) then
                     ply.spellsword_haste = nil
                 end
@@ -433,7 +448,7 @@ local incantations = {
     -- flight
     ["4,4,3,3"] = {
         name = "Longstrider",
-        cost = 10,
+        cost = 15,
         func = function( ply )
             local forward = ply:GetForward()
             local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1500 )
@@ -442,7 +457,7 @@ local incantations = {
     },
     ["3,3,4,4"] = {
         name = "Expeditious Retreat",
-        cost = 10,
+        cost = 15,
         func = function( ply )
             local forward = ply:GetForward()
             local forwardForce = forward * ( ply:IsOnGround() and -2000 or -1500 )
@@ -451,7 +466,7 @@ local incantations = {
     },
     ["4,4,4,4"] = {
         name = "Catapult",
-        cost = 150,
+        cost = 25,
         func = function( ply )
             ply:SetLocalVelocity( Vector( 0, 0, 2500 ) )
         end
