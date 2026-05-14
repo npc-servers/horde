@@ -1,9 +1,7 @@
 GADGET.PrintName = "Blood Sacrifice"
-GADGET.Description = "Sacrifice HP to use spells"
+GADGET.Description = "Sacrifice HP to use spells when not enough mind"
 GADGET.Icon = "items/gadgets/blast_plating.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 10
-GADGET.Params = {
-    [1] = { value = 0.4, percent = true },
-}
+GADGET.Params = {}
 GADGET.Hooks = {}

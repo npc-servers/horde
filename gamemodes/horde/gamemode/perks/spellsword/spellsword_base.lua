@@ -117,6 +117,7 @@ end
 PERK.Hooks.PlayerSwitchFlashlight = function ( ply, switchOn )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
     if not switchOn then return true end
+    if not ply:KeyDown( IN_WALK ) and ply:Horde_GetGadget() ~= "gadget_unstable_casting" then return false end
 
     insertkey( ply, 4 )
 
@@ -125,6 +126,7 @@ end
 
 PERK.Hooks.KeyPress = function( ply, key )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
+    if not ply:KeyDown( IN_WALK ) and ply:Horde_GetGadget() ~= "gadget_unstable_casting" then return end
 
     if key == IN_ATTACK then
         insertkey( ply, 1 )
@@ -326,15 +328,14 @@ local incantations = {
             explosion:Fire( "Explode", 0, 0 )
         end
     },
-    -- 
     ["2,2,2,3"] = {
         name = "Absorb Elements",
         cost = 35,
          cooldown = 5,
         func = function( ply )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 35 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 35 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Shock, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 40 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 40 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Shock, 40 )
         end
     },
     ["2,2,3,1"] = {
@@ -380,7 +381,7 @@ local incantations = {
             ply:EmitSound( ranmusic[math.random( 1, #ranmusic )], 50, 100, 1, CHAN_AUTO, SND_NOFLAGS, 1, rf )
         end
     },
-    ["2,2,3,1"] = {
+    ["2,3,4,1"] = {
         name = "Find Familiar",
         cost = 40,
         cooldown = 10,
@@ -412,14 +413,30 @@ local incantations = {
             end
         end
     },
+    ["2,4,4,2"] = {
+        name = "Haste",
+        cost = 60,
+        cooldown = 30,
+        func = function( ply )
+            ply:Horde_AddHaste( 30 )
+            ply.spellsword_haste = true
 
+            local sid64 = ply:SteamID64()
+            timer.Remove( "Horde_RemoveSpellswordHaste" .. sid64 )
+            timer.Create( "Horde_RemoveSpellswordHaste" .. sid64, 30, 1, function()
+                if IsValid( ply ) then
+                    ply.spellsword_haste = nil
+                end
+            end )
+        end
+    },
     -- flight
     ["4,4,3,3"] = {
         name = "Longstrider",
         cost = 10,
         func = function( ply )
             local forward = ply:GetForward()
-            local forwardForce = forward * ( ply:IsOnGround() and 1500 or 1000 )
+            local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1500 )
             ply:SetLocalVelocity( forwardForce )
         end
     },
@@ -428,7 +445,7 @@ local incantations = {
         cost = 10,
         func = function( ply )
             local forward = ply:GetForward()
-            local forwardForce = forward * ( ply:IsOnGround() and -1500 or -1000 )
+            local forwardForce = forward * ( ply:IsOnGround() and -2000 or -1500 )
             ply:SetLocalVelocity( forwardForce )
         end
     },
@@ -529,21 +546,6 @@ local function failCast( ply, msg )
     ply:EmitSound( "items/suitchargeno1.wav" )
 end
 
-local function castSpell( ply, incantation, curMind, curHP, healthCost )
-    incantation.func( ply )
-
-    ply:ChatPrint( "Casted " .. incantation.name )
-
-    if healthCost and healthCost > 0 then
-        ply:SetHealth( curHP - healthCost )
-        ply:Horde_SetMind( 0 )
-
-        return
-    end
-
-    ply:Horde_SetMind( curMind - incantation.cost )
-end --this making errors with mind cost
-
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
 
@@ -567,16 +569,12 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
         return
     end
 
-    if incantation.cooldown then
-        local curTime = CurTime()
+    local curTime = CurTime()
 
-        if ply.Horde_magicCooldowns[key] and ply.Horde_magicCooldowns[key] >= curTime then
-            failCast( ply, string.format( "%s is on cooldown for %i more seconds", incantation.name, ply.Horde_magicCooldowns[key] - curTime ) )
+    if incantation.cooldown and ply.Horde_magicCooldowns[key] and ply.Horde_magicCooldowns[key] >= curTime then
+        failCast( ply, string.format( "%s is on cooldown for %i more seconds", incantation.name, ply.Horde_magicCooldowns[key] - curTime ) )
 
-            return
-        end
-
-        ply.Horde_magicCooldowns[key] = curTime + incantation.cooldown
+        return
     end
 
     local curMind = ply:Horde_GetMind()
@@ -605,5 +603,19 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
         return
     end
 
-    castSpell( ply, incantation )
+    if incantation.cooldown then
+        ply.Horde_magicCooldowns[key] = curTime + incantation.cooldown
+    end
+
+    incantation.func( ply )
+    ply:ChatPrint( "Casted " .. incantation.name )
+    ply:Horde_SetMind( curMind - incantation.cost )
 end
+
+hook.Add( "Horde_PlayerMoveBonus", "Horde_Spellsword_Haste", function( ply, bonus_walk, bonus_run )
+    if ply.spellsword_haste and ply:Horde_GetHaste() == 1 then -- YOU CAN CALL IT DOWN HERE
+        local bonus2 = 1
+        bonus_walk.increase = bonus_walk.increase + bonus2
+        bonus_run.increase = bonus_run.increase + bonus2
+    end
+end )
