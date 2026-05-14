@@ -1,5 +1,5 @@
 GADGET.PrintName = "Unstable Casting"
-GADGET.Description = "You can cast without holding down the walk button and {2} increased Slashing and Blunt damage."
+GADGET.Description = "You can cast without holding down the walk button \nand {1} increased Slashing and Blunt damage."
 GADGET.Icon = "items/gadgets/blast_plating.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 10
