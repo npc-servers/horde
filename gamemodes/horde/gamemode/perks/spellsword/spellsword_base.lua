@@ -333,9 +333,9 @@ local incantations = {
         cost = 35,
          cooldown = 5,
         func = function( ply )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 40 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 40 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Shock, 40 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Shock, 35 )
         end
     },
     ["2,2,3,1"] = {
