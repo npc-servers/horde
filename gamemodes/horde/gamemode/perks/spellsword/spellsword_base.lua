@@ -164,10 +164,10 @@ local incantations = {
             ply:Horde_AddDebuffBuildup( HORDE.Status_Ignite, 50, ply )
         end
     },
-    ["1,1,2,3"] = {
+    ["1,2,2,1"] = {
         name = "Shocking Grasp",
-        cost = 45,
-        cooldown = 10,
+        cost = 50,
+        cooldown = 15,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -178,7 +178,7 @@ local incantations = {
 
             if not tr.Hit then return end
             if not IsValid( tr.Entity ) then return end
-            if not HORDE:IsEnemy( tr.Entity ) then return end
+            if not HORDE:IsEnemy( tr.Entity ) or tr.Entity:Horde_IsElite() then return end
 
             local dmg = DamageInfo()
             dmg:SetAttacker( ply )
@@ -187,8 +187,28 @@ local incantations = {
             dmg:SetDamage( 200 )
 
             tr.Entity:EmitSound( "ArcCW_Horde.GSO.TASER.Hit" )
-            tr.Entity:Horde_AddDebuffBuildup( HORDE.Status_Stun, 5000, ply )
+            tr.Entity:Horde_AddDebuffBuildup( HORDE.Status_Stun, 1000, ply )
             tr.Entity:TakeDamageInfo( dmg )
+        end
+    },
+    ["1,1,2,2"] = {
+        name = "Hold Person",
+        cost = 75,
+        cooldown = 25,
+        func = function( ply )
+            local tr = util.TraceLine( {
+                start = ply:GetShootPos(),
+                endpos = ply:GetShootPos() + ply:GetAimVector() * 4000,
+                filter = ply,
+                mask = MASK_SOLID
+            } )
+
+            if not tr.Hit then return end
+            if not IsValid( tr.Entity ) then return end
+            if not HORDE:IsEnemy( tr.Entity ) then return end
+
+            tr.Entity:EmitSound( "ArcCW_Horde.GSO.TASER.Hit" )
+            tr.Entity:Horde_AddDebuffBuildup( HORDE.Status_Stun, 99999, ply )
         end
     },
     ["1,4,1,2"] = {
@@ -276,7 +296,7 @@ local incantations = {
             end
         end
     },
-    ["1,4,4,4"] = {
+    ["1,2,4,4"] = {
         name = "Launch",
         cost = 20,
         cooldown = 5,
@@ -295,7 +315,7 @@ local incantations = {
             tr.Entity:SetLocalVelocity( Vector( 0, 0, 2000 ) )
         end
     },
-    ["1,1,3,4"] = {
+    ["1,2,4,1"] = {
         name = "Firework",
         cost = 30,
         cooldown = 10,
@@ -627,8 +647,8 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
     ply:Horde_SetMind( curMind - incantation.cost )
 end
 
-hook.Add( "Horde_PlayerMoveBonus", "Horde_Spellsword_Haste", function( ply, bonus_walk, bonus_run )
-    if ply.spellsword_haste and ply:Horde_GetHaste() == 1 then -- YOU CAN CALL IT DOWN HERE
+hook.Add( "Horde_PlayerMoveBonus", "spellsword_haste", function( ply, bonus_walk, bonus_run )
+    if ply.spellsword_haste and ply:Horde_GetHaste() == 1 then
         local bonus2 = 1
         bonus_walk.increase = bonus_walk.increase + bonus2
         bonus_run.increase = bonus_run.increase + bonus2
