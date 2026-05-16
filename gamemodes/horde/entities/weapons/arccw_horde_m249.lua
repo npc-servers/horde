@@ -19,6 +19,7 @@ SWEP.DamageMin = 41
 SWEP.Primary.ClipSize = 150
 SWEP.Delay = 60 / 900
 SWEP.RecoilPunch = 0
+SWEP.ShootSpeedMult = 0.85
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.M249_Fire"
 SWEP.ShootSound = "ArcCW_Horde.GSO.M249_Fire"

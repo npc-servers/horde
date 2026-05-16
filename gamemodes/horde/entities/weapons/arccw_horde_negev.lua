@@ -19,6 +19,7 @@ SWEP.RecoilPunch = 0
 SWEP.Damage = 56
 SWEP.DamageMin = 46
 SWEP.Delay = 60 / 700
+SWEP.ShootSpeedMult = 0.85
 
 SWEP.FirstShootSound = "ArcCW_Horde.GSO.Negev_Fire"
 SWEP.ShootSound = "ArcCW_Horde.GSO.Negev_Fire"

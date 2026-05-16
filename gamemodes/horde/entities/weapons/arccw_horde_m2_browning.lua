@@ -84,10 +84,10 @@ SWEP.ShellScale = 2
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
-SWEP.SpeedMult = 0.7
+SWEP.SpeedMult = 0.875
 SWEP.ShootSpeedMult = 0.6
-SWEP.SightedSpeedMult = 0.3
-SWEP.SightTime = 0.55
+SWEP.SightedSpeedMult = 0.35
+SWEP.SightTime = 0.22
 
 SWEP.IronSightStruct = {
     Pos = Vector(-5.902, -10.653, 4.796),
@@ -223,7 +223,7 @@ SWEP.Animations = {
         ShellEjectAt = 0
     },
     ["fire_iron"] = {
-        Source = "cya zoom",
+        Source = "nil",
         Time = .2,
         ShellEjectAt = 0
     },
