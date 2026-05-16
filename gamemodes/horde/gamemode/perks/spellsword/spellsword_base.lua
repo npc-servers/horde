@@ -6,11 +6,10 @@ COMPLEXITY: HIGH
 {1} increased regen Mind. ({2} per level, up to {3}).
 {1} increased maximum Mind. ({2} per level, up to {3}).
 
-Uses Mind instead of Armor.
-Has access to spells for Astral Relic.]]
+Uses Mind instead of Armor.]]
 PERK.Icon = "materials/subclasses/warlock.png"
 PERK.Params = {
-    [1] = { percent = true, base = 0, level = 0.01, max = 0.25, classname = "Warlock" },
+    [1] = { percent = true, base = 0, level = 0.01, max = 0.25, classname = "Spellsword" },
     [2] = { value = 0.01, percent = true },
     [3] = { value = 0.25, percent = true },
 }
@@ -350,8 +349,8 @@ local incantations = {
     },
     ["2,2,2,3"] = {
         name = "Absorb Elements",
-        cost = 35,
-         cooldown = 15,
+        cost = 40,
+         cooldown = 20,
         func = function( ply )
             ply:Horde_ReduceDebuffBuildup( HORDE.Status_Frostbite, 35 )
             ply:Horde_ReduceDebuffBuildup( HORDE.Status_Ignite, 35 )
@@ -361,11 +360,11 @@ local incantations = {
     ["2,2,3,1"] = {
         name = "Gentle Repose",
         cost = 40,
-         cooldown = 10,
+         cooldown = 15,
         func = function( ply )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Decay, 50 )
-            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Necrosis, 50 )
-            ply:Horde_AddDebuffBuildup( HORDE.Status_Break, 25, ply )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Decay, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Necrosis, 35 )
+            ply:Horde_ReduceDebuffBuildup( HORDE.Status_Break, 35 )
         end
     },
     ["2,2,2,2"] = {
@@ -426,7 +425,7 @@ local incantations = {
     },
     ["2,2,3,2"] = {
         name = "Goodberry",
-        cost = 30,
+        cost = 35,
         cooldown = 25,
         func = function( ply )
             for _ = 1, 3 do
@@ -440,7 +439,7 @@ local incantations = {
     ["3,2,2,1"] = {
         name = "Invisibility",
         cost = 130,
-        cooldown = 35,
+        cooldown = 40,
         func = function( ply )
             ply:SetNoTarget( true )
             timer.Simple( 5, function ()
