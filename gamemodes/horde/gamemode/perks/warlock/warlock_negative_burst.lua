@@ -13,13 +13,12 @@ PERK.Hooks.Horde_OnSpellFire = function( ply, wpn, stage, spell )
         local o = ply:GetPos() + Vector( 0, 0, 24 )
 
         for _, ent in pairs( ents.FindInSphere( o, r ) ) do
-            if IsValid( ent ) and ent ~= ply and ( ent:IsNPC() or ent:IsPlayer() ) then
+            if IsValid( ent ) and ent ~= ply and HORDE:IsEnemy( ent ) then
                 local dmg = DamageInfo()
                 dmg:SetAttacker( ply )
                 dmg:SetInflictor( wpn )
                 dmg:SetDamageType( DMG_DIRECT )
                 dmg:SetDamage( damage_amount )
-                dmg:SetDamageCustom( HORDE.DMG_PLAYER_FRIENDLY )
                 ent:TakeDamageInfo( dmg )
             end
         end
