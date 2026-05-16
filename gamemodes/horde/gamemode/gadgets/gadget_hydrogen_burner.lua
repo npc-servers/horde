@@ -5,13 +5,13 @@ GADGET.Duration = 0
 GADGET.Cooldown = 0
 GADGET.Active = nil
 GADGET.Params = {
-    [1] = { value = 0.25, percent = true },
+    [1] = { value = 3, percent = true },
 }
 GADGET.Hooks = {}
 
 GADGET.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup, dmginfo)
     if ply:Horde_GetGadget() ~= "gadget_hydrogen_burner" then return end
     if HORDE:IsFireDamage(dmginfo) then
-        bonus.more = bonus.more * 1.25
+        bonus.more = bonus.more * 3
     end
 end
