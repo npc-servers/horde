@@ -56,7 +56,7 @@ SWEP.Recoil = 1
 SWEP.RecoilSide = 1
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 1
+SWEP.Delay = 0.015
 SWEP.Firemodes = {
     {
         Mode = 1,
@@ -174,9 +174,6 @@ SWEP.Animations = {
         Source = "after_reload",
         Time = 0.45,
         ShellEjectAt = 0.2,
-        SoundTable = {
-            {s = "Weapon_Shotgun.Special1", t = 0.2},
-        },
         TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
     },
     ["sgreload_start"] = {
@@ -224,7 +221,7 @@ sound.Add( {
     volume = 1.0,
     level = 90,
     pitch = {99, 101},
-    sound = ")weapons/shotgun/shotgun_fire7.wav"
+    sound = ")weapons/xm1014/xm1014-1.wav"
 } )
 sound.Add( {
     name = "ArcCW_Horde.Shotgun_Fire_Sil",

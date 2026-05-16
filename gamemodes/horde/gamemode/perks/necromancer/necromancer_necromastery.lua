@@ -11,17 +11,22 @@ PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
     if CLIENT then return end
-    if perk == "necromancer_necromastery" then
-        UpdateSpectreMaxCount(ply)
-    end
+    if perk ~= "necromancer_necromastery" then return end
+
+    UpdateSpectreMaxCount(ply)
 end
 
 PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
     if CLIENT then return end
-    if perk == "necromancer_necromastery" then
-        HORDE:RemoveSpectres(ply)
+    if perk ~= "necromancer_necromastery" then return end
+
+    HORDE:RemoveSpectres(ply)
+
+    timer.Simple(0, function()
+        if not IsValid(ply) then return end
+
         UpdateSpectreMaxCount(ply)
-    end
+    end)
 end
 
 PERK.Hooks.Horde_OnSpellCooldown = function ( ply, bonus, spell )
