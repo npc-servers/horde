@@ -3,7 +3,6 @@ PERK.Description = [[
 The Spellsword Subclass 
 COMPLEXITY: HIGH
 
-{1} increased regen Mind. ({2} per level, up to {3}).
 {1} increased maximum Mind. ({2} per level, up to {3}).
 
 Uses Mind instead of Armor.]]
@@ -53,14 +52,13 @@ if not SERVER then return end
 util.AddNetworkString( "Horde_SpellSword_SyncCombo" )
 
 PERK.Hooks.Horde_PrecomputePerkLevelBonus = function( ply )
-    ply:Horde_SetPerkLevelBonus( "spellsword_mindregenbonus", math.min( 8, 0.32 * ply:Horde_GetLevel( "Spellsword" ) ) )
     ply:Horde_SetPerkLevelBonus( "spellsword_maxmindbonus", math.min( 1, 0.04 * ply:Horde_GetLevel( "Spellsword" ) ) )
 end
 
 PERK.Hooks.Horde_OnSetMaxMind = function( ply, bonus )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
 
-    bonus.more = bonus.more + ply:Horde_GetPerkLevelBonus( "spellsword_maxmindbonus" )
+    bonus.add = bonus.add + ply:Horde_GetPerkLevelBonus( "spellsword_maxmindbonus" )
 end
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
@@ -68,7 +66,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
 
     ply:Horde_SetPerkCooldown( 1 )
 
-    ply:Horde_SetMindRegenTick( 8 / ply:Horde_GetPerkLevelBonus( "spellsword_mindregenbonus" ) )
+    ply:Horde_SetMindRegenTick( 1 )
     ply:SetMaxArmor( 0 )
 
     -- TODO: Change these variables later
@@ -78,9 +76,7 @@ PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     timer.Simple( 0, function()
         if not IsValid( ply ) or not ply:Alive() then return end
 
-        local bonus = { increase = 0, more = 1, add = 0 }
-        hook.Run( "Horde_OnSetMaxMind", ply, bonus )
-        ply:Horde_SetMaxMind( 100 * bonus.more * ( 1 + bonus.increase ) + bonus.add )
+        ply:Horde_RecalcAndSetMaxMind()
 
         net.Start( "Horde_SpellSword_SyncCombo" )
             net.WriteTable( ply.Horde_magic )
@@ -212,7 +208,7 @@ local incantations = {
     },
     ["1,4,1,2"] = {
         name = "Witch Bolt",
-        cost = 15,
+        cost = 20,
         cooldown = 0,
         func = function( ply )
             local ar = ply:EyeAngles()
@@ -297,7 +293,7 @@ local incantations = {
     },
     ["1,2,4,4"] = {
         name = "Launch",
-        cost = 20,
+        cost = 15,
         cooldown = 5,
         func = function( ply )
             local tr = util.TraceLine( {
@@ -416,7 +412,7 @@ local incantations = {
                 explosion:Spawn()
                 explosion:SetKeyValue( "iMagnitude", "0" )
                 explosion:Fire( "Explode", 0, 0 )
-                util.BlastDamage( ent, ent, headcrab:EyePos(), 50, 250 )
+                util.BlastDamage( ent, ent, headcrab:EyePos(), 50, 500 )
             end )
             timer.Simple( 30, function ()
                 if headcrab:IsValid() then headcrab:Remove() end
@@ -494,7 +490,7 @@ local incantations = {
     -- swap
     ["3,4,4,3"] = {
         name = "",
-        cost = 180,
+        cost = 0,
         cooldown = 100,
         func = function( ply )
             local tr = util.TraceLine( {
@@ -515,8 +511,8 @@ local incantations = {
     },
     ["4,3,3,4"] = {
         name = "",
-        cost = 180,
-        cooldown = 100,
+        cost = 0,
+        cooldown = 0,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -556,8 +552,8 @@ local incantations = {
     },
     ["2,3,4,4"] = {
         name = "",
-        cost = 60,
-        cooldown = 25,
+        cost = 0,
+        cooldown = 0,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -578,6 +574,15 @@ local incantations = {
 local function failCast( ply, msg )
     HORDE:SendNotification( msg, 1, ply )
     ply:EmitSound( "items/suitchargeno1.wav" )
+end
+
+local function castSpell( ply, incantation )
+    incantation.func( ply )
+    ply:ChatPrint( "Casted " .. incantation.name )
+
+    if ply:Horde_GetPerk( "spellsword_arcane_recovery" ) then
+        HORDE:SelfHeal( ply, incantation.cost * 0.15 )
+    end
 end
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
@@ -629,8 +634,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
             return
         end
 
-        incantation.func( ply )
-        ply:ChatPrint( "Casted " .. incantation.name )
+        castSpell( ply, incantation )
         ply:SetHealth( hp - remaining )
         ply:Horde_SetMind( 0 )
 
@@ -641,8 +645,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
         ply.Horde_magicCooldowns[key] = curTime + incantation.cooldown
     end
 
-    incantation.func( ply )
-    ply:ChatPrint( "Casted " .. incantation.name )
+    castSpell( ply, incantation )
     ply:Horde_SetMind( curMind - incantation.cost )
 end
 

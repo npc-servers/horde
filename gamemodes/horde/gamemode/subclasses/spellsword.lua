@@ -7,8 +7,8 @@ Berserker subclass.
 A slow caster that uses destructive spells.]] -- Required
 SUBCLASS.BasePerk = "spellsword_base"
 SUBCLASS.Perks = {
-    [1] = {title = "Research", choices = {"spellsword_l1p", "spellsword_r1p"}},
-    [2] = {title = "Strategy", choices = {"spellsword_l2p", "spellsword_r2p"}},
-    [3] = {title = "Scholarship", choices = {"spellsword_l3p", "spellsword_r3p"}},
-    [4] = {title = "Enlightenment", choices = {"spellsword_l4p", "spellsword_r4p"}},
+    [1] = { title = "Research", choices = { "spellsword_sorcery", "spellsword_warfare" } },
+    [2] = { title = "Strategy", choices = { "spellsword_sigil_inscription", "spellsword_runic_inscription" } },
+    [3] = { title = "Scholarship", choices = { "spellsword_arcane_recovery", "spellsword_arcane_deflection" } },
+    [4] = { title = "Enlightenment", choices = { "spellsword_mystic_arcanum", "spellsword_combat_mastery" } },
 } -- Required

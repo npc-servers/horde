@@ -4,7 +4,7 @@ GADGET.Icon = "items/gadgets/blast_plating.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 10
 GADGET.Params = {
-    [1] = { value = 0.1, percent = true },
+    [1] = { value = 0.05, percent = true },
 }
 GADGET.Hooks = {}
 
@@ -12,5 +12,5 @@ GADGET.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
     if ply:Horde_GetGadget() ~= "gadget_unstable_casting" then return end
     if not HORDE:IsPhysicalDamage( dmginfo ) then return end
 
-    bonus.increase = bonus.increase + 0.1
+    bonus.increase = bonus.increase + 0.05
 end
