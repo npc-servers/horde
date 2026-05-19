@@ -1,8 +1,8 @@
 PERK.PrintName = "Runic Inscription"
 PERK.Icon = "materials/perks/gunslinger/elusive.png"
 PERK.Description = [[
-increase Blunt damage by 25%.
-increase Global damage resistance by 20%.]]
+Increase Blunt damage by 25%.
+Increase Global damage resistance by 20%.]]
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )

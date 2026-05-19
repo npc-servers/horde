@@ -1,7 +1,7 @@
 PERK.PrintName = "Sigil Inscription"
 PERK.Icon = "materials/perks/gunslinger/elusive.png"
 PERK.Description = [[
-increase Slashing damage by 25%.
+Increase Slashing damage by 25%.
 +3 damage block.]]
 PERK.Hooks = {}
 

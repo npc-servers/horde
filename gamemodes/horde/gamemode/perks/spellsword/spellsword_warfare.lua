@@ -1,8 +1,8 @@
 PERK.PrintName = "Warfare"
 PERK.Icon = "materials/perks/gunslinger/elusive.png"
 PERK.Description = [[
-increase Slashing and Blunt damage by 10%.
-increase Global damage resistance by 10%.]]
+Increase Slashing and Blunt damage by 10%.
+Increase Global damage resistance by 10%.]]
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )

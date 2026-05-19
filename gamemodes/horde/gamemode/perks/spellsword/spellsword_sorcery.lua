@@ -1,8 +1,8 @@
 PERK.PrintName = "Sorcery"
 PERK.Icon = "materials/perks/gunslinger/elusive.png"
 PERK.Description = [[
-increase maximum mind by 50.
-increase mind regen by 1.]]
+Increase maximum mind by 50.
+Increase mind regen by 1.]]
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnSetMaxMind = function( ply, bonus )
