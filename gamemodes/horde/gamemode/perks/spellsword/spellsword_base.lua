@@ -161,8 +161,8 @@ local incantations = {
     },
     ["1,2,2,1"] = {
         name = "Shocking Grasp",
-        cost = 50,
-        cooldown = 15,
+        cost = 60,
+        cooldown = 20,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
@@ -173,22 +173,21 @@ local incantations = {
 
             if not tr.Hit then return end
             if not IsValid( tr.Entity ) then return end
-            if not HORDE:IsEnemy( tr.Entity ) or tr.Entity:Horde_IsElite() then return end
+            if not HORDE:IsEnemy( tr.Entity ) then return end
 
             local dmg = DamageInfo()
             dmg:SetAttacker( ply )
             dmg:SetInflictor( ply )
             dmg:SetDamageType( DMG_SHOCK )
-            dmg:SetDamage( 200 )
+            dmg:SetDamage( 500 )
 
             tr.Entity:EmitSound( "ArcCW_Horde.GSO.TASER.Hit" )
-            tr.Entity:Horde_AddDebuffBuildup( HORDE.Status_Stun, 1000, ply )
             tr.Entity:TakeDamageInfo( dmg )
         end
     },
     ["1,1,2,2"] = {
         name = "Hold Person",
-        cost = 75,
+        cost = 90,
         cooldown = 25,
         func = function( ply )
             local tr = util.TraceLine( {
@@ -200,7 +199,7 @@ local incantations = {
 
             if not tr.Hit then return end
             if not IsValid( tr.Entity ) then return end
-            if not HORDE:IsEnemy( tr.Entity ) then return end
+            if not HORDE:IsEnemy( tr.Entity ) or tr.Entity:Horde_GetBossProperties() then return end
 
             tr.Entity:EmitSound( "ArcCW_Horde.GSO.TASER.Hit" )
             tr.Entity:Horde_AddDebuffBuildup( HORDE.Status_Stun, 99999, ply )
@@ -323,10 +322,29 @@ local incantations = {
     },
     ["2,2,2,2"] = {
         name = "Mage Armor",
-        cost = 35,
-        cooldown = 20,
+        cost = 40,
+        cooldown = 25,
         func = function( ply )
-            ply:Horde_AddBarrierStack( 35 )
+            ply:Horde_AddBarrierStack( 30 )
+        end
+    },
+        ["2,3,3,2"] = {
+        name = "Mending",
+        cost = 40,
+        cooldown = 25,
+        func = function( ply )
+            local tr = util.TraceLine( {
+                start = ply:GetShootPos(),
+                endpos = ply:GetShootPos() + ply:GetAimVector() * 8000,
+                filter = ply,
+                mask = MASK_SOLID
+            } )
+
+            if not tr.Hit then return end
+            if not IsValid( tr.Entity ) then return end
+            if not tr.Entity:IsPlayer() then return end
+
+            tr.Entity:Horde_AddBarrierStack( 30 )
         end
     },
     ["2,2,3,3"] = {
@@ -356,13 +374,14 @@ local incantations = {
     },
     ["2,3,4,1"] = {
         name = "Find Familiar",
-        cost = 25,
-        cooldown = 10,
+        cost = 35,
+        cooldown = 15,
         func = function( ply )
             local headcrab = ents.Create( "npc_vj_horde_headcrab" )
             headcrab:SetPos( ply:GetPos() + ply:GetForward() * 50 + Vector( 0, 0, 1 ) * 10 )
             headcrab:SetOwner( ply )
             headcrab:Spawn()
+            headcrab:SetColor( Color( 174, 0, 255, 230 ) )
             headcrab:SetNWEntity( "HordeOwner", ply )
             headcrab:CallOnRemove( "explodecrab", function( ent )
                 local explosion = ents.Create( "env_explosion" )
@@ -379,15 +398,15 @@ local incantations = {
     },
     ["2,1,3,4"] = {
         name = "Tiny Servant",
-        cost = 35,
-        cooldown = 10,
+        cost = 25,
+        cooldown = 5,
         func = function( ply )
             local Servant = ents.Create( "npc_manhack" )
             Servant:SetPos( ply:GetPos() + ply:GetForward() * 50 + Vector( 0, 0, 1 ) * 10 )
             Servant:SetOwner( ply )
             Servant:Spawn()
             Servant:SetNWEntity( "HordeOwner", ply )
-            timer.Simple( 60, function ()
+            timer.Simple( 30, function ()
                 if Servant:IsValid() then Servant:Remove() end
             end )
         end
@@ -414,23 +433,6 @@ local incantations = {
             timer.Simple( 5, function ()
                 ply:SetNoTarget( false )
             end )
-        end
-    },
-    ["3,2,2,1"] = {
-        name = "Mending",
-        cost = 130,
-        cooldown = 40,
-        func = function( ply )
-            local tr = util.TraceLine( {
-                start = ply:GetShootPos(),
-                endpos = ply:GetShootPos() + ply:GetAimVector() * 8000,
-                filter = ply,
-                mask = MASK_SOLID
-            } )
-
-            if not tr.Hit then return end
-            if not IsValid( tr.Entity ) then return end
-            if not tr.Entity:IsPlayer() then return end
         end
     },
     ["2,4,4,2"] = {

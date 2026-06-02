@@ -1013,6 +1013,12 @@ Hysteria lasts for 5 seconds and falls off sequentially.]],
         { Overlord = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_SPECIAL_UPGRADE }, "items/module_upgrade.png", { Overlord = 5 }, 3, nil, nil, nil)
     ]]
+    -- Spellsword
+    HORDE:CreateItem( "Special", "Transmutation Knowledge", "KL_Transmutation", 1200, 2,
+        [[Gain Knowledge about Transmutation, 
+each upgrade increased the amount of knowledge you have.]],
+        { Spellsword = true },
+        10, -1, { type = HORDE.ENTITY_PROPERTY_SPECIAL_UPGRADE }, "items/module_upgrade.png", { Spellsword = 1 }, nil, nil, nil, nil )
 
     HORDE:CreateItem( "Special", "Heat Crossbow", "arccw_horde_heat_crossbow", 2000, 5,
         "Improvised sniper weapon.\nHas two firemodes that can be swapped between to deal either Ballistic or Fire damage.\n\nDeals 300% headshot damage.",
@@ -1134,7 +1140,7 @@ Hysteria lasts for 5 seconds and falls off sequentially.]],
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_engineer.png", { Engineer = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Battle Vest", "armor_berserker", 1000, 0,
         "Distinguished Berserker armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Slashing/Blunt damage resistance.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true },
+        { Berserker = true, Samurai = true, Spellsword = true, ["Cyborg Ninja"] = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_berserker.png", { Berserker = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Riot Armor", "armor_warden", 1000, 0,
         "Distinguished Warden armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Shock and Sonic damage resistance.",
