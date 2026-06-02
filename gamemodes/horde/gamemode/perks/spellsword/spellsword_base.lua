@@ -328,7 +328,7 @@ local incantations = {
             ply:Horde_AddBarrierStack( 30 )
         end
     },
-        ["2,3,3,2"] = {
+    ["2,3,3,2"] = {
         name = "Mending",
         cost = 40,
         cooldown = 25,
@@ -481,7 +481,7 @@ local incantations = {
 
     -- swap
     ["3,4,4,3"] = {
-        name = "",
+        name = "swap enemy",
         cost = 100,
         cooldown = 100,
         func = function( ply )
@@ -502,7 +502,7 @@ local incantations = {
         end
     },
     ["4,3,3,4"] = {
-        name = "",
+        name = "swap teammates",
         cost = 100,
         cooldown = 100,
         func = function( ply )
@@ -524,7 +524,7 @@ local incantations = {
     },
     -- teleport to
     ["4,4,3,1"] = {
-        name = "",
+        name = "teleport enemy",
         cost = 60,
         cooldown = 25,
         func = function( ply )
@@ -543,7 +543,7 @@ local incantations = {
         end
     },
     ["2,3,4,4"] = {
-        name = "",
+        name = "teleport teammates",
         cost = 0,
         cooldown = 0,
         func = function( ply )
