@@ -58,7 +58,7 @@ end
 PERK.Hooks.Horde_OnSetMaxMind = function( ply, bonus )
     if not ply:Horde_GetPerk( "spellsword_base" ) then return end
 
-    bonus.add = bonus.add * ply:Horde_GetPerkLevelBonus( "spellsword_maxmindbonus" )
+    bonus.add = bonus.add + ply:Horde_GetPerkLevelBonus( "spellsword_maxmindbonus" ) * 100
 end
 
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
