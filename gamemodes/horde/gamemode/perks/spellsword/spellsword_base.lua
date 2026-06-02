@@ -249,48 +249,6 @@ local incantations = {
             end
         end
     },
-    ["1,4,4,3"] = {
-        name = "Mini Black Hole",
-        cost = 145,
-        cooldown = 50,
-        func = function( ply )
-            local pos = ply:EyePos()
-
-            sound.Play( "horde/spells/black_hole.ogg", pos, 100, 50, 1, CHAN_AUTO )
-            local trail = ents.Create( "info_particle_system" )
-            trail:SetKeyValue( "effect_name", "tiny_black_hole_core" )
-            trail:SetOwner( ply )
-            trail:SetPos( pos )
-            trail:SetAngles( ply:GetAngles() )
-            trail:Spawn()
-            trail:Activate()
-            trail:Fire( "start", "", 0 )
-            trail:Fire( "Kill", "", 5 )
-
-            for i = 1, 17 do
-                timer.Simple( ( i - 1 ) * 0.2, function ()
-                    for _, ent in pairs( ents.FindInSphere( pos, 750 ) ) do
-                        if not IsValid( ent ) then goto cont end
-                        if not HORDE:IsEnemy( ent ) then goto cont end
-
-                        local dir = -( ent:GetPos() - pos )
-                        local acc = math.max( 500 * 1.05 - dir:Length(), 0 ) * 0.03
-                        acc = math.Round( acc )
-                        acc = acc * acc
-
-                        local phys = ent:GetPhysicsObject()
-                        if ( IsValid( phys ) ) then
-                            local velo = ( dir * acc )
-                            phys:ApplyForceOffset( velo, ent:GetPos() )
-                            ent:SetVelocity( dir * acc * 0.01 )
-                        end
-
-                        ::cont::
-                    end
-                end )
-            end
-        end
-    },
     ["1,2,4,4"] = {
         name = "Launch",
         cost = 15,
@@ -311,7 +269,7 @@ local incantations = {
         end
     },
     ["1,2,4,1"] = {
-        name = "Firework",
+        name = "Catapult",
         cost = 30,
         cooldown = 10,
         func = function( ply )
@@ -368,7 +326,7 @@ local incantations = {
         cost = 35,
         cooldown = 20,
         func = function( ply )
-            ply:Horde_AddBarrierStack( 25 )
+            ply:Horde_AddBarrierStack( 35 )
         end
     },
     ["2,2,3,3"] = {
@@ -398,7 +356,7 @@ local incantations = {
     },
     ["2,3,4,1"] = {
         name = "Find Familiar",
-        cost = 40,
+        cost = 25,
         cooldown = 10,
         func = function( ply )
             local headcrab = ents.Create( "npc_vj_horde_headcrab" )
@@ -416,6 +374,21 @@ local incantations = {
             end )
             timer.Simple( 30, function ()
                 if headcrab:IsValid() then headcrab:Remove() end
+            end )
+        end
+    },
+    ["2,1,3,4"] = {
+        name = "Tiny Servant",
+        cost = 35,
+        cooldown = 10,
+        func = function( ply )
+            local Servant = ents.Create( "npc_manhack" )
+            Servant:SetPos( ply:GetPos() + ply:GetForward() * 50 + Vector( 0, 0, 1 ) * 10 )
+            Servant:SetOwner( ply )
+            Servant:Spawn()
+            Servant:SetNWEntity( "HordeOwner", ply )
+            timer.Simple( 60, function ()
+                if Servant:IsValid() then Servant:Remove() end
             end )
         end
     },
@@ -443,6 +416,23 @@ local incantations = {
             end )
         end
     },
+    ["3,2,2,1"] = {
+        name = "Mending",
+        cost = 130,
+        cooldown = 40,
+        func = function( ply )
+            local tr = util.TraceLine( {
+                start = ply:GetShootPos(),
+                endpos = ply:GetShootPos() + ply:GetAimVector() * 8000,
+                filter = ply,
+                mask = MASK_SOLID
+            } )
+
+            if not tr.Hit then return end
+            if not IsValid( tr.Entity ) then return end
+            if not tr.Entity:IsPlayer() then return end
+        end
+    },
     ["2,4,4,2"] = {
         name = "Haste",
         cost = 65,
@@ -463,7 +453,7 @@ local incantations = {
     -- flight
     ["4,4,3,3"] = {
         name = "Longstrider",
-        cost = 15,
+        cost = 20,
         func = function( ply )
             local forward = ply:GetForward()
             local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1500 )
@@ -472,7 +462,7 @@ local incantations = {
     },
     ["3,3,4,4"] = {
         name = "Expeditious Retreat",
-        cost = 15,
+        cost = 20,
         func = function( ply )
             local forward = ply:GetForward()
             local forwardForce = forward * ( ply:IsOnGround() and -2000 or -1500 )
@@ -480,8 +470,8 @@ local incantations = {
         end
     },
     ["4,4,4,4"] = {
-        name = "Catapult",
-        cost = 25,
+        name = "Jump",
+        cost = 20,
         func = function( ply )
             ply:SetLocalVelocity( Vector( 0, 0, 2500 ) )
         end
@@ -490,7 +480,7 @@ local incantations = {
     -- swap
     ["3,4,4,3"] = {
         name = "",
-        cost = 0,
+        cost = 100,
         cooldown = 100,
         func = function( ply )
             local tr = util.TraceLine( {
@@ -511,8 +501,8 @@ local incantations = {
     },
     ["4,3,3,4"] = {
         name = "",
-        cost = 0,
-        cooldown = 0,
+        cost = 100,
+        cooldown = 100,
         func = function( ply )
             local tr = util.TraceLine( {
                 start = ply:GetShootPos(),
