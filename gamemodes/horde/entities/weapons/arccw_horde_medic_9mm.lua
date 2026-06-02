@@ -12,22 +12,22 @@ SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 SWEP.WeaponCamBone = tag_camera
 
-SWEP.PrintName = "Medic 9mm"
+SWEP.PrintName = "Medic Makarov"
 SWEP.Trivia_Class = "Pistol"
-SWEP.Trivia_Desc = "Standard issue pistol."
-SWEP.Trivia_Manufacturer = "Combine"
-SWEP.Trivia_Calibre = "9x19mm Parabellum"
+SWEP.Trivia_Desc = "A Soviet pistol designed shortly after World War II, standard for all branches of police and military. Modified to shoot healing rounds alongside standard bullets."
+SWEP.Trivia_Manufacturer = "Izhevsk Mechanical Plant"
+SWEP.Trivia_Calibre = "9x18mm 7N16"
 SWEP.Trivia_Mechanism = "Semi-Auto"
-SWEP.Trivia_Country = "Combine"
-SWEP.Trivia_Year = 2007
+SWEP.Trivia_Country = "Union of Soviet Socialist Republics"
+SWEP.Trivia_Year = 1948
 
 SWEP.Slot = 1
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/c_pistol.mdl"
+SWEP.ViewModel = "models/horde/weapons/c_bo1_makarov.mdl"
 SWEP.MirrorVMWM = true
-SWEP.WorldModel = "models/weapons/w_pistol.mdl"
+SWEP.WorldModel = "models/horde/weapons/c_bo1_makarov.mdl"
 SWEP.ViewModelFOV = 65
 
 SWEP.WorldModelOffset = {
@@ -63,7 +63,7 @@ SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "Pistol"
 
-SWEP.ShootSound = "ArcCW_Horde.9mm_Fire"
+SWEP.ShootSound = "ArcCW_Horde.Medic_9mm_Fire"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.9mm_Fire_Sil"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
@@ -78,12 +78,12 @@ SWEP.SightedSpeedMult = 0.8
 SWEP.SightTime = 0.125
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-1, 0, 2),
-    Ang = Angle(0, 0, 0),
-    Magnification = 1.25,
+    Pos = Vector(-2.425, 3, 1.075),
+    Ang = Angle(0, -0.075, 0),
+    Magnification = 1.1,
     SwitchToSound = "", -- sound that plays when switching to this sight
     ViewModelFOV = 40,
-    CrosshairInSights = true
+    CrosshairInSights = false
 }
 
 SWEP.HoldType = "pistol"
@@ -93,17 +93,17 @@ SWEP.HoldtypeSights = "pistol"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 
-SWEP.ActivePos = Vector(0, -5, 1)
+SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.CustomizePos = Vector(7, -8, 1)
-SWEP.CustomizeAng = Angle(5, 30, 10)
+SWEP.CustomizePos = Vector(13, 0, -2)
+SWEP.CustomizeAng = Angle(15, 40, 15)
 
 SWEP.HolsterPos = Vector(3, -5, 0)
 SWEP.HolsterAng = Angle(-10, 25, -15)
 
-SWEP.SprintPos = Vector(0, -5, 1)
-SWEP.SprintAng = Angle(-10, 0, 0)
+SWEP.SprintPos = Vector(0, 0, 0)
+SWEP.SprintAng = Angle(0, 0, 0)
 
 SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
 SWEP.BarrelOffsetHip = Vector(2, 0, -2)
@@ -122,20 +122,22 @@ SWEP.Attachments = {
         PrintName = "Muzzle",
         DefaultAttName = "Standard Muzzle",
         Slot = "muzzle",
-        Bone = "ValveBiped.Bip01_R_Hand",
+        Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(12, 1.525, -3.69),
-            vang = Angle(0, 0, 180),
+            vpos = Vector(4.65, 0, 0.9),
+            vang = Angle(0, 0, 0),
         },
         VMScale = Vector(1, 1, 1),
     },
     {
         PrintName = "Tactical",
         Slot = "tac",
-        Bone = "ValveBiped.Bip01_R_Hand",
+        Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(8.950, 1.45, -2.285),
-            vang = Angle(0, 0, 180),
+            vpos = Vector(3.5, 0, 0),
+            vang = Angle(0, 0, 0),
+            wpos = Vector(7.9, 2, -3.2),
+            wang = Angle(-5, -2, 177.5)
         },
     },
     {
@@ -146,28 +148,33 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-        Source = "idle01",
+        Source = "idle",
     },
     ["draw"] = {
         Source = "draw",
+        Time = 0.5,
+        LHIK = true,
+        LHIKIn = 0.2,
+        LHIKOut = 0.25,
     },
     ["fire"] = {
-        Source = {"fire1", "fire2", "fire3"},
+        Source = {"fire"},
         ShellEjectAt = 0,
     },
     ["fire_iron"] = {
-        Source = {"fire1", "fire2", "fire3"},
+        Source = {"fire_ads"},
         ShellEjectAt = 0,
     },
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         SoundTable = {
-            {s = "weapons/pistol/pistol_reload1.wav", t = 0},
-        },
+            {s = "ArcCW_BO1.Makarov_Out", t = 16 / 30},
+            {s = "ArcCW_BO1.Makarov_In", t = 29 / 30},
+    },
         LHIK = true,
-        LHIKIn = 0.25,
-        LHIKOut = 0.25,
+        LHIKIn = 0.2,
+        LHIKOut = 0.2,
     },
 }
 
@@ -263,7 +270,7 @@ sound.Add( {
     volume = 1.0,
     level = 90,
     pitch = {98, 102},
-    sound = ")weapons/pistol/pistol_fire2.wav"
+    sound = ")weapons/arccw/bo1_makarov/fire.wav"
 } )
 sound.Add( {
     name = "ArcCW_Horde.Medic_9mm_Fire_Sil",

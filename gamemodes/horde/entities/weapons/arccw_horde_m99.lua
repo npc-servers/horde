@@ -28,8 +28,9 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_m99.mdl"
-SWEP.WorldModel = "models/horde/weapons/c_kf_m99.mdl"
+SWEP.WorldModel = "models/horde/weapons/w_kf_m99.mdl"
 SWEP.ViewModelFOV = 45
+SWEP.MirrorVMWM = true
 
 SWEP.Damage = 1400
 SWEP.DamageMin = 1400 -- damage done at maximum range
@@ -133,7 +134,7 @@ SWEP.AttachmentElements = {
 }
 
 SWEP.WorldModelOffset = {
-    pos = Vector(0, 5, -8),
+    pos = Vector(-20, 5, -6),
     ang = Angle(-10, 0, 180),
     scale = 1
 }

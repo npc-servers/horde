@@ -4,12 +4,12 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "M32"
+SWEP.PrintName = "M32 MGL"
 SWEP.Trivia_Class = "Grenade Launcher"
 SWEP.Trivia_Desc = "A six chambered revolving grenade launcher."
 SWEP.Trivia_Manufacturer = "Milkor"
-SWEP.Trivia_Calibre = "40mm"
-SWEP.Trivia_Mechanism = "Double-action"
+SWEP.Trivia_Calibre = "40x42mm HE"
+SWEP.Trivia_Mechanism = "Spring-Action"
 SWEP.Trivia_Country = "South Africa"
 SWEP.Trivia_Year = 1983
 
@@ -21,11 +21,11 @@ SWEP.Spawnable = true
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_m32.mdl"
-SWEP.WorldModel = "models/horde/weapons/w_m79.mdl"
-SWEP.MirrorVMWM = true
+SWEP.WorldModel = "models/horde/weapons/w_m32.mdl"
+SWEP.MirrorVMWM = false
 SWEP.WorldModelOffset = {
-    pos = Vector(-5, 5, 15),
-    ang = Angle(-90, 10, 180),
+    pos = Vector(3, 1, -1),
+    ang = Angle(-10, 0, 180),
 }
 SWEP.ViewModelFOV = 60
 
@@ -110,7 +110,7 @@ SWEP.IronSightStruct = {
 }
 
 SWEP.HoldtypeHolstered = "ar2"
-SWEP.HoldtypeActive = "ar2"
+SWEP.HoldtypeActive = "smg"
 SWEP.HoldtypeSights = "ar2"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL

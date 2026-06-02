@@ -12,7 +12,7 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "HSG-1"
 SWEP.TrueName = "HSG-1"
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = "A rather powerful pump-action shotgun that reloads with magazines."
+SWEP.Trivia_Desc = "A powerful pump-action shotgun modified to take magazines."
 SWEP.Trivia_Manufacturer = "Kel-tec"
 SWEP.Trivia_Calibre = "12 Gauge"
 SWEP.Trivia_Mechanism = "Pump action"
@@ -28,7 +28,7 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_ksg.mdl"
-SWEP.WorldModel = "models/weapons/arccw/w_tf2convent.mdl"
+SWEP.WorldModel = "models/horde/weapons/w_kf_ksg.mdl"
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
     pos        =    Vector(-12.6, 5.8, -12.3),

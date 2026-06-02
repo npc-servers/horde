@@ -12,7 +12,7 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Medic Shotgun"
 SWEP.TrueName = "Medic Model 1897"
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = "A pump-action shotgun that fires buckshot rounds that heal other players."
+SWEP.Trivia_Desc = "Winchester Model 1897 loaded with healing flechettes."
 SWEP.Trivia_Manufacturer = "Winchester"
 SWEP.Trivia_Calibre = "12 Gauge"
 SWEP.Trivia_Mechanism = "Pump Action"
@@ -28,10 +28,13 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_trench.mdl"
-SWEP.WorldModel = "models/weapons/w_shotgun.mdl"
-
+SWEP.WorldModel = "models/horde/weapons/w_kf_trench.mdl"
+SWEP.WorldModelOffset = {
+    pos = Vector(4, 0, 0),
+    ang = Angle(-12, 0, 180),
+}
 SWEP.ViewModelFOV = 45
-
+SWEP.MirrorVMWM = false
 SWEP.Damage = 35
 SWEP.DamageMin = 20
 SWEP.Range = 50 -- in METRES
@@ -144,8 +147,8 @@ SWEP.Attachments = {
         Offset = {
             vpos = Vector(45, 0, 3.1),
             vang = Angle(0, 0, 0),
-            wpos = Vector(10, 0.8, -5.5),
-            wang = Angle(-5, 1, 180)
+            wpos = Vector(32, 0, -9.5),
+            wang = Angle(-10, 0, 180)
         },
     },
     {
@@ -155,8 +158,8 @@ SWEP.Attachments = {
         Offset = {
             vpos = Vector(40, 0, 2),
             vang = Angle(0, 0, 0),
-            wpos = Vector(9, 1, -4.5),
-            wang = Angle(-5, 1, 180)
+            wpos = Vector(32, 0, -9),
+            wang = Angle(-10, 0, 180)
         },
         VMScale = Vector(1.2, 1.2, 1.2),
     },

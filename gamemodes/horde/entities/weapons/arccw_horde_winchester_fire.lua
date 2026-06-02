@@ -28,8 +28,12 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_winchester.mdl"
-SWEP.WorldModel = "models/weapons/w_annabelle.mdl"
+SWEP.WorldModel = "models/horde/weapons/w_kf_winchester.mdl"
 SWEP.ViewModelFOV = 45
+SWEP.WorldModelOffset = {
+    pos = Vector(4, 0, 0),
+    ang = Angle(-12, 0, 180),
+}
 
 SWEP.Damage = 400
 SWEP.DamageMin = 400 -- damage done at maximum range

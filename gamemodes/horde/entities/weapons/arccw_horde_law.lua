@@ -61,11 +61,11 @@ sound.Add({
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_law.mdl"
-SWEP.WorldModel = "models/weapons/w_rocket_launcher.mdl"
-SWEP.MirrorVMWM = true
+SWEP.WorldModel = "models/horde/weapons/w_law.mdl"
+SWEP.MirrorVMWM = false
 SWEP.WorldModelOffset = {
-    pos = Vector(-15, 12, -10),
-    ang = Angle(0, 0, 180),
+    pos = Vector(4, 3, 2),
+    ang = Angle(0, -10, -170),
 }
 SWEP.ViewModelFOV = 45
 
