@@ -78,6 +78,12 @@ end
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     if not ply:Horde_GetPerk( "paladin_base" ) then return end
 
+    if HORDE:IsPoisonDamage( dmginfo ) then
+        bonus.resistance = bonus.resistance + 1.0
+
+        return
+    end
+
     local faithResist = 0
 
     if ply.Horde_PaladinShielding and HORDE:IsPhysicalDamage( dmginfo ) then
@@ -89,11 +95,6 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
     end
 
     bonus.resistance = bonus.resistance + ply:Horde_GetPerkLevelBonus( "paladin_base_globalresist" ) + faithResist
-	
-	if HORDE:IsPoisonDamage( dmginfo ) then
-		bonus.resistance = bonus.resistance + 1.0
-		return
-	end	
 end
 
 PERK.Hooks.StartCommand = function( ply, cmd )
@@ -163,4 +164,14 @@ PERK.Hooks.Horde_PostOnPlayerHeal = function( ply, healinfo )
 
     if armor == maxArmor then return end
     ply:SetArmor( math.Min( maxArmor, armor + healinfo.amount / 2 ) )
+end
+
+-- Break immunity
+PERK.Hooks.Horde_OnPlayerDebuffApply = function( ply, debuff, bonus )
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+    if debuff ~= HORDE.Status_Break then return end
+
+    bonus.apply = 0
+
+    return true
 end
