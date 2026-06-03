@@ -102,7 +102,7 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, dmginfo, bonus )
             faith = math.min( maxFaith, faith + protectorFaith )
 
             if dmginfo:GetDamage() > 0 and protectorFaith > 0 then
-                protectorFaith:Horde_RemovePaladinFaithStack()
+                protector:Horde_RemovePaladinFaithStack()
             end
         end
     end

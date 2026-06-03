@@ -432,23 +432,23 @@ function HORDE:GetDefaultItemsData()
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 5 }, nil, { HORDE.DMG_SLASH } )
 
-        HORDE:CreateItem( "Pistol", "Commander 9mm", "arccw_horde_9mm", 50, 1,
+        HORDE:CreateItem( "Pistol", "Commander 9mm", "arccw_horde_9mm", 50, 0,
         "9mm variant of the famed M1911.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
-    HORDE:CreateItem( "Pistol", "Medic Makarov", "arccw_horde_medic_9mm", 75, 1,
+    HORDE:CreateItem( "Pistol", "Medic Makarov", "arccw_horde_medic_9mm", 75, 0,
         "Modified Makarov that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing darts have a small splash radius.",
         { Medic = true, Hatcher = true, Gunslinger = true },
         2, -1, nil, "items/weapon_medic_9mm.png", nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON }, nil, { "Medic", "Hatcher" } )
-    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 1,
+    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 0,
         "Modified  Smith & Wesson Model 39.\nFires Radically Invasive Projectiles that deal Slashing damage.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
-    HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 2,
+    HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 0,
         "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default Commander.",
         { Ghost = true, Gunslinger = true },
         2, -1, nil, "items/hl2/weapon_357.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Ghost", "Gunslinger" } )
-    HORDE:CreateItem( "Pistol", "Flare Revolver", "arccw_horde_flamepistol", 100, 2,
+    HORDE:CreateItem( "Pistol", "Flare Revolver", "arccw_horde_flamepistol", 100, 0,
         "Colt 1851 Navy loaded with incindiary rounds.\nIgnites enemies and deals Fire damage.",
         { Gunslinger = true, Cremator = true },
         1, -1, nil, "items/hl2/weapon_357.png", nil, nil, { HORDE.DMG_FIRE }, nil, { "Cremator" } )
@@ -535,7 +535,7 @@ function HORDE:GetDefaultItemsData()
         { Gunslinger = true, Engineer = true, Warden = true, Overlord = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
     
-    HORDE:CreateItem( "SMG", "PDW", "arccw_horde_smg1", 100, 3,
+    HORDE:CreateItem( "SMG", "PDW", "arccw_horde_smg1", 100, 0,
         "Heckler & Koch Personal Defense Weapon.\n Offers great firepower, but pales in comparison to the proper MP7.",
         { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
         5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
@@ -593,7 +593,7 @@ function HORDE:GetDefaultItemsData()
         { Prototype = true, Medic = true, Hatcher = true, Warden = true, Overlord = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     
-    HORDE:CreateItem( "Shotgun", "M3 20ga.", "arccw_horde_shotgun", 100, 2,
+    HORDE:CreateItem( "Shotgun", "M3 20ga.", "arccw_horde_shotgun", 100, 0,
         "Benelli M3 Tactical. Loaded with weaker 20-gauge shells.",
         { Prototype = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Prototype", "Engineer", "Warden", "Overlord" } )
@@ -747,7 +747,7 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC } )
     HORDE:CreateItem( "Rifle", "ACR Medic AR", "arccw_horde_medic_acr", 3000, 8,
         "Remington Adaptive Combat Rifle.\nEquipped with healing dart and medic grenade launcher.\n\nPress USE+RELOAD to equip medic grenade launcher.\nPress B or ZOOM to fire healing dart.\nHealing dart heals 25 health and has a 1.5 second cooldown.",
-        { Medic = true, Hatcher = true },
+        { Medic = true },
         10, 10, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     HORDE:CreateItem( "Rifle", "M16A4", "arccw_horde_m16m203", 2250, 7,
         "M16A4 equipped with specialized M203 underbarrel grenade launchers.\nPress USE+RELOAD to switch between the UBGL and weapon.",
@@ -945,11 +945,11 @@ function HORDE:GetDefaultItemsData()
         10, -1, nil, nil, { Survivor = 2, Medic = 2 }, nil, { HORDE.DMG_POISON } )
     HORDE:CreateItem( "Special", "M2 Health Thrower", "horde_healingthrower", 3250, 7,
         "M2-2 Health Thrower.\nAn American man-portable backpack flamethrower converted to heal stuff to death.\nsmells faintly of lime and mint (who hurt you)",
-        { Medic = true, Hatcher = true },
+        { Medic = true },
         35, -1, nil, nil, nil, nil, { HORDE.DMG_POISON } )
     HORDE:CreateItem( "Explosive", "Medic RPG", "arccw_horde_medic_rpg", 3500, 8,
         "Medic Missile.\nAnti-Death Rocket Propelled Grenade \nmade in the Gamestop ventilation of an abandoned mall. \nnot to be confused with the infamous magic missile.",
-        { Medic = true, Hatcher = true },
+        { Medic = true },
         15, -1, nil, nil, nil, nil, { HORDE.DMG_POISON } )
 
     HORDE:CreateItem( "Special", "Watchtower", "horde_watchtower", 800, 1,
@@ -1138,7 +1138,7 @@ Hysteria lasts for 5 seconds and falls off sequentially.]],
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_berserker.png", { Berserker = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Riot Armor", "armor_warden", 1000, 0,
         "Distinguished Warden armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Shock and Sonic damage resistance.",
-        { Warden = true, Overlord = true },
+        { Warden = true, Overlord = true, Paladin = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_ARMOR, armor = 100 }, "items/armor_warden.png", { Warden = 30 }, 1 )
     HORDE:CreateItem( "Equipment", "Molten Armor", "armor_cremator", 1000, 0,
         "Distinguished Cremator armor.\n\nFills up 100% of your armor bar.\nProvides 8% increased Fire damage resistance.",
