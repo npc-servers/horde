@@ -14,7 +14,7 @@ SWEP.WeaponCamBone = tag_camera
 
 SWEP.PrintName = "Medic Makarov"
 SWEP.Trivia_Class = "Pistol"
-SWEP.Trivia_Desc = "A Soviet pistol designed shortly after World War II, standard for all branches of police and military. Modified to shoot healing rounds alongside standard bullets."
+SWEP.Trivia_Desc = "A Soviet pistol designed shortly after World War II, standard for all branches of police and military. Modified to shoot healing stims alongside standard bullets."
 SWEP.Trivia_Manufacturer = "Izhevsk Mechanical Plant"
 SWEP.Trivia_Calibre = "9x18mm 7N16"
 SWEP.Trivia_Mechanism = "Semi-Auto"
@@ -31,8 +31,9 @@ SWEP.WorldModel = "models/horde/weapons/c_bo1_makarov.mdl"
 SWEP.ViewModelFOV = 65
 
 SWEP.WorldModelOffset = {
-    pos = Vector(-21.5, 7, -3.5),
-    ang = Angle(-10, 0, 180)
+    pos        =    Vector(-9.75, 3.075, -4),
+    ang        =    Angle(-6, -2.5, 180),
+    bone    =    "ValveBiped.Bip01_R_Hand",
 }
 
 SWEP.Damage = 20
@@ -149,6 +150,18 @@ SWEP.Attachments = {
 SWEP.Animations = {
     ["idle"] = {
         Source = "idle",
+        Time = 1,
+    },
+    ["idle_empty"] = {
+        Source = "idle_empty",
+        Time = 1,
+    },
+    ["draw_empty"] = {
+        Source = "draw_empty",
+        Time = 0.5,
+        LHIK = true,
+        LHIKIn = 0.2,
+        LHIKOut = 0.25,
     },
     ["draw"] = {
         Source = "draw",
@@ -157,24 +170,88 @@ SWEP.Animations = {
         LHIKIn = 0.2,
         LHIKOut = 0.25,
     },
+    ["holster"] = {
+        Source = "holster",
+        Time = 0.5,
+        LHIK = true,
+        LHIKIn = 0.2,
+        LHIKOut = 0.25,
+    },
+    ["holster_empty"] = {
+        Source = "holster_empty",
+        Time = 0.5,
+        LHIK = true,
+        LHIKIn = 0.2,
+        LHIKOut = 0.25,
+    },
     ["fire"] = {
         Source = {"fire"},
-        ShellEjectAt = 0,
+        Time = 0.5,
+        ShellEjectAt = 1 / 30,
+    },
+    ["fire_empty"] = {
+        Source = "fire_last",
+        Time = 0.5,
+        ShellEjectAt = 1 / 30,
     },
     ["fire_iron"] = {
-        Source = {"fire_ads"},
-        ShellEjectAt = 0,
+        Source = "fire_ads",
+        Time = 0.5,
+        ShellEjectAt = 1 / 30,
+    },
+    ["fire_iron_empty"] = {
+        Source = "fire_last",
+        Time = 0.5,
+        ShellEjectAt = 1 / 30,
     },
     ["reload"] = {
         Source = "reload",
+        Time = 1.5,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-        SoundTable = {
-            {s = "ArcCW_BO1.Makarov_Out", t = 16 / 30},
-            {s = "ArcCW_BO1.Makarov_In", t = 29 / 30},
-    },
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
+        SoundTable = {
+            {s = "ArcCW_BO1.Makarov_Out", t = 0.25},
+            {s = "ArcCW_BO1.Makarov_In", t = 1}
+        },
+    },
+    ["reload_empty"] = {
+        Source = "reload_empty",
+        Time = 2,
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        LHIK = true,
+        LHIKIn = 0.2,
+        LHIKOut = 0.2,
+        SoundTable = {
+            {s = "ArcCW_BO1.Makarov_Out", t = 0.25},
+            {s = "ArcCW_BO1.Makarov_In", t = 1},
+            {s = "ArcCW_BO1.Makarov_Slide_Fwd", t = 1.5}
+        },
+    },
+    ["enter_sprint"] = {
+        Source = "sprint_in",
+        Time = 10 / 30
+    },
+    ["idle_sprint"] = {
+        Source = "sprint_loop",
+        Time = 30 / 40
+    },
+    ["exit_sprint"] = {
+        Source = "sprint_out",
+        Time = 10 / 30
+    },
+    ["enter_sprint_empty"] = {
+        Source = "sprint_in_empty",
+        Time = 10 / 30
+    },
+    ["idle_sprint_empty"] = {
+        Source = "sprint_loop_empty",
+        Time = 30 / 40
+    },
+    ["exit_sprint_empty"] = {
+        Source = "sprint_out_empty",
+        Time = 10 / 30
     },
 }
 
@@ -279,4 +356,28 @@ sound.Add( {
     level = 75,
     pitch = 100,
     sound = ")weapons/usp/usp1.wav"
+} )
+sound.Add( {
+    name = "ArcCW_BO1.Makarov_Out",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/p228/p228_clipout.wav"
+} )
+sound.Add( {
+    name = "ArcCW_BO1.Makarov_In",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/p228/p228_clipin.wav"
+} )
+sound.Add( {
+    name = "ArcCW_BO1.Makarov_Slide_Fwd",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/p228/p228_sliderelease.wav"
 } )
