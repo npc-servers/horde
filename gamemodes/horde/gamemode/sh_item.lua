@@ -441,7 +441,7 @@ function HORDE:GetDefaultItemsData()
         { Medic = true, Hatcher = true, Gunslinger = true },
         2, -1, nil, "items/weapon_medic_9mm.png", nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON }, nil, { "Medic", "Hatcher" } )
     HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 1,
-        "Modified  Smith & Wesson Model 39.\nFires Rapidly Invasive Projectiles that deal Slashing damage.",
+        "Modified  Smith & Wesson Model 39.\nFires Radically Invasive Projectiles that deal Slashing damage.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
     HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 2,
