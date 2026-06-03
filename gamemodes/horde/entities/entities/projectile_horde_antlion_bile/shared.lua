@@ -94,9 +94,9 @@ function ENT:PhysicsCollide(colData, collider)
     dmg:SetInflictor(self)
     dmg:SetDamagePosition(pos)
     dmg:SetDamageCustom(HORDE.DMG_PLAYER_FRIENDLY)
-    util.BlastDamageInfo(dmg, pos, 150)
+    util.BlastDamageInfo(dmg, pos, 200)
 
-    for _, ent in pairs(ents.FindInSphere(self:GetPos(), 150)) do
+    for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
         if ent:IsPlayer() then
             local healer = self.PlayerOwner
             if not IsValid(healer) then

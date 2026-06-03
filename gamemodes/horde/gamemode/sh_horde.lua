@@ -236,7 +236,10 @@ function HORDE:GetUpgradePrice(class, ply)
     else
         level = ply:Horde_GetUpgrade(class)
     end
-    if class == "horde_void_projector" or class == "horde_solar_seal" or class == "horde_astral_relic" or class == "horde_carcass" or class == "horde_pheropod" then
+
+    if class == "horde_pheropod" then
+        return 600 + 25 * level
+    elseif class == "horde_void_projector" or class == "horde_solar_seal" or class == "horde_astral_relic" or class == "horde_carcass" then
         local price = 800 + 25 * level
         return price
     else
