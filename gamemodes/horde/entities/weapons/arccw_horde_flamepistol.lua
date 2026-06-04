@@ -25,9 +25,16 @@ SWEP.Slot = 1
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/kf/c_flaregun.mdl"
-SWEP.MirrorVMWM = false
+SWEP.MirrorVMWM = true
 SWEP.WorldModel = "models/weapons/w_357.mdl"
 SWEP.ViewModelFOV = 70
+
+SWEP.WorldModelOffset = {
+    scale = 1.1,
+    pos        =    Vector(-14, 2, 2.2),
+    ang        =    Angle(-91, 0, 180),
+    bone       =    "ValveBiped.Bip01_R_Hand",
+}
 
 SWEP.Damage = 0
 SWEP.DamageMin = 0
