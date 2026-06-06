@@ -432,20 +432,24 @@ function HORDE:GetDefaultItemsData()
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 5 }, nil, { HORDE.DMG_SLASH } )
 
-        HORDE:CreateItem( "Pistol", "M1911A1", "arccw_horde_9mm", 50, 0,
-        "Classic starter firearm.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        HORDE:CreateItem( "Pistol", "Commander 9mm", "arccw_horde_9mm", 50, 0,
+        "9mm variant of the famed M1911.",
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
     HORDE:CreateItem( "Pistol", "Medic Makarov", "arccw_horde_medic_9mm", 75, 0,
         "Modified Makarov that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing darts have a small splash radius.",
         { Medic = true, Hatcher = true, Gunslinger = true },
         2, -1, nil, "items/weapon_medic_9mm.png", nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON }, nil, { "Medic", "Hatcher" } )
-    HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 2,
-        "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default 1911.",
+    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 0,
+        "Modified  Smith & Wesson Model 39.\nFires Radically Invasive Projectiles that deal Slashing damage.",
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
+        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
+    HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 0,
+        "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default Commander.",
         { Ghost = true, Gunslinger = true },
         2, -1, nil, "items/hl2/weapon_357.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Ghost", "Gunslinger" } )
-    HORDE:CreateItem( "Pistol", "Flare Revolver", "arccw_horde_flamepistol", 100, 2,
-        "Colt Python loaded with incindiary rounds.\nIgnites enemies and deals Fire damage.",
+    HORDE:CreateItem( "Pistol", "Flare Revolver", "arccw_horde_flamepistol", 100, 0,
+        "Colt 1851 Navy loaded with incindiary rounds.\nIgnites enemies and deals Fire damage.",
         { Gunslinger = true, Cremator = true },
         1, -1, nil, "items/hl2/weapon_357.png", nil, nil, { HORDE.DMG_FIRE }, nil, { "Cremator" } )
     HORDE:CreateItem( "Pistol", "Flare Gun (Hidden)", "projectile_horde_flaregun_flare", 0, 0,

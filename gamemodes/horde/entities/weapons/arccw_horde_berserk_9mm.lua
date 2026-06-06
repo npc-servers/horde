@@ -12,40 +12,38 @@ SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 SWEP.WeaponCamBone = tag_camera
 
-SWEP.PrintName = "Commander 9mm"
+SWEP.PrintName = "ASP"
 SWEP.Trivia_Class = "Pistol"
-SWEP.Trivia_Desc = "A postwar update of the venerable M1911 platform, the Commander is Colt's first aluminium alloy framed handgun chambered in 9x19mm Parabellum. Not to be confused with the Commando CAR-15 carbine."
-SWEP.Trivia_Manufacturer = "Colt Manufacturing Company"
+SWEP.Trivia_Desc = "Modified Smith & Wesson Model 39 loaded with Rapidly Invasive Projectiles. Built to be the perfect ranged option for melee meatheads."
+SWEP.Trivia_Manufacturer = "Armament Systems and Procedures"
 SWEP.Trivia_Calibre = "9x19mm Parabellum"
-SWEP.Trivia_Mechanism = "Short Recoil"
-SWEP.Trivia_Country = "Colt Manufacturing Company"
-SWEP.Trivia_Year = 1949
+SWEP.Trivia_Mechanism = "Double action, tilting barrel, locked breech"
+SWEP.Trivia_Country = "United States"
+SWEP.Trivia_Year = 1960
 
 SWEP.Slot = 1
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/horde/weapons/c_bo1_m1911.mdl"
+SWEP.ViewModel = "models/horde/weapons/c_bo1_asp.mdl"
 SWEP.MirrorVMWM = true
-SWEP.WorldModel = "models/horde/weapons/c_bo1_m1911.mdl"
+SWEP.WorldModel = "models/horde/weapons/c_bo1_asp.mdl"
 SWEP.ViewModelFOV = 65
 
 SWEP.WorldModelOffset = {
-    scale = 1.1,
-    pos        =    Vector(-9.75, 3, -3.75),
-    ang        =    Angle(-6, -2.5, 180),
-    bone       =    "ValveBiped.Bip01_R_Hand",
+    pos = Vector(-9.25, 4, -4.75),
+    ang = Angle(-6, -2.5, 180)
 }
 
-SWEP.Damage = 20
+SWEP.Damage = 45
 SWEP.DamageMin = 15
 SWEP.Range = 25
 SWEP.Penetration = 2
-SWEP.DamageType = DMG_BULLET
+SWEP.DamageType = DMG_SLASH
 SWEP.ShootEntity = nil
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 18
+SWEP.Primary.ClipSize = 8
 
 SWEP.Recoil = 0.2
 SWEP.RecoilSide = 0.12
@@ -68,7 +66,7 @@ SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "Pistol"
 
-SWEP.ShootSound = "ArcCW_Horde.9mm_Fire"
+SWEP.ShootSound = "ArcCW_Horde.ASP_Fire"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.9mm_Fire_Sil"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
@@ -83,9 +81,9 @@ SWEP.SightedSpeedMult = 0.8
 SWEP.SightTime = 0.125
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-2.56, 3, 1),
-    Ang = Angle(0.1, -0.15, 0),
-    Magnification = 1.25,
+    Pos = Vector(-3.05, 3, 1.825),
+    Ang = Angle(0, 0, 0),
+    Magnification = 1.1,
     SwitchToSound = "", -- sound that plays when switching to this sight
     ViewModelFOV = 40,
     CrosshairInSights = true
@@ -98,7 +96,7 @@ SWEP.HoldtypeSights = "pistol"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 
-SWEP.ActivePos = Vector(1, 3, 0.5)
+SWEP.ActivePos = Vector(0, 2.5, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.CustomizePos = Vector(13, 0, -2.5)
@@ -107,7 +105,7 @@ SWEP.CustomizeAng = Angle(15, 40, 15)
 SWEP.HolsterPos = Vector(0, -4, -5)
 SWEP.HolsterAng = Angle(37.5, 0, 0)
 
-SWEP.SprintPos = Vector(0, 3, 0)
+SWEP.SprintPos = Vector(0, 2.5, 0)
 SWEP.SprintAng = Angle(0, 0, 0)
 
 SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
@@ -127,9 +125,11 @@ SWEP.Attachments = {
         PrintName = "Muzzle",
         DefaultAttName = "Standard Muzzle",
         Slot = "muzzle",
+        VMScale = Vector(0.75, 0.75, 0.75),
+        WMScale = Vector(0.75, 0.75, 0.75),
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(5.3, 0.1, 1.05),
+            vpos = Vector(3.65, 0, 0.9),
             vang = Angle(0, 0, 0),
         },
         VMScale = Vector(1, 1, 1),
@@ -138,8 +138,10 @@ SWEP.Attachments = {
         PrintName = "Tactical",
         Slot = "tac",
         Bone = "tag_weapon",
+        VMScale = Vector(0.75, 0.75, 0.75),
+        WMScale = Vector(0.75, 0.75, 0.75),
         Offset = {
-            vpos = Vector(3, 0, 0.35),
+            vpos = Vector(2.5, 0, 0.25),
             vang = Angle(0, 0, 0),
         },
     },
@@ -152,18 +154,7 @@ SWEP.Attachments = {
 SWEP.Animations = {
     ["idle"] = {
         Source = "idle",
-        Time = 1 / 30,
-    },
-    ["idle_empty"] = {
-        Source = "idle_empty",
-        Time = 1 / 30,
-    },
-    ["draw_empty"] = {
-        Source = "draw_empty",
         Time = 0.5,
-        LHIK = true,
-        LHIKIn = 0.2,
-        LHIKOut = 0.25,
     },
     ["draw"] = {
         Source = "draw",
@@ -179,56 +170,49 @@ SWEP.Animations = {
         LHIKIn = 0.2,
         LHIKOut = 0.25,
     },
-    ["holster_empty"] = {
-        Source = "holster_empty",
-        Time = 0.5,
-        LHIK = true,
-        LHIKIn = 0.2,
-        LHIKOut = 0.25,
-    },
     ["fire"] = {
         Source = {"fire"},
-        Time = 0.5,
-        ShellEjectAt = 0.3,
+        Time = 7 / 35,
+        ShellEjectAt = 1 / 30,
     },
     ["fire_empty"] = {
         Source = "fire_last",
         Time = 0.5,
-        ShellEjectAt = 0.3,
+        ShellEjectAt = 1 / 30,
     },
     ["fire_iron"] = {
         Source = "fire_ads",
-        Time = 0.5,
-        ShellEjectAt = 0.3,
+        Time = 7 / 35,
+        ShellEjectAt = 1 / 30,
     },
     ["fire_iron_empty"] = {
         Source = "fire_last",
-        Time = 0.75,
-        ShellEjectAt = 0.3,
+        Time = 0.5,
+        ShellEjectAt = 1 / 30,
     },
     ["reload"] = {
         Source = "reload",
-        Time = 1.5,
+        Time = 0.8,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
         SoundTable = {
-            {s = "ArcCW_BO1.M1911_Out", t = 0.25},
-            {s = "ArcCW_BO1.M1911_In", t = 1}
+            {s = "ArcCW_BO1.ASP_Out", t = 0.1},
+            {s = "ArcCW_BO1.ASP_In", t = 0.45}
         },
     },
     ["reload_empty"] = {
         Source = "reload_empty",
-        Time = 2,
+        Time = 0.8,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0.2,
         SoundTable = {
-            {s = "ArcCW_BO1.M1911_Out", t = 0.25},
-            {s = "ArcCW_BO1.M1911_In", t = 1},
-            {s = "ArcCW_BO1.M1911_Slide_Fwd", t = 1.5}
+            {s = "ArcCW_BO1.ASP_Out", t = 0.1},
+            {s = "ArcCW_BO1.ASP_In", t = 0.45},
+            {s = "ArcCW_BO1.ASP_Fwd", t = 0.7}
         },
     },
     ["enter_sprint"] = {
@@ -265,12 +249,12 @@ function SWEP:DrawWeaponSelection(x, y, w, h, a)
 end
 
 sound.Add( {
-    name = "ArcCW_Horde.9mm_Fire",
+    name = "ArcCW_Horde.ASP_Fire",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 90,
     pitch = {98, 102},
-    sound = ")weapons/arccw/bo1_m1911/fire1.wav"
+    sound = ")weapons/glock/glock18-1.wav"
 } )
 sound.Add( {
     name = "ArcCW_Horde.9mm_Fire_Sil",
@@ -281,26 +265,26 @@ sound.Add( {
     sound = ")weapons/usp/usp1.wav"
 } )
 sound.Add( {
-    name = "ArcCW_BO1.M1911_Out",
+    name = "ArcCW_BO1.ASP_Out",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/usp/usp_clipout.wav"
+    sound = ")weapons/glock/glock_clipout.wav"
 } )
 sound.Add( {
-    name = "ArcCW_BO1.M1911_In",
+    name = "ArcCW_BO1.ASP_In",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/usp/usp_clipin.wav"
+    sound = ")weapons/glock/glock_clipin.wav"
 } )
 sound.Add( {
-    name = "ArcCW_BO1.M1911_Slide_Fwd",
+    name = "ArcCW_BO1.ASP_Fwd",
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/usp/usp_sliderelease.wav"
+    sound = ")weapons/glock/glock_sliderelease.wav"
 } )
