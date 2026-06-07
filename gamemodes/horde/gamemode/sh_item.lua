@@ -443,7 +443,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 0,
         "Modified  Smith & Wesson Model 39.\nFires Radically Invasive Projectiles that deal Slashing damage.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
-        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
+        2, -1, nil, "items/hl2/weapon_pistol.png", nil, nil, { HORDE.DMG_SLASH }, nil, nil )
     HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 0,
         "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default Commander.",
         { Ghost = true, Gunslinger = true },
