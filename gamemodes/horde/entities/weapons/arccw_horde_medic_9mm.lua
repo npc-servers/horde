@@ -1,7 +1,7 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("items/hl2/weapon_pistol.png")
-    SWEP.WepSelectIconMat = Material("items/hl2/weapon_pistol.png")
+    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_bo1_makarov")
+    SWEP.WepSelectIconMat = Material("arccw/weaponicons/arccw_bo1_makarov")
     killicon.AddAlias("arccw_horde_9mm", "weapon_9mm")
 end
 
@@ -363,7 +363,7 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/p228/p228_clipout.wav"
+    sound = ")weapons/arccw/bo1_makarov/makarov_out.wav"
 } )
 sound.Add( {
     name = "ArcCW_BO1.Makarov_In",
@@ -371,7 +371,7 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/p228/p228_clipin.wav"
+    sound = ")weapons/arccw/bo1_makarov/makarov_in.wav"
 } )
 sound.Add( {
     name = "ArcCW_BO1.Makarov_Slide_Fwd",
@@ -379,5 +379,5 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/p228/p228_sliderelease.wav"
+    sound = ")weapons/arccw/bo1_makarov/makarov_slidef.wav"
 } )
