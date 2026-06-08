@@ -264,7 +264,7 @@ function HORDE:GetDefaultItemInfusions()
     local ballistic_infusions_light = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver }
     -- Pistols
     HORDE.items["arccw_horde_9mm"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde__berserk_9mm"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Flaming, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
+    HORDE.items["arccw_horde__berserk_9mm"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
     HORDE.items["arccw_horde_medic_9mm"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_357"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_glock"].infusions = ballistic_infusions_light
@@ -444,7 +444,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 0,
         "Modified  Smith & Wesson Model 39.\nFires Radically Invasive Projectiles that deal Slashing damage.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
-        2, -1, nil, "arccw/weaponicons/arccw_bo1_as[", nil, nil, { HORDE.DMG_SLASH }, nil, nil )
+        2, -1, nil, "arccw/weaponicons/arccw_bo1_asp", nil, nil, { HORDE.DMG_SLASH }, nil, nil )
     HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 0,
         "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default Commander.",
         { Ghost = true, Gunslinger = true },
