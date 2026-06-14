@@ -53,7 +53,7 @@ SWEP.Delay = 60 / 650
 SWEP.Num = 1
 SWEP.Firemodes = {
     {
-        Mode = 2,
+        Mode = 1,
     },
     {
         Mode = 0,
