@@ -38,7 +38,7 @@ SWEP.WorldModelOffset = {
 SWEP.Damage = 45
 SWEP.DamageMin = 15
 SWEP.Range = 30
-SWEP.Penetration = 10
+SWEP.Penetration = 3
 SWEP.DamageType = DMG_SLASH
 SWEP.ShootEntity = nil
 
@@ -240,30 +240,6 @@ SWEP.Animations = {
         Time = 10 / 30
     },
 }
-
-if SERVER then
-    att.Hook_BulletHit = function( _, data )
-        local tr = data.tr
-        local entHit = tr.Entity
-        local bulletDmg = data.damage
-        data.dmgtype = DMG_BULLET
-
-    end
-end
-att.Hook_PostBulletHit = function( wep, data )
-    local tr = data.tr
-
-    local bullet = {
-        Damage = wep:GetDamage( ( tr.HitPos - tr.StartPos ):Length() * ArcCW.HUToM ),
-        DamageType = DMG_SLASH,
-        Weapon = wep,
-        Penetration = wep:GetBuff( "Penetration" ),
-        Attacker = wep:GetOwner(),
-        Travelled = ( tr.HitPos - tr.StartPos ):Length()
-    }
-
-    ArcCW:DoPenetration( tr, bullet.Damage, bullet, data.penleft, false, data.alreadypenned )
-end
 
 function SWEP:DrawWeaponSelection(x, y, w, h, a)
     surface.SetDrawColor(255, 255, 255, a)
