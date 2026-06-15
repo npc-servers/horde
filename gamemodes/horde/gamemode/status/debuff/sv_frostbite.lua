@@ -4,7 +4,7 @@ function entmeta:Horde_AddFrostbiteEffect(duration)
     if self:IsPlayer() then
     else
         timer.Remove("Horde_RemoveFrostbite" .. self:GetCreationID())
-        timer.Create("Horde_RemoveFrostbite" .. self:GetCreationID(), 4, 1, function ()
+        timer.Create("Horde_RemoveFrostbite" .. self:GetCreationID(), duration, 1, function ()
             self:Horde_RemoveFrostbite()
         end)
 

@@ -211,9 +211,6 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         local duration = 5
         local str = "Horde_Remove_" .. tostring(debuff) .. "_" .. self:GetCreationID()
         timer.Remove(str)
-        timer.Create(str, duration, 1, function ()
-            self:Horde_RemoveDebuff(debuff)
-        end)
 
         -- Apply debuff effect
         if debuff == HORDE.Status_Bleeding then
@@ -278,6 +275,10 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         elseif debuff == HORDE.Status_Stun then
             self:Horde_AddStun(duration)
         end
+
+        timer.Create(str, duration, 1, function ()
+            self:Horde_RemoveDebuff(debuff)
+        end)
 
         self.Horde_Debuff_Active[debuff] = true
 
