@@ -264,7 +264,7 @@ function HORDE:GetDefaultItemInfusions()
     local ballistic_infusions_light = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver }
     -- Pistols
     HORDE.items["arccw_horde_9mm"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde__berserk_9mm"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
+    HORDE.items["arccw_horde_berserk_9mm"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
     HORDE.items["arccw_horde_medic_9mm"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_357"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_glock"].infusions = ballistic_infusions_light
@@ -435,7 +435,7 @@ function HORDE:GetDefaultItemsData()
 
         HORDE:CreateItem( "Pistol", "Commander 9mm", "arccw_horde_9mm", 50, 0,
         "9mm variant of the famed M1911.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Cremator = true },
+        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         2, -1, nil, "arccw/weaponicons/arccw_bo1_m1911", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
     HORDE:CreateItem( "Pistol", "Medic Makarov", "arccw_horde_medic_9mm", 75, 0,
         "Modified Makarov that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing darts have a small splash radius.",
