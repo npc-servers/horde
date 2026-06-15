@@ -17,12 +17,12 @@ SWEP.UseHands = true
 
 SWEP.Primary.ClipSize = 100
 SWEP.Primary.DefaultClip = SWEP.Primary.ClipSize
-SWEP.Primary.Automatic = false
+SWEP.Primary.Automatic = true
 SWEP.Primary.Ammo = ""
 
 SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.DefaultClip = -1
-SWEP.Secondary.Automatic = false
+SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = ""
 
 SWEP.HoldType = "slam"
@@ -114,7 +114,6 @@ function SWEP:SecondaryAttack()
 	if self:GetOwner():KeyDown( IN_RELOAD ) then return end
 
 	self:DoHeal( self:GetOwner() )
-
 end
 
 function SWEP:Reload()
