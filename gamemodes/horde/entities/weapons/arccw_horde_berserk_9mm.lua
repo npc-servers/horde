@@ -1,7 +1,7 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("items/hl2/weapon_pistol.png")
-    SWEP.WepSelectIconMat = Material("items/hl2/weapon_pistol.png")
+    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_bo1_asp")
+    SWEP.WepSelectIconMat = Material("arccw/weaponicons/arccw_bo1_asp")
     killicon.AddAlias("arccw_horde_9mm", "weapon_9mm")
 end
 
@@ -16,7 +16,7 @@ SWEP.PrintName = "ASP"
 SWEP.Trivia_Class = "Pistol"
 SWEP.Trivia_Desc = "Modified Smith & Wesson Model 39 loaded with Rapidly Invasive Projectiles. Built to be the perfect ranged option for melee meatheads."
 SWEP.Trivia_Manufacturer = "Armament Systems and Procedures"
-SWEP.Trivia_Calibre = "9x19mm Parabellum"
+SWEP.Trivia_Calibre = "9x19mm R.I.P"
 SWEP.Trivia_Mechanism = "Double action, tilting barrel, locked breech"
 SWEP.Trivia_Country = "United States"
 SWEP.Trivia_Year = 1960
@@ -37,19 +37,19 @@ SWEP.WorldModelOffset = {
 
 SWEP.Damage = 45
 SWEP.DamageMin = 15
-SWEP.Range = 25
-SWEP.Penetration = 2
+SWEP.Range = 30
+SWEP.Penetration = 3
 SWEP.DamageType = DMG_SLASH
 SWEP.ShootEntity = nil
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 8
+SWEP.Primary.ClipSize = 12
 
-SWEP.Recoil = 0.2
+SWEP.Recoil = 0.2 
 SWEP.RecoilSide = 0.12
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 0.08
+SWEP.Delay = 60 / 650
 SWEP.Num = 1
 SWEP.Firemodes = {
     {
@@ -60,7 +60,7 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.AccuracyMOA = 5
+SWEP.AccuracyMOA = 6
 SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 200
 
@@ -254,7 +254,7 @@ sound.Add( {
     volume = 1.0,
     level = 90,
     pitch = {98, 102},
-    sound = ")weapons/glock/glock18-1.wav"
+    sound = ")weapons/arccw/bo1_asp/fire1.wav"
 } )
 sound.Add( {
     name = "ArcCW_Horde.9mm_Fire_Sil",
@@ -270,7 +270,7 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/glock/glock_clipout.wav"
+    sound = ")weapons/arccw/bo1_asp/mag_out.wav"
 } )
 sound.Add( {
     name = "ArcCW_BO1.ASP_In",
@@ -278,7 +278,7 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/glock/glock_clipin.wav"
+    sound = ")weapons/arccw/bo1_asp/mag_in.wav"
 } )
 sound.Add( {
     name = "ArcCW_BO1.ASP_Fwd",
@@ -286,5 +286,5 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/glock/glock_sliderelease.wav"
+    sound = ")weapons/arccw/bo1_asp/slide_fwd.wav"
 } )

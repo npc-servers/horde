@@ -1,7 +1,7 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("items/hl2/weapon_pistol.png")
-    SWEP.WepSelectIconMat = Material("items/hl2/weapon_pistol.png")
+    SWEP.WepSelectIcon = surface.GetTextureID("arccw/weaponicons/arccw_bo1_m1911")
+    SWEP.WepSelectIconMat = Material("arccw/weaponicons/arccw_bo1_m1911")
     killicon.AddAlias("arccw_horde_9mm", "weapon_9mm")
 end
 
@@ -18,7 +18,7 @@ SWEP.Trivia_Desc = "A postwar update of the venerable M1911 platform, the Comman
 SWEP.Trivia_Manufacturer = "Colt Manufacturing Company"
 SWEP.Trivia_Calibre = "9x19mm Parabellum"
 SWEP.Trivia_Mechanism = "Short Recoil"
-SWEP.Trivia_Country = "Colt Manufacturing Company"
+SWEP.Trivia_Country = "United States"
 SWEP.Trivia_Year = 1949
 
 SWEP.Slot = 1
@@ -32,8 +32,8 @@ SWEP.ViewModelFOV = 65
 
 SWEP.WorldModelOffset = {
     scale = 1.1,
-    pos        =    Vector(-9.75, 3, -3.75),
-    ang        =    Angle(-6, -2.5, 180),
+    pos        =    Vector(0, 0, 0),
+    ang        =    Angle(-6, -2.5, 0),
     bone       =    "ValveBiped.Bip01_R_Hand",
 }
 
@@ -286,7 +286,7 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/usp/usp_clipout.wav"
+    sound = ")weapons/arccw/bo1_m1911/out.wav"
 } )
 sound.Add( {
     name = "ArcCW_BO1.M1911_In",
@@ -294,7 +294,7 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/usp/usp_clipin.wav"
+    sound = ")weapons/arccw/bo1_m1911/in1.wav"
 } )
 sound.Add( {
     name = "ArcCW_BO1.M1911_Slide_Fwd",
@@ -302,5 +302,5 @@ sound.Add( {
     volume = 1.0,
     level = 75,
     pitch = 100,
-    sound = ")weapons/usp/usp_sliderelease.wav"
+    sound = ")weapons/arccw/bo1_m1911/slide_fwd.wav"
 } )
