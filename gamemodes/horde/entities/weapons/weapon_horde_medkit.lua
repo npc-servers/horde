@@ -65,7 +65,6 @@ function SWEP:Initialize()
 			PrimaryClip = 0
 		}
 	end
-
 end
 
 function SWEP:Deploy()
@@ -75,7 +74,6 @@ function SWEP:Deploy()
 	self:Regen( false )
 
 	return true
-
 end
 
 function SWEP:SetupDataTables()
@@ -123,11 +121,19 @@ function SWEP:Reload()
 	local closestPlayer = nil
 	local closestPos = nil
 	local closestDistance = math.huge
+	local owner = self:GetOwner()
+	local ownerClass = owner:Horde_GetCurrentSubclass()
+	local reviveSpeed = self.ReviveSpeed
+
+	if ownerClass == "Medic" or ownerClass == "Hatcher" then
+		reviveSpeed = 25
+	end
+
 	for ply, pos in pairs( self.DeadPlayers ) do
 		if not IsValid( ply ) then continue end
 		if ply:Alive() then continue end
 
-		local distance = pos:Distance( self:GetOwner():GetPos() )
+		local distance = pos:Distance( owner:GetPos() )
 		if distance < closestDistance then
 			closestDistance = distance
 			closestPlayer = ply
@@ -158,7 +164,7 @@ function SWEP:Reload()
 			return
 		end
 
-		self.ReviveProgress = self.ReviveProgress + self.ReviveSpeed * ( CurTime() - self.LastReviveTime )
+		self.ReviveProgress = self.ReviveProgress + reviveSpeed * ( CurTime() - self.LastReviveTime )
 		self.LastReviveTime = CurTime()
 		self:EmitSound( "items/medcharge4.wav" )
 		return
