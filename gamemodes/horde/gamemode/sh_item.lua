@@ -315,6 +315,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_m1014"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_doublebarrel"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_trenchgun"].infusions = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Flaming, HORDE.Infusion_Siphoning }
+    HORDE.items["arccw_horde_nailshot"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
     HORDE.items["arccw_horde_spas12"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_striker"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_hsg1"].infusions = ballistic_infusions_shotguns
@@ -564,6 +565,10 @@ function HORDE:GetDefaultItemsData()
         "Steyr TMP.\nA select-fire 9×19mm Parabellum caliber machine pistol.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
         8, -1, nil, nil, { Survivor = 2 }, nil, { HORDE.DMG_BALLISTIC } )
+    HORDE:CreateItem( "SMG", "Nailgun", "arccw_horde_nailgun", 1750, 4,
+        "DutyTool pneumatic nailgun.\nUses projectiles instead of bullets.\nHeadshots deal 300% damage, much like the Crossbow.",
+        { Prototype = true, Assault = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, },
+        8, -1, nil, "arccw/weaponicons/arccw_bocw_nailgun", nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "SMG", "PP Bizon", "arccw_horde_bizon", 2000, 5,
         "PP-19 Bizon.\nOffers a high-capacity magazine that reloads quickly.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true },
@@ -621,6 +626,10 @@ function HORDE:GetDefaultItemsData()
         "Winchester Model 1897.\nShoots incendiary pellets.",
         { Prototype = true, Warden = true, Overlord = true, Cremator = true },
         15, -1, nil, nil, { Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_FIRE }, { HORDE.Infusion_Quality, HORDE.Infusion_Impaling } )
+    HORDE:CreateItem( "Shotgun", "Impaler", "arccw_horde_nailshot", 2250, 5,
+        "Heavily modified Pneumatic Nailgun.\nFires nails in a shotgun style pattern.",
+        { Prototype = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true },
+        15, -1, nil, "arccw/weaponicons/arccw_kf1vlad", nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Shotgun", "Double Barrel", "arccw_horde_doublebarrel", 2250, 5,
         "Double Barrel Shotgun.\nDevastating power at close range.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true, Overlord = true },
