@@ -4,18 +4,18 @@ SWEP.Base = "arccw_base"
 
 SWEP.Slot = 2
 
-SWEP.Spawnable = true -- this obviously has to be set to true
+SWEP.Spawnable = true
 SWEP.Category = "ArcCW: Horde"
 SWEP.NeverPhysBullet = true
 SWEP.PrintName = "Nailgun"
-SWEP.Trivia_Class = "Submachine Gun" -- "Submachine Gun"
-SWEP.Trivia_Desc = "Power tool modified to fire nails without sticking it to a surface. Nails have no damage dropoff, at the cost of low velocity."
-SWEP.Trivia_Manufacturer = "Unlocked" -- "Auschen Waffenfabrik"
-SWEP.Trivia_Calibre = "Steel Nail" -- "9x21mm Jager"
+SWEP.Trivia_Class = "Submachine Gun"
+SWEP.Trivia_Desc = "Power tool modified to fire nails without attaching it to a surface. Nails have no damage dropoff, at the cost of low velocity."
+SWEP.Trivia_Manufacturer = "Unlocked"
+SWEP.Trivia_Calibre = "Steel Nail"
 SWEP.SubCategory = "Sub-Machine Guns"
 
 SWEP.ViewModelFOV = 70
-SWEP.ViewModel = "models//horde/weapons/c_nailgun.mdl" -- I mean, you probably have to edit these too
+SWEP.ViewModel = "models//horde/weapons/c_nailgun.mdl"
 SWEP.WorldModel = "models/horde/weapons/w_nailgun.mdl"
 SWEP.NPCWeaponType = "weapon_smg1"
 SWEP.NPCWeight = 70
@@ -23,8 +23,7 @@ SWEP.NPCWeight = 70
 SWEP.MirrorVMWM = false
 
 
-SWEP.Primary.Ammo = "XbowBolt" -- what ammo type the gun uses
-
+SWEP.Primary.Ammo = "XbowBolt"
 SWEP.NoHideLeftHandInCustomization = false
 
 SWEP.Firemodes = {
@@ -41,47 +40,46 @@ SWEP.Firemodes = {
 }
 
 -------------------- POS
-SWEP.CustomizePos = Vector(9.824, 0, -4.897)
-SWEP.CustomizeAng = Angle(12.149, 30.547, 0)
+SWEP.CustomizePos = Vector( 9.824, 0, -4.897 )
+SWEP.CustomizeAng = Angle( 12.149, 30.547, 0 )
 
-SWEP.HolsterPos = Vector(0.5, 3, 1.2)
-SWEP.HolsterAng = Angle(-8.5, 8, -10)
+SWEP.HolsterPos = Vector( 0.5, 3, 1.2 )
+SWEP.HolsterAng = Angle( -8.5, 8, -10 )
 
-SWEP.ActivePos = Vector(-1.651, 0.5, 0.5)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( -1.651, 0.5, 0.5 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.SprintPos = Vector(-1.651, 0.5, 0.5)
-SWEP.SprintAng = Angle(-18, 0, 0)
+SWEP.SprintPos = Vector( -1.651, 0.5, 0.5 )
+SWEP.SprintAng = Angle ( -18, 0, 0 )
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-3.8, 0, -0.6),
-    Ang = Angle(5.63, 0, 2),
-    Midpoint = { -- Where the gun should be at the middle of it's irons
-        Pos = Vector(0, 15, -4),
-        Ang = Angle(0, 0, -45),
+    Pos = Vector( -3.8, 0, -0.6 ),
+    Ang = Angle( 5.63, 0, 2 ),
+    Midpoint = {
+        Pos = Vector( 0, 15, -4 ),
+        Ang = Angle( 0, 0, -45 ),
     },
     Magnification = 1,
 }
 
--------------------- BALANCING
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.85
 SWEP.ShootSpeedMult = 1
 
 SWEP.SightTime = 0.1
 
-SWEP.AccuracyMOA = 25 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 200 -- inaccuracy added by hip firing.
-SWEP.MoveDispersion = 250 -- inaccuracy added by moving. Applies in sights as well! Walking speed is considered as "maximum".
-SWEP.SightsDispersion = 1 -- dispersion that remains even in sights
-SWEP.JumpDispersion = 300 -- dispersion penalty when in the air
+SWEP.AccuracyMOA = 25
+SWEP.HipDispersion = 200
+SWEP.MoveDispersion = 250
+SWEP.SightsDispersion = 1
+SWEP.JumpDispersion = 300
 
 SWEP.Damage = 0
-SWEP.DamageMin = 0 -- damage done at maximum range
+SWEP.DamageMin = 0
 SWEP.DamageType = DMG_SLASH
-SWEP.Range = 75 -- in METRES
-SWEP.ShootEntity = "projectile_horde_nail" -- entity to fire, if any
-SWEP.MuzzleVelocity = 3000 -- projectile or phys bullet muzzle velocity
+SWEP.Range = 75
+SWEP.ShootEntity = "projectile_horde_nail"
+SWEP.MuzzleVelocity = 3000
 SWEP.Recoil = 0.55
 SWEP.RecoilSide = 0.35
 SWEP.RecoilRise = 0.45
@@ -89,10 +87,10 @@ SWEP.MaxRecoilBlowback = -1
 SWEP.VisualRecoilMult = 0
 SWEP.RecoilPunch = 0.5
 SWEP.RecoilPunchBackMax = 1
-SWEP.RecoilPunchBackMaxSights = nil -- may clip with scopes
-SWEP.RecoilVMShake = 0.2-- random viewmodel offset when shooty
+SWEP.RecoilPunchBackMaxSights = nil
+SWEP.RecoilVMShake = 0.2
 SWEP.Sway = 0.2
-SWEP.Delay = 55 / 508 -- 60 / RPM.
+SWEP.Delay = 55 / 508
 
 
 
@@ -100,21 +98,21 @@ SWEP.Delay = 55 / 508 -- 60 / RPM.
 SWEP.TracerNum = 1
 SWEP.TracerFinalMag = 0
 SWEP.Tracer = "arccw_tracer"
-SWEP.TracerCol = Color(255, 255, 255)
+SWEP.TracerCol = Color( 255, 255, 255 )
 SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.NoShellEject = true
 SWEP.ShootSound = "weapon_nailgun.fire"
 
 ------------------- MAG
-SWEP.ChamberSize = 0 -- how many rounds can be chambered.
-SWEP.Primary.ClipSize = 45 -- DefaultClip is automatically set.
+SWEP.ChamberSize = 0
+SWEP.Primary.ClipSize = 45
 
 ----------------ANIMATION
-SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
-SWEP.CaseEffectAttachment = 0 -- which attachment to put the case effect on
-SWEP.CamAttachment = 3 -- if set, this attachment will control camera movement
+SWEP.MuzzleEffectAttachment = 1
+SWEP.CaseEffectAttachment = 0
+SWEP.CamAttachment = 3
 
-SWEP.BulletBones = { -- the bone that represents bullets in gun/mag
+SWEP.BulletBones = {
      [0] = "bulletchamber",
      [1] = "bullet1"
 }
@@ -148,35 +146,33 @@ SWEP.Animations = {
     },
     ["reload"] = {
         Source = "reload",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2, -- third person animation to play when this animation is played
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
-        LHIKIn = 0.25, -- In/Out controls how long it takes to switch to regular animation.
-        LHIKOut = 0.25, -- (not actually inverse kinematics)
+        LHIKIn = 0.25,
+        LHIKOut = 0.25,
     },
     ["reload_empty"] = {
         Source = "reload_empty",
-        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2, -- third person animation to play when this animation is played
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
-        LHIKIn = 0.25, -- In/Out controls how long it takes to switch to regular animation.
-        LHIKOut = 0.25, -- (not actually inverse kinematics)
+        LHIKIn = 0.25,
+        LHIKOut = 0.25,
     },
 }
 
 ------------------ATTS
-SWEP.Hook_ModifyBodygroups = function(wep, data)
+SWEP.Hook_ModifyBodygroups = function( wep, data )
     local vm = data.vm
     local atts = wep.Attachments
-    
-    if !IsValid(vm) then return end
-    
-    -- Call the base ModifyBodygroups function to apply AttachmentElements first
+
+    if !IsValid( vm ) then return end
+
     if wep.BaseClass and wep.BaseClass.Hook_ModifyBodygroups then
-        wep.BaseClass.Hook_ModifyBodygroups(wep, data)
+        wep.BaseClass.Hook_ModifyBodygroups( wep, data )
     end
-    
-    -- Check if attachment in slot #1 (optic) is installed
+
     if atts[1] and atts[1].Installed then
-        vm:SetBodygroup(1, 1)
+        vm:SetBodygroup( 1, 1 )
     end
 end
 
@@ -184,7 +180,7 @@ end
 SWEP.Attachments = {
        {
         PrintName = "Perks",
-        Slot = {"go_perk", "go_perk_smg"},
+        Slot = { "go_perk", "go_perk_smg" },
         DefaultAttName = "None"
     },
     {
@@ -192,11 +188,10 @@ SWEP.Attachments = {
         Slot = "charm",
         Bone = "tag_barrel_attach",
         Offset = {
-            vpos = Vector(-6, -1.2, 0),
-            vang = Angle(0, -15, 0),
-            wpos = Vector(7, 2, -4.5),
-            wang = Angle(-5, 1, 180)
+            vpos = Vector( -6, -1.2, 0 ),
+            vang = Angle( 0, -15, 0 ),
+            wpos = Vector( 7, 2, -4.5 ),
+            wang = Angle( -5, 1, 180 )
+        },
     },
-
-}
 }
