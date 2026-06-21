@@ -391,7 +391,7 @@ hook.Add( "Hook_BulletHit", "Horde_Makarov_Heal", function( wpn, data )
     end
 end )
 
-function SWEP:ChangeFiremode(pred)
+function SWEP:ChangeFiremode()
     if CLIENT then return end
     if self:GetNextSecondaryFire() > CurTime() then return end
     if not self.CanBash and not self:GetBuff_Override( "Override_CanBash" ) then return end
@@ -452,7 +452,7 @@ function SWEP:Hook_Think()
         mask = MASK_SHOT_HULL
     } )
 
-    if tr.Hit and tr.Entity and tr.Entity:IsPlayer()then
+    if tr.Hit and tr.Entity and tr.Entity:IsPlayer() then
         self.Horde_HealTarget = tr.Entity
     else
         self.Horde_HealTarget = nil
@@ -465,7 +465,7 @@ end
 
 function SWEP:Hook_DrawHUD()
     if self.Horde_HealTarget then
-        local pos = nv_center(self.Horde_HealTarget):ToScreen()
+        local pos = nv_center( self.Horde_HealTarget ):ToScreen()
 
         surface.SetDrawColor( Color( 50, 200, 50 ) )
         surface.DrawCircle( pos.x, pos.y, 30 )
@@ -474,7 +474,7 @@ function SWEP:Hook_DrawHUD()
     end
 end
 
-function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverride )
+function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
     local fsound = self.ShootSound
     local lsound = self.LowShootSound
     local dsound = self.DistantShootSound

@@ -287,7 +287,7 @@ sound.Add( {
     }
 } )
 
-function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverride )
+function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
     local fsound = self.ShootSound
     local lsound = self.LowShootSound
     local dsound = self.DistantShootSound

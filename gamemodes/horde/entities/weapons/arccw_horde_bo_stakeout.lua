@@ -86,11 +86,11 @@ SWEP.HoldtypeHolstered = "passive"
 SWEP.HoldtypeActive = "shotgun"
 SWEP.HoldtypeSights = "ar2"
 
-SWEP.ActivePos = Vector(0, 2, 1)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 0, 2, 1 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.SprintPos = Vector(0, 2, 1)
-SWEP.SprintAng = Angle(0, 0, 0)
+SWEP.SprintPos = Vector( 0, 2, 1 )
+SWEP.SprintAng = Angle( 0, 0, 0 )
 
 SWEP.AttachmentElements = {
     ["silencer"] = {
@@ -360,7 +360,7 @@ SWEP.Hook_TranslateAnimation = function( wep, anim )
     end
 end
 
-function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverride )
+function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
     local fsound = self.ShootSound
     local lsound = self.LowShootSound
     local dsound = self.DistantShootSound
