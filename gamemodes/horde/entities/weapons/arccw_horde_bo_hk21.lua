@@ -93,11 +93,11 @@ SWEP.HoldtypeHolstered = "passive"
 SWEP.HoldtypeActive = "ar2"
 SWEP.HoldtypeSights = "rpg"
 
-SWEP.ActivePos = Vector(0, 1, 1)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 0, 1, 1 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.SprintPos = Vector(0, 1, 1)
-SWEP.SprintAng = Angle(0, 0, 0)
+SWEP.SprintPos = Vector( 0, 1, 1 )
+SWEP.SprintAng = Angle( 0, 0, 0 )
 
 SWEP.RejectAttachments = {
 
@@ -159,8 +159,8 @@ SWEP.Attachments = {
         Slot = "optic",
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(0.5, 0, 4.4),
-            vang = Angle(0, 0, 0),
+            vpos = Vector( 0.5, 0, 4.4 ),
+            vang = Angle( 0, 0, 0 ),
         },
         InstalledEles = { "mount" }
     },
@@ -170,8 +170,8 @@ SWEP.Attachments = {
         Slot = "horde_bo_muzzle",
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(0.5, 0, 4.4),
-            vang = Angle(0, 0, 0),
+            vpos = Vector( 0.5, 0, 4.4 ),
+            vang = Angle( 0, 0, 0 ),
         },
     },
     {
@@ -189,8 +189,8 @@ SWEP.Attachments = {
         FreeSlot = true,
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(18.5, -0.725, 2.3),
-            vang = Angle(0, 0, 0),
+            vpos = Vector( 18.5, -0.725, 2.3 ),
+            vang = Angle( 0, 0, 0 ),
         },
         NoWM = true,
     },

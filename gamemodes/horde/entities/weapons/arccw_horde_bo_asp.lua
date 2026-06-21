@@ -72,8 +72,8 @@ SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.9
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-2.7958, 0, 1.7364),
-    Ang = Angle(0, 0, 0),
+    Pos = Vector( -2.7958, 0, 1.7364 ),
+    Ang = Angle( 0, 0, 0 ),
     Magnification = 1.1,
 }
 
@@ -81,11 +81,11 @@ SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "pistol"
 SWEP.HoldtypeSights = "revolver"
 
-SWEP.ActivePos = Vector(0, 2, 1)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 0, 2, 1 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.SprintPos = Vector(0, 0, 0)
-SWEP.SprintAng = Angle(0, 0, 0)
+SWEP.SprintPos = Vector( 0, 0, 0 )
+SWEP.SprintAng = Angle( 0, 0, 0 )
 
 SWEP.Attachments = {
     {
@@ -103,8 +103,8 @@ SWEP.Attachments = {
         FreeSlot = true,
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(1.5, -0.15, -0.5),
-            vang = Angle(0, 0, 0),
+            vpos = Vector( 1.5, -0.15, -0.5 ),
+            vang = Angle( 0, 0, 0 ),
         },
         NoWM = true,
     },

@@ -138,8 +138,8 @@ SWEP.Attachments = {
         FreeSlot = true,
         Bone = "tag_weapon",
         Offset = {
-            vpos = Vector(-0.4, -0.5, 0.2),
-            vang = Angle(0, 0, 0),
+            vpos = Vector( -0.4, -0.5, 0.2 ),
+            vang = Angle( 0, 0, 0 ),
         },
         NoWM = true,
     },
@@ -352,7 +352,7 @@ sound.Add( {
     }
 } )
 
-SWEP.Hook_TranslateAnimation = function(wep, anim)
+SWEP.Hook_TranslateAnimation = function( wep, anim )
 	local attached = wep.Attachments[2].Installed
 	
     if attached then
