@@ -6,7 +6,6 @@ ENT.Information 		= ""
 
 ENT.Spawnable 			= false
 
-
 AddCSLuaFile()
 
 ENT.Model = "models/weapons/w_bullet.mdl"
@@ -82,11 +81,9 @@ function ENT:Detonate( hitpos, hitent )
             dmg:ScaleDamage( 1 )
         end
 
-
         if self.Inflictor:GetCurrentFiremode().Mode == 2 then
         local effectdata = EffectData()
         effectdata:SetOrigin( self:GetPos() )
-        util.Decal( "ExplosiveGunshot", tr.StartPos, tr.HitPos - ( tr.HitNormal * 16 ), self )
         end
         end
     } )
@@ -97,8 +94,7 @@ end
 function ENT:PhysicsCollide( colData, collider )
     if !self:IsValid() or self.Removing then return end
     self:Detonate( colData.HitPos, colData.HitEntity )
-end
-
+    end
 end
 
 function ENT:Draw()
