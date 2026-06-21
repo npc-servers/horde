@@ -17,7 +17,6 @@ ENT.CollisionGroupType = COLLISION_GROUP_PLAYER_MOVEMENT
 ENT.Removing = nil
 
 if SERVER then
-
 function ENT:Initialize()
     local pb_vert = 2
     local pb_hor = 2
