@@ -263,9 +263,9 @@ function HORDE:GetDefaultItemInfusions()
 
     local ballistic_infusions_light = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver }
     -- Pistols
-    HORDE.items["arccw_horde_9mm"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_berserk_9mm"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
-    HORDE.items["arccw_horde_medic_9mm"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_bo_1911"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_bo_asp"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Rejuvenating }
+    HORDE.items["arccw_horde_bo_makarov"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_357"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_glock"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_usp"].infusions = ballistic_infusions_light
@@ -308,7 +308,7 @@ function HORDE:GetDefaultItemInfusions()
 
     -- Shotguns
     local ballistic_infusions_shotguns = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver, HORDE.Infusion_Siphoning, HORDE.Infusion_Hemo, HORDE.Infusion_Concussive, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Flaming }
-    HORDE.items["arccw_horde_shotgun"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_bo_stakeout"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_nova"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_870"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_mag7"].infusions = ballistic_infusions_shotguns
@@ -356,6 +356,7 @@ function HORDE:GetDefaultItemInfusions()
 
     local ballistic_infusions_mg_rifles = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Titanium, HORDE.Infusion_Siphoning }
     -- MG
+    HORDE.items["arccw_horde_bo_hk21"].infusions = ballistic_infusions_mg_rifles
     HORDE.items["arccw_horde_negev"].infusions = ballistic_infusions_mg_rifles
     HORDE.items["arccw_horde_m249"].infusions = ballistic_infusions_mg_rifles
     HORDE.items["arccw_horde_l86"].infusions = ballistic_infusions_mg_rifles
@@ -433,18 +434,18 @@ function HORDE:GetDefaultItemsData()
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
         10, -1, nil, nil, { Berserker = 5 }, nil, { HORDE.DMG_SLASH } )
 
-        HORDE:CreateItem( "Pistol", "Commander 9mm", "arccw_horde_9mm", 50, 0,
-        "9mm variant of the famed M1911.",
-        { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Ghost = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
-        2, -1, nil, "arccw/weaponicons/arccw_bo1_m1911", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Demolition", "Survivor", "Psycho" } )
-    HORDE:CreateItem( "Pistol", "Medic Makarov", "arccw_horde_medic_9mm", 75, 0,
-        "Modified Makarov that provides ranged healing.\n\nPress B or ZOOM to fire healing darts.\nHealing darts have a small splash radius.",
-        { Medic = true, Hatcher = true, Gunslinger = true },
-        2, -1, nil, "arccw/weaponicons/arccw_bo1_makarov", nil, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON }, nil, { "Medic", "Hatcher" } )
-    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_berserk_9mm", 75, 0,
-        "Modified  Smith & Wesson Model 39.\nFires Radically Invasive Projectiles that deal Slashing damage.",
+    HORDE:CreateItem( "Pistol", "Commander", "arccw_horde_bo_1911", 100, 0,
+        "Classic starter weapon for any zombie environment.",
+        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true, Engineer = true },
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_1911", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Survivor", "Psycho" } )
+    HORDE:CreateItem( "Pistol", "Makarov", "arccw_horde_bo_makarov", 100, 0,
+        "Standard pistol of Soviet design.\nThis one is loaded with healing darts.",
+        { Medic = true, Hatcher = true },
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_makarov", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Medic", "Hatcher" } )
+    HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_bo_asp", 100, 0,
+        "Low profile pistol.\nThis one is chambered in a special cartridge, designed for melee fighters.",
         { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
-        2, -1, nil, "arccw/weaponicons/arccw_bo1_asp", nil, nil, { HORDE.DMG_SLASH }, nil, nil )
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_asp", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
     HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 0,
         "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default Commander.",
         { Ghost = true, Gunslinger = true },
@@ -477,7 +478,7 @@ function HORDE:GetDefaultItemsData()
         "R8 Revolver.\nDelivers a highly accurate and powerful round,\nbut at the expense of a lengthy trigger-pull.",
         { Survivor = true, Psycho = true, Prototype = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_r8", nil, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "Pistol", "M1911 Tac", "arccw_horde_m1911", 750, 2,
+    HORDE:CreateItem( "Pistol", "M1911", "arccw_horde_m1911", 750, 2,
         "Colt 1911.\nStandard-issue sidearm for the United States Armed Forces.",
         { Ghost = true, Gunslinger = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC } )
@@ -539,7 +540,7 @@ function HORDE:GetDefaultItemsData()
     HORDE:CreateItem( "SMG", "PDW", "arccw_horde_smg1", 100, 0,
         "Heckler & Koch Personal Defense Weapon.\n Offers great firepower, but pales in comparison to the proper MP7.",
         { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
-        5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend", "Heavy", "Juggernaut" } )
+        5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend" } )
     HORDE:CreateItem( "SMG", "UZI", "arccw_horde_uzi", 1250, 3,
         "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab-Israeli War.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
@@ -594,10 +595,10 @@ function HORDE:GetDefaultItemsData()
         { Prototype = true, Medic = true, Hatcher = true, Warden = true, Overlord = true },
         10, -1, nil, nil, { Medic = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_POISON } )
     
-    HORDE:CreateItem( "Shotgun", "M3 20ga.", "arccw_horde_shotgun", 100, 0,
-        "Benelli M3 Tactical. Loaded with weaker 20-gauge shells.",
-        { Prototype = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
-        2, -1, nil, "items/hl2/weapon_shotgun.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Prototype", "Engineer", "Warden", "Overlord" } )
+    HORDE:CreateItem( "Shotgun", "Stakeout", "arccw_horde_bo_stakeout", 100, 3,
+        "Modified version of the Ithaca 37 shotgun.",
+        { Prototype = true, Engineer = true, Warden = true, Overlord = true },
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_stakeout", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Prototype", "Engineer", "Warden", "Overlord" } )
     HORDE:CreateItem( "Shotgun", "Nova", "arccw_horde_nova", 1000, 4,
         "Benelli Nova.\nItalian pump-action 12-gauge shotgun.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Engineer = true, Warden = true, Overlord = true },
@@ -755,6 +756,10 @@ function HORDE:GetDefaultItemsData()
         { Survivor = true, Psycho = true, Assault = true, SpecOps = true, Reverend = true, Demolition = true },
         10, 10, nil, nil, { Assault = 2, Demolition = 2 }, nil, { HORDE.DMG_BALLISTIC, HORDE.DMG_BLAST, HORDE.DMG_FIRE, HORDE.DMG_COLD, HORDE.DMG_LIGHTNING } )
 
+    HORDE:CreateItem( "MG", "HK21", "arccw_horde_bo_hk21", 100, 6,
+        "Low-capacity light machine gun.",
+        { Heavy = true, Juggernaut = true },
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_hk21", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Heavy", "Juggernaut" } )
     HORDE:CreateItem( "MG", "AUG HBAR", "arccw_horde_aug_hbar", 2000, 5,
         "Steyr AUG HBAR.\nA light-support machine gun variant of the AUG assault rifle.",
         { Survivor = true, Psycho = true, Heavy = true, Juggernaut = true },

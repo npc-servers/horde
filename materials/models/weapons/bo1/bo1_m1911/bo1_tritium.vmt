@@ -1,8 +1,0 @@
-"VertexlitGeneric"
-{
-	"$basetexture" "models/weapons/bo1/bo1_m1911/tritium"
-	"$bumpmap" "models/weapons/bo1/bo1_m1911/tritium_n"
-	
-	$selfillum 1
-	$translucent 1
-}
