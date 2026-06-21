@@ -15,7 +15,7 @@ SWEP.Trivia_Year = 2008
 
 SWEP.Slot = 3
 
-if GetConVar("arccw_truenames"):GetBool() then
+if GetConVar( "arccw_truenames" ):GetBool() then
     SWEP.PrintName = SWEP.TrueName
 end
 
@@ -25,8 +25,8 @@ SWEP.ViewModel = "models/horde/weapons/c_kf_vlad.mdl"
 SWEP.WorldModel = "models/horde/weapons/w_kf_vlad.mdl"
 SWEP.MirrorVMWM = false
 SWEP.WorldModelOffset = {
-    pos        =    Vector(4, 1, -2),
-    ang        =    Angle(-6, -2.5, 180),
+    pos        =    Vector( 4, 1, -2 ),
+    ang        =    Angle( -6, -2.5, 180 ),
     bone    =    "ValveBiped.Bip01_R_Hand",
 }
 SWEP.ViewModelFOV = 70
@@ -44,7 +44,7 @@ SWEP.MuzzleVelocity = 1500 -- projectile or phys bullet muzzle velocity
 SWEP.CanFireUnderwater = false
 
 SWEP.TracerNum = 1 -- tracer every X
-SWEP.TracerCol = Color(255, 25, 25)
+SWEP.TracerCol = Color( 255, 25, 25 )
 SWEP.TracerWidth = 3
 
 SWEP.ChamberSize = 0 -- how many rounds can be chambered.
@@ -106,8 +106,8 @@ SWEP.ProceduralIronFire = false
 SWEP.CaseBones = {}
 
 SWEP.IronSightStruct = {
-    Pos = Vector(0, 2.2, -0.32),
-    Ang = Angle(-0, 0, 0),
+    Pos = Vector( 0, 2.2, -0.32 ),
+    Ang = Angle( -0, 0, 0 ),
     Magnification = 1.3,
 }
 
@@ -117,17 +117,17 @@ SWEP.HoldtypeSights = "ar2"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 
-SWEP.ActivePos = Vector(3.5, 2, -1.2)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 3.5, 2, -1.2 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.HolsterPos = Vector(-2, -7.145, -11.561)
-SWEP.HolsterAng = Angle(36.533, 0, 0)
+SWEP.HolsterPos = Vector( -2, -7.145, -11.561 )
+SWEP.HolsterAng = Angle( 36.533, 0, 0 )
 
-SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
-SWEP.BarrelOffsetHip = Vector(2, 0, -2)
+SWEP.BarrelOffsetSighted = Vector( 0, 0, -1 )
+SWEP.BarrelOffsetHip = Vector( 2, 0, -2 )
 
-SWEP.CustomizePos = Vector(12, -8, -4.897)
-SWEP.CustomizeAng = Angle(12.149, 30.547, 0)
+SWEP.CustomizePos = Vector( 12, -8, -4.897 )
+SWEP.CustomizeAng = Angle( 12.149, 30.547, 0 )
 
 
 SWEP.ExtraSightDist = 5
@@ -138,10 +138,10 @@ SWEP.Attachments = {
         Slot = "charm",
         Bone = "NailGun",
         Offset = {
-            vpos = Vector(-2.5, -6.5, 3),
-            vang = Angle(0, 90, 15),
-            wpos = Vector(7, 2, -4.5),
-            wang = Angle(-5, 1, 180)
+            vpos = Vector( -2.5, -6.5, 3 ),
+            vang = Angle( 0, 90, 15 ),
+            wpos = Vector( 7, 2, -4.5 ),
+            wang = Angle( -5, 1, 180 )
         },
     },
     {
@@ -187,8 +187,8 @@ SWEP.Animations = {
         LHIKIn = 0.5,
         LHIKOut = 0.2,
                 SoundTable = {
-            {s = "ArcCW_KF1.Vlad_Out", t = 0.25},
-            {s = "ArcCW_KF1.Vlad_In", t = 1.5}
+            { s = "ArcCW_KF1.Vlad_Out", t = 0.25 },
+            { s = "ArcCW_KF1.Vlad_In", t = 1.5 }
         },
     },
 }
