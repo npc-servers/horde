@@ -51,7 +51,7 @@ HORDE.Difficulty = {
         xpMultiEnd = 5,
     },
     [3] = {
-        name = "MEDIUM", -- Medium difficulty, more enemies.
+        name = "SWARM", -- Swarm difficulty, more enemies.
         damageMultiplier = 1.8,
         enemyCountMultiplier = 1.4,
         rewardMultiplier = 0.3,
@@ -75,7 +75,7 @@ HORDE.Difficulty = {
         xpMultiEnd = 5,
     },
     [4] = {
-        name = "HARD", -- Hard difficulty, 100% mutation for non-Elite.
+        name = "CHAOS", -- Chaos difficulty, 100% mutation for non-Elite.
         damageMultiplier = 2,
         enemyCountMultiplier = 1.2,
         rewardMultiplier = 0.3,
