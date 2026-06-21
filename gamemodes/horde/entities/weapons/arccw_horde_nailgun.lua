@@ -28,15 +28,11 @@ SWEP.NoHideLeftHandInCustomization = false
 
 SWEP.Firemodes = {
     {
-    Mode = 2,
-    },
-    {
-        Mode = 1,
+        Mode = 2,
     },
     {
         Mode = 0,
-    }
-
+    },
 }
 
 -------------------- POS
