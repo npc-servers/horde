@@ -440,12 +440,12 @@ function HORDE:GetDefaultItemsData()
         2, -1, nil, "arccw/weaponicons/arccw_horde_bo_1911", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Survivor", "Psycho" } )
     HORDE:CreateItem( "Pistol", "Makarov", "arccw_horde_bo_makarov", 100, 0,
         "Standard pistol of Soviet design.\nThis one is loaded with healing darts.",
-        { Medic = true, Hatcher = true },
+        { Medic = true, Hatcher = true, Gunslinger = true },
         2, -1, nil, "arccw/weaponicons/arccw_horde_bo_makarov", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Medic", "Hatcher" } )
     HORDE:CreateItem( "Pistol", "ASP", "arccw_horde_bo_asp", 100, 0,
         "Low profile pistol.\nThis one is chambered in a special cartridge, designed for melee fighters.",
-        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true },
-        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_asp", nil, nil, { HORDE.DMG_SLASH }, nil, { "Berserker", "Samurai", "Cyborg Ninja" } )
+        { Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Paladin = true, Gunslinger = true },
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_asp", nil, nil, { HORDE.DMG_SLASH } )
     HORDE:CreateItem( "Pistol", "357", "arccw_horde_357", 100, 0,
         "Colt Python magnum revolver.\nBoasts higher stopping power compared to the default Commander.",
         { Ghost = true, Gunslinger = true },
