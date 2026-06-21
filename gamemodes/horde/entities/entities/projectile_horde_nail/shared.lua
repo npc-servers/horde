@@ -21,20 +21,20 @@ if SERVER then
 function ENT:Initialize()
     local pb_vert = 2
     local pb_hor = 2
-    self:SetModel(self.Model)
-    self:PhysicsInitBox( Vector(-pb_vert,-pb_hor,-pb_hor), Vector(pb_vert,pb_hor,pb_hor) )
+    self:SetModel ( self.Model )
+    self:PhysicsInitBox( Vector( -pb_vert, -pb_hor, -pb_hor ), Vector( pb_vert, pb_hor, pb_hor ) )
 
     local phys = self:GetPhysicsObject()
     if phys:IsValid() then
         phys:Wake()
-        phys:EnableGravity(false)
+        phys:EnableGravity( true )
     end
 
     self.SpawnTime = CurTime()
     self.HitEntitites = {}
-    self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
+    self:SetCollisionGroup( COLLISION_GROUP_PLAYER_MOVEMENT )
     if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
-    self:SetColor(Color(255,0,0))
+    self:SetColor( Color( 255, 0, 0 ) )
     end
 end
 
@@ -45,59 +45,59 @@ function ENT:Think()
     end
 end
 
-function ENT:Detonate(hitpos, hitent)
+function ENT:Detonate( hitpos, hitent )
     if !self:IsValid() or self.Removing then return end
     if self.HitEntitites[hitent] then return end
     self.HitEntitites[hitent] = true
 
     local attacker = self
 
-    if self.Owner:IsValid() then
-        attacker = self.Owner
+    if self:GetOwner():IsValid() then
+        attacker = self:GetOwner()
     end
 
-    self:FireBullets({
+    self:FireBullets( {
         Attacker = attacker,
         Inflictor = attacker,
         Damage = 50,
         Tracer = 0,
         Distance = 400,
         HullSize = 1,
-        Dir = (hitpos - self:GetPos()),
+        Dir = hitpos - self:GetPos(),
         Src = self:GetPos(),
-        Callback = function(att, tr, dmg)
-        dmg:SetAttacker(attacker)
-        dmg:SetInflictor(attacker)
-				
+        Callback = function( att, tr, dmg )
+        dmg:SetAttacker( attacker )
+        dmg:SetInflictor( attacker )
+
         if self.Inflictor:GetCurrentFiremode().Mode == 2 then
-        dmg:SetDamageType(DMG_SLASH)
+        dmg:SetDamageType( DMG_SLASH )
         end
 
         if tr.HitGroup == HITGROUP_HEAD then
-            sound.Play("physics/flesh/flesh_bloody_impact_hard1.wav", hitpos)
-            dmg:ScaleDamage(1.5)
-        end
-        
-        if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
-            sound.Play("physics/flesh/flesh_strider_impact_bullet1.wav", hitpos)
-            dmg:ScaleDamage(1)
+            sound.Play( "physics/flesh/flesh_bloody_impact_hard1.wav", hitpos )
+            dmg:ScaleDamage( 1.5 )
         end
 
-    
+        if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
+            sound.Play( "physics/flesh/flesh_strider_impact_bullet1.wav", hitpos )
+            dmg:ScaleDamage( 1 )
+        end
+
+
         if self.Inflictor:GetCurrentFiremode().Mode == 2 then
         local effectdata = EffectData()
         effectdata:SetOrigin( self:GetPos() )
-        util.Decal("ExplosiveGunshot", tr.StartPos, tr.HitPos - (tr.HitNormal * 16), self)
+        util.Decal( "ExplosiveGunshot", tr.StartPos, tr.HitPos - ( tr.HitNormal * 16 ), self )
         end
         end
-    })
+    } )
     self.Removing = true
     self:Remove()
 end
 
-function ENT:PhysicsCollide(colData, collider)
+function ENT:PhysicsCollide( colData, collider )
     if !self:IsValid() or self.Removing then return end
-    self:Detonate(colData.HitPos, colData.HitEntity)
+    self:Detonate( colData.HitPos, colData.HitEntity )
 end
 
 end
