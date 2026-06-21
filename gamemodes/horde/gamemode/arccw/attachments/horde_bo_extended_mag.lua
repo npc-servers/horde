@@ -19,7 +19,7 @@ att.Mult_SightTime = 1.1
 
 att.ActivateElements = { "ext_mag" }
 
-att.Hook_SelectReloadAnimation = function( wep, anim )
+att.Hook_SelectReloadAnimation = function( _, anim )
     if anim == "reload" then return "reload_ext"
     elseif anim == "reload_empty" then return "reload_ext_empty" end
 end
