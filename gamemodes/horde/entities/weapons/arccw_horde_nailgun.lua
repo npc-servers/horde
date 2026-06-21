@@ -19,9 +19,7 @@ SWEP.ViewModel = "models//horde/weapons/c_nailgun.mdl"
 SWEP.WorldModel = "models/horde/weapons/w_nailgun.mdl"
 SWEP.NPCWeaponType = "weapon_smg1"
 SWEP.NPCWeight = 70
-
 SWEP.MirrorVMWM = false
-
 
 SWEP.Primary.Ammo = "XbowBolt"
 SWEP.NoHideLeftHandInCustomization = false
@@ -35,7 +33,6 @@ SWEP.Firemodes = {
     },
 }
 
--------------------- POS
 SWEP.CustomizePos = Vector( 9.824, 0, -4.897 )
 SWEP.CustomizeAng = Angle( 12.149, 30.547, 0 )
 
@@ -88,9 +85,6 @@ SWEP.RecoilVMShake = 0.2
 SWEP.Sway = 0.2
 SWEP.Delay = 55 / 508
 
-
-
------------------FX
 SWEP.TracerNum = 1
 SWEP.TracerFinalMag = 0
 SWEP.Tracer = "arccw_tracer"
@@ -99,17 +93,12 @@ SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.NoShellEject = true
 SWEP.ShootSound = "weapon_nailgun.fire"
 
-------------------- MAG
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 45
 
-----------------ANIMATION
 SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 0
 SWEP.CamAttachment = 3
-
-SWEP.AttachmentElements = {
-}
 
 SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "pistol"
@@ -151,7 +140,6 @@ SWEP.Animations = {
     },
 }
 
-------------------ATTS
 SWEP.Hook_ModifyBodygroups = function( wep, data )
     local vm = data.vm
     local atts = wep.Attachments
@@ -166,7 +154,6 @@ SWEP.Hook_ModifyBodygroups = function( wep, data )
         vm:SetBodygroup( 1, 1 )
     end
 end
-
 
 SWEP.Attachments = {
        {
