@@ -112,11 +112,6 @@ SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 0
 SWEP.CamAttachment = 3
 
-SWEP.BulletBones = {
-     [0] = "bulletchamber",
-     [1] = "bullet1"
-}
-
 SWEP.AttachmentElements = {
 }
 
