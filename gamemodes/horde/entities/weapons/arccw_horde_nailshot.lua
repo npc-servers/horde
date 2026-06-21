@@ -31,24 +31,22 @@ SWEP.WorldModelOffset = {
 }
 SWEP.ViewModelFOV = 70
 
-
 SWEP.Damage = 30
-SWEP.DamageMin = 15 -- damage done at maximum range
-SWEP.Range = 50 -- in METRES
+SWEP.DamageMin = 15
+SWEP.Range = 50
 SWEP.Penetration = 13
 SWEP.DamageType = DMG_SLASH
-SWEP.ShootEntity = nil -- entity to fire, if any
-SWEP.MuzzleVelocity = 1500 -- projectile or phys bullet muzzle velocity
--- IN M/S
+SWEP.ShootEntity = nil
+SWEP.MuzzleVelocity = 1500
 
 SWEP.CanFireUnderwater = false
 
-SWEP.TracerNum = 1 -- tracer every X
+SWEP.TracerNum = 1
 SWEP.TracerCol = Color( 255, 25, 25 )
 SWEP.TracerWidth = 3
 
-SWEP.ChamberSize = 0 -- how many rounds can be chambered.
-SWEP.Primary.ClipSize = 6 -- DefaultClip is automatically set.
+SWEP.ChamberSize = 0
+SWEP.Primary.ClipSize = 6
 SWEP.ExtendedClipSize = 8
 SWEP.ReducedClipSize = 4
 
@@ -57,42 +55,35 @@ SWEP.RecoilSide = 1
 SWEP.VisualRecoilMult = 1
 SWEP.RecoilRise = 2
 
-SWEP.Delay = 60 / 300 -- 60 / RPM.
-SWEP.Num = 12 -- number of shots per trigger pull.
+SWEP.Delay = 60 / 300
+SWEP.Num = 12
 SWEP.Firemodes = {
     {
         Mode = 2,
-        PrintName = "Auto"
     },
     {
         Mode = 1,
-        PrintName = "Semi"
     },
 }
 
 SWEP.NPCWeaponType = "weapon_ar2"
 SWEP.NPCWeight = 75
 
-SWEP.AccuracyMOA = 95 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
-SWEP.HipDispersion = 150 -- inaccuracy added by hip firing.
+SWEP.AccuracyMOA = 95
+SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 200
 
-SWEP.Primary.Ammo = "XBowBolt" -- what ammo type the gun uses
-
-SWEP.ShootVol = 100 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.Primary.Ammo = "XBowBolt"
+SWEP.ShootVol = 100
+SWEP.ShootPitch = 100
 
 SWEP.ShootSound = "weapons/kf_vlad/kf_nailshotgun_fire_s.wav"
 SWEP.ShootSoundSilenced = "weapons/kf_vlad/kf_nailshotgun_fire_alt_s.wav"
 SWEP.DistantShootSound = "arccw_go/ssg08/ssg08-1-distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
-SWEP.ShellModel = "models/shells/shell_9mm.mdl"
-SWEP.ShellScale = 1
-
-SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
-SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
-
+SWEP.MuzzleEffectAttachment = 1
+SWEP.CaseEffectAttachment = 2
 SWEP.SightTime = 0.175
 
 SWEP.SpeedMult = 0.8
@@ -102,8 +93,6 @@ SWEP.BarrelLength = 18
 
 SWEP.ProceduralRegularFire = false
 SWEP.ProceduralIronFire = false
-
-SWEP.CaseBones = {}
 
 SWEP.IronSightStruct = {
     Pos = Vector( 0, 2.2, -0.32 ),
@@ -115,7 +104,7 @@ SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "smg"
 SWEP.HoldtypeSights = "ar2"
 
-SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
+SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG1
 
 SWEP.ActivePos = Vector( 3.5, 2, -1.2 )
 SWEP.ActiveAng = Angle( 0, 0, 0 )
@@ -128,9 +117,6 @@ SWEP.BarrelOffsetHip = Vector( 2, 0, -2 )
 
 SWEP.CustomizePos = Vector( 12, -8, -4.897 )
 SWEP.CustomizeAng = Angle( 12.149, 30.547, 0 )
-
-
-SWEP.ExtraSightDist = 5
 
 SWEP.Attachments = {
     {
