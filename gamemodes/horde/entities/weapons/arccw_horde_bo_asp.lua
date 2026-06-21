@@ -43,9 +43,9 @@ SWEP.RecoilVMShake = 0
 
 SWEP.Delay = 60 / 600
 SWEP.Firemodes = {
-	{
-		Mode = 1,
-	}
+    {
+        Mode = 1,
+    }
 }
 
 SWEP.NotForNPCS = true
@@ -57,11 +57,11 @@ SWEP.JumpDispersion = 50
 SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
-	")horde/weapons/bo_asp/shot_00.wav",
-	")horde/weapons/bo_asp/shot_01.wav",
-	")horde/weapons/bo_asp/shot_02.wav",
-	")horde/weapons/bo_asp/shot_03.wav",
-	")horde/weapons/bo_asp/shot_04.wav"
+    ")horde/weapons/bo_asp/shot_00.wav",
+    ")horde/weapons/bo_asp/shot_01.wav",
+    ")horde/weapons/bo_asp/shot_02.wav",
+    ")horde/weapons/bo_asp/shot_03.wav",
+    ")horde/weapons/bo_asp/shot_04.wav"
 }
 SWEP.LowShootSound = ")horde/weapons/bo_asp/lfe_00.wav"
 SWEP.DistantShootSound = ")horde/weapons/bo_asp/ringoff_00.wav"
@@ -97,7 +97,7 @@ SWEP.Attachments = {
         PrintName = "Perk",
         Slot = "go_perk"
     },
-	{
+    {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
@@ -111,95 +111,95 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	["ready"] = {
-		Source = "reg_draw_first",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_ASP.Pickup", t = 1 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_slide_back.wav", t = 5 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_slide_forward.wav", t = 11 / 40 },
-		}
-	},
-	["draw"] = {
-		Source = "reg_draw",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_ASP.Rattle", t = 1 / 60 },
-		}
-	},
-	["draw_empty"] = {
-		Source = "reg_draw_empty",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_ASP.Rattle", t = 1 / 60 },
-		}
-	},
-	["holster"] = {
-		Source = "reg_holster"
-	},
-	["holster_empty"] = {
-		Source = "reg_holster_empty"
-	},
-	["reload"] = {
-		Source = "reg_reload",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
-			{ s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_mag_out.wav", t = 5 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_futz.wav", t = 17 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_mag_in.wav", t = 24 / 40 },
-		},
-	},
-	["reload_empty"] = {
-		Source = "reg_reload_empty",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
-			{ s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_mag_out.wav", t = 5 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_futz.wav", t = 19 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_mag_in.wav", t = 24 / 40 },
-			{ s = "horde/weapons/bo_asp/reload/fly_asp_slide_forward.wav", t = 37 / 40 },
-		},
-	},
-	["fire"] = {
-		Source = "reg_fire"
-	},
-	["fire_iron"] = {
-		Source = "reg_ads_fire"
-	},
-	["fire_empty"] = {
-		Source = "reg_fire_last"
-	},
-	["fire_iron_empty"] = {
-		Source = "reg_ads_fire_last"
-	},
-	["idle"] = {
-		Source = "reg_idle"
-	},
-	["idle_empty"] = {
-		Source = "reg_idle_empty"
-	},
-	["idle_sprint"] = {
-		Source = "reg_sprint"
-	},
-	["idle_sprint_empty"] = {
-		Source = "reg_sprint_empty"
-	},
-	["enter_sprint"] = {
-		Source = "reg_sprint_in"
-	},
-	["exit_sprint"] = {
-		Source = "reg_sprint_out"
-	}
+    ["ready"] = {
+        Source = "reg_draw_first",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Pickup", t = 1 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_slide_back.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_slide_forward.wav", t = 11 / 40 },
+        }
+    },
+    ["draw"] = {
+        Source = "reg_draw",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Rattle", t = 1 / 60 },
+        }
+    },
+    ["draw_empty"] = {
+        Source = "reg_draw_empty",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Rattle", t = 1 / 60 },
+        }
+    },
+    ["holster"] = {
+        Source = "reg_holster"
+    },
+    ["holster_empty"] = {
+        Source = "reg_holster_empty"
+    },
+    ["reload"] = {
+        Source = "reg_reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_out.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_futz.wav", t = 17 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_in.wav", t = 24 / 40 },
+        },
+    },
+    ["reload_empty"] = {
+        Source = "reg_reload_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_out.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_futz.wav", t = 19 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_in.wav", t = 24 / 40 },
+            { s = "horde/weapons/bo_asp/reload/fly_asp_slide_forward.wav", t = 37 / 40 },
+        },
+    },
+    ["fire"] = {
+        Source = "reg_fire"
+    },
+    ["fire_iron"] = {
+        Source = "reg_ads_fire"
+    },
+    ["fire_empty"] = {
+        Source = "reg_fire_last"
+    },
+    ["fire_iron_empty"] = {
+        Source = "reg_ads_fire_last"
+    },
+    ["idle"] = {
+        Source = "reg_idle"
+    },
+    ["idle_empty"] = {
+        Source = "reg_idle_empty"
+    },
+    ["idle_sprint"] = {
+        Source = "reg_sprint"
+    },
+    ["idle_sprint_empty"] = {
+        Source = "reg_sprint_empty"
+    },
+    ["enter_sprint"] = {
+        Source = "reg_sprint_in"
+    },
+    ["exit_sprint"] = {
+        Source = "reg_sprint_out"
+    }
 }
 
 sound.Add( {
     name = "ArcCW_Horde_BO_ASP.Reload",
     volume = 1.0,
     sound = {
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
     }
 } )
 
@@ -207,9 +207,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_ASP.Pickup",
     volume = 1.0,
     sound = {
-    	")horde/weapons/bo_shared/foley/pickup_00.wav",
-    	")horde/weapons/bo_shared/foley/pickup_01.wav",
-    	")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo_shared/foley/pickup_00.wav",
+        ")horde/weapons/bo_shared/foley/pickup_01.wav",
+        ")horde/weapons/bo_shared/foley/pickup_02.wav"
     }
 } )
 
@@ -217,11 +217,11 @@ sound.Add( {
     name = "ArcCW_Horde_BO_ASP.Rattle",
     volume = 1.0,
     sound = {
-    	")horde/weapons/bo_shared/foley/rattle_00.wav",
-    	")horde/weapons/bo_shared/foley/rattle_01.wav",
-    	")horde/weapons/bo_shared/foley/rattle_02.wav",
-    	")horde/weapons/bo_shared/foley/rattle_03.wav",
-    	")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo_shared/foley/rattle_00.wav",
+        ")horde/weapons/bo_shared/foley/rattle_01.wav",
+        ")horde/weapons/bo_shared/foley/rattle_02.wav",
+        ")horde/weapons/bo_shared/foley/rattle_03.wav",
+        ")horde/weapons/bo_shared/foley/rattle_04.wav"
     }
 } )
 
@@ -245,7 +245,7 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
 
     local v = GetConVar( "arccw_weakensounds" ):GetFloat()
-    
+
     volume = volume - v
     volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
 
@@ -261,9 +261,9 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
 
     local data = {
-    	sound = fsound,
-    	volume = volume,
-    	pitch = pitch,
+        sound = fsound,
+        volume = volume,
+        pitch = pitch,
     }
 
     self:GetBuff_Hook( "Hook_AddShootSound", data )

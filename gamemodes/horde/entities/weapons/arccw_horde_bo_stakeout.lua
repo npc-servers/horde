@@ -51,9 +51,9 @@ SWEP.ShotgunSpreadDispersion = true
 SWEP.Delay = 60 / 300
 SWEP.Num = 7
 SWEP.Firemodes = {
-	{
-		Mode = 1,
-	}
+    {
+        Mode = 1,
+    }
 }
 
 SWEP.NotForNPCS = true
@@ -114,7 +114,7 @@ SWEP.AttachmentElements = {
 }
 
 SWEP.Attachments = {
-	{
+    {
         PrintName = "Muzzle",
         DefaultAttName = "Standard Muzzle",
         Slot = "horde_bo_muzzle"
@@ -132,7 +132,7 @@ SWEP.Attachments = {
         PrintName = "Perk",
         Slot = "go_perk"
     },
-	{
+    {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
@@ -146,176 +146,176 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	["ready"] = {
-		Source = "reg_draw_first",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Pickup", t = 1 / 40 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 15 / 40 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 20 / 40 },
-		}
-	},
-	["draw"] = {
-		Source = "reg_draw",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Rattle", t = 1 / 40 },
-		}
-	},
-	["holster"] = {
-		Source = "reg_holster"
-	},
-	["sgreload_start"] = {
-		Source = "reg_reload_start",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-			{ s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
-		},
-		RestoreAmmo = 1
-	},
-	["sgreload_insert"] = {
-		Source = "reg_reload_loop",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-			{ s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
-		},
-		TPAnimStartTime = 0.3
-	},
-	["sgreload_finish"] = {
-		Source = "reg_reload_end",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 25 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 25 },
-		}
-	},
-	["fire"] = {
-		Source = "reg_fire",
-		MinProgress = 10 / 30
-	},
-	["fire_iron"] = {
-		Source = "reg_ads_fire",
-		MinProgress = 10 / 30
-	},
-	["cycle"] = {
-		Source = "reg_rechamber",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 40 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 40 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 40 },
-		}
-	},
-	["cycle_iron"] = {
-		Source = "reg_rechamber_ads",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 30 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 30 },
-		}
-	},
-	["idle"] = {
-		Source = "reg_idle"
-	},
-	["idle_sprint"] = {
-		Source = "reg_sprint"
-	},
-	["enter_sprint"] = {
-		Source = "reg_sprint_in"
-	},
-	["exit_sprint"] = {
-		Source = "reg_sprint_out"
-	},
+    ["ready"] = {
+        Source = "reg_draw_first",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Pickup", t = 1 / 40 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 15 / 40 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 20 / 40 },
+        }
+    },
+    ["draw"] = {
+        Source = "reg_draw",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Rattle", t = 1 / 40 },
+        }
+    },
+    ["holster"] = {
+        Source = "reg_holster"
+    },
+    ["sgreload_start"] = {
+        Source = "reg_reload_start",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
+        },
+        RestoreAmmo = 1
+    },
+    ["sgreload_insert"] = {
+        Source = "reg_reload_loop",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
+        },
+        TPAnimStartTime = 0.3
+    },
+    ["sgreload_finish"] = {
+        Source = "reg_reload_end",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 25 },
+        }
+    },
+    ["fire"] = {
+        Source = "reg_fire",
+        MinProgress = 10 / 30
+    },
+    ["fire_iron"] = {
+        Source = "reg_ads_fire",
+        MinProgress = 10 / 30
+    },
+    ["cycle"] = {
+        Source = "reg_rechamber",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 40 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 40 },
+        }
+    },
+    ["cycle_iron"] = {
+        Source = "reg_rechamber_ads",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 30 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 30 },
+        }
+    },
+    ["idle"] = {
+        Source = "reg_idle"
+    },
+    ["idle_sprint"] = {
+        Source = "reg_sprint"
+    },
+    ["enter_sprint"] = {
+        Source = "reg_sprint_in"
+    },
+    ["exit_sprint"] = {
+        Source = "reg_sprint_out"
+    },
 
-	-- Foregrip
-	["ready_grip"] = {
-		Source = "grip_draw",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Pickup", t = 1 / 40 },
-		}
-	},
-	["draw_grip"] = {
-		Source = "grip_draw",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Rattle", t = 1 / 40 },
-		}
-	},
-	["holster_grip"] = {
-		Source = "grip_holster"
-	},
-	["sgreload_start_grip"] = {
-		Source = "grip_reload_start",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-			{ s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
-		},
-		RestoreAmmo = 1
-	},
-	["sgreload_insert_grip"] = {
-		Source = "grip_reload_loop",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-			{ s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
-		},
-		TPAnimStartTime = 0.3
-	},
-	["sgreload_finish_grip"] = {
-		Source = "grip_reload_end",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 25 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 25 },
-		}
-	},
-	["fire_grip"] = {
-		Source = "grip_fire",
-		MinProgress = 10 / 30
-	},
-	["fire_iron_grip"] = {
-		Source = "grip_ads_fire",
-		MinProgress = 10 / 30
-	},
-	["cycle_grip"] = {
-		Source = "grip_rechamber",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 40 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 40 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 40 },
-		}
-	},
-	["cycle_iron_grip"] = {
-		Source = "grip_rechamber_ads",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 30 },
-			{ s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 30 },
-		}
-	},
-	["idle_grip"] = {
-		Source = "grip_idle"
-	},
-	["idle_sprint_grip"] = {
-		Source = "grip_sprint"
-	},
-	["enter_sprint_grip"] = {
-		Source = "grip_sprint_in"
-	},
-	["exit_sprint_grip"] = {
-		Source = "grip_sprint_out"
-	}
+    -- Foregrip
+    ["ready_grip"] = {
+        Source = "grip_draw",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Pickup", t = 1 / 40 },
+        }
+    },
+    ["draw_grip"] = {
+        Source = "grip_draw",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Rattle", t = 1 / 40 },
+        }
+    },
+    ["holster_grip"] = {
+        Source = "grip_holster"
+    },
+    ["sgreload_start_grip"] = {
+        Source = "grip_reload_start",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
+        },
+        RestoreAmmo = 1
+    },
+    ["sgreload_insert_grip"] = {
+        Source = "grip_reload_loop",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
+        },
+        TPAnimStartTime = 0.3
+    },
+    ["sgreload_finish_grip"] = {
+        Source = "grip_reload_end",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 25 },
+        }
+    },
+    ["fire_grip"] = {
+        Source = "grip_fire",
+        MinProgress = 10 / 30
+    },
+    ["fire_iron_grip"] = {
+        Source = "grip_ads_fire",
+        MinProgress = 10 / 30
+    },
+    ["cycle_grip"] = {
+        Source = "grip_rechamber",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 40 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 40 },
+        }
+    },
+    ["cycle_iron_grip"] = {
+        Source = "grip_rechamber_ads",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_pull.wav", t = 5 / 30 },
+            { s = "horde/weapons/bo_shared/reload/fly_rem870_push.wav", t = 10 / 30 },
+        }
+    },
+    ["idle_grip"] = {
+        Source = "grip_idle"
+    },
+    ["idle_sprint_grip"] = {
+        Source = "grip_sprint"
+    },
+    ["enter_sprint_grip"] = {
+        Source = "grip_sprint_in"
+    },
+    ["exit_sprint_grip"] = {
+        Source = "grip_sprint_out"
+    }
 }
 
 sound.Add( {
     name = "ArcCW_Horde_BO_Stakeout.Load",
     volume = 1.0,
     sound = {
-    	"horde/weapons/bo_shared/reload/load_00.wav",
-    	"horde/weapons/bo_shared/reload/load_01.wav",
-    	"horde/weapons/bo_shared/reload/load_02.wav",
-    	"horde/weapons/bo_shared/reload/load_03.wav",
-    	"horde/weapons/bo_shared/reload/load_04.wav",
-    	"horde/weapons/bo_shared/reload/load_05.wav"
+        "horde/weapons/bo_shared/reload/load_00.wav",
+        "horde/weapons/bo_shared/reload/load_01.wav",
+        "horde/weapons/bo_shared/reload/load_02.wav",
+        "horde/weapons/bo_shared/reload/load_03.wav",
+        "horde/weapons/bo_shared/reload/load_04.wav",
+        "horde/weapons/bo_shared/reload/load_05.wav"
     }
 } )
 
@@ -323,10 +323,10 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Stakeout.Reload",
     volume = 1.0,
     sound = {
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
     }
 } )
 
@@ -334,9 +334,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Stakeout.Pickup",
     volume = 1.0,
     sound = {
-    	")horde/weapons/bo_shared/foley/pickup_00.wav",
-    	")horde/weapons/bo_shared/foley/pickup_01.wav",
-    	")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo_shared/foley/pickup_00.wav",
+        ")horde/weapons/bo_shared/foley/pickup_01.wav",
+        ")horde/weapons/bo_shared/foley/pickup_02.wav"
     }
 } )
 
@@ -344,19 +344,19 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Stakeout.Rattle",
     volume = 1.0,
     sound = {
-    	")horde/weapons/bo_shared/foley/rattle_00.wav",
-    	")horde/weapons/bo_shared/foley/rattle_01.wav",
-    	")horde/weapons/bo_shared/foley/rattle_02.wav",
-    	")horde/weapons/bo_shared/foley/rattle_03.wav",
-    	")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo_shared/foley/rattle_00.wav",
+        ")horde/weapons/bo_shared/foley/rattle_01.wav",
+        ")horde/weapons/bo_shared/foley/rattle_02.wav",
+        ")horde/weapons/bo_shared/foley/rattle_03.wav",
+        ")horde/weapons/bo_shared/foley/rattle_04.wav"
     }
 } )
 
 SWEP.Hook_TranslateAnimation = function( wep, anim )
-	local attached = wep.Attachments[2].Installed
-	
+    local attached = wep.Attachments[2].Installed
+
     if attached then
-        return anim .. "_grip"	
+        return anim .. "_grip"
     end
 end
 
@@ -380,7 +380,7 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
 
     local v = GetConVar( "arccw_weakensounds" ):GetFloat()
-    
+
     volume = volume - v
     volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
 
@@ -396,9 +396,9 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
 
     local data = {
-    	sound = fsound,
-    	volume = volume,
-    	pitch = pitch,
+        sound = fsound,
+        volume = volume,
+        pitch = pitch,
     }
 
     self:GetBuff_Hook( "Hook_AddShootSound", data )

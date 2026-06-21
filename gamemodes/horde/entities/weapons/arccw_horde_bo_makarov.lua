@@ -42,9 +42,9 @@ SWEP.RecoilVMShake = 0
 
 SWEP.Delay = 60 / 800
 SWEP.Firemodes = {
-	{
-		Mode = 1,
-	}
+    {
+        Mode = 1,
+    }
 }
 
 SWEP.NotForNPCS = true
@@ -56,19 +56,19 @@ SWEP.MoveDispersion = 50
 SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
-	")horde/weapons/bo_makarov/shot_00.wav",
-	")horde/weapons/bo_makarov/shot_01.wav",
-	")horde/weapons/bo_makarov/shot_02.wav",
-	")horde/weapons/bo_makarov/shot_03.wav",
-	")horde/weapons/bo_makarov/shot_04.wav"
+    ")horde/weapons/bo_makarov/shot_00.wav",
+    ")horde/weapons/bo_makarov/shot_01.wav",
+    ")horde/weapons/bo_makarov/shot_02.wav",
+    ")horde/weapons/bo_makarov/shot_03.wav",
+    ")horde/weapons/bo_makarov/shot_04.wav"
 }
 SWEP.LowShootSound = ")horde/weapons/bo_makarov/lfe_00.wav"
 SWEP.ShootSoundSilenced = {
-	")horde/weapons/bo_shared/silenced/m16_silenced_00.wav",
-	")horde/weapons/bo_shared/silenced/m16_silenced_01.wav",
-	")horde/weapons/bo_shared/silenced/m16_silenced_02.wav",
-	")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
-	")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
+    ")horde/weapons/bo_shared/silenced/m16_silenced_00.wav",
+    ")horde/weapons/bo_shared/silenced/m16_silenced_01.wav",
+    ")horde/weapons/bo_shared/silenced/m16_silenced_02.wav",
+    ")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
+    ")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
 }
 SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
 SWEP.DistantShootSound = ")horde/weapons/bo_makarov/ringoff_00.wav"
@@ -117,7 +117,7 @@ SWEP.AttachmentElements = {
 }
 
 SWEP.Attachments = {
-	{
+    {
         PrintName = "Muzzle",
         DefaultAttName = "Standard Muzzle",
         Slot = "horde_bo_muzzle"
@@ -136,7 +136,7 @@ SWEP.Attachments = {
         PrintName = "Perk",
         Slot = "go_perk"
     },
-	{
+    {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
@@ -150,118 +150,118 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	["ready"] = {
-		Source = "reg_draw_first",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Pickup", t = 1 / 35 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_back.wav", t = 7 / 35 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 24 / 35 },
-		}
-	},
-	["draw"] = {
-		Source = "reg_draw",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Rattle", t = 1 / 40 },
-		}
-	},
-	["draw_empty"] = {
-		Source = "reg_draw_empty",
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Rattle", t = 1 / 40 },
-		}
-	},
-	["holster"] = {
-		Source = "reg_holster"
-	},
-	["holster_empty"] = {
-		Source = "reg_holster_empty"
-	},
-	["reload"] = {
-		Source = "reg_reload",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 17 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
-		}
-	},
-	["reload_ext"] = {
-		Source = "reg_reload_ext",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 17 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
-		}
-	},
-	["reload_empty"] = {
-		Source = "reg_reload_empty",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 19 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 32 / 25 },
-		}
-	},
-	["reload_ext_empty"] = {
-		Source = "reg_reload_empty_ext",
-		TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-		SoundTable = {
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
-			{ s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 19 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
-			{ s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 32 / 25 },
-		}
-	},
-	["fire"] = {
-		Source = "reg_fire"
-	},
-	["fire_iron"] = {
-		Source = "reg_ads_fire"
-	},
-	["fire_empty"] = {
-		Source = "reg_fire_last"
-	},
-	["fire_iron_empty"] = {
-		Source = "reg_ads_fire_last"
-	},
-	["idle"] = {
-		Source = "reg_idle"
-	},
-	["idle_empty"] = {
-		Source = "reg_idle_empty"
-	},
-	["idle_sprint"] = {
-		Source = "reg_sprint"
-	},
-	["idle_sprint_empty"] = {
-		Source = "reg_sprint_empty"
-	},
-	["enter_sprint"] = {
-		Source = "reg_sprint_in"
-	},
-	["exit_sprint"] = {
-		Source = "reg_sprint_out"
-	}
+    ["ready"] = {
+        Source = "reg_draw_first",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Pickup", t = 1 / 35 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_back.wav", t = 7 / 35 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 24 / 35 },
+        }
+    },
+    ["draw"] = {
+        Source = "reg_draw",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Rattle", t = 1 / 40 },
+        }
+    },
+    ["draw_empty"] = {
+        Source = "reg_draw_empty",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Rattle", t = 1 / 40 },
+        }
+    },
+    ["holster"] = {
+        Source = "reg_holster"
+    },
+    ["holster_empty"] = {
+        Source = "reg_holster_empty"
+    },
+    ["reload"] = {
+        Source = "reg_reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 17 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
+        }
+    },
+    ["reload_ext"] = {
+        Source = "reg_reload_ext",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 17 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
+        }
+    },
+    ["reload_empty"] = {
+        Source = "reg_reload_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 19 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 32 / 25 },
+        }
+    },
+    ["reload_ext_empty"] = {
+        Source = "reg_reload_empty_ext",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
+            { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 19 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 32 / 25 },
+        }
+    },
+    ["fire"] = {
+        Source = "reg_fire"
+    },
+    ["fire_iron"] = {
+        Source = "reg_ads_fire"
+    },
+    ["fire_empty"] = {
+        Source = "reg_fire_last"
+    },
+    ["fire_iron_empty"] = {
+        Source = "reg_ads_fire_last"
+    },
+    ["idle"] = {
+        Source = "reg_idle"
+    },
+    ["idle_empty"] = {
+        Source = "reg_idle_empty"
+    },
+    ["idle_sprint"] = {
+        Source = "reg_sprint"
+    },
+    ["idle_sprint_empty"] = {
+        Source = "reg_sprint_empty"
+    },
+    ["enter_sprint"] = {
+        Source = "reg_sprint_in"
+    },
+    ["exit_sprint"] = {
+        Source = "reg_sprint_out"
+    }
 }
 
 sound.Add( {
     name = "ArcCW_Horde_BO_Makarov.Reload",
     volume = 1.0,
     sound = {
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-    	"horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
+        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
     }
 } )
 
@@ -269,9 +269,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Makarov.Pickup",
     volume = 1.0,
     sound = {
-    	")horde/weapons/bo_shared/foley/pickup_00.wav",
-    	")horde/weapons/bo_shared/foley/pickup_01.wav",
-    	")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo_shared/foley/pickup_00.wav",
+        ")horde/weapons/bo_shared/foley/pickup_01.wav",
+        ")horde/weapons/bo_shared/foley/pickup_02.wav"
     }
 } )
 
@@ -279,11 +279,11 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Makarov.Rattle",
     volume = 1.0,
     sound = {
-    	")horde/weapons/bo_shared/foley/rattle_00.wav",
-    	")horde/weapons/bo_shared/foley/rattle_01.wav",
-    	")horde/weapons/bo_shared/foley/rattle_02.wav",
-    	")horde/weapons/bo_shared/foley/rattle_03.wav",
-    	")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo_shared/foley/rattle_00.wav",
+        ")horde/weapons/bo_shared/foley/rattle_01.wav",
+        ")horde/weapons/bo_shared/foley/rattle_02.wav",
+        ")horde/weapons/bo_shared/foley/rattle_03.wav",
+        ")horde/weapons/bo_shared/foley/rattle_04.wav"
     }
 } )
 
@@ -363,10 +363,10 @@ end
 hook.Add( "Hook_BulletHit", "Horde_Makarov_Heal", function( wpn, data )
     if wpn:GetClass() == "arccw_horde_bo_makarov" then
         if SERVER and ( data.tr.Entity:IsPlayer() ) then
-        	local healinfo = HealInfo:New( { amount = 5, healer = wpn:GetOwner() } )
-			HORDE:OnPlayerHeal( data.tr.Entity, healinfo )
+            local healinfo = HealInfo:New( { amount = 5, healer = wpn:GetOwner() } )
+            HORDE:OnPlayerHeal( data.tr.Entity, healinfo )
 
-			data.Damage = 0
+            data.Damage = 0
         end
         if CLIENT then
             local emitter = ParticleEmitter( data.tr.HitPos )
@@ -494,7 +494,7 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
 
     local v = GetConVar( "arccw_weakensounds" ):GetFloat()
-    
+
     volume = volume - v
     volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
 
@@ -510,9 +510,9 @@ function SWEP:DoShootSound( sndoverride, dsndoverride, voloverride, pitchoverrid
     if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
 
     local data = {
-    	sound = fsound,
-    	volume = volume,
-    	pitch = pitch,
+        sound = fsound,
+        volume = volume,
+        pitch = pitch,
     }
 
     self:GetBuff_Hook( "Hook_AddShootSound", data )
