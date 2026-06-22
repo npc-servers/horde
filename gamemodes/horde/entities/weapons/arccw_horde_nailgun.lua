@@ -10,7 +10,7 @@ SWEP.NeverPhysBullet = true
 SWEP.PrintName = "Nailgun"
 SWEP.Trivia_Class = "Submachine Gun"
 SWEP.Trivia_Desc = "Power tool modified to fire nails without attaching it to a surface. Nails have no damage dropoff, at the cost of low velocity."
-SWEP.Trivia_Manufacturer = "Unlocked"
+SWEP.Trivia_Manufacturer = "DutyTool"
 SWEP.Trivia_Calibre = "Steel Nail"
 SWEP.SubCategory = "Sub-Machine Guns"
 
@@ -25,12 +25,8 @@ SWEP.Primary.Ammo = "XbowBolt"
 SWEP.NoHideLeftHandInCustomization = false
 
 SWEP.Firemodes = {
-    {
-        Mode = 2,
-    },
-    {
-        Mode = 0,
-    },
+    { Mode = 2, },
+    { Mode = 0, },
 }
 
 SWEP.CustomizePos = Vector( 9.824, 0, -4.897 )
@@ -106,24 +102,12 @@ SWEP.HoldtypeSights = "revolver"
 SWEP.HoldtypeCustomize = "slam"
 
 SWEP.Animations = {
-    ["idle"] = {
-        Source = "idle",
-    },
-    ["idle_empty"] = {
-        Source = "idle_empty",
-    },
-    ["holster"] = {
-        Source = "holster",
-    },
-    ["draw"] = {
-        Source = "draw",
-    },
-    ["holster_empty"] = {
-        Source = "holster_empty",
-    },
-    ["draw_empty"] = {
-        Source = "draw_empty",
-    },
+    ["idle"] = { Source = "idle", },
+    ["idle_empty"] = { Source = "idle_empty", },
+    ["holster"] = { Source = "holster", },
+    ["draw"] = { Source = "draw", },
+    ["holster_empty"] = { Source = "holster_empty", },
+    ["draw_empty"] = { Source = "draw_empty", },
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
@@ -144,7 +128,7 @@ SWEP.Hook_ModifyBodygroups = function( wep, data )
     local vm = data.vm
     local atts = wep.Attachments
 
-    if !IsValid( vm ) then return end
+    if not IsValid( vm ) then return end
 
     if wep.BaseClass and wep.BaseClass.Hook_ModifyBodygroups then
         wep.BaseClass.Hook_ModifyBodygroups( wep, data )
@@ -156,12 +140,12 @@ SWEP.Hook_ModifyBodygroups = function( wep, data )
 end
 
 SWEP.Attachments = {
-       {
+    {
         PrintName = "Perks",
         Slot = { "go_perk", "go_perk_smg" },
         DefaultAttName = "None"
-    },
-    {
+        },
+        {
         PrintName = "Charms",
         Slot = "charm",
         Bone = "tag_barrel_attach",
