@@ -25,8 +25,8 @@ SWEP.Primary.Ammo = "XbowBolt"
 SWEP.NoHideLeftHandInCustomization = false
 
 SWEP.Firemodes = {
-    { Mode = 2, },
-    { Mode = 0, },
+    { Mode = 2 },
+    { Mode = 0 },
 }
 
 SWEP.CustomizePos = Vector( 9.824, 0, -4.897 )
@@ -39,7 +39,7 @@ SWEP.ActivePos = Vector( -1.651, 0.5, 0.5 )
 SWEP.ActiveAng = Angle( 0, 0, 0 )
 
 SWEP.SprintPos = Vector( -1.651, 0.5, 0.5 )
-SWEP.SprintAng = Angle ( -18, 0, 0 )
+SWEP.SprintAng = Angle( -18, 0, 0 )
 
 SWEP.IronSightStruct = {
     Pos = Vector( -3.8, 0, -0.6 ),
@@ -102,12 +102,12 @@ SWEP.HoldtypeSights = "revolver"
 SWEP.HoldtypeCustomize = "slam"
 
 SWEP.Animations = {
-    ["idle"] = { Source = "idle", },
-    ["idle_empty"] = { Source = "idle_empty", },
-    ["holster"] = { Source = "holster", },
-    ["draw"] = { Source = "draw", },
-    ["holster_empty"] = { Source = "holster_empty", },
-    ["draw_empty"] = { Source = "draw_empty", },
+    ["idle"] = { Source = "idle" },
+    ["idle_empty"] = { Source = "idle_empty" },
+    ["holster"] = { Source = "holster" },
+    ["draw"] = { Source = "draw" },
+    ["holster_empty"] = { Source = "holster_empty" },
+    ["draw_empty"] = { Source = "draw_empty" },
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
@@ -115,8 +115,11 @@ SWEP.Animations = {
         LHIKIn = 0.25,
         LHIKOut = 0.25,
         SoundTable = {
-            { s = "ArcCW_Horde.Nailgun_Out", t = 0.227 },
-            { s = "ArcCW_Horde.Nailgun_In", t = 1.5 }
+            { s = "ArcCW_Horde.Nailgun_Out",
+              t = 0.227 },
+
+            { s = "ArcCW_Horde.Nailgun_In",
+              t = 1.5 }
         },
     },
     ["reload_empty"] = {
@@ -126,8 +129,11 @@ SWEP.Animations = {
         LHIKIn = 0.45,
         LHIKOut = 0.25,
         SoundTable = {
-            { s = "ArcCW_Horde.Nailgun_Out", t = 0.227 },
-            { s = "ArcCW_Horde.Nailgun_In", t = 1.5 }
+            { s = "ArcCW_Horde.Nailgun_Out",
+              t = 0.227 },
+
+            { s = "ArcCW_Horde.Nailgun_In",
+              t = 1.5 }
         },
     },
 }
@@ -150,6 +156,7 @@ SWEP.Attachments = {
         },
     },
 }
+
 sound.Add( {
     name = "ArcCW_Horde.Nailgun_Out",
     channel = CHAN_WEAPON,
@@ -158,6 +165,7 @@ sound.Add( {
     pitch = 100,
     sound = ")weapons/sm_nailgun/fly_nail_mag_out.wav"
 } )
+
 sound.Add( {
     name = "ArcCW_Horde.Nailgun_In",
     channel = CHAN_WEAPON,
