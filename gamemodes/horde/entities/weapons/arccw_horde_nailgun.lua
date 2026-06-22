@@ -87,7 +87,7 @@ SWEP.Tracer = "arccw_tracer"
 SWEP.TracerCol = Color( 255, 255, 255 )
 SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.NoShellEject = true
-SWEP.ShootSound = "weapon_nailgun.fire"
+SWEP.ShootSound = "weapons/sm_nailgun/nailgun_fire.wav"
 
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 45
@@ -114,38 +114,31 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0.25,
         LHIKOut = 0.25,
+        SoundTable = {
+            { s = "ArcCW_Horde.Nailgun_Out", t = 0.227 },
+            { s = "ArcCW_Horde.Nailgun_In", t = 1.5 }
+        },
     },
     ["reload_empty"] = {
         Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
-        LHIKIn = 0.25,
+        LHIKIn = 0.45,
         LHIKOut = 0.25,
+        SoundTable = {
+            { s = "ArcCW_Horde.Nailgun_Out", t = 0.227 },
+            { s = "ArcCW_Horde.Nailgun_In", t = 1.5 }
+        },
     },
 }
-
-SWEP.Hook_ModifyBodygroups = function( wep, data )
-    local vm = data.vm
-    local atts = wep.Attachments
-
-    if not IsValid( vm ) then return end
-
-    if wep.BaseClass and wep.BaseClass.Hook_ModifyBodygroups then
-        wep.BaseClass.Hook_ModifyBodygroups( wep, data )
-    end
-
-    if atts[1] and atts[1].Installed then
-        vm:SetBodygroup( 1, 1 )
-    end
-end
 
 SWEP.Attachments = {
     {
         PrintName = "Perks",
         Slot = { "go_perk", "go_perk_smg" },
         DefaultAttName = "None"
-        },
-        {
+    },
+    {
         PrintName = "Charms",
         Slot = "charm",
         Bone = "tag_barrel_attach",
@@ -157,3 +150,19 @@ SWEP.Attachments = {
         },
     },
 }
+sound.Add( {
+    name = "ArcCW_Horde.Nailgun_Out",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/sm_nailgun/fly_nail_mag_out.wav"
+} )
+sound.Add( {
+    name = "ArcCW_Horde.Nailgun_In",
+    channel = CHAN_WEAPON,
+    volume = 1.0,
+    level = 75,
+    pitch = 100,
+    sound = ")weapons/sm_nailgun/fly_nail_mag_in.wav"
+} )

@@ -91,9 +91,9 @@ SWEP.ProceduralRegularFire = false
 SWEP.ProceduralIronFire = false
 
 SWEP.IronSightStruct = {
-    Pos = Vector( 0, 2.2, -0.32 ),
-    Ang = Angle( -0, 0, 0 ),
-    Magnification = 1.3,
+    Pos = Vector( 0, 1, -0.52 ),
+    Ang = Angle( 1.5, 0, 0 ),
+    Magnification = 1,
 }
 
 SWEP.HoldtypeHolstered = "normal"
@@ -133,18 +133,12 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-    ["idle"] = {
-    Source = "idle",
-    Time = 10,
-    },
+    ["idle"] = { Source = "idle", Time = 10, },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
         SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
+            { s = "weapons/arccw/draw_secondary.wav", t = 0 }
         },
         LHIK = true,
         LHIKIn = 0,
@@ -168,7 +162,7 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.2,
-                SoundTable = {
+        SoundTable = {
             { s = "ArcCW_KF1.Vlad_Out", t = 0.25 },
             { s = "ArcCW_KF1.Vlad_In", t = 1.5 }
         },
