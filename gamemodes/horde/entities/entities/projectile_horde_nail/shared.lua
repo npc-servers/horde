@@ -32,7 +32,7 @@ function ENT:Initialize()
     self.HitEntitites = {}
     self:SetCollisionGroup( COLLISION_GROUP_PLAYER_MOVEMENT )
     if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
-    self:SetColor( Color( 255, 0, 0 ) )
+        self:SetColor( Color( 255, 0, 0 ) )
     end
 end
 
@@ -55,36 +55,36 @@ function ENT:Detonate( hitpos, hitent )
     end
 
     self:FireBullets( {
-    Attacker = attacker,
-    Inflictor = attacker,
-    Damage = 50,
-    Tracer = 0,
-    Distance = 400,
-    HullSize = 1,
-    Dir = hitpos - self:GetPos(),
-    Src = self:GetPos(),
-    Callback = function( _, tr, dmg )
-    dmg:SetAttacker( attacker )
-    dmg:SetInflictor( attacker )
+        Attacker = attacker,
+        Inflictor = attacker,
+        Damage = 50,
+        Tracer = 0,
+        Distance = 400,
+        HullSize = 1,
+        Dir = hitpos - self:GetPos(),
+        Src = self:GetPos(),
+        Callback = function( _, tr, dmg )
+            dmg:SetAttacker( attacker )
+            dmg:SetInflictor( attacker )
 
-    if self.Inflictor:GetCurrentFiremode().Mode == 2 then
-    dmg:SetDamageType( DMG_SLASH )
-    end
+            if self.Inflictor:GetCurrentFiremode().Mode == 2 then
+                dmg:SetDamageType( DMG_SLASH )
+            end
 
-    if tr.HitGroup == HITGROUP_HEAD then
-        sound.Play( "physics/flesh/flesh_bloody_impact_hard1.wav", hitpos )
-        dmg:ScaleDamage( 1.5 )
-    end
+            if tr.HitGroup == HITGROUP_HEAD then
+                sound.Play( "physics/flesh/flesh_bloody_impact_hard1.wav", hitpos )
+                dmg:ScaleDamage( 1.5 )
+            end
 
-    if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
-        sound.Play( "physics/flesh/flesh_strider_impact_bullet1.wav", hitpos )
-        dmg:ScaleDamage( 1 )
-    end
+            if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
+                sound.Play( "physics/flesh/flesh_strider_impact_bullet1.wav", hitpos )
+                dmg:ScaleDamage( 1 )
+            end
 
-    if self.Inflictor:GetCurrentFiremode().Mode == 2 then
-    local effectdata = EffectData()
-    effectdata:SetOrigin( self:GetPos() )
-    end
+            if self.Inflictor:GetCurrentFiremode().Mode == 2 then
+                local effectdata = EffectData()
+                effectdata:SetOrigin( self:GetPos() )
+            end
     end
     } )
     self.Removing = true
