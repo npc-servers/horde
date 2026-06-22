@@ -16,36 +16,32 @@ ENT.CollisionGroupType = COLLISION_GROUP_PLAYER_MOVEMENT
 ENT.Removing = nil
 
 if SERVER then
-function ENT:Initialize()
-    local pb_vert = 2
-    local pb_hor = 2
-    self:SetModel ( self.Model )
-    self:PhysicsInitBox( Vector( -pb_vert, -pb_hor, -pb_hor ), Vector( pb_vert, pb_hor, pb_hor ) )
+    function ENT:Initialize()
+        local pb_vert = 2
+        local pb_hor = 2
+        self:SetModel ( self.Model )
+        self:PhysicsInitBox( Vector( -pb_vert, -pb_hor, -pb_hor ), Vector( pb_vert, pb_hor, pb_hor ) )
 
-    local phys = self:GetPhysicsObject()
-    if phys:IsValid() then
+        local phys = self:GetPhysicsObject()
+        if phys:IsValid() then
         phys:Wake()
         phys:EnableGravity( true )
-    end
+        end
 
     self.SpawnTime = CurTime()
     self.HitEntitites = {}
     self:SetCollisionGroup( COLLISION_GROUP_PLAYER_MOVEMENT )
+
     if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
         self:SetColor( Color( 255, 0, 0 ) )
     end
 end
 
-function ENT:Think()
-    if SERVER and CurTime() - self.SpawnTime >= self.FuseTime and not self.Removing then
-        self.Removing = true
-        self:Remove()
-    end
-end
 
 function ENT:Detonate( hitpos, hitent )
     if not self:IsValid() or self.Removing then return end
     if self.HitEntitites[hitent] then return end
+
     self.HitEntitites[hitent] = true
 
     local attacker = self
@@ -85,15 +81,15 @@ function ENT:Detonate( hitpos, hitent )
                 local effectdata = EffectData()
                 effectdata:SetOrigin( self:GetPos() )
             end
-    end
-    } )
+        end } )
+
     self.Removing = true
     self:Remove()
 end
 
-function ENT:PhysicsCollide( colData )
-    if not self:IsValid() or self.Removing then return end
-    self:Detonate( colData.HitPos, colData.HitEntity )
+    function ENT:PhysicsCollide( colData )
+        if not self:IsValid() or self.Removing then return end
+        self:Detonate( colData.HitPos, colData.HitEntity )
     end
 end
 
