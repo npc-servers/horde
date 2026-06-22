@@ -58,12 +58,8 @@ SWEP.RecoilRise = 2
 SWEP.Delay = 60 / 300
 SWEP.Num = 12
 SWEP.Firemodes = {
-    {
-        Mode = 2,
-    },
-    {
-        Mode = 1,
-    },
+    { Mode = 2, },
+    { Mode = 1, },
 }
 
 SWEP.NPCWeaponType = "weapon_ar2"
