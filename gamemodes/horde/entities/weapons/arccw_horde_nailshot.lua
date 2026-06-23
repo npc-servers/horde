@@ -27,7 +27,7 @@ SWEP.MirrorVMWM = false
 SWEP.WorldModelOffset = {
     pos        =    Vector( 4, 1, -2 ),
     ang        =    Angle( -6, -2.5, 180 ),
-    bone    =    "ValveBiped.Bip01_R_Hand",
+    bone       =    "ValveBiped.Bip01_R_Hand",
 }
 SWEP.ViewModelFOV = 70
 
@@ -58,8 +58,8 @@ SWEP.RecoilRise = 2
 SWEP.Delay = 60 / 300
 SWEP.Num = 12
 SWEP.Firemodes = {
-    { Mode = 2, },
-    { Mode = 1, },
+    { Mode = 2 },
+    { Mode = 1 },
 }
 
 SWEP.NPCWeaponType = "weapon_ar2"
@@ -138,7 +138,8 @@ SWEP.Animations = {
         Source = "draw",
         Time = 0.5,
         SoundTable = {
-            { s = "weapons/arccw/draw_secondary.wav", t = 0 }
+            { s = "weapons/arccw/draw_secondary.wav",
+              t = 0 }
         },
         LHIK = true,
         LHIKIn = 0,
@@ -163,11 +164,14 @@ SWEP.Animations = {
         LHIKIn = 0.5,
         LHIKOut = 0.2,
         SoundTable = {
-            { s = "ArcCW_KF1.Vlad_Out", t = 0.25 },
-            { s = "ArcCW_KF1.Vlad_In", t = 1.5 }
+            { s = "ArcCW_KF1.Vlad_Out",
+              t = 0.25 },
+            { s = "ArcCW_KF1.Vlad_In",
+              t = 1.5 }
         },
     },
 }
+
 sound.Add( {
     name = "ArcCW_KF1.Vlad_Out",
     channel = CHAN_WEAPON,
@@ -176,6 +180,7 @@ sound.Add( {
     pitch = 100,
     sound = ")weapons/kf_vlad/vlad9000_mag_eject.wav"
 } )
+
 sound.Add( {
     name = "ArcCW_KF1.Vlad_In",
     channel = CHAN_WEAPON,
