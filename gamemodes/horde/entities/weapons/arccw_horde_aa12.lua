@@ -18,6 +18,7 @@ SWEP.WorldModel = "models/weapons/w_shot_xm1014.mdl"
 SWEP.Damage = 45
 SWEP.DamageMin = 26
 SWEP.Range = 40
+SWEP.RangeMin = 15
 SWEP.Penetration = 10
 
 SWEP.Delay = 60 / 300 -- 60 / RPM.

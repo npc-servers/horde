@@ -15,8 +15,8 @@ SWEP.PrintName = "M1014"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 
-SWEP.Damage = 30
-SWEP.DamageMin = 16
+SWEP.Damage = 35
+SWEP.DamageMin = 20
 SWEP.Penetration = 10
 
 SWEP.Recoil = 2
