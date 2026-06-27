@@ -27,7 +27,7 @@ SWEP.DamageMin = 32
 SWEP.Range = 100
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 30
+SWEP.Primary.ClipSize = 50
 
 SWEP.Recoil = 0.6
 SWEP.RecoilSide = 0.25
@@ -59,27 +59,21 @@ SWEP.BipodRecoil = 0.45
 SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
-    ")horde/weapons/bo_hk21/shot_00.wav",
-    ")horde/weapons/bo_hk21/shot_01.wav",
-    ")horde/weapons/bo_hk21/shot_02.wav",
-    ")horde/weapons/bo_hk21/shot_03.wav"
+    ")horde/weapons/bo/hk21/fire_01.wav",
+    ")horde/weapons/bo/hk21/fire_02.wav",
+    ")horde/weapons/bo/hk21/fire_03.wav",
+    ")horde/weapons/bo/hk21/fire_04.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo_hk21/lfe_00.wav"
+SWEP.LowShootSound = ")horde/weapons/bo/hk21/fire_lfe.wav"
 SWEP.ShootSoundSilenced = {
-    ")horde/weapons/bo_shared/silenced/m16_silenced_00.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_01.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_02.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
+    ")horde/weapons/bo/hk21/silenced_01.wav",
+    ")horde/weapons/bo/hk21/silenced_02.wav",
+    ")horde/weapons/bo/hk21/silenced_03.wav",
+    ")horde/weapons/bo/hk21/silenced_04.wav",
+    ")horde/weapons/bo/hk21/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
-SWEP.DistantShootSound = {
-    ")horde/weapons/bo_shared/famas_dist_00.wav",
-    ")horde/weapons/bo_shared/famas_dist_01.wav",
-    ")horde/weapons/bo_shared/famas_dist_02.wav",
-    ")horde/weapons/bo_shared/famas_dist_03.wav",
-    ")horde/weapons/bo_shared/famas_dist_04.wav"
-}
+SWEP.LowShootSoundSilenced = ")horde/weapons/bo/hk21/silenced_lfe.wav"
+SWEP.DistantShootSound = ")horde/weapons/bo/hk21/fire_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 

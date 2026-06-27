@@ -290,7 +290,7 @@ function HORDE:GetDefaultItemInfusions()
 
     local ballistic_infusions_smgs = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Quicksilver }
     -- SMGs
-    HORDE.items["arccw_horde_smg1"].infusions = ballistic_infusions_light
+    HORDE.items["arccw_horde_bo_mp5k"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_mac10"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_mp40"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_uzi"].infusions = ballistic_infusions_smgs
@@ -436,8 +436,8 @@ function HORDE:GetDefaultItemsData()
 
     HORDE:CreateItem( "Pistol", "Commander", "arccw_horde_bo_1911", 100, 0,
         "Classic starter weapon for any zombie environment.",
-        { Survivor = true, Psycho = true, Ghost = true, Gunslinger = true, Engineer = true },
-        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_1911", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Survivor", "Psycho" } )
+        { Survivor = true, Psycho = true, Demolition = true, Ghost = true, Gunslinger = true },
+        2, -1, nil, "arccw/weaponicons/arccw_horde_bo_1911", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Survivor", "Psycho", "Demolition" } )
     HORDE:CreateItem( "Pistol", "Makarov", "arccw_horde_bo_makarov", 100, 0,
         "Standard pistol of Soviet design.\nThis one is loaded with healing darts.",
         { Medic = true, Hatcher = true, Gunslinger = true },
@@ -537,10 +537,10 @@ function HORDE:GetDefaultItemsData()
         { Gunslinger = true, Engineer = true, Warden = true, Overlord = true },
         5, -1, nil, nil, nil, nil, { HORDE.DMG_LIGHTNING } )
     
-    HORDE:CreateItem( "SMG", "PDW", "arccw_horde_smg1", 100, 0,
-        "Heckler & Koch Personal Defense Weapon.\n Offers great firepower, but pales in comparison to the proper MP7.",
-        { Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true },
-        5, -1, nil, "items/hl2/weapon_smg1.png", nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend" } )
+    HORDE:CreateItem( "SMG", "MP5K", "arccw_horde_bo_mp5k", 100, 0,
+        "Early prototype of the MP5K.",
+        { Assault = true, SpecOps = true, Reverend = true },
+        5, -1, nil, nil, nil, nil, { HORDE.DMG_BALLISTIC }, nil, { "Assault", "SpecOps", "Reverend" } )
     HORDE:CreateItem( "SMG", "UZI", "arccw_horde_uzi", 1250, 3,
         "UZI Submachine Gun.\nDesigned by Captain (later Major) Uziel Gal of the IDF following the 1948 Arab-Israeli War.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Engineer = true, Cremator = true },
@@ -932,15 +932,7 @@ function HORDE:GetDefaultItemsData()
         "A resilient humanoid robot designed to engage enemies head-on.\nUses powerful melee attacks and ranged boulder attacks.",
         { Engineer = true },
         10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 1 }, "items/npc_combat_bot.png", { Engineer = 3 }, nil, { HORDE.DMG_BLUNT } )
-    HORDE:CreateItem( "Special", "Survivor", "npc_vj_horde_class_survivor", 1250, 4,
-        "A Survivor class human that acts as a multipurpose fighter. \nUses an AR15 rifle and grenades.",
-        { Engineer = true },
-        10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 3 }, "items/combine_merc.png", { Engineer = 4 }, nil, { HORDE.DMG_BALLISTIC } )
-    HORDE:CreateItem( "Special", "Assault", "npc_vj_horde_class_assault", 1750, 5,
-        "An Assault class human that uses automatic rifles. \nUses an M16 rifle with M203 UBGL and stun grenades.",
-        { Engineer = true },
-        10, -1, { type = HORDE.ENTITY_PROPERTY_DROP, x = 50, z = 15, yaw = 0, limit = 2 }, "items/combine_merc.png", { Engineer = 5 }, nil, { HORDE.DMG_BALLISTIC } )
-
+    
     HORDE:CreateItem( "Special", "Hivehand", "horde_hivehand", 2000, 5,
         "Organic weapon used by Xen soldiers.\nHas infinite ammo.\nPrimary fire generates homing ricocheting shots.\nSecondary fire rapidly unloads the entire weapon.",
         { Engineer = true },
