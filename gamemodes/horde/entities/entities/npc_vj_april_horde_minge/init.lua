@@ -7,6 +7,7 @@ include( "shared.lua" )
 -----------------------------------------------]]
 ENT.Model = "models/kleiner.mdl"
 ENT.StartHealth = 100
+ENT.NextProcessTime = 2.5
 ENT.AllowMovementJumping = false
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }

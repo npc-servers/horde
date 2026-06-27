@@ -17,6 +17,7 @@ ENT.Model = {
 	"models/humans/group02/male_09.mdl"
 }
 ENT.StartHealth = 80
+ENT.NextProcessTime = 2.5
 ENT.AllowMovementJumping = false
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }

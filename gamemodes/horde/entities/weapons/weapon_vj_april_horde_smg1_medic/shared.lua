@@ -18,7 +18,7 @@ SWEP.NPC_HasSecondaryFire = true
 SWEP.NPC_SecondaryFireEnt = "obj_vj_horde_pzombie_projectile"
 SWEP.NPC_SecondaryFireChance = 1
 SWEP.NPC_SecondaryFireDistance = 1000
-SWEP.NPC_SecondaryFireNext = VJ_Set(15, 18)
+SWEP.NPC_SecondaryFireNext = VJ_Set( 15, 18 )
 SWEP.NPC_SecondaryFireSound = { ")weapons/ar2/ar2_altfire.wav" }
 
 SWEP.HasDryFireSound = false
@@ -56,12 +56,12 @@ function SWEP:CustomOnPrimaryAttack_BeforeShoot()
 	phy:ApplyForceCenter( dir * 4000 )
 end
 
-function SWEP:NPC_SecondaryFire_BeforeTimer(eneEnt, fireTime)
+function SWEP:NPC_SecondaryFire_BeforeTimer()
 	local myPos = self:GetOwner():GetPos()
 	effects.BeamRingPoint( myPos, 1.25, 0, 100, 5, 32, Color( 0, 255, 0 ) )
 	-- effects.BeamRingPoint( myPos, 1.5, 0, 200, 10, 64, Color( 255, 255, 255 ) )
 
-	VJ_EmitSound(self, ")weapons/physcannon/physcannon_charge.wav", 90)
+	VJ_EmitSound( self, ")weapons/physcannon/physcannon_charge.wav", 90 )
 end
 
 function SWEP:NPC_SecondaryFire()
@@ -69,9 +69,9 @@ function SWEP:NPC_SecondaryFire()
 	local pos = self:GetNW2Vector( "VJ_CurBulletPos" )
 
 	local proj = ents.Create( self.NPC_SecondaryFireEnt )
-	proj:SetPos(pos)
-	proj:SetAngles(owner:GetAngles())
-	proj:SetOwner(owner)
+	proj:SetPos( pos )
+	proj:SetAngles( owner:GetAngles() )
+	proj:SetOwner( owner )
 	proj:Spawn()
 	proj:Activate()
 
