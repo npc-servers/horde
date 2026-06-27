@@ -64,8 +64,8 @@ ENT.NoWeapon_UseScaredBehavior = false
 ENT.FlinchChance = 1
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"}
 ENT.TimeUntilMeleeAttackDamage = 1
-ENT.WeaponSpread = 300
-ENT.Weapon_FiringDistanceFar = 500
+ENT.WeaponSpread = 2.5
+ENT.Weapon_FiringDistanceFar = 750
 ENT.Weapon_FiringDistanceClose = 10 -- How close until it stops shooting
 ENT.CallForBackUpOnDamage = false -- Should the SNPC call for help when damaged? (Only happens if the SNPC hasn't seen a enemy)
 ENT.MoveWhenDamagedByEnemy = false -- Should the SNPC move when being damaged by an enemy?
@@ -82,11 +82,9 @@ function ENT:CustomOnInitialize()
 
 	if p <= 0.5 then
 		self:Give("weapon_vj_horde_shotgun_hev")
+		self.Weapon_FiringDistanceFar = 500
 	else
 		self:Give("weapon_vj_horde_smg1_hev")
-	--	self.Weapon_FiringDistanceFar = 50
---	self.Weapon_FiringDistanceFar = 14 -- How far away it can shoot
---	self.Weapon_FiringDistanceClose = 3 -- How close until it stops shooting
 	end
 end
 
