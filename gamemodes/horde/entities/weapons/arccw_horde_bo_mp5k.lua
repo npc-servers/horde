@@ -12,7 +12,7 @@ SWEP.Slot = 2
 
 SWEP.PrintName = "MP5K-P"
 SWEP.Trivia_Class = "Submachine Gun"
-SWEP.Trivia_Desc = "Early prototype version of the current MP5K."
+SWEP.Trivia_Desc = "Early prototype variant of the MP5K."
 SWEP.Trivia_Manufacturer = "Hekler & Koch"
 SWEP.Trivia_Calibre = "9x19mm Parabellum"
 SWEP.Trivia_Mechanism = "Roller-Delayed"
