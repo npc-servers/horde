@@ -29,7 +29,7 @@ SWEP.Range = 25
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 15
 SWEP.ExtendedClipSize = 30
- 
+
 SWEP.Recoil = 0.3
 SWEP.RecoilSide = 0.15
 SWEP.RecoilRise = 0.1
