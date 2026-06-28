@@ -3,6 +3,7 @@ include('shared.lua')
 
 ENT.Model = {"models/blacktea/zpszombie1.mdl","models/blacktea/zpszombie2.mdl","models/blacktea/zpszombie3.mdl","models/blacktea/zpszombie5.mdl"}
 ENT.StartHealth = 90
+ENT.NextProcessTime = 2.5
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE","CLASS_XEN"}
 ENT.BloodColor = "Red"
 ENT.MeleeAttackDamage = 15

@@ -7,6 +7,7 @@ include( "shared.lua" )
 -----------------------------------------------]]
 ENT.Model = "models/zombie/fast.mdl"
 ENT.StartHealth = 40
+ENT.NextProcessTime = 2.5
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 

@@ -14,24 +14,24 @@ SWEP.PrintName = "Commander"
 SWEP.Trivia_Class = "Pistol"
 SWEP.Trivia_Desc = "Classic starter weapon for any zombie environment."
 SWEP.Trivia_Manufacturer = "Colt"
-SWEP.Trivia_Calibre = ".45 ACP"
+SWEP.Trivia_Calibre = "9x19mm Parabellum"
 SWEP.Trivia_Mechanism = "Recoil-Operated"
 SWEP.Trivia_Country = "United States"
-SWEP.Trivia_Year = "1911"
+SWEP.Trivia_Year = "1949"
 
 SWEP.ViewModel = "models/horde/weapons/bo/1911/viewmodel.mdl"
 SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 
-SWEP.Damage = 20
+SWEP.Damage = 23
 SWEP.DamageMin = 15
-SWEP.Range = 50
+SWEP.Range = 25
 
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 15
 SWEP.ExtendedClipSize = 30
 
-SWEP.Recoil = 0.2
-SWEP.RecoilSide = 0.1
+SWEP.Recoil = 0.3
+SWEP.RecoilSide = 0.15
 SWEP.RecoilRise = 0.1
 SWEP.MaxRecoilBlowback = 0
 SWEP.VisualRecoilMult = 0
@@ -40,7 +40,7 @@ SWEP.RecoilPunchBackMax = 0
 SWEP.RecoilPunchBackMaxSights = 0
 SWEP.RecoilVMShake = 0
 
-SWEP.Delay = 60 / 800
+SWEP.Delay = 60 / 750
 SWEP.Firemodes = {
     {
         Mode = 1,
@@ -56,23 +56,22 @@ SWEP.MoveDispersion = 100
 SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
-    ")horde/weapons/bo_1911/shot_00.wav",
-    ")horde/weapons/bo_1911/shot_01.wav",
-    ")horde/weapons/bo_1911/shot_02.wav",
-    ")horde/weapons/bo_1911/shot_03.wav",
-    ")horde/weapons/bo_1911/shot_04.wav"
+    ")horde/weapons/bo/1911/fire_01.wav",
+    ")horde/weapons/bo/1911/fire_02.wav",
+    ")horde/weapons/bo/1911/fire_03.wav",
+    ")horde/weapons/bo/1911/fire_04.wav",
+    ")horde/weapons/bo/1911/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
 SWEP.ShootSoundSilenced = {
-    ")horde/weapons/bo_shared/silenced/m16_silenced_00.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_01.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_02.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
+    ")horde/weapons/bo/1911/silenced_01.wav",
+    ")horde/weapons/bo/1911/silenced_02.wav",
+    ")horde/weapons/bo/1911/silenced_03.wav",
+    ")horde/weapons/bo/1911/silenced_04.wav",
+    ")horde/weapons/bo/1911/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo_1911/ringoff_00.wav"
-SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_shared/silenced/aug_sweet_00.wav"
+SWEP.LowShootSoundSilenced = ")horde/weapons/bo/1911/silenced_lfe.wav"
+SWEP.DistantShootSound = ")horde/weapons/bo/1911/fire_distant.wav"
+SWEP.DistantShootSoundSilenced = ")horde/weapons/bo/1911/silenced_sweet.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -154,8 +153,8 @@ SWEP.Animations = {
         Source = "reg_draw_first",
         SoundTable = {
             { s = "ArcCW_Horde_BO_1911.Pickup", t = 1 / 35 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_slide_back.wav", t = 7 / 35 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_slide_forward.wav", t = 24 / 35 },
+            { s = "horde/weapons/bo/1911/slide_pull.wav", t = 7 / 35 },
+            { s = "horde/weapons/bo/1911/slide_release.wav", t = 24 / 35 },
         }
     },
     ["draw"] = {
@@ -182,9 +181,9 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_1911.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_futz.wav", t = 17 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/1911/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/1911/mag_futz.wav", t = 17 / 25 },
+            { s = "horde/weapons/bo/1911/mag_in.wav", t = 23 / 25 },
         }
     },
     ["reload_ext"] = {
@@ -193,9 +192,9 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_1911.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_futz.wav", t = 17 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/1911/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/1911/mag_futz.wav", t = 17 / 25 },
+            { s = "horde/weapons/bo/1911/mag_in.wav", t = 23 / 25 },
         }
     },
     ["reload_empty"] = {
@@ -204,10 +203,10 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_1911.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_futz.wav", t = 19 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_in.wav", t = 23 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_slide_forward.wav", t = 32 / 25 },
+            { s = "horde/weapons/bo/1911/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/1911/mag_futz.wav", t = 19 / 25 },
+            { s = "horde/weapons/bo/1911/mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/1911/slide_release.wav", t = 32 / 25 },
         }
     },
     ["reload_ext_empty"] = {
@@ -216,10 +215,10 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_1911.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_1911.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_futz.wav", t = 19 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_mag_in.wav", t = 23 / 25 },
-            { s = "horde/weapons/bo_1911/reload/fly_colt45_slide_forward.wav", t = 32 / 25 },
+            { s = "horde/weapons/bo/1911/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/1911/mag_futz.wav", t = 19 / 25 },
+            { s = "horde/weapons/bo/1911/mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/1911/slide_release.wav", t = 32 / 25 },
         }
     },
     ["fire"] = {
@@ -258,10 +257,10 @@ sound.Add( {
     name = "ArcCW_Horde_BO_1911.Reload",
     volume = 1.0,
     sound = {
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo/reload_01.wav",
+        "horde/weapons/bo/reload_02.wav",
+        "horde/weapons/bo/reload_03.wav",
+        "horde/weapons/bo/reload_04.wav"
     }
 } )
 
@@ -269,9 +268,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_1911.Pickup",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/pickup_00.wav",
-        ")horde/weapons/bo_shared/foley/pickup_01.wav",
-        ")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo/pickup_01.wav",
+        ")horde/weapons/bo/pickup_02.wav",
+        ")horde/weapons/bo/pickup_03.wav"
     }
 } )
 
@@ -279,11 +278,11 @@ sound.Add( {
     name = "ArcCW_Horde_BO_1911.Rattle",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/rattle_00.wav",
-        ")horde/weapons/bo_shared/foley/rattle_01.wav",
-        ")horde/weapons/bo_shared/foley/rattle_02.wav",
-        ")horde/weapons/bo_shared/foley/rattle_03.wav",
-        ")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo/pullout_01.wav",
+        ")horde/weapons/bo/pullout_02.wav",
+        ")horde/weapons/bo/pullout_03.wav",
+        ")horde/weapons/bo/pullout_04.wav",
+        ")horde/weapons/bo/pullout_05.wav"
     }
 } )
 

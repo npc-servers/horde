@@ -40,8 +40,15 @@ SWEP.Primary.ClipSize = 10
 SWEP.ExtendedClipSize = 10
 SWEP.ReducedClipSize = 10
 
-SWEP.Recoil = 0.5
-SWEP.RecoilSide = 0.05
+SWEP.Recoil = 0.6
+SWEP.RecoilSide = 0.14
+SWEP.RecoilRise = 0.1
+SWEP.MaxRecoilBlowback = 0
+SWEP.VisualRecoilMult = 0
+SWEP.RecoilPunch = 0
+SWEP.RecoilPunchBackMax = 0
+SWEP.RecoilPunchBackMaxSights = 0
+SWEP.RecoilVMShake = 0
 
 SWEP.Delay = 60/625
 SWEP.Num = 1
@@ -57,9 +64,23 @@ SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "ar2"
 
-SWEP.ShootSound = {")weapons/bo1_m14/m14_fire_close_1.wav",")weapons/bo1_m14/m14_fire_close_2.wav",")weapons/bo1_m14/m14_fire_close_3.wav",")weapons/bo1_m14/m14_fire_close_4.wav",")weapons/bo1_m14/m14_fire_close_5.wav"}
-SWEP.DistantShootSound = {")weapons/bo1_m14/m14_fire_dist_1.wav",")weapons/bo1_m14/m14_fire_dist_2.wav",")weapons/bo1_m14/m14_fire_dist_3.wav",")weapons/bo1_m14/m14_fire_dist_4.wav",")weapons/bo1_m14/m14_fire_dist_5.wav"}
-SWEP.ShootSoundSilenced = {")weapons/bo1_m14/m14_fire_silenced_1.wav",")weapons/bo1_m14/m14_fire_silenced_2.wav",")weapons/bo1_m14/m14_fire_silenced_3.wav",")weapons/bo1_m14/m14_fire_silenced_4.wav",")weapons/bo1_m14/m14_fire_silenced_5.wav"}
+SWEP.ShootSound = {
+    ")horde/weapons/bo/m14/fire_01.wav",
+    ")horde/weapons/bo/m14/fire_02.wav",
+    ")horde/weapons/bo/m14/fire_03.wav",
+    ")horde/weapons/bo/m14/fire_04.wav",
+    ")horde/weapons/bo/m14/fire_05.wav"
+}
+SWEP.LowShootSound = ")horde/weapons/bo/m14/fire_lfe.wav"
+SWEP.ShootSoundSilenced = {
+    ")horde/weapons/bo/hk21/silenced_01.wav",
+    ")horde/weapons/bo/hk21/silenced_02.wav",
+    ")horde/weapons/bo/hk21/silenced_03.wav",
+    ")horde/weapons/bo/hk21/silenced_04.wav",
+    ")horde/weapons/bo/hk21/silenced_05.wav"
+}
+SWEP.LowShootSoundSilenced = ")horde/weapons/bo/hk21/silenced_lfe.wav"
+SWEP.DistantShootSound = ")horde/weapons/bo/m14/fire_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_3"
 
@@ -176,20 +197,17 @@ SWEP.Animations = {
     ["ready"] = {
         Source = "reg_draw_first",
         SoundTable = {
-            {s = "ArcCw_Horde_M14.Foley",  t = 0},
+            {s = "ArcCW.Horde.M14_Pickup",  t = 0},
         },
     },
     ["draw"] = {
         Source = "reg_draw",
         SoundTable = {
-            {s = "ArcCw_Horde_M14.Foley",  t = 0},
+            {s = "ArcCW.Horde.M14_Pullout",  t = 0},
         },
     },
     ["holster"] = {
         Source = "reg_holster",
-        SoundTable = {
-            {s = "ArcCw_Horde_M14.Foley",  t = 0},
-        },
     },
     ["fire"] = {
         Source = "reg_fire",
@@ -218,36 +236,105 @@ SWEP.Animations = {
 sound.Add({
     name = "ArcCw_Horde_M14.BoltBack",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_bolt_back.wav"
+    sound = "horde/weapons/bo/m14/bolt_pull.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.BoltRelease",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_bolt_release.wav"
+    sound = "horde/weapons/bo/m14/bolt_release.wav"
 })
+sound.Add( {
+    name = "ArcCW.Horde.M14_Pickup",
+    volume = 1.0,
+    sound = {
+        ")horde/weapons/bo/pickup_01.wav",
+        ")horde/weapons/bo/pickup_02.wav",
+        ")horde/weapons/bo/pickup_03.wav"
+    }
+} )
+sound.Add( {
+    name = "ArcCW.Horde.M14_Pullout",
+    volume = 1.0,
+    sound = {
+        ")horde/weapons/bo/pullout_01.wav",
+        ")horde/weapons/bo/pullout_02.wav",
+        ")horde/weapons/bo/pullout_03.wav",
+        ")horde/weapons/bo/pullout_04.wav",
+        ")horde/weapons/bo/pullout_05.wav"
+    }
+} )
 sound.Add({
     name = "ArcCw_Horde_M14.Foley",
     channel = CHAN_ITEM,
     volume = 0.5,
-    sound = {"weapons/bo1_m14/m14_foley_1.wav","weapons/bo1_m14/m14_foley_2.wav","weapons/bo1_m14/m14_foley_3.wav","weapons/bo1_m14/m14_foley_4.wav"}
+    sound = {
+        "horde/weapons/bo/reload_01.wav",
+        "horde/weapons/bo/reload_02.wav",
+        "horde/weapons/bo/reload_03.wav",
+        "horde/weapons/bo/reload_04.wav"
+    }
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagIn1",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_in_1.wav"
+    sound = "horde/weapons/bo/m14/mag_in.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagIn2",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_in_2.wav"
+    sound = "horde/weapons/bo/m14/mag_in.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagOut",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_out.wav"
+    sound = "horde/weapons/bo/m14/mag_out.wav"
 })
 sound.Add({
     name = "ArcCw_Horde_M14.MagRattle",
     volume = 1.0,
-    sound = "weapons/bo1_m14/m14_reload_mag_rattle.wav"
+    sound = "horde/weapons/bo/m14/mag_futz.wav"
 })
+
+function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
+    local fsound = self.ShootSound
+    local lsound = self.LowShootSound
+    local dsound = self.DistantShootSound
+
+    local suppressed = self:GetBuff_Override( "Silencer" )
+
+    if suppressed then
+        fsound = self.ShootSoundSilenced
+        lsound = self.LowShootSoundSilenced
+        dsound = self.DistantShootSoundSilenced
+    end
+
+    fsound = self:GetBuff_Hook( "Hook_GetShootSound", fsound )
+
+    local volume = self.ShootVol
+    local spv = self.ShootPitchVariation
+    local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
+
+    local v = GetConVar( "arccw_weakensounds" ):GetFloat()
+
+    volume = volume - v
+    volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
+
+    volume = math.Clamp( volume, 60, 140 )
+    pitch = math.Clamp( pitch, 0, 255 )
+
+    if sndoverride then fsound = sndoverride end
+    if voloverride then volume = voloverride end
+    if pitchoverride then pitch = pitchoverride end
+
+    if fsound then self:MyEmitSound( fsound, volume, pitch, 1, CHAN_STATIC ) end
+    if lsound then self:MyEmitSound( lsound, 75, 100, 0.5, CHAN_BODY ) end
+    if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
+
+    local data = {
+        sound = fsound,
+        volume = volume,
+        pitch = pitch,
+    }
+
+    self:GetBuff_Hook( "Hook_AddShootSound", data )
+end

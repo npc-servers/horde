@@ -15,8 +15,8 @@ SWEP.PrintName = "MAG-7"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 
-SWEP.Damage = 16
-SWEP.DamageMin = 6
+SWEP.Damage = 27
+SWEP.DamageMin = 10
 SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
