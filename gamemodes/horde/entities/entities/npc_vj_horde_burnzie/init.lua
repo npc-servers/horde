@@ -7,6 +7,7 @@ include( "shared.lua" )
 -----------------------------------------------]]
 ENT.Model = { "models/horde/zombie/burnzie.mdl" }
 ENT.StartHealth = 95
+ENT.NextProcessTime = 2.5
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 
@@ -73,28 +74,6 @@ function ENT:CustomOnThink()
 	self.AnimTbl_IdleStand = { self:IsOnFire() and ACT_IDLE_ON_FIRE or ACT_IDLE }
 	self.AnimTbl_Walk = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }
 	self.AnimTbl_Run = { self:IsOnFire() and ACT_WALK_ON_FIRE or ACT_WALK }
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnMeleeAttack_AfterChecks( hitEnt, isProp )
-	if isProp then return end
-	if math.random( 1, 3 ) == 1 then
-		local e = EffectData()
-		e:SetOrigin( self:GetPos() )
-		util.Effect( "m2_flame_explosion", e, true, true )
-		for _, ent in pairs( ents.FindInSphere( self:GetPos(), 150 ) ) do
-			if ent:IsPlayer() then
-				local Trace = util.TraceLine( {
-					start = self:WorldSpaceCenter(),
-					endpos = ent:WorldSpaceCenter(),
-					mask = MASK_SOLID_BRUSHONLY
-				} )
-				if not Trace.HitWorld then
-					ent:Horde_AddDebuffBuildup( HORDE.Status_Ignite, 50, self )
-				end
-			end
-		end
-		sound.Play( "vj_fire/fireball_explode.wav", self:GetPos() )
-	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo, hitgroup )

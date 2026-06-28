@@ -57,14 +57,14 @@ SWEP.JumpDispersion = 50
 SWEP.ShootVol = 80
 
 SWEP.ShootSound = {
-    ")horde/weapons/bo_asp/shot_00.wav",
-    ")horde/weapons/bo_asp/shot_01.wav",
-    ")horde/weapons/bo_asp/shot_02.wav",
-    ")horde/weapons/bo_asp/shot_03.wav",
-    ")horde/weapons/bo_asp/shot_04.wav"
+    ")horde/weapons/bo/asp/fire_01.wav",
+    ")horde/weapons/bo/asp/fire_02.wav",
+    ")horde/weapons/bo/asp/fire_03.wav",
+    ")horde/weapons/bo/asp/fire_04.wav",
+    ")horde/weapons/bo/asp/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo_asp/lfe_00.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo_asp/ringoff_00.wav"
+SWEP.LowShootSound = ")horde/weapons/bo/asp/fire_lfe.wav"
+SWEP.DistantShootSound = ")horde/weapons/bo/asp/fire_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -115,8 +115,8 @@ SWEP.Animations = {
         Source = "reg_draw_first",
         SoundTable = {
             { s = "ArcCW_Horde_BO_ASP.Pickup", t = 1 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_slide_back.wav", t = 5 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_slide_forward.wav", t = 11 / 40 },
+            { s = "horde/weapons/bo/asp/slide_pull.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo/asp/slide_release.wav", t = 11 / 40 },
         }
     },
     ["draw"] = {
@@ -143,9 +143,9 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
             { s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_out.wav", t = 5 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_futz.wav", t = 17 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_in.wav", t = 24 / 40 },
+            { s = "horde/weapons/bo/asp/mag_out.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo/asp/mag_futz.wav", t = 17 / 40 },
+            { s = "horde/weapons/bo/asp/mag_in.wav", t = 24 / 40 },
         },
     },
     ["reload_empty"] = {
@@ -154,10 +154,10 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
             { s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_out.wav", t = 5 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_futz.wav", t = 19 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_mag_in.wav", t = 24 / 40 },
-            { s = "horde/weapons/bo_asp/reload/fly_asp_slide_forward.wav", t = 37 / 40 },
+            { s = "horde/weapons/bo/asp/mag_out.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo/asp/mag_futz.wav", t = 19 / 40 },
+            { s = "horde/weapons/bo/asp/mag_in.wav", t = 24 / 40 },
+            { s = "horde/weapons/bo/asp/slide_release.wav", t = 37 / 40 },
         },
     },
     ["fire"] = {
@@ -196,10 +196,10 @@ sound.Add( {
     name = "ArcCW_Horde_BO_ASP.Reload",
     volume = 1.0,
     sound = {
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo/reload_01.wav",
+        "horde/weapons/bo/reload_02.wav",
+        "horde/weapons/bo/reload_03.wav",
+        "horde/weapons/bo/reload_04.wav"
     }
 } )
 
@@ -207,9 +207,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_ASP.Pickup",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/pickup_00.wav",
-        ")horde/weapons/bo_shared/foley/pickup_01.wav",
-        ")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo/pickup_01.wav",
+        ")horde/weapons/bo/pickup_02.wav",
+        ")horde/weapons/bo/pickup_03.wav"
     }
 } )
 
@@ -217,11 +217,11 @@ sound.Add( {
     name = "ArcCW_Horde_BO_ASP.Rattle",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/rattle_00.wav",
-        ")horde/weapons/bo_shared/foley/rattle_01.wav",
-        ")horde/weapons/bo_shared/foley/rattle_02.wav",
-        ")horde/weapons/bo_shared/foley/rattle_03.wav",
-        ")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo/pullout_01.wav",
+        ")horde/weapons/bo/pullout_02.wav",
+        ")horde/weapons/bo/pullout_03.wav",
+        ")horde/weapons/bo/pullout_04.wav",
+        ")horde/weapons/bo/pullout_05.wav"
     }
 } )
 

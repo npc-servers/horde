@@ -15,8 +15,8 @@ SWEP.PrintName = "SuperNova"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_nova.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_nova.mdl"
 
-SWEP.Damage = 20
-SWEP.DamageMin = 8
+SWEP.Damage = 30
+SWEP.DamageMin = 15
 SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true

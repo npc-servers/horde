@@ -4,6 +4,7 @@ include("shared.lua")
 ENT.Model = "models/zombie/classic.mdl"
 ENT.StartHealth = 700
 ENT.HeadHealth = 300
+ENT.NextProcessTime = 2.5
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE", "CLASS_XEN"} -- NPCs with the same class with be allied to each other

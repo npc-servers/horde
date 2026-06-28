@@ -15,8 +15,8 @@ SWEP.PrintName = "Model 870"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_870.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_870.mdl"
 
-SWEP.Damage = 28
-SWEP.DamageMin = 12
+SWEP.Damage = 37
+SWEP.DamageMin = 15
 SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
