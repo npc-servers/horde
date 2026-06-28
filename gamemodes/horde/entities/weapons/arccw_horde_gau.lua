@@ -87,8 +87,8 @@ SWEP.Primary.Ammo = "AlyxGun" -- what ammo type the gun uses
 SWEP.MagID = "minigun" -- the magazine pool this gun draws from
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 105 -- pitch of shoot sound
-SWEP.ShootSound = "weapons/arccw/minigun/minigun_fire.wav"
-SWEP.DistantShootSound = "weapons/arccw/minigun/negev-1-distant.wav"
+SWEP.ShootSound = ")weapons/arccw/minigun/minigun_fire.wav"
+SWEP.DistantShootSound = ")horde/weapons/distshot.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 
@@ -192,7 +192,7 @@ SWEP.Animations = {
         Source = "draw",
         SoundTable = {
             {
-                s = "weapons/arccw/minigun/m249_draw.wav",
+                s = ")weapons/arccw/minigun/m249_draw.wav",
                 t = 0
             }
         },
@@ -207,7 +207,7 @@ SWEP.Animations = {
          Source = "idle",
 		 SoundTable = {
             {
-                s = "weapons/arccw/minigun/minigun_spinup.wav",
+                s = ")weapons/arccw/minigun/minigun_spinup.wav",
                 t = 0
             }
         },

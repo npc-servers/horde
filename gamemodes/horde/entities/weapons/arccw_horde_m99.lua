@@ -81,9 +81,9 @@ SWEP.Primary.Ammo = "SniperPenetratedRound" -- what ammo type the gun uses
 SWEP.ShootVol = 500 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "KF_m99.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/sniper_sil.wav"
-SWEP.DistantShootSound = "KF_m99.Fire"
+SWEP.ShootSound =           ")weapons/kf_m99/M99_Fire_S.wav"
+SWEP.ShootSoundSilenced =   "weapons/fesiugmw2/fire/sniper_sil.wav"
+SWEP.DistantShootSound =    "^horde/weapons/distshot_large.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.ShellModel = "models/shells/shell_338mag.mdl"

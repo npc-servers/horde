@@ -17,29 +17,23 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_usp.mdl"
 
 SWEP.RecoilPunch = 0
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.USP_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.USP_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.USP_Fire_Sil"
-SWEP.DistantShootSound = ""
-
+SWEP.FirstShootSound = {
+    ")arccw_go/usp/usp_unsilenced_01.wav",
+    ")arccw_go/usp/usp_unsilenced_02.wav",
+    ")arccw_go/usp/usp_unsilenced_03.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/usp/usp_unsilenced_01.wav",
+    ")arccw_go/usp/usp_unsilenced_02.wav",
+    ")arccw_go/usp/usp_unsilenced_03.wav"
+}
+SWEP.ShootSoundSilenced = {
+    ")arccw_go/usp/usp_01.wav",
+    ")arccw_go/usp/usp_02.wav",
+    ")arccw_go/usp/usp_03.wav"
+}
+SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true, ["go_foregrip_angled"] = true}
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.USP_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/usp/usp_unsilenced_01.wav",")arccw_go/usp/usp_unsilenced_02.wav",")arccw_go/usp/usp_unsilenced_03.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.USP_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = {")arccw_go/usp/usp_01.wav",")arccw_go/usp/usp_02.wav",")arccw_go/usp/usp_03.wav"}
-} )

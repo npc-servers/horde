@@ -24,27 +24,16 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 800
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.M4_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.M4_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.M4_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.FirstShootSound = {
+    ")arccw_go/m4a1/m4a1_01.wav",
+    ")arccw_go/m4a1/m4a1_02.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/m4a1/m4a1_01.wav",
+    ")arccw_go/m4a1/m4a1_02.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.M4_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/m4a1/m4a1_01.wav",")arccw_go/m4a1/m4a1_02.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.M4_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/m4a1/m4a1_silencer_01.wav"
-} )
