@@ -93,15 +93,15 @@ function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnPlayCreateSound( sdData, sdFile )
-	if VJ_HasValue( self.SoundTbl_MeleeAttack, sdFile ) or VJ_HasValue( self.SoundTbl_IdleDialogue, sdFile ) or VJ_HasValue( self.SoundTbl_Pain, sdFile ) or VJ_HasValue( self.SoundTbl_Death, sdFile ) then 
-		return 
+	if VJ_HasValue( self.SoundTbl_MeleeAttack, sdFile ) or VJ_HasValue( self.SoundTbl_IdleDialogue, sdFile ) or VJ_HasValue( self.SoundTbl_Pain, sdFile ) or VJ_HasValue( self.SoundTbl_Death, sdFile ) then
+		return
 	end
 	VJ_EmitSound( self, { "npc/metropolice/vo/on1.wav", "npc/metropolice/vo/on2.wav" }, 75, math.random( 90, 100 ) )
-	timer.Simple(SoundDuration(sdFile), function() 
-		if IsValid( self ) and sdData:IsPlaying() then 
-			VJ_EmitSound( self, { "npc/metropolice/vo/off1.wav", "npc/metropolice/vo/off2.wav", "npc/metropolice/vo/off3.wav", "npc/metropolice/vo/off4.wav" }, 75, math.random( 90, 100 ) ) 
-		end 
-	end)
+	timer.Simple( SoundDuration( sdFile ), function()
+		if IsValid( self ) and sdData:IsPlaying() then
+			VJ_EmitSound( self, { "npc/metropolice/vo/off1.wav", "npc/metropolice/vo/off2.wav", "npc/metropolice/vo/off3.wav", "npc/metropolice/vo/off4.wav" }, 75, math.random( 90, 100 ) )
+		end
+	end )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 VJ.AddNPC( "Baton Cop", "npc_vj_april_horde_batoncop", "Zombies" )
