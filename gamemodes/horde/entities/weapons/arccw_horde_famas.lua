@@ -37,6 +37,7 @@ SWEP.Firemodes = {
     }
 }
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/famas/famas_01.wav",
     ")arccw_go/famas/famas_02.wav",

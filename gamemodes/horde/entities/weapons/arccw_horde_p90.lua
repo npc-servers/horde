@@ -19,9 +19,12 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_smg_p90.mdl"
 SWEP.Damage = 44
 SWEP.DamageMin = 36
 SWEP.Penetration = 20
+
 SWEP.HoldtypeActive = "revolver"
+
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/p90/p90_01.wav",
     ")arccw_go/p90/p90_02.wav"

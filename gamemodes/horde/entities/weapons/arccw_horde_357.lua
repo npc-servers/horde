@@ -62,9 +62,8 @@ SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "357" -- what ammo type the gun uses
 
-SWEP.ShootVol = 80 -- volume of shoot sound
-SWEP.ShootPitch = 95 -- pitch of shoot sound
-
+SWEP.ShootVol = 80
+SWEP.ShootPitch = 95
 SWEP.ShootSound =   { ")weapons/357/357_fire2.wav", ")weapons/357/357_fire3.wav" }
 SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
 

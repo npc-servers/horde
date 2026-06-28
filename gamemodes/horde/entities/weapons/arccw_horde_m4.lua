@@ -24,6 +24,7 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 800
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/m4a1/m4a1_01.wav",
     ")arccw_go/m4a1/m4a1_02.wav"

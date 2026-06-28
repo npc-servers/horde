@@ -22,6 +22,7 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 200
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = {
     ")arccw_go/deagle/deagle_01.wav",
     ")arccw_go/deagle/deagle_02.wav"

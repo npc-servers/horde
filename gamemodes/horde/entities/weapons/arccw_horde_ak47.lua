@@ -22,6 +22,7 @@ SWEP.Recoil = 0.45
 SWEP.RecoilSide = 0.35
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")arccw_go/ak47/ak47_01.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/distshot.wav"

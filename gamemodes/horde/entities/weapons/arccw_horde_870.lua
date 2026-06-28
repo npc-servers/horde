@@ -25,6 +25,7 @@ SWEP.Recoil = 1.5
 SWEP.RecoilSide = 1
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")arccw_go/sawedoff/sawedoff-1.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/m590_suppressed_fp.wav"
 SWEP.DistantShootSound = "^horde/weapons/distshot_shotgun.wav"

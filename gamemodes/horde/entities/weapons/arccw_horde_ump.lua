@@ -18,8 +18,10 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_smg_ump45.mdl"
 SWEP.Damage = 53
 SWEP.DamageMin = 43
 SWEP.Penetration = 15
+
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = ")arccw_go/ump45/ump45_02.wav"
 SWEP.ShootSound = ")arccw_go/ump45/ump45_02.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"

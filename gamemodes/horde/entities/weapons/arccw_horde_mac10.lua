@@ -20,6 +20,7 @@ SWEP.DamageMin = 20
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/mac10/mac10_01.wav",
     ")arccw_go/mac10/mac10_02.wav"

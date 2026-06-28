@@ -22,6 +22,7 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 700
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = {
     ")arccw_go/galilar/galil_01.wav",
     ")arccw_go/galilar/galil_02.wav",

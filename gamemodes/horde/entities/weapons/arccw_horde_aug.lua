@@ -24,6 +24,7 @@ SWEP.Recoil = 0.4
 SWEP.RecoilSide = 0.3
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/aug/aug_01.wav",
     ")arccw_go/aug/aug_02.wav",

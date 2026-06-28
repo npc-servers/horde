@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_glock.mdl"
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/glock18/glock_01.wav",
     ")arccw_go/glock18/glock_02.wav"

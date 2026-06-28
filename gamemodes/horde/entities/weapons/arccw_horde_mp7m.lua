@@ -14,8 +14,10 @@ SWEP.PrintName = "Medic MP7A1"
 
 SWEP.ViewModel = "models/weapons/arccw_go/v_smg_mp7.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_smg_mp7.mdl"
+
 SWEP.Damage = 50
 SWEP.DamageMin = 40
+
 SWEP.RecoilPunch = 0
 
 SWEP.Firemodes = {
@@ -24,6 +26,7 @@ SWEP.Firemodes = {
     }
 }
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/mp7/mp7_01.wav",
     ")arccw_go/mp7/mp7_02.wav",

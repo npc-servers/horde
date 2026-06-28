@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_m9.mdl"
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/elite/elites_01.wav",
     ")arccw_go/elite/elites_02.wav",

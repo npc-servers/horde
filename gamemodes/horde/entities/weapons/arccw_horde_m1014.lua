@@ -35,6 +35,7 @@ SWEP.Firemodes = {
     }
 }
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")arccw_go/xm1014/xm1014-1.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/m590_suppressed_fp.wav"
 SWEP.DistantShootSound = "^horde/weapons/distshot_shotgun.wav"

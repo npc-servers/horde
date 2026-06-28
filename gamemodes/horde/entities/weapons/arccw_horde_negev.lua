@@ -21,6 +21,7 @@ SWEP.DamageMin = 46
 SWEP.Delay = 60 / 700
 SWEP.ShootSpeedMult = 0.85
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/negev/negev_01.wav",
     ")arccw_go/negev/negev_02.wav"

@@ -22,6 +22,7 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 650
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/sg556/sg556_01.wav",
     ")arccw_go/sg556/sg556_02.wav",

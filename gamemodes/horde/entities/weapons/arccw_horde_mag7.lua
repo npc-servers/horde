@@ -25,6 +25,7 @@ SWEP.Recoil = 2
 SWEP.RecoilSide = 1.5
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = {
     ")arccw_go/mag7/mag7_01.wav",
     ")arccw_go/mag7/mag7_02.wav"

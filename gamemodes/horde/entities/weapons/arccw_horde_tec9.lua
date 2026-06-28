@@ -20,6 +20,7 @@ SWEP.DamageMin = 12
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")arccw_go/tec9/tec9_02.wav"
 SWEP.ShootSoundSilenced = {
     ")arccw_go/usp/usp_01.wav",

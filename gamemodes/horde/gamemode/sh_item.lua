@@ -271,7 +271,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_usp"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_p2000"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_p250"].infusions = ballistic_infusions_light
-    HORDE.items["arccw_horde_r8"].infusions = ballistic_infusions_light
+    -- HORDE.items["arccw_horde_r8"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_deagle"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_m1911"].infusions = ballistic_infusions_light
     HORDE.items["arccw_horde_anaconda"].infusions = ballistic_infusions_light
@@ -474,10 +474,12 @@ function HORDE:GetDefaultItemsData()
         "SIG Sauer P250.\nA low-recoil sidearm with a high rate of fire.",
         { Survivor = true, Psycho = true, Prototype = true, Assault = true, SpecOps = true, Reverend = true, Heavy = true, Juggernaut = true, Medic = true, Hatcher = true, Demolition = true, Gunslinger = true, Engineer = true, Warden = true, Overlord = true, Cremator = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_p250", nil, nil, { HORDE.DMG_BALLISTIC } )
+    --[[
     HORDE:CreateItem( "Pistol", "R8", "arccw_horde_r8", 750, 2,
         "R8 Revolver.\nDelivers a highly accurate and powerful round,\nbut at the expense of a lengthy trigger-pull.",
         { Survivor = true, Psycho = true, Prototype = true, Ghost = true, Gunslinger = true },
         5, -1, nil, "arccw/weaponicons/arccw_go_r8", nil, nil, { HORDE.DMG_BALLISTIC } )
+    ]]
     HORDE:CreateItem( "Pistol", "M1911", "arccw_horde_m1911", 750, 2,
         "Colt 1911.\nStandard-issue sidearm for the United States Armed Forces.",
         { Ghost = true, Gunslinger = true },

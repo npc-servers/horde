@@ -20,6 +20,7 @@ SWEP.DamageMin = 67
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")arccw_go/revolver/revolver-1_01.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/mosin_suppressed_fp.wav"
 SWEP.DistantShootSound = "^horde/weapons/distshot.wav"

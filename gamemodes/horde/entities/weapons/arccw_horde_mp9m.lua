@@ -22,10 +22,13 @@ SWEP.Firemodes = {
         Mode = 2,
     }
 }
+
 SWEP.Damage = 34
 SWEP.DamageMin = 24
+
 SWEP.Delay = 60 / 900
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/mp9/mp9_01.wav",
     ")arccw_go/mp9/mp9_02.wav",

@@ -21,6 +21,7 @@ SWEP.Penetration = 10
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")arccw_go/fiveseven/fiveseven_01.wav"
 SWEP.ShootSoundSilenced = {
     ")arccw_go/usp/usp_01.wav",

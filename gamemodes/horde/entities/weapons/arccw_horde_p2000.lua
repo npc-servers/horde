@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_p2000.mdl"
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.ShootSound = {
     ")arccw_go/hkp2000/hkp2000_01.wav",
     ")arccw_go/hkp2000/hkp2000_02.wav",

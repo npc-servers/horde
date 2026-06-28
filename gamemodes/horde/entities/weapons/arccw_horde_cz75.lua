@@ -17,6 +17,7 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_cz75.mdl"
 
 SWEP.RecoilPunch = 0
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/cz75a/cz75_01.wav",
     ")arccw_go/cz75a/cz75_02.wav",

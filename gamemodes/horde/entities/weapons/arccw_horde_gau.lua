@@ -85,8 +85,8 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "AlyxGun" -- what ammo type the gun uses
 SWEP.MagID = "minigun" -- the magazine pool this gun draws from
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 105 -- pitch of shoot sound
+
+SWEP.ShootVol = 80
 SWEP.ShootSound = ")weapons/arccw/minigun/minigun_fire.wav"
 SWEP.DistantShootSound = ")horde/weapons/distshot.wav"
 

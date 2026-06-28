@@ -21,6 +21,7 @@ SWEP.Delay = 60 / 900
 SWEP.RecoilPunch = 0
 SWEP.ShootSpeedMult = 0.85
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = ")arccw_go/m249/m249-1.wav"
 SWEP.ShootSound = ")arccw_go/m249/m249-1.wav"
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"

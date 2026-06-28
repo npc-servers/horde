@@ -34,6 +34,7 @@ SWEP.Firemodes = {
     }
 }
 
+SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
     ")arccw_go/m4a1/m4a1_us_01.wav",
     ")arccw_go/m4a1/m4a1_us_02.wav",
