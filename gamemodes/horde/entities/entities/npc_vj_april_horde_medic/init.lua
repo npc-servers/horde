@@ -194,7 +194,7 @@ function ENT:CustomOnInitialize()
 	self:Give( "weapon_vj_april_horde_smg1_medic" )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo, hitgroup )
+function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo )
 	if HORDE:IsColdDamage( dmginfo ) then
 		dmginfo:ScaleDamage( 0.75 )
 	elseif HORDE:IsPoisonDamage( dmginfo ) then

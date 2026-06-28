@@ -60,7 +60,7 @@ ENT.GeneralSoundPitch1 = 100
 function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo, hitgroup )
+function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo )
 	if not HORDE:IsPhysicalDamage( dmginfo ) then
 		dmginfo:ScaleDamage( 1.25 )
 	end

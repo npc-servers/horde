@@ -196,7 +196,7 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo, hitgroup )
+function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo )
 	if HORDE:IsPhysicalDamage( dmginfo ) then
 		dmginfo:ScaleDamage( 1.25 )
 	end

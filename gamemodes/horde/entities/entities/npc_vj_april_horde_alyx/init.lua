@@ -100,7 +100,7 @@ function ENT:CustomOnInitialize()
 	self:Give( "weapon_vj_april_horde_alyxgun" )
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo, hitgroup )
+function ENT:CustomOnTakeDamage_BeforeDamage( dmginfo )
 	if HORDE:IsLightningDamage( dmginfo ) then
 		dmginfo:ScaleDamage( 0.5 )
 	end
