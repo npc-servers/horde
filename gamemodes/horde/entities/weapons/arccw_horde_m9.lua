@@ -17,10 +17,25 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_m9.mdl"
 
 SWEP.RecoilPunch = 0
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.Elite_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.Elite_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.Elite_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 80
+SWEP.FirstShootSound = {
+    ")arccw_go/elite/elites_01.wav",
+    ")arccw_go/elite/elites_02.wav",
+    ")arccw_go/elite/elites_03.wav",
+    ")arccw_go/elite/elites_04.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/elite/elites_01.wav",
+    ")arccw_go/elite/elites_02.wav",
+    ")arccw_go/elite/elites_03.wav",
+    ")arccw_go/elite/elites_04.wav"
+}
+SWEP.ShootSoundSilenced = {
+    ")arccw_go/usp/usp_01.wav",
+    ")arccw_go/usp/usp_02.wav",
+    ")arccw_go/usp/usp_03.wav"
+}
+SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -36,20 +51,3 @@ SWEP.Attachments = {
         },
     }
 }
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Elite_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 110,
-    sound = {")arccw_go/elite/elites_01.wav",")arccw_go/elite/elites_02.wav",")arccw_go/elite/elites_03.wav",")arccw_go/elite/elites_04.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Elite_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = {")arccw_go/usp/usp_01.wav",")arccw_go/usp/usp_02.wav",")arccw_go/usp/usp_03.wav"}
-} )
