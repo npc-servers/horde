@@ -22,28 +22,15 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 200
 
-SWEP.ShootSound = "ArcCW_Horde.GSO.Deagle_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.Deagle_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 80
+SWEP.ShootSound = {
+    ")arccw_go/deagle/deagle_01.wav",
+    ")arccw_go/deagle/deagle_02.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/mosin_suppressed_fp.wav"
+SWEP.DistantShootSound = "^horde/weapons/distshot_large.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true, ["go_foregrip_angled"] = true}
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Deagle_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/deagle/deagle_01.wav",")arccw_go/deagle/deagle_02.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Deagle_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/mosin_suppressed_fp.wav"
-} )
