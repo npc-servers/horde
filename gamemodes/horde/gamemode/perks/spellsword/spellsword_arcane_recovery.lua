@@ -1,7 +1,7 @@
 PERK.PrintName = "Arcane Recovery"
 PERK.Icon = "materials/perks/gunslinger/elusive.png"
 PERK.Description = [[
-Heal health by 15% of incantation's mind cost when casted.
+Heal health by 25% of incantation's mind cost when casted.
 Recover 5 mind when taking physical damage.]]
 PERK.Hooks = {}
 

@@ -2,7 +2,7 @@ PERK.PrintName = "Warfare"
 PERK.Icon = "materials/perks/gunslinger/elusive.png"
 PERK.Description = [[
 Increase Slashing and Blunt damage by 10%.
-Increase Global damage resistance by 10%.]]
+Increase Global damage resistance by 15%.]]
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
@@ -15,5 +15,5 @@ end
 PERK.Hooks.Horde_OnPlayerDamageTaken = function( ply, _, bonus )
     if not ply:Horde_GetPerk( "spellsword_warfare" ) then return end
 
-    bonus.resistance = bonus.resistance + 0.10
+    bonus.resistance = bonus.resistance + 0.15
 end

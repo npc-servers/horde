@@ -347,7 +347,7 @@ local incantations = {
             tr.Entity:Horde_AddBarrierStack( 30 )
         end
     },
-    ["2,2,3,3"] = {
+    ["3,3,3,3"] = {
         name = "Heroism",
         cost = 15,
         cooldown = 5,
@@ -389,7 +389,7 @@ local incantations = {
                 explosion:Spawn()
                 explosion:SetKeyValue( "iMagnitude", "0" )
                 explosion:Fire( "Explode", 0, 0 )
-                util.BlastDamage( ent, ent, headcrab:EyePos(), 50, 500 )
+                util.BlastDamage( ent, ent, headcrab:EyePos(), 100, 500 )
             end )
             timer.Simple( 30, function ()
                 if headcrab:IsValid() then headcrab:Remove() end
@@ -573,7 +573,7 @@ local function castSpell( ply, incantation )
     ply:ChatPrint( "Casted " .. incantation.name )
 
     if ply:Horde_GetPerk( "spellsword_arcane_recovery" ) then
-        HORDE:SelfHeal( ply, incantation.cost * 0.15 )
+        HORDE:SelfHeal( ply, incantation.cost * 0.25 )
     end
 end
 
