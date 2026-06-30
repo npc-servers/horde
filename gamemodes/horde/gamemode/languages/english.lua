@@ -1638,9 +1638,11 @@ Each shockwave deals 50 Lightning damage.
 -- Cremator Gadgets
 LANGUAGE["Gadget_gadget_butane_can"] = [[Butane Can]]
 LANGUAGE["Gadget_Desc_gadget_butane_can"] = [[
-Drops a Butane Can that explodes on physical impact.
-Explosion deals 375 Fire damage.
-Only 1 Butane Can can be spawned at a time.
+Drops a Butane Can that explodes when shot or when an enemy gets near.
+Explosion deals {1} Blast damage when shot or {2} Fire damage when an Enemy triggers it.
+Up to 3 Butane Cans can be spawned at a time.
+Leaves behind a small pool of fire on detonation.
+has 3 charges that regenerate after 7 seconds when a can detonates.
 ]]
 
 LANGUAGE["Gadget_gadget_projectile_launcher_fire"] = [[Projectile Launcher (Fire)]]
