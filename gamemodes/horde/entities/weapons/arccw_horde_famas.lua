@@ -42,14 +42,12 @@ SWEP.ShootVol = 75
 SWEP.FirstShootSound = {
     ")horde/weapons/gso/famas/famas_01.wav",
     ")horde/weapons/gso/famas/famas_02.wav",
-    ")horde/weapons/gso/famas/famas_03.wav",
-    ")horde/weapons/gso/famas/famas_04.wav"
+    ")horde/weapons/gso/famas/famas_03.wav"
 }
 SWEP.ShootSound = {
     ")horde/weapons/gso/famas/famas_01.wav",
     ")horde/weapons/gso/famas/famas_02.wav",
-    ")horde/weapons/gso/famas/famas_03.wav",
-    ")horde/weapons/gso/famas/famas_04.wav"
+    ")horde/weapons/gso/famas/famas_03.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/gso/famas/famas_distant.wav"

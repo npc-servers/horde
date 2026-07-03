@@ -24,11 +24,17 @@ SWEP.RecoilPunch = 0
 
 SWEP.ShootVol = 75
 
+SWEP.FirstShootSound = {
+    ")horde/weapons/gso/ak47/ak47_01.wav",
+    ")horde/weapons/gso/ak47/ak47_02.wav",
+    ")horde/weapons/gso/ak47/ak47_03.wav",
+    ")horde/weapons/gso/ak47/ak47_04.wav"
+}
 SWEP.ShootSound = {
-    ")arccw_go/ak47/ak47_01.wav",
-    ")arccw_go/ak47/ak47_02.wav",
-    ")arccw_go/ak47/ak47_03.wav",
-    ")arccw_go/ak47/ak47_04.wav"
+    ")horde/weapons/gso/ak47/ak47_01.wav",
+    ")horde/weapons/gso/ak47/ak47_02.wav",
+    ")horde/weapons/gso/ak47/ak47_03.wav",
+    ")horde/weapons/gso/ak47/ak47_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/gso/ak47/ak47_distant.wav"
