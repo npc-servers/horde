@@ -20,10 +20,16 @@ SWEP.DamageMin = 44
 SWEP.Penetration = 20
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 60 / 700
+SWEP.Delay = 60 / 800
 
 SWEP.ShootVol = 75
 
+SWEP.FirstShootSound = {
+    ")horde/weapons/gso/galil/galil_01.wav",
+    ")horde/weapons/gso/galil/galil_02.wav",
+    ")horde/weapons/gso/galil/galil_03.wav",
+    ")horde/weapons/gso/galil/galil_04.wav"
+}
 SWEP.ShootSound = {
     ")horde/weapons/gso/galil/galil_01.wav",
     ")horde/weapons/gso/galil/galil_02.wav",

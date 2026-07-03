@@ -21,7 +21,7 @@ SWEP.Penetration = 15
 SWEP.RecoilRise = 0.4
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 60 / 1000
+SWEP.Delay = 60 / 1200
 SWEP.Firemodes = {
     {
         Mode = 2,
