@@ -97,12 +97,10 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "SMG1_Grenade" -- what ammo type the gun uses
 
-SWEP.ShootVol = 110 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "ArcCW_BO1.CL_Fire"
-SWEP.ShootSoundSilenced = nil
-SWEP.DistantShootSound = nil
+SWEP.ShootSound = ")weapons/arccw/bo1_chinalake/fire.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_shotgun"
 SWEP.ShellModel = "models/shells/shell_12gauge.mdl"

@@ -114,16 +114,10 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "horde/weapons/law/law_fire.ogg"
-SWEP.ShootSoundSilenced = "horde/weapons/law/law_fire.ogg"
-SWEP.DistantShootSound = "horde/weapons/law/law_fire.ogg"
-
---SWEP.MuzzleEffect = "muzzleflash_pistol"
---SWEP.ShellModel = "models/shells/shell_9mm.mdl"
---SWEP.ShellScale = 1
+SWEP.ShootSound = ")horde/weapons/law/law_fire.ogg"
+SWEP.DistantShootSound = "^horde/weapons/distant/rpg_distant.wav"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on

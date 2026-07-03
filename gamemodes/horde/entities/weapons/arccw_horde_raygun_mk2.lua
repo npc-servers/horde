@@ -92,19 +92,15 @@ SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 SWEP.MagID = "raygun" -- the magazine pool this gun draws from
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "ArcCW_BO2.RGMK2_Fire"
-
---SWEPHook_PostFireBullets = function(wep)
---end
+SWEP.ShootSound = {
+    ")weapons/arccw/bo2_raygunmk2/fire1.wav",
+    ")weapons/arccw/bo2_raygunmk2/fire2.wav",
+    ")weapons/arccw/bo2_raygunmk2/fire3.wav"
+}
 
 SWEP.MuzzleEffect = "rgmk2_flash"
 SWEP.ImpactEffect = "rgmk2_impact_glow"
-SWEP.GMMuzzleEffect = false
-SWEP.ShellModel = ""
-SWEP.ShellScale = 1.5
-SWEP.ShellPitch = 90
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 0 -- which attachment to put the case effect on

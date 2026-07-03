@@ -21,14 +21,15 @@ SWEP.Penetration = 10
 
 SWEP.RecoilPunch = 0
 
-SWEP.ShootVol = 80
-SWEP.ShootSound = ")arccw_go/fiveseven/fiveseven_01.wav"
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")horde/weapons/gso/fiveseven/fiveseven_01.wav"
 SWEP.ShootSoundSilenced = {
     ")arccw_go/usp/usp_01.wav",
     ")arccw_go/usp/usp_02.wav",
     ")arccw_go/usp/usp_03.wav"
 }
-SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
+SWEP.DistantShootSound = "^horde/weapons/gso/fiveseven/fiveseven_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)

@@ -56,7 +56,10 @@ SWEP.AccuracyMOA = 10
 SWEP.HipDispersion = 250
 SWEP.MoveDispersion = 50
 
-SWEP.ShootSound = ")horde/weapons/kf_mk23/mk23_fire_s.wav"
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")horde/weapons/kf/mk23/fire.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -109,7 +112,7 @@ SWEP.Animations = {
     ["draw"] = {
         Source = "draw",
         SoundTable = {
-            { s = "horde/weapons/kf_mk23/mk23_select.wav", t = 1 / 30 },
+            { s = "horde/weapons/kf/mk23/select.wav", t = 1 / 30 },
         }
     },
     ["holster"] = {
@@ -119,13 +122,13 @@ SWEP.Animations = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
         SoundTable = {
-            { s = "horde/weapons/kf_mk23/mk23_chamberback.wav", t = 1 / 40 },
-            { s = "horde/weapons/kf_mk23/mk23_cliprelease.wav", t = 6 / 40 },
-            { s = "horde/weapons/kf_mk23/mk23_clipinsert.wav", t = 34 / 40 },
-            { s = "horde/weapons/kf_mk23/mk23_chamberback.wav", t = 52 / 40 },
-            { s = "horde/weapons/kf_mk23/mk23_chamberforward.wav", t = 64 / 40 },
-            { s = "horde/weapons/kf_mk23/mk23_clipinsert.wav", t = 80 / 40 },
-            { s = "horde/weapons/kf_mk23/mk23_chamberhit.wav", t = 110 / 40 },
+            { s = "horde/weapons/kf/mk23/slide_release.wav", t = 1 / 40 },
+            { s = "horde/weapons/kf/mk23/mag_out.wav", t = 6 / 40 },
+            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 34 / 40 },
+            { s = "horde/weapons/kf/mk23/slide_pull.wav", t = 52 / 40 },
+            { s = "horde/weapons/kf/mk23/slide_release.wav", t = 64 / 40 },
+            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 80 / 40 },
+            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 110 / 40 },
         }
     },
     ["fire"] = {

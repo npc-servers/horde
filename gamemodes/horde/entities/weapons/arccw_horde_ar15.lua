@@ -34,7 +34,8 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.FirstShootSound = {
     ")arccw_go/m4a1/m4a1_us_01.wav",
     ")arccw_go/m4a1/m4a1_us_02.wav",
@@ -48,7 +49,7 @@ SWEP.ShootSound = {
     ")arccw_go/m4a1/m4a1_us_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/ar_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)

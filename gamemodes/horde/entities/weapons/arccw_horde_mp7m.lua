@@ -26,21 +26,22 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.FirstShootSound = {
-    ")arccw_go/mp7/mp7_01.wav",
-    ")arccw_go/mp7/mp7_02.wav",
-    ")arccw_go/mp7/mp7_03.wav",
-    ")arccw_go/mp7/mp7_04.wav"
+    ")horde/weapons/gso/mp7/mp7_01.wav",
+    ")horde/weapons/gso/mp7/mp7_02.wav",
+    ")horde/weapons/gso/mp7/mp7_03.wav",
+    ")horde/weapons/gso/mp7/mp7_04.wav"
 }
 SWEP.ShootSound = {
-    ")arccw_go/mp7/mp7_01.wav",
-    ")arccw_go/mp7/mp7_02.wav",
-    ")arccw_go/mp7/mp7_03.wav",
-    ")arccw_go/mp7/mp7_04.wav"
+    ")horde/weapons/gso/mp7/mp7_01.wav",
+    ")horde/weapons/gso/mp7/mp7_02.wav",
+    ")horde/weapons/gso/mp7/mp7_03.wav",
+    ")horde/weapons/gso/mp7/mp7_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
-SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
+SWEP.DistantShootSound = "^horde/weapons/gso/mp7/mp7_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -84,7 +85,7 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound(")horde/weapons/mp7m/heal.ogg", 75, 100, 1, CHAN_WEAPON)
+    ply:EmitSound(")horde/weapons/heal.wav", 75, 100, 1, CHAN_WEAPON)
 
     self:SetNextSecondaryFire(CurTime() + 1)
     return true

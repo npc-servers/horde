@@ -55,12 +55,15 @@ SWEP.NotForNPCS = true
 
 SWEP.Primary.Ammo = "357"
 
+SWEP.ShootVol = 75
+
 SWEP.ShootSound = {
-    ")horde/weapons/kf_deagle/50aest_firest1.wav",
-    ")horde/weapons/kf_deagle/50aest_firest2.wav",
-    ")horde/weapons/kf_deagle/50aest_firest3.wav",
-    ")horde/weapons/kf_deagle/50aest_firest4.wav"
+    ")horde/weapons/kf/deagle/fire_01.wav",
+    ")horde/weapons/kf/deagle/fire_02.wav",
+    ")horde/weapons/kf/deagle/fire_03.wav",
+    ")horde/weapons/kf/deagle/fire_04.wav"
 }
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol_deagle"
 
@@ -113,7 +116,7 @@ SWEP.Animations = {
     ["draw"] = {
         Source = "draw",
         SoundTable = {
-            { s = "horde/weapons/kf_deagle/50ae_select.wav", t = 1 / 30 },
+            { s = "horde/weapons/kf/deagle/select.wav", t = 1 / 30 },
         }
     },
     ["holster"] = {
@@ -123,12 +126,12 @@ SWEP.Animations = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
         SoundTable = {
-            { s = "horde/weapons/kf_deagle/50ae_reload_000.wav", t = 1 / 35 },
-            { s = "horde/weapons/kf_deagle/50ae_reload_011.wav", t = 8 / 35 },
-            { s = "horde/weapons/kf_deagle/50ae_reload_043.wav", t = 40 / 35 },
-            { s = "horde/weapons/kf_deagle/50ae_reload_043.wav", t = 78 / 35 },
-            { s = "horde/weapons/kf_deagle/50ae_reload_055.wav", t = 88 / 35 },
-            { s = "horde/weapons/kf_deagle/50ae_reload_055.wav", t = 92 / 35 },
+            { s = "horde/weapons/kf/deagle/lift.wav", t = 1 / 35 },
+            { s = "horde/weapons/kf/deagle/mag_out.wav", t = 8 / 35 },
+            { s = "horde/weapons/kf/deagle/mag_in.wav", t = 40 / 35 },
+            { s = "horde/weapons/kf/deagle/mag_in.wav", t = 78 / 35 },
+            { s = "horde/weapons/kf/deagle/slide_release.wav", t = 88 / 35 },
+            { s = "horde/weapons/kf/deagle/slide_release.wav", t = 92 / 35 },
         }
     },
     ["fire"] = {

@@ -56,7 +56,7 @@ SWEP.Bipod_Integral = true
 SWEP.BipodDispersion = 0.5
 SWEP.BipodRecoil = 0.45
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = {
     ")horde/weapons/bo/hk21/fire_01.wav",
@@ -64,7 +64,6 @@ SWEP.ShootSound = {
     ")horde/weapons/bo/hk21/fire_03.wav",
     ")horde/weapons/bo/hk21/fire_04.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo/hk21/fire_lfe.wav"
 SWEP.ShootSoundSilenced = {
     ")horde/weapons/bo/hk21/silenced_01.wav",
     ")horde/weapons/bo/hk21/silenced_02.wav",
@@ -72,8 +71,7 @@ SWEP.ShootSoundSilenced = {
     ")horde/weapons/bo/hk21/silenced_04.wav",
     ")horde/weapons/bo/hk21/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo/hk21/silenced_lfe.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo/hk21/fire_distant.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/lmg_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 
@@ -197,9 +195,9 @@ SWEP.Animations = {
         Source = "reg_draw_first",
         SoundTable = {
             { s = "ArcCW_Horde_BO_HK21.Pickup", t = 1 / 40 },
-            { s = "horde/weapons/bo_shared/reload/fly_m60_charge.wav", t = 25 / 40 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_pull.wav", t = 35 / 40 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_release.wav", t = 44 / 40 },
+            { s = "horde/weapons/bo/hk21/bolt_grab.wav", t = 25 / 40 },
+            { s = "horde/weapons/bo/hk21/bolt_pull.wav", t = 35 / 40 },
+            { s = "horde/weapons/bo/hk21/bolt_release.wav", t = 44 / 40 },
         }
     },
     ["draw"] = {
@@ -217,9 +215,9 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_HK21.Reload", t = 1 / 35 },
             { s = "ArcCW_Horde_BO_HK21.Reload", t = 80 / 35 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_mag_out.wav", t = 15 / 35 },
-            { s = "horde/weapons/bo_shared/reload/fly_rpk_futz.wav", t = 90 / 35 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_mag_in.wav", t = 95 / 35 },
+            { s = "horde/weapons/bo/hk21/mag_out.wav", t = 15 / 35 },
+            { s = "horde/weapons/bo/hk21/mag_futz.wav", t = 90 / 35 },
+            { s = "horde/weapons/bo/hk21/mag_in.wav", t = 95 / 35 },
         }
     },
     ["reload_empty"] = {
@@ -229,12 +227,12 @@ SWEP.Animations = {
             { s = "ArcCW_Horde_BO_HK21.Reload", t = 1 / 35 },
             { s = "ArcCW_Horde_BO_HK21.Reload", t = 80 / 35 },
             { s = "ArcCW_Horde_BO_HK21.Reload", t = 120 / 35 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_mag_out.wav", t = 15 / 35 },
-            { s = "horde/weapons/bo_shared/reload/fly_rpk_futz.wav", t = 90 / 35 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_mag_in.wav", t = 95 / 35 },
-            { s = "horde/weapons/bo_shared/reload/fly_m60_charge.wav", t = 124 / 35 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_pull.wav", t = 138 / 35 },
-            { s = "horde/weapons/bo_hk21/reload/fly_hk21_release.wav", t = 145 / 35 },
+            { s = "horde/weapons/bo/hk21/mag_out.wav", t = 15 / 35 },
+            { s = "horde/weapons/bo/hk21/mag_futz.wav", t = 90 / 35 },
+            { s = "horde/weapons/bo/hk21/mag_in.wav", t = 95 / 35 },
+            { s = "horde/weapons/bo/hk21/bolt_grab.wav", t = 124 / 35 },
+            { s = "horde/weapons/bo/hk21/bolt_pull.wav", t = 138 / 35 },
+            { s = "horde/weapons/bo/hk21/bolt_release.wav", t = 145 / 35 },
         }
     },
     ["fire"] = {
@@ -261,10 +259,10 @@ sound.Add( {
     name = "ArcCW_Horde_BO_HK21.Reload",
     volume = 1.0,
     sound = {
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo/reload_01.wav",
+        "horde/weapons/bo/reload_02.wav",
+        "horde/weapons/bo/reload_03.wav",
+        "horde/weapons/bo/reload_04.wav"
     }
 } )
 
@@ -272,9 +270,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_HK21.Pickup",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/pickup_00.wav",
-        ")horde/weapons/bo_shared/foley/pickup_01.wav",
-        ")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo/pickup_01.wav",
+        ")horde/weapons/bo/pickup_02.wav",
+        ")horde/weapons/bo/pickup_03.wav"
     }
 } )
 
@@ -282,11 +280,11 @@ sound.Add( {
     name = "ArcCW_Horde_BO_HK21.Rattle",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/rattle_00.wav",
-        ")horde/weapons/bo_shared/foley/rattle_01.wav",
-        ")horde/weapons/bo_shared/foley/rattle_02.wav",
-        ")horde/weapons/bo_shared/foley/rattle_03.wav",
-        ")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo/pullout_01.wav",
+        ")horde/weapons/bo/pullout_02.wav",
+        ")horde/weapons/bo/pullout_03.wav",
+        ")horde/weapons/bo/pullout_04.wav",
+        ")horde/weapons/bo/pullout_05.wav"
     }
 } )
 

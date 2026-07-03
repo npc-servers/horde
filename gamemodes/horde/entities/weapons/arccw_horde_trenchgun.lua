@@ -81,11 +81,10 @@ SWEP.MoveDispersion = 100
 SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "KF_trench.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/shot_sil.wav"
-SWEP.DistantShootSound = "KF_trench.Fire"
+SWEP.ShootSound = ")weapons/kf_trench/KF_Shotgun_Dragon_Fire_S.wav"
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/shot_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -186,33 +185,24 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-    Source = "idle",
-    Time = 10,
+        Source = "idle",
+        Time = 10,
     },
     ["enter_sight"] = {
         Source = "idle",
         Time = 0,
-        },
+    },
     ["idle_sights"] = {
         Source = "idle",
         Time = 0,
-        },
-        ["exit_sight"] = {
-            Source = "idle",
-            Time = 0,
-            },
+    },
+    ["exit_sight"] = {
+        Source = "idle",
+        Time = 0,
+    },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
-        SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
     },
     ["fire"] = {
         Source = "idle",
@@ -238,32 +228,20 @@ SWEP.Animations = {
         Source = "start_reload",
         Time = 0.2,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0,
     },
     ["sgreload_insert"] = {
         Source = "insert",
         Time = 0.5,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0,
     },
     ["sgreload_finish"] = {
         Source = "reload_end",
         Time = 1,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.4,
     },
     ["sgreload_finish_empty"] = {
         Source = "reload_end",
         Time = 1,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.4,
     },
 }
 

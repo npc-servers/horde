@@ -26,6 +26,19 @@ SWEP.MoveDispersion = 150
 
 SWEP.ShootVol = 75 -- volume of shoot sound
 
+SWEP.FirstShootSound = {
+    ")arccw_go/g3sg1/g3sg1_01.wav",
+    ")arccw_go/g3sg1/g3sg1_02.wav",
+    ")arccw_go/g3sg1/g3sg1_03.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/g3sg1/g3sg1_01.wav",
+    ")arccw_go/g3sg1/g3sg1_02.wav",
+    ")arccw_go/g3sg1/g3sg1_03.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/br_distant.wav"
+
 SWEP.SpeedMult = 0.95
 
 SWEP.SightTime = 0.25

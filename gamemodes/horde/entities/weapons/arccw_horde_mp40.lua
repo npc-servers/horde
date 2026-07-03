@@ -81,8 +81,7 @@ SWEP.MoveDispersion = 80
 
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 
-SWEP.ShootVol = 110 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = {
     ")horde/weapons/waw/mp40/fire_01.wav",
@@ -91,16 +90,14 @@ SWEP.ShootSound = {
     ")horde/weapons/waw/mp40/fire_04.wav",
     ")horde/weapons/waw/mp40/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/waw/mp40/fire_lfe.wav"
 SWEP.ShootSoundSilenced = {
-    ")horde/weapons/bo/hk21/silenced_01.wav",
-    ")horde/weapons/bo/hk21/silenced_02.wav",
-    ")horde/weapons/bo/hk21/silenced_03.wav",
-    ")horde/weapons/bo/hk21/silenced_04.wav",
-    ")horde/weapons/bo/hk21/silenced_05.wav"
+    ")horde/weapons/waw/mp40/silenced_01.wav",
+    ")horde/weapons/waw/mp40/silenced_02.wav",
+    ")horde/weapons/waw/mp40/silenced_03.wav",
+    ")horde/weapons/waw/mp40/silenced_04.wav",
+    ")horde/weapons/waw/mp40/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo/hk21/silenced_lfe.wav"
-SWEP.DistantShootSound = ")horde/weapons/waw/mp40/fire_distant.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/smg_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"

@@ -53,7 +53,7 @@ SWEP.AccuracyMOA = 5
 SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 50
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = {
     ")horde/weapons/bo/makarov/fire_01.wav",
@@ -62,7 +62,6 @@ SWEP.ShootSound = {
     ")horde/weapons/bo/makarov/fire_04.wav",
     ")horde/weapons/bo/makarov/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo/makarov/fire_lfe.wav"
 SWEP.ShootSoundSilenced = {
     ")horde/weapons/bo/makarov/silenced_01.wav",
     ")horde/weapons/bo/makarov/silenced_02.wav",
@@ -70,9 +69,7 @@ SWEP.ShootSoundSilenced = {
     ")horde/weapons/bo/makarov/silenced_04.wav",
     ")horde/weapons/bo/makarov/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo/makarov/silenced_lfe.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo/makarov/fire_distant.wav"
-SWEP.DistantShootSoundSilenced = ")horde/weapons/bo/makarov/silenced_sweet.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -433,7 +430,7 @@ function SWEP:ChangeFiremode()
         end
     end
 
-    ply:EmitSound( ")horde/weapons/mp7m/heal.ogg", 80, 100, 1, CHAN_STATIC )
+    ply:EmitSound( ")horde/weapons/heal.wav", 75, 100, 1, CHAN_STATIC )
 
     self:SetNextSecondaryFire( CurTime() + 0.5 )
 

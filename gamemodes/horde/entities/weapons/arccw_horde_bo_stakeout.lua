@@ -62,13 +62,11 @@ SWEP.AccuracyMOA = 40
 SWEP.HipDispersion = 350
 SWEP.MoveDispersion = 150
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = ")horde/weapons/bo/stakeout/fire.wav"
-SWEP.LowShootSound = ")horde/weapons/bo/stakeout/fire_distant.wav"
 SWEP.ShootSoundSilenced = ")horde/weapons/bo/stakeout/silenced.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo/stakeout/fire_distant.wav"
--- SWEP.DistantShootSoundSilenced = ")horde/weapons/bo/stakeout/silenced_sweet.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_shotgun"
 

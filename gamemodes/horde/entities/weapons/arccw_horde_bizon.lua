@@ -22,10 +22,18 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 750
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.Bizon_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.Bizon_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.Bizon_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.FirstShootSound = {
+    ")arccw_go/bizon/bizon_01.wav",
+    ")arccw_go/bizon/bizon_02.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/bizon/bizon_01.wav",
+    ")arccw_go/bizon/bizon_02.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/smg_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -82,20 +90,3 @@ SWEP.Animations = {
     ["idle_inspect"] = false,
     ["exit_inspect"] = false,
 }
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Bizon_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/bizon/bizon_01.wav",")arccw_go/bizon/bizon_02.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Bizon_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/mp5/mp5_01.wav"
-} )

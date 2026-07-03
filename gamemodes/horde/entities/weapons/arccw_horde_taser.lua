@@ -72,12 +72,7 @@ SWEP.Disposable = false -- when all ammo is expended, the gun will remove itself
 SWEP.DoNotEquipmentAmmo = true
 SWEP.AutoReload = true
 
-SWEP.ShootSound = "arccw_go/taser/taser_shoot.wav"
-
-SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
-SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
-SWEP.MeleeHitSound = "arccw_go/knife/knife_hitwall1.wav"
-SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
+SWEP.ShootSound = ")arccw_go/taser/taser_shoot.wav"
 
 SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.75

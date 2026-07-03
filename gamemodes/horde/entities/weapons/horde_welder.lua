@@ -713,7 +713,7 @@ function SWEP:ShouldDrawViewModel()
 end
 
 function SWEP:Equip()
-	self.Owner:EmitSound(Sound("horde/weapons/welder/gunpickup2.ogg"))
+	self.Owner:EmitSound(Sound("horde/weapons/welder/pickup.wav"))
 end
 
 function SWEP:Deploy()
@@ -721,7 +721,7 @@ function SWEP:Deploy()
 	self:SetNextPrimaryFire( CurTime() + self:SequenceDuration())
 	self:SetNextSecondaryFire( CurTime() + self:SequenceDuration())
 	self:NextThink( CurTime() + self:SequenceDuration() )
-	self:EmitSound(Sound("horde/weapons/welder/blowtorch-1.ogg"))
+	self:EmitSound(Sound("horde/weapons/welder/blowtorch.wav"))
    return true
 end
 
@@ -768,7 +768,7 @@ function SWEP:PrimaryAttack()
 			spark:Fire( "kill", "", 0.1 )
 			self:DeleteOnRemove(spark)
 
-			sound.Play("horde/weapons/welder/spark"..math.random(1,4)..".ogg", Trace.HitPos, 75, 100, 1)
+			sound.Play("horde/weapons/welder/fire.wav", Trace.HitPos, 75, 100, 1)
 		end
 
 		if IsValid(ply) and IsValid(Trace.Entity) then

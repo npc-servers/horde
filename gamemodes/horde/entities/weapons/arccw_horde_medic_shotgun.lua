@@ -81,15 +81,12 @@ SWEP.MoveDispersion = 100
 SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "KF_trench.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/shot_sil.wav"
-SWEP.DistantShootSound = "KF_trench.Fire"
+SWEP.ShootSound = ")weapons/kf_trench/KF_Shotgun_Dragon_Fire_S.wav"
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/shot_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
-SWEP.ShellModel = "models/shells/shell_9mm.mdl"
-SWEP.ShellScale = 1
+SWEP.MuzzleEffect = "muzzleflash_shotgun"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
@@ -186,33 +183,24 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-    Source = "idle",
-    Time = 10,
+        Source = "idle",
+        Time = 10,
     },
     ["enter_sight"] = {
         Source = "idle",
         Time = 0,
-        },
+    },
     ["idle_sights"] = {
         Source = "idle",
         Time = 0,
-        },
-        ["exit_sight"] = {
-            Source = "idle",
-            Time = 0,
-            },
+    },
+    ["exit_sight"] = {
+        Source = "idle",
+        Time = 0,
+    },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
-        SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
     },
     ["fire"] = {
         Source = "idle",
@@ -404,7 +392,7 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
+    ply:EmitSound(")horde/weapons/heal.wav", 75, 100, 1, CHAN_AUTO)
 
     self:SetNextSecondaryFire(CurTime() + 1)
     self:SetNextPrimaryFire(CurTime() + 0.25)
