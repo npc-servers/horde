@@ -34,7 +34,7 @@ SWEP.ShootSound = {
     ")horde/weapons/gso/m249/m249_03.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = ")horde/weapons/gso/m249/m249_distant.wav"
+SWEP.DistantShootSound = "^horde/weapons/gso/m249/m249_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
