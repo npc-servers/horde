@@ -23,7 +23,7 @@ SWEP.RecoilPunch = 0
 
 SWEP.ShootVol = 75
 
-SWEP.ShootSound = ")horde/weapons/gso/fiveseven/fiveseven_01.wav"
+SWEP.ShootSound = ")arccw_go/fiveseven/fiveseven_01.wav"
 SWEP.ShootSoundSilenced = {
     ")arccw_go/usp/usp_01.wav",
     ")arccw_go/usp/usp_02.wav",

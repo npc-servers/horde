@@ -768,7 +768,7 @@ function SWEP:PrimaryAttack()
 			spark:Fire( "kill", "", 0.1 )
 			self:DeleteOnRemove(spark)
 
-			sound.Play("horde/weapons/welder/fire.wav", Trace.HitPos, 75, 100, 1)
+			sound.Play("horde/weapons/welder/fire.wav", Trace.HitPos, 75, math.random( 90, 110 ), 1)
 		end
 
 		if IsValid(ply) and IsValid(Trace.Entity) then

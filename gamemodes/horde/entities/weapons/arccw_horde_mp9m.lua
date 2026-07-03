@@ -31,16 +31,16 @@ SWEP.Delay = 60 / 900
 SWEP.ShootVol = 75
 
 SWEP.FirstShootSound = {
-    ")horde/weapons/gso/mp9/mp9_01.wav",
-    ")horde/weapons/gso/mp9/mp9_02.wav",
-    ")horde/weapons/gso/mp9/mp9_03.wav",
-    ")horde/weapons/gso/mp9/mp9_04.wav"
+    ")arccw_go/mp9/mp9_01.wav",
+    ")arccw_go/mp9/mp9_02.wav",
+    ")arccw_go/mp9/mp9_03.wav",
+    ")arccw_go/mp9/mp9_04.wav"
 }
 SWEP.ShootSound = {
-    ")horde/weapons/gso/mp9/mp9_01.wav",
-    ")horde/weapons/gso/mp9/mp9_02.wav",
-    ")horde/weapons/gso/mp9/mp9_03.wav",
-    ")horde/weapons/gso/mp9/mp9_04.wav"
+    ")arccw_go/mp9/mp9_01.wav",
+    ")arccw_go/mp9/mp9_02.wav",
+    ")arccw_go/mp9/mp9_03.wav",
+    ")arccw_go/mp9/mp9_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/gso/mp9/mp9_distant.wav"

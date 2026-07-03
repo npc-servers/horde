@@ -29,16 +29,16 @@ SWEP.Firemodes = {
 SWEP.ShootVol = 75
 
 SWEP.FirstShootSound = {
-    ")horde/weapons/gso/mp7/mp7_01.wav",
-    ")horde/weapons/gso/mp7/mp7_02.wav",
-    ")horde/weapons/gso/mp7/mp7_03.wav",
-    ")horde/weapons/gso/mp7/mp7_04.wav"
+    ")arccw_go/mp7/mp7_01.wav",
+    ")arccw_go/mp7/mp7_02.wav",
+    ")arccw_go/mp7/mp7_03.wav",
+    ")arccw_go/mp7/mp7_04.wav"
 }
 SWEP.ShootSound = {
-    ")horde/weapons/gso/mp7/mp7_01.wav",
-    ")horde/weapons/gso/mp7/mp7_02.wav",
-    ")horde/weapons/gso/mp7/mp7_03.wav",
-    ")horde/weapons/gso/mp7/mp7_04.wav"
+    ")arccw_go/mp7/mp7_01.wav",
+    ")arccw_go/mp7/mp7_02.wav",
+    ")arccw_go/mp7/mp7_03.wav",
+    ")arccw_go/mp7/mp7_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/gso/mp7/mp7_distant.wav"
