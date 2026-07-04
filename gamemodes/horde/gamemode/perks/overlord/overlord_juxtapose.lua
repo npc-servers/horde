@@ -1,6 +1,6 @@
 PERK.PrintName = "Juxtapose"
 PERK.Description = [[Dark Energy Blast Perk skill is replaced with Summon Projection Clone.
-Projection Clone has {1} health and uses a pump shotgun.
+Projection Clone has {1} health and uses an auto shotgun.
 Projection Clone lasts for {2} seconds and has a {3} second cooldown.]]
 PERK.Icon = "materials/perks/overlord/juxtapose.png"
 PERK.Params = {
