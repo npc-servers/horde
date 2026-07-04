@@ -4,7 +4,7 @@ Projection Clone has {1} health and uses an auto shotgun.
 Projection Clone lasts for {2} seconds and has a {3} second cooldown.]]
 PERK.Icon = "materials/perks/overlord/juxtapose.png"
 PERK.Params = {
-    [1] = { value = 125 },
+    [1] = { value = 200 },
     [2] = { value = 15 },
     [3] = { value = 15 },
 }
