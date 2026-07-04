@@ -17,7 +17,8 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_usp.mdl"
 
 SWEP.RecoilPunch = 0
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.FirstShootSound = {
     ")arccw_go/usp/usp_unsilenced_01.wav",
     ")arccw_go/usp/usp_unsilenced_02.wav",
@@ -33,7 +34,7 @@ SWEP.ShootSoundSilenced = {
     ")arccw_go/usp/usp_02.wav",
     ")arccw_go/usp/usp_03.wav"
 }
-SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 

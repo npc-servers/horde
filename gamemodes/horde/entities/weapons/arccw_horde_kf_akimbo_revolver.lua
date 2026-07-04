@@ -59,7 +59,10 @@ SWEP.AccuracyMOA = 5
 SWEP.HipDispersion = 400
 SWEP.MoveDispersion = 100
 
-SWEP.ShootSound = ")horde/weapons/kf_revolver/wep_revolver_fire_s.wav"
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")horde/weapons/kf/revolver/fire.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol_deagle"
 
@@ -112,7 +115,7 @@ SWEP.Animations = {
     ["draw"] = {
         Source = "draw",
         SoundTable = {
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_select.wav", t = 1 / 30 },
+            { s = ")horde/weapons/kf/revolver/select.wav", t = 1 / 30 },
         }
     },
     ["holster"] = {
@@ -122,14 +125,14 @@ SWEP.Animations = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
         SoundTable = {
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_open.wav", t = 1 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_eject.wav", t = 16 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_insert.wav", t = 62 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_close.wav", t = 78 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_open.wav", t = 104 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_eject.wav", t = 122 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_insert.wav", t = 148 / 40 },
-            { s = ")horde/weapons/kf_revolver/wep_revolver_foley_close.wav", t = 165 / 40 },
+            { s = ")horde/weapons/kf/revolver/cylinder_open.wav", t = 1 / 40 },
+            { s = ")horde/weapons/kf/revolver/rounds_eject.wav", t = 16 / 40 },
+            { s = ")horde/weapons/kf/revolver/rounds_insert.wav", t = 62 / 40 },
+            { s = ")horde/weapons/kf/revolver/cylinder_close.wav", t = 78 / 40 },
+            { s = ")horde/weapons/kf/revolver/cylinder_open.wav", t = 104 / 40 },
+            { s = ")horde/weapons/kf/revolver/rounds_eject.wav", t = 122 / 40 },
+            { s = ")horde/weapons/kf/revolver/rounds_insert.wav", t = 148 / 40 },
+            { s = ")horde/weapons/kf/revolver/cylinder_close.wav", t = 165 / 40 },
         }
     },
     ["fire"] = {

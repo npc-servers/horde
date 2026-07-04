@@ -85,11 +85,10 @@ SWEP.Primary.Ammo = "ar2" -- what ammo type the gun uses
 SWEP.MagID = "mosin" -- the magazine pool this gun draws from
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "ArcCW_WAW.Mosin_Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/shot_sil.wav"
-SWEP.DistantShootSound = "ArcCW_WAW.Mosin_Ringoff"
+SWEP.ShootSound = ")arccw_go/ssg08/ssg08-1.wav"
+SWEP.ShootSoundSilenced = ")arccw_go/mosin_suppressed_fp.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/sniper_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_4"
 SWEP.ShellModel = "models/shells/shell_556.mdl"

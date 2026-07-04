@@ -88,7 +88,7 @@ SWEP.MagID = "minigun" -- the magazine pool this gun draws from
 
 SWEP.ShootVol = 80
 SWEP.ShootSound = ")weapons/arccw/minigun/minigun_fire.wav"
-SWEP.DistantShootSound = ")horde/weapons/distshot.wav"
+SWEP.DistantShootSound = ")horde/weapons/distant/lmg_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 

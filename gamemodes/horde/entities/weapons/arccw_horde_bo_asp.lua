@@ -54,7 +54,7 @@ SWEP.HipDispersion = 250
 SWEP.MoveDispersion = 50
 SWEP.JumpDispersion = 50
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = {
     ")horde/weapons/bo/asp/fire_01.wav",
@@ -63,8 +63,7 @@ SWEP.ShootSound = {
     ")horde/weapons/bo/asp/fire_04.wav",
     ")horde/weapons/bo/asp/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo/asp/fire_lfe.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo/asp/fire_distant.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -224,47 +223,3 @@ sound.Add( {
         ")horde/weapons/bo/pullout_05.wav"
     }
 } )
-
-function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
-    local fsound = self.ShootSound
-    local lsound = self.LowShootSound
-    local dsound = self.DistantShootSound
-
-    local suppressed = self:GetBuff_Override( "Silencer" )
-
-    if suppressed then
-        fsound = self.ShootSoundSilenced
-        lsound = self.LowShootSoundSilenced
-        dsound = nil
-    end
-
-    fsound = self:GetBuff_Hook( "Hook_GetShootSound", fsound )
-
-    local volume = self.ShootVol
-    local spv = self.ShootPitchVariation
-    local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
-
-    local v = GetConVar( "arccw_weakensounds" ):GetFloat()
-
-    volume = volume - v
-    volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
-
-    volume = math.Clamp( volume, 60, 140 )
-    pitch = math.Clamp( pitch, 0, 255 )
-
-    if sndoverride then fsound = sndoverride end
-    if voloverride then volume = voloverride end
-    if pitchoverride then pitch = pitchoverride end
-
-    if fsound then self:MyEmitSound( fsound, volume, pitch, 1, CHAN_STATIC ) end
-    if lsound then self:MyEmitSound( lsound, 75, 100, 0.5, CHAN_BODY ) end
-    if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
-
-    local data = {
-        sound = fsound,
-        volume = volume,
-        pitch = pitch,
-    }
-
-    self:GetBuff_Hook( "Hook_AddShootSound", data )
-end

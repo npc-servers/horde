@@ -23,12 +23,24 @@ SWEP.RecoilPunch = 0.2
 
 SWEP.Delay = 0.1 -- 60 / RPM.
 
-
 SWEP.AccuracyMOA = 1.5 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 285 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 100
 
 SWEP.ShootVol = 75 -- volume of shoot sound
+
+SWEP.FirstShootSound = {
+    ")arccw_go/scar20/scar20_01.wav",
+    ")arccw_go/scar20/scar20_02.wav",
+    ")arccw_go/scar20/scar20_03.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/scar20/scar20_01.wav",
+    ")arccw_go/scar20/scar20_02.wav",
+    ")arccw_go/scar20/scar20_03.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/br_distant.wav"
 
 SWEP.SpeedMult = 0.96
 SWEP.SightTime = 0.2

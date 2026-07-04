@@ -24,18 +24,19 @@ SWEP.Recoil = 0.4
 SWEP.RecoilSide = 0.3
 SWEP.RecoilPunch = 0
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.FirstShootSound = {
-    ")arccw_go/aug/aug_01.wav",
-    ")arccw_go/aug/aug_02.wav",
-    ")arccw_go/aug/aug_03.wav",
-    ")arccw_go/aug/aug_04.wav"
+    ")horde/weapons/gso/aug/aug_01.wav",
+    ")horde/weapons/gso/aug/aug_02.wav",
+    ")horde/weapons/gso/aug/aug_03.wav",
+    ")horde/weapons/gso/aug/aug_04.wav"
 }
 SWEP.ShootSound = {
-    ")arccw_go/aug/aug_01.wav",
-    ")arccw_go/aug/aug_02.wav",
-    ")arccw_go/aug/aug_03.wav",
-    ")arccw_go/aug/aug_04.wav"
+    ")horde/weapons/gso/aug/aug_01.wav",
+    ")horde/weapons/gso/aug/aug_02.wav",
+    ")horde/weapons/gso/aug/aug_03.wav",
+    ")horde/weapons/gso/aug/aug_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/distshot.wav"

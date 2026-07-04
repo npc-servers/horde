@@ -81,8 +81,7 @@ SWEP.MoveDispersion = 80
 
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 
-SWEP.ShootVol = 110 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = {
     ")horde/weapons/waw/mp40/fire_01.wav",
@@ -91,16 +90,14 @@ SWEP.ShootSound = {
     ")horde/weapons/waw/mp40/fire_04.wav",
     ")horde/weapons/waw/mp40/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/waw/mp40/fire_lfe.wav"
 SWEP.ShootSoundSilenced = {
-    ")horde/weapons/bo/hk21/silenced_01.wav",
-    ")horde/weapons/bo/hk21/silenced_02.wav",
-    ")horde/weapons/bo/hk21/silenced_03.wav",
-    ")horde/weapons/bo/hk21/silenced_04.wav",
-    ")horde/weapons/bo/hk21/silenced_05.wav"
+    ")horde/weapons/waw/mp40/silenced_01.wav",
+    ")horde/weapons/waw/mp40/silenced_02.wav",
+    ")horde/weapons/waw/mp40/silenced_03.wav",
+    ")horde/weapons/waw/mp40/silenced_04.wav",
+    ")horde/weapons/waw/mp40/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo/hk21/silenced_lfe.wav"
-SWEP.DistantShootSound = ")horde/weapons/waw/mp40/fire_distant.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/smg_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -312,47 +309,3 @@ SWEP.Animations = {
         },
     },
 }
-
-function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
-    local fsound = self.ShootSound
-    local lsound = self.LowShootSound
-    local dsound = self.DistantShootSound
-
-    local suppressed = self:GetBuff_Override( "Silencer" )
-
-    if suppressed then
-        fsound = self.ShootSoundSilenced
-        lsound = self.LowShootSoundSilenced
-        dsound = self.DistantShootSoundSilenced
-    end
-
-    fsound = self:GetBuff_Hook( "Hook_GetShootSound", fsound )
-
-    local volume = self.ShootVol
-    local spv = self.ShootPitchVariation
-    local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
-
-    local v = GetConVar( "arccw_weakensounds" ):GetFloat()
-
-    volume = volume - v
-    volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
-
-    volume = math.Clamp( volume, 60, 140 )
-    pitch = math.Clamp( pitch, 0, 255 )
-
-    if sndoverride then fsound = sndoverride end
-    if voloverride then volume = voloverride end
-    if pitchoverride then pitch = pitchoverride end
-
-    if fsound then self:MyEmitSound( fsound, volume, pitch, 1, CHAN_STATIC ) end
-    if lsound then self:MyEmitSound( lsound, 75, 100, 0.5, CHAN_BODY ) end
-    if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
-
-    local data = {
-        sound = fsound,
-        volume = volume,
-        pitch = pitch,
-    }
-
-    self:GetBuff_Hook( "Hook_AddShootSound", data )
-end

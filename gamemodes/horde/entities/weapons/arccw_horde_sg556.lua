@@ -24,19 +24,15 @@ SWEP.Delay = 60 / 650
 
 SWEP.ShootVol = 80
 SWEP.FirstShootSound = {
-    ")arccw_go/sg556/sg556_01.wav",
     ")arccw_go/sg556/sg556_02.wav",
-    ")arccw_go/sg556/sg556_03.wav",
-    ")arccw_go/sg556/sg556_04.wav"
+    ")arccw_go/sg556/sg556_03.wav"
 }
 SWEP.ShootSound = {
     ")arccw_go/sg556/sg556_01.wav",
-    ")arccw_go/sg556/sg556_02.wav",
-    ")arccw_go/sg556/sg556_03.wav",
     ")arccw_go/sg556/sg556_04.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "^horde/weapons/distshot.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/ar_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
