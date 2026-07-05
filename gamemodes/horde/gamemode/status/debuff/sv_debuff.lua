@@ -83,7 +83,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         if buildup < 1  then return end
 
         if HORDE.Status_Buildup_Sounds[debuff] then
-            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 100, math.random(80,110))
+            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 75, math.random(90,110))
         end
         self.Horde_Debuff_Buildup[debuff] = math.min(100, self.Horde_Debuff_Buildup[debuff] + buildup)
 
@@ -119,7 +119,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         if buildup < 1 then return end
 
         if HORDE.Status_Buildup_Sounds[debuff] then
-            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 100, math.random(80,110))
+            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 75, math.random(90,110))
         end
         self.Horde_Debuff_Buildup[debuff] = math.min(threshold, self.Horde_Debuff_Buildup[debuff] + buildup)
 
@@ -146,7 +146,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
     end
 
     if HORDE.Status_Trigger_Sounds[debuff] then
-        sound.Play(HORDE.Status_Trigger_Sounds[debuff], self:GetPos())
+        sound.Play(HORDE.Status_Trigger_Sounds[debuff], self:GetPos(), 75)
     end
 
     if self:IsPlayer() then
