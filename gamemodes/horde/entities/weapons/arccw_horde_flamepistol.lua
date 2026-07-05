@@ -75,10 +75,10 @@ SWEP.MoveDispersion = 100
 
 SWEP.Primary.Ammo = "357" -- what ammo type the gun uses
 
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = {")weapons/flaregun/fire.wav"}
+SWEP.ShootSound = ")weapons/flaregun/fire.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol_cleric"
 

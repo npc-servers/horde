@@ -22,13 +22,14 @@ SWEP.RecoilPunch = 0
 
 SWEP.Delay = 60 / 200
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.ShootSound = {
     ")arccw_go/deagle/deagle_01.wav",
     ")arccw_go/deagle/deagle_02.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/mosin_suppressed_fp.wav"
-SWEP.DistantShootSound = "^horde/weapons/distshot_large.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)

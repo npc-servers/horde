@@ -70,18 +70,15 @@ SWEP.MoveDispersion = 10 -- inaccuracy added by moving. Applies in sights as wel
 SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 SWEP.MagID = "usas" -- the magazine pool this gun draws from
 
-SWEP.ShootSound = "weapons/arccw/eap/usas/fixedfire.ogg"
-SWEP.ShootSoundSilenced = "weapons/arccw/eap/usas/suppressed-3.wav"
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")weapons/arccw/eap/usas/fixedfire.ogg"
+SWEP.ShootSoundSilenced = ")weapons/arccw/eap/usas/suppressed-3.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.IsShotgun = true
 
-SWEP.MeleeSwingSound = "weapons/arccw/m249/m249_draw.wav"
-SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
-SWEP.MeleeHitSound = "weapons/arccw/knife/knife_hitwall1.wav"
-SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
-
-
-SWEP.MuzzleEffect = "muzzleflash_m3"
+SWEP.MuzzleEffect = "muzzleflash_m79"
 SWEP.ShellModel = "models/shells/shell_12gauge.mdl"
 SWEP.ShellScale = 1.8
 SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable

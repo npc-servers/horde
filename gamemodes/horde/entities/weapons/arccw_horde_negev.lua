@@ -21,7 +21,8 @@ SWEP.DamageMin = 46
 SWEP.Delay = 60 / 700
 SWEP.ShootSpeedMult = 0.85
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.FirstShootSound = {
     ")arccw_go/negev/negev_01.wav",
     ")arccw_go/negev/negev_02.wav"
@@ -31,7 +32,7 @@ SWEP.ShootSound = {
     ")arccw_go/negev/negev_02.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = ")horde/weapons/distshot.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/lmg_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)

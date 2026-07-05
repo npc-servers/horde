@@ -25,13 +25,14 @@ SWEP.Recoil = 2
 SWEP.RecoilSide = 1.5
 SWEP.RecoilPunch = 0
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
+
 SWEP.ShootSound = {
     ")arccw_go/mag7/mag7_01.wav",
     ")arccw_go/mag7/mag7_02.wav"
 }
 SWEP.ShootSoundSilenced = ")arccw_go/m590_suppressed_fp.wav"
-SWEP.DistantShootSound = "^horde/weapons/distshot_shotgun.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
