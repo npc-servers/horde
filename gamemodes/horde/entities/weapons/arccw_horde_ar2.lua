@@ -175,10 +175,10 @@ SWEP.Animations = {
         FrameRate = 30,
     },
     ["fire"] = {
-        Source = "Fire4",
+        Source = "IR_Fire",
     },
     ["fire_iron"] = {
-        Source = "Shake",
+        Source = "Fire2",
     },
     ["reload"] = {
         Source = "IR_reload",
