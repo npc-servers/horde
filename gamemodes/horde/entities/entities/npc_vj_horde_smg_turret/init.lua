@@ -67,7 +67,6 @@ ENT.SoundTbl_CombatIdle = {
 ENT.SoundTbl_Idle = {
     "npc/turret_floor/ping.wav"
 }
-ENT.SoundTbl_Pain = {}
 ENT.SoundTbl_Death = {
     "npc/turret_floor/die.wav"
 }
@@ -75,8 +74,10 @@ ENT.SoundTbl_Alert = {
     "npc/turret_floor/deploy.wav"
 }
 ENT.SoundTbl_RangeAttack = {
-    "npc/turret_floor/shoot1.wav"
+    "^npc/turret_floor/shoot1.wav"
 }
+
+ENT.RangeAttackSoundLevel = 140
 
 ENT.Horde_Immune_Status = {
     [HORDE.Status_Bleeding] = true,
