@@ -63,9 +63,8 @@ end
 
 function ENT:FlashBang()
     if !self:IsValid() then return end
-    self:EmitSound("arccw_go/flashbang/flashbang_explode1.wav", 100, 100, 1, CHAN_ITEM)
-    self:EmitSound("arccw_go/flashbang/flashbang_explode1_distant.wav", 140, 100, 1, CHAN_WEAPON)
-
+    self:EmitSound("^horde/weapons/gso/flashbang/flashbang_"..math.random(1,2)..".wav", 140, math.random(90,110), 1, CHAN_STATIC)
+    
     local attacker = self
 
     if self:GetOwner():IsValid() then
