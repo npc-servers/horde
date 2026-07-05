@@ -4,7 +4,7 @@ function EFFECT:Init(effectdata)
 
 	local particle
 
-	sound.Play("ambient/levels/labs/electric_explosion5.wav", pos, 80, math.random(70, 90))
+ sound.Play(")ambient/levels/labs/electric_explosion5.wav", pos, 75, math.random(90, 110))
 
 	local emitter = ParticleEmitter(pos)
 	local emitter2 = ParticleEmitter(pos, true)

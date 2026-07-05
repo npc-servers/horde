@@ -2,7 +2,7 @@ function EFFECT:Init(ed)
 
     local vOrig = ed:GetOrigin()
     self.Emitter = ParticleEmitter(vOrig)
-    sound.Play("ambient/explosions/explode_7.wav", vOrig, 80, math.random(70, 90))
+    sound.Play(")ambient/explosions/explode_7.wav", vOrig, 75, math.random(90, 110))
 
     for i=1,72 do
         local sparks = self.Emitter:Add("effects/spark", vOrig)
