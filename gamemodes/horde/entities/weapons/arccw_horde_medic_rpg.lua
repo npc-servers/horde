@@ -1,10 +1,10 @@
 if not ArcCWInstalled then return end
-if (CLIENT) then
-    SWEP.WepSelectIcon = surface.GetTextureID("vgui/hud/arccw_horde_rpg7")
+if ( CLIENT ) then
+    SWEP.WepSelectIcon = surface.GetTextureID( "vgui/hud/arccw_horde_rpg7" )
     SWEP.DrawWeaponInfoBox	= false
     SWEP.BounceWeaponIcon = false
-    killicon.Add("arccw_horde_rpg7", "vgui/hud/arccw_horde_rpg7", color_white)
-    killicon.Add("horde_projectile_rpg", "vgui/hud/arccw_horde_rpg7", color_white)
+    killicon.Add( "arccw_horde_rpg7", "vgui/hud/arccw_horde_rpg7", color_white )
+    killicon.Add( "horde_projectile_rpg", "vgui/hud/arccw_horde_rpg7", color_white )
 end
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
@@ -33,8 +33,8 @@ SWEP.DefaultBodygroups = "00000000"
 SWEP.MirrorVMWM = true -- Copy the viewmodel, along with all its attachments, to the worldmodel. Super convenient!
 
 SWEP.WorldModelOffset = {
-    pos = Vector(-16.5, 5.5, -8),
-    ang = Angle(-5, 0, 180),
+    pos = Vector( -16.5, 5.5, -8 ),
+    ang = Angle( -5, 0, 180 ),
 }
 SWEP.ViewModelFOV = 60
 
@@ -49,7 +49,7 @@ SWEP.MuzzleVelocity = 2000 -- projectile or phys bullet muzzle velocity
 SWEP.CanFireUnderwater = true
 
 SWEP.TracerNum = 1 -- tracer every X
-SWEP.TracerCol = Color(105, 255, 50)
+SWEP.TracerCol = Color( 105, 255, 50 )
 SWEP.TracerWidth = 3
 
 SWEP.ChamberSize = 0 -- how many rounds can be chambered.
@@ -65,12 +65,8 @@ SWEP.RecoilRise = 1
 SWEP.Delay = 60 / 100 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
-    {
-        Mode = 2,
-    },
-    {
-        Mode = 0
-    }
+    { Mode = 2 },
+    { Mode = 0 },
 }
 
 SWEP.AccuracyMOA = 10 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
@@ -80,9 +76,11 @@ SWEP.MoveDispersion = 250
 SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
+SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = ")vj_weapons/rpg/rpg_fire.wav"
-SWEP.DistantShootSound = "^horde/weapons/distant/rpg_distant.wav"
+SWEP.ShootSound = "vj_weapons/rpg/rpg_fire.wav"
+SWEP.ShootSoundSilenced = "vj_weapons/rpg/rpg_fire_far.wav"
+SWEP.DistantShootSound = "vj_weapons/rpg/rpg_fire_far.wav"
 
 --SWEP.MuzzleEffect = "muzzleflash_pistol"
 --SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -101,8 +99,8 @@ SWEP.ProceduralRegularFire = false
 SWEP.ProceduralIronFire = false
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-3.12, 0, 1.8),
-    Ang = Angle(-0, 0, 0),
+    Pos = Vector( -3.12, 0, 1.8 ),
+    Ang = Angle( -0, 0, 0  ),
     Magnification = 1.3,
 }
 
@@ -112,17 +110,17 @@ SWEP.HoldtypeSights = "rpg"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 
-SWEP.ActivePos = Vector(0, 0, 0)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 0, 0, 0 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.HolsterPos = Vector(-2, -7.145, -11.561)
-SWEP.HolsterAng = Angle(36.533, 0, 0)
+SWEP.HolsterPos = Vector( -2, -7.145, -11.561 )
+SWEP.HolsterAng = Angle( 36.533, 0, 0 )
 
-SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
-SWEP.BarrelOffsetHip = Vector(2, 0, -2)
+SWEP.BarrelOffsetSighted = Vector( 0, 0, -1 )
+SWEP.BarrelOffsetHip = Vector( 2, 0, -2 )
 
-SWEP.CustomizePos = Vector(12, -8, -4.897)
-SWEP.CustomizeAng = Angle(12.149, 30.547, 0)
+SWEP.CustomizePos = Vector( 12, -8, -4.897 )
+SWEP.CustomizeAng = Angle( 12.149, 30.547, 0 )
 
 SWEP.AttachmentElements = {
 
@@ -130,7 +128,7 @@ SWEP.AttachmentElements = {
 
 SWEP.ExtraSightDist = 5
 
-SWEP.RejectAttachments = {["go_homemade_auto"] = true, ["go_perk_burst"] = true}
+SWEP.RejectAttachments = { ["go_homemade_auto"] = true, ["go_perk_burst"] = true }
 SWEP.Attachments = {
     {
         PrintName = "Perk",
@@ -177,7 +175,7 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.2,
-        SoundTable = { { s = "", p = 100, v = 75, t = 1.8, c = CHAN_ITEM, ind = 1, bg = 0, }, },
+        SoundTable = { { s = "weapons/ar2/ar2_reload.wav", p = 100, v = 75, t = 0, c = CHAN_ITEM, ind = 1, bg = 0, }, },
     },
 }
 
