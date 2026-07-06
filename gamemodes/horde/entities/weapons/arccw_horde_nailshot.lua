@@ -77,7 +77,7 @@ SWEP.ShootSound = "weapons/kf_vlad/kf_nailshotgun_fire_s.wav"
 SWEP.ShootSoundSilenced = "weapons/kf_vlad/kf_nailshotgun_fire_alt_s.wav"
 SWEP.DistantShootSound = "arccw_go/ssg08/ssg08-1-distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
+SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 2
 SWEP.SightTime = 0.175
