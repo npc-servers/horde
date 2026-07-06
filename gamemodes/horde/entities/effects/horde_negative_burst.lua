@@ -5,7 +5,7 @@ function EFFECT:Init(ed)
     local emitter2 = ParticleEmitter(vOrig, true)
     local normal = Vector(0,0,1)
     local radius = ed:GetRadius()
-    sound.Play("(horde/spells/negative_burst.ogg", vOrig, 100, math.random(70, 90))
+    sound.Play(")horde/spells/negative_burst.ogg", vOrig, 75, math.random(90, 110))
 
     --sound.Play("horde/weapons/nether_relic/nether_star_explode.ogg", vOrig, 100, math.random(70, 90))
 

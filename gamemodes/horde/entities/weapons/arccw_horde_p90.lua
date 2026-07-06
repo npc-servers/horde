@@ -19,13 +19,23 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_smg_p90.mdl"
 SWEP.Damage = 44
 SWEP.DamageMin = 36
 SWEP.Penetration = 20
+
 SWEP.HoldtypeActive = "revolver"
+
 SWEP.RecoilPunch = 0
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.P90_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.P90_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.P90_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.FirstShootSound = {
+    ")arccw_go/p90/p90_01.wav",
+    ")arccw_go/p90/p90_02.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/p90/p90_01.wav",
+    ")arccw_go/p90/p90_02.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/smg_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -94,19 +104,3 @@ SWEP.Animations = {
         LHIKOut = 0.8,
     },
 }
-sound.Add( {
-    name = "ArcCW_Horde.GSO.P90_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/p90/p90_01.wav",")arccw_go/p90/p90_02.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.P90_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/mp5/mp5_01.wav"
-} )

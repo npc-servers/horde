@@ -15,8 +15,8 @@ SWEP.PrintName = "MAG-7"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 
-SWEP.Damage = 16
-SWEP.DamageMin = 6
+SWEP.Damage = 27
+SWEP.DamageMin = 10
 SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
@@ -25,9 +25,14 @@ SWEP.Recoil = 2
 SWEP.RecoilSide = 1.5
 SWEP.RecoilPunch = 0
 
-SWEP.ShootSound = "ArcCW_Horde.GSO.MAG7_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.MAG7_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = {
+    ")arccw_go/mag7/mag7_01.wav",
+    ")arccw_go/mag7/mag7_02.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/m590_suppressed_fp.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -76,20 +81,3 @@ SWEP.Animations = {
         LHIKEaseOut = 0.35
     },
 }
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.MAG7_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/mag7/mag7_01.wav",")arccw_go/mag7/mag7_02.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.MAG7_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/m590_suppressed_fp.wav"
-} )

@@ -80,16 +80,16 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "SMG1_Grenade" -- what ammo type the gun uses
 
-SWEP.ShootVol = 100 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "KF_m79.Fire"
-SWEP.ShootSoundSilenced = nil
-SWEP.DistantShootSound = nil
+SWEP.ShootSound = {
+    "weapons/kf_m79/M79_fireST01.wav",
+    "weapons/kf_m79/M79_fireST02.wav",
+    "weapons/kf_m79/M79_fireST03.wav"
+}
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
-SWEP.ShellModel = "models/shells/shell_9mm.mdl"
-SWEP.ShellScale = 1
+SWEP.MuzzleEffect = "muzzleflash_m79"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
@@ -161,41 +161,25 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-    Source = "idle",
-    Time = 10,
+        Source = "idle",
+        Time = 10,
     },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
-        SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
     },
     ["fire"] = {
         Source = "shoot",
         Time = 0.5,
-        ShellEjectAt = 0,
-        RestoreAmmo = 1,
     },
     ["fire_iron"] = {
         Source = "shoot",
         Time = 0.5,
-        ShellEjectAt = 0,
     },
     ["reload"] = { -- Adjust Time and FrameRate below if needed.
         Source = "reload",
         Time = 3, -- Reload duration
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-        FrameRate = 30, -- Animation frames per second
-        LHIK = true,
-        LHIKIn = 0.5,
-        LHIKOut = 0.2,
     },
 }
 sound.Add({

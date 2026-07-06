@@ -107,7 +107,7 @@ function HORDE:ApplyDamage(npc, hitgroup, dmginfo)
 
     -- Play sound
     if hitgroup == HITGROUP_HEAD then
-        sound.Play("horde/player/headshot.ogg", npc:GetPos())
+        sound.Play(")horde/player/headshot.ogg", npc:GetPos(), 75, math.random(90, 110))
     end
 
     hook.Run("Horde_OnPlayerDamagePost", ply, npc, bonus, hitgroup, dmginfo)
@@ -257,7 +257,7 @@ hook.Add("EntityTakeDamage", "Horde_ApplyDamageTaken", function (target, dmg)
     if bonus.evasion > 0 then
         local evade = math.random()
         if evade <= bonus.evasion then
-            ply:EmitSound("horde/player/evade.ogg", 125, 100, 1, CHAN_AUTO)
+            sound.Play(")horde/player/evade.ogg", ply:GetPos(), 75, math.random(90, 110))
             hook.Run("Horde_OnPlayerEvade", ply, dmg)
             return true
         end

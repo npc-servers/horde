@@ -22,14 +22,28 @@ SWEP.Firemodes = {
         Mode = 2,
     }
 }
+
 SWEP.Damage = 34
 SWEP.DamageMin = 24
+
 SWEP.Delay = 60 / 900
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.MP9_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.MP9_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.MP9_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.FirstShootSound = {
+    ")arccw_go/mp9/mp9_01.wav",
+    ")arccw_go/mp9/mp9_02.wav",
+    ")arccw_go/mp9/mp9_03.wav",
+    ")arccw_go/mp9/mp9_04.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/mp9/mp9_01.wav",
+    ")arccw_go/mp9/mp9_02.wav",
+    ")arccw_go/mp9/mp9_03.wav",
+    ")arccw_go/mp9/mp9_04.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/gso/mp9/mp9_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -125,23 +139,6 @@ SWEP.Attachments = {
     },
 }
 
-sound.Add( {
-    name = "ArcCW_Horde.GSO.MP9_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/mp9/mp9_01.wav",")arccw_go/mp9/mp9_02.wav",")arccw_go/mp9/mp9_03.wav",")arccw_go/mp9/mp9_04.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.MP9_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/mp5/mp5_01.wav"
-} )
-
 function SWEP:ChangeFiremode(pred)
     if self:GetNextSecondaryFire() > CurTime() then return end
     if not self.CanBash and not self:GetBuff_Override("Override_CanBash") then return end
@@ -181,7 +178,7 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 75, 100, 1, CHAN_WEAPON)
+    ply:EmitSound(")horde/weapons/heal.wav", 75, 100, 1, CHAN_WEAPON)
 
     self:SetNextSecondaryFire(CurTime() + 0.6)
     return true

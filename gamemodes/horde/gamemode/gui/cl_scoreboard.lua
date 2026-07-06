@@ -199,6 +199,29 @@ function scoreboard:show()
 		offset = offset + 50
 	end
 
+	if ZTaunts then -- Mutually exclusive with outfitter
+		local tauntsButton = vgui.Create( "DButton" )
+		scoreboard.TauntsButton = tauntsButton
+		tauntsButton:SetText( "Taunts" )
+		tauntsButton:SetSize( 200, 40 )
+		tauntsButton:SetPos( 5, ScrH() / 2 + offset )
+		tauntsButton:SetTextColor( Color( 255, 255, 255 ) )
+
+		function tauntsButton:DoClick()
+			RunConsoleCommand( "taunts_openmenu" )
+		end
+
+		function tauntsButton:Paint( w, h )
+			if self:IsHovered() then
+				draw_RoundedBox( 8, 0, 0, w, h, Color( 30, 30, 30, 255 ) )
+			else
+				draw_RoundedBox( 8, 0, 0, w, h, Color( 40, 40, 40, 255 ) )
+			end
+		end
+
+		offset = offset + 50
+	end
+
 	if hook.GetTable().HUDPaint and hook.GetTable().HUDPaint["SimpleTP.HUDPaint"] then
 		local thirdPerson = vgui.Create( "DButton" )
 		scoreboard.ThirdPerson = thirdPerson
@@ -238,6 +261,10 @@ function scoreboard:show()
 
 		if IsValid(self.OutfitterButton) then
 			self.OutfitterButton:Remove()
+		end
+
+		if IsValid(self.TauntsButton) then
+			self.TauntsButton:Remove()
 		end
 
 		if IsValid(self.PlayerSelectorButton) then

@@ -73,20 +73,14 @@ SWEP.MoveDispersion = 200
 SWEP.Primary.Ammo = "ar2" -- what ammo type the gun uses
 SWEP.MagID = "type2" -- the magazine pool this gun draws from
 
-SWEP.ShootVol = 115 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "horde/weapons/ar2/fire1.ogg"
-SWEP.ShootSoundSilenced = "weapons/arccw/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw/ak47/ak47-1-distant.wav"
+SWEP.ShootSound = ")horde/weapons/ar2/fire1.ogg"
+SWEP.ShootSoundSilenced = ")weapons/arccw/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/weapons/arccw/irifleshell.mdl"
-
-SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
-SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
-SWEP.MeleeHitSound = "arccw_go/knife/knife_hitwall1.wav"
-SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on

@@ -70,13 +70,14 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "AlyxGun"
 SWEP.MagID = "m2" -- the magazine pool this gun draws from
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
-SWEP.ShootSound = "weapons/arccw/50cal/50cal_fire.wav"
-SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw/50cal/50cal_fire_trail.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_5"
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")weapons/arccw/50cal/50cal_fire.wav"
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/lmg_distant.wav"
+
+SWEP.MuzzleEffect = "muzzleflash_m82"
 
 SWEP.ShellModel = "models/shells/shell_338mag.mdl"
 SWEP.ShellPitch = 60

@@ -132,20 +132,20 @@ HORDE:RegisterStatus("Hemorrhage", "materials/status/hemorrhage.png", nil, true)
 HORDE:RegisterStatus("Fear", "materials/status/fear.png", nil, true)
 
 HORDE.Status_Buildup_Sounds = {}
-HORDE.Status_Buildup_Sounds[HORDE.Status_Bleeding] = "horde/status/bleeding_buildup.ogg"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Bleeding] = ")horde/status/bleeding_buildup.ogg"
 --HORDE.Status_Buildup_Sounds[HORDE.Status_Ignite] = "player/general/flesh_burn.wav"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Frostbite] = "horde/status/frostbite_buildup.ogg"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Shock] = "weapons/stunstick/stunstick_fleshhit2.wav"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Break] = "ambient/levels/canals/toxic_slime_sizzle1.wav"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Necrosis] = "horde/status/necrosis_buildup.ogg"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Frostbite] = ")horde/status/frostbite_buildup.ogg"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Shock] = ")weapons/stunstick/stunstick_fleshhit2.wav"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Break] = ")ambient/levels/canals/toxic_slime_sizzle1.wav"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Necrosis] = ")horde/status/necrosis_buildup.ogg"
 
 HORDE.Status_Trigger_Sounds = {}
-HORDE.Status_Trigger_Sounds[HORDE.Status_Bleeding] = "horde/status/bleeding_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Bleeding] = ")horde/status/bleeding_trigger.ogg"
 --HORDE.Status_Trigger_Sounds[HORDE.Status_Ignite] = "ambient/fire/fire_small1.wav"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Frostbite] = "horde/status/frostbite_trigger.ogg"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Shock] = "horde/status/shock_trigger.ogg"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Break] = "horde/status/break_trigger.ogg"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Necrosis] = "horde/status/necrosis_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Frostbite] = ")horde/status/frostbite_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Shock] = ")horde/status/shock_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Break] = ")horde/status/break_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Necrosis] = ")horde/status/necrosis_trigger.ogg"
 
 HORDE.Debuff_Notifications = {
     [HORDE.Status_Bleeding] = "You are Bleeding.\nYour health will slowly drain.",

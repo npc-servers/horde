@@ -23,14 +23,14 @@ SWEP.ViewModel = "models/horde/weapons/bo/makarov/viewmodel.mdl"
 SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 
 SWEP.Damage = 20
-SWEP.DamageMin = 15
+SWEP.DamageMin = 13
 SWEP.Range = 50
 
 SWEP.ChamberSize = 0
-SWEP.Primary.ClipSize = 15
-SWEP.ExtendedClipSize = 30
+SWEP.Primary.ClipSize = 8
+SWEP.ExtendedClipSize = 20
 
-SWEP.Recoil = 0.1
+SWEP.Recoil = 0.12
 SWEP.RecoilSide = 0.1
 SWEP.RecoilRise = 0.1
 SWEP.MaxRecoilBlowback = 0
@@ -40,7 +40,7 @@ SWEP.RecoilPunchBackMax = 0
 SWEP.RecoilPunchBackMaxSights = 0
 SWEP.RecoilVMShake = 0
 
-SWEP.Delay = 60 / 800
+SWEP.Delay = 60 / 900
 SWEP.Firemodes = {
     {
         Mode = 1,
@@ -49,30 +49,27 @@ SWEP.Firemodes = {
 
 SWEP.NotForNPCS = true
 
-SWEP.AccuracyMOA = 0
+SWEP.AccuracyMOA = 5
 SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 50
 
-SWEP.ShootVol = 80
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = {
-    ")horde/weapons/bo_makarov/shot_00.wav",
-    ")horde/weapons/bo_makarov/shot_01.wav",
-    ")horde/weapons/bo_makarov/shot_02.wav",
-    ")horde/weapons/bo_makarov/shot_03.wav",
-    ")horde/weapons/bo_makarov/shot_04.wav"
+    ")horde/weapons/bo/makarov/fire_01.wav",
+    ")horde/weapons/bo/makarov/fire_02.wav",
+    ")horde/weapons/bo/makarov/fire_03.wav",
+    ")horde/weapons/bo/makarov/fire_04.wav",
+    ")horde/weapons/bo/makarov/fire_05.wav"
 }
-SWEP.LowShootSound = ")horde/weapons/bo_makarov/lfe_00.wav"
 SWEP.ShootSoundSilenced = {
-    ")horde/weapons/bo_shared/silenced/m16_silenced_00.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_01.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_02.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_03.wav",
-    ")horde/weapons/bo_shared/silenced/m16_silenced_04.wav"
+    ")horde/weapons/bo/makarov/silenced_01.wav",
+    ")horde/weapons/bo/makarov/silenced_02.wav",
+    ")horde/weapons/bo/makarov/silenced_03.wav",
+    ")horde/weapons/bo/makarov/silenced_04.wav",
+    ")horde/weapons/bo/makarov/silenced_05.wav"
 }
-SWEP.LowShootSoundSilenced = ")horde/weapons/bo_shared/wpn_lfe_00.wav"
-SWEP.DistantShootSound = ")horde/weapons/bo_makarov/ringoff_00.wav"
-SWEP.DistantShootSoundSilenced = ")horde/weapons/bo_shared/silenced/aug_sweet_00.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
@@ -154,8 +151,8 @@ SWEP.Animations = {
         Source = "reg_draw_first",
         SoundTable = {
             { s = "ArcCW_Horde_BO_Makarov.Pickup", t = 1 / 35 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_back.wav", t = 7 / 35 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 24 / 35 },
+            { s = "horde/weapons/bo/makarov/slide_pull.wav", t = 7 / 35 },
+            { s = "horde/weapons/bo/makarov/slide_release.wav", t = 24 / 35 },
         }
     },
     ["draw"] = {
@@ -182,9 +179,9 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 17 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_futz.wav", t = 17 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_in.wav", t = 23 / 25 },
         }
     },
     ["reload_ext"] = {
@@ -193,9 +190,9 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 17 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_futz.wav", t = 17 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_in.wav", t = 23 / 25 },
         }
     },
     ["reload_empty"] = {
@@ -204,10 +201,10 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 19 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 32 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_futz.wav", t = 19 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/makarov/slide_release.wav", t = 32 / 25 },
         }
     },
     ["reload_ext_empty"] = {
@@ -216,10 +213,10 @@ SWEP.Animations = {
         SoundTable = {
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 1 / 25 },
             { s = "ArcCW_Horde_BO_Makarov.Reload", t = 15 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_out.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_futz.wav", t = 19 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_mag_in.wav", t = 23 / 25 },
-            { s = "horde/weapons/bo_makarov/reload/fly_makarov_slide_forward.wav", t = 32 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_out.wav", t = 5 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_futz.wav", t = 19 / 25 },
+            { s = "horde/weapons/bo/makarov/mag_in.wav", t = 23 / 25 },
+            { s = "horde/weapons/bo/makarov/slide_release.wav", t = 32 / 25 },
         }
     },
     ["fire"] = {
@@ -258,10 +255,10 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Makarov.Reload",
     volume = 1.0,
     sound = {
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_00.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_01.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_02.wav",
-        "horde/weapons/bo_shared/foley/fly_gear_reload_plr_03.wav"
+        "horde/weapons/bo/reload_01.wav",
+        "horde/weapons/bo/reload_02.wav",
+        "horde/weapons/bo/reload_03.wav",
+        "horde/weapons/bo/reload_04.wav"
     }
 } )
 
@@ -269,9 +266,9 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Makarov.Pickup",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/pickup_00.wav",
-        ")horde/weapons/bo_shared/foley/pickup_01.wav",
-        ")horde/weapons/bo_shared/foley/pickup_02.wav"
+        ")horde/weapons/bo/pickup_01.wav",
+        ")horde/weapons/bo/pickup_02.wav",
+        ")horde/weapons/bo/pickup_03.wav"
     }
 } )
 
@@ -279,11 +276,11 @@ sound.Add( {
     name = "ArcCW_Horde_BO_Makarov.Rattle",
     volume = 1.0,
     sound = {
-        ")horde/weapons/bo_shared/foley/rattle_00.wav",
-        ")horde/weapons/bo_shared/foley/rattle_01.wav",
-        ")horde/weapons/bo_shared/foley/rattle_02.wav",
-        ")horde/weapons/bo_shared/foley/rattle_03.wav",
-        ")horde/weapons/bo_shared/foley/rattle_04.wav"
+        ")horde/weapons/bo/pullout_01.wav",
+        ")horde/weapons/bo/pullout_02.wav",
+        ")horde/weapons/bo/pullout_03.wav",
+        ")horde/weapons/bo/pullout_04.wav",
+        ")horde/weapons/bo/pullout_05.wav"
     }
 } )
 
@@ -433,7 +430,7 @@ function SWEP:ChangeFiremode()
         end
     end
 
-    ply:EmitSound( ")horde/weapons/mp7m/heal.ogg", 80, 100, 1, CHAN_STATIC )
+    ply:EmitSound( ")horde/weapons/heal.wav", 75, 100, 1, CHAN_STATIC )
 
     self:SetNextSecondaryFire( CurTime() + 0.5 )
 
@@ -472,48 +469,4 @@ function SWEP:Hook_DrawHUD()
 
         draw.DrawText( self.Horde_HealTarget:Health(), "Trebuchet24", pos.x - 15, pos.y - 15, Color( 50, 200, 50 ), TEXT_ALIGN_LEFT )
     end
-end
-
-function SWEP:DoShootSound( sndoverride, _, voloverride, pitchoverride )
-    local fsound = self.ShootSound
-    local lsound = self.LowShootSound
-    local dsound = self.DistantShootSound
-
-    local suppressed = self:GetBuff_Override( "Silencer" )
-
-    if suppressed then
-        fsound = self.ShootSoundSilenced
-        lsound = self.LowShootSoundSilenced
-        dsound = self.DistantShootSoundSilenced
-    end
-
-    fsound = self:GetBuff_Hook( "Hook_GetShootSound", fsound )
-
-    local volume = self.ShootVol
-    local spv = self.ShootPitchVariation
-    local pitch  = self.ShootPitch * math.Rand( 1 - spv, 1 + spv ) * self:GetBuff_Mult( "Mult_ShootPitch" )
-
-    local v = GetConVar( "arccw_weakensounds" ):GetFloat()
-
-    volume = volume - v
-    volume = volume * self:GetBuff_Mult( "Mult_ShootVol" )
-
-    volume = math.Clamp( volume, 60, 140 )
-    pitch = math.Clamp( pitch, 0, 255 )
-
-    if sndoverride then fsound = sndoverride end
-    if voloverride then volume = voloverride end
-    if pitchoverride then pitch = pitchoverride end
-
-    if fsound then self:MyEmitSound( fsound, volume, pitch, 1, CHAN_STATIC ) end
-    if lsound then self:MyEmitSound( lsound, 75, 100, 0.5, CHAN_BODY ) end
-    if dsound then self:MyEmitSound( dsound, volume, pitch, 1, CHAN_WEAPON ) end
-
-    local data = {
-        sound = fsound,
-        volume = volume,
-        pitch = pitch,
-    }
-
-    self:GetBuff_Hook( "Hook_AddShootSound", data )
 end
