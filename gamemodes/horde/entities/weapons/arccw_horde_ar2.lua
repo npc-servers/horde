@@ -73,8 +73,7 @@ SWEP.MoveDispersion = 200
 SWEP.Primary.Ammo = "ar2" -- what ammo type the gun uses
 SWEP.MagID = "type2" -- the magazine pool this gun draws from
 
-SWEP.ShootVol = 115 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = ")horde/weapons/ar2/fire1.ogg"
 SWEP.ShootSoundSilenced = ")weapons/arccw/m4a1/m4a1_silencer_01.wav"
