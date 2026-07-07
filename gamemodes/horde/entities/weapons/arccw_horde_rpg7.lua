@@ -150,8 +150,8 @@ SWEP.Animations = {
         Time = 0.1,
         SoundTable = {
             {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
+                s = "weapons/arccw/draw_secondary.wav",
+                t = 0
             }
         },
         LHIK = true,
@@ -165,13 +165,13 @@ SWEP.Animations = {
         RestoreAmmo = 1,
         SoundTable = {
             {
-            s = "",
-            p = 100,
-            v = 75,
-            t = 0.1,
-            c = CHAN_ITEM,
-            ind = 1,
-            bg = 1,
+                s = "",
+                p = 100,
+                v = 75,
+                t = 0.1,
+                c = CHAN_ITEM,
+                ind = 1,
+                bg = 1,
             }
         },
     },
@@ -181,13 +181,13 @@ SWEP.Animations = {
         ShellEjectAt = 0,
         SoundTable = {
             {
-            s = "",
-            p = 100,
-            v = 75,
-            t = 0.1,
-            c = CHAN_ITEM,
-            ind = 1,
-            bg = 1,
+                s = "",
+                p = 100,
+                v = 75,
+                t = 0.1,
+                c = CHAN_ITEM,
+                ind = 1,
+                bg = 1,
             }
         },
     },
@@ -201,13 +201,13 @@ SWEP.Animations = {
         LHIKOut = 0.2,
         SoundTable = {
             {
-            s = "weapons/ar2/ar2_reload.wav",
-            p = 100,
-            v = 75,
-            t = 0,
-            c = CHAN_ITEM,
-            ind = 1,
-            bg = 0,
+                s = "weapons/ar2/ar2_reload.wav",
+                p = 100,
+                v = 75,
+                t = 0,
+                c = CHAN_ITEM,
+                ind = 1,
+                bg = 0,
             },
         },
     },
