@@ -165,12 +165,12 @@ SWEP.Animations = {
         LHIKOut = 0.2,
         SoundTable = {
             {
-            s = "ArcCW_KF1.Vlad_Out",
-            t = 0.25
+                s = "ArcCW_KF1.Vlad_Out",
+                t = 0.25
             },
             {
-            s = "ArcCW_KF1.Vlad_In",
-            t = 1.5
+                s = "ArcCW_KF1.Vlad_In",
+                t = 1.5
             }
         },
     },
