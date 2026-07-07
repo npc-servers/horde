@@ -77,10 +77,9 @@ SWEP.MoveDispersion = 250
 SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
 SWEP.ShootSound = ")vj_weapons/rpg/rpg_fire.wav"
-SWEP.ShootSoundSilenced = "^horde/weapons/distant/rpg_distant.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/rpg_distant.wav"
 
 --SWEP.MuzzleEffect = "muzzleflash_pistol"
 --SWEP.ShellModel = "models/shells/shell_9mm.mdl"
