@@ -116,12 +116,12 @@ SWEP.Animations = {
         LHIKOut = 0.25,
         SoundTable = {
             {
-            s = "ArcCW_Horde.Nailgun_Out",
-            t = 0.227
+                s = "ArcCW_Horde.Nailgun_Out",
+                t = 0.227
             },
             {
-            s = "ArcCW_Horde.Nailgun_In",
-            t = 1.5
+                s = "ArcCW_Horde.Nailgun_In",
+                t = 1.5
             }
         },
     },
@@ -133,12 +133,12 @@ SWEP.Animations = {
         LHIKOut = 0.25,
         SoundTable = {
             {
-            s = "ArcCW_Horde.Nailgun_Out",
-            t = 0.227
+                s = "ArcCW_Horde.Nailgun_Out",
+                t = 0.227
             },
             {
-            s = "ArcCW_Horde.Nailgun_In",
-            t = 1.5
+                s = "ArcCW_Horde.Nailgun_In",
+                t = 1.5
             }
         },
     },
