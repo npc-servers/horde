@@ -76,9 +76,9 @@ SWEP.MagID = "type2" -- the magazine pool this gun draws from
 SWEP.ShootVol = 115 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "horde/weapons/ar2/fire1.ogg"
-SWEP.ShootSoundSilenced = "weapons/arccw/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw/ak47/ak47-1-distant.wav"
+SWEP.ShootSound = ")horde/weapons/ar2/fire1.ogg"
+SWEP.ShootSoundSilenced = ")weapons/arccw/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.MuzzleEffect = "hunter_muzzle_flash"
 SWEP.ShellModel = "models/weapons/arccw/irifleshell.mdl"
@@ -169,7 +169,7 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-    ["idle"] = { Source = "IR_idle", Time = 10, },
+    ["idle"] = { Source = "IR_idle", Time = 10, }
     ["draw"] = {
         Source = "IR_draw",
         FrameRate = 30,
@@ -183,11 +183,13 @@ SWEP.Animations = {
     ["reload"] = {
         Source = "IR_reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        SoundTable = {
-            { s = "weapons/ar2/ar2_rotate.wav",
-              t = 0.2 },
-            { s = "weapons/ar2/ar2_push.wav",
-              t = 0.8 },
+        SoundTable = { 
+        { 
+        s = "weapons/ar2/ar2_rotate.wav",
+        t = 0.2 },
+        { 
+        s = "weapons/ar2/ar2_push.wav",
+        t = 0.8 
         },
     },
     ["reload_empty"] = {
@@ -199,10 +201,12 @@ SWEP.Animations = {
         LHIKIn = 0.4,
         LHIKOut = 0.4,
         SoundTable = {
-            { s = "weapons/ar2/ar2_rotate.wav",
-              t = 0.2 },
-            { s = "weapons/ar2/ar2_push.wav",
-              t = 0.8 },
+        { 
+        s = "weapons/ar2/ar2_rotate.wav",
+        t = 0.2 },
+        { 
+        s = "weapons/ar2/ar2_push.wav",
+        t = 0.8
         },
     },
 }
