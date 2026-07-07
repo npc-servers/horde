@@ -87,7 +87,7 @@ SWEP.Tracer = "arccw_tracer"
 SWEP.TracerCol = Color( 255, 255, 255 )
 SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.NoShellEject = true
-SWEP.ShootSound = "weapons/sm_nailgun/nailgun_fire.wav"
+SWEP.ShootSound = ")weapons/sm_nailgun/nailgun_fire.wav"
 
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 45
@@ -115,11 +115,14 @@ SWEP.Animations = {
         LHIKIn = 0.25,
         LHIKOut = 0.25,
         SoundTable = {
-            { s = "ArcCW_Horde.Nailgun_Out",
-              t = 0.227 },
-
-            { s = "ArcCW_Horde.Nailgun_In",
-              t = 1.5 }
+            {
+            s = "ArcCW_Horde.Nailgun_Out",
+            t = 0.227
+            },
+            {
+            s = "ArcCW_Horde.Nailgun_In",
+            t = 1.5
+            }
         },
     },
     ["reload_empty"] = {
@@ -129,11 +132,14 @@ SWEP.Animations = {
         LHIKIn = 0.45,
         LHIKOut = 0.25,
         SoundTable = {
-            { s = "ArcCW_Horde.Nailgun_Out",
-              t = 0.227 },
-
-            { s = "ArcCW_Horde.Nailgun_In",
-              t = 1.5 }
+            {
+            s = "ArcCW_Horde.Nailgun_Out",
+            t = 0.227
+            },
+            {
+            s = "ArcCW_Horde.Nailgun_In",
+            t = 1.5
+            }
         },
     },
 }

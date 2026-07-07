@@ -6,8 +6,8 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Perforator"
 SWEP.TrueName = "Vlad the Impaler"
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = "A nailgun heavily modified to shoot nails like an auto-shotgun. Nails have enough velocity to pierce, but suffers from high scatter."
-SWEP.Trivia_Manufacturer = "DutyTool (modified by T.E.A.R)"
+SWEP.Trivia_Desc = "A nailgun heavily modified to shoot nails like an auto-shotgun. Nails have enough velocity to pierce, but suffers from extreme scatter and damage dropoff."
+SWEP.Trivia_Manufacturer = "DutyTool (modified)"
 SWEP.Trivia_Calibre = "Nails"
 SWEP.Trivia_Mechanism = "Locking Block"
 SWEP.Trivia_Country = "UK"
@@ -73,11 +73,11 @@ SWEP.Primary.Ammo = "XBowBolt"
 SWEP.ShootVol = 100
 SWEP.ShootPitch = 100
 
-SWEP.ShootSound = "weapons/kf_vlad/kf_nailshotgun_fire_s.wav"
-SWEP.ShootSoundSilenced = "weapons/kf_vlad/kf_nailshotgun_fire_alt_s.wav"
-SWEP.DistantShootSound = "arccw_go/ssg08/ssg08-1-distant.wav"
+SWEP.ShootSound = ")weapons/kf_vlad/kf_nailshotgun_fire_s.wav"
+SWEP.ShootSoundSilenced = ")weapons/kf_vlad/kf_nailshotgun_fire_alt_s.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_suppressed"
+SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 2
 SWEP.SightTime = 0.175
@@ -164,10 +164,14 @@ SWEP.Animations = {
         LHIKIn = 0.5,
         LHIKOut = 0.2,
         SoundTable = {
-            { s = "ArcCW_KF1.Vlad_Out",
-              t = 0.25 },
-            { s = "ArcCW_KF1.Vlad_In",
-              t = 1.5 }
+            {
+            s = "ArcCW_KF1.Vlad_Out",
+            t = 0.25
+            },
+            {
+            s = "ArcCW_KF1.Vlad_In",
+            t = 1.5
+            }
         },
     },
 }
