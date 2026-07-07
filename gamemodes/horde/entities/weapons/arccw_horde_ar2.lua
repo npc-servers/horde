@@ -83,11 +83,6 @@ SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 SWEP.MuzzleEffect = "hunter_muzzle_flash"
 SWEP.ShellModel = "models/weapons/arccw/irifleshell.mdl"
 
-SWEP.MeleeSwingSound = "arccw_go/m249/m249_draw.wav"
-SWEP.MeleeMissSound = "weapons/iceaxe/iceaxe_swing1.wav"
-SWEP.MeleeHitSound = "arccw_go/knife/knife_hitwall1.wav"
-SWEP.MeleeHitNPCSound = "physics/body/body_medium_break2.wav"
-
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
 
