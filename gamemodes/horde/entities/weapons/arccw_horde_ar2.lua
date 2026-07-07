@@ -169,13 +169,13 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-    ["idle"] = { Source = "IR_idle", Time = 10, }
+    ["idle"] = { Source = "IR_idle", Time = 10, },
     ["draw"] = {
         Source = "IR_draw",
         FrameRate = 30,
     },
     ["fire"] = {
-        Source = "IR_Fire",
+        Source = "IR_fire",
     },
     ["fire_iron"] = {
         Source = "Fire2",
@@ -183,13 +183,15 @@ SWEP.Animations = {
     ["reload"] = {
         Source = "IR_reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        SoundTable = { 
-        { 
-        s = "weapons/ar2/ar2_rotate.wav",
-        t = 0.2 },
-        { 
-        s = "weapons/ar2/ar2_push.wav",
-        t = 0.8 
+        SoundTable = {
+            {
+            s = "weapons/ar2/ar2_rotate.wav",
+            t = 0.2
+            },
+            {
+            s = "weapons/ar2/ar2_push.wav",
+            t = 0.8
+            }
         },
     },
     ["reload_empty"] = {
@@ -201,12 +203,14 @@ SWEP.Animations = {
         LHIKIn = 0.4,
         LHIKOut = 0.4,
         SoundTable = {
-        { 
-        s = "weapons/ar2/ar2_rotate.wav",
-        t = 0.2 },
-        { 
-        s = "weapons/ar2/ar2_push.wav",
-        t = 0.8
+            {
+            s = "weapons/ar2/ar2_rotate.wav",
+            t = 0.2
+            },
+            {
+            s = "weapons/ar2/ar2_push.wav",
+            t = 0.8
+            }
         },
     },
 }
