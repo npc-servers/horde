@@ -79,9 +79,8 @@ SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "vj_weapons/rpg/rpg_fire.wav"
-SWEP.ShootSoundSilenced = "vj_weapons/rpg/rpg_fire_far.wav"
-SWEP.DistantShootSound = "vj_weapons/rpg/rpg_fire_far.wav"
+SWEP.ShootSound = ")vj_weapons/rpg/rpg_fire.wav"
+SWEP.ShootSoundSilenced = "^horde/weapons/distant/rpg_distant.wav"
 
 --SWEP.MuzzleEffect = "muzzleflash_pistol"
 --SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -164,13 +163,31 @@ SWEP.Animations = {
         Time = 0.5,
         ShellEjectAt = 0,
         RestoreAmmo = 1,
-        SoundTable = { { s = "", p = 100, v = 75, t = 0.1, c = CHAN_ITEM, ind = 1, bg = 1, } },
+        SoundTable = { { 
+            s = "", 
+            p = 100, 
+            v = 75, 
+            t = 0.1, 
+            c = CHAN_ITEM, 
+            ind = 1, 
+            bg = 1, 
+            } 
+        },
     },
     ["fire_iron"] = {
         Source = "shoot",
         Time = 0.5,
         ShellEjectAt = 0,
-        SoundTable = { {  s = "", p = 100, v = 75, t = 0.1, c = CHAN_ITEM, ind = 1, bg = 1, } },
+        SoundTable = { {  
+            s = "", 
+            p = 100, 
+            v = 75, 
+            t = 0.1, 
+            c = CHAN_ITEM, 
+            ind = 1, 
+            bg = 1, 
+            } 
+        },
     },
     ["reload"] = {
         Source = "reload",
@@ -180,7 +197,16 @@ SWEP.Animations = {
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.2,
-        SoundTable = { { s = "weapons/ar2/ar2_reload.wav", p = 100, v = 75, t = 0, c = CHAN_ITEM, ind = 1, bg = 0, }, },
+        SoundTable = { { 
+            s = "weapons/ar2/ar2_reload.wav", 
+            p = 100, 
+            v = 75, 
+            t = 0, 
+            c = CHAN_ITEM, 
+            ind = 1, 
+            bg = 0, 
+            }
+        },
     },
 }
 
