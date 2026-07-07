@@ -33,7 +33,7 @@ SWEP.ViewModelFOV = 70
 
 SWEP.Damage = 30
 SWEP.DamageMin = 15
-SWEP.Range = 50
+SWEP.Range = 35
 SWEP.Penetration = 13
 SWEP.DamageType = DMG_SLASH
 SWEP.ShootEntity = nil
@@ -70,11 +70,10 @@ SWEP.HipDispersion = 150
 SWEP.MoveDispersion = 200
 
 SWEP.Primary.Ammo = "XBowBolt"
-SWEP.ShootVol = 100
-SWEP.ShootPitch = 100
+
+SWEP.ShootVol = 75
 
 SWEP.ShootSound = ")weapons/kf_vlad/kf_nailshotgun_fire_s.wav"
-SWEP.ShootSoundSilenced = ")weapons/kf_vlad/kf_nailshotgun_fire_alt_s.wav"
 SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
@@ -138,8 +137,10 @@ SWEP.Animations = {
         Source = "draw",
         Time = 0.5,
         SoundTable = {
-            { s = "weapons/arccw/draw_secondary.wav",
-              t = 0 }
+            {
+                s = "weapons/arccw/draw_secondary.wav",
+                t = 0
+            }
         },
         LHIK = true,
         LHIKIn = 0,

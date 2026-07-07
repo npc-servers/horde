@@ -42,8 +42,8 @@ SWEP.SprintPos = Vector( -1.651, 0.5, 0.5 )
 SWEP.SprintAng = Angle( -18, 0, 0 )
 
 SWEP.IronSightStruct = {
-    Pos = Vector( -3.8, 0, -0.6 ),
-    Ang = Angle( 5.63, 0, 2 ),
+        Pos = Vector( -3.8, 0, -0.6 ),
+        Ang = Angle( 5.63, 0, 2 ),
     Midpoint = {
         Pos = Vector( 0, 15, -4 ),
         Ang = Angle( 0, 0, -45 ),
@@ -147,8 +147,9 @@ SWEP.Animations = {
 SWEP.Attachments = {
     {
         PrintName = "Perks",
-        Slot = { "go_perk",
-        "go_perk_smg" },
+        Slot =
+            "go_perk",
+            "go_perk_smg",
         DefaultAttName = "None"
     },
     {
@@ -169,7 +170,6 @@ sound.Add( {
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
-    pitch = 100,
     sound = ")weapons/sm_nailgun/fly_nail_mag_out.wav"
 } )
 
@@ -178,6 +178,5 @@ sound.Add( {
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
-    pitch = 100,
     sound = ")weapons/sm_nailgun/fly_nail_mag_in.wav"
 } )
