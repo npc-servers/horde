@@ -147,8 +147,7 @@ SWEP.Animations = {
 SWEP.Attachments = {
     {
         PrintName = "Perks",
-        Slot =
-        {
+        Slot = {
             "go_perk",
             "go_perk_smg",
         },
