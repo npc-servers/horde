@@ -148,8 +148,10 @@ SWEP.Attachments = {
     {
         PrintName = "Perks",
         Slot =
+        {
             "go_perk",
             "go_perk_smg",
+        },
         DefaultAttName = "None"
     },
     {
