@@ -1,5 +1,5 @@
 if not ArcCWInstalled then return end
-if  CLIENT  then
+if CLIENT then
     SWEP.WepSelectIcon = surface.GetTextureID( "vgui/hud/arccw_horde_rpg7" )
     SWEP.DrawWeaponInfoBox	= false
     SWEP.BounceWeaponIcon = false
@@ -121,9 +121,7 @@ SWEP.BarrelOffsetHip = Vector( 2, 0, -2 )
 SWEP.CustomizePos = Vector( 12, -8, -4.897 )
 SWEP.CustomizeAng = Angle( 12.149, 30.547, 0 )
 
-SWEP.AttachmentElements = {
-
-}
+SWEP.AttachmentElements = {}
 
 SWEP.ExtraSightDist = 5
 
