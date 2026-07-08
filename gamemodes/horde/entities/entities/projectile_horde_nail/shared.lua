@@ -37,6 +37,13 @@ if SERVER then
         end
     end
 
+    function ENT:Think()
+        if CurTime() - self.SpawnTime >= self.FuseTime and !self.Removing then
+            self.Removing = true
+            self:Remove()
+        end
+    end
+
     function ENT:Detonate( hitpos, hitent )
         if not self:IsValid() or self.Removing then return end
         if self.HitEntitites[hitent] then return end
