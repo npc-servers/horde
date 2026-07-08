@@ -24,68 +24,68 @@ if SERVER then
 
         local phys = self:GetPhysicsObject()
         if phys:IsValid() then
-        phys:Wake()
-        phys:EnableGravity( true )
+            phys:Wake()
+            phys:EnableGravity( true )
         end
 
-    self.SpawnTime = CurTime()
-    self.HitEntitites = {}
-    self:SetCollisionGroup( COLLISION_GROUP_PLAYER_MOVEMENT )
+        self.SpawnTime = CurTime()
+        self.HitEntitites = {}
+        self:SetCollisionGroup( COLLISION_GROUP_PLAYER_MOVEMENT )
 
-    if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
-        self:SetColor( Color( 255, 0, 0 ) )
-    end
-end
-
-
-function ENT:Detonate( hitpos, hitent )
-    if not self:IsValid() or self.Removing then return end
-    if self.HitEntitites[hitent] then return end
-
-    self.HitEntitites[hitent] = true
-
-    local attacker = self
-
-    if self:GetOwner():IsValid() then
-        attacker = self:GetOwner()
+        if self:GetOwner():GetActiveWeapon():GetCurrentFiremode().Mode == 3 then
+            self:SetColor( Color( 255, 0, 0 ) )
+        end
     end
 
-    self:FireBullets( {
-        Attacker = attacker,
-        Inflictor = attacker,
-        Damage = 50,
-        Tracer = 0,
-        Distance = 400,
-        HullSize = 1,
-        Dir = hitpos - self:GetPos(),
-        Src = self:GetPos(),
-        Callback = function( _, tr, dmg )
-            dmg:SetAttacker( attacker )
-            dmg:SetInflictor( attacker )
 
-            if self.Inflictor:GetCurrentFiremode().Mode == 2 then
-                dmg:SetDamageType( DMG_SLASH )
-            end
+    function ENT:Detonate( hitpos, hitent )
+        if not self:IsValid() or self.Removing then return end
+        if self.HitEntitites[hitent] then return end
 
-            if tr.HitGroup == HITGROUP_HEAD then
-                sound.Play( "physics/flesh/flesh_bloody_impact_hard1.wav", hitpos )
-                dmg:ScaleDamage( 1.5 )
-            end
+        self.HitEntitites[hitent] = true
 
-            if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
-                sound.Play( "physics/flesh/flesh_strider_impact_bullet1.wav", hitpos )
-                dmg:ScaleDamage( 1 )
-            end
+        local attacker = self
 
-            if self.Inflictor:GetCurrentFiremode().Mode == 2 then
-                local effectdata = EffectData()
-                effectdata:SetOrigin( self:GetPos() )
-            end
-        end } )
+        if self:GetOwner():IsValid() then
+            attacker = self:GetOwner()
+        end
 
-    self.Removing = true
-    self:Remove()
-end
+        self:FireBullets( {
+            Attacker = attacker,
+            Inflictor = attacker,
+            Damage = 50,
+            Tracer = 0,
+            Distance = 400,
+            HullSize = 1,
+            Dir = hitpos - self:GetPos(),
+            Src = self:GetPos(),
+            Callback = function( _, tr, dmg )
+                dmg:SetAttacker( attacker )
+                dmg:SetInflictor( attacker )
+
+                if self.Inflictor:GetCurrentFiremode().Mode == 2 then
+                    dmg:SetDamageType( DMG_SLASH )
+                end
+
+                if tr.HitGroup == HITGROUP_HEAD then
+                    sound.Play( "physics/flesh/flesh_bloody_impact_hard1.wav", hitpos )
+                    dmg:ScaleDamage( 1.5 )
+                end
+
+                if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
+                    sound.Play( "physics/flesh/flesh_strider_impact_bullet1.wav", hitpos )
+                    dmg:ScaleDamage( 1 )
+                end
+
+                if self.Inflictor:GetCurrentFiremode().Mode == 2 then
+                    local effectdata = EffectData()
+                        effectdata:SetOrigin( self:GetPos() )
+                end
+            end } )
+
+        self.Removing = true
+        self:Remove()
+    end
 
     function ENT:PhysicsCollide( colData )
         if not self:IsValid() or self.Removing then return end
