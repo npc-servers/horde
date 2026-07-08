@@ -163,7 +163,7 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-    ["idle"] = { Source = "IR_idle", Time = 10, }
+    ["idle"] = { Source = "IR_idle", Time = 10 },
     ["draw"] = {
         Source = "IR_draw",
         FrameRate = 30,
