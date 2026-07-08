@@ -81,8 +81,6 @@ SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootSound = ")vj_weapons/rpg/rpg_fire.wav"
 SWEP.DistantShootSound = "^horde/weapons/distant/rpg_distant.wav"
 
---SWEP.MuzzleEffect = "muzzleflash_pistol"
---SWEP.ShellModel = "models/shells/shell_9mm.mdl"
 SWEP.ShellScale = 0
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
