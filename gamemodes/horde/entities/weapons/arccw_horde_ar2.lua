@@ -179,11 +179,11 @@ SWEP.Animations = {
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         SoundTable = {
             {
-                s = "weapons/ar2/ar2_rotate.wav",
+                s = "weapons/ar2/ar2_reload_rotate.wav",
                 t = 0.2
             },
             {
-                s = "weapons/ar2/ar2_push.wav",
+                s = "weapons/ar2/ar2_reload_push.wav",
                 t = 0.8
             }
         },
@@ -198,11 +198,11 @@ SWEP.Animations = {
         LHIKOut = 0.4,
         SoundTable = {
             {
-                s = "weapons/ar2/ar2_rotate.wav",
+                s = "weapons/ar2/ar2_reload_rotate.wav",
                 t = 0.2
             },
             {
-                s = "weapons/ar2/ar2_push.wav",
+                s = "weapons/ar2/ar2_reload_push.wav",
                 t = 0.8
             }
         },
