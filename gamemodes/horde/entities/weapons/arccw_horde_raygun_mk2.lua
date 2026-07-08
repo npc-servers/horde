@@ -4,14 +4,6 @@ if CLIENT then
     killicon.Add("arccw_horde_raygun_mk2", "arccw/weaponicons/arccw_bo2_raygunmk2", Color(0, 0, 0, 255))
 end
 
-if SERVER then
-    PrecacheParticleSystem("rgmk2_flash")
-    PrecacheParticleSystem("rgmk2_pap_flash")
-    PrecacheParticleSystem("rgmk2_impact_glow")
-    PrecacheParticleSystem("rgmk2_pap_impact_glow")
-    game.AddParticles( "particles/bo1/raygunmk2.pcf" )
-end
-
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde (Custom)" -- edit this if you like
