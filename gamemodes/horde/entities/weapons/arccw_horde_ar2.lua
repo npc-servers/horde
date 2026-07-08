@@ -79,7 +79,7 @@ SWEP.ShootSound = ")horde/weapons/ar2/fire1.ogg"
 SWEP.ShootSoundSilenced = ")weapons/arccw/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
-SWEP.MuzzleEffect = "hunter_muzzle_flash"
+SWEP.MuzzleEffect = "rgmk2_pap_flash"
 SWEP.ShellModel = "models/weapons/arccw/irifleshell.mdl"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
