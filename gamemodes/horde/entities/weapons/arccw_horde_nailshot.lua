@@ -182,7 +182,6 @@ sound.Add( {
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
-    pitch = 100,
     sound = ")weapons/kf_vlad/vlad9000_mag_eject.wav"
 } )
 
@@ -191,6 +190,5 @@ sound.Add( {
     channel = CHAN_WEAPON,
     volume = 1.0,
     level = 75,
-    pitch = 100,
     sound = ")weapons/kf_vlad/vlad9000_mag_insert.wav"
 } )
