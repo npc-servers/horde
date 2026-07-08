@@ -42,8 +42,8 @@ SWEP.SprintPos = Vector( -1.651, 0.5, 0.5 )
 SWEP.SprintAng = Angle( -18, 0, 0 )
 
 SWEP.IronSightStruct = {
-        Pos = Vector( -3.8, 0, -0.6 ),
-        Ang = Angle( 5.63, 0, 2 ),
+    Pos = Vector( -3.8, 0, -0.6 ),
+    Ang = Angle( 5.63, 0, 2 ),
     Midpoint = {
         Pos = Vector( 0, 15, -4 ),
         Ang = Angle( 0, 0, -45 ),
