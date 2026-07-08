@@ -19,7 +19,7 @@ if SERVER then
     function ENT:Initialize()
         local pb_vert = 2
         local pb_hor = 2
-        self:SetModel ( self.Model )
+        self:SetModel( self.Model )
         self:PhysicsInitBox( Vector( -pb_vert, -pb_hor, -pb_hor ), Vector( pb_vert, pb_hor, pb_hor ) )
 
         local phys = self:GetPhysicsObject()
@@ -36,7 +36,6 @@ if SERVER then
             self:SetColor( Color( 255, 0, 0 ) )
         end
     end
-
 
     function ENT:Detonate( hitpos, hitent )
         if not self:IsValid() or self.Removing then return end
@@ -81,7 +80,8 @@ if SERVER then
                     local effectdata = EffectData()
                         effectdata:SetOrigin( self:GetPos() )
                 end
-            end } )
+            end
+        } )
 
         self.Removing = true
         self:Remove()
