@@ -1,9 +1,9 @@
 if not ArcCWInstalled then return end
 if CLIENT then
-    SWEP.WepSelectIcon = surface.GetTextureID("items/hl2/weapon_ar2.png")
-    SWEP.WepSelectIconMat = Material("items/hl2/weapon_ar2.png")
-    killicon.AddAlias("arccw_horde_ar2", "weapon_ar2")
-    killicon.AddAlias("projectile_horde_ar2_projectile", "weapon_ar2")
+    SWEP.WepSelectIcon = surface.GetTextureID( "items/hl2/weapon_ar2.png" )
+    SWEP.WepSelectIconMat = Material( "items/hl2/weapon_ar2.png" )
+    killicon.AddAlias( "arccw_horde_ar2", "weapon_ar2" )
+    killicon.AddAlias( "projectile_horde_ar2_projectile", "weapon_ar2" )
 end
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
@@ -42,7 +42,7 @@ SWEP.PhysBulletMuzzleVelocity = 400
 
 SWEP.Tracer = "AR2Tracer" -- override tracer effect
 SWEP.TracerNum = 1 -- tracer every X
-SWEP.TracerCol = Color(255, 25, 25)
+SWEP.TracerCol = Color( 255, 25, 25 )
 SWEP.TracerWidth = 3
 
 SWEP.Recoil = 0.2
@@ -79,7 +79,7 @@ SWEP.ShootSound = ")horde/weapons/ar2/fire1.ogg"
 SWEP.ShootSoundSilenced = ")weapons/arccw/m4a1/m4a1_silencer_01.wav"
 SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_1"
+SWEP.MuzzleEffect = "rgmk2_pap_flash"
 SWEP.ShellModel = "models/weapons/arccw/irifleshell.mdl"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
@@ -100,8 +100,8 @@ SWEP.ProceduralIronFire = false
 SWEP.CaseBones = {}
 
 SWEP.IronSightStruct = {
-    Pos = Vector(-5.8, -4, 0.8),
-    Ang = Angle(2, 0, 0),
+    Pos = Vector( -5.8, -4, 0.8 ),
+    Ang = Angle( 2, 0, 0 ),
     Magnification = 1.1,
     SwitchToSound = "", -- sound that plays when switching to this sight
     CrosshairInSights = true
@@ -113,27 +113,27 @@ SWEP.HoldtypeSights = "ar2"
 
 SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 
-SWEP.ActivePos = Vector(0, 0, 0)
-SWEP.ActiveAng = Angle(0, 0, 0)
+SWEP.ActivePos = Vector( 0, 0, 0 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
 
-SWEP.CrouchPos = Vector(-4, 0, -1)
-SWEP.CrouchAng = Angle(0, 0, -10)
+SWEP.CrouchPos = Vector( -4, 0, -1 )
+SWEP.CrouchAng = Angle( 0, 0, -10 )
 
-SWEP.HolsterPos = Vector(3, 3, 0)
-SWEP.HolsterAng = Angle(-7.036, 30.016, 0)
+SWEP.HolsterPos = Vector( 3, 3, 0 )
+SWEP.HolsterAng = Angle( -7.036, 30.016, 0 )
 
-SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
-SWEP.BarrelOffsetHip = Vector(2, 0, -2)
+SWEP.BarrelOffsetSighted = Vector( 0, 0, -1 )
+SWEP.BarrelOffsetHip = Vector( 2, 0, -2 )
 
-SWEP.CustomizePos = Vector(8, 0, 1)
-SWEP.CustomizeAng = Angle(5, 30, 30)
+SWEP.CustomizePos = Vector( 8, 0, 1 )
+SWEP.CustomizeAng = Angle( 5, 30, 30 )
 
 SWEP.BarrelLength = 0
 
 SWEP.AttachmentElements = {
     ["rail"] = {
-        VMBodygroups = {{ind = 5, bg = 1}},
-        WMBodygroups = {{ind = 5, bg = 1}},
+        VMBodygroups = { { ind = 5, bg = 1 } },
+        WMBodygroups = { { ind = 5, bg = 1 } },
     },
 }
 
@@ -143,9 +143,9 @@ SWEP.GuaranteeLaser = true
 SWEP.WorldModelOffset = {
     --pos = Vector(-14, 6, -4),
     --ang = Angle(-10, 0, 180)
-    scale = Vector(0.9, 0.9, 0.9),
-    pos = Vector(16, 1, -3.2),
-    ang = Angle(-12, 180, 180)
+    scale = Vector( 0.9, 0.9, 0.9 ),
+    pos = Vector( 16, 1, -3.2 ),
+    ang = Angle( -12, 180, 180 )
 }
 
 --SWEP.MirrorVMWM = true
@@ -163,41 +163,57 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-    ["idle"] = {
-        Source = "IR_idle",
-    },
+    ["idle"] = { Source = "IR_idle", Time = 10 },
     ["draw"] = {
         Source = "IR_draw",
         FrameRate = 30,
+    },
+    ["fire"] = {
+        Source = "IR_fire",
+    },
+    ["fire_iron"] = {
+        Source = "Fire2",
     },
     ["reload"] = {
         Source = "IR_reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         SoundTable = {
-            {s = "weapons/ar2/ar2_reload.wav", t = 0},
+            {
+                s = "weapons/ar2/ar2_reload_rotate.wav",
+                t = 0.2
+            },
+            {
+                s = "weapons/ar2/ar2_reload_push.wav",
+                t = 0.8
+            }
         },
-        Checkpoints = {16, 30},
-        FrameRate = 30,
-        LHIK = true,
-        LHIKIn = 0.4,
-        LHIKOut = 0.4,
     },
     ["reload_empty"] = {
         Source = "IR_reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        Checkpoints = {16, 30, 55},
+        Checkpoints = { 16, 30, 55 },
         FrameRate = 30,
         LHIK = true,
         LHIKIn = 0.4,
         LHIKOut = 0.4,
+        SoundTable = {
+            {
+                s = "weapons/ar2/ar2_reload_rotate.wav",
+                t = 0.2
+            },
+            {
+                s = "weapons/ar2/ar2_reload_push.wav",
+                t = 0.8
+            }
+        },
     },
 }
 
-function SWEP:DrawWeaponSelection(x, y, w, h, a)
-    surface.SetDrawColor(255, 255, 255, a)
-    surface.SetMaterial(self.WepSelectIconMat)
+function SWEP:DrawWeaponSelection( x, y, w, a )
+    surface.SetDrawColor( 255, 255, 255, a )
+    surface.SetMaterial( self.WepSelectIconMat )
 
-    surface.DrawTexturedRect(x, y, w, w / 2)
+    surface.DrawTexturedRect( x, y, w, w / 2 )
 end
 
 function SWEP:Hook_ShouldNotFire()
