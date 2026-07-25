@@ -22,7 +22,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ply:Horde_AddDropEntity(ent:GetClass(), ent)
     ent:SetNWEntity("HordeOwner", ply)
     -- Dont set RENDERMODE_TRANSCOLOR if alpha isnt used to save up on alot of fps
- //   ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
+--   ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
     ent:SetColor(Color(255,0,0,255))
     ent:Spawn()
     ent.Horde_Is_Mini_Sentry = true
