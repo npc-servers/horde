@@ -564,7 +564,7 @@ function HORDE:SpawnEnemy(enemy, pos)
 
     if enemy.color then
         spawned_enemy:SetColor(enemy.color)
-        if (enemy.color.a != 255) then
+        if enemy.color.a ~= 255 then
             spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
         end
     end
