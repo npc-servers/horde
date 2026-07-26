@@ -444,7 +444,9 @@ concommand.Add("horde_testing_spawn_enemy", function (ply, cmd, args)
 
     if enemy.color then
         spawned_enemy:SetColor(enemy.color)
-        spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        if enemy.color.a ~= 255 then
+            spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        end
     end
 
     if enemy.weapon then

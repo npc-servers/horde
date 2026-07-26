@@ -24,8 +24,6 @@ function ENT:Initialize()
 		phys:EnableGravity(false)
 		phys:Wake()
 	end
-
-	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(Color(255,255,0,255))
 
 	self.delayRemove = CurTime() + 60
