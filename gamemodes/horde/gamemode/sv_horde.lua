@@ -567,6 +567,7 @@ function HORDE:SpawnEnemy(enemy, pos)
         -- Dont set RENDERMODE_TRANSCOLOR if alpha isnt used to save up on alot of fps
         if (enemy.color.a != 255) then
             spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        end
     end
 
     if enemy.weapon then
