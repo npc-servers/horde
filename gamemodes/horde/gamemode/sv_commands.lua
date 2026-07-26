@@ -444,7 +444,6 @@ concommand.Add("horde_testing_spawn_enemy", function (ply, cmd, args)
 
     if enemy.color then
         spawned_enemy:SetColor(enemy.color)
-        -- Dont set RENDERMODE_TRANSCOLOR if alpha isnt used to save up on alot of fps
         if (enemy.color.a != 255) then
             spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
         end

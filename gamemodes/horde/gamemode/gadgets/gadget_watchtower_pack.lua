@@ -23,8 +23,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:SetPos(drop_pos)
     ent:SetAngles(Angle(0, ply:GetAngles().y, 0))
     ent:SetNWEntity("HordeOwner", ply)
-    -- Dont set RENDERMODE_TRANSCOLOR if alpha isnt used to save up on alot of fps
- --   ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
     ent:SetColor(Color(255,255,0,255))
     ent:Spawn()
     ply.Horde_Extra_Watchtower = ent

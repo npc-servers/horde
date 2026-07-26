@@ -65,8 +65,6 @@ function ENT:CustomOnInitialize()
     self:SetCollisionBounds(Vector(18, 18, 90), Vector(-18, -18, 0))
     self:SetSkin(math.random(0,3))
     self:SetColor(Color(255,0,255,255))
--- Dont set RENDERMODE_TRANSCOLOR if alpha isnt used to save up on alot of fps
- -- self:SetRenderMode(RENDERMODE_TRANSCOLOR)
     self:AddRelationship("npc_headcrab_poison D_LI 99")
 	self:AddRelationship("npc_headcrab_fast D_LI 99")
 end
