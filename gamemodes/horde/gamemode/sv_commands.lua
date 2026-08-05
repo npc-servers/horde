@@ -57,7 +57,7 @@ local function Start(ply)
 end
 
 function Ready(ply)
-    if HORDE.current_wave > 0 then return end
+    if HORDE.current_wave > 0 then SkipTraderTime(ply) return end
     if not ply:Alive() then
         HORDE:SendNotification("You can't get ready when you are dead!", 1, ply)
         return
@@ -80,6 +80,39 @@ function Ready(ply)
 
     if HORDE.start_game and HORDE.current_wave > 0 then return end
     HORDE:BroadcastPlayersReadyMessage(tostring(readyCount) .. "/" .. tostring(totalPlayers))
+end
+
+--Skip trader time--
+function SkipTraderTime(ply)
+    if HORDE.current_wave <= 0 then return end
+    if not HORDE:InBreak() then return end
+    if HORDE.current_break_time <= 10 then
+        HORDE:SendNotification("Next wave is starting!", 1, ply)
+        return
+    end
+    if not ply:Alive() then
+        HORDE:SendNotification("You can't get ready when you are dead!", 1, ply)
+        return
+    end
+    
+    
+    HORDE.player_ready[ply] = 1
+    local skip_count = 0
+    local total_player = 0
+    for _, skip_ply in pairs(player.GetAll()) do
+        if HORDE.player_ready[skip_ply] == 1 then
+            skip_count = skip_count + 1
+        end
+        total_player = total_player + 1
+    end
+    
+    if skip_count >= total_player then
+        HORDE.Skip_Wave_Timer = true
+    end
+
+    net.Start("Horde_PlayerReadySync")
+        net.WriteTable(HORDE.player_ready)
+    net.Broadcast()
 end
 
 local function End(ply)

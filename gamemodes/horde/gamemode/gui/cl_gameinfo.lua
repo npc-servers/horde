@@ -384,7 +384,7 @@ net.Receive("Horde_RenderBreakCountDown", function()
     if num then
         if num >= 0 and num <= 10 then
             if HORDE.PlayerReadyPanel then
-                HORDE.PlayerReadyPanel:Remove()
+                HORDE.PlayerReadyPanel:SetVisible(false)
                 HORDE.HelpPanel:SetVisible(false)
                 HORDE.TipPanel:SetVisible(false)
                 HORDE.leader_board:SetVisible(false)
@@ -400,6 +400,7 @@ net.Receive("Horde_RenderBreakCountDown", function()
             end
         elseif num > 0 then
             if not HORDE.HelpPanel:IsVisible() then
+                HORDE.PlayerReadyPanel:SetVisible(true)
                 HORDE.HelpPanel:SetVisible(true)
                 HORDE.TipPanel:SetVisible(true)
                 HORDE:ShowLeaderboardThenFadeOut()
