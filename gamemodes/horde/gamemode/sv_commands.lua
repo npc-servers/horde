@@ -85,7 +85,10 @@ end
 --Skip trader time--
 function SkipTraderTime(ply)
     if HORDE.current_wave <= 0 then return end
-    if not HORDE:InBreak() then return end
+    if not HORDE:InBreak() then
+        HORDE:SendNotification("You can't skip right now!", 1, ply)
+        return
+    end
     if HORDE.current_break_time <= 10 then
         HORDE:SendNotification("Next wave is starting!", 1, ply)
         return
@@ -243,6 +246,7 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
     if text[1] == "!help" then
         ply:PrintMessage(HUD_PRINTTALK, "'!ready' - Get ready")
         ply:PrintMessage(HUD_PRINTTALK, "'!shop' - Open shop")
+        ply:PrintMessage(HUD_PRINTTALK, "'!skip' - Skip trader time")
         ply:PrintMessage(HUD_PRINTTALK, "'!drop' - Drop weapon")
         ply:PrintMessage(HUD_PRINTTALK, "'!throwmoney <amount>' - Drop money")
         ply:PrintMessage(HUD_PRINTTALK, "'!rtv' -Initiate a map change vote")
@@ -250,6 +254,8 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         Start(ply)
     elseif text[1] == "!ready" then
         Ready(ply)
+    elseif text[1] == "!skip" then
+        SkipTraderTime(ply)
     elseif text[1] == "!end" then
         End(ply)
     elseif text[1] == "!shop" then
@@ -293,6 +299,10 @@ end)
 
 concommand.Add("horde_ready", function (ply, cmd, args)
     Ready(ply)
+end)
+
+concommand.Add("horde_skip_trader", function (ply, cmd, args)
+    SkipTraderTime(ply)
 end)
 
 concommand.Add("horde_end", function (ply, cmd, args)
