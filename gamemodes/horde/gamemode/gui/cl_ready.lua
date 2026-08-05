@@ -71,6 +71,7 @@ local tip = ""
 HORDE.TipPanel = vgui.Create("DPanel")
 HORDE.TipPanel:SetSize(ScrW() * 2 / 5, ScreenScale(15))
 HORDE.TipPanel:SetPos(ScrW() / 2 - ScrW() * 2 / 10, ScreenScale(6))
+HORDE.TipPanel:MoveBelow(HORDE.PlayerReadyPanel, ScreenScale(2))
 HORDE.TipPanel.Paint = function (w,h)
     if tip == nil or tip == "" then return end
     draw.RoundedBox(10, 0, 0, ScrW() * 2 / 5, ScreenScale(15),  Color(40,40,40,200))
