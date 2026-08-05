@@ -84,6 +84,7 @@ net.Receive("Horde_SyncTip", function()
         HORDE.TipPanel:SetVisible(false)
     else
         HORDE.TipPanel:SetVisible(true)
+        HORDE.TipPanel:SetPos(ScrW() / 2 - ScrW() * 2 / 10, ScreenScale(6))
         HORDE:ShowLeaderboardThenFadeOut()
     end
 end)
@@ -119,7 +120,7 @@ end)
 
 net.Receive("Horde_RemoveReadyPanel", function()
     if HORDE.PlayerReadyPanel then
-        HORDE.PlayerReadyPanel:Remove()
+        HORDE.PlayerReadyPanel:SetVisible(false)
         HORDE.HelpPanel:SetVisible(false)
     end
 end)

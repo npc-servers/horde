@@ -388,6 +388,8 @@ net.Receive("Horde_RenderBreakCountDown", function()
                 HORDE.HelpPanel:SetVisible(false)
                 HORDE.TipPanel:SetVisible(false)
                 HORDE.leader_board:SetVisible(false)
+
+                HORDE.TipPanel:SetPos(ScrW() / 2 - ScrW() * 2 / 10, ScreenScale(6))
             end
             if num == 10 then
                 surface.PlaySound("hl1/fvox/ten.wav")
@@ -403,6 +405,8 @@ net.Receive("Horde_RenderBreakCountDown", function()
                 HORDE.PlayerReadyPanel:SetVisible(true)
                 HORDE.HelpPanel:SetVisible(true)
                 HORDE.TipPanel:SetVisible(true)
+                HORDE.TipPanel:MoveBelow(HORDE.PlayerReadyPanel, ScreenScale(2))
+
                 HORDE:ShowLeaderboardThenFadeOut()
             end
         end
