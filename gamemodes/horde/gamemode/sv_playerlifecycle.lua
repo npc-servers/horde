@@ -445,7 +445,7 @@ function HORDE:PlayerInit(ply)
         net.Start("Horde_Disable_Levels")
         net.Send(ply)
     end
-    if not HORDE.start_game then
+    if not HORDE.start_game or HORDE:InBreak() then
         HORDE.player_ready[ply] = 0
         net.Start("Horde_PlayerReadySync")
             net.WriteTable(HORDE.player_ready)
@@ -630,7 +630,7 @@ hook.Add("PlayerDisconnected", "Horde_PlayerDisconnect", function(ply)
         HORDE.player_money_wave[ply:SteamID()] = HORDE.current_wave
     end
 
-    if (not HORDE.start_game) and HORDE.player_ready[ply] then
+    if (not HORDE.start_game or HORDE:InBreak()) and HORDE.player_ready[ply] then
         HORDE.player_ready[ply] = nil
         net.Start("Horde_PlayerReadySync")
         net.WriteTable(HORDE.player_ready)
