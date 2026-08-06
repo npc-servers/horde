@@ -1014,6 +1014,12 @@ function HORDE:StartBreak()
     net.Broadcast()
     timer.Create("Horder_Counter", 1, 0, function ()
         if not HORDE.start_game then return end
+
+        if HORDE.Skip_Wave_Timer then
+            HORDE.current_break_time = 10
+            HORDE.Skip_Wave_Timer = nil
+        end
+
         HORDE:BroadcastBreakCountDownMessage(HORDE.current_break_time, false)
 
         if 0 < HORDE.current_break_time then
@@ -1226,6 +1232,7 @@ function HORDE:WaveEnd()
     horde_boss_properties = nil
     horde_boss_reposition = false
     horde_boss_critical = false
+    HORDE.player_ready = {}
 
     HORDE:StartBreak()
     local enemies = HORDE:ScanEnemies()
@@ -1257,11 +1264,16 @@ function HORDE:WaveEnd()
     net.WriteUInt(HORDE.render_highlight_disable, 3)
     net.Broadcast()
 
-    for _, ply in pairs(player.GetAll()) do
+    for _, ply in ipairs(player.GetAll()) do
         if not ply:Alive() then ply:Spawn() end
+        
         HORDE.player_class_changed[ply:SteamID()] = false
         HORDE.player_ready[ply] = 0
     end
+
+    net.Start("Horde_PlayerReadySync")
+        net.WriteTable(HORDE.player_ready)
+    net.Broadcast()
 
     if GetConVarNumber("horde_npc_cleanup") == 1 then
         for _, ent in pairs(ents.GetAll()) do
