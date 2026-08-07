@@ -1019,6 +1019,13 @@ function PANEL:Init()
     if HORDE.has_new_update then
         learn_btn:DoClick()
     end
+
+    hook.Add("OnPauseMenuShow", self, function()
+        if self and self:IsValid() and self:IsVisible() then
+            HORDE:ToggleStats()
+            return false
+        end
+    end)
 end
 
 function PANEL:Paint(w, h)
@@ -1029,6 +1036,17 @@ function PANEL:Paint(w, h)
     else
         draw.RoundedBox(0, 0, 0, w, h, HORDE.color_hollow)
     end
+end
+
+function PANEL:OnKeyCodePressed(key)
+    if input.LookupKeyBinding(key) == "gm_showhelp" or input.LookupKeyBinding(key) == "gm_showteam" then
+        HORDE:ToggleStats()
+    end
+
+end
+
+function PANEL:OnRemove()
+    hook.Remove("OnPauseMenuShow", self)
 end
 
 vgui.Register("HordeStats", PANEL)
