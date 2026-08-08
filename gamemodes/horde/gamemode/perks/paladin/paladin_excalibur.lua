@@ -104,6 +104,3 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, _, dmginfo )
     ply:EmitSound( ")weapons/stunstick/stunstick_impact1.wav", 125, 100, 1, CHAN_AUTO )
     ply:EmitSound( ")npc/roller/mine/rmine_explode_shock1.wav", 125, 100, 1, CHAN_AUTO )
 end
-
-
--- Aura lightning damage is handled in horde_paladin_aura/init
