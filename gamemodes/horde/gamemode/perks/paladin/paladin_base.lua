@@ -129,3 +129,22 @@ PERK.Hooks.Horde_OnPlayerDebuffApply = function( ply, debuff, bonus )
 
     return true
 end
+
+local healPercent = 0.03
+
+PERK.Hooks.Horde_Paladin_OnLoseFaith = function( ply )
+    if not ply:Horde_GetPerk( "paladin_base" ) then return end
+
+    local aura = ply.Horde_PaladinAura
+    if not aura then return end
+
+    local entsInside = aura.Entities
+    if not entsInside then return end
+
+    for ent, _ in pairs( entsInside ) do
+        if IsValid( ent ) and ent:IsPlayer() then
+            local healinfo = HealInfo:New( { amount = ent:GetMaxHealth() * healPercent, healer = ply } )
+            HORDE:OnPlayerHeal( ent, healinfo )
+        end
+    end
+end
