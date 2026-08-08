@@ -1,5 +1,5 @@
 PERK.PrintName = "Oath of a Sword"
-PERK.Icon = "materials/perks/paladin/paladin_oath_of_a_sword.png"
+PERK.Icon = "materials/perks/paladin/oath_of_a_sword.png"
 PERK.Description = [[
 Increased Melee damage by 20%.
 Your melee hits heal 5% health and reduce debuff buildups to all players in aura.
