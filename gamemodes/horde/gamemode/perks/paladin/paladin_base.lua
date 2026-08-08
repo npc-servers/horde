@@ -127,8 +127,6 @@ PERK.Hooks.KeyPress = function( ply, key )
     ply.Horde_PaladinShielding = true
     ply.Horde_PaladinLastShielding = curTime + shieldCooldown
 
-    if not ply:Horde_GetPerk( "paladin_protectors_oath" ) then removeFaithTimer( ply ) end
-
     ply:Horde_AddPaladinShield()
 end
 
