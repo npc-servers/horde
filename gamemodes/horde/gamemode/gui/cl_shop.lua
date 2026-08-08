@@ -393,7 +393,6 @@ function PANEL:OnKeyCodePressed(key)
     if input.LookupKeyBinding(key) == "gm_showspare1" then
         HORDE:ToggleShop()
     end
-
 end
 
 function PANEL:OnRemove()
