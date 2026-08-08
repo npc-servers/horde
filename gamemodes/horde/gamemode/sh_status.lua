@@ -102,6 +102,7 @@ HORDE:RegisterStatus("PaladinFaith", "materials/status/paladin/faith.png", true)
 HORDE:RegisterStatus("PaladinShieldBash", "materials/perks/paladin/shield_bash.png", nil, nil, true)
 HORDE:RegisterStatus("PaladinSmite", "materials/perks/paladin/smite.png", nil, nil, true)
 HORDE:RegisterStatus("PaladinShielding", "materials/status/paladin/faith.png")
+HORDE:RegisterStatus("PaladinJudgement", "materials/perks/paladin/judgement.png")
 
 HORDE:RegisterStatus("Armor_Survivor", "items/armor_survivor.png")
 HORDE:RegisterStatus("Armor_Assault", "items/armor_assault.png")

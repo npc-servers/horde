@@ -11,5 +11,5 @@ SUBCLASS.Perks = {
     [1] = { title = "Enlightment", choices = { "paladin_shield_bash", "paladin_smite" } },
     [2] = { title = "Pledge", choices = { "paladin_protectors_oath", "paladin_inquisitors_oath" } },
     [3] = { title = "Valour", choices = { "paladin_providence", "paladin_excalibur" } },
-    [4] = { title = "Beacon of Hope", choices = { "paladin_sanctuary", "paladin_rallying_presence" } },
+    [4] = { title = "Beacon of Hope", choices = { "paladin_sanctuary", "paladin_judgement" } },
 }
