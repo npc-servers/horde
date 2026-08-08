@@ -72,26 +72,16 @@ local entMeta = FindMetaTable( "Entity" )
 local ply_Horde_GetPerk = plyMeta.Horde_GetPerk
 local ply_Horde_ReduceDebuffBuildup = plyMeta.Horde_ReduceDebuffBuildup
 
-local ent_Health = entMeta.Health
-local ent_GetMaxHealth = entMeta.GetMaxHealth
 local ent_NextThink = entMeta.NextThink
 
-local HORDE = HORDE
-local horde_OnPlayerHeal = HORDE.OnPlayerHeal
-
 local DEBUFF_REDUCTION = 5
-local HEAL_PERCENT = 0.02
 local THINK_INTERVAL = 1
 
 local PERK_SANCTUARY = "paladin_sanctuary"
-local PERK_RALLYING_PRESENCE = "paladin_rallying_presence"
 
 local CurTime = CurTime
 local IsValid = IsValid
 local pairs = pairs
-
-local HealInfo = HealInfo
-local healInfo_New = HealInfo.New
 
 function ENT:Think()
     local owner = self.CachedOwner
@@ -103,10 +93,7 @@ function ENT:Think()
         return true
     end
 
-    local hasSanctuary = ply_Horde_GetPerk( owner, PERK_SANCTUARY )
-    local hasRallyingPresence = ply_Horde_GetPerk( owner, PERK_RALLYING_PRESENCE )
-
-    if not ( hasSanctuary or hasRallyingPresence ) then
+    if not ply_Horde_GetPerk( owner, PERK_SANCTUARY ) then
         ent_NextThink( self, curTime + THINK_INTERVAL )
 
         return true
@@ -114,17 +101,8 @@ function ENT:Think()
 
     for ent, _ in pairs( self.Entities ) do
         if IsValid( ent ) and ent:IsPlayer() then
-            if hasSanctuary then
-                for debuff, _ in pairs( ent.Horde_Debuff_Buildup ) do
-                    ply_Horde_ReduceDebuffBuildup( ent, debuff, DEBUFF_REDUCTION )
-                end
-            end
-
-            if hasRallyingPresence then
-                local maxHealth = ent_GetMaxHealth( ent )
-                if ent_Health( ent ) < maxHealth then
-                    horde_OnPlayerHeal( HORDE, ent, healInfo_New( HealInfo, { amount = maxHealth * HEAL_PERCENT, healer = owner } ) )
-                end
+            for debuff, _ in pairs( ent.Horde_Debuff_Buildup ) do
+                ply_Horde_ReduceDebuffBuildup( ent, debuff, DEBUFF_REDUCTION )
             end
         end
     end
