@@ -342,6 +342,13 @@ function PANEL:Init()
     end
 
     createBtn("Class/Perks", ClassTab, RIGHT)
+
+    hook.Add("OnPauseMenuShow", self, function()
+        if self and self:IsValid() and self:IsVisible() then
+            HORDE:ToggleShop()
+            return false
+        end
+    end)
 end
 
 function PANEL:ReloadSpells(spells, container, description_panel)
@@ -411,6 +418,16 @@ function PANEL:Paint(w, h)
     surface.SetMaterial(skull_mat)
     surface.SetDrawColor(Color(255,255,255))
     surface.DrawTexturedRect(self:GetWide() - surface.GetTextSize(text) + surface.GetTextSize(text2) - 55, 14, 20, 20)
+end
+
+function PANEL:OnKeyCodePressed(key)
+    if input.LookupKeyBinding(key) == "gm_showspare1" then
+        HORDE:ToggleShop()
+    end
+end
+
+function PANEL:OnRemove()
+    hook.Remove("OnPauseMenuShow", self)
 end
 
 vgui.Register("HordeSpellForge", PANEL)
