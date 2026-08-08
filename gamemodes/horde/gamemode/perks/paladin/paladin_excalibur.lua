@@ -97,7 +97,7 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, npc, bonus, _, dmginfo )
     local effectdata = EffectData()
     effectdata:SetOrigin( origin )
     effectdata:SetAngles( plyAng )
-    util.Effect( "holy_wave", effectdata, true, true )
+    util.Effect( "paladin_holy_wave", effectdata, true, true )
 
     doWaveDmg( ply, origin, plyAng )
 
