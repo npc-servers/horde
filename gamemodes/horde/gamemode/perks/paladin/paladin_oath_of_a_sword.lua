@@ -1,7 +1,7 @@
 PERK.PrintName = "Oath of a Sword"
 PERK.Icon = "materials/perks/paladin/paladin_oath_of_a_sword.png"
 PERK.Description = [[
-Increased Melee damage by 25%.
+Increased Melee damage by 20%.
 Your melee hits heal 5% health and reduce debuff buildups to all players in aura.
 Increase speed by 20%.]]
 PERK.Hooks = {}
@@ -10,7 +10,7 @@ PERK.Hooks.Horde_OnPlayerDamage = function( ply, _, bonus, _, dmginfo )
     if not ply:Horde_GetPerk( "paladin_oath_of_a_sword" ) then return end
     if not HORDE:IsMeleeDamage( dmginfo ) then return end
 
-    bonus.increase = bonus.increase + 0.25
+    bonus.increase = bonus.increase + 0.2
 end
 
 local healPercent = 0.05
