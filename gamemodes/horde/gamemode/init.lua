@@ -132,6 +132,7 @@ include("status/buff/sv_paladin_aura.lua")
 include("status/buff/sv_paladin_faith.lua")
 include("status/buff/sv_paladin_shield.lua")
 include("status/buff/sv_paladin_judgement.lua")
+include("status/buff/sv_paladin_passion.lua")
 
 include("obj_entity_extend_sv.lua")
 include("sv_difficulty.lua")
