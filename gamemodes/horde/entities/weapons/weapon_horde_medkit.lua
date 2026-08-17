@@ -114,6 +114,13 @@ function SWEP:SecondaryAttack()
 	self:DoHeal( self:GetOwner() )
 end
 
+function SWEP:ResetRevive()
+	self.RevivingPlayer = nil
+	self.ReviveProgress = 0
+	self.RevivingPos = nil
+	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+end
+
 function SWEP:Reload()
 	if not IsFirstTimePredicted() then return end
 
@@ -142,10 +149,8 @@ function SWEP:Reload()
 	end
 
 	if not closestPlayer or closestDistance > self.ReviveRange then
-		self.RevivingPlayer = nil
-		self.ReviveProgress = 0
-		self.RevivingPos = nil
-		self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+		self:ResetRevive()
+
 		return
 	end
 
@@ -157,10 +162,8 @@ function SWEP:Reload()
 				self.DeadPlayers[self.RevivingPlayer] = nil
 			end
 
-			self.RevivingPlayer = nil
-			self.ReviveProgress = 0
-			self.RevivingPos = nil
-			self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+			self:ResetRevive()
+
 			return
 		end
 
@@ -178,10 +181,7 @@ function SWEP:Reload()
 end
 
 function SWEP:Holster()
-	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
-	self.RevivingPlayer = nil
-	self.ReviveProgress = 0
-	self.RevivingPos = nil
+	self:ResetRevive()
 
 	return true
 end
@@ -318,10 +318,7 @@ function SWEP:Think()
 	end
 
 	if not self:GetOwner():KeyDown( IN_RELOAD ) then
-		self.RevivingPlayer = nil
-		self.ReviveProgress = 0
-		self.RevivingPos = nil
-		self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+		self:ResetRevive()
 	end
 end
 
