@@ -346,7 +346,7 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         local expToNext = HORDE:GetExpToNextLevel(level + 1)
         local rank, rank_level = HORDE:LevelToRank(level)
         local class_icon_s = ScreenScale(26)
-        local class_icon_x = panelX + ScreenScale(4)
+        local class_icon_x = panelX + ScreenScale(6)
         local class_icon_y = panelY + (panelH - class_icon_s) / 2
         drawCircularProgress(class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, class_icon_s * 0.52, exp / expToNext, 3, Color(0,136,199))
         surface.SetMaterial(class_icon)
@@ -402,7 +402,7 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
 
         -- Bar layout
         local icon_s = ScreenScale(10)
-        local barX  = class_icon_x + class_icon_s + ScreenScale(4)
+        local barX  = class_icon_x + class_icon_s + ScreenScale(6)
         local barW  = (panelX + panelW) - barX - icon_s - ScreenScale(8)
         local barH  = ScreenScale(10)
         local barGap = ScreenScale(6)
