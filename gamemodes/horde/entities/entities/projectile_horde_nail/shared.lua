@@ -38,7 +38,7 @@ if SERVER then
     end
 
     function ENT:Think()
-        if CurTime() - self.SpawnTime >= self.FuseTime and !self.Removing then
+        if CurTime() - self.SpawnTime >= self.FuseTime and not self.Removing then
             self.Removing = true
             self:Remove()
         end
