@@ -358,10 +358,10 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
             if rank_level > 0 then
                 local star = Material("star.png", "mips smooth")
                 surface.SetMaterial(star)
-                local x_pos = class_icon_x
-                local y_pos = class_icon_y + ScreenScale(13)
+                local x_pos = class_icon_x - ScreenScale(4)
+                local y_pos = class_icon_y + ScreenScale(15)
                 for i = 0, rank_level - 1 do
-                    surface.DrawTexturedRect(x_pos - ScreenScale(3), y_pos, ScreenScale(4), ScreenScale(4))
+                    surface.DrawTexturedRect(x_pos, y_pos, ScreenScale(4), ScreenScale(4))
                     y_pos = y_pos - ScreenScale(3)
                 end
             end
