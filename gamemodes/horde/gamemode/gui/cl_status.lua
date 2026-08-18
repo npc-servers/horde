@@ -353,7 +353,7 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         surface.SetDrawColor(HORDE.Rank_Colors[rank])
         surface.DrawTexturedRect(class_icon_x, class_icon_y, class_icon_s, class_icon_s)
         if rank == HORDE.Rank_Master then
-            draw.SimpleText(rank_level, "Trebuchet18", class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            draw.SimpleText(100, "Trebuchet18", class_icon_x, class_icon_y, HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         else
             if rank_level > 0 then
                 local star = Material("star.png", "mips smooth")
