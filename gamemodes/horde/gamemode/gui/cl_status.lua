@@ -346,20 +346,20 @@ hook.Add("HUDPaint", "Horde_DrawHud", function ()
         local expToNext = HORDE:GetExpToNextLevel(level + 1)
         local rank, rank_level = HORDE:LevelToRank(level)
         local class_icon_s = ScreenScale(26)
-        local class_icon_x = panelX + ScreenScale(6)
+        local class_icon_x = panelX + ScreenScale(7)
         local class_icon_y = panelY + (panelH - class_icon_s) / 2
         drawCircularProgress(class_icon_x + class_icon_s / 2, class_icon_y + class_icon_s / 2, class_icon_s * 0.52, exp / expToNext, 3, Color(0,136,199))
         surface.SetMaterial(class_icon)
         surface.SetDrawColor(HORDE.Rank_Colors[rank])
         surface.DrawTexturedRect(class_icon_x, class_icon_y, class_icon_s, class_icon_s)
         if rank == HORDE.Rank_Master then
-            draw.SimpleText(rank_level, "Trebuchet18", class_icon_x, class_icon_y, HORDE.Rank_Colors[rank], TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+            draw.SimpleText(rank_level, "Trebuchet18", class_icon_x - ScreenScale(4.5), class_icon_y, HORDE.Rank_Colors[rank], TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         else
             if rank_level > 0 then
                 local star = Material("star.png", "mips smooth")
                 surface.SetMaterial(star)
-                local x_pos = class_icon_x - ScreenScale(4)
-                local y_pos = class_icon_y + ScreenScale(15)
+                local x_pos = class_icon_x - ScreenScale(5.4)
+                local y_pos = class_icon_y + class_icon_s / 2 + ScreenScale(2.67)
                 for i = 0, rank_level - 1 do
                     surface.DrawTexturedRect(x_pos, y_pos, ScreenScale(4), ScreenScale(4))
                     y_pos = y_pos - ScreenScale(3)
