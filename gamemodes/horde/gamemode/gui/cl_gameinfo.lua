@@ -420,7 +420,7 @@ net.Receive("Horde_RenderBreakCountDown", function()
         timer.Simple(1, function() HORDE:PlayWaveNotification(HORDE.current_wave) end)
     else
         center_panel_mode = "text"
-        center_panel_str = translate.Format("Game_Next_Wave_Starts_In", num)
+        center_panel_str = string.format("Wave %d starts in %d", HORDE.current_wave + 1, num)
     end
 end)
 
