@@ -49,6 +49,7 @@ SWEP.ReviveSpeed = 20 -- Amount of progress per second
 if SERVER then
 	util.AddNetworkString( "horde_medkit_deadplayers" )
 	util.AddNetworkString( "horde_medkit_player_revived" )
+	util.AddNetworkString( "horde_medkit_revive_status" )
 end
 
 function SWEP:Initialize()
@@ -114,6 +115,20 @@ function SWEP:SecondaryAttack()
 	self:DoHeal( self:GetOwner() )
 end
 
+function SWEP:ResetRevive()
+	if SERVER and self.RevivingPlayer and IsValid( self.RevivingPlayer ) then
+		net.Start( "horde_medkit_revive_status" )
+			net.WriteBool( false )
+		net.Send( self.RevivingPlayer )
+	end
+
+	self.RevivingPlayer = nil
+	self.ReviveProgress = 0
+	self.RevivingPos = nil
+
+	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+end
+
 function SWEP:Reload()
 	if not IsFirstTimePredicted() then return end
 
@@ -142,10 +157,8 @@ function SWEP:Reload()
 	end
 
 	if not closestPlayer or closestDistance > self.ReviveRange then
-		self.RevivingPlayer = nil
-		self.ReviveProgress = 0
-		self.RevivingPos = nil
-		self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+		self:ResetRevive()
+
 		return
 	end
 
@@ -157,17 +170,29 @@ function SWEP:Reload()
 				self.DeadPlayers[self.RevivingPlayer] = nil
 			end
 
-			self.RevivingPlayer = nil
-			self.ReviveProgress = 0
-			self.RevivingPos = nil
-			self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+			self:ResetRevive()
+
 			return
 		end
 
 		self.ReviveProgress = self.ReviveProgress + reviveSpeed * ( CurTime() - self.LastReviveTime )
 		self.LastReviveTime = CurTime()
-		self:EmitSound( "items/medcharge4.wav" )
+
+		if SERVER then -- prevent doubling up of sounds
+			local everyoneButRevivee = RecipientFilter()
+			everyoneButRevivee:AddAllPlayers()
+			everyoneButRevivee:RemovePlayer( self.RevivingPlayer )
+
+			self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, nil, nil, everyoneButRevivee )
+		end
+
 		return
+	end
+
+	if SERVER then
+		net.Start( "horde_medkit_revive_status" )
+			net.WriteBool( true )
+		net.Send( closestPlayer )
 	end
 
 	self.ReviveProgress = 0
@@ -178,10 +203,7 @@ function SWEP:Reload()
 end
 
 function SWEP:Holster()
-	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
-	self.RevivingPlayer = nil
-	self.ReviveProgress = 0
-	self.RevivingPos = nil
+	self:ResetRevive()
 
 	return true
 end
@@ -318,10 +340,7 @@ function SWEP:Think()
 	end
 
 	if not self:GetOwner():KeyDown( IN_RELOAD ) then
-		self.RevivingPlayer = nil
-		self.ReviveProgress = 0
-		self.RevivingPos = nil
-		self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+		self:ResetRevive()
 	end
 end
 
@@ -395,6 +414,34 @@ if CLIENT then
 			end
 		end
 	end
+
+	local reviving = 0
+	local revivingX = ScrW() / 2
+	local revivingY = ScrH() / 3
+	local revivingCol = Color( 0, 255, 0 )
+
+	net.Receive( "horde_medkit_revive_status", function()
+		local startRevive = net.ReadBool()
+		reviving = math.max( 0, startRevive and reviving + 1 or reviving - 1 )
+
+		if reviving == 0 then
+			MySelf:StopSound( "items/medcharge4.wav" )
+		end
+
+		if reviving ~= 1 then return end
+
+		MySelf:EmitSound( "items/medcharge4.wav", 50 )
+
+		if not system.HasFocus() then
+			system.FlashWindow()
+		end
+	end )
+
+	hook.Add( "HUDPaint", "horde_medkit_revive_status", function()
+		if reviving <= 0 then return end
+
+		draw.SimpleTextOutlined( "You are being revived!", "CloseCaption_BoldItalic", revivingX, revivingY, revivingCol, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+	end )
 end
 
 if SERVER then
