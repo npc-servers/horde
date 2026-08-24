@@ -479,9 +479,9 @@ function HORDE:SpawnEnemy(enemy, pos)
 	timer.Simple(0, function()
 		if not IsValid( spawned_enemy ) then return end
 		spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0))
-		spawned_enemy:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
+		spawned_enemy:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 	end)
-	spawned_enemy:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
+	spawned_enemy:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 
     HORDE.spawned_enemies[spawned_enemy:EntIndex()] = true
     spawned_enemy:Horde_SetName(enemy.name)
