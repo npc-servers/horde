@@ -45,7 +45,7 @@ local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
 local endMinusStartXp = endXpMult - startXpMult
 local maxLevel = HORDE.max_level
 local healXpPercentage = 0.15
-local armorXpPercentage = 0.1
+local armorXpPercentage = 0.05
 
 function plymeta:Horde_AddHealAmount( amount )
     if amount < 0 then return end
@@ -144,7 +144,7 @@ local function rewardArmorer( armorer, armorGiven )
     local subclass = armorer:Horde_GetCurrentSubclass()
     if armorer:Horde_GetLevel( subclass ) >= maxLevel then return end
 
-    armorer:Horde_AddMoney( armorGiven * 0.75 )
+    armorer:Horde_AddMoney( armorGiven * 0.25 )
     armorer:Horde_SyncEconomy()
 
     local wavePercent = HORDE.current_wave / HORDE.max_waves
