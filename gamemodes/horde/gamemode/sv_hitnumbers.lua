@@ -17,8 +17,8 @@ hook.Add( "PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function( target
 	local dmgType = dmginfo:GetDamageType()
 	local pos = dmginfo:GetDamagePosition()
 		
-    if not pos or dmginfo:IsExplosionDamage() then
-        pos = target:GetPos()
+    if not pos or dmginfo:IsExplosionDamage() or pos == vector_origin then
+        pos = target:WorldSpaceCenter()
     end
 
 	net.Start( "Horde_HitnumbersSpawn", true )
