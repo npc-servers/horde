@@ -118,7 +118,7 @@ end
 function SWEP:ResetRevive()
 	if SERVER and self.RevivingPlayer and IsValid( self.RevivingPlayer ) then
 		net.Start( "horde_medkit_revive_status" )
-			net.WriteBool( false )
+			net.WriteUInt( 0, 2 )
 		net.Send( self.RevivingPlayer )
 	end
 
@@ -178,12 +178,14 @@ function SWEP:Reload()
 		self.ReviveProgress = self.ReviveProgress + reviveSpeed * ( CurTime() - self.LastReviveTime )
 		self.LastReviveTime = CurTime()
 
-		if SERVER then -- prevent doubling up of sounds
+		if SERVER then
 			local everyoneButRevivee = RecipientFilter()
 			everyoneButRevivee:AddAllPlayers()
 			everyoneButRevivee:RemovePlayer( self.RevivingPlayer )
 
 			self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, nil, nil, everyoneButRevivee )
+		else
+			self:EmitSound( "items/medcharge4.wav" )
 		end
 
 		return
@@ -191,7 +193,7 @@ function SWEP:Reload()
 
 	if SERVER then
 		net.Start( "horde_medkit_revive_status" )
-			net.WriteBool( true )
+			net.WriteUInt( 1, 2 )
 		net.Send( closestPlayer )
 	end
 
@@ -199,7 +201,6 @@ function SWEP:Reload()
 	self.RevivingPlayer = closestPlayer
 	self.RevivingPos = closestPos
 	self.LastReviveTime = CurTime()
-	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
 end
 
 function SWEP:Holster()
@@ -420,8 +421,26 @@ if CLIENT then
 	local revivingY = ScrH() / 3
 	local revivingCol = Color( 0, 255, 0 )
 
+	--[[
+		0 = false
+		1 = true
+		2 = reset
+	]]
 	net.Receive( "horde_medkit_revive_status", function()
-		local startRevive = net.ReadBool()
+		local status = net.ReadUInt(2)
+
+		print(status)
+
+		if status == 2 then
+			if not IsValid( MySelf ) then return end -- usually happens due to first spawn
+
+			reviving = 0
+			MySelf:StopSound( "items/medcharge4.wav" )
+
+			return
+		end
+
+		local startRevive = status ~= 0
 		reviving = math.max( 0, startRevive and reviving + 1 or reviving - 1 )
 
 		if reviving == 0 then
@@ -451,6 +470,12 @@ if SERVER then
 	local endMinusStartXp = endXpMult - startXpMult
 	local maxLevel = HORDE.max_level
 
+	hook.Add( "PlayerSpawn", "HordeMedkitResetReviving", function(ply) 
+		net.Start("horde_medkit_revive_status")
+			net.WriteUInt(2, 2)
+		net.Send(ply)
+	end)
+
 	hook.Add( "PlayerDeath", "HordeMedkitRevive", function( ply )
 		local deathPos = ply:GetPos()
 		local trace = util.TraceHull({
@@ -464,6 +489,14 @@ if SERVER then
 		})
 		ply.Medkit_DeathPos = trace.HitPos or deathPos
 	end )
+
+	function SWEP:OnDrop()
+		self:ResetRevive()
+	end
+
+	function SWEP:OnRemove()
+		self:ResetRevive()
+	end
 
 	function SWEP:RevivePlayer( ply )
 		if not ply.Medkit_DeathPos then return end
