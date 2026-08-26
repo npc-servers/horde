@@ -429,8 +429,6 @@ if CLIENT then
 	net.Receive( "horde_medkit_revive_status", function()
 		local status = net.ReadUInt(2)
 
-		print(status)
-
 		if status == 2 then
 			if not IsValid( MySelf ) then return end -- usually happens due to first spawn
 
