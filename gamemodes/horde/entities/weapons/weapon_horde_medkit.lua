@@ -191,6 +191,8 @@ function SWEP:Reload()
 		return
 	end
 
+	self:ResetRevive()
+
 	if SERVER then
 		net.Start( "horde_medkit_revive_status" )
 			net.WriteUInt( 1, 2 )
