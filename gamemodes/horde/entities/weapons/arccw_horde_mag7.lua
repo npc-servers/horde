@@ -17,6 +17,8 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_mag7.mdl"
 
 SWEP.Damage = 27
 SWEP.DamageMin = 10
+SWEP.Range = 60
+SWEP.RangeMin = 5
 SWEP.Penetration = 10
 
 SWEP.NoLastCycle = true
