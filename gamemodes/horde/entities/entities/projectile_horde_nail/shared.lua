@@ -59,7 +59,7 @@ if SERVER then
         self:FireBullets( {
             Attacker = attacker,
             Inflictor = attacker,
-            Damage = 50,
+            Damage = 40,
             Tracer = 0,
             Distance = 400,
             HullSize = 1,
@@ -75,7 +75,7 @@ if SERVER then
 
                 if tr.HitGroup == HITGROUP_HEAD then
                     sound.Play( "physics/flesh/flesh_bloody_impact_hard1.wav", hitpos )
-                    dmg:ScaleDamage( 1.5 )
+                    dmg:ScaleDamage( 1.25 )
                 end
 
                 if tr.HitGroup == HITGROUP_CHEST or tr.HitGroup == HITGROUP_STOMACH then
