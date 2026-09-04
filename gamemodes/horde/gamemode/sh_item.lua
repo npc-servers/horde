@@ -295,7 +295,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_mp40"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_uzi"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_mp5"].infusions = ballistic_infusions_smgs
-    HORDE.items["arccw_horde_nailgun"].infusions = melee_slash_infusions
+    HORDE.items["arccw_horde_nailgun"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_ump"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_bizon"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_p90"].infusions = ballistic_infusions_smgs
@@ -316,7 +316,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_m1014"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_doublebarrel"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_trenchgun"].infusions = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Flaming, HORDE.Infusion_Siphoning }
-    HORDE.items["arccw_horde_nailshot"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Rejuvenating }
+    HORDE.items["arccw_horde_nailshot"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_spas12"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_striker"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_hsg1"].infusions = ballistic_infusions_shotguns
