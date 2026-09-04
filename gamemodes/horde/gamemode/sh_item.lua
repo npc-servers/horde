@@ -630,7 +630,7 @@ function HORDE:GetDefaultItemsData()
         "Winchester Model 1897.\nShoots incendiary pellets.",
         { Prototype = true, Warden = true, Overlord = true, Cremator = true },
         15, -1, nil, nil, { Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_FIRE }, { HORDE.Infusion_Quality, HORDE.Infusion_Impaling } )
-    HORDE:CreateItem( "Shotgun", "Impaler", "arccw_horde_nailshot", 2750, 7    ,
+    HORDE:CreateItem( "Shotgun", "Impaler", "arccw_horde_nailshot", 2750, 7,
         "Heavily modified Pneumatic Nailgun.\nFires nails in a shotgun style pattern.",
         { Prototype = true, Assault = true, SpecOps = true, Reverend = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true },
         15, -1, nil, "arccw/weaponicons/arccw_kf1vlad", nil, nil, { HORDE.DMG_SLASH } )
