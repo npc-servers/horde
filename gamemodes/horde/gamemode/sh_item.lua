@@ -295,6 +295,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_mp40"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_uzi"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_mp5"].infusions = ballistic_infusions_smgs
+    HORDE.items["arccw_horde_nailgun"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_ump"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_bizon"].infusions = ballistic_infusions_smgs
     HORDE.items["arccw_horde_p90"].infusions = ballistic_infusions_smgs
@@ -315,7 +316,7 @@ function HORDE:GetDefaultItemInfusions()
     HORDE.items["arccw_horde_m1014"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_doublebarrel"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_trenchgun"].infusions = { HORDE.Infusion_Ruination, HORDE.Infusion_Chrono, HORDE.Infusion_Impaling, HORDE.Infusion_Quality, HORDE.Infusion_Flaming, HORDE.Infusion_Siphoning }
-    HORDE.items["arccw_horde_nailshot"].infusions = { HORDE.Infusion_Chrono, HORDE.Infusion_Hemo, HORDE.Infusion_Impaling, HORDE.Infusion_Arctic, HORDE.Infusion_Galvanizing, HORDE.Infusion_Septic, HORDE.Infusion_Quality, HORDE.Infusion_Rejuvenating }
+    HORDE.items["arccw_horde_nailshot"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_spas12"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_striker"].infusions = ballistic_infusions_shotguns
     HORDE.items["arccw_horde_hsg1"].infusions = ballistic_infusions_shotguns
@@ -629,7 +630,7 @@ function HORDE:GetDefaultItemsData()
         "Winchester Model 1897.\nShoots incendiary pellets.",
         { Prototype = true, Warden = true, Overlord = true, Cremator = true },
         15, -1, nil, nil, { Warden = 1, Cremator = 1 }, nil, { HORDE.DMG_FIRE }, { HORDE.Infusion_Quality, HORDE.Infusion_Impaling } )
-    HORDE:CreateItem( "Shotgun", "Impaler", "arccw_horde_nailshot", 2250, 5,
+    HORDE:CreateItem( "Shotgun", "Impaler", "arccw_horde_nailshot", 2750, 5,
         "Heavily modified Pneumatic Nailgun.\nFires nails in a shotgun style pattern.",
         { Prototype = true, Assault = true, SpecOps = true, Reverend = true, Engineer = true, Berserker = true, Samurai = true, ["Cyborg Ninja"] = true, Warden = true, Overlord = true, Paladin = true },
         15, -1, nil, "arccw/weaponicons/arccw_kf1vlad", nil, nil, { HORDE.DMG_SLASH } )

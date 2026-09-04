@@ -1,5 +1,10 @@
 AddCSLuaFile()
 
+if CLIENT then
+    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_bocw_nailgun" )
+    killicon.Add( "arccw_horde_nailgun", "arccw/weaponicons/arccw_bocw_nailgun", Color( 0, 0, 0, 255 ) )
+end
+
 SWEP.Base = "arccw_base"
 
 SWEP.Slot = 2
@@ -68,7 +73,7 @@ SWEP.DamageMin = 0
 SWEP.DamageType = DMG_SLASH
 SWEP.Range = 75
 SWEP.ShootEntity = "projectile_horde_nail"
-SWEP.MuzzleVelocity = 3000
+SWEP.MuzzleVelocity = 2500
 SWEP.Recoil = 0.55
 SWEP.RecoilSide = 0.35
 SWEP.RecoilRise = 0.45
@@ -88,6 +93,7 @@ SWEP.TracerCol = Color( 255, 255, 255 )
 SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.NoShellEject = true
 SWEP.ShootSound = ")weapons/sm_nailgun/nailgun_fire.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/generic_distant.wav"
 
 SWEP.ChamberSize = 0
 SWEP.Primary.ClipSize = 45
