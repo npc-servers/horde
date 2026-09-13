@@ -8,26 +8,26 @@ sound = {"horde/weapons/gauss/single1.ogg", "horde/weapons/gauss/single2.ogg"}
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double",
-channel = CHAN_WEAPON,
+channel = CHAN_ITEM,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
-sound = "horde/weapons/gauss/pulsemachine.ogg"
+sound = "horde/weapons/gauss/pulsemachine.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double_2",
-channel = CHAN_WEAPON,
+channel = CHAN_ITEM,
 volume = VOL_NORM,
 pitch = 150,
 soundlevel = SNDLVL_NORM,
-sound = "horde/weapons/gauss/pulsemachine.ogg"
+sound = "horde/weapons/gauss/pulsemachine.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double_3",
-channel = CHAN_WEAPON,
+channel = CHAN_ITEM,
 volume = VOL_NORM,
 pitch = 200,
 soundlevel = SNDLVL_NORM,
-sound = "horde/weapons/gauss/pulsemachine.ogg"
+sound = "horde/weapons/gauss/pulsemachine.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau.Electro",
