@@ -325,9 +325,20 @@ function SWEP:Think()
         self.Spin = 0
         self.Idle = 0
         self.IdleTimer = CurTime() + self.Owner:GetViewModel():SequenceDuration()
+        local velocity = self:GetOwner():GetVelocity():Length()
+            local tr = util.TraceLine({
+            start = self:GetOwner():GetPos(),
+            endpos = self:GetOwner():GetPos() - Vector( 0, 0, 55 ),
+            mask = MASK_SOLID,
+            filter = self:GetOwner()
+        })
         if self.SpinTimer > CurTime() + 6.5 and self.SpinTimer <= CurTime() + 7 then
+         if tr.Hit then
             self.Owner:SetVelocity( self.Owner:GetForward() * -200 )
+         else
+            self.Owner:SetVelocity( self.Owner:GetForward() * -100 )
         end
+    end
         if self.SpinTimer > CurTime() + 6 and self.SpinTimer <= CurTime() + 6.5 then
             self.Owner:SetVelocity( self.Owner:GetForward() * -300 )
         end
