@@ -8,14 +8,14 @@ sound = {"horde/weapons/gauss/single1.ogg", "horde/weapons/gauss/single2.ogg"}
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double",
-channel = CHAN_ITEM,
+channel = CHAN_WEAPON,
 volume = VOL_NORM,
 soundlevel = SNDLVL_NORM,
 sound = "horde/weapons/gauss/pulsemachine.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double_2",
-channel = CHAN_ITEM,
+channel = CHAN_WEAPON,
 volume = VOL_NORM,
 pitch = 150,
 soundlevel = SNDLVL_NORM,
@@ -23,7 +23,7 @@ sound = "horde/weapons/gauss/pulsemachine.wav"
 })
 sound.Add({
 name = "Weapon_Horde_Tau_Cannon.Double_3",
-channel = CHAN_ITEM,
+channel = CHAN_WEAPON,
 volume = VOL_NORM,
 pitch = 200,
 soundlevel = SNDLVL_NORM,
@@ -259,6 +259,11 @@ function SWEP:Think()
             end
         end
     end
+        if self.Spin == 1 and (not self:GetOwner():Alive()) or not IsValid(self:GetOwner()) then
+            self.Spin = 0 
+            self.Owner:StopSound( "Weapon_Horde_Tau_Cannon.Double_2" )
+            self.Owner:StopSound( "Weapon_Horde_Tau_Cannon.Double_3" )
+        end
     if self.Spin == 1 and !self.Owner:KeyDown( IN_ATTACK2 ) then
         local tr = self.Owner:GetEyeTrace()
         local effectdata = EffectData()
