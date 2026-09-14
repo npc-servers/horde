@@ -17,6 +17,11 @@ function EFFECT:Init( data )
 end
 
 function EFFECT:Think()
+    if IsValid(self.WeaponEnt.Owner) then
+     local owner = self.WeaponEnt.Owner
+        local tr = owner:GetEyeTrace()
+       self.EndPos = tr.HitPos
+    end
     self.StartPos = self:GetTracerShootPos( self.Position, self.WeaponEnt, self.Attachment )
     self.FlashA = self.FlashA - 2000 * FrameTime()
     if self.FlashA < 0 then
