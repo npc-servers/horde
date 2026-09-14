@@ -27,7 +27,7 @@ name = "Weapon_HL_Gluon_Gun.Run",
 channel = CHAN_WEAPON,
 volume = VOL_NORM,
 soundlevel = SNDLVL_GUNFIRE,
-sound = "horde/weapons/gluon/egon_run3.ogg"
+sound = "horde/weapons/gluon/egon_run3.wav"
 })
 
 SWEP.PrintName = "Gluon Gun"
@@ -97,8 +97,8 @@ end
 function SWEP:DrawHUD()
 if CLIENT then
 local x, y
-if ( self.Owner == LocalPlayer() and self.Owner:ShouldDrawLocalPlayer() ) then
-local tr = util.GetPlayerTrace( self.Owner )
+if ( self:GetOwner() == LocalPlayer() and self:GetOwner():ShouldDrawLocalPlayer() ) then
+local tr = util.GetPlayerTrace( self:GetOwner() )
 local trace = util.TraceLine( tr )
 local coords = trace.HitPos:ToScreen()
 x, y = coords.x, coords.y
@@ -121,7 +121,7 @@ self.SoundTimer = CurTime()
 self.Attack = 0
 self.AttackTimer = CurTime()
 self.Idle = 0
-self.IdleTimer = CurTime() + self.Owner:GetViewModel():SequenceDuration()
+self.IdleTimer = CurTime() + self:GetOwner():GetViewModel():SequenceDuration()
 return true
 end
 
@@ -133,7 +133,7 @@ self.AttackTimer = CurTime()
 self.Idle = 0
 self.IdleTimer = CurTime()
 if SERVER then
-self.Owner:StopSound( "Weapon_HL_Gluon_Gun.Run" )
+self:GetOwner():StopSound( "Weapon_HL_Gluon_Gun.Run" )
 end
 self:StopSound( self.Primary.Sound )
 return true
@@ -146,15 +146,15 @@ function SWEP:PrimaryAttack()
         self:SetNextPrimaryFire( CurTime() + 0.2 )
         self:SetNextSecondaryFire( CurTime() + 0.2 )
     end
-    if self.AttacksUnderwater == false and self.Owner:WaterLevel() == 3 then
+    if self.AttacksUnderwater == false and self:GetOwner():WaterLevel() == 3 then
         self.Weapon:EmitSound( "HL.DryFire" )
         self:SetNextPrimaryFire( CurTime() + 0.2 )
         self:SetNextSecondaryFire( CurTime() + 0.2 )
     end
     local bullet = {}
     bullet.Num = self.Primary.NumberofShots
-    bullet.Src = self.Owner:GetShootPos()
-    bullet.Dir = self.Owner:GetAimVector()
+    bullet.Src = self:GetOwner():GetShootPos()
+    bullet.Dir = self:GetOwner():GetAimVector()
     bullet.Spread = Vector( 1 * self.Primary.Spread, 1 * self.Primary.Spread, 0 )
     bullet.Tracer = 0
     bullet.Force = self.Primary.Force
@@ -164,24 +164,24 @@ function SWEP:PrimaryAttack()
     bullet.Callback = function (ent, tr, dmginfo)
         dmginfo:SetDamageType(DMG_BURN)
         local dmg = DamageInfo()
-		dmg:SetAttacker(self.Owner)
+		dmg:SetAttacker(self:GetOwner())
 		dmg:SetInflictor(self)
 		dmg:SetDamageType(DMG_BURN)
 		dmg:SetDamage(8)
 		util.BlastDamageInfo(dmg, tr.HitPos, 100)
         util.Decal("Scorch", tr.StartPos, tr.HitPos - (tr.HitNormal * 16), self)
     end
-    self.Owner:FireBullets( bullet )
+    self:GetOwner():FireBullets( bullet )
     if self.Attack == 0 then
         self:EmitSound( self.Primary.Sound )
         self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
-        self.Owner:SetAnimation( PLAYER_ATTACK1 )
+        self:GetOwner():SetAnimation( PLAYER_ATTACK1 )
         self.Sound = 1
         self.SoundTimer = CurTime() + 2
     end
-    if self.Owner:IsValid() and self.Owner:GetAmmoCount("GaussEnergy") > 0 then
+    if self:GetOwner():IsValid() and self:GetOwner():GetAmmoCount("GaussEnergy") > 0 then
     self:SetClip1(101)
-    self:GetOwner():SetAmmo(self.Owner:GetAmmoCount("GaussEnergy") - 1, "GaussEnergy")
+    self:GetOwner():SetAmmo(self:GetOwner():GetAmmoCount("GaussEnergy") - 1, "GaussEnergy")
     end
     self:TakePrimaryAmmo( self.Primary.TakeAmmo )
     self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
@@ -198,23 +198,27 @@ function SWEP:Think()
     if self.Attack == 1 and self.Sound == 1 and self.SoundTimer <= CurTime() then
         self:StopSound( self.Primary.Sound )
         if SERVER then
-            self.Owner:EmitSound( "Weapon_HL_Gluon_Gun.Run" )
+            self:GetOwner():EmitSound( "Weapon_HL_Gluon_Gun.Run" )
         end
         self.Sound = 0
     end
+        if self.Attack == 1 and (not self:GetOwner():Alive()) or not IsValid(self:GetOwner()) then
+            self.Attack = 0 
+            self:GetOwner():StopSound( "Weapon_HL_Gluon_Gun.Run" )
+        end
     if self.Attack == 1 then
-        local tr = self.Owner:GetEyeTrace()
+        local tr = self:GetOwner():GetEyeTrace()
         local effectdata = EffectData()
         effectdata:SetOrigin( tr.HitPos )
         effectdata:SetNormal( tr.HitNormal )
-        effectdata:SetStart( self.Owner:GetShootPos() )
+        effectdata:SetStart( self:GetOwner():GetShootPos() )
         effectdata:SetAttachment( 1 )
         effectdata:SetEntity( self.Weapon )
         util.Effect( "gluon_beam", effectdata )
     end
     if self.Attack == 1 and self.AttackTimer <= CurTime() then
         if SERVER then
-            self.Owner:StopSound( "Weapon_HL_Egon.Run" )
+            self:GetOwner():StopSound( "Weapon_HL_Egon.Run" )
         end
         self:StopSound( self.Primary.Sound )
         self:EmitSound( self.Secondary.Sound )
@@ -224,7 +228,7 @@ function SWEP:Think()
     end
     if self.Attack == 1 and self.Weapon:Ammo1() <= 0 then
         if SERVER then
-            self.Owner:StopSound( "Weapon_HL_Egon.Run" )
+            self:GetOwner():StopSound( "Weapon_HL_Egon.Run" )
         end
         self:StopSound( self.Primary.Sound )
         self:EmitSound( self.Secondary.Sound )
@@ -239,7 +243,7 @@ function SWEP:Think()
         self.Idle = 1
     end
     if self.Weapon:Ammo1() > self.Primary.MaxAmmo then
-        self.Owner:SetAmmo( self.Primary.MaxAmmo, self.Primary.Ammo )
+        self:GetOwner():SetAmmo( self.Primary.MaxAmmo, self.Primary.Ammo )
     end
 end
 
