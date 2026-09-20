@@ -15,6 +15,12 @@ SWEP.PrintName = "SPAS-12"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_spas12.mdl"
 SWEP.WorldModel = "models/weapons/w_shotgun.mdl"
 
+SWEP.Damage = 40
+SWEP.DamageMin = 20
+SWEP.Range = 60 -- in METRES
+SWEP.RangeMin = 10
+SWEP.Penetration = 16
+
 SWEP.AccuracyMOA = 55
 
 SWEP.ShootSound = "ArcCW_Horde.MW2.Spas_Fire"
