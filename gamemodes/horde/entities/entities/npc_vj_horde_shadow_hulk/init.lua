@@ -42,6 +42,8 @@ ENT.SoundTbl_Pain = nil
 ENT.EntitiesToNoCollide = {
 	"player",
 	"npc_vj_horde_spectre",
+	"npc_vj_horde_shadow_weeper",
+	"npc_vj_horde_phantasm",
 	"npc_vj_horde_antlion",
 	"npc_vj_horde_smg_turret",
 	"npc_vj_horde_shotgun_turret",
