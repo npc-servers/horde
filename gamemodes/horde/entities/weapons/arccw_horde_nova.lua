@@ -24,7 +24,8 @@ SWEP.NoLastCycle = true
 SWEP.Recoil = 1
 SWEP.RecoilSide = 1
 SWEP.RecoilPunch = 0
-
+SWEP.SpeedMult = 1.05
+SWEP.SightedSpeedMult = 0.8
 SWEP.ShootVol = 75
 
 SWEP.ShootSound = ")arccw_go/nova/nova-1.wav"
@@ -41,13 +42,20 @@ local reloadMult = 0.75
 SWEP.Animations = {
     ["fire"] = {
         Source = "shoot",
-        Time = 0.3,
-        MinProgress = 0.3,
+        Time = 0.27,
+        MinProgress = 0.27,
     },
     ["fire_iron"] = {
         Source = "idle",
-        Time = 0.3,
-        MinProgress = 0.3,
+        Time = 0.27,
+        MinProgress = 0.27,
+    },
+     ["cycle"] = {
+        Source = "cycle",
+        ShellEjectAt = 0.25,
+        TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
+        Mult = 0.9,
+        MinProgress = 0.45
     },
     ["sgreload_start"] = {
         Source = "start_reload",
