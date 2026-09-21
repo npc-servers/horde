@@ -13,7 +13,8 @@ Each Hypertrophy stack regenerates {8} health per second.
 Equipped with Carcass Biosystem.
 Cannot use any other weapons other than medkits because your hands are fucked.
 LMB: Punch
-Hold for a charged punch that deals increased damage in an area.]]
+Hold for a charged punch that deals increased damage in an area.
+your punch damage is increased based on your velocity.]]
 PERK.Icon = "materials/subclasses/carcass.png"
 PERK.Params = {
     [1] = { percent = true, base = 0.25, level = 0.02, max = 0.75, classname = "Carcass" },
@@ -57,6 +58,7 @@ end
 PERK.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmginfo, bonus)
     if not ply:Horde_GetPerk("carcass_base") then return end
     if ply:Horde_GetMaxHypertrophyStack() <= 0 then return end
+    if dmginfo:GetDamage() == 0 then return end
     ply:Horde_AddHypertrophyStack()
 end
 

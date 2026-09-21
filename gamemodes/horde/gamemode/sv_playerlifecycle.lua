@@ -445,7 +445,7 @@ function HORDE:PlayerInit(ply)
         net.Start("Horde_Disable_Levels")
         net.Send(ply)
     end
-    if not HORDE.start_game then
+    if not HORDE.start_game or HORDE:InBreak() then
         HORDE.player_ready[ply] = 0
         net.Start("Horde_PlayerReadySync")
             net.WriteTable(HORDE.player_ready)
@@ -561,15 +561,16 @@ function HORDE:PlayerInit(ply)
     ply.Horde_Status = {}
     ply:PrintMessage(HUD_PRINTTALK, "Use '!help' to see special commands!")
 
-    ply:Horde_SyncExp()
+    ply:Horde_SyncAllLevels()
+
     for _, other_ply in pairs(player.GetAll()) do
         if other_ply == ply then goto cont end
         local subclass = other_ply:Horde_GetCurrentSubclass()
         if not subclass then goto cont end
-        net.Start("Horde_SyncExp")
+
+        net.Start("Horde_SyncLevel")
             net.WriteEntity(other_ply)
             net.WriteString(subclass)
-            net.WriteUInt(other_ply:Horde_GetExp(subclass), 32)
             net.WriteUInt(other_ply:Horde_GetLevel(subclass), 8)
         net.Send(ply)
 
@@ -629,7 +630,7 @@ hook.Add("PlayerDisconnected", "Horde_PlayerDisconnect", function(ply)
         HORDE.player_money_wave[ply:SteamID()] = HORDE.current_wave
     end
 
-    if (not HORDE.start_game) and HORDE.player_ready[ply] then
+    if (not HORDE.start_game or HORDE:InBreak()) and HORDE.player_ready[ply] then
         HORDE.player_ready[ply] = nil
         net.Start("Horde_PlayerReadySync")
         net.WriteTable(HORDE.player_ready)
@@ -691,7 +692,6 @@ hook.Add("PlayerInitialSpawn", "Horde_InitPlayer", function(ply)
     ply:SetCanZoom(false)
     ply:SetMoveType(MOVETYPE_WALK)
 
-    ply:ConCommand("mat_colorcorrection 1")
     ply:ConCommand("cl_showhints 0")
 end)
 

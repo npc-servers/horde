@@ -5,7 +5,6 @@ include( "shared.lua" )
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
-ENT.StartHealth = 80
 ENT.Model = {
 	"models/zombie/zclassic_01.mdl",
 	"models/zombie/zclassic_02.mdl",
@@ -20,6 +19,8 @@ ENT.Model = {
 	"models/zombie/zclassic_12.mdl",
 	"models/zombie/classic.mdl"
 }
+ENT.StartHealth = 80
+ENT.NextProcessTime = 2.5
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 

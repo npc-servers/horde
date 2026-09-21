@@ -21,7 +21,7 @@ function entmeta:Horde_AddBleedingEffect(inflictor)
                 dmg:SetDamage(100)
                 self:TakeDamageInfo(dmg)
             end
-            sound.Play("player/pl_pain5.wav", self:GetPos())
+            sound.Play(")player/pl_pain5.wav", self:GetPos(), 75, math.random(90, 110))
             for bone = 1, bones-1 do
                 local p, angle = self:GetBonePosition(bone)
                 local e = EffectData()
@@ -49,7 +49,7 @@ function entmeta:Horde_AddBleedingEffect(inflictor)
             dmg:SetDamageType(DMG_CRUSH)
             dmg:SetDamage(base_dmg)
             self:TakeDamageInfo(dmg)
-            sound.Play("player/pl_pain5.wav", self:GetPos())
+            sound.Play(")player/pl_pain5.wav", self:GetPos(), 75, math.random(90, 110))
 
             for bone = 1, bones-1 do
                 local p = self:GetBonePosition(bone)

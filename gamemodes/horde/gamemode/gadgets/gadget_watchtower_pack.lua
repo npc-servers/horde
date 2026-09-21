@@ -1,5 +1,5 @@
 GADGET.PrintName = "Watchtower Pack"
-GADGET.Description = "Deploys an extra watchtower."
+GADGET.Description = "Deploys an extra ammo watchtower."
 GADGET.Icon = "items/gadgets/watchtower_pack.png"
 GADGET.Duration = 0
 GADGET.Cooldown = 30
@@ -23,7 +23,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:SetPos(drop_pos)
     ent:SetAngles(Angle(0, ply:GetAngles().y, 0))
     ent:SetNWEntity("HordeOwner", ply)
-    ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
     ent:SetColor(Color(255,255,0,255))
     ent:Spawn()
     ply.Horde_Extra_Watchtower = ent

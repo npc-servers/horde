@@ -4,14 +4,6 @@ if CLIENT then
     killicon.Add("arccw_horde_raygun_mk2", "arccw/weaponicons/arccw_bo2_raygunmk2", Color(0, 0, 0, 255))
 end
 
-if SERVER then
-    PrecacheParticleSystem("rgmk2_flash")
-    PrecacheParticleSystem("rgmk2_pap_flash")
-    PrecacheParticleSystem("rgmk2_impact_glow")
-    PrecacheParticleSystem("rgmk2_pap_impact_glow")
-    game.AddParticles( "particles/bo1/raygunmk2.pcf" )
-end
-
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - Horde (Custom)" -- edit this if you like
@@ -92,19 +84,15 @@ SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 SWEP.MagID = "raygun" -- the magazine pool this gun draws from
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "ArcCW_BO2.RGMK2_Fire"
-
---SWEPHook_PostFireBullets = function(wep)
---end
+SWEP.ShootSound = {
+    ")weapons/arccw/bo2_raygunmk2/fire1.wav",
+    ")weapons/arccw/bo2_raygunmk2/fire2.wav",
+    ")weapons/arccw/bo2_raygunmk2/fire3.wav"
+}
 
 SWEP.MuzzleEffect = "rgmk2_flash"
 SWEP.ImpactEffect = "rgmk2_impact_glow"
-SWEP.GMMuzzleEffect = false
-SWEP.ShellModel = ""
-SWEP.ShellScale = 1.5
-SWEP.ShellPitch = 90
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 0 -- which attachment to put the case effect on

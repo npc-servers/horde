@@ -61,11 +61,11 @@ sound.Add({
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_law.mdl"
-SWEP.WorldModel = "models/weapons/w_rocket_launcher.mdl"
-SWEP.MirrorVMWM = true
+SWEP.WorldModel = "models/horde/weapons/w_law.mdl"
+SWEP.MirrorVMWM = false
 SWEP.WorldModelOffset = {
-    pos = Vector(-15, 12, -10),
-    ang = Angle(0, 0, 180),
+    pos = Vector(4, 3, 2),
+    ang = Angle(0, -10, -170),
 }
 SWEP.ViewModelFOV = 45
 
@@ -114,16 +114,10 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "horde/weapons/law/law_fire.ogg"
-SWEP.ShootSoundSilenced = "horde/weapons/law/law_fire.ogg"
-SWEP.DistantShootSound = "horde/weapons/law/law_fire.ogg"
-
---SWEP.MuzzleEffect = "muzzleflash_pistol"
---SWEP.ShellModel = "models/shells/shell_9mm.mdl"
---SWEP.ShellScale = 1
+SWEP.ShootSound = ")horde/weapons/law/law_fire.ogg"
+SWEP.DistantShootSound = "^horde/weapons/distant/rpg_distant.wav"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on

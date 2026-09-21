@@ -28,8 +28,12 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_winchester.mdl"
-SWEP.WorldModel = "models/weapons/w_annabelle.mdl"
+SWEP.WorldModel = "models/horde/weapons/w_kf_winchester.mdl"
 SWEP.ViewModelFOV = 45
+SWEP.WorldModelOffset = {
+    pos = Vector(4, 0, 0),
+    ang = Angle(-12, 0, 180),
+}
 
 SWEP.Damage = 400
 SWEP.DamageMin = 400 -- damage done at maximum range
@@ -82,11 +86,16 @@ SWEP.Primary.Ammo = "SniperPenetratedRound" -- what ammo type the gun uses
 SWEP.ShootVol = 75 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "KF_winchester.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/sniper_sil.wav"
-SWEP.DistantShootSound = "KF_winchester.Fire"
+SWEP.ShootSound = {
+    ")weapons/kf_winchester/Rifle_FireST1.wav",
+    ")weapons/kf_winchester/Rifle_FireST2.wav",
+    ")weapons/kf_winchester/Rifle_FireST3.wav",
+    ")weapons/kf_winchester/Rifle_FireST4.wav"
+}
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/sniper_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/sniper_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
+SWEP.MuzzleEffect = "muzzleflash_1"
 SWEP.ShellModel = "models/shells/shell_338mag.mdl"
 SWEP.ShellScale = 1
 

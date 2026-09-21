@@ -4,7 +4,7 @@ GADGET.Icon = "items/gadgets/energy_shield.png"
 GADGET.Cooldown = 5
 GADGET.Active = true
 GADGET.Params = {
-    [1] = { value = 75 },
+    [1] = { value = 50 },
 }
 GADGET.Hooks = {}
 

@@ -31,6 +31,11 @@ SWEP.MoveDispersion = 10
 
 SWEP.ShootVol = 75 -- volume of shoot sound
 
+SWEP.FirstShootSound = ")arccw_go/ssg08/ssg08_01.wav"
+SWEP.ShootSound = ")arccw_go/ssg08/ssg08_01.wav"
+SWEP.ShootSoundSilenced = ")arccw_go/mosin_suppressed_fp.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/sniper_distant.wav"
+
 SWEP.SpeedMult = 1.00
 SWEP.SightedSpeedMult = 0.75
 SWEP.SightTime = 0.10

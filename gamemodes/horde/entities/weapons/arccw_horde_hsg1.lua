@@ -12,7 +12,7 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "HSG-1"
 SWEP.TrueName = "HSG-1"
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = "A rather powerful pump-action shotgun that reloads with magazines."
+SWEP.Trivia_Desc = "A powerful pump-action shotgun modified to take magazines."
 SWEP.Trivia_Manufacturer = "Kel-tec"
 SWEP.Trivia_Calibre = "12 Gauge"
 SWEP.Trivia_Mechanism = "Pump action"
@@ -28,7 +28,7 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_ksg.mdl"
-SWEP.WorldModel = "models/weapons/arccw/w_tf2convent.mdl"
+SWEP.WorldModel = "models/horde/weapons/w_kf_ksg.mdl"
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
     pos        =    Vector(-12.6, 5.8, -12.3),
@@ -42,7 +42,7 @@ SWEP.Damage = 42
 SWEP.DamageMin = 27
 SWEP.Range = 50 -- in METRES
 SWEP.RangeMin = 25
-SWEP.Penetration = 2
+SWEP.Penetration = 15
 SWEP.DamageType = DMG_BUCKSHOT
 SWEP.ShootEntity = nil -- entity to fire, if any
 SWEP.MuzzleVelocity = 400 -- projectile or phys bullet muzzle velocity
@@ -86,12 +86,11 @@ SWEP.MoveDispersion = 50
 
 SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 
-SWEP.ShootVol = 100 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "KF_Ksg.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/shot_sil.wav"
-SWEP.DistantShootSound = "KF_Ksg.Fire"
+SWEP.ShootSound = ")weapons/kf_ksg/KSG_Fire_S.wav"
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/shot_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.ShellModel = "models/shells/shell_12gauge.mdl"
@@ -222,43 +221,32 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-    Source = "idle",
-    Time = 10,
+        Source = "idle",
+        Time = 10,
     },
     ["enter_sight"] = {
-        Source = "idle",
+        Source = "irons",
         Time = 0,
-        },
+    },
     ["idle_sights"] = {
-        Source = "idle",
-        Time = 4096, -- this is to prevent the constant jittering caused by adsing with an animation time of 0
-        }, --nobody is adsing long enough without firing or releasing ads to see the animation progress, if this does not suffice please increase this number or seek a psychiatrist
-        ["exit_sight"] = {
-            Source = "idle",
-            Time = 0,
-            },
+        Source = "irons",
+        Time = 1,
+    },
+    ["exit_sight"] = {
+        Source = "irons",
+        Time = 0,
+    },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
-        SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
     },
     ["fire"] = {
         Source = "idle",
         Time = 10,
-        ShellEjectAt = 0,
     },
     ["fire_iron"] = {
         Source = "idle",
         Time = 10,
-        ShellEjectAt = 0,
     },
     ["cycle"] = {
         Source = "shoot",
@@ -304,10 +292,4 @@ sound.Add({
     channel = 		CHAN_STATIC,
     volume = 		1.0,
     sound = 			"weapons/kf_ksg/KSG_Magin.wav"
-})
-sound.Add({
-    name = 			"KF_Ksg.Fire",
-    channel = 		CHAN_WEAPON,
-    volume = 		1.0,
-    sound = 			{ "weapons/kf_ksg/KSG_Fire_S.wav"}
 })

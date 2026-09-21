@@ -28,7 +28,18 @@ SWEP.Delay = 60 / 400 -- 60 / RPM.
 SWEP.AccuracyMOA = 0.06 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 800 -- inaccuracy added by hip firing.
 
-SWEP.ShootVol = 75 -- volume of shoot sound
+SWEP.ShootVol = 75
+
+SWEP.FirstShootSound = {
+    ")arccw_go/awp/awp_01.wav",
+    ")arccw_go/awp/awp_02.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/awp/awp_01.wav",
+    ")arccw_go/awp/awp_02.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/mosin_suppressed_fp.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/sniper_distant.wav"
 
 SWEP.SpeedMult = 0.9
 

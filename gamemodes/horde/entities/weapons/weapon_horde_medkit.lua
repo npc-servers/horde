@@ -17,12 +17,12 @@ SWEP.UseHands = true
 
 SWEP.Primary.ClipSize = 100
 SWEP.Primary.DefaultClip = SWEP.Primary.ClipSize
-SWEP.Primary.Automatic = false
+SWEP.Primary.Automatic = true
 SWEP.Primary.Ammo = ""
 
 SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.DefaultClip = -1
-SWEP.Secondary.Automatic = false
+SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = ""
 
 SWEP.HoldType = "slam"
@@ -49,6 +49,7 @@ SWEP.ReviveSpeed = 20 -- Amount of progress per second
 if SERVER then
 	util.AddNetworkString( "horde_medkit_deadplayers" )
 	util.AddNetworkString( "horde_medkit_player_revived" )
+	util.AddNetworkString( "horde_medkit_revive_status" )
 end
 
 function SWEP:Initialize()
@@ -65,7 +66,6 @@ function SWEP:Initialize()
 			PrimaryClip = 0
 		}
 	end
-
 end
 
 function SWEP:Deploy()
@@ -75,7 +75,6 @@ function SWEP:Deploy()
 	self:Regen( false )
 
 	return true
-
 end
 
 function SWEP:SetupDataTables()
@@ -114,7 +113,20 @@ function SWEP:SecondaryAttack()
 	if self:GetOwner():KeyDown( IN_RELOAD ) then return end
 
 	self:DoHeal( self:GetOwner() )
+end
 
+function SWEP:ResetRevive()
+	if SERVER and self.RevivingPlayer and IsValid( self.RevivingPlayer ) then
+		net.Start( "horde_medkit_revive_status" )
+			net.WriteUInt( 0, 2 )
+		net.Send( self.RevivingPlayer )
+	end
+
+	self.RevivingPlayer = nil
+	self.ReviveProgress = 0
+	self.RevivingPos = nil
+
+	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
 end
 
 function SWEP:Reload()
@@ -124,11 +136,19 @@ function SWEP:Reload()
 	local closestPlayer = nil
 	local closestPos = nil
 	local closestDistance = math.huge
+	local owner = self:GetOwner()
+	local ownerClass = owner:Horde_GetCurrentSubclass()
+	local reviveSpeed = self.ReviveSpeed
+
+	if ownerClass == "Medic" or ownerClass == "Hatcher" then
+		reviveSpeed = 25
+	end
+
 	for ply, pos in pairs( self.DeadPlayers ) do
 		if not IsValid( ply ) then continue end
 		if ply:Alive() then continue end
 
-		local distance = pos:Distance( self:GetOwner():GetPos() )
+		local distance = pos:Distance( owner:GetPos() )
 		if distance < closestDistance then
 			closestDistance = distance
 			closestPlayer = ply
@@ -137,10 +157,8 @@ function SWEP:Reload()
 	end
 
 	if not closestPlayer or closestDistance > self.ReviveRange then
-		self.RevivingPlayer = nil
-		self.ReviveProgress = 0
-		self.RevivingPos = nil
-		self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+		self:ResetRevive()
+
 		return
 	end
 
@@ -152,31 +170,41 @@ function SWEP:Reload()
 				self.DeadPlayers[self.RevivingPlayer] = nil
 			end
 
-			self.RevivingPlayer = nil
-			self.ReviveProgress = 0
-			self.RevivingPos = nil
-			self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+			self:ResetRevive()
+
 			return
 		end
 
-		self.ReviveProgress = self.ReviveProgress + self.ReviveSpeed * ( CurTime() - self.LastReviveTime )
+		self.ReviveProgress = self.ReviveProgress + reviveSpeed * ( CurTime() - self.LastReviveTime )
 		self.LastReviveTime = CurTime()
-		self:EmitSound( "items/medcharge4.wav" )
+
+		if SERVER then
+			local everyoneButRevivee = RecipientFilter()
+			everyoneButRevivee:AddAllPlayers()
+			everyoneButRevivee:RemovePlayer( self.RevivingPlayer )
+
+			self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, nil, nil, everyoneButRevivee )
+		else
+			self:EmitSound( "items/medcharge4.wav" )
+		end
+
 		return
+	end
+
+	if SERVER then
+		net.Start( "horde_medkit_revive_status" )
+			net.WriteUInt( 1, 2 )
+		net.Send( closestPlayer )
 	end
 
 	self.ReviveProgress = 0
 	self.RevivingPlayer = closestPlayer
 	self.RevivingPos = closestPos
 	self.LastReviveTime = CurTime()
-	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
 end
 
 function SWEP:Holster()
-	self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
-	self.RevivingPlayer = nil
-	self.ReviveProgress = 0
-	self.RevivingPos = nil
+	self:ResetRevive()
 
 	return true
 end
@@ -313,10 +341,7 @@ function SWEP:Think()
 	end
 
 	if not self:GetOwner():KeyDown( IN_RELOAD ) then
-		self.RevivingPlayer = nil
-		self.ReviveProgress = 0
-		self.RevivingPos = nil
-		self:EmitSound( "items/medcharge4.wav", nil, nil, nil, nil, SND_STOP )
+		self:ResetRevive()
 	end
 end
 
@@ -390,9 +415,67 @@ if CLIENT then
 			end
 		end
 	end
+
+	local reviving = 0
+	local revivingX = ScrW() / 2
+	local revivingY = ScrH() / 3
+	local revivingCol = Color( 0, 255, 0 )
+
+	--[[
+		0 = false
+		1 = true
+		2 = reset
+	]]
+	net.Receive( "horde_medkit_revive_status", function()
+		local status = net.ReadUInt(2)
+
+		print(status)
+
+		if status == 2 then
+			if not IsValid( MySelf ) then return end -- usually happens due to first spawn
+
+			reviving = 0
+			MySelf:StopSound( "items/medcharge4.wav" )
+
+			return
+		end
+
+		local startRevive = status ~= 0
+		reviving = math.max( 0, startRevive and reviving + 1 or reviving - 1 )
+
+		if reviving == 0 then
+			MySelf:StopSound( "items/medcharge4.wav" )
+		end
+
+		if reviving ~= 1 then return end
+
+		MySelf:EmitSound( "items/medcharge4.wav", 50 )
+
+		if not system.HasFocus() then
+			system.FlashWindow()
+		end
+	end )
+
+	hook.Add( "HUDPaint", "horde_medkit_revive_status", function()
+		if reviving <= 0 then return end
+
+		draw.SimpleTextOutlined( "You are being revived!", "CloseCaption_BoldItalic", revivingX, revivingY, revivingCol, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, color_black )
+	end )
 end
 
 if SERVER then
+	local expMultiConvar = GetConVar( "horde_experience_multiplier" )
+	local startXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiStart
+	local endXpMult = HORDE.Difficulty[HORDE.CurrentDifficulty].xpMultiEnd
+	local endMinusStartXp = endXpMult - startXpMult
+	local maxLevel = HORDE.max_level
+
+	hook.Add( "PlayerSpawn", "HordeMedkitResetReviving", function(ply) 
+		net.Start("horde_medkit_revive_status")
+			net.WriteUInt(2, 2)
+		net.Send(ply)
+	end)
+
 	hook.Add( "PlayerDeath", "HordeMedkitRevive", function( ply )
 		local deathPos = ply:GetPos()
 		local trace = util.TraceHull({
@@ -406,6 +489,14 @@ if SERVER then
 		})
 		ply.Medkit_DeathPos = trace.HitPos or deathPos
 	end )
+
+	function SWEP:OnDrop()
+		self:ResetRevive()
+	end
+
+	function SWEP:OnRemove()
+		self:ResetRevive()
+	end
 
 	function SWEP:RevivePlayer( ply )
 		if not ply.Medkit_DeathPos then return end
@@ -425,6 +516,15 @@ if SERVER then
 
 		owner:Horde_AddMoney( 50 )
 		owner:Horde_SyncEconomy()
+
+		local subclass = owner:Horde_GetCurrentSubclass()
+		if owner:Horde_GetLevel( subclass ) < maxLevel then
+			local wavePercent = HORDE.current_wave / HORDE.max_waves
+			local roundXpMulti = startXpMult + ( wavePercent * endMinusStartXp ) -- This gets the xp multi number between min and max multi based on round
+			local expMulti = roundXpMulti * expMultiConvar:GetInt() / 2
+
+			owner:Horde_GiveExp( subclass, 25 * expMulti, "Reviving a Player" )
+		end
 
 		net.Start( "horde_medkit_player_revived" )
 			net.WriteString( ply:GetName() ) -- Revived player name

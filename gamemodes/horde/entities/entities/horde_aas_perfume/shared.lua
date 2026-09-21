@@ -24,9 +24,6 @@ AddCSLuaFile()
 function ENT:Initialize()
     if SERVER then
         self:SetModel( self.Model )
-        self:SetMoveType( MOVETYPE_VPHYSICS )
-        self:SetSolid( SOLID_VPHYSICS )
-        self:PhysicsInit(SOLID_VPHYSICS)
         self:DrawShadow( false )
         self:SetCollisionBounds(Vector(-150,-150,-100), Vector(150,150,100))
         self:SetTrigger(true)
@@ -42,17 +39,10 @@ function ENT:Initialize()
         self:Detonate()
 
         self.FireTime = math.Rand(4.5, 5.5)
-
-        timer.Simple(0.1, function()
-            if !IsValid(self) then return end
-            self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+        timer.Simple(0, function()
+            if not IsValid(self) then return end
+            self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
         end)
-    end
-
-    local owner = self:GetOwner()
-    self.has_burner = nil
-    if owner and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
-        self.has_burner = true
     end
 end
 
@@ -68,13 +58,13 @@ local function GetFireParticle()
 end
 
 function ENT:Think()
-    if !self.SpawnTime then self.SpawnTime = CurTime() end
+    if not self.SpawnTime then self.SpawnTime = CurTime() end
 
     if CLIENT then
         local emitter = ParticleEmitter(self:GetPos())
 
-        if !self:IsValid() or self:WaterLevel() > 2 then return end
-        if !IsValid(emitter) then return end
+        if not self:IsValid() or self:WaterLevel() > 2 then return end
+        if not IsValid(emitter) then return end
 
         for i = 1,10 do
             local fire = emitter:Add(GetFireParticle(), self:GetPos() + (VectorRand() * 30))
@@ -97,7 +87,7 @@ function ENT:Think()
             fire:SetBounce(0.75)
             fire:SetNextThink( CurTime() + FrameTime() )
             fire:SetThinkFunction( function(pa)
-                if !pa then return end
+                if not pa then return end
                 local col1 = Color(255,105,180, 255)
                 local col2 = Color(255,255,255, 0)
 
@@ -118,19 +108,19 @@ function ENT:Think()
         self.Ticks = self.Ticks + 1
     else
 
-        if self:GetVelocity():LengthSqr() <= 32 then
-            self:SetMoveType( MOVETYPE_NONE )
-        end
-
         if self.NextDamageTick > CurTime() then return end
+        local ply = self:GetOwner()
         for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
             if ent:IsPlayer() then
                 ent:Horde_AddHypertrophyStack(true)
             end
+            if IsValid( ent ) and HORDE:IsEnemy( ent ) then
+            ent:Horde_AddWeaken(ply, ply:Horde_GetApplyDebuffDuration(), ply:Horde_GetApplyDebuffMore())
+            end
         end
 
         local dmg = DamageInfo()
-        dmg:SetAttacker(self.Owner)
+        dmg:SetAttacker(ply)
         dmg:SetInflictor(self)
         dmg:SetDamageType(DMG_NERVEGAS)
         dmg:SetDamage(50)
@@ -146,7 +136,7 @@ function ENT:Think()
 end
 
 function ENT:OnRemove()
-    if !self.FireSound then return end
+    if not self.FireSound then return end
     self.FireSound:Stop()
 
     if SERVER then
@@ -157,33 +147,26 @@ function ENT:OnRemove()
 end
 
 function ENT:Detonate()
-    if !self:IsValid() then return end
-
+    if not self:IsValid() then return end
+        timer.Simple(0.01, function()
+            if not IsValid(self) then return end
+                self:SetMoveType(MOVETYPE_NONE)
+        end)
     self.Armed = true
 
     if self.Order and self.Order != 1 then return end
 
-    --self.FireSound = CreateSound(self, "arccw_go/Perfume/fire_loop_1.wav")
-    --self.FireSound:Play()
-
-    --self.FireSound:ChangePitch(80, self.FireTime)
-
     timer.Simple(self.FireTime - 1, function()
-        if !IsValid(self) then return end
+        if not IsValid(self) then return end
 
-        --self.FireSound:ChangeVolume(0, 1)
     end)
 
     timer.Simple(self.FireTime, function()
-        if !IsValid(self) then return end
+        if not IsValid(self) then return end
 
         self:Remove()
     end)
 end
 
 function ENT:Draw()
-    -- cam.Start3D() -- Start the 3D function so we can draw onto the screen.
-    --     render.SetMaterial( GetFireParticle() ) -- Tell render what material we want, in this case the flash from the gravgun
-    --     render.DrawSprite( self:GetPos(), math.random(200, 250), math.random(200, 250), Color(255, 255, 255) ) -- Draw the sprite in the middle of the map, at 16x16 in it's original colour with full alpha.
-    -- cam.End3D()
 end

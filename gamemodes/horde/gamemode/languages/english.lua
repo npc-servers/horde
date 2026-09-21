@@ -16,7 +16,6 @@ LANGUAGE["Game_Preparing..."] = "Preparing..."
 LANGUAGE["Game_Ready"] = "Ready"
 LANGUAGE["Game_Not Ready"] = "Not Ready"
 LANGUAGE["Game_Players_Ready"] = "Players Ready"
-LANGUAGE["Game_Next_Wave_Starts_In"] = "Next wave starts in %d"
 LANGUAGE["Game_Enemies"] = "Enemies"
 LANGUAGE["Game_HintBottomReady"] = "F2 - Info/Config, F3 - Shop/Perk, F4 - Ready"
 LANGUAGE["Game_HintBottom"] = "F2 - Info/Config, F3 - Shop/Perk, V - Drop $"
@@ -205,7 +204,7 @@ LANGUAGE["Infusion_Description_Siphoning"] = [[
 LANGUAGE["Infusion_Description_Chrono"] = [[
 Increases weapon damage the longer the weapon is being held by the user.
 
-6% damage increase per wave held by the user.
+8% damage increase per wave held by the user.
 Increase caps at 50%.
 
 20% decreased weapon damage.
@@ -230,7 +229,7 @@ LANGUAGE["Class_Warden"] = "Warden"
 LANGUAGE["Class_Cremator"] = "Cremator"
 
 -- Gadgets
-LANGUAGE["Gadget_Activation"] = "Press T to activate."
+LANGUAGE["Gadget_Activation"] = "Press T to activate. Can be rebound using horde_use_gadget in console."
 LANGUAGE["Gadget_Cooldown"] = "Cooldown"
 LANGUAGE["Gadget_Duration"] = "Duration"
 LANGUAGE["Gadget_Owned_Warning"] = "Only 1 Gadget can be OWNED!"
@@ -238,30 +237,28 @@ LANGUAGE["Gadget_Seconds"] = "seconds"
 
 -- Default Class Extra Descriptions
 LANGUAGE["Class_Description_Survivor"] = [[
-Has access to all weapons except for exclusive and special weapons.
-Limited access to attachments.]]
+Has access to all basic weaponry except for exclusive and special weapons.]]
 
 LANGUAGE["Class_Description_Assault"] = [[
-Has full access to assault rifles.]]
+Has full access to assault rifles, most smgs, and has limited access to shotguns.]]
 
 LANGUAGE["Class_Description_Heavy"] = [[
-Has full access to machine guns and high weight weapons.]]
+Has full access to machine guns, some smgs, limited access to shotguns, and high weight weapons.]]
 
 LANGUAGE["Class_Description_Medic"] = [[
-Has acesss to most light weapons and medical tools.]]
+Has acesss to most light weapons and medical weapons.]]
 
 LANGUAGE["Class_Description_Demolition"] = [[
 Has full access to explosive weapons.]]
 
 LANGUAGE["Class_Description_Ghost"] = [[
-Has access to sniper rifles and selected light weapons.
-Has access to suppressors and sniper scopes.]]
+Has access to sniper rifles, marksman rifles, and selected light weapons.]]
 
 LANGUAGE["Class_Description_Engineer"] = [[
-Has access to special weapons and equipment.]]
+Has access to minions, turrets, and special weapons.]]
 
 LANGUAGE["Class_Description_Berserker"] = [[
-Only has access to melee weapons.]]
+Has access to melee weapons and one pistol and shotgun.]]
 
 LANGUAGE["Class_Description_Warden"] = [[
 Has full access to shotguns and watchtowers (horde_watchtower).]]
@@ -272,7 +269,7 @@ Has access to heat-based weaponry.]]
 
 -- Default Base Perks
 LANGUAGE["Perk_survivor_base"] = [[
-The Survivor class can be played into any class to fill in missing roles for the team.
+The Survivor class is a jack of all trades class with access to all basic weaponry and uses perks from the other classes' perk trees. 
 Complexity: EASY
 
 No bonus.]]
@@ -288,7 +285,7 @@ Gain Adrenaline when you kill an enemy.
 Adrenaline increases damage and speed by {4}.]]
 
 LANGUAGE["Perk_heavy_base"] = [[
-The Heavy class is a tank class that provides strong suppression firepower.
+The Heavy class is a high damage class with supportive debuffs and innate tankiness with their armor regeneration.
 Complexity: EASY
 
 {6} increased maximum armor. ({7} per level, up to {8}).
@@ -314,7 +311,7 @@ Complexity: MEDIUM
 Regenerate {5} frag grenade every {6} seconds, if you do not have one.]]
 
 LANGUAGE["Perk_ghost_base"] = [[
-The Ghost class is focused on taking down boss enemies using Camouflage.
+The Ghost class is focused on doing high single target damage through snipers and has access to Camouflage.
 Complexity: HIGH
 
 {1} more headshot damage. ({2} per level, up to {3}).
@@ -324,7 +321,7 @@ Evasion provides a chance to dodge incoming attacks.
 Attacking or Running REMOVES Camouflage.]]
 
 LANGUAGE["Perk_engineer_base"] = [[
-The Engineer class is a minion-centered class that deals damage through minions.
+The Engineer class is an area denial class using turrets and minions.
 Complexity: MEDIUM
 
 {1} increased minion damage. ({2} per level, up to {3}).
@@ -332,7 +329,7 @@ Complexity: MEDIUM
 Turrets have {4} base health and deals {5} base damage.]]
 
 LANGUAGE["Perk_berserker_base"] = [[
-The Berserker class is a melee-centered class that can be played both offensively and defensively.
+The Berserker class is a melee-centered bruiser class that can be played both offensively and defensively.
 Complexity: HIGH
 
 {1} increased Slashing and Blunt damage. ({2} per level, up to {3}).
@@ -342,7 +339,7 @@ Complexity: HIGH
 Aerial Parry: Jump to reduce Physical damage taken by {6}.]]
 
 LANGUAGE["Perk_warden_base"] = [[
-The Warden is a support class that uses aura effects and structures to buff teammates.
+The Warden is both an offensive and defensive support class that uses aura effects and structures to buff teammates and damage enemies.
 Complexity: MEDIUM
 
 {1} increased Warden Aura radius. ({2} per level, up to {3}).
@@ -671,12 +668,12 @@ LANGUAGE["Perk_Title_berserker_phalanx"] = [[Phalanx]]
 LANGUAGE["Perk_berserker_phalanx"] = [[
 Gain 1 Phalanx stack every 2 seconds, up to {1}.
 Each stack increases {2} Physical damage resistance and {3} melee damage.
-Lose stacks when you attack.]]
+Lose stacks when you do damage.]]
 
 LANGUAGE["Perk_Title_berserker_rip_and_tear"] = [[Rip and Tear]]
 LANGUAGE["Perk_berserker_rip_and_tear"] = [[
 {1} more melee damage.
-Your melee attack can splash.
+Your melee damage can splash.
 Splash damage is {2} of your melee damage.]]
 
 -- Default Perks: Warden
@@ -748,7 +745,7 @@ Increase caps at {1}.]]
 LANGUAGE["Perk_Title_cremator_ionization"] = [[Ionization]]
 LANGUAGE["Perk_cremator_ionization"] = [[
 {1} increased Ignite damage.
-Fire damage ignores enemy Fire resistance.]]
+Fire damage ignores enemy Fire resistance (Fire damage is converted into physical damage.)]]
 
 LANGUAGE["Perk_Title_Cremator_Tier_4"] = [[Energy Discharge]]
 LANGUAGE["Perk_Title_cremator_firestorm"] = [[Firestorm]]
@@ -1261,7 +1258,7 @@ LANGUAGE["Item_Desc_MP7A1 Medic PDW"] = [[
 A modified version of the MP7A1 for medical purposes.
 
 Press B or ZOOM to fire healing darts.
-Healing dart heals 10 health and has a 1 second cooldown.
+Healing dart heals 15 health and has a 1 second cooldown.
 ]]
 
 LANGUAGE["Item_Vector Medic PDW"] = [[Vector Medic PDW]]
@@ -1270,7 +1267,7 @@ KRISS Vector Gen I equipped with a medical dart launcher.
 Uses an unconventional blowback system that provides a high firerate with low recoil.
 
 Press B or ZOOM to fire healing darts.
-Healing dart heals 20 health and has a 1.5 second cooldown.
+Healing dart heals 20 health and has a 1.2 second cooldown.
 ]]
 
 LANGUAGE["Item_Chainsaw"] = [[Chainsaw]]
@@ -1481,7 +1478,7 @@ For each 1% health missing, increase your damage by 0.8%.
 -- Heavy Gadgets
 LANGUAGE["Gadget_gadget_energy_shield"] = [[Energy Shield]]
 LANGUAGE["Gadget_Desc_energy_shield"] = [[
-Gain 15 armor, up to maximum armor regen limit.
+Gain 50 barrier on use.
 ]]
 
 LANGUAGE["Gadget_gadget_hardening_injection"] = [[Hardening Injection]]
@@ -1497,12 +1494,6 @@ Using the active ability activates a short boost.
 
 You cannot run.
 Passively provides 20% increased Global damage resistance.
-]]
-
-LANGUAGE["Gadget_t_virus"] = [[T-Virus]]
-LANGUAGE["Gadget_Desc_t_virus"] = [[
-Converts your armor to health.
-Cannot convert pass 250% health.
 ]]
 
 -- Medic Gadgets
@@ -1549,12 +1540,6 @@ The mark lasts for 10 seconds.
 You can only mark 1 enemy at a time.
 ]]
 
-LANGUAGE["Gadget_gunslinger"] = [[Gunslinger]]
-LANGUAGE["Gadget_Desc_gadget_gunslinger"] = [[
-25% more Pistol damage.
-25% more Pistol headshot damage.
-]]
-
 -- Demolition Gadgets
 LANGUAGE["Gadget_gadget_proximity_defense"] = [[Proximity Defense]]
 LANGUAGE["Gadget_Desc_proximity_defense"] = [[
@@ -1582,10 +1567,6 @@ IED recharges after detonation.
 ]]
 
 -- Engineer Gadgets
-LANGUAGE["Gadget_displacer"] = [[Displacer]]
-LANGUAGE["Gadget_Desc_gadget_displacer"] = [[
-Instantly moves the targeted minion to your side.
-]]
 
 LANGUAGE["Gadget_gadget_turret_pack"] = [[Turret Pack]]
 LANGUAGE["Gadget_Desc_gadget_turret_pack"] = [[
@@ -1619,11 +1600,6 @@ Provides a short invincibility frame.
 {2} reduced fall damage taken until you land on the ground.
 ]]
 
-LANGUAGE["Gadget_gadget_aerial_guard"] = [[Aerial Guard]]
-LANGUAGE["Gadget_Desc_aerial_guard"] = [[
-While in air, take 65% less Physical damage.
-]]
-
 LANGUAGE["Gadget_gadget_hemocannon"] = [[Hemocannon]]
 LANGUAGE["Gadget_Desc_hemocannon"] = [[
 Shoots a projectile at the cost of {1} health.
@@ -1649,7 +1625,7 @@ Shockwave deals 125 Lightning damage.
 
 LANGUAGE["Gadget_watchtower_pack"] = [[Watchtower Pack]]
 LANGUAGE["Gadget_Desc_gadget_watchtower_pack"] = [[
-Deploys an extra watchtower.
+Deploys an extra ammo watchtower.
 ]]
 
 LANGUAGE["Gadget_shock_nova"] = [[Shock Nova]]

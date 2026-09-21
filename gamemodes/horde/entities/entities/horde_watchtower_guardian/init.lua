@@ -32,6 +32,8 @@ function ENT:Initialize()
     self.Horde_Immune_Status_All = true
     self:SetColor(Color(0, 150, 255))
 
+    self:SetUseType(SIMPLE_USE)
+
     if self.Horde_Owner:Horde_GetPerk("warden_restock") then
         self.Horde_ThinkInterval = 15
     end
@@ -46,7 +48,7 @@ end
 function ENT:Think()
     local curTime = CurTime()
 
-    if not self.Horde_Idle then
+    if not self:IsPlayerHolding() and not self.Horde_Idle then
         local curPos = self:GetPos()
         if curPos:DistToSqr(self.Horde_LastMovePos) > 1 then
             self.Horde_IdleStart = curTime
@@ -83,11 +85,33 @@ function ENT:Think()
     if curTime >= self.Horde_NextShockAttack + self.Horde_ShockAttackInterval then
         for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
             if ent:IsValid() and ent:IsPlayer() then
-                ent:SetArmor(math.min(ent:GetMaxArmor(), ent:Armor() + 1))
+                ent:Horde_GiveArmor(1, self.Horde_Owner)
             end
         end
         self.Horde_NextShockAttack = curTime
     end
 
     self:NextThink(curTime + 0.1)
+end
+
+function ENT:Use(activator)
+    local owner = self.Horde_Owner
+    if not IsValid(owner) then return end
+    if activator ~= owner then return end
+
+    local p = self:GetPos()
+    p.z = activator:GetPos().z + 12
+    self:SetPos(p)
+
+    local a = activator:GetAngles()
+    self:SetAngles(Angle(0, a.y, 0))
+
+    activator:PickupObject(self)
+
+    local phys = self:GetPhysicsObject()
+    if IsValid(phys) then
+        phys:EnableMotion(true)
+    end
+
+    self.Horde_Idle = false
 end

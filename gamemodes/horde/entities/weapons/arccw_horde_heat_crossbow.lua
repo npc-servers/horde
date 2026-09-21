@@ -80,15 +80,8 @@ SWEP.MoveDispersion = 0
 SWEP.Primary.Ammo = "XBowBolt" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "weapons/crossbow/fire1.wav"
-SWEP.ShootSoundSilenced = nil
-SWEP.DistantShootSound = nil
-
-SWEP.MuzzleEffect = "muzzleflash_pistol"
-SWEP.ShellModel = "models/shells/shell_9mm.mdl"
-SWEP.ShellScale = 1
+SWEP.ShootSound = ")weapons/crossbow/fire1.wav"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on

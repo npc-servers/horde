@@ -83,7 +83,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         if buildup < 1  then return end
 
         if HORDE.Status_Buildup_Sounds[debuff] then
-            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 100, math.random(80,110))
+            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 75, math.random(90,110))
         end
         self.Horde_Debuff_Buildup[debuff] = math.min(100, self.Horde_Debuff_Buildup[debuff] + buildup)
 
@@ -119,7 +119,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         if buildup < 1 then return end
 
         if HORDE.Status_Buildup_Sounds[debuff] then
-            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 100, math.random(80,110))
+            sound.Play(HORDE.Status_Buildup_Sounds[debuff], self:GetPos(), 75, math.random(90,110))
         end
         self.Horde_Debuff_Buildup[debuff] = math.min(threshold, self.Horde_Debuff_Buildup[debuff] + buildup)
 
@@ -146,7 +146,7 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
     end
 
     if HORDE.Status_Trigger_Sounds[debuff] then
-        sound.Play(HORDE.Status_Trigger_Sounds[debuff], self:GetPos())
+        sound.Play(HORDE.Status_Trigger_Sounds[debuff], self:GetPos(), 75)
     end
 
     if self:IsPlayer() then
@@ -211,9 +211,6 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         local duration = 5
         local str = "Horde_Remove_" .. tostring(debuff) .. "_" .. self:GetCreationID()
         timer.Remove(str)
-        timer.Create(str, duration, 1, function ()
-            self:Horde_RemoveDebuff(debuff)
-        end)
 
         -- Apply debuff effect
         if debuff == HORDE.Status_Bleeding then
@@ -278,6 +275,10 @@ function entmeta:Horde_AddDebuffBuildup(debuff, buildup, inflictor, pos)
         elseif debuff == HORDE.Status_Stun then
             self:Horde_AddStun(duration)
         end
+
+        timer.Create(str, duration, 1, function ()
+            self:Horde_RemoveDebuff(debuff)
+        end)
 
         self.Horde_Debuff_Active[debuff] = true
 

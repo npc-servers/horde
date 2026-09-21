@@ -12,7 +12,7 @@ function EFFECT:Init( data )
     end
 
     local DrawFlame = 1
-    sound.Play( "ambient/fire/ignite.wav", self:GetPos(), 54, math.random( 82, 112 ) )
+    sound.Play( ")ambient/fire/gascan_ignite1.wav", self:GetPos(), 75, math.random( 90, 110 ) )
 
     if DrawFlame == 1 then
 

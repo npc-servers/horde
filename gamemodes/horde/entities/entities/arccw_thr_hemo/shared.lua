@@ -61,7 +61,7 @@ end
 
 function ENT:Explode()
     if not self:IsValid() then return end
-    self:EmitSound("horde/weapons/nades/hemo.ogg", 100, 100, 1, CHAN_ITEM)
+    self:EmitSound(")horde/weapons/nades/hemo.ogg", 75, math.random(90,110), 1, CHAN_STATIC)
     local attacker = self
     if self:GetOwner():IsValid() then
         attacker = self:GetOwner()

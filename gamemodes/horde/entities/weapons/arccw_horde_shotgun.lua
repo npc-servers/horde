@@ -11,29 +11,29 @@ SWEP.Spawnable = true
 SWEP.Category = "ArcCw - Horde"
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Shotgun"
+SWEP.PrintName = "M3 Tactical"
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = "A standard 12-gauge shotgun."
-SWEP.Trivia_Manufacturer = "Franchi"
-SWEP.Trivia_Calibre = "12 Gauge"
+SWEP.Trivia_Desc = "Basic 20-gauge shotgun. Fairly powerful at close range, but pales in comparison to 12-gauge shotguns."
+SWEP.Trivia_Manufacturer = "Benelli"
+SWEP.Trivia_Calibre = "20 Gauge"
 SWEP.Trivia_Mechanism = "Pump-Action"
 SWEP.Trivia_Country = "Italy"
-SWEP.Trivia_Year = 1979
+SWEP.Trivia_Year = 1989
 
 SWEP.Slot = 2
 
 SWEP.UseHands = true
 
-SWEP.ViewModel = "models/weapons/c_shotgun.mdl"
-SWEP.WorldModel = "models/weapons/w_shotgun.mdl"
+SWEP.ViewModel = "models/weapons/cstrike/c_shot_m3super90.mdl"
+SWEP.WorldModel = "models/weapons/w_shot_m3super90.mdl"
 SWEP.ViewModelFOV = 60
 
-SWEP.MirrorVMWM = true
+SWEP.MirrorVMWM = false
 
 SWEP.DefaultBodygroups = "000000000000"
 
 SWEP.WorldModelOffset = {
-    pos = Vector( -20, 10, -10 ),
+    pos = Vector( 14, 1, 2 ),
     ang = Angle( 0, 0, 180 ),
 }
 
@@ -56,7 +56,7 @@ SWEP.Recoil = 1
 SWEP.RecoilSide = 1
 SWEP.RecoilPunch = 0
 
-SWEP.Delay = 1
+SWEP.Delay = 0.015
 SWEP.Firemodes = {
     {
         Mode = 1,
@@ -110,29 +110,29 @@ SWEP.Attachments = {
         PrintName = "Muzzle",
         DefaultAttName = "Standard Muzzle",
         Slot = "muzzle_shotgun",
-        Bone = "ValveBiped.Gun",
+        Bone = "v_weapon.M3_PARENT",
         Offset = {
-            vpos = Vector( 0.1, -0.5, 20 ),
-            vang = Angle( 90, 0, 0 ),
+            vpos = Vector( 0, -4.5, -24 ),
+            vang = Angle( -90, 0, 90 ),
         },
         VMScale = Vector( 1.5, 1.5, 1.5 )
     },
     {
         PrintName = "Underbarrel",
         Slot = "foregrip",
-        Bone = "ValveBiped.Pump",
+        Bone = "v_weapon.M3_PUMP",
         Offset = {
-            vpos = Vector( 0.1, 2.5, 1.5 ),
-            vang = Angle( 90, 0, -90 ),
+            vpos = Vector( 0, 1.5, -6.5 ),
+            vang = Angle( -90, 0, -90 ),
         }
     },
     {
         PrintName = "Tactical",
         Slot = "tac",
-        Bone = "ValveBiped.Gun",
+        Bone = "v_weapon.M3_PARENT",
         Offset = {
-            vpos = Vector( 0, 2.1, 16 ),
-            vang = Angle( 90, 0, -90 ),
+            vpos = Vector( 0, -3.5, -22 ),
+            vang = Angle( -90, 0, 0 ),
         },
         VMScale = Vector( 1.5, 1.5, 1.5 )
     },
@@ -149,10 +149,10 @@ SWEP.Attachments = {
         PrintName = "Charm",
         Slot = "charm",
         FreeSlot = true,
-        Bone = "ValveBiped.Gun",
+        Bone = "v_weapon.M3_PARENT",
         Offset = {
-            vpos = Vector( 1, 0, -12 ),
-            vang = Angle( 90, 0, -90 ),
+            vpos = Vector( -0.5, -4, -2.75 ),
+            vang = Angle( -90, 0, -90 ),
         },
         VMScale = Vector( 0.8, 0.8, 0.8 )
     },
@@ -160,34 +160,33 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-        Source = "idle01",
+        Source = "idle",
     },
     ["draw"] = {
         Source = "draw",
     },
     ["fire"] = {
-        Source = "fire01",
-        MinProgress = 0.325,
+        Source = "shoot2",
+        Time = 0.2,
+        MinProgress = 0,
     },
     ["cycle"] = {
-        Source = "pump",
+        Source = "after_reload",
+        Time = 0.45,
         ShellEjectAt = 0.2,
-        SoundTable = {
-            {s = "Weapon_Shotgun.Special1", t = 0},
-        },
         TPAnim = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN,
     },
     ["sgreload_start"] = {
-        Source = "reload1",
+        Source = "start_reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKOut = 0,
     },
     ["sgreload_insert"] = {
-        Source = "reload2",
+        Source = "insert",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-        TPAnimStartTime = 0.3,
+        TPAnimStartTime = 0.2,
         SoundTable = {
             {s = {"Weapon_Shotgun.Reload"}, t = 0},
         },
@@ -196,13 +195,13 @@ SWEP.Animations = {
         LHIKOut = 0,
     },
     ["sgreload_finish"] = {
-        Source = "reload3",
+        Source = "after_reload",
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0.2,
     },
     ["sgreload_finish_empty"] = {
-        Source = "reload3",
+        Source = "after_reload",
         LHIK = true,
         LHIKIn = 0,
         LHIKOut = 0.2,
@@ -222,7 +221,7 @@ sound.Add( {
     volume = 1.0,
     level = 90,
     pitch = {99, 101},
-    sound = ")weapons/shotgun/shotgun_fire7.wav"
+    sound = ")weapons/xm1014/xm1014-1.wav"
 } )
 sound.Add( {
     name = "ArcCW_Horde.Shotgun_Fire_Sil",

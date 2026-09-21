@@ -57,7 +57,7 @@ end
 
 function ENT:Explode()
     if not self:IsValid() then return end
-    self:EmitSound("ambient/levels/labs/electric_explosion1.wav", 100, 100, 1, CHAN_ITEM)
+    self:EmitSound(")phx/kaboom.wav", 75, math.random(110,130), 1, CHAN_STATIC)
 
     local attacker = self
 

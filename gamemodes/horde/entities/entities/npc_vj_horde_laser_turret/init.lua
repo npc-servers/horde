@@ -47,20 +47,6 @@ ENT.LastLaser = CurTime()
 
 -- ====== Sounds ====== --
 ENT.HasSounds = true
-ENT.SoundTbl_CombatIdle = {
-
-}
-ENT.SoundTbl_Idle = {
-
-}
-ENT.SoundTbl_Pain = {
-
-}
-
-ENT.SoundTbl_Death = {
-
-}
-
 ENT.SoundTbl_Alert = {
 	"horde/rocket_turret/turret_autosearch_1.ogg",
 	"horde/rocket_turret/turret_autosearch_2.ogg",

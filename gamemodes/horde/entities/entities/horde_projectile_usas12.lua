@@ -145,7 +145,7 @@ function ENT:CustomOnExplode()
 
     if self.Firemode == 3 then
         util.Effect( "horde_shrapnel_grenade_explosion", effectdata)
-        self:EmitSound("ambient/explosions/explode_1.wav", 100, 100, 1, CHAN_WEAPON)
+        self:EmitSound("phx/kaboom.wav", 100, 100, 1, CHAN_WEAPON)
     elseif self.Firemode == 4 then
         util.Effect( "Explosion", effectdata)
         self:EmitSound("phx/kaboom.wav", 100, 100, 1, CHAN_WEAPON)

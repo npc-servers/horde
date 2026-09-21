@@ -7,7 +7,7 @@ function EFFECT:Init(data)
 	self.Alpha = 255
 	self.Life = 0
 
-	sound.Play("ambient/explosions/explode_9.wav", pos, 80, math.random(135, 160))
+	sound.Play(")phx/kaboom.wav", pos, 75, math.random(110, 130))
 
 	local emitter = ParticleEmitter(pos)
 	emitter:SetNearClip(32, 48)

@@ -272,3 +272,46 @@ function HORDE:SimpleParticleSystem(particle_name, pos, angles, parent)
     p:Fire( "start", "", 0 )
     return p
 end
+
+local function makePropVulnerable(ent)
+    if not IsValid(ent) then return end
+    if ent:GetMaxHealth() ~= 1 or ent:Health() ~= 0 then return end
+    if not ent:GetModel() then return end
+
+    local mass = 0
+    local phys = ent:GetPhysicsObject()
+
+    if IsValid(phys) then
+        mass = phys:GetMass()
+    end
+
+    ent.Horde_PropHealth = math.max(1, mass)
+end
+
+hook.Add("InitPostEntity", "Horde_MakeMapPropsVulnerable", function()
+    for _, ent in ipairs(ents.FindByClass("prop_physics")) do
+        makePropVulnerable(ent)
+    end
+
+    for _, ent in ipairs(ents.FindByClass("prop_physics_multiplayer")) do
+        makePropVulnerable(ent)
+    end
+end)
+
+hook.Add("EntityTakeDamage", "Horde_PropDamage", function(ent, dmginfo)
+    local entHp = ent.Horde_PropHealth
+    if not entHp then return end
+
+    local dmg = dmginfo:GetDamage()
+    if dmg < 0 then return end
+
+    ent.Horde_PropHealth = entHp - dmg
+
+    if entHp <= 0 then
+        local effectdata = EffectData()
+        effectdata:SetOrigin(ent:GetPos())
+        util.Effect("kamikaze_explosion", effectdata, true, true)
+
+        ent:Fire("break")
+    end
+end)

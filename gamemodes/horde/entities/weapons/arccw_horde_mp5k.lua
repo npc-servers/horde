@@ -27,10 +27,10 @@ SWEP.WorldModelOffset = {
 SWEP.WorldModel = "models/weapons/w_smg_mp5.mdl"
 SWEP.ViewModelFOV = 65
 
-SWEP.Damage = 25
-SWEP.DamageMin = 20
-SWEP.Range = 750 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 3
+SWEP.Damage = 44
+SWEP.DamageMin = 34
+SWEP.Range = 1000 * 0.025  -- GAME UNITS * 0.025 = METRES
+SWEP.Penetration = 8
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 
@@ -214,7 +214,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Perk",
-        Slot = "go_perk"
+        Slot = {"go_perk", "go_perk_smg"}
     },
     {
         PrintName = "Camouflage",
@@ -448,7 +448,6 @@ function SWEP:ChangeFiremode(pred)
     ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
 
     self:SetNextSecondaryFire(CurTime() + 0.8)
-    self:SetNextPrimaryFire(CurTime() + 0.25)
     return true
 end
 

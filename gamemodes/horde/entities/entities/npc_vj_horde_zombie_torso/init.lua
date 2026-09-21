@@ -3,6 +3,7 @@ include('shared.lua')
 
 ENT.Model = {"models/zombie/classic_torso.mdl"}
 ENT.StartHealth = 60
+ENT.NextProcessTime = 2.5
 ENT.HullType = HULL_TINY
 ENT.VJ_NPC_Class = {"CLASS_ZOMBIE"}
 ENT.BloodColor = "Red"

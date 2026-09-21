@@ -82,19 +82,11 @@ SWEP.ShootWhileSprint = false
 SWEP.Primary.Ammo = "RPG_Round" -- what ammo type the gun uses
 SWEP.MagID = "raygun" -- the magazine pool this gun draws from
 
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "ArcCW_BO1.RayGun_Fire"
-
---SWEPHook_PostFireBullets = function(wep)
---end
+SWEP.ShootSound = ")weapons/arccw/bo1_raygun/fire.wav"
 
 SWEP.MuzzleEffect = "raygun_flash"
-SWEP.GMMuzzleEffect = false
-SWEP.ShellModel = ""
-SWEP.ShellScale = 1.5
-SWEP.ShellPitch = 90
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 0 -- which attachment to put the case effect on

@@ -26,8 +26,8 @@ SWEP.WorldModel = "models/horde/weapons/arccw/w_50cal_12.mdl"
 SWEP.ViewModelFOV = 60
 SWEP.DefaultBodygroups = "0000000"
 
-SWEP.Damage = 100
-SWEP.DamageMin = 80 -- damage done at maximum range
+SWEP.Damage = 130
+SWEP.DamageMin = 110 -- damage done at maximum range
 SWEP.Range = 500 -- in METRES
 SWEP.Penetration = 50
 SWEP.DamageType = DMG_BULLET
@@ -70,13 +70,14 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "AlyxGun"
 SWEP.MagID = "m2" -- the magazine pool this gun draws from
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
-SWEP.ShootSound = "weapons/arccw/50cal/50cal_fire.wav"
-SWEP.ShootSoundSilenced = "arccw_go/m4a1/m4a1_silencer_01.wav"
-SWEP.DistantShootSound = "weapons/arccw/50cal/50cal_fire_trail.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_5"
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")weapons/arccw/50cal/50cal_fire.wav"
+SWEP.ShootSoundSilenced = ")arccw_go/m4a1/m4a1_silencer_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/lmg_distant.wav"
+
+SWEP.MuzzleEffect = "muzzleflash_m82"
 
 SWEP.ShellModel = "models/shells/shell_338mag.mdl"
 SWEP.ShellPitch = 60
@@ -84,10 +85,10 @@ SWEP.ShellScale = 2
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
-SWEP.SpeedMult = 0.7
+SWEP.SpeedMult = 0.875
 SWEP.ShootSpeedMult = 0.6
-SWEP.SightedSpeedMult = 0.3
-SWEP.SightTime = 0.55
+SWEP.SightedSpeedMult = 0.35
+SWEP.SightTime = 0.22
 
 SWEP.IronSightStruct = {
     Pos = Vector(-5.902, -10.653, 4.796),
@@ -223,7 +224,7 @@ SWEP.Animations = {
         ShellEjectAt = 0
     },
     ["fire_iron"] = {
-        Source = "cya zoom",
+        Source = "nil",
         Time = .2,
         ShellEjectAt = 0
     },

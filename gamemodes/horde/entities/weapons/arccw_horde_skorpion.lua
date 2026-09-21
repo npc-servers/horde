@@ -83,13 +83,17 @@ SWEP.MoveDispersion = 50
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 SWEP.MagID = "skorpion" -- the magazine pool this gun draws from
 
-SWEP.ShootVol = 115 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
---SWEP.FirstShootSound = "ArcCW_BO1.Skorpion_Fire"
-SWEP.ShootSound = "ArcCW_BO1.Skorpion_Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/usp45_sil.wav"
-SWEP.DistantShootSound = {"ArcCW_BO1.Skorpion_RingOff_F", "ArcCW_BO1.Skorpion_RingOff_R"}
+SWEP.ShootSound = {
+    ")weapons/arccw/bo1_skorpion/fire1.wav",
+    ")weapons/arccw/bo1_skorpion/fire2.wav",
+    ")weapons/arccw/bo1_skorpion/fire3.wav",
+    ")weapons/arccw/bo1_skorpion/fire4.wav",
+    ")weapons/arccw/bo1_skorpion/fire5.wav",
+}
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/usp45_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/smg_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"

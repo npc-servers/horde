@@ -23,7 +23,7 @@ if SERVER then
             net.WriteUInt(ply.Horde_Bio_Thruster_Stack, 8)
         net.Send(ply)
 
-        timer.Create("Horde_BioThrusterDegen" .. id, 3, 0, function ()
+        timer.Create("Horde_BioThrusterDegen" .. id, 4, 0, function ()
             if not ply:IsValid() then
                 timer.Remove("Horde_BioThrusterDegen" .. id)
                 return

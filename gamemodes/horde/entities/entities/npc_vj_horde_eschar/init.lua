@@ -5,8 +5,9 @@ include( "shared.lua" )
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------]]
-ENT.Model = { "models/humans/zm_draggy.mdl" }
-ENT.StartHealth = 125
+ENT.Model = { "models/horde/zombie/zm_draggy.mdl" }
+ENT.StartHealth = 110
+ENT.NextProcessTime = 2.5
 
 ENT.VJ_NPC_Class = { "CLASS_ZOMBIE", "CLASS_XEN" }
 
@@ -14,6 +15,8 @@ ENT.BloodColor = "Red"
 
 ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = { ACT_MELEE_ATTACK1 }
+ENT.MeleeAttackDistance = 32
+ENT.MeleeAttackDamageDistance = 50
 ENT.TimeUntilMeleeAttackDamage = 0.2
 ENT.NextAnyAttackTime_Melee = 0.5
 
@@ -70,12 +73,13 @@ function ENT:CustomOnThink()
 					ent:Horde_AddDebuffBuildup( HORDE.Status_Necrosis, 5, self )
 				end
 			end
-			local e = EffectData()
-			e:SetOrigin( self:GetPos() )
-			util.Effect( "blight_mini_explosion", e, true, true )
 
 			self.NextTick = CurTime() + 0.5
 		end
+
+		local e = EffectData()
+		e:SetOrigin( self:GetPos() )
+		util.Effect( "blight_mini_explosion", e, true, true )
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

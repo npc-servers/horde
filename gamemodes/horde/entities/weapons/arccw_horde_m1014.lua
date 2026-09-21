@@ -15,8 +15,8 @@ SWEP.PrintName = "M1014"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 
-SWEP.Damage = 30
-SWEP.DamageMin = 16
+SWEP.Damage = 40
+SWEP.DamageMin = 20
 SWEP.Penetration = 10
 
 SWEP.Recoil = 2
@@ -35,9 +35,11 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.ShootSound = "ArcCW_Horde.GSO.M1014_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.M1014_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = ")arccw_go/xm1014/xm1014-1.wav"
+SWEP.ShootSoundSilenced = ")arccw_go/m590_suppressed_fp.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -79,20 +81,3 @@ SWEP.Animations = {
         Mult = reloadMult,
     }
 }
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.M1014_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = ")arccw_go/xm1014/xm1014-1.wav"
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.M1014_Fire_Sil",
-    channel = CHAN_WEAPON,
-    volume = 1.0,
-    level = 75,
-    pitch = {100, 105},
-    sound = ")arccw_go/m590_suppressed_fp.wav"
-} )

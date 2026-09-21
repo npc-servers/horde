@@ -82,7 +82,6 @@ HORDE:RegisterStatus("Quickdraw", "materials/perks/gunslinger/quickdraw.png")
 HORDE:RegisterStatus("WardenAura", "materials/warden.png")
 HORDE:RegisterStatus("ReactiveArmor", "materials/perks/reactive_armor.png")
 HORDE:RegisterStatus("EntropyShield", "materials/perks/entropy_shield.png")
-HORDE:RegisterStatus("EldritchShield", "materials/perks/eldritch_shield.png")
 HORDE:RegisterStatus("Tactical_Spleen", "materials/perks/carcass/tactical_spleen.png")
 HORDE:RegisterStatus("Foresight", "materials/perks/samurai/foresight.png")
 HORDE:RegisterStatus("Smuggle", "materials/perks/gunslinger/smuggle_shop.png")
@@ -93,6 +92,17 @@ HORDE:RegisterStatus("Damage_Shard", "materials/status/damage.png")
 HORDE:RegisterStatus("Agility_Shard", "materials/status/speed.png")
 HORDE:RegisterStatus("Assassin_Optics", "materials/status/gadget/assassin_optics.png")
 HORDE:RegisterStatus("Aegis", "materials/status/gadget/aegis.png")
+-- Necromancer
+HORDE:RegisterStatus("EldritchShield", "materials/perks/eldritch_shield.png")
+HORDE:RegisterStatus("NecromancerSpectre", "materials/spells/raise_greater_spectre.png", true)
+HORDE:RegisterStatus("NecromancerUltSpectre", "materials/spells/raise_shadow_hulk.png", true)
+-- Paladin
+HORDE:RegisterStatus("PaladinAura", "materials/subclasses/paladin.png")
+HORDE:RegisterStatus("PaladinFaith", "materials/status/paladin/faith.png", true)
+HORDE:RegisterStatus("PaladinShieldBash", "materials/perks/paladin/shield_bash.png", nil, nil, true)
+HORDE:RegisterStatus("PaladinSmite", "materials/perks/paladin/smite.png", nil, nil, true)
+HORDE:RegisterStatus("PaladinEmpowered", "materials/perks/paladin/smite.png")
+HORDE:RegisterStatus("PaladinShielding", "materials/status/paladin/faith.png")
 
 HORDE:RegisterStatus("Armor_Survivor", "items/armor_survivor.png")
 HORDE:RegisterStatus("Armor_Assault", "items/armor_assault.png")
@@ -122,20 +132,20 @@ HORDE:RegisterStatus("Hemorrhage", "materials/status/hemorrhage.png", nil, true)
 HORDE:RegisterStatus("Fear", "materials/status/fear.png", nil, true)
 
 HORDE.Status_Buildup_Sounds = {}
-HORDE.Status_Buildup_Sounds[HORDE.Status_Bleeding] = "horde/status/bleeding_buildup.ogg"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Bleeding] = ")horde/status/bleeding_buildup.ogg"
 --HORDE.Status_Buildup_Sounds[HORDE.Status_Ignite] = "player/general/flesh_burn.wav"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Frostbite] = "horde/status/frostbite_buildup.ogg"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Shock] = "weapons/stunstick/stunstick_fleshhit2.wav"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Break] = "ambient/levels/canals/toxic_slime_sizzle1.wav"
-HORDE.Status_Buildup_Sounds[HORDE.Status_Necrosis] = "horde/status/necrosis_buildup.ogg"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Frostbite] = ")horde/status/frostbite_buildup.ogg"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Shock] = ")weapons/stunstick/stunstick_fleshhit2.wav"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Break] = ")ambient/levels/canals/toxic_slime_sizzle1.wav"
+HORDE.Status_Buildup_Sounds[HORDE.Status_Necrosis] = ")horde/status/necrosis_buildup.ogg"
 
 HORDE.Status_Trigger_Sounds = {}
-HORDE.Status_Trigger_Sounds[HORDE.Status_Bleeding] = "horde/status/bleeding_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Bleeding] = ")horde/status/bleeding_trigger.ogg"
 --HORDE.Status_Trigger_Sounds[HORDE.Status_Ignite] = "ambient/fire/fire_small1.wav"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Frostbite] = "horde/status/frostbite_trigger.ogg"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Shock] = "horde/status/shock_trigger.ogg"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Break] = "horde/status/break_trigger.ogg"
-HORDE.Status_Trigger_Sounds[HORDE.Status_Necrosis] = "horde/status/necrosis_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Frostbite] = ")horde/status/frostbite_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Shock] = ")horde/status/shock_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Break] = ")horde/status/break_trigger.ogg"
+HORDE.Status_Trigger_Sounds[HORDE.Status_Necrosis] = ")horde/status/necrosis_trigger.ogg"
 
 HORDE.Debuff_Notifications = {
     [HORDE.Status_Bleeding] = "You are Bleeding.\nYour health will slowly drain.",

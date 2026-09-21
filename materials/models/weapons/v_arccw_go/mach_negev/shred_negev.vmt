@@ -1,0 +1,25 @@
+
+	"VertexLitGeneric"
+{
+	"$baseTexture" "models\weapons\v_arccw_go\mach_negev\mach_negev"
+	"$phongexponenttexture" "models\weapons\v_arccw_go\mach_negev\mach_negev_exponent"
+	"$phong" "1"
+   	 "$color2" "[1 0.8 0.3]"
+
+	"$phongboost" "1.5"
+	"$phongalbedoboost" "80"
+	"$phongfresnelranges" "[.83 .83 1]"
+
+	"$basemapalphaphongmask" "1"
+
+	"$phongalbedotint" "1"
+
+	"$phongdisablehalflambert" "1"
+
+	"$envmap" "models\weapons\v_arccw_go\mach_negev\coagulate"
+	//"$envmapfresnel" "1"
+	"$envmaptint" 		"[1 .1 .1]"
+
+
+	
+}

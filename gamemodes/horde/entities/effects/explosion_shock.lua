@@ -5,7 +5,7 @@ function EFFECT:Init(effectdata)
 	local particle
 
 	--sound.Play("weapons/physcannon/energy_disintegrate"..math.random(4, 5)..".wav", pos, 75, math.random(70, 90))
-	sound.Play("AlyxEMP.Discharge", pos, 100, math.random(105, 120))
+	sound.Play(")weapons/physcannon/energy_disintegrate4.wav", pos, 75, math.random(90, 110))
 
 	local emitter = ParticleEmitter(pos)
 	local emitter2 = ParticleEmitter(pos, true)

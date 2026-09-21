@@ -39,6 +39,7 @@ function UpdateSpectreMaxCount(ply)
 
     local level_bonus = math.min(5, math.floor(ply:Horde_GetLevel("Necromancer") / 5))
     local count = 1 + level_bonus
+    local ultCount = 1
 
     if ply:Horde_GetPerk("necromancer_hollow_essence") then
         count = count + 1
@@ -46,11 +47,13 @@ function UpdateSpectreMaxCount(ply)
     if ply:Horde_GetPerk("necromancer_abyssal_might") then
         count = count + 1
     end
+
     if ply:Horde_GetPerk("necromancer_necromastery") then
-        count = count + 1
+        ultCount = ultCount + 1
     end
 
     ply.Horde_Spectre_Max_Count = count
+    ply.Horde_Ult_Spectre_Max_Count = ultCount
 end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
@@ -133,5 +136,39 @@ PERK.Hooks.Horde_PrecomputePerkLevelBonus = function(ply)
     if SERVER then
         ply:Horde_SetPerkLevelBonus("necromancer_base", math.min(0.25, 0.01 * ply:Horde_GetLevel("Necromancer")))
         ply:Horde_SetPerkLevelBonus("necromancer_base_minion_damage", math.min(0.20, 0.01 * ply:Horde_GetLevel("Necromancer")))
+    end
+end
+
+PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
+    if not SERVER then return end
+    if not IsValid(target) then return end
+    if not HORDE:IsPlayerOrMinion(target) then return end
+
+    local owner = target:GetNWEntity("HordeOwner")
+    if not IsValid(owner) then return end
+    if not owner:Horde_GetPerk("necromancer_base") then return end
+
+    local hpGatePercentage = 1 / 6 * target:GetMaxHealth()
+    local curTime = CurTime()
+
+    local data = target.Horde_HealthGateData
+    if not data or curTime - data.lastResetTime >= 2 then
+        target.Horde_HealthGateData = {
+            damageAccumulated = 0,
+            lastResetTime = curTime
+        }
+
+        data = target.Horde_HealthGateData
+    end
+
+    local newAccumulated = data.damageAccumulated + dmginfo:GetDamage()
+
+    if newAccumulated > hpGatePercentage then
+        local allowedDamage = math.max( 0, hpGatePercentage - data.damageAccumulated )
+        dmginfo:SetDamage( allowedDamage )
+
+        data.damageAccumulated = hpGatePercentage
+    else
+        data.damageAccumulated = newAccumulated
     end
 end

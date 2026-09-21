@@ -68,19 +68,14 @@ ENT.SoundTbl_CombatIdle = {
 ENT.SoundTbl_Idle = {
 	"npc/turret_floor/ping.wav"
 }
-ENT.SoundTbl_Pain = {
-
-}
-
 ENT.SoundTbl_Death = {
 	"npc/turret_floor/die.wav"
 }
-
 ENT.SoundTbl_Alert = {
 	"npc/turret_floor/deploy.wav"
 }
 ENT.SoundTbl_RangeAttack = {
-	"npc/sniper/sniper1.wav"
+	"weapons/shotgun/shotgun_fire6.wav"
 }
 
 ENT.Horde_Immune_Status = {
@@ -163,9 +158,6 @@ function ENT:CustomRangeAttackCode()
 	for i =1, 6 do
 		self:FireBullet(gunPos)
 	end
-
-	VJ_EmitSound(self, {"weapons/shotgun/shotgun_fire6.wav"}, 90, self:VJ_DecideSoundPitch(100, 110))
-	VJ_EmitSound(self, {"weapons/shotgun/shotgun_fire6.wav"}, 140, self:VJ_DecideSoundPitch(100, 110))
 
 	local muz = ents.Create("env_sprite_oriented")
 	muz:SetKeyValue("model","vj_hl/sprites/muzzleflash3.vmt")

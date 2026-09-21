@@ -21,7 +21,7 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
 
     for _, ent in pairs(ents.FindInSphere(ply:GetPos(), 200)) do
         if ent:IsPlayer() then
-            ent:SetArmor(math.min (ent:GetMaxArmor(), ent:Armor() + 20))
+            ent:Horde_GiveArmor(20, ply)
         elseif ent:IsNPC() and ent:GetClass() ~= "npc_vj_horde_antlion" then
             local dmg = DamageInfo()
             dmg:SetDamage(65)

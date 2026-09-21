@@ -11,11 +11,10 @@ SWEP.PrintName = "L86 LSW"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_sa80_lmg_5.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_aug.mdl"
 
-SWEP.Damage = 38
-SWEP.DamageMin = 35
-
-SWEP.Primary.ClipSize = 100
-
+SWEP.Damage = 60
+SWEP.DamageMin = 50
+SWEP.Primary.ClipSize = 75
+SWEP.Delay = 60 / 666
 SWEP.Recoil = 0.3
 SWEP.RecoilSide = 0.2
 

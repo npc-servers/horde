@@ -12,7 +12,7 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Medic Shotgun"
 SWEP.TrueName = "Medic Model 1897"
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = "A pump-action shotgun that fires buckshot rounds that heal other players."
+SWEP.Trivia_Desc = "Winchester Model 1897 loaded with healing flechettes."
 SWEP.Trivia_Manufacturer = "Winchester"
 SWEP.Trivia_Calibre = "12 Gauge"
 SWEP.Trivia_Mechanism = "Pump Action"
@@ -28,10 +28,13 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_trench.mdl"
-SWEP.WorldModel = "models/weapons/w_shotgun.mdl"
-
+SWEP.WorldModel = "models/horde/weapons/w_kf_trench.mdl"
+SWEP.WorldModelOffset = {
+    pos = Vector(4, 0, 0),
+    ang = Angle(-12, 0, 180),
+}
 SWEP.ViewModelFOV = 45
-
+SWEP.MirrorVMWM = false
 SWEP.Damage = 35
 SWEP.DamageMin = 20
 SWEP.Range = 50 -- in METRES
@@ -78,15 +81,12 @@ SWEP.MoveDispersion = 100
 SWEP.Primary.Ammo = "buckshot" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound = "KF_trench.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/shot_sil.wav"
-SWEP.DistantShootSound = "KF_trench.Fire"
+SWEP.ShootSound = ")weapons/kf_trench/KF_Shotgun_Dragon_Fire_S.wav"
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/shot_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/shotgun_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
-SWEP.ShellModel = "models/shells/shell_9mm.mdl"
-SWEP.ShellScale = 1
+SWEP.MuzzleEffect = "muzzleflash_shotgun"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
@@ -144,8 +144,8 @@ SWEP.Attachments = {
         Offset = {
             vpos = Vector(45, 0, 3.1),
             vang = Angle(0, 0, 0),
-            wpos = Vector(10, 0.8, -5.5),
-            wang = Angle(-5, 1, 180)
+            wpos = Vector(32, 0, -9.5),
+            wang = Angle(-10, 0, 180)
         },
     },
     {
@@ -155,8 +155,8 @@ SWEP.Attachments = {
         Offset = {
             vpos = Vector(40, 0, 2),
             vang = Angle(0, 0, 0),
-            wpos = Vector(9, 1, -4.5),
-            wang = Angle(-5, 1, 180)
+            wpos = Vector(32, 0, -9),
+            wang = Angle(-10, 0, 180)
         },
         VMScale = Vector(1.2, 1.2, 1.2),
     },
@@ -183,33 +183,24 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-    Source = "idle",
-    Time = 10,
+        Source = "idle",
+        Time = 10,
     },
     ["enter_sight"] = {
         Source = "idle",
         Time = 0,
-        },
+    },
     ["idle_sights"] = {
         Source = "idle",
         Time = 0,
-        },
-        ["exit_sight"] = {
-            Source = "idle",
-            Time = 0,
-            },
+    },
+    ["exit_sight"] = {
+        Source = "idle",
+        Time = 0,
+    },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
-        SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
     },
     ["fire"] = {
         Source = "idle",
@@ -264,7 +255,7 @@ SWEP.Animations = {
     },
 }
 
-hook.Add("Horde_ShouldCollide", "Horde_Medic_Rifle", function(ent1, ent2)
+hook.Add("Horde_ShouldCollide", "Horde_MedicShotgun", function(ent1, ent2)
     local entClass = "arccw_horde_medic_shotgun"
     if ent1 == entClass or ent2 == entClass then
         return true
@@ -401,7 +392,7 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
+    ply:EmitSound(")horde/weapons/heal.wav", 75, 100, 1, CHAN_AUTO)
 
     self:SetNextSecondaryFire(CurTime() + 1)
     self:SetNextPrimaryFire(CurTime() + 0.25)

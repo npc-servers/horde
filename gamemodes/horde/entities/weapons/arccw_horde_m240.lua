@@ -15,9 +15,9 @@ SWEP.PrintName = "M240"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2_2/c_m240_1.mdl"
 SWEP.WorldModel = "models/weapons/arccw/fesiugmw2_2/c_m240_1.mdl"
 
-SWEP.Damage = 50
-SWEP.DamageMin = 36
-
+SWEP.Damage = 71
+SWEP.DamageMin = 61
+SWEP.Delay = 60 / 650
 SWEP.Recoil = 0.5
 SWEP.RecoilSide = 0.35
 

@@ -28,8 +28,9 @@ end
 SWEP.UseHands = true
 
 SWEP.ViewModel = "models/horde/weapons/c_kf_m99.mdl"
-SWEP.WorldModel = "models/horde/weapons/c_kf_m99.mdl"
+SWEP.WorldModel = "models/horde/weapons/w_kf_m99.mdl"
 SWEP.ViewModelFOV = 45
+SWEP.MirrorVMWM = true
 
 SWEP.Damage = 1400
 SWEP.DamageMin = 1400 -- damage done at maximum range
@@ -51,13 +52,13 @@ SWEP.Primary.ClipSize = 1 -- DefaultClip is automatically set.
 SWEP.ExtendedClipSize = 1
 SWEP.ReducedClipSize = 1
 
-SWEP.Recoil = 5
-SWEP.RecoilSide = 5
-SWEP.VisualRecoilMult = 5
+SWEP.Recoil = 6
+SWEP.RecoilSide = 4
+SWEP.VisualRecoilMult = 0
 SWEP.RecoilRise = 5
-SWEP.RecoilPunch = 0
+SWEP.RecoilPunch = 0.2
 
-SWEP.Delay = 60 / 75 -- 60 / RPM.
+SWEP.Delay = 60 / 100 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
     {
@@ -77,16 +78,13 @@ SWEP.MoveDispersion = 800
 
 SWEP.Primary.Ammo = "SniperPenetratedRound" -- what ammo type the gun uses
 
-SWEP.ShootVol = 500 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75
 
-SWEP.ShootSound = "KF_m99.Fire"
-SWEP.ShootSoundSilenced = "weapons/fesiugmw2/fire/sniper_sil.wav"
-SWEP.DistantShootSound = "KF_m99.Fire"
+SWEP.ShootSound = ")weapons/kf_m99/M99_Fire_S.wav"
+SWEP.ShootSoundSilenced = ")weapons/fesiugmw2/fire/sniper_sil.wav"
+SWEP.DistantShootSound = "^horde/weapons/distant/sniper_distant.wav"
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
-SWEP.ShellModel = "models/shells/shell_338mag.mdl"
-SWEP.ShellScale = 5
+SWEP.MuzzleEffect = "muzzleflash_m82"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = 2 -- which attachment to put the case effect on
@@ -133,7 +131,7 @@ SWEP.AttachmentElements = {
 }
 
 SWEP.WorldModelOffset = {
-    pos = Vector(0, 5, -8),
+    pos = Vector(-20, 5, -6),
     ang = Angle(-10, 0, 180),
     scale = 1
 }
@@ -190,50 +188,38 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
     ["idle"] = {
-    Source = "idle",
-    Time = 10,
+        Source = "idle",
+        Time = 10,
     },
     ["enter_sight"] = {
-        Source = "idle",
-        Time = 0,
-        },
+        Source = "irons",
+        Time = 1,
+    },
     ["idle_sights"] = {
-        Source = "idle",
-        Time = 0,
-        },
-        ["exit_sight"] = {
-            Source = "idle",
-            Time = 0,
-            },
+        Source = "irons",
+        Time = 1,
+    },
+    ["exit_sight"] = {
+        Source = "irons",
+        Time = 1,
+    },
     ["draw"] = {
         Source = "draw",
         Time = 0.5,
-        SoundTable = {
-            {
-            s = "weapons/arccw/draw_secondary.wav",
-            t = 0
-            }
-        },
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 0.25,
     },
     ["fire"] = {
         Source = "idle",
         Time = 10,
-        ShellEjectAt = 0,
     },
     ["fire_iron"] = {
         Source = "idle",
         Time = 10,
-        ShellEjectAt = 0,
     },
     ["reload"] = {
         Source = "reload",
         Mult = 0.75,
         Time = 2,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        FrameRate = 30,
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.2,

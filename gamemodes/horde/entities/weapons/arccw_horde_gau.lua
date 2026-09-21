@@ -32,8 +32,8 @@ SWEP.WorldModel = "models/weapons/arccw/w_minigun.mdl"
 SWEP.ViewModelFOV = 62
 SWEP.DefaultBodygroups = "0000000"
 
-SWEP.Damage = 37
-SWEP.DamageMin = 33 -- damage done at maximum range
+SWEP.Damage = 50
+SWEP.DamageMin = 46 -- damage done at maximum range
 SWEP.Range = 1500 * 0.025 -- in METRES
 SWEP.Penetration = 7
 SWEP.DamageType = DMG_BULLET
@@ -85,10 +85,10 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "AlyxGun" -- what ammo type the gun uses
 SWEP.MagID = "minigun" -- the magazine pool this gun draws from
-SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 105 -- pitch of shoot sound
-SWEP.ShootSound = "weapons/arccw/minigun/minigun_fire.wav"
-SWEP.DistantShootSound = "weapons/arccw/minigun/negev-1-distant.wav"
+
+SWEP.ShootVol = 80
+SWEP.ShootSound = ")weapons/arccw/minigun/minigun_fire.wav"
+SWEP.DistantShootSound = ")horde/weapons/distant/lmg_distant.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_minimi"
 
@@ -192,7 +192,7 @@ SWEP.Animations = {
         Source = "draw",
         SoundTable = {
             {
-                s = "weapons/arccw/minigun/m249_draw.wav",
+                s = ")weapons/arccw/minigun/m249_draw.wav",
                 t = 0
             }
         },
@@ -207,7 +207,7 @@ SWEP.Animations = {
          Source = "idle",
 		 SoundTable = {
             {
-                s = "weapons/arccw/minigun/minigun_spinup.wav",
+                s = ")weapons/arccw/minigun/minigun_spinup.wav",
                 t = 0
             }
         },

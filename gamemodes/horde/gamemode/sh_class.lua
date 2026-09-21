@@ -407,6 +407,12 @@ function plymeta:Horde_SetSubclass(class_name, subclass_name)
         end
 
         HORDE:SendNotification(class_name .. " subclass changed to " .. HORDE.subclasses[subclass_name].PrintName, 0, self)
+
+        net.Start("Horde_SyncLevel")
+            net.WriteEntity(self)
+            net.WriteString(subclass_name)
+            net.WriteUInt(self:Horde_GetLevel(subclass_name), 8)
+        net.Broadcast()
     end
     if CLIENT then
         net.Start("Horde_SetSubclass")

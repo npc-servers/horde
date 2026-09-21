@@ -114,8 +114,7 @@ end
 function ENT:Detonate()
     if self.Exploded then return end
     self.Exploded = true
-    self:EmitSound("arccw_go/molotov/molotov_detonate_1.wav", 75, 100, 1, CHAN_ITEM)
-    self:EmitSound("arccw_go/molotov/molotov_detonate_1_distant.wav", 100, 100, 1, CHAN_WEAPON)
+    self:EmitSound("^horde/weapons/gso/molotov/molotov_"..math.random(1,3)..".wav", 140, math.random(90,110), 1, CHAN_STATIC)
 
     local cloud = ents.Create("arccw_horde_fire")
 

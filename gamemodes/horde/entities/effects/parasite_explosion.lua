@@ -8,7 +8,7 @@ end
 function EFFECT:Init(data)
 	local pos = data:GetOrigin()
 
-	sound.Play("physics/body/body_medium_break"..math.random(2, 4)..".wav", pos, 77, math.Rand(95, 105))
+	sound.Play("physics/body/body_medium_break"..math.random(2, 4)..".wav", pos, 75, math.Rand(90, 110))
 
 	local emitter = ParticleEmitter(pos)
 	emitter:SetNearClip(16, 48)

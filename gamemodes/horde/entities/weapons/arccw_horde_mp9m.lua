@@ -23,32 +23,121 @@ SWEP.Firemodes = {
     }
 }
 
+SWEP.Damage = 34
+SWEP.DamageMin = 24
+
 SWEP.Delay = 60 / 900
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.MP9_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.MP9_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.MP9_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.FirstShootSound = {
+    ")arccw_go/mp9/mp9_01.wav",
+    ")arccw_go/mp9/mp9_02.wav",
+    ")arccw_go/mp9/mp9_03.wav",
+    ")arccw_go/mp9/mp9_04.wav"
+}
+SWEP.ShootSound = {
+    ")arccw_go/mp9/mp9_01.wav",
+    ")arccw_go/mp9/mp9_02.wav",
+    ")arccw_go/mp9/mp9_03.wav",
+    ")arccw_go/mp9/mp9_04.wav"
+}
+SWEP.ShootSoundSilenced = ")arccw_go/mp5/mp5_01.wav"
+SWEP.DistantShootSound = "^horde/weapons/gso/mp9/mp9_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-sound.Add( {
-    name = "ArcCW_Horde.GSO.MP9_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/mp9/mp9_01.wav",")arccw_go/mp9/mp9_02.wav",")arccw_go/mp9/mp9_03.wav",")arccw_go/mp9/mp9_04.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.MP9_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = ")arccw_go/mp5/mp5_01.wav"
-} )
+SWEP.Attachments = {
+    {
+        PrintName = "Optic",
+        Slot = {"optic_lp", "optic"},
+        Bone = "v_weapon.mp9_parent",
+        DefaultAttName = "Iron Sights",
+        Offset = {
+            vpos = Vector(0, -4.2, 1),
+            vang = Angle(90, 0, -90),
+            wpos = Vector(22, 1, -7),
+            wang = Angle(-9.79, 0, 180)
+        },
+        CorrectiveAng = Angle(0, 0, 0)
+    },
+    {
+        PrintName = "Underbarrel",
+        Slot = "foregrip",
+        Bone = "v_weapon.mp9_parent",
+        DefaultAttName = "Standard Foregrip",
+        Offset = {
+            vpos = Vector(0, -1.3, 5),
+            vang = Angle(90, 0, -90),
+            wpos = Vector(22, 1, -7),
+            wang = Angle(-9.79, 0, 180)
+        },
+        InstalledEles = {"ubrms"},
+    },
+    {
+        PrintName = "Tactical",
+        Slot = "tac",
+        Bone = "v_weapon.mp9_parent",
+        Offset = {
+            vpos = Vector(-0.9, -3.4, 4.5),
+            vang = Angle(90, 0, 180),
+            wpos = Vector(22, 1, -7),
+            wang = Angle(-9.79, 0, 180)
+        },
+    },
+    {
+        PrintName = "Barrel",
+        Slot = "go_mp9_barrel",
+        DefaultAttName = "130mm B&T Barrel"
+    },
+    {
+        PrintName = "Muzzle",
+        DefaultAttName = "Standard Muzzle",
+        Slot = "muzzle",
+        Bone = "v_weapon.mp9_parent",
+        Offset = {
+            vpos = Vector(0, -2.9, 7.5),
+            vang = Angle(90, 0, -90),
+        },
+    },
+    {
+        PrintName = "Magazine",
+        Slot = "go_mp9_mag",
+        DefaultAttName = "30-Round 9mm B&T"
+    },
+    {
+        PrintName = "Stock",
+        Slot = {"go_mp9_stock", "go_stock_none", "go_stock"},
+        DefaultAttName = "Standard Stock",
+        Bone = "v_weapon.mp9_parent",
+        Offset = {
+            vpos = Vector(0, -2.5, -3.35),
+            vang = Angle(90, 0, -90),
+        },
+    },
+    {
+        PrintName = "Ammo Type",
+        Slot = "go_ammo",
+        DefaultAttName = "Standard Ammo"
+    },
+    {
+        PrintName = "Perk",
+        Slot = {"go_perk", "go_perk_smg"}
+    },
+    {
+        PrintName = "Charm",
+        Slot = "charm",
+        FreeSlot = true,
+        Bone = "v_weapon.mp9_parent", -- relevant bone any attachments will be mostly referring to
+        Offset = {
+            vpos = Vector(0.75, -2.5, -3), -- offset that the attachment will be relative to the bone
+            vang = Angle(90, 0, -90),
+            wpos = Vector(6.099, 1.1, -3.301),
+            wang = Angle(171.817, 180-1.17, 0),
+        },
+    },
+}
 
 function SWEP:ChangeFiremode(pred)
     if self:GetNextSecondaryFire() > CurTime() then return end
@@ -72,10 +161,10 @@ function SWEP:ChangeFiremode(pred)
 
         for _, ent in pairs(ents.FindInSphere(tr.HitPos, 100)) do
             if ent:IsPlayer() then
-                local healinfo = HealInfo:New({amount = 10, healer = ply})
+                local healinfo = HealInfo:New({amount = 7, healer = ply})
                 HORDE:OnPlayerHeal(ent, healinfo)
             elseif ent:GetClass() == "npc_vj_horde_antlion" then
-                local healinfo = HealInfo:New({amount = 10, healer = ply})
+                local healinfo = HealInfo:New({amount = 7, healer = ply})
                 HORDE:OnAntlionHeal(ent, healinfo)
             elseif ent:IsNPC() then
                 local dmg = DamageInfo()
@@ -89,10 +178,9 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 75, 100, 1, CHAN_WEAPON)
+    ply:EmitSound(")horde/weapons/heal.wav", 75, 100, 1, CHAN_WEAPON)
 
-    self:SetNextSecondaryFire(CurTime() + 1)
-    self:SetNextPrimaryFire(CurTime() + 0.25)
+    self:SetNextSecondaryFire(CurTime() + 0.6)
     return true
 end
 

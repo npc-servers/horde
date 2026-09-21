@@ -12,14 +12,14 @@ SWEP.Category = "ArcCW - Horde"
 SWEP.AdminOnly = false
 SWEP.WeaponCamBone = tag_camera
 
-SWEP.PrintName = "SMG-1"
+SWEP.PrintName = "PDW"
 SWEP.Trivia_Class = "Submachine Gun"
-SWEP.Trivia_Desc = "A compact, fully automatic firearm."
-SWEP.Trivia_Manufacturer = "Resistance"
-SWEP.Trivia_Calibre = "9x19mm Parabellum"
+SWEP.Trivia_Desc = "HK PDW. While not powerful per se, can serve as a springboard for much stronger weaponry."
+SWEP.Trivia_Manufacturer = "Heckler & Koch (Combine Production License)"
+SWEP.Trivia_Calibre = "4.6x30mm"
 SWEP.Trivia_Mechanism = "Roller-Delayed Blowback"
-SWEP.Trivia_Country = "Earth"
-SWEP.Trivia_Year = 2007
+SWEP.Trivia_Country = "Germany"
+SWEP.Trivia_Year = 1997
 
 SWEP.Slot = 2
 
@@ -28,10 +28,10 @@ SWEP.UseHands = true
 SWEP.ViewModel = "models/weapons/c_smg1.mdl"
 SWEP.WorldModel = "models/weapons/w_smg1.mdl"
 SWEP.ViewModelFOV = 65
-SWEP.MirrorVMWM = true
+SWEP.MirrorVMWM = false
 
 SWEP.WorldModelOffset = {
-    pos = Vector(-14, 8, -5),
+    pos = Vector(10, 0, -4),
     ang = Angle(-10, 0, 180)
 }
 

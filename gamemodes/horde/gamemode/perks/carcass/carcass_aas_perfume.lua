@@ -1,8 +1,8 @@
 PERK.PrintName = "Tren Perfume"
 PERK.Description =
 [[Adds {1} maximum Hypertrophy stacks. Press R to shoot a lingering spore cloud.
-Cloud provides Hypertrophy to players and deals {4} Poison damage in an area.
-Effect lasts for {2} seconds and has a cooldown of {3} seconds.]]
+Cloud gives Hypertrophy to players, deals {4} Poison damage in an area.
+Cloud Weakens enemies. Cloud lasts for {2} seconds, {3} second coooldown.]]
 PERK.Icon = "materials/perks/carcass/aas_perfume.png"
 PERK.Params = {
     [1] = { value = 2 },

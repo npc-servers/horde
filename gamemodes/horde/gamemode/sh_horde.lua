@@ -52,6 +52,7 @@ CreateConVar("horde_enable_3d2d_icon", 1, nil, "Enables player icon renders.")
 CreateConVar("horde_testing_unlimited_class_change", 0, nil, "You can change a class for an unlimited times. Please use this only for testing purposes.")
 CreateConVar("horde_testing_display_damage", 0, FCVAR_ARCHIVE, "Display damage for testing.")
 CreateConVar("horde_enable_damage_numbers", 1, FCVAR_ARCHIVE, "Enables damage numbers.")
+CreateConVar("horde_enable_damage_sounds", 1, FCVAR_ARCHIVE, "Enables damage sounds.")
 CreateConVar("horde_enable_debuff_text", 1, FCVAR_ARCHIVE, "Enables displaying debuffs done to enemies.")
 CreateConVar("horde_enable_health_gui", 1, FCVAR_ARCHIVE, "Enables health UI.")
 CreateConVar("horde_enable_ammo_gui", 1, FCVAR_ARCHIVE, "Enables ammo UI.")
@@ -64,6 +65,10 @@ if CLIENT then
     CreateClientConVar("horde_disable_default_gadget_use_key", 0, FCVAR_ARCHIVE, "Disable default key bind for active gadgets.")
     CreateClientConVar("horde_heal_flash", "1", true, true, "Allows for a player's screen to flash to notify them when they're being healed.")
     CreateClientConVar("horde_show_leaderboard", "0", true, false, "Enables forcibly displaying the leaderboard for ranks.")
+    CreateClientConVar( "horde_carcass_spedometer", "1", true, true, "Enable/Disable the Velocity spedometer for Carcass's fists", 0, 1)
+    CreateClientConVar( "horde_carcass_spedometer_x", "2", true, true, "Changes the horizontal position of the spedometer. default 2", 0, 100 )
+    CreateClientConVar( "horde_carcass_spedometer_y", "1.8", true, true, "Changes the height at which the spedometer is positioned. default 1.8",0, 100)
+    CreateClientConVar( "horde_carcass_spedometer_style", "1", true, true, "Changes the style of spedometer. 1 and 2 displays Velocity numerically, and 3 and 4 display Velocity using a bar. Default 1.", 1, 4)
 end
 
 if SERVER then
@@ -199,6 +204,8 @@ RunConsoleCommand("vj_npc_bleedenemyonmelee", "0")
 RunConsoleCommand("vj_npc_nocallhelp", "1")
 RunConsoleCommand("vj_npc_nowandering", "1")
 RunConsoleCommand("vj_npc_nogib", "1") -- Since we use our own gibbing system, there should be no need to call for VJ Base gibbing system.
+RunConsoleCommand("vj_npc_nopropattack", "0") -- Ensure NPCs can attack props (also func_breakable such as castle keep's gate)
+RunConsoleCommand("vj_npc_noproppush", "0") -- Ensure NPCs can push props
 
 -- Util functions
 function HORDE:GiveAmmo(ply, wpn, count)
@@ -229,7 +236,10 @@ function HORDE:GetUpgradePrice(class, ply)
     else
         level = ply:Horde_GetUpgrade(class)
     end
-    if class == "horde_void_projector" or class == "horde_solar_seal" or class == "horde_astral_relic" or class == "horde_carcass" or class == "horde_pheropod" then
+
+    if class == "horde_pheropod" then
+        return 600 + 25 * level
+    elseif class == "horde_void_projector" or class == "horde_solar_seal" or class == "horde_astral_relic" or class == "horde_carcass" then
         local price = 800 + 25 * level
         return price
     else

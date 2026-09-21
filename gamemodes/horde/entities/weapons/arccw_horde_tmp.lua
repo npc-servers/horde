@@ -27,10 +27,10 @@ SWEP.WorldModelOffset = {
 SWEP.WorldModel = "models/weapons/w_smg_tmp.mdl"
 SWEP.ViewModelFOV = 65
 
-SWEP.Damage = 31
-SWEP.DamageMin = 26
+SWEP.Damage = 40
+SWEP.DamageMin = 34
 SWEP.Range = 1500 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 4
+SWEP.Penetration = 8
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 
@@ -69,11 +69,10 @@ SWEP.MoveDispersion = 175
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound =			"weapons/fesiugmw2/fire/miniuzi.wav"
+SWEP.ShootSound =			")weapons/fesiugmw2/fire/miniuzi.wav"
 --SWEP.DistantShootSound =	"weapons/fesiugmw2/fire_distant/miniuzi.wav"
-SWEP.ShootSoundSilenced =	"horde/weapons/tmp/tmp_fire.ogg"
+SWEP.ShootSoundSilenced =	")weapons/fesiugmw2/fire/mp5_sil.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_4"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -208,7 +207,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Perk",
-        Slot = "go_perk"
+        Slot = {"go_perk", "go_perk_smg"}
     },
     {
         PrintName = "Camouflage",

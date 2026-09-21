@@ -17,10 +17,22 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_pist_glock.mdl"
 
 SWEP.RecoilPunch = 0
 
-SWEP.FirstShootSound = "ArcCW_Horde.GSO.Glock_Fire"
-SWEP.ShootSound = "ArcCW_Horde.GSO.Glock_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_Horde.GSO.Glock_Fire_Sil"
-SWEP.DistantShootSound = ""
+SWEP.ShootVol = 75
+
+SWEP.FirstShootSound = {
+    ")horde/weapons/gso/glock/glock_01.wav",
+    ")horde/weapons/gso/glock/glock_02.wav"
+}
+SWEP.ShootSound = {
+    ")horde/weapons/gso/glock/glock_01.wav",
+    ")horde/weapons/gso/glock/glock_02.wav"
+}
+SWEP.ShootSoundSilenced = {
+    ")arccw_go/usp/usp_01.wav",
+    ")arccw_go/usp/usp_02.wav",
+    ")arccw_go/usp/usp_03.wav"
+}
+SWEP.DistantShootSound = "^horde/weapons/gso/glock/glock_distant.wav"
 
 SWEP.ActivePos = Vector(0, 0, 0)
 SWEP.ActiveAng = Angle(0, 0, 0)
@@ -36,20 +48,3 @@ SWEP.Attachments = {
         },
     }
 }
-
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Glock_Fire",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 90,
-    pitch = 100,
-    sound = {")arccw_go/glock18/glock_01.wav",")arccw_go/glock18/glock_02.wav"}
-} )
-sound.Add( {
-    name = "ArcCW_Horde.GSO.Glock_Fire_Sil",
-    channel = CHAN_STATIC,
-    volume = 1.0,
-    level = 75,
-    pitch = 100,
-    sound = {")arccw_go/usp/usp_01.wav",")arccw_go/usp/usp_02.wav",")arccw_go/usp/usp_03.wav"}
-} )

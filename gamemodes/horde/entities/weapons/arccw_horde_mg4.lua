@@ -15,15 +15,15 @@ SWEP.PrintName = "MG4"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2_2/c_mg4_1.mdl"
 SWEP.WorldModel = "models/weapons/w_mach_m249para.mdl"
 
-SWEP.Damage = 40
-SWEP.DamageMin = 32
+SWEP.Damage = 63
+SWEP.DamageMin = 53
 
 SWEP.Primary.ClipSize = 200
 
 SWEP.Recoil = 0.3
 SWEP.RecoilSide = 0.35
 
-SWEP.Delay = 60 / 900
+SWEP.Delay = 60 / 890
 
 SWEP.ShootSound = "ArcCW_Horde.MW2.MG4_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.MG4_Mech"

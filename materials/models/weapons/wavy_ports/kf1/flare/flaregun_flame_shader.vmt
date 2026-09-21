@@ -1,0 +1,5 @@
+UnlitGeneric
+{
+	$basetexture	"models/weapons/wavy_ports/kf1/flare/PilotBloom"
+	$translucent	"1"
+}

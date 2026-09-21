@@ -21,7 +21,6 @@ GADGET.Hooks.Horde_UseActiveGadget = function (ply)
     ent:SetAngles(Angle(0, ply:GetAngles().y, 0))
     ply:Horde_AddDropEntity(ent:GetClass(), ent)
     ent:SetNWEntity("HordeOwner", ply)
-    ent:SetRenderMode(RENDERMODE_TRANSCOLOR)
     ent:SetColor(Color(255,0,0,255))
     ent:Spawn()
     ent.Horde_Is_Mini_Sentry = true

@@ -24,26 +24,34 @@ end
 
 function ENT:Initialize()
     if SERVER then
-    self:SetModel(self.Model)
-    self:SetMoveType( MOVETYPE_VPHYSICS )
-    self:SetSolid( SOLID_VPHYSICS )
-    self:PhysicsInit( SOLID_VPHYSICS )
+        self:SetModel(self.Model)
+        self:SetMoveType( MOVETYPE_VPHYSICS )
+        self:SetSolid( SOLID_VPHYSICS )
+        self:PhysicsInit( SOLID_VPHYSICS )
 
-    local phys = self:GetPhysicsObject()
-    if phys:IsValid() then
-        phys:Wake()
-        phys:SetBuoyancyRatio(0)
-        phys:EnableDrag(false)
-        phys:SetMass(0)
-    end
+        local phys = self:GetPhysicsObject()
+        if phys:IsValid() then
+            phys:Wake()
+            phys:SetBuoyancyRatio(0)
+            phys:EnableDrag(false)
+            phys:SetMass(0)
+        end
 
-    self.SpawnTime = CurTime()
-    self.PlaySoundTimer = CurTime()
-    self.StartPos = self:GetPos()
+        self.SpawnTime = CurTime()
+        self.PlaySoundTimer = CurTime()
+        self.StartPos = self:GetPos()
 
-    self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
-    self.ExplodeTimer = CurTime() + 2
-    self.StartTime = CurTime()
+        self:SetCollisionGroup(COLLISION_GROUP_PLAYER_MOVEMENT)
+        self.ExplodeTimer = CurTime() + 2
+        self.StartTime = CurTime()
+
+        local owner = self:GetOwner()
+        if IsValid(owner) and owner:IsNPC() then
+            local plyOwner = owner:GetOwner()
+            if IsValid(plyOwner) and plyOwner:IsPlayer() then
+                self.PlayerOwner = plyOwner
+            end
+        end
     end
 
     ParticleEffectAttach("antlion_spit_trail", PATTACH_ABSORIGIN_FOLLOW, self, 0)
@@ -86,12 +94,12 @@ function ENT:PhysicsCollide(colData, collider)
     dmg:SetInflictor(self)
     dmg:SetDamagePosition(pos)
     dmg:SetDamageCustom(HORDE.DMG_PLAYER_FRIENDLY)
-    util.BlastDamageInfo(dmg, pos, 150)
+    util.BlastDamageInfo(dmg, pos, 200)
 
-    for _, ent in pairs(ents.FindInSphere(self:GetPos(), 150)) do
+    for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
         if ent:IsPlayer() then
-            local healer = self.Owner
-            if not healer then
+            local healer = self.PlayerOwner
+            if not IsValid(healer) then
                 healer = self
             end
             local healinfo = HealInfo:New({amount=ent:GetMaxHealth() * 0.05, healer=healer})

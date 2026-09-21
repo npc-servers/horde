@@ -15,8 +15,9 @@ SWEP.PrintName = "M16A4"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2_2/c_m16.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_m4a1.mdl"
 
-SWEP.Damage = 47
-SWEP.DamageMin = 39
+SWEP.Damage = 48
+SWEP.DamageMin = 40
+SWEP.Penetration = 15
 
 SWEP.Firemodes = {
     {

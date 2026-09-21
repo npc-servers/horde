@@ -15,13 +15,17 @@ SWEP.PrintName = "AUG HBAR"
 SWEP.ViewModel = "models/weapons/arccw/fesiugmw2/c_steyr.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_aug.mdl"
 
-SWEP.Damage = 42
-SWEP.DamageMin = 30
+SWEP.Damage = 48
+SWEP.DamageMin = 38
+SWEP.Delay = 60 / 800
+SWEP.Range = 2000 * 0.025  -- GAME UNITS * 0.025 = METRES
+SWEP.Penetration = 10
 
-SWEP.Primary.ClipSize = 50
+SWEP.Primary.ClipSize = 60
 
-SWEP.Recoil = 0.2
-
+SWEP.Recoil = 0.25
+SWEP.RecoilSide = 0.15
+SWEP.SightedSpeedMult = 0.75
 SWEP.ShootSound = "ArcCW_Horde.MW2.HBAR_Fire"
 SWEP.ShootMechSound = "ArcCW_Horde.MW2.HBAR_Mech"
 SWEP.ShootSoundSilenced = "ArcCW_Horde.MW2.HBAR_Fire_Sil"

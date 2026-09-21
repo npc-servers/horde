@@ -34,8 +34,7 @@ SWEP.PrimaryEffects_SpawnShells = false
 function SWEP:CustomOnPrimaryAttack_BeforeShoot()
 	if CLIENT then return end
 
-	for i = 1, 6 do
-
+	for _ = 1, 6 do
 		local bullet = ents.Create( "obj_vj_horde_bullet" )
 		bullet:SetPos( self:GetAttachment ( self:LookupAttachment( "muzzle" ) ) .Pos )
 		bullet:SetAngles( self:GetOwner():GetAngles() )

@@ -309,7 +309,7 @@ function plymeta:Horde_SyncEconomy()
 
         net.Start( "horde_sync_money" )
             net.WriteEntity( self )
-            net.WriteUInt( selfTbl.Horde_money, 16 )
+            net.WriteUInt( selfTbl.Horde_money, 18 )
         net.Broadcast()
     end
 
@@ -541,7 +541,7 @@ net.Receive("Horde_BuyItem", function (len, ply)
                 ply:SelectWeapon(class)
             elseif item.entity_properties.type == HORDE.ENTITY_PROPERTY_GIVE then
                 -- Give entity
-                if GetConVar("horde_default_item_config"):GetInt() == 1 and class == "item_battery" then
+                if GetConVar("horde_default_item_config"):GetInt() == 1 and class == "horde_armor_battery" then
                     -- Prevent distribution of batteries.
                     if ply:Armor() >= ply:GetMaxArmor() then return end
                 end
@@ -795,7 +795,6 @@ net.Receive("Horde_SellItem", function (len, ply)
     if not ply:IsValid() then return end
     local class = net.ReadString()
     local canSell, why = hook.Call("CanSell", HORDE, ply, class)
-    print(class)
     if canSell == false then
         HORDE:SendNotification(why or "You can't sell this.", 1, ply)
         return

@@ -41,10 +41,10 @@ SWEP.ExtendedClipSize = 48
 SWEP.ReducedClipSize = 16
 
 SWEP.VisualRecoilMult = 0
-SWEP.Recoil = 0.60
-SWEP.RecoilSide = 0.55
+SWEP.Recoil = 0.50
+SWEP.RecoilSide = 0.45
 SWEP.RecoilRise = 0
-
+SWEP.Penetration = 6
 SWEP.Delay = 60 / 950-- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
@@ -69,11 +69,10 @@ SWEP.MoveDispersion = 200
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
 
-SWEP.ShootSound =			"weapons/fesiugmw2/fire/miniuzi.wav"
+SWEP.ShootSound =			")weapons/fesiugmw2/fire/miniuzi.wav"
 --SWEP.DistantShootSound =	"weapons/fesiugmw2/fire_distant/miniuzi.wav"
-SWEP.ShootSoundSilenced =	"weapons/fesiugmw2/fire/usp45_sil.wav"
+SWEP.ShootSoundSilenced =	")weapons/fesiugmw2/fire/mp5_sil.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -204,7 +203,7 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Perk",
-        Slot = "go_perk"
+        Slot = {"go_perk", "go_perk_smg"}
     },
     {
         PrintName = "Camouflage",

@@ -13,19 +13,31 @@ GADGET.Params = {
 GADGET.Hooks = {}
 
 local function Blast(attacker, inflictor, pos, radius, damage, effect_name, sound_name)
-    local dmg = DamageInfo()
-    dmg:SetAttacker(attacker)
-    dmg:SetInflictor(inflictor)
-    dmg:SetDamageType(DMG_BLAST)
-    dmg:SetDamage(damage)
-    util.BlastDamageInfo(dmg, pos, radius)
+    for _, ent in ipairs(ents.FindInSphere(pos, radius)) do
+        if IsValid(ent) and (HORDE:IsEnemy(ent) or (IsValid(attacker) and ent == attacker)) then
+            local dist = pos:Distance(ent:GetPos())
+            local scale = 1 - (dist / radius)
+
+            local dmg = DamageInfo()
+            dmg:SetAttacker(attacker)
+            dmg:SetInflictor(inflictor)
+            dmg:SetDamageType(DMG_BLAST)
+            dmg:SetDamage(damage * scale)
+            dmg:SetDamagePosition(ent:GetPos())
+
+            ent:TakeDamageInfo(dmg)
+        end
+    end
+
     local effectdata = EffectData()
     effectdata:SetOrigin(pos)
+
     if effect_name then
         ParticleEffect(effect_name, pos, Angle(0, 0, 0))
     else
-        util.Effect( "Explosion", effectdata )
+        util.Effect("Explosion", effectdata)
     end
+
     if sound_name then
         sound.Play(sound_name, pos, 1000)
     end

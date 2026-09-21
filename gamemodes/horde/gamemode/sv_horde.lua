@@ -474,9 +474,14 @@ function HORDE:SpawnEnemy(enemy, pos)
 
     local spawned_enemy = ents.Create(enemy.class)
     spawned_enemy:SetPos(pos)
-    spawned_enemy:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
-    timer.Simple(0, function() spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0)) end)
     spawned_enemy:Spawn()
+
+	timer.Simple(0, function()
+		if not IsValid( spawned_enemy ) then return end
+		spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0))
+		spawned_enemy:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+	end)
+	spawned_enemy:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 
     HORDE.spawned_enemies[spawned_enemy:EntIndex()] = true
     spawned_enemy:Horde_SetName(enemy.name)
@@ -559,7 +564,9 @@ function HORDE:SpawnEnemy(enemy, pos)
 
     if enemy.color then
         spawned_enemy:SetColor(enemy.color)
-        spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        if enemy.color.a ~= 255 then
+            spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        end
     end
 
     if enemy.weapon then
@@ -1007,6 +1014,12 @@ function HORDE:StartBreak()
     net.Broadcast()
     timer.Create("Horder_Counter", 1, 0, function ()
         if not HORDE.start_game then return end
+
+        if HORDE.Skip_Wave_Timer then
+            HORDE.current_break_time = 10
+            HORDE.Skip_Wave_Timer = nil
+        end
+
         HORDE:BroadcastBreakCountDownMessage(HORDE.current_break_time, false)
 
         if 0 < HORDE.current_break_time then
@@ -1219,6 +1232,7 @@ function HORDE:WaveEnd()
     horde_boss_properties = nil
     horde_boss_reposition = false
     horde_boss_critical = false
+    HORDE.player_ready = {}
 
     HORDE:StartBreak()
     local enemies = HORDE:ScanEnemies()
@@ -1250,11 +1264,16 @@ function HORDE:WaveEnd()
     net.WriteUInt(HORDE.render_highlight_disable, 3)
     net.Broadcast()
 
-    for _, ply in pairs(player.GetAll()) do
+    for _, ply in ipairs(player.GetAll()) do
         if not ply:Alive() then ply:Spawn() end
+        
         HORDE.player_class_changed[ply:SteamID()] = false
         HORDE.player_ready[ply] = 0
     end
+
+    net.Start("Horde_PlayerReadySync")
+        net.WriteTable(HORDE.player_ready)
+    net.Broadcast()
 
     if GetConVarNumber("horde_npc_cleanup") == 1 then
         for _, ent in pairs(ents.GetAll()) do
@@ -1291,8 +1310,6 @@ function HORDE:WaveEnd()
         ply:Horde_SetGivenStarterWeapons(nil)
         ply:Horde_ApplyPerksForClass()
         HORDE:SaveRank(ply)
-
-        ply:Horde_SyncExp()
         HORDE:TryAddTopTen(ply)
     end
 

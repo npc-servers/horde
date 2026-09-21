@@ -1,6 +1,6 @@
 GADGET.PrintName = "Reinforcements"
 GADGET.Description = [[Active Gadget:
-Summons a lesser Projection Clone with a pump shotgun.
+Summons a lesser Projection Clone with an auto shotgun.
 
 Inherits properties from Juxtaposition perk skill.
 Lesser Projection Clone has {1} less health.]]

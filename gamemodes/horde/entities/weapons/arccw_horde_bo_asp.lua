@@ -1,0 +1,225 @@
+if not ArcCWInstalled then return end
+if CLIENT then
+    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_horde_bo_asp" )
+    killicon.Add( "arccw_horde_bo_asp", "arccw/weaponicons/arccw_horde_bo_asp", Color( 0, 0, 0, 255 ) )
+end
+
+SWEP.Base = "arccw_base"
+
+SWEP.Spawnable = true
+SWEP.Category = "ArcCW - Horde"
+SWEP.Slot = 1
+
+SWEP.PrintName = "ASP"
+SWEP.Trivia_Class = "Pistol"
+SWEP.Trivia_Desc = "Low profile pistol.\nThis one is chambered in a special cartridge, designed for melee fighters."
+SWEP.Trivia_Manufacturer = "ASP"
+SWEP.Trivia_Calibre = "9x19mm Parabellum"
+SWEP.Trivia_Mechanism = "Recoil-Operated"
+SWEP.Trivia_Country = "United States"
+SWEP.Trivia_Year = "1975"
+
+SWEP.ViewModel = "models/horde/weapons/bo/asp/viewmodel.mdl"
+SWEP.WorldModel = "models/weapons/w_pistol.mdl"
+
+SWEP.Damage = 32
+SWEP.DamageMin = 5
+SWEP.Range = 25
+SWEP.DamageType = DMG_SLASH
+SWEP.Penetration = 2
+
+SWEP.ChamberSize = 0
+SWEP.Primary.ClipSize = 12
+
+SWEP.Recoil = 0.3
+SWEP.RecoilSide = 0.15
+SWEP.RecoilRise = 0.1
+SWEP.MaxRecoilBlowback = 0
+SWEP.VisualRecoilMult = 0
+SWEP.RecoilPunch = 0
+SWEP.RecoilPunchBackMax = 0
+SWEP.RecoilPunchBackMaxSights = 0
+SWEP.RecoilVMShake = 0
+
+SWEP.Delay = 60 / 600
+SWEP.Firemodes = {
+    {
+        Mode = 1,
+    }
+}
+
+SWEP.NotForNPCS = true
+
+SWEP.HipDispersion = 250
+SWEP.MoveDispersion = 50
+SWEP.JumpDispersion = 50
+
+SWEP.ShootVol = 75
+
+SWEP.ShootSound = {
+    ")horde/weapons/bo/asp/fire_01.wav",
+    ")horde/weapons/bo/asp/fire_02.wav",
+    ")horde/weapons/bo/asp/fire_03.wav",
+    ")horde/weapons/bo/asp/fire_04.wav",
+    ")horde/weapons/bo/asp/fire_05.wav"
+}
+SWEP.DistantShootSound = "^horde/weapons/distant/pistol_distant.wav"
+
+SWEP.MuzzleEffect = "muzzleflash_pistol"
+
+SWEP.SpeedMult = 1
+SWEP.SightedSpeedMult = 0.9
+
+SWEP.IronSightStruct = {
+    Pos = Vector( -2.7958, 0, 1.7364 ),
+    Ang = Angle( 0, 0, 0 ),
+    Magnification = 1.1,
+}
+
+SWEP.HoldtypeHolstered = "normal"
+SWEP.HoldtypeActive = "pistol"
+SWEP.HoldtypeSights = "revolver"
+
+SWEP.ActivePos = Vector( 0, 2, 1 )
+SWEP.ActiveAng = Angle( 0, 0, 0 )
+
+SWEP.SprintPos = Vector( 0, 0, 0 )
+SWEP.SprintAng = Angle( 0, 0, 0 )
+
+SWEP.Attachments = {
+    {
+        PrintName = "Ammo Type",
+        DefaultAttName = "Standard Ammo",
+        Slot = "go_ammo"
+    },
+    {
+        PrintName = "Perk",
+        Slot = "go_perk"
+    },
+    {
+        PrintName = "Charm",
+        Slot = "charm",
+        FreeSlot = true,
+        Bone = "tag_weapon",
+        Offset = {
+            vpos = Vector( 1.5, -0.15, -0.5 ),
+            vang = Angle( 0, 0, 0 ),
+        },
+        NoWM = true,
+    },
+}
+
+SWEP.Animations = {
+    ["ready"] = {
+        Source = "reg_draw_first",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Pickup", t = 1 / 40 },
+            { s = "horde/weapons/bo/asp/slide_pull.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo/asp/slide_release.wav", t = 11 / 40 },
+        }
+    },
+    ["draw"] = {
+        Source = "reg_draw",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Rattle", t = 1 / 60 },
+        }
+    },
+    ["draw_empty"] = {
+        Source = "reg_draw_empty",
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Rattle", t = 1 / 60 },
+        }
+    },
+    ["holster"] = {
+        Source = "reg_holster"
+    },
+    ["holster_empty"] = {
+        Source = "reg_holster_empty"
+    },
+    ["reload"] = {
+        Source = "reg_reload",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
+            { s = "horde/weapons/bo/asp/mag_out.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo/asp/mag_futz.wav", t = 17 / 40 },
+            { s = "horde/weapons/bo/asp/mag_in.wav", t = 24 / 40 },
+        },
+    },
+    ["reload_empty"] = {
+        Source = "reg_reload_empty",
+        TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
+        SoundTable = {
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 1 / 40 },
+            { s = "ArcCW_Horde_BO_ASP.Reload", t = 21 / 40 },
+            { s = "horde/weapons/bo/asp/mag_out.wav", t = 5 / 40 },
+            { s = "horde/weapons/bo/asp/mag_futz.wav", t = 19 / 40 },
+            { s = "horde/weapons/bo/asp/mag_in.wav", t = 24 / 40 },
+            { s = "horde/weapons/bo/asp/slide_release.wav", t = 37 / 40 },
+        },
+    },
+    ["fire"] = {
+        Source = "reg_fire"
+    },
+    ["fire_iron"] = {
+        Source = "reg_ads_fire"
+    },
+    ["fire_empty"] = {
+        Source = "reg_fire_last"
+    },
+    ["fire_iron_empty"] = {
+        Source = "reg_ads_fire_last"
+    },
+    ["idle"] = {
+        Source = "reg_idle"
+    },
+    ["idle_empty"] = {
+        Source = "reg_idle_empty"
+    },
+    ["idle_sprint"] = {
+        Source = "reg_sprint"
+    },
+    ["idle_sprint_empty"] = {
+        Source = "reg_sprint_empty"
+    },
+    ["enter_sprint"] = {
+        Source = "reg_sprint_in"
+    },
+    ["exit_sprint"] = {
+        Source = "reg_sprint_out"
+    }
+}
+
+sound.Add( {
+    name = "ArcCW_Horde_BO_ASP.Reload",
+    volume = 1.0,
+    sound = {
+        "horde/weapons/bo/reload_01.wav",
+        "horde/weapons/bo/reload_02.wav",
+        "horde/weapons/bo/reload_03.wav",
+        "horde/weapons/bo/reload_04.wav"
+    }
+} )
+
+sound.Add( {
+    name = "ArcCW_Horde_BO_ASP.Pickup",
+    volume = 1.0,
+    sound = {
+        ")horde/weapons/bo/pickup_01.wav",
+        ")horde/weapons/bo/pickup_02.wav",
+        ")horde/weapons/bo/pickup_03.wav"
+    }
+} )
+
+sound.Add( {
+    name = "ArcCW_Horde_BO_ASP.Rattle",
+    volume = 1.0,
+    sound = {
+        ")horde/weapons/bo/pullout_01.wav",
+        ")horde/weapons/bo/pullout_02.wav",
+        ")horde/weapons/bo/pullout_03.wav",
+        ")horde/weapons/bo/pullout_04.wav",
+        ")horde/weapons/bo/pullout_05.wav"
+    }
+} )

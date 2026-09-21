@@ -1,13 +1,13 @@
 PERK.PrintName = "Twin Heart"
 PERK.Description =
-[[{1} increased maximum health.
-Toggle R to recover your health from a synthetic heart.
-The heart stores health over time, up to {2} of your maximum health.]]
+[[{1} increased maximum health. Toggle R to recover health from a synthetic heart.
+The heart stores health over time, up to {2} of your maximum health.
+Toggling emits a pulse that removes mutations from enemies, {3} second cooldown.]]
 PERK.Icon = "materials/perks/carcass/twin_heart.png"
 PERK.Params = {
     [1] = {value = 0.25, percent = true},
     [2] = {value = 1, percent = true},
-    --[3] = {value = 30},
+    [3] = {value = 10},
 }
 PERK.Hooks = {}
 

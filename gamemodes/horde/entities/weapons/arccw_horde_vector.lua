@@ -34,10 +34,10 @@ SWEP.WorldModelOffset = {
 SWEP.MirrorVMWM = true
 SWEP.ViewModelFOV = 65
 
-SWEP.Damage = 25
-SWEP.DamageMin = 20
-SWEP.Range = 750 * 0.025  -- GAME UNITS * 0.025 = METRES
-SWEP.Penetration = 3
+SWEP.Damage = 52
+SWEP.DamageMin = 42
+SWEP.Range = 1000 * 0.025  -- GAME UNITS * 0.025 = METRES
+SWEP.Penetration = 10
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any
 
@@ -72,12 +72,11 @@ SWEP.MoveDispersion = 175
 SWEP.Primary.Ammo = "pistol" -- what ammo type the gun uses
 
 SWEP.ShootVol = 75 -- volume of shoot sound
-SWEP.ShootPitch = 110 -- pitch of shoot sound
 
-SWEP.ShootSound =			"horde/weapons/vector/kriss1.ogg"
+SWEP.ShootSound =			")weapons/fesiugmw2/fire/kriss.wav"
 SWEP.ShootMechSound =       ArcCW_MW2_Mech
 --SWEP.DistantShootSound =	"weapons/fesiugmw2/fire_distant/kriss.wav"
-SWEP.ShootSoundSilenced =	"weapons/fesiugmw2/fire/mp5_sil.wav"
+SWEP.ShootSoundSilenced =	")weapons/fesiugmw2/fire/mp5_sil.wav"
 
 SWEP.MuzzleEffect = "muzzleflash_smg"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -360,9 +359,9 @@ function SWEP:ChangeFiremode(pred)
         end
     end
 
-    ply:EmitSound("horde/weapons/mp7m/heal.ogg", 125, 100, 1, CHAN_AUTO)
+    ply:EmitSound(")horde/weapons/heal.wav", 125, 100, 1, CHAN_AUTO)
 
-    self:SetNextSecondaryFire(CurTime() + 1.5)
+    self:SetNextSecondaryFire(CurTime() + 1.2)
     return true
 end
 

@@ -90,17 +90,15 @@ SWEP.MoveDispersion = 250
 
 SWEP.Primary.Ammo = "RPG_Rocket" -- what ammo type the gun uses
 
-SWEP.ShootVol = 120 -- volume of shoot sound
-SWEP.ShootPitch = 100 -- pitch of shoot sound
+SWEP.ShootVol = 75 -- volume of shoot sound
 
-SWEP.ShootSound = "ArcCW_BO1.M202_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_BO1.M16_Sil"
-
---SWEP.MuzzleEffect = "muzzleflash_shotgun"
-SWEP.ShellModel = "models/shells/shell_12gauge.mdl"
-SWEP.ShellPitch = 100
-SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable
-SWEP.ShellScale = 1.5
+SWEP.ShootSound = {
+    ")weapons/arccw/bo1_m202/fire1.wav",
+    ")weapons/arccw/bo1_m202/fire2.wav",
+    ")weapons/arccw/bo1_m202/fire3.wav",
+    ")weapons/arccw/bo1_m202/fire4.wav",
+}
+SWEP.DistantShootSound = "^horde/weapons/distant/rpg_distant.wav"
 
 SWEP.MuzzleEffectAttachment = 1 -- which attachment to put the muzzle on
 SWEP.CaseEffectAttachment = nil -- which attachment to put the case effect on

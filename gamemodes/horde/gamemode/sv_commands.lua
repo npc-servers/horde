@@ -57,7 +57,7 @@ local function Start(ply)
 end
 
 function Ready(ply)
-    if HORDE.current_wave > 0 then return end
+    if HORDE.current_wave > 0 then SkipTraderTime(ply) return end
     if not ply:Alive() then
         HORDE:SendNotification("You can't get ready when you are dead!", 1, ply)
         return
@@ -80,6 +80,42 @@ function Ready(ply)
 
     if HORDE.start_game and HORDE.current_wave > 0 then return end
     HORDE:BroadcastPlayersReadyMessage(tostring(readyCount) .. "/" .. tostring(totalPlayers))
+end
+
+--Skip trader time--
+function SkipTraderTime(ply)
+    if HORDE.current_wave <= 0 then return end
+    if not HORDE:InBreak() then
+        HORDE:SendNotification("You can't skip right now!", 1, ply)
+        return
+    end
+    if HORDE.current_break_time <= 10 then
+        HORDE:SendNotification("Next wave is starting!", 1, ply)
+        return
+    end
+    if not ply:Alive() then
+        HORDE:SendNotification("You can't get ready when you are dead!", 1, ply)
+        return
+    end
+    
+    
+    HORDE.player_ready[ply] = 1
+    local skip_count = 0
+    local total_player = 0
+    for _, skip_ply in pairs(player.GetAll()) do
+        if HORDE.player_ready[skip_ply] == 1 then
+            skip_count = skip_count + 1
+        end
+        total_player = total_player + 1
+    end
+    
+    if skip_count >= total_player then
+        HORDE.Skip_Wave_Timer = true
+    end
+
+    net.Start("Horde_PlayerReadySync")
+        net.WriteTable(HORDE.player_ready)
+    net.Broadcast()
 end
 
 local function End(ply)
@@ -210,6 +246,7 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
     if text[1] == "!help" then
         ply:PrintMessage(HUD_PRINTTALK, "'!ready' - Get ready")
         ply:PrintMessage(HUD_PRINTTALK, "'!shop' - Open shop")
+        ply:PrintMessage(HUD_PRINTTALK, "'!skip' - Skip trader time")
         ply:PrintMessage(HUD_PRINTTALK, "'!drop' - Drop weapon")
         ply:PrintMessage(HUD_PRINTTALK, "'!throwmoney <amount>' - Drop money")
         ply:PrintMessage(HUD_PRINTTALK, "'!rtv' -Initiate a map change vote")
@@ -217,6 +254,8 @@ hook.Add("PlayerSay", "Horde_Commands", function(ply, input, public)
         Start(ply)
     elseif text[1] == "!ready" then
         Ready(ply)
+    elseif text[1] == "!skip" then
+        SkipTraderTime(ply)
     elseif text[1] == "!end" then
         End(ply)
     elseif text[1] == "!shop" then
@@ -260,6 +299,10 @@ end)
 
 concommand.Add("horde_ready", function (ply, cmd, args)
     Ready(ply)
+end)
+
+concommand.Add("horde_skip_trader", function (ply, cmd, args)
+    SkipTraderTime(ply)
 end)
 
 concommand.Add("horde_end", function (ply, cmd, args)
@@ -357,8 +400,9 @@ concommand.Add("horde_testing_spawn_enemy", function (ply, cmd, args)
     local wave = args[2]
     local mutation = args[3]
     local player_count = args[4]
-    local enemy = HORDE.enemies[name .. tostring(wave)]
+    local enemy = HORDE.enemies[tostring(name) .. tostring(wave)]
     local npc_info = list.Get("NPC")[enemy.class]
+
     if not npc_info then
         print("[HORDE] NPC does not exist in ", list.Get("NPC"))
     end
@@ -443,7 +487,9 @@ concommand.Add("horde_testing_spawn_enemy", function (ply, cmd, args)
 
     if enemy.color then
         spawned_enemy:SetColor(enemy.color)
-        spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        if enemy.color.a ~= 255 then
+            spawned_enemy:SetRenderMode(RENDERMODE_TRANSCOLOR)
+        end
     end
 
     if enemy.weapon then
@@ -478,3 +524,88 @@ concommand.Add("horde_testing_spawn_enemy", function (ply, cmd, args)
         timer.Simple(0.1, function() spawned_enemy:Horde_SetMutation(args[4]) end)
     end
 end)
+
+concommand.Add("horde_testing_spawn_enemy_raw", function (ply, cmd, args)
+    if not ply:IsSuperAdmin() then HORDE:SendNotificationDenyAccess(ply) return end
+    local player_count = args[1]
+    local class, is_elite, weapon, mutation, health_scale, damage_scale, reward_scale, model_scale, boss_properties = args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10]
+
+    if not tobool(player_count) or not tobool(class) then
+        MsgC(Color( 255, 59, 173, 200),"- arguments: player count scaling, entity class, is an elite, weapon, mutation, health scale, damage scale, reward scale, model scale, is a boss\n - not all of these have to be filled out, just player scale (1 to 8) and entity class name is necessary. \n - used to spawn npcs for testing by manually filling in a bunch of variables that would normally be grabbed from the list definied in sh_enemy.lua. \n ")
+        return
+    end
+
+    local spawned_enemy = ents.Create(class)
+    local trace = ply:GetEyeTrace()
+
+    if not trace.Hit then return end
+
+    spawned_enemy:SetPos(trace.HitPos)
+
+    timer.Simple(0, function() spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0)) end)
+
+    spawned_enemy:Spawn()
+    spawned_enemy:SetKeyValue("spawnflags", bit.bor( SF_NPC_FADE_CORPSE))
+    spawned_enemy:Fire("StartPatrolling")
+    spawned_enemy:Fire("SetReadinessHigh")
+
+    if spawned_enemy:IsNPC() then
+        spawned_enemy:SetNPCState(NPC_STATE_COMBAT)
+    end
+
+    if tobool(model_scale) then
+        timer.Simple(0, function()
+            if not spawned_enemy:IsValid() then return end
+            local scale = spawned_enemy:GetModelScale()
+            spawned_enemy:SetModelScale((model_scale or 1) * scale)
+        end)
+    end
+
+    -- Health settings
+    local horde_players_count = player_count or player.GetCount()
+    if tobool(is_elite) then
+        spawned_enemy:Horde_SetElite()
+        local scale1
+        local add1
+        if tobool(boss_properties) then
+            scale1 = horde_players_count
+            add1 = 0.75
+        else
+            scale1 = math.min(8, horde_players_count)
+            add1 = 0.60
+        end
+        spawned_enemy:SetMaxHealth(spawned_enemy:GetMaxHealth() * math.max(1, scale1 * (add1 + HORDE.Difficulty[HORDE.CurrentDifficulty].eliteHealthScaleAdd)))
+    end
+
+    if tobool(health_scale) then
+        spawned_enemy:SetMaxHealth(spawned_enemy:GetMaxHealth() * health_scale)
+    end
+
+    if HORDE.endless == 1 then
+        spawned_enemy:SetMaxHealth(spawned_enemy:GetMaxHealth() * HORDE.endless_health_multiplier)
+    end
+
+    spawned_enemy:SetMaxHealth(spawned_enemy:GetMaxHealth() * HORDE.Difficulty[HORDE.CurrentDifficulty].healthMultiplier)
+
+    spawned_enemy:SetHealth(spawned_enemy:GetMaxHealth())
+
+    if tobool(reward_scale) then
+        spawned_enemy:SetVar("reward_scale", reward_scale)
+    end
+
+    if tobool(damage_scale) then
+        spawned_enemy:SetVar("damage_scale", damage_scale)
+    end
+
+    if tobool(weapon) then
+        spawned_enemy:Give(weapon)
+    end
+
+    spawned_enemy:SetLagCompensated(true)
+
+    if tobool(mutation) then
+        timer.Simple(0.1, function() spawned_enemy:Horde_SetMutation(mutation) end)
+    end
+end)
+
+
