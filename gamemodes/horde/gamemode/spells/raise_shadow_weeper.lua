@@ -7,7 +7,7 @@ SPELL.ChargeRelease         = nil
 SPELL.Cooldown              = 10
 
 SPELL.Slot                  = HORDE.Spell_Slot_Reload
-SPELL.DamageType            = { HORDE.DMG_PHYSICAL }
+SPELL.DamageType            = { HORDE.DMG_COLD }
 SPELL.Type                  = { HORDE.Spell_Type_Minion }
 
 SPELL.Icon                  = "spells/raise_shadow_hulk.png"
@@ -40,9 +40,9 @@ SPELL.Fire = function( ply, _, charge_stage )
 
 end
 
-SPELL.Price                 = 2000
+SPELL.Price                 = 1500
 SPELL.Upgrades              = 3
-SPELL.Upgrade_Description   = "Increases minion health and damage."
+SPELL.Upgrade_Description   = "Increases minion health and frost nova / melee damage."
 SPELL.Upgrade_Prices        = function( upgrade_level )
-    return 1000 + 100 * upgrade_level
+    return 800 + 100 * upgrade_level
 end
