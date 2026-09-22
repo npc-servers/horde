@@ -1,9 +1,16 @@
+AddCSLuaFile()
+
+if CLIENT then
+    SWEP.WepSelectIcon = surface.GetTextureID( "arccw/weaponicons/arccw_kf1vlad" )
+    killicon.Add( "arccw_horde_nailshot", "arccw/weaponicons/arccw_kf1vlad", Color( 0, 0, 0, 255 ) )
+end
+
 SWEP.Base = "arccw_base"
 SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "Arccw - Horde" -- edit this if you like
 SWEP.AdminOnly = false
 
-SWEP.PrintName = "Perforator"
+SWEP.PrintName = "Nail Shotgun"
 SWEP.TrueName = "Vlad the Impaler"
 SWEP.Trivia_Class = "Shotgun"
 SWEP.Trivia_Desc = "A nailgun heavily modified to shoot nails like an auto-shotgun. Nails have enough velocity to pierce, but suffers from extreme scatter and damage dropoff."
@@ -32,8 +39,9 @@ SWEP.WorldModelOffset = {
 SWEP.ViewModelFOV = 70
 
 SWEP.Damage = 30
-SWEP.DamageMin = 15
-SWEP.Range = 35
+SWEP.DamageMin = 10
+SWEP.Range = 30
+SWEP.RangeMin = 5
 SWEP.Penetration = 13
 SWEP.DamageType = DMG_SLASH
 SWEP.ShootEntity = nil
@@ -81,7 +89,7 @@ SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 2
 SWEP.SightTime = 0.175
 
-SWEP.SpeedMult = 0.8
+SWEP.SpeedMult = 1
 SWEP.SightedSpeedMult = 0.8
 
 SWEP.BarrelLength = 18

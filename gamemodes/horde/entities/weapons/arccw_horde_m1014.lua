@@ -18,7 +18,8 @@ SWEP.WorldModel = "models/weapons/arccw_go/v_shot_m1014.mdl"
 SWEP.Damage = 40
 SWEP.DamageMin = 20
 SWEP.Penetration = 10
-
+SWEP.SpeedMult = 1.05
+SWEP.SightedSpeedMult = 0.85
 SWEP.Recoil = 2
 SWEP.RecoilSide = 1
 SWEP.RecoilPunch = 0
@@ -46,7 +47,7 @@ SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true}
 
-local reloadMult = 0.6
+local reloadMult = 0.85
 
 SWEP.Animations = {
     ["sgreload_start"] = {
@@ -81,3 +82,7 @@ SWEP.Animations = {
         Mult = reloadMult,
     }
 }
+function SWEP:Hook_SelectInsertAnimation(wep, data)
+    data = {count = 2, anim = "sgreload_insert"}
+    return data
+end
