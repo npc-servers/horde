@@ -1,28 +1,14 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/horde/infected_stalker/infected_stalker.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 100
+ENT.StartHealth = 200
 ENT.HullType = HULL_HUMAN
-ENT.EntitiesToNoCollide = {
-	"player",
-	"npc_vj_horde_spectre",
-	"npc_vj_horde_antlion",
-	"npc_vj_horde_smg_turret",
-	"npc_vj_horde_shotgun_turret",
-	"npc_vj_horde_rocket_turret",
-	"npc_vj_horde_laster_turret",
-	"npc_vj_horde_class_survivor",
-	"npc_vj_horde_class_assault",
-	"npc_vj_horde_vortigaunt",
-	"npc_vj_horde_combat_bot",
-	"npc_manhack"
-}
----------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
 ENT.FriendsWithAllPlayerAllies = true
 ENT.PlayerFriendly = true
@@ -33,7 +19,7 @@ ENT.MeleeAttackDistance = 32 -- How close does it have to be until it attacks?
 ENT.MeleeAttackDamageDistance = 60 -- How far does the damage go?
 ENT.TimeUntilMeleeAttackDamage = 0.4 -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDamage = 20
-ENT.MeleeAttackDamageType = DMG_SLASH
+ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
 ENT.HasLeapAttack = false -- Should the SNPC have a leap attack?
 ENT.FootStepTimeRun = 0.2 -- Next foot step sound when it is running
@@ -49,10 +35,10 @@ ENT.AnimTbl_Run = {ACT_WALK}
 ENT.SoundTbl_FootStep = {"npc/stalker/stalker_footstep_left1.wav", "npc/stalker/stalker_footstep_left2.wav", "npc/stalker/stalker_footstep_right1.wav", "npc/stalker/stalker_footstep_right2.wav"}
 ENT.SoundTbl_Idle = {}
 ENT.SoundTbl_Alert = {}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"zsszombies/zmisc_pain1.wav","zsszombies/zmisc_pain2.wav","zsszombies/zmisc_pain3.wav","zsszombies/zmisc_pain4.wav","zsszombies/zmisc_pain5.wav","zsszombies/zmisc_pain6.wav"}
-ENT.SoundTbl_Death = {"zsszombies/zmisc_die1.wav","zsszombies/zmisc_die2.wav","zsszombies/zmisc_die3.wav"}
+ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav", "npc/zombie/claw_strike2.wav", "npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav", "zsszombie/miss2.wav", "zsszombie/miss3.wav", "zsszombie/miss4.wav"}
+ENT.SoundTbl_Pain = {"zsszombies/zmisc_pain1.wav", "zsszombies/zmisc_pain2.wav", "zsszombies/zmisc_pain3.wav", "zsszombies/zmisc_pain4.wav", "zsszombies/zmisc_pain5.wav", "zsszombies/zmisc_pain6.wav"}
+ENT.SoundTbl_Death = {"zsszombies/zmisc_die1.wav", "zsszombies/zmisc_die2.wav", "zsszombies/zmisc_die3.wav"}
 ENT.GeneralSoundPitch1 = 30
 ENT.GeneralSoundPitch2 = 30
 
@@ -62,20 +48,48 @@ ENT.NextBlastCooldown = 5
 ENT.AnimTbl_MeleeAttack = {}
 ENT.Critical = nil
 
+ENT.EntitiesToNoCollide = {
+	"player",
+	"npc_vj_horde_spectre",
+	"npc_vj_horde_shadow_weeper",
+	"npc_vj_horde_shadow_hulk",
+	"npc_vj_horde_phantasm",
+	"npc_vj_horde_antlion",
+	"npc_vj_horde_smg_turret",
+	"npc_vj_horde_shotgun_turret",
+	"npc_vj_horde_rocket_turret",
+	"npc_vj_horde_laster_turret",
+	"npc_vj_horde_class_survivor",
+	"npc_vj_horde_class_assault",
+	"npc_vj_horde_vortigaunt",
+	"npc_vj_horde_combat_bot",
+	"npc_manhack"
+}
+
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.HasAllies = true
 
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:Shockwave(delay)
+function ENT:Shockwave( delay )
 	if self.Horde_Stunned then return end
-	timer.Simple(delay, function()
+	timer.Simple( delay, function()
 		if not self:IsValid() then return end
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_GENERIC)
-		dmg:SetDamage(self.MeleeAttackDamage / 2)
+		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
+		dmg:SetDamage(self.MeleeAttackDamage / 3)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
 			if HORDE:IsEnemy(ent) then
@@ -125,7 +139,8 @@ function ENT:CustomOnInitialize()
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
-	self:SetHealth((90 + 32 * self.properties.level))
+	self.StartHealth = math.floor(self.StartHealth + 85	* self.properties.level)
+	self:SetHealth(self.StartHealth)
 	self:AddRelationship("npc_manhack D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
@@ -138,7 +153,7 @@ function ENT:ShockAttack(delay)
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
 		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-		dmg:SetDamage(self.MeleeAttackDamage / 2)
+		dmg:SetDamage(self.MeleeAttackDamage / 2 * self.properties.level)
 		dmg:SetDamagePosition(self:GetPos())
 		util.BlastDamageInfo(dmg, self:GetPos(), 350)
 
