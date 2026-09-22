@@ -6,7 +6,7 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/zombie/classic.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 200
+ENT.StartHealth = 30
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
@@ -19,7 +19,7 @@ ENT.MeleeAttackDistance = 35 -- How close does it have to be until it attacks?
 ENT.MeleeAttackDamageDistance = 95 -- How far does the damage go?
 ENT.TimeUntilMeleeAttackDamage = 0.8 -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDamage = 30
-ENT.MeleeAttackDamageType = DMG_SLASH
+ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
 ENT.HasLeapAttack = false -- Should the SNPC have a leap attack?
 ENT.FootStepTimeRun = 0.4 -- Next foot step sound when it is running
@@ -43,6 +43,9 @@ ENT.SoundTbl_Pain = nil
 ENT.EntitiesToNoCollide = {
 	"player",
 	"npc_vj_horde_spectre",
+	"npc_vj_horde_shadow_weeper",
+	"npc_vj_horde_shadow_hulk",
+	"npc_vj_horde_phantasm",
 	"npc_vj_horde_antlion",
 	"npc_vj_horde_smg_turret",
 	"npc_vj_horde_shotgun_turret",
@@ -61,6 +64,16 @@ ENT.HasDeathRagdoll = false
 ENT.HasGibOnDeath = true
 ENT.HasAllies = true
 
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +84,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_GENERIC)
+		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
@@ -122,7 +135,7 @@ function ENT:CustomOnInitialize()
 	util.Effect("abyssal_roar", e, true, true)
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(Color(120, 230, 230, 200))
-	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
+	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
 	self:SetHealth(200)
 	self:AddRelationship("npc_turret_floor D_LI 99")
 	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
@@ -141,10 +154,10 @@ function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
     local dmg = DamageInfo()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
-    dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-    dmg:SetDamage(50)
-    util.BlastDamageInfo(dmg, self:GetPos(), 200)
-	
+	dmg:SetDamageType(DMG_REMOVENORAGDOLL)
+	dmg:SetDamage(50 * self.properties.level)
+	util.BlastDamageInfo(dmg, self:GetPos(), 200)
+
 	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
 			if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
 				ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
