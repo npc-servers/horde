@@ -10,25 +10,21 @@ SPELL.Type            = { HORDE.Spell_Type_Minion }
 SPELL.Icon            = "spells/raise_shadow_hulk.png"
 SPELL.Description     = [[Raises a Weeper Spectre created using dark matter. Weeper Spectre will attack nearby enemies with a frost nova, dealing Cold damage and inflicting Frostbite. You can create at most 1 Weeper Spectre.]]
 SPELL.Fire            = function( ply, _, charge_stage )
+    if charge_stage == 2 then
+        if not HORDE.player_drop_entities[ply:SteamID()] then return end
 
-     if charge_stage == 2 then
+        for _, ent in pairs( HORDE.player_drop_entities[ply:SteamID()] ) do
+            if ent:IsNPC() and ent:GetClass() == "npc_vj_horde_shadow_weeper" then
 
-            if not HORDE.player_drop_entities[ply:SteamID()] then return end
-
-            for _, ent in pairs( HORDE.player_drop_entities[ply:SteamID()] ) do
-
-                if ent:IsNPC() and ent:GetClass() == "npc_vj_horde_shadow_weeper" then
-
-                    local rand = VectorRand() * 50
-                    rand.z = 0
-                    ent:SetPos( ply:GetPos() + rand )
-
-                end
+                local rand = VectorRand() * 50
+                rand.z = 0
+                ent:SetPos( ply:GetPos() + rand )
 
             end
-            return
-
         end
+
+        return
+    end
 
     return HORDE:RaiseSpectre( ply, {
         weeper_spectre = true
