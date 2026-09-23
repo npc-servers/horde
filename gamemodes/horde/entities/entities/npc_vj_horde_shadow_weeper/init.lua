@@ -139,6 +139,7 @@ function ENT:CustomOnInitialize()
 	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
 	self.StartHealth = math.floor(self.StartHealth + 85 * self.properties.level)
+	self:SetHealth(self.StartHealth)
 	self:AddRelationship("npc_manhack D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
