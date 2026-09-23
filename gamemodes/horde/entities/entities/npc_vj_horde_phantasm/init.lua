@@ -19,7 +19,7 @@ ENT.MeleeAttackDistance = 35 -- How close does it have to be until it attacks?
 ENT.MeleeAttackDamageDistance = 95 -- How far does the damage go?
 ENT.TimeUntilMeleeAttackDamage = 0.8 -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDamage = 30
-ENT.MeleeAttackDamageType = DMG_SLASH
+ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
 ENT.HasLeapAttack = false -- Should the SNPC have a leap attack?
 ENT.FootStepTimeRun = 0.4 -- Next foot step sound when it is running
@@ -43,6 +43,10 @@ ENT.SoundTbl_Pain = nil
 ENT.EntitiesToNoCollide = {
 	"player",
 	"npc_vj_horde_spectre",
+	"npc_vj_horde_phantasm",
+	"npc_vj_horde_shadow_hulk",
+	"npc_vj_horde_shadow_weeper",
+	"npc_vj_horde_antlion",
 	"npc_vj_horde_antlion",
 	"npc_vj_horde_smg_turret",
 	"npc_vj_horde_shotgun_turret",
@@ -61,6 +65,16 @@ ENT.HasDeathRagdoll = false
 ENT.HasGibOnDeath = true
 ENT.HasAllies = true
 
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +85,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_GENERIC)
+		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do

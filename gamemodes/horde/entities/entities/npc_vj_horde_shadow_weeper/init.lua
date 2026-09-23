@@ -6,11 +6,14 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/horde/infected_stalker/infected_stalker.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 100
+ENT.StartHealth = 200
 ENT.HullType = HULL_HUMAN
 ENT.EntitiesToNoCollide = {
 	"player",
 	"npc_vj_horde_spectre",
+	"npc_vj_horde_shadow_hulk",
+	"npc_vj_horde_shadow_weeper",
+	"npc_vj_horde_phantasm",
 	"npc_vj_horde_antlion",
 	"npc_vj_horde_smg_turret",
 	"npc_vj_horde_shotgun_turret",
@@ -33,7 +36,7 @@ ENT.MeleeAttackDistance = 32 -- How close does it have to be until it attacks?
 ENT.MeleeAttackDamageDistance = 60 -- How far does the damage go?
 ENT.TimeUntilMeleeAttackDamage = 0.4 -- This counted in seconds | This calculates the time until it hits something
 ENT.MeleeAttackDamage = 20
-ENT.MeleeAttackDamageType = DMG_SLASH
+ENT.MeleeAttackDamageType = DMG_REMOVENORAGDOLL
 ENT.MeleeAttackBleedEnemy = false -- Should the player bleed when attacked by melee
 ENT.HasLeapAttack = false -- Should the SNPC have a leap attack?
 ENT.FootStepTimeRun = 0.2 -- Next foot step sound when it is running
@@ -62,6 +65,16 @@ ENT.NextBlastCooldown = 5
 ENT.AnimTbl_MeleeAttack = {}
 ENT.Critical = nil
 
+ENT.Horde_Immune_Status = {
+	[HORDE.Status_Bleeding] = true,
+	[HORDE.Status_Frostbite] = true,
+	[HORDE.Status_Ignite] = false,
+	[HORDE.Status_Break] = true,
+	[HORDE.Status_Necrosis] = true,
+	[HORDE.Status_Hemorrhage] = true,
+}
+ENT.Immune_AcidPoisonRadiation = true
+
 ENT.HasAllies = true
 
 ENT.VJFriendly = false
@@ -74,7 +87,7 @@ function ENT:Shockwave(delay)
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
-		dmg:SetDamageType(DMG_GENERIC)
+		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
 		dmg:SetDamage(self.MeleeAttackDamage / 2)
 
 		for _, ent in pairs(ents.FindInSphere(self:GetPos(), 250)) do
@@ -125,7 +138,8 @@ function ENT:CustomOnInitialize()
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(Color(120, 230, 230, 200))
 	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
-	self:SetHealth((90 + 32 * self.properties.level))
+	self.StartHealth = math.floor(self.StartHealth + 85 * self.properties.level)
+	self:SetHealth(self.StartHealth)
 	self:AddRelationship("npc_manhack D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
