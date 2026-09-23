@@ -1,7 +1,7 @@
 SPELL.PrintName       = "Raise Weeper Spectre"
 SPELL.Weapon          = { "horde_void_projector" }
-SPELL.Mind            = { 60,0 }
-SPELL.ChargeTime      = { 0,0.5 }
+SPELL.Mind            = { 60, 0 }
+SPELL.ChargeTime      = { 0, 0.5 }
 SPELL.ChargeRelease   = nil
 SPELL.Cooldown        = 11
 SPELL.Slot            = HORDE.Spell_Slot_Reload
