@@ -6,7 +6,7 @@ include('shared.lua')
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
 ENT.Model = {"models/zombie/classic.mdl"} -- The game will pick a random model from the table when the SNPC is spawned | Add as many as you want
-ENT.StartHealth = 200
+ENT.StartHealth = 30
 ENT.HullType = HULL_HUMAN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_PLAYER_ALLY", "CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
@@ -136,7 +136,7 @@ function ENT:CustomOnInitialize()
 	util.Effect("abyssal_roar", e, true, true)
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(Color(120, 230, 230, 200))
-	self.MeleeAttackDamage = self.MeleeAttackDamage + 6 * self.properties.level
+	self.MeleeAttackDamage = 2.75 * (self.MeleeAttackDamage + 6 * self.properties.level)
 	self:SetHealth(200)
 	self:AddRelationship("npc_turret_floor D_LI 99")
 	self:AddRelationship("npc_vj_horde_combat_bot D_LI 99")
@@ -155,10 +155,10 @@ function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
     local dmg = DamageInfo()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
-    dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-    dmg:SetDamage(50)
-    util.BlastDamageInfo(dmg, self:GetPos(), 200)
-	
+	dmg:SetDamageType(DMG_REMOVENORAGDOLL)
+	dmg:SetDamage(50 * self.properties.level)
+	util.BlastDamageInfo(dmg, self:GetPos(), 200)
+
 	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
 			if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
 				ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)

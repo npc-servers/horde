@@ -1,5 +1,5 @@
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
 	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
@@ -52,10 +52,10 @@ ENT.AnimTbl_Run = {ACT_WALK}
 ENT.SoundTbl_FootStep = {"npc/stalker/stalker_footstep_left1.wav", "npc/stalker/stalker_footstep_left2.wav", "npc/stalker/stalker_footstep_right1.wav", "npc/stalker/stalker_footstep_right2.wav"}
 ENT.SoundTbl_Idle = {}
 ENT.SoundTbl_Alert = {}
-ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav","npc/zombie/claw_strike2.wav","npc/zombie/claw_strike3.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav","zsszombie/miss2.wav","zsszombie/miss3.wav","zsszombie/miss4.wav"}
-ENT.SoundTbl_Pain = {"zsszombies/zmisc_pain1.wav","zsszombies/zmisc_pain2.wav","zsszombies/zmisc_pain3.wav","zsszombies/zmisc_pain4.wav","zsszombies/zmisc_pain5.wav","zsszombies/zmisc_pain6.wav"}
-ENT.SoundTbl_Death = {"zsszombies/zmisc_die1.wav","zsszombies/zmisc_die2.wav","zsszombies/zmisc_die3.wav"}
+ENT.SoundTbl_MeleeAttack = {"npc/zombie/claw_strike1.wav", "npc/zombie/claw_strike2.wav", "npc/zombie/claw_strike3.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"zsszombie/miss1.wav", "zsszombie/miss2.wav", "zsszombie/miss3.wav", "zsszombie/miss4.wav"}
+ENT.SoundTbl_Pain = {"zsszombies/zmisc_pain1.wav", "zsszombies/zmisc_pain2.wav", "zsszombies/zmisc_pain3.wav", "zsszombies/zmisc_pain4.wav", "zsszombies/zmisc_pain5.wav", "zsszombies/zmisc_pain6.wav"}
+ENT.SoundTbl_Death = {"zsszombies/zmisc_die1.wav", "zsszombies/zmisc_die2.wav", "zsszombies/zmisc_die3.wav"}
 ENT.GeneralSoundPitch1 = 30
 ENT.GeneralSoundPitch2 = 30
 
@@ -152,7 +152,7 @@ function ENT:ShockAttack(delay)
 		dmg:SetAttacker(self)
 		dmg:SetInflictor(self)
 		dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-		dmg:SetDamage(self.MeleeAttackDamage / 2)
+		dmg:SetDamage(self.MeleeAttackDamage / 2 * self.properties.level)
 		dmg:SetDamagePosition(self:GetPos())
 		util.BlastDamageInfo(dmg, self:GetPos(), 350)
 
