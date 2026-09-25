@@ -1,9 +1,9 @@
 PERK.PrintName = "Shield Bash"
 PERK.Icon = "materials/perks/paladin/shield_bash.png"
 PERK.Description = [[
-Divine Shield reduce debuff buildups by 50%.
-Press Shift + E dash forward, dealing 200 Blunt damage, stunning
-and pushing enemies you hit away. Cooldown: 10 seconds.]]
+Press Shift + E dash forward and heal yourself for 20% health. 
+Colliding with enemies deal 300 Blunt damage, stuns and pushes them away.
+Cooldown: 8 seconds.]]
 PERK.Hooks = {}
 
 if not SERVER then return end
@@ -11,7 +11,7 @@ if not SERVER then return end
 PERK.Hooks.Horde_OnSetPerk = function( ply, perk )
     if perk ~= "paladin_shield_bash" then return end
 
-    ply:Horde_SetPerkCooldown( 10 )
+    ply:Horde_SetPerkCooldown( 8 )
 
     net.Start( "Horde_SyncActivePerk" )
         net.WriteUInt( HORDE.Status_PaladinShieldBash, 8 )
@@ -32,24 +32,19 @@ PERK.Hooks.Horde_OnUnsetPerk = function( ply, perk )
     ply.Horde_PaladinShieldBashHitTargets = nil
 end
 
-PERK.Hooks.Horde_OnPlayerDebuffApply = function ( ply, _, bonus )
-    if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
-    if not ply.Horde_PaladinShielding then return end
-
-    bonus.less = bonus.less * 0.5
-end
-
 local bashKnockback = 1000
 local bashKnockUp = Vector( 0, 0, 200 )
 local bashDuration = 0.5
 
-local dmgAmt = 200
+local dmgAmt = 300
 local dmgType = DMG_CLUB
 
 PERK.Hooks.Horde_UseActivePerk = function( ply )
     if not ply:Horde_GetPerk( "paladin_shield_bash" ) then return end
 
     ply.Horde_PaladinBashing = true
+
+    HORDE:SelfHeal( ply, ply:GetMaxHealth() * 0.2 )
 
     local forward = ply:GetForward()
     local forwardForce = forward * ( ply:IsOnGround() and 2000 or 1000 )
@@ -103,7 +98,7 @@ PERK.Hooks.Horde_UseActivePerk = function( ply )
             util.Effect( "horde_aerial_parry", effect, true, true )
 
             ply:EmitSound( ")horde/player/quickstep.ogg" )
-            ply:EmitSound( "physics/flesh/flesh_impact_hard" .. math.random( 1, 5 ) .. ".wav" )
+            ply:EmitSound( "physics/metal/metal_grate_impact_hard" .. math.random( 2, 3 ) .. ".wav" )
         end
     end )
 
