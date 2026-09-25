@@ -80,9 +80,9 @@ ENT.HasAllies = true
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:Shockwave( delay )
+function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
-	timer.Simple( delay, function()
+	timer.Simple(delay, function()
 		if not self:IsValid() then return end
 		local dmg = DamageInfo()
 		dmg:SetAttacker(self)
