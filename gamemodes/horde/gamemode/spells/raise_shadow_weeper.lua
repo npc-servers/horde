@@ -29,7 +29,6 @@ SPELL.Fire            = function( ply, _, charge_stage )
     return HORDE:RaiseSpectre( ply, {
         weeper_spectre = true
     } )
-
 end
 SPELL.Price                 = 1500
 SPELL.Upgrades              = 3
