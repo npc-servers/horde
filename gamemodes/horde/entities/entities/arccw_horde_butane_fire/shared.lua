@@ -8,7 +8,7 @@ ENT.AdminSpawnable = false
 
 ENT.Model = "models/Items/AR2_Grenade.mdl"
 
-ENT.FireTime = 5
+ENT.FireTime = 3
 
 ENT.Armed = false
 
@@ -30,7 +30,7 @@ function entmeta:Horde_AddEffect_Molotov(ent)
     timer.Create("Horde_MolotovEffect" .. id, 0.5, 0, function ()
         if not self:IsValid() then timer.Remove("Horde_MolotovEffect" .. id) return end
         local d = DamageInfo()
-        d:SetDamage(13)
+        d:SetDamage(10)
         d:SetAttacker(ent.Owner)
         d:SetInflictor(ent)
         d:SetDamageType(DMG_BURN)
@@ -65,13 +65,13 @@ function ENT:EndTouch(ent)
 end
 
 function ENT:Initialize()
-    self:SetSolid( SOLID_OBB )
+   self:SetSolid( SOLID_OBB )
     self:SetMoveType( MOVETYPE_VPHYSICS )
     if SERVER then
         self:SetModel( self.Model )
         self:PhysicsInit(SOLID_OBB)
 
-        local maxs = Vector(150, 150, 100)
+        local maxs = Vector(100, 100, 100)
         local mins = -maxs
         self:SetCollisionBounds(mins, maxs)
         self:DrawShadow( false )
@@ -83,18 +83,13 @@ function ENT:Initialize()
         self.SpawnTime = CurTime()
         self:Detonate()
 
-        self.FireTime = math.Rand(4.5, 5.5)
+        self.FireTime = math.Rand(2.5, 3.5)
 
         timer.Simple(0.1, function()
             if not IsValid(self) then return end
             self:AddSolidFlags(FSOLID_TRIGGER)
             self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
         end)
-    end
-    local owner = self:GetOwner()
-    self.has_burner = nil
-    if IsValid( owner ) and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
-        self.has_burner = true
     end
 end
 
@@ -112,7 +107,7 @@ end
 function ENT:Think()
     if not self.SpawnTime then self.SpawnTime = CurTime() end
     if SERVER then
-        for _, e in pairs( ents.FindInSphere( self:GetPos(), 300 ) ) do
+        for _, e in pairs( ents.FindInSphere( self:GetPos(), 200 ) ) do
             if e:GetClass() == "horde_butane_can" and self:GetOwner() == e.Horde_Owner then
                 e:Detonate()
             end
@@ -127,19 +122,15 @@ function ENT:Think()
         for i = 1, 4 do
             local fire = emitter:Add(GetFireParticle(), self:GetPos() + (VectorRand() * 30))
             fire:SetVelocity( VectorRand() * 500 * VectorRand() )
-            fire:SetGravity( Vector(0, 0, 1000) )
+            fire:SetGravity( Vector(0, 0, 2000) )
             fire:SetDieTime( math.Rand(0.2, 0.5) )
-            fire:SetStartAlpha( 85 )
+            fire:SetStartAlpha( 55 )
             fire:SetEndAlpha( 0 )
-            fire:SetStartSize( 0 )
-            fire:SetEndSize( 50 )
+            fire:SetStartSize( 25 )
+            fire:SetEndSize( 3 )
             fire:SetRoll( math.Rand(-180, 180) )
             fire:SetRollDelta( math.Rand(-0.2,0.2) )
-            if self.has_burner then
-                fire:SetColor( 0, 135, 255 )
-            else
-                fire:SetColor( 255, 255, 255 )
-            end
+            fire:SetColor( 255, 255, 255 )
             fire:SetAirResistance( 150 )
             local pos = VectorRand() * math.random(20,100)
             pos.z = 0
@@ -150,11 +141,8 @@ function ENT:Think()
             fire:SetNextThink( CurTime() + FrameTime() )
             fire:SetThinkFunction( function(pa)
                 if not pa then return end
-                local col1 = Color(255, 135, 0)
-                if self.has_burner then
-                    col1 = Color(0, 135, 255)
-                end
-                local col2 = Color(0, 0, 0)
+                local col1 = Color(255, 195, 117)
+                local col2 = Color(189, 38, 38)
 
                 local col3 = col1
                 local d = pa:GetLifeTime() / pa:GetDieTime()
