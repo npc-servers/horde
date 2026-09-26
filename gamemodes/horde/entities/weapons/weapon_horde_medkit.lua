@@ -191,6 +191,8 @@ function SWEP:Reload()
 		return
 	end
 
+	self:ResetRevive()
+
 	if SERVER then
 		net.Start( "horde_medkit_revive_status" )
 			net.WriteUInt( 1, 2 )
@@ -428,8 +430,6 @@ if CLIENT then
 	]]
 	net.Receive( "horde_medkit_revive_status", function()
 		local status = net.ReadUInt(2)
-
-		print(status)
 
 		if status == 2 then
 			if not IsValid( MySelf ) then return end -- usually happens due to first spawn
