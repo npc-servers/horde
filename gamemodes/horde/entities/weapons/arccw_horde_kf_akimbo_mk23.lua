@@ -24,8 +24,8 @@ SWEP.WorldModel = "models/weapons/w_pist_elite.mdl"
 
 SWEP.NoHideLeftHandInCustomization = true
 
-SWEP.Damage = 55
-SWEP.DamageMin = 32
+SWEP.Damage = 66
+SWEP.DamageMin = 43
 SWEP.Range = 50
 
 SWEP.ChamberSize = 0
@@ -33,8 +33,8 @@ SWEP.Primary.ClipSize = 30
 
 SWEP.ReloadInSights = true
 
-SWEP.Recoil = 1.1
-SWEP.RecoilSide = 0.4
+SWEP.Recoil = 0.82
+SWEP.RecoilSide = 0.3
 SWEP.RecoilRise = 0.1
 SWEP.MaxRecoilBlowback = 0
 SWEP.VisualRecoilMult = 0
@@ -53,7 +53,7 @@ SWEP.Firemodes = {
 SWEP.NotForNPCS = true
 
 SWEP.AccuracyMOA = 10
-SWEP.HipDispersion = 250
+SWEP.HipDispersion = 210
 SWEP.MoveDispersion = 50
 
 SWEP.ShootVol = 75
@@ -120,15 +120,16 @@ SWEP.Animations = {
     },
     ["reload"] = {
         Source = "reload",
+        Time = 140/50,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
         SoundTable = {
-            { s = "horde/weapons/kf/mk23/slide_release.wav", t = 1 / 40 },
-            { s = "horde/weapons/kf/mk23/mag_out.wav", t = 6 / 40 },
-            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 34 / 40 },
-            { s = "horde/weapons/kf/mk23/slide_pull.wav", t = 52 / 40 },
-            { s = "horde/weapons/kf/mk23/slide_release.wav", t = 64 / 40 },
-            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 80 / 40 },
-            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 110 / 40 },
+            { s = "horde/weapons/kf/mk23/slide_release.wav", t = 1 / 50 },
+            { s = "horde/weapons/kf/mk23/mag_out.wav", t = 6 / 50 },
+            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 34 / 50 },
+            { s = "horde/weapons/kf/mk23/slide_pull.wav", t = 52 / 50 },
+            { s = "horde/weapons/kf/mk23/slide_release.wav", t = 64 / 50 },
+            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 80 / 50 },
+            { s = "horde/weapons/kf/mk23/mag_in.wav", t = 110 / 50 },
         }
     },
     ["fire"] = {

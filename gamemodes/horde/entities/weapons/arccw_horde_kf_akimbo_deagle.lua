@@ -34,8 +34,8 @@ SWEP.Primary.ClipSize = 14
 
 SWEP.ReloadInSights = true
 
-SWEP.Recoil = 3
-SWEP.RecoilSide = 1
+SWEP.Recoil = 2.25
+SWEP.RecoilSide = 0.75
 SWEP.RecoilRise = 0.1
 SWEP.MaxRecoilBlowback = 0
 SWEP.VisualRecoilMult = 0
@@ -54,6 +54,10 @@ SWEP.Firemodes = {
 SWEP.NotForNPCS = true
 
 SWEP.Primary.Ammo = "357"
+
+SWEP.AccuracyMOA = 15
+SWEP.HipDispersion = 250
+SWEP.MoveDispersion = 60
 
 SWEP.ShootVol = 75
 
@@ -124,14 +128,15 @@ SWEP.Animations = {
     },
     ["reload"] = {
         Source = "reload",
+        Time = 437/175,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
         SoundTable = {
-            { s = "horde/weapons/kf/deagle/lift.wav", t = 1 / 35 },
-            { s = "horde/weapons/kf/deagle/mag_out.wav", t = 8 / 35 },
-            { s = "horde/weapons/kf/deagle/mag_in.wav", t = 40 / 35 },
-            { s = "horde/weapons/kf/deagle/mag_in.wav", t = 78 / 35 },
-            { s = "horde/weapons/kf/deagle/slide_release.wav", t = 88 / 35 },
-            { s = "horde/weapons/kf/deagle/slide_release.wav", t = 92 / 35 },
+            { s = "horde/weapons/kf/deagle/lift.wav", t = 4 / 175 },
+            { s = "horde/weapons/kf/deagle/mag_out.wav", t = 32 / 175 },
+            { s = "horde/weapons/kf/deagle/mag_in.wav", t = 160 / 175 },
+            { s = "horde/weapons/kf/deagle/mag_in.wav", t = 312 / 175 },
+            { s = "horde/weapons/kf/deagle/slide_release.wav", t = 352 / 175 },
+            { s = "horde/weapons/kf/deagle/slide_release.wav", t = 368 / 175 },
         }
     },
     ["fire"] = {
