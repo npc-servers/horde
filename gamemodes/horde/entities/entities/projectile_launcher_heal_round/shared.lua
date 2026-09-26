@@ -12,8 +12,8 @@ AddCSLuaFile()
 ENT.Model = "models/items/ar2_grenade.mdl"
 ENT.Ticks = 0
 ENT.FuseTime = 10
-ENT.CollisionGroup = COLLISION_GROUP_PROJECTILE
-ENT.CollisionGroupType = COLLISION_GROUP_PROJECTILE
+ENT.CollisionGroup = COLLISION_GROUP_INTERACTIVE_DEBRIS
+ENT.CollisionGroupType = COLLISION_GROUP_INTERACTIVE_DEBRIS
 ENT.Removing = nil
 
 hook.Add("Horde_ShouldCollide", "Horde_Projectile_Heal", function(ent1, ent2)
@@ -40,7 +40,7 @@ function ENT:Initialize()
 
     timer.Simple(0.1, function()
         if !IsValid(self) then return end
-        self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+        self:SetCollisionGroup(self.CollisionGroup)
     end)
 end
 
