@@ -128,7 +128,7 @@ SWEP.Animations = {
     },
     ["reload"] = {
         Source = "reload",
-        Time = 437/175,
+        Time = 437 / 175,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_DUEL,
         SoundTable = {
             { s = "horde/weapons/kf/deagle/lift.wav", t = 4 / 175 },
