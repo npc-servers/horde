@@ -15,10 +15,11 @@ SWEP.PrintName = "Model 870"
 SWEP.ViewModel = "models/weapons/arccw_go/v_shot_870.mdl"
 SWEP.WorldModel = "models/weapons/arccw_go/v_shot_870.mdl"
 
-SWEP.Damage = 37
-SWEP.DamageMin = 15
+SWEP.Damage = 40
+SWEP.DamageMin = 0
 SWEP.Penetration = 10
-
+SWEP.RangeMin = 400 * 0.025
+SWEP.Range = 1200 * 0.025  -- GAME UNITS * 0.025 = METRES
 SWEP.NoLastCycle = true
 
 SWEP.Recoil = 2
@@ -37,7 +38,7 @@ SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.RejectAttachments = {["go_fore_bipod"] = true}
 
-local reloadMult = 1.15
+local reloadMult = 0.9
 
 SWEP.Animations = {
     ["fire"] = {
