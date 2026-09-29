@@ -1,86 +1,28 @@
 PERK.PrintName = "Eldritch Protection"
 PERK.Description =
-[[{1} increased mind regeneration.
-Gain a shield every {2} seconds that reduces damage taken by {3}.
-Releases a burst of Cold damage on hit.]]
+[[Summons return {1} of their Mind Cost to you upon death.
+You take {2} reduced damage, this is doubled if your attacker has Frostbite.]]
 PERK.Icon = "materials/perks/necromancer/eldritch_protection.png"
 
 PERK.Params = {
-    [1] = { value = 0.25, percent = true },
-    [2] = { value = 8 },
-    [3] = { value = 0.4, percent = true },
+    [1] = { value = 0.5, percent = true },
+    [2] = { value = 0.15, percent = true },
 }
 
 PERK.Hooks = {}
 
-PERK.Hooks.Horde_MindRegeneration = function(ply, bonus)
-    if ply:Horde_GetPerk("necromancer_eldritch_protection") then
-        bonus.increase = bonus.increase + 0.25
+PERK.Hooks.Horde_OnRaiseSpectre = function ( ply, properties )
+    if ply:Horde_GetPerk( "necromancer_eldritch_protection" ) then
+        properties.eldritch_protection = true
     end
 end
 
-PERK.Hooks.Horde_OnSetPerk = function(ply, perk)
-    if SERVER and perk == "necromancer_eldritch_protection" then
-        net.Start("Horde_SyncStatus")
-            net.WriteUInt(HORDE.Status_EldritchShield, 8)
-            net.WriteUInt(1, 8)
-        net.Send(ply)
-        local id = ply:SteamID()
-        timer.Remove("Horde_RecoverEldritchShield" .. id)
-        ply.Horde_Eldritch_Shield_Cooldown = nil
-    end
-end
-
-PERK.Hooks.Horde_OnUnsetPerk = function(ply, perk)
-    if SERVER and perk == "necromancer_eldritch_protection" then
-        net.Start("Horde_SyncStatus")
-            net.WriteUInt(HORDE.Status_EldritchShield, 8)
-            net.WriteUInt(0, 8)
-        net.Send(ply)
-        local id = ply:SteamID()
-        timer.Remove("Horde_RecoverEldritchShield" .. id)
-        ply.Horde_Eldritch_Shield_Cooldown = nil
-    end
-end
-
-PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
+PERK.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmginfo, bonus)
     if not ply:Horde_GetPerk("necromancer_eldritch_protection") then return end
     local attacker = dmginfo:GetAttacker()
-    if HORDE:IsPlayerOrMinion(attacker) or dmginfo:GetDamage() <= 0 or not ply:Alive() then return end
-
-    if (not ply.Horde_Eldritch_Shield_Cooldown) or (ply.Horde_Eldritch_Shield_Cooldown <= CurTime()) then
-        ply:EmitSound("physics/glass/glass_cup_break2.wav")
-        bonus.resistance = bonus.resistance + 0.4
-        net.Start("Horde_SyncStatus")
-            net.WriteUInt(HORDE.Status_EldritchShield, 8)
-            net.WriteUInt(0, 8)
-        net.Send(ply)
-
-        local dmg = DamageInfo()
-        dmg:SetAttacker(ply)
-        dmg:SetInflictor(ply)
-        dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-        dmg:SetDamage(math.min(dmginfo:GetDamage() * 4, 300))
-        util.BlastDamageInfo(dmg, ply:GetPos(), 300)
-
-        ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), math.floor( dmginfo:GetDamage() ) + ply:Horde_GetMind() ) )
-
-        local effectdata = EffectData()
-        effectdata:SetOrigin(ply:GetPos())
-        effectdata:SetScale(1)
-        effectdata:SetEntity(ply)
-        util.Effect("GlassImpact", effectdata)
-
-        local id = ply:SteamID()
-        ply:ScreenFade(SCREENFADE.IN, Color(0, 191, 255, 50), 2.5, 0)
-        timer.Create("Horde_RecoverEldritchShield" .. id, 8, 1, function()
-            if IsValid(ply) then
-                net.Start("Horde_SyncStatus")
-                    net.WriteUInt(HORDE.Status_EldritchShield, 8)
-                    net.WriteUInt(1, 8)
-                net.Send(ply)
-            end
-        end)
-        ply.Horde_Eldritch_Shield_Cooldown = CurTime() + 8
+    if attacker then
+        bonus.less = bonus.less * 0.15
+    elseif attacker and attacker:Horde_HasDebuff(HORDE.Status_Frostbite) then
+        bonus.less = bonus.less * 0.30
     end
 end

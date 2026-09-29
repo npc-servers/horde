@@ -78,6 +78,7 @@ ENT.Immune_AcidPoisonRadiation = true
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
+local SummonCost = 30 -- Summon cost for post-death mind regain
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
 	timer.Simple(delay, function()
@@ -145,6 +146,17 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
 	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+end
+
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
+	if self.properties.eldritch_protection == true then
+		local ply = self:GetNWEntity("HordeOwner")
+		local mindAmount = SummonCost * 0.5
+		if ply:IsPlayer() then
+			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+			sound.Play("items/battery_pickup.wav", ply:GetPos())
+		end
+	end
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
