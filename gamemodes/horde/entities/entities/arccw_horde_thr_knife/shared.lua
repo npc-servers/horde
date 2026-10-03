@@ -8,7 +8,7 @@ ENT.AdminSpawnable = false
 
 ENT.Model = "models/weapons/arccw_go/w_eq_throwingknife_thrown.mdl"
 ENT.Collectable = false
-ENT.CollisionGroup = COLLISION_GROUP_PROJECTILE
+ENT.CollisionGroup = COLLISION_GROUP_INTERACTIVE_DEBRIS
 
 AddCSLuaFile()
 
@@ -18,8 +18,8 @@ function ENT:Initialize()
         self:SetModel( self.Model )
         self:SetMoveType( MOVETYPE_VPHYSICS )
         self:SetSolid( SOLID_VPHYSICS )
-        self:SetMoveCollide(COLLISION_GROUP_PROJECTILE)
-        self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+        self:SetMoveCollide( self.CollisionGroup )
+        self:SetCollisionGroup( self.CollisionGroup )
         self:PhysicsInitSphere(1)
         self:DrawShadow( false )
 
@@ -34,7 +34,7 @@ function ENT:Initialize()
         end
         timer.Simple(0, function()
             if not IsValid(self) then return end
-            self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+            self:SetCollisionGroup( self.CollisionGroup )
         end)
         self.dt = CurTime() + 15
     end
