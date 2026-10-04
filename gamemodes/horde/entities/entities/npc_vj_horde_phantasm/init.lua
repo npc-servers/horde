@@ -149,21 +149,13 @@ function ENT:CustomOnInitialize()
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-	if self.properties.eldritch_protection == true then
-		local ply = self:GetNWEntity("HordeOwner")
-		local mindAmount = SummonCost * 0.5
-		if ply:IsPlayer() then
-			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
-			sound.Play("items/battery_pickup.wav", ply:GetPos())
-		end
+    local ply = self:GetNWEntity("HordeOwner")
+	local mindAmount = SummonCost * 0.5
+	if ply:IsPlayer() and self.properties.eldritch_protection == true then
+		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+		sound.Play("items/battery_pickup.wav", ply:GetPos())
 	end
-end
-
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-    local e = EffectData()
-        e:SetOrigin(self:GetPos())
-    --util.Effect("exploder_explosion", e, true, true)
-
+	
     local dmg = DamageInfo()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
@@ -178,12 +170,10 @@ function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 		end
 	
 	local e = EffectData()
-			e:SetOrigin(self:GetPos())
-			e:SetNormal(Vector(0,0,1))
-			e:SetScale(1)
+		e:SetOrigin(self:GetPos())
+		e:SetNormal(Vector(0,0,1))
+		e:SetScale(1)
 	util.Effect("weeper_blast", e, true, true)
-
-   -- sound.Play("vj_acid/acid_splat.wav", self:GetPos())
 end
 
 function ENT:DoEntityRelationshipCheck()
