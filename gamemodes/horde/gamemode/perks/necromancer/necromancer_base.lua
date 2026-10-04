@@ -161,7 +161,6 @@ PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
 
     local data = target.Horde_HealthGateData
     if not data or curTime - data.lastResetTime >= damagedelay then
-    local data = target.Horde_HealthGateData
     if not data or curTime - data.lastResetTime >= 2 then
         target.Horde_HealthGateData = {
             damageAccumulated = 0,
