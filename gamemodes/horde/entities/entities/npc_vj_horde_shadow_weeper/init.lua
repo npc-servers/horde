@@ -146,13 +146,12 @@ function ENT:CustomOnInitialize()
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-	if self.properties.eldritch_protection == true then
-		local ply = self:GetNWEntity("HordeOwner")
-		local mindAmount = SummonCost * 0.5
-		if ply:IsPlayer() then
-			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
-			sound.Play("items/battery_pickup.wav", ply:GetPos())
-		end
+	if self.properties.eldritch_protection == false then return end
+	local ply = self:GetNWEntity("HordeOwner")
+	local mindAmount = SummonCost * 0.5
+	if ply:IsPlayer() then
+		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+		sound.Play("items/battery_pickup.wav", ply:GetPos())
 	end
 end
 
