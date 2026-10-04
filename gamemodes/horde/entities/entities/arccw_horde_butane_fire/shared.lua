@@ -45,8 +45,7 @@ function entmeta:Horde_RemoveEffect_Molotov()
         self.horde_effect_Molotov = nil
     end
 end
-
-function ENT:Touch(ent)
+function ENT:StartTouch(ent)
     if SERVER then
         if self.TouchedEntities[ent:GetCreationID()] and ent.horde_effect_Molotov then return end
         if (ent:IsPlayer() or ent:IsNPC()) then
