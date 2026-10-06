@@ -97,7 +97,7 @@ ENT.WorldShakeOnMoveFrequency = 100 -- Just leave it to 100
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local SummonCost = 30 -- Summon cost for post-death mind regain
+local summonCost = 30 -- Summon cost for post-death mind regain
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
 	timer.Simple(delay, function()
@@ -136,6 +136,7 @@ end
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
+	summonCost = 30
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
@@ -163,7 +164,7 @@ end
 
 function ENT:Horde_SetGreaterSpectre()
 	self:SetModelScale(1.5)
-	SummonCost = 45
+	summonCost = 45
 	self.HasLeapAttack = false
 	self.MeleeAttackDamage = self.MeleeAttackDamage * 1.65
 	self.NextAnyAttackTime_Melee = 0.75
@@ -175,7 +176,7 @@ end
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 	if self.properties.eldritch_protection == false then return end
 	local ply = self:GetNWEntity("HordeOwner")
-	local mindAmount = SummonCost * 0.5
+	local mindAmount = summonCost * 0.5
 	if ply:IsPlayer() then
 		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
 		sound.Play("items/battery_pickup.wav", ply:GetPos())
