@@ -78,7 +78,7 @@ ENT.Immune_AcidPoisonRadiation = true
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local SummonCost = 30 -- Summon cost for post-death mind regain
+local summonCost = 30 -- Summon cost for post-death mind regain
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
 	timer.Simple(delay, function()
@@ -150,7 +150,7 @@ end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
     local ply = self:GetNWEntity("HordeOwner")
-	local mindAmount = SummonCost * 0.5
+	local mindAmount = summonCost * 0.5
 	if ply:IsPlayer() and self.properties.eldritch_protection == true then
 		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
 		sound.Play("items/battery_pickup.wav", ply:GetPos())
