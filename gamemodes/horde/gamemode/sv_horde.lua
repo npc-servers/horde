@@ -474,13 +474,12 @@ function HORDE:SpawnEnemy(enemy, pos)
 
     local spawned_enemy = ents.Create(enemy.class)
     spawned_enemy:SetPos(pos)
-    timer.Simple(0, function() spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0)) end)
     spawned_enemy:Spawn()
 
-	timer.Simple(0, function()
-		if not IsValid( spawned_enemy ) then return end
-		spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0))
-	end)
+    timer.Simple(0, function()
+        if not IsValid( spawned_enemy ) then return end
+        spawned_enemy:SetAngles(Angle(0, math.random(0, 360), 0))
+    end)
 
     HORDE.spawned_enemies[spawned_enemy:EntIndex()] = true
     spawned_enemy:Horde_SetName(enemy.name)
