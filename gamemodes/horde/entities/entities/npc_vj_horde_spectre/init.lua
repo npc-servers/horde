@@ -93,11 +93,10 @@ ENT.WorldShakeOnMoveAmplitude = 5 -- How much the screen will shake | From 1 to 
 ENT.WorldShakeOnMoveRadius = 200 -- How far the screen shake goes, in world units
 ENT.WorldShakeOnMoveDuration = 0.4 -- How long the screen shake will last, in seconds
 ENT.WorldShakeOnMoveFrequency = 100 -- Just leave it to 100
-
+ENT.SummonCost = 30 -- Summon cost for post-death mind regain
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local summonCost = 30 -- Summon cost for post-death mind regain
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
 	timer.Simple(delay, function()
@@ -136,7 +135,7 @@ end
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
-	summonCost = 30
+	self.SummonCost = 30
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
@@ -164,7 +163,7 @@ end
 
 function ENT:Horde_SetGreaterSpectre()
 	self:SetModelScale(1.5)
-	summonCost = 45
+	self.SummonCost = 45
 	self.HasLeapAttack = false
 	self.MeleeAttackDamage = self.MeleeAttackDamage * 1.65
 	self.NextAnyAttackTime_Melee = 0.75
