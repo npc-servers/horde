@@ -73,6 +73,7 @@ ENT.HasAllies = true
 
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
+ENT.SummonCost = 60 -- Summon cost for post-death mind regain
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
@@ -136,6 +137,16 @@ function ENT:CustomOnInitialize()
 	self:SetHealth(self.StartHealth)
 	self:AddRelationship("npc_manhack D_LI 99")
     --self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
+end
+
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
+	if self.properties.eldritch_protection == false then return end
+	local ply = self:GetNWEntity("HordeOwner")
+	local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+	if ply:IsPlayer() then
+		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+		sound.Play("items/battery_pickup.wav", ply:GetPos())
+	end
 end
 
 function ENT:DoEntityRelationshipCheck()

@@ -77,6 +77,7 @@ ENT.Immune_AcidPoisonRadiation = true
 
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
+ENT.SummonCost = 30 -- Summon cost for post-death mind regain
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
@@ -148,10 +149,13 @@ function ENT:CustomOnInitialize()
 end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-    local e = EffectData()
-        e:SetOrigin(self:GetPos())
-    --util.Effect("exploder_explosion", e, true, true)
-
+    local ply = self:GetNWEntity("HordeOwner")
+	local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+	if ply:IsPlayer() and self.properties.eldritch_protection == true then
+		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+		sound.Play("items/battery_pickup.wav", ply:GetPos())
+	end
+	
     local dmg = DamageInfo()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
@@ -166,12 +170,10 @@ function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 		end
 	
 	local e = EffectData()
-			e:SetOrigin(self:GetPos())
-			e:SetNormal(Vector(0,0,1))
-			e:SetScale(1)
+		e:SetOrigin(self:GetPos())
+		e:SetNormal(Vector(0,0,1))
+		e:SetScale(1)
 	util.Effect("weeper_blast", e, true, true)
-
-   -- sound.Play("vj_acid/acid_splat.wav", self:GetPos())
 end
 
 function ENT:DoEntityRelationshipCheck()

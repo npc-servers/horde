@@ -93,7 +93,7 @@ ENT.WorldShakeOnMoveAmplitude = 5 -- How much the screen will shake | From 1 to 
 ENT.WorldShakeOnMoveRadius = 200 -- How far the screen shake goes, in world units
 ENT.WorldShakeOnMoveDuration = 0.4 -- How long the screen shake will last, in seconds
 ENT.WorldShakeOnMoveFrequency = 100 -- Just leave it to 100
-
+ENT.SummonCost = 30 -- Summon cost for post-death mind regain
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -135,6 +135,7 @@ end
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
+	self.SummonCost = 30
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
@@ -162,12 +163,23 @@ end
 
 function ENT:Horde_SetGreaterSpectre()
 	self:SetModelScale(1.5)
+	self.SummonCost = 45
 	self.HasLeapAttack = false
 	self.MeleeAttackDamage = self.MeleeAttackDamage * 1.65
 	self.NextAnyAttackTime_Melee = 0.75
 	self.StartHealth = math.floor(1.25 * self.StartHealth)
 	self:SetHealth(self.StartHealth)
 	self:SetMaxHealth(self.StartHealth)
+end
+
+function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
+	if self.properties.eldritch_protection == false then return end
+	local ply = self:GetNWEntity("HordeOwner")
+	local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+	if ply:IsPlayer() then
+		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+		sound.Play("items/battery_pickup.wav", ply:GetPos())
+	end
 end
 
 function ENT:DoEntityRelationshipCheck()
