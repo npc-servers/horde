@@ -25,9 +25,5 @@ PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
     local attacker = dmginfo:GetAttacker()
     if not attacker:IsValid() then return end
 
-    if attacker:Horde_HasDebuff(HORDE.Status_Frostbite) then
-        bonus.less = bonus.less * 0.30
-    else
-        bonus.less = bonus.less * 0.15
-    end
+    bonus.less = bonus.less * (attacker:Horde_HasDebuff(HORDE.Status_Frostbite) and 0.30 or 0.15)
 end
