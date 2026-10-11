@@ -150,9 +150,10 @@ end
 
 function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
     local ply = self:GetNWEntity("HordeOwner")
-	local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
-	if ply:IsPlayer() and self.properties.eldritch_protection == true then
+	if self.properties.eldritch_protection == true and ply:IsValid() and ply:IsPlayer() then
+		local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
 		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+
 		sound.Play("items/battery_pickup.wav", ply:GetPos())
 	end
 	
