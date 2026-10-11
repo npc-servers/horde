@@ -21,10 +21,13 @@ end
 
 PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
     if not ply:Horde_GetPerk("necromancer_eldritch_protection") then return end
+
     local attacker = dmginfo:GetAttacker()
-    if attacker and attacker:Horde_HasDebuff(HORDE.Status_Frostbite) then
+    if not attacker:IsValid() then return end
+
+    if attacker:Horde_HasDebuff(HORDE.Status_Frostbite) then
         bonus.less = bonus.less * 0.30
-    elseif attacker then
+    else
         bonus.less = bonus.less * 0.15
     end
 end
