@@ -148,32 +148,36 @@ function ENT:CustomOnInitialize()
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-    local ply = self:GetNWEntity("HordeOwner")
-	local mindAmount = summonCost * 0.5
-	if ply:IsPlayer() and self.properties.eldritch_protection == true then
-		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
-		sound.Play("items/battery_pickup.wav", ply:GetPos())
+function ENT:OnRemove()
+	if self.properties.eldritch_protection == true then
+		local ply = self:GetNWEntity("HordeOwner")
+		local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+		if ply:IsPlayer() then
+			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+			sound.Play("items/battery_pickup.wav", ply:GetPos())
+		end
 	end
-	
+
     local dmg = DamageInfo()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
     dmg:SetDamageType(DMG_REMOVENORAGDOLL)
     dmg:SetDamage(50)
     util.BlastDamageInfo(dmg, self:GetPos(), 200)
-	
+
 	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
 			if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
 				ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
 			end
-		end
+	end
+	
 	
 	local e = EffectData()
 		e:SetOrigin(self:GetPos())
 		e:SetNormal(Vector(0,0,1))
-		e:SetScale(1)
+		e:SetScale(0.8)
 	util.Effect("weeper_blast", e, true, true)
+	self.BaseClass.OnRemove(self)
 end
 
 function ENT:DoEntityRelationshipCheck()
