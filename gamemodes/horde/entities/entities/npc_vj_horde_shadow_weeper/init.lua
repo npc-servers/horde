@@ -145,14 +145,16 @@ function ENT:CustomOnInitialize()
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-	if self.properties.eldritch_protection == false then return end
-	local ply = self:GetNWEntity("HordeOwner")
-	local mindAmount = summonCost * 0.5
-	if ply:IsPlayer() then
-		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
-		sound.Play("items/battery_pickup.wav", ply:GetPos())
+function ENT:OnRemove()
+	if self.properties.eldritch_protection == true then
+		local ply = self:GetNWEntity("HordeOwner")
+		local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+		if ply:IsPlayer() then
+			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+			sound.Play("items/battery_pickup.wav", ply:GetPos())
+		end
 	end
+	self.BaseClass.OnRemove(self)
 end
 
 function ENT:ShockAttack(delay)
