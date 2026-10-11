@@ -151,12 +151,10 @@ PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
 
     local hpGatePercentage = 1 / 6 * target:GetMaxHealth()
     local curTime = CurTime()
-    local damagedelay = 0
+    local damagedelay = 1
 
     if target == "npc_vj_horde_shadow_hulk" or target == "npc_vj_horde_shadow_weeper" then
         damagedelay = 2
-    else -- Fallback
-        damagedelay = 1
     end
 
     local data = target.Horde_HealthGateData
