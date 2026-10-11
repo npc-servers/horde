@@ -173,7 +173,7 @@ function ENT:Horde_SetGreaterSpectre()
 	self:SetMaxHealth(self.StartHealth)
 end
 
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
+function ENT:OnRemove()
 	if self.properties.eldritch_protection == false then return end
 	local ply = self:GetNWEntity("HordeOwner")
 	local mindAmount = summonCost * 0.5
@@ -181,6 +181,7 @@ function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
 		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
 		sound.Play("items/battery_pickup.wav", ply:GetPos())
 	end
+	self.BaseClass.OnRemove(self)
 end
 
 function ENT:DoEntityRelationshipCheck()
