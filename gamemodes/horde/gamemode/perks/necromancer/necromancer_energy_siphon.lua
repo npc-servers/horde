@@ -18,10 +18,12 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, bonus, hitgroup, dmgin
     local inflictor = dmginfo:GetInflictor()
     -- Set Up Frostbite Based Leeching Increase
     local leechMul = 1
-    if npc:Horde_HasDebuff(HORDE.Status_Frostbite) and not inflictor:IsNPC() then
-        leechMul = 2
-    elseif npc:Horde_HasDebuff(HORDE.Status_Frostbite) and inflictor:IsNPC() and inflictor:GetNWEntity("HordeOwner"):IsPlayer() then
-        leechMul = 1.5
+    if npc:Horde_HasDebuff( HORDE.Status_Frostbite ) then
+        if not inflictor:IsNPC() then
+            leechMul = 2
+        elseif inflictor:GetNWEntity( "HordeOwner" ):IsPlayer() then
+            leechMul = 1.5
+        end
     end
     -- Leech Mind from Cold Damage
     local leechMax = 5 * leechMul
