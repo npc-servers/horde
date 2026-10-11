@@ -135,7 +135,6 @@ end
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(13, 13, 20), Vector(-13, -13, 0))
 	self.AnimTbl_Run = ACT_RUN
-	self.SummonCost = 30
 	if self.properties.abyssal_might == true then
 		local id = self:GetCreationID()
 		self.Abyssal_Roar = true
