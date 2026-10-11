@@ -14,7 +14,7 @@ PERK.Params = {
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnRaiseSpectre = function(ply, properties)
-    if ply:Horde_GetPerk( "necromancer_eldritch_protection" ) then
+    if ply:Horde_GetPerk("necromancer_eldritch_protection") then
         properties.eldritch_protection = true
     end
 end
