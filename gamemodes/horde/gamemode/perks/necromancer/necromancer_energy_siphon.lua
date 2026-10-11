@@ -15,10 +15,10 @@ PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, bonus, hitgroup, dmginfo )
     if not ply:Horde_GetPerk( "necromancer_energy_siphon" ) then return end
-    local inflictor = dmginfo:GetInflictor()
     -- Set Up Frostbite Based Leeching Increase
     local leechMul = 1
-    if npc:Horde_HasDebuff( HORDE.Status_Frostbite ) then
+    local inflictor = dmginfo:GetInflictor()
+    if npc:Horde_HasDebuff( HORDE.Status_Frostbite ) and inflictor:IsValid() then
         if not inflictor:IsNPC() then
             leechMul = 2
         elseif inflictor:GetNWEntity( "HordeOwner" ):IsPlayer() then
