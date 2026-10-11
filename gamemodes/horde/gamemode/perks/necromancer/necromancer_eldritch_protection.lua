@@ -19,7 +19,7 @@ PERK.Hooks.Horde_OnRaiseSpectre = function(ply, properties)
     end
 end
 
-PERK.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmginfo, bonus)
+PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
     if not ply:Horde_GetPerk("necromancer_eldritch_protection") then return end
     local attacker = dmginfo:GetAttacker()
     if attacker and attacker:Horde_HasDebuff(HORDE.Status_Frostbite) then
