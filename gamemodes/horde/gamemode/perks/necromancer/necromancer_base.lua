@@ -153,7 +153,8 @@ PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
     local curTime = CurTime()
     local damagedelay = 1
 
-    if target == "npc_vj_horde_shadow_hulk" or target == "npc_vj_horde_shadow_weeper" then
+    local class = target:GetClass()
+    if class == "npc_vj_horde_shadow_hulk" or class == "npc_vj_horde_shadow_weeper" then
         damagedelay = 2
     end
 
