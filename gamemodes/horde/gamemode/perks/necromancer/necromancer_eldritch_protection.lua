@@ -12,12 +12,12 @@ PERK.Params = {
 PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnRaiseSpectre = function(ply, properties)
-    if ply:Horde_GetPerk( "necromancer_eldritch_protection" ) then
+    if ply:Horde_GetPerk("necromancer_eldritch_protection") then
         properties.eldritch_protection = true
     end
 end
 
-PERK.Hooks.Horde_OnPlayerDamageTaken = function (ply, dmginfo, bonus)
+PERK.Hooks.Horde_OnPlayerDamageTaken = function(ply, dmginfo, bonus)
     if not ply:Horde_GetPerk("necromancer_eldritch_protection") then return end
     local attacker = dmginfo:GetAttacker()
     if attacker then
