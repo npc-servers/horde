@@ -147,7 +147,7 @@ function ENT:CustomOnInitialize()
 end
 
 function ENT:OnRemove()
-	if self.properties.eldritch_protection == true then
+	if self.properties.eldritch_protection then
 		local ply = self:GetNWEntity("HordeOwner")
 		local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
 		if ply:IsPlayer() then
