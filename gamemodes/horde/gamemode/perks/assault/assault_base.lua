@@ -13,7 +13,7 @@ PERK.Params = {
     [1] = {percent = true, level = 0.008, max = 0.20, classname = HORDE.Class_Assault},
     [2] = {value = 0.008, percent = true},
     [3] = {value = 0.20, percent = true},
-    [4] = {value = 0.06, percent = true},
+    [4] = {value = 0.10, percent = true},
     [5] = {percent = true, level = 0.008, max = 0.2, classname = HORDE.Class_Assault},
     [6] = {value = 0.008, percent = true},
     [7] = {value = 0.2, percent = true},
