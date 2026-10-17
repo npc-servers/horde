@@ -177,6 +177,7 @@ function ENT:OnRemove()
 		e:SetNormal(Vector(0,0,1))
 		e:SetScale(0.8)
 	util.Effect("weeper_blast", e, true, true)
+
 	self.BaseClass.OnRemove(self)
 end
 

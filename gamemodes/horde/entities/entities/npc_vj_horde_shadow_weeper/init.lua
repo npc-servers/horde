@@ -155,6 +155,7 @@ function ENT:OnRemove()
 			sound.Play("items/battery_pickup.wav", ply:GetPos())
 		end
 	end
+
 	self.BaseClass.OnRemove(self)
 end
 
