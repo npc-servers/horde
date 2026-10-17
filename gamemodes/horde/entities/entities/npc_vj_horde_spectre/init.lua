@@ -174,12 +174,13 @@ function ENT:Horde_SetGreaterSpectre()
 end
 
 function ENT:OnRemove()
-	if self.properties.eldritch_protection == false then return end
-	local ply = self:GetNWEntity("HordeOwner")
-	local mindAmount = self.SummonCost * 0.5
-	if ply:IsPlayer() then
-		ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
-		sound.Play("items/battery_pickup.wav", ply:GetPos())
+	if self.properties.eldritch_protection then
+		local ply = self:GetNWEntity("HordeOwner")
+		local mindAmount = self.SummonCost * 0.5
+		if ply:IsPlayer() then
+			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+			sound.Play("items/battery_pickup.wav", ply:GetPos())
+		end
 	end
 	self.BaseClass.OnRemove(self)
 end
