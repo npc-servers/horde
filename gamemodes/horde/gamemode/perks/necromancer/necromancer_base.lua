@@ -147,7 +147,7 @@ PERK.Hooks.Horde_OnMinionDamageTaken = function(target, dmginfo)
     local owner = target:GetNWEntity("HordeOwner")
     if not IsValid(owner) then return end
     if not owner:Horde_GetPerk("necromancer_base") then return end
-    if HORDE:IsFireDamage( dmginfo ) then return end
+    if HORDE:IsFireDamage(dmginfo) then return end
 
     local hpGatePercentage = 1 / 6 * target:GetMaxHealth()
     local curTime = CurTime()
