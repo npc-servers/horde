@@ -77,8 +77,9 @@ ENT.Immune_AcidPoisonRadiation = true
 
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
+
+ENT.SummonCost = 30 -- Summon cost for post-death mind regain
 ---------------------------------------------------------------------------------------------------------------------------------------------
-local summonCost = 30 -- Summon cost for post-death mind regain
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
 	timer.Simple(delay, function()
