@@ -15,6 +15,7 @@ PERK.Hooks = {}
 
 PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, bonus, hitgroup, dmginfo )
     if not ply:Horde_GetPerk( "necromancer_energy_siphon" ) then return end
+    if not HORDE:IsColdDamage( dmginfo ) then return end
 
     local leechMul = 1
 
@@ -39,7 +40,5 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, bonus, hitgroup, dmgin
     local leechMax = 5 * leechMul
     local leechAmount = 0.1 * leechMul
 
-    if HORDE:IsColdDamage( dmginfo ) then
-        ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), math.min( leechMax, dmginfo:GetDamage() * leechAmount ) + ply:Horde_GetMind() ) )
-    end
+    ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), math.min( leechMax, dmginfo:GetDamage() * leechAmount ) + ply:Horde_GetMind() ) )
 end
