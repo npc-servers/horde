@@ -280,6 +280,7 @@ Complexity: EASY
 
 {1} more movement speed and jump height ({2} per level, up to {3}).
 {5} increased Ballistic damage. ({6} per level, up to {7}).
+{8} Increased Ballistic damage resistance. ({9} + {10} per level, up to {11}).
 
 Gain Adrenaline when you kill an enemy.
 Adrenaline increases damage and speed by {4}.]]
