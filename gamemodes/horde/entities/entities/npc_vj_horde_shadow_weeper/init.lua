@@ -149,9 +149,11 @@ end
 function ENT:OnRemove()
 	if self.properties.eldritch_protection then
 		local ply = self:GetNWEntity("HordeOwner")
-		local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+
 		if ply:IsPlayer() then
+			local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
 			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+
 			sound.Play("items/battery_pickup.wav", ply:GetPos())
 		end
 	end
