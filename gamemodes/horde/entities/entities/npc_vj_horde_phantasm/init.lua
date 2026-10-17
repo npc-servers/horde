@@ -169,9 +169,9 @@ function ENT:OnRemove()
     util.BlastDamageInfo(dmg, self:GetPos(), 200)
 
 	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
-			if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
-				ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
-			end
+		if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
+			ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
+		end
 	end
 	
 	local e = EffectData()
