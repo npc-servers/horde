@@ -3,13 +3,13 @@ PERK.Description = "{1} increased headshot damage when on full health.\nRecover 
 PERK.Icon = "materials/perks/drain.png"
 PERK.Params = {
     [1] = {value = 0.15, percent = true},
-    [2] = {value = 0.02, percent = true},
+    [2] = {value = 0.10, percent = true},
 }
 
 PERK.Hooks = {}
 PERK.Hooks.Horde_OnEnemyKilled = function(victim, killer, wpn)
     if not killer:Horde_GetPerk("assault_drain")  then return end
-    HORDE:SelfHeal(killer, killer:GetMaxHealth() * 0.02)
+    HORDE:SelfHeal(killer, killer:GetMaxHealth() * 0.10)
 end
 
 PERK.Hooks.Horde_OnPlayerDamage = function (ply, npc, bonus, hitgroup)

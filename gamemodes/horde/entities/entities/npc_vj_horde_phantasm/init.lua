@@ -77,6 +77,8 @@ ENT.Immune_AcidPoisonRadiation = true
 
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
+
+ENT.SummonCost = 30 -- Summon cost for post-death mind regain
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
@@ -147,31 +149,38 @@ function ENT:CustomOnInitialize()
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
 end
 
-function ENT:CustomOnDeath_BeforeCorpseSpawned(dmginfo, hitgroup)
-    local e = EffectData()
-        e:SetOrigin(self:GetPos())
-    --util.Effect("exploder_explosion", e, true, true)
+function ENT:OnRemove()
+	if self.properties.eldritch_protection then
+		local ply = self:GetNWEntity("HordeOwner")
+
+		if ply:IsPlayer() then
+			local mindAmount = self.SummonCost * 0.5 + 5 * self.properties.level
+			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+
+			sound.Play("items/battery_pickup.wav", ply:GetPos())
+		end
+	end
 
     local dmg = DamageInfo()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
-	dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-	dmg:SetDamage(50 * self.properties.level)
-	util.BlastDamageInfo(dmg, self:GetPos(), 200)
+    dmg:SetDamageType(DMG_REMOVENORAGDOLL)
+    dmg:SetDamage(50)
+    util.BlastDamageInfo(dmg, self:GetPos(), 200)
 
 	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
-			if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
-				ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
-			end
+		if HORDE:IsEnemy(ent) and not HORDE:IsPlayerOrMinion(ent) then
+			ent:Horde_AddDebuffBuildup(HORDE.Status_Frostbite, 10, self)
 		end
+	end
 	
 	local e = EffectData()
-			e:SetOrigin(self:GetPos())
-			e:SetNormal(Vector(0,0,1))
-			e:SetScale(1)
+		e:SetOrigin(self:GetPos())
+		e:SetNormal(Vector(0,0,1))
+		e:SetScale(0.8)
 	util.Effect("weeper_blast", e, true, true)
 
-   -- sound.Play("vj_acid/acid_splat.wav", self:GetPos())
+	self.BaseClass.OnRemove(self)
 end
 
 function ENT:DoEntityRelationshipCheck()

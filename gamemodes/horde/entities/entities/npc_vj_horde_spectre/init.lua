@@ -96,6 +96,8 @@ ENT.WorldShakeOnMoveFrequency = 100 -- Just leave it to 100
 
 ENT.VJFriendly = false
 ENT.Abyssal_Roar = false
+
+ENT.SummonCost = 30 -- Summon cost for post-death mind regain
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Shockwave(delay)
 	if self.Horde_Stunned then return end
@@ -162,12 +164,28 @@ end
 
 function ENT:Horde_SetGreaterSpectre()
 	self:SetModelScale(1.5)
+	self.SummonCost = 45
 	self.HasLeapAttack = false
 	self.MeleeAttackDamage = self.MeleeAttackDamage * 1.65
 	self.NextAnyAttackTime_Melee = 0.75
 	self.StartHealth = math.floor(1.25 * self.StartHealth)
 	self:SetHealth(self.StartHealth)
 	self:SetMaxHealth(self.StartHealth)
+end
+
+function ENT:OnRemove()
+	if self.properties.eldritch_protection then
+		local ply = self:GetNWEntity("HordeOwner")
+
+		if ply:IsPlayer() then
+			local mindAmount = self.SummonCost * 0.5
+			ply:Horde_SetMind( math.min( ply:Horde_GetMaxMind(), mindAmount + ply:Horde_GetMind()))
+
+			sound.Play("items/battery_pickup.wav", ply:GetPos())
+		end
+	end
+
+	self.BaseClass.OnRemove(self)
 end
 
 function ENT:DoEntityRelationshipCheck()
