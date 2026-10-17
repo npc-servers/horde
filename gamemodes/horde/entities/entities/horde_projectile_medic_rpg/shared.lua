@@ -74,8 +74,8 @@ function ENT:Initialize()
 			self:SetMoveType(MOVETYPE_VPHYSICS)
 			self:SetSolid(SOLID_VPHYSICS)
 			self:PhysicsInit(SOLID_VPHYSICS)
-			self:SetMoveCollide(COLLISION_GROUP_PROJECTILE)
-			self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+			self:SetMoveCollide(COLLISION_GROUP_INTERACTIVE_DEBRIS)
+			self:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
 			self:DrawShadow(false)
 		--self:SetColor(Color(0,255,0))
 		local phys = self:GetPhysicsObject()
@@ -90,7 +90,7 @@ function ENT:Initialize()
 
 		timer.Simple(0, function()
 			if not IsValid(self) then return end
-			self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+			self:SetCollisionGroup(COLLISION_GROUP_INTERACTIVE_DEBRIS)
 		end)
 	end
 end

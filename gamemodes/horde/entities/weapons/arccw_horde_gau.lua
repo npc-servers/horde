@@ -46,8 +46,8 @@ SWEP.ChamberSize = 0 -- how many rounds can be chambered.
 
 SWEP.Primary.ClipSize = 300 -- DefaultClip is automatically set.
 
-SWEP.Recoil = 0.4
-SWEP.RecoilSide = 0.2
+SWEP.Recoil = 0.03
+SWEP.RecoilSide = 0.03
 SWEP.Delay = 60 / 1300 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Malfunction = false

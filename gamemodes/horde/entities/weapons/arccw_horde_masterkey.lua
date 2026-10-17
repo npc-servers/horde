@@ -24,7 +24,8 @@ SWEP.WorldModel = "models/weapons/w_shot_m3super90.mdl"
 SWEP.ViewModelFOV = 65
 SWEP.Damage = 25
 SWEP.DamageMin = 0
-SWEP.Range = 1200 * 0.025  -- GAME UNITS * 0.025 = METRES
+SWEP.RangeMin = 200 * 0.025
+SWEP.Range = 1000 * 0.025  -- GAME UNITS * 0.025 = METRES
 SWEP.Penetration = 1
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil -- entity to fire, if any

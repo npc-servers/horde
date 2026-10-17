@@ -12,7 +12,7 @@ SWEP.IronSightsAng = Vector(0, 0, 0)
 SWEP.PrintName 		= "Pheropod"
 
 SWEP.Author 		= "Gorlami"
-SWEP.Instructions 	= "Incubates and cotnrols Antlions."
+SWEP.Instructions 	= "Incubates and controls Antlions."
 SWEP.Purpose 		= "Hatcher Unique Weapon."
 
 SWEP.AdminSpawnable = false

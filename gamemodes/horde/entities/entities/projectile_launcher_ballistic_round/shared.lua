@@ -12,8 +12,8 @@ AddCSLuaFile()
 ENT.Model = "models/crossbow_bolt.mdl"
 ENT.Ticks = 0
 ENT.FuseTime = 10
-ENT.CollisionGroup = COLLISION_GROUP_PROJECTILE
-ENT.CollisionGroupType = COLLISION_GROUP_PROJECTILE
+ENT.CollisionGroup = COLLISION_GROUP_INTERACTIVE_DEBRIS
+ENT.CollisionGroupType = COLLISION_GROUP_INTERACTIVE_DEBRIS
 ENT.Removing = nil
 
 if SERVER then

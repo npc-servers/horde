@@ -141,7 +141,7 @@ SWEP.Attachments = {
         NoWM = true,
     },
 }
-
+local reloadMult = 0.85
 SWEP.Animations = {
     ["ready"] = {
         Source = "reg_draw_first",
@@ -166,27 +166,30 @@ SWEP.Animations = {
         Source = "reg_reload_start",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 10 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         RestoreAmmo = 1
     },
     ["sgreload_insert"] = {
         Source = "reg_reload_loop",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 2 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         TPAnimStartTime = 0.3
     },
     ["sgreload_finish"] = {
         Source = "reg_reload_end",
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 25 },
-        }
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = ( 10 / 25 ) * reloadMult },
+        },
+        Mult = reloadMult,
     },
     ["fire"] = {
         Source = "reg_fire",
@@ -251,27 +254,30 @@ SWEP.Animations = {
         Source = "grip_reload_start",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 10 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 10 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         RestoreAmmo = 1
     },
     ["sgreload_insert_grip"] = {
         Source = "grip_reload_loop",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 1 / 30 },
-            { s = "ArcCW_Horde_BO_Stakeout.Load", t = 2 / 30 },
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 1 / 30 ) * reloadMult },
+            { s = "ArcCW_Horde_BO_Stakeout.Load", t = ( 2 / 30 ) * reloadMult },
         },
+        Mult = reloadMult,
         TPAnimStartTime = 0.3
     },
     ["sgreload_finish_grip"] = {
         Source = "grip_reload_end",
         SoundTable = {
-            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = 5 / 25 },
-            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = 10 / 25 },
-        }
+            { s = "ArcCW_Horde_BO_Stakeout.Reload", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_pull.wav", t = ( 5 / 25 ) * reloadMult },
+            { s = "horde/weapons/bo/stakeout/pump_push.wav", t = ( 10 / 25 ) * reloadMult},
+        },
+        Mult = reloadMult,
     },
     ["fire_grip"] = {
         Source = "grip_fire",
