@@ -171,7 +171,6 @@ function ENT:OnRemove()
 			end
 	end
 	
-	
 	local e = EffectData()
 		e:SetOrigin(self:GetPos())
 		e:SetNormal(Vector(0,0,1))
