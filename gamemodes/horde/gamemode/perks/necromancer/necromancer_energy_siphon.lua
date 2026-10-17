@@ -21,18 +21,12 @@ PERK.Hooks.Horde_OnPlayerDamagePost = function( ply, npc, bonus, hitgroup, dmgin
 
     -- Set Up Frostbite Based Leeching Increase
     if npc:Horde_HasDebuff(HORDE.Status_Frostbite) then
-        for _, ent in ipairs({dmginfo:GetAttacker(), dmginfo:GetInflictor()}) do
-            if not IsValid(ent) then goto cont end
+        local inflictor = dmginfo:GetInflictor()
 
-            if not ent:IsNPC() then
-                leechMul = 2
-
-                break
-            elseif ent:GetNWEntity("HordeOwner"):IsPlayer() then
-                leechMul = math.max(leechMul, 1.5)
-            end
-
-            ::cont::
+        if not inflictor:IsNPC() then
+            leechMul = 2
+        else
+            leechMul = 1.5
         end
     end
 
