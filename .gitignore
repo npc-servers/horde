@@ -2,3 +2,6 @@
 *.smd
 *.qc
 *.bak
+*.vsidx
+*.json
+*.sqlite
