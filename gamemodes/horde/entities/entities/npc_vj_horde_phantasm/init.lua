@@ -165,7 +165,7 @@ function ENT:OnRemove()
     dmg:SetInflictor(self)
     dmg:SetAttacker(self)
     dmg:SetDamageType(DMG_REMOVENORAGDOLL)
-    dmg:SetDamage(50)
+    dmg:SetDamage(50 * self.properties.level)
     util.BlastDamageInfo(dmg, self:GetPos(), 200)
 
 	for _, ent in pairs(ents.FindInSphere(self:GetPos(), 200)) do
