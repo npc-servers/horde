@@ -147,8 +147,6 @@ function ENT:CustomOnInitialize()
 	self:AddRelationship("npc_vj_horde_rocket_turret D_LI 99")
 	self:AddRelationship("npc_vj_horde_antlion D_LI 99")
 	--self:EmitSound("horde/lesion/lesion_roar.ogg", 1500, 80, 1, CHAN_STATIC)
-
-	print(self.SummonCost * 0.5 + 5 * self.properties.level)
 end
 
 function ENT:OnRemove()
