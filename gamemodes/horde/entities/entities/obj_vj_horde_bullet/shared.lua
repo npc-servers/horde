@@ -46,6 +46,7 @@ function ENT:CustomOnInitialize()
 	self:SetRenderMode(RENDERMODE_TRANSCOLOR)
 	self:SetColor(Color(255,255,255,0))
 	util.SpriteTrail(self, 0, self.TracerColor, false, self.TracerWidth, self.TracerWidth, 0.1, 1/(8+8)*0.5, "VJ_Base/sprites/vj_trial1.vmt")
+	ParticleEffectAttach("astra_bolt_fastfade_1", PATTACH_ABSORIGIN_FOLLOW, self, 0)
 
 	timer.Simple(4, function ()
 		if !IsValid(self) then return end
