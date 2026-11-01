@@ -62,6 +62,15 @@ ENT.SoundTbl_BeforeRangeAttack = {
 	"npc/zombie_poison/pz_warn2.wav"
 }
 ENT.SoundTbl_RangeAttack = "npc/antlion_grub/squashed.wav"
+ENT.SoundTbl_AllyDeath = {
+	"^horde/zombie_announce1.wav",
+	"^horde/zombie_announce2.wav",
+	"^horde/zombie_announce3.wav",
+	"^horde/zombie_announce4.wav",
+	"^horde/zombie_announce5.wav",
+	"^horde/zombie_announce6.wav",
+	"^horde/zombie_announce7.wav"
+}
 ENT.SoundTbl_Pain = {
 	"npc/zombie_poison/pz_pain1.wav",
 	"npc/zombie_poison/pz_pain2.wav",
@@ -72,9 +81,13 @@ ENT.SoundTbl_Death = {
 	"npc/zombie_poison/pz_die2.wav"
 }
 
+ENT.NextSoundTime_AllyDeath = VJ_Set( 4, 11 )
+
 ENT.FootStepSoundLevel = 65
+ENT.AllyDeathSoundLevel = 140
 
 ENT.GeneralSoundPitch1 = 100
+ENT.AllyDeathSoundPitch = VJ_Set( 90, 110 )
 
 local sdFootScuff = "npc/zombie_poison/pz_right_foot1.wav"
 local sdThrow = { "npc/zombie_poison/pz_throw2.wav", "npc/zombie_poison/pz_throw3.wav" }
