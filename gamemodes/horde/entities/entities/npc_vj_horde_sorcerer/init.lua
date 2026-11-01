@@ -95,7 +95,7 @@ function ENT:CustomOnThink()
 
 	if self.NextSummonTime < CurTime() then
 		if not IsValid( self.MiniBoss1 ) or not IsValid( self.MiniBoss2 ) then
-			VJ_EmitSound( self, "npc/zombie_poison/pz_call1.wav", 140, 100 )
+			VJ_EmitSound( self, "ambient/machines/teleport1.wav", 140, 100 )
 
 			ParticleEffect( "aurora_shockwave", self:GetPos(), defAng, nil )
 			ParticleEffect( "aurora_shockwave_debris", self:GetPos(), defAng, nil )
