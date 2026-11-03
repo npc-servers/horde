@@ -44,33 +44,15 @@ function plymeta:Horde_AddPaladinAuraEffects( provider )
         net.WriteUInt( HORDE.Status_PaladinAura, 8 )
         net.WriteUInt( 1, 8 )
     net.Send( self )
-
-    -- Providence Shielding
-    if self == provider then return end
-    if not provider:Horde_GetPerk( "paladin_providence" ) then return end
-    if self:Horde_GetCurrentSubclass() == "Paladin" then return end
-
-    if not provider.Horde_PaladinShielding then return end
-
-    self:Horde_AddPaladinShield( true )
 end
 
-function plymeta:Horde_RemovePaladinAuraEffects( provider )
+function plymeta:Horde_RemovePaladinAuraEffects()
     self.Horde_PaladinAuraProvider = nil
 
     net.Start( "Horde_SyncStatus" )
         net.WriteUInt( HORDE.Status_PaladinAura, 8 )
         net.WriteUInt( 0, 8 )
     net.Send( self )
-
-    -- Providence Shielding
-    if not self.Horde_PaladinShieldCount then return end
-
-    if self == provider then return end
-    if not provider:Horde_GetPerk( "paladin_providence" ) then return end
-    if self:Horde_GetCurrentSubclass() == "Paladin" then return end
-
-    self:Horde_RemovePaladinShield( true )
 end
 
 hook.Add( "Horde_ResetStatus", "Horde_PaladinAuraEffectsReset", function( ply )
