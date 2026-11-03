@@ -16,7 +16,7 @@ ENT.BloodColor = "Red"
 ENT.MeleeAttackDamage = 5
 ENT.AnimTbl_MeleeAttack = "vjseq_melee"
 ENT.MeleeAttackDistance = 32
-ENT.MeleeAttackDamageDistance = 85
+ENT.MeleeAttackDamageDistance = 50
 ENT.TimeUntilMeleeAttackDamage = false
 ENT.NextMeleeAttackTime = 1
 
@@ -56,6 +56,15 @@ ENT.SoundTbl_MeleeAttackMiss = {
 	"zsszombie/miss3.wav",
 	"zsszombie/miss4.wav"
 }
+ENT.SoundTbl_AllyDeath = {
+	"^horde/zombie_announce1.wav",
+	"^horde/zombie_announce2.wav",
+	"^horde/zombie_announce3.wav",
+	"^horde/zombie_announce4.wav",
+	"^horde/zombie_announce5.wav",
+	"^horde/zombie_announce6.wav",
+	"^horde/zombie_announce7.wav"
+}
 ENT.SoundTbl_Pain = {
 	"vfastzombie/fzombie_pain1.wav",
 	"vfastzombie/fzombie_pain2.wav",
@@ -66,9 +75,13 @@ ENT.SoundTbl_Death = {
 	"vfastzombie/fzombie_die2.wav"
 }
 
+ENT.NextSoundTime_AllyDeath = VJ_Set( 4, 11 )
+
 ENT.FootStepSoundLevel = 65
+ENT.AllyDeathSoundLevel = 140
 
 ENT.GeneralSoundPitch1 = 100
+ENT.AllyDeathSoundPitch = VJ_Set( 90, 110 )
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetSkin( math.random( 0, 3 ) )

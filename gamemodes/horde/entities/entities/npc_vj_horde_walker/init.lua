@@ -29,7 +29,7 @@ ENT.CanFlinch = 1
 
 ENT.MeleeAttackDamage = 25
 ENT.MeleeAttackDistance = 32
-ENT.MeleeAttackDamageDistance = 65
+ENT.MeleeAttackDamageDistance = 85
 ENT.TimeUntilMeleeAttackDamage = false
 ENT.NextMeleeAttackTime = 2
 ENT.AnimTbl_MeleeAttack = {
@@ -77,6 +77,15 @@ ENT.SoundTbl_MeleeAttackMiss = {
 	")zsszombie/miss3.wav",
 	")zsszombie/miss4.wav"
 }
+ENT.SoundTbl_AllyDeath = {
+	"^horde/zombie_announce1.wav",
+	"^horde/zombie_announce2.wav",
+	"^horde/zombie_announce3.wav",
+	"^horde/zombie_announce4.wav",
+	"^horde/zombie_announce5.wav",
+	"^horde/zombie_announce6.wav",
+	"^horde/zombie_announce7.wav"
+}
 ENT.SoundTbl_Pain = {
 	")zsszombie/zombie_pain1.wav",
 	")zsszombie/zombie_pain2.wav",
@@ -96,9 +105,13 @@ ENT.SoundTbl_Death = {
 	")zsszombie/zombie_die6.wav"
 }
 
+ENT.NextSoundTime_AllyDeath = VJ_Set( 4, 11 )
+
 ENT.FootStepSoundLevel = 65
+ENT.AllyDeathSoundLevel = 140
 
 ENT.GeneralSoundPitch1 = 100
+ENT.AllyDeathSoundPitch = VJ_Set( 90, 110 )
 
 local sdFootScuff = {
 	"npc/zombie/foot_slide1.wav",

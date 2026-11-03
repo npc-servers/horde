@@ -790,7 +790,7 @@ function HORDE:GetDefaultEnemiesData ()
         HORDE:CreateEnemy("Burnzie",                    "npc_vj_horde_burnzie",         0.10, 10, true, 1, 1, 1.5, 1)
         HORDE:CreateEnemy("Eschar",                     "npc_vj_horde_eschar",          0.10, 10, true, 1, 1, 1.5, 1)
         HORDE:CreateEnemy("Sorcerer",                   "npc_vj_horde_sorcerer",        0.02, 10, true, 1, 1, 4, 1)
-        if GetConVar( "horde_difficulty" ):GetInt() == 4 or GetConVar( "horde_difficulty" ):GetInt() == 5 then -- HARD / VETERAN
+        if GetConVar( "horde_difficulty" ):GetInt() == 5 then -- VETERAN
             -- Wave 1
             HORDE:CreateEnemy("Crawler",        "npc_vj_horde_crawler",         0.50, 1, false, 1, 1, 1, 1)
             HORDE:CreateEnemy("Fast Zombie",    "npc_vj_horde_fast_zombie",     0.25, 1, false, 1, 1, 1, 1)

@@ -63,12 +63,25 @@ ENT.SoundTbl_LeapAttackDamage = {
 	"npc/zombie/claw_strike2.wav",
 	"npc/zombie/claw_strike3.wav"
 }
+ENT.SoundTbl_AllyDeath = {
+	"^horde/zombie_announce1.wav",
+	"^horde/zombie_announce2.wav",
+	"^horde/zombie_announce3.wav",
+	"^horde/zombie_announce4.wav",
+	"^horde/zombie_announce5.wav",
+	"^horde/zombie_announce6.wav",
+	"^horde/zombie_announce7.wav"
+}
 ENT.SoundTbl_Pain = "npc/fast_zombie/fz_frenzy1.wav"
 ENT.SoundTbl_Death = "npc/fast_zombie/wake1.wav"
 
+ENT.NextSoundTime_AllyDeath = VJ_Set( 4, 11 )
+
 ENT.FootStepSoundLevel = 65
+ENT.AllyDeathSoundLevel = 140
 
 ENT.GeneralSoundPitch1 = 100
+ENT.AllyDeathSoundPitch = VJ_Set( 90, 110 )
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetBodygroup( 1, 1 )

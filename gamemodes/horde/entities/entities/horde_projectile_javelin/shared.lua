@@ -16,8 +16,8 @@ AddCSLuaFile()
 
 function ENT:CustomInitialize()
 	if CLIENT then
-    	ParticleEffectAttach("vj_rpg1_fulltrail", PATTACH_ABSORIGIN_FOLLOW, self, 0)
-		ParticleEffectAttach("vj_rpg2_fulltrail", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+    	ParticleEffectAttach("vj_rpg2_fire", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+		ParticleEffectAttach("Rocket_Smoke", PATTACH_ABSORIGIN_FOLLOW, self, 0)
 		return
 	end
 	self.StartLight1 = ents.Create("light_dynamic")
