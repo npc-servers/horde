@@ -65,29 +65,32 @@ function ENT:EndTouch(ent)
 end
 
 function ENT:Initialize()
+    self:SetSolid( SOLID_OBB )
+    self:SetMoveType( MOVETYPE_VPHYSICS )
     if SERVER then
         self:SetModel( self.Model )
-        self:SetMoveType( MOVETYPE_VPHYSICS )
-        self:SetSolid( SOLID_VPHYSICS )
-        self:PhysicsInit(SOLID_VPHYSICS)
-        self:DrawShadow( false )
-        self:SetCollisionBounds(Vector(-150,-150,-100), Vector(150,150,100))
-        self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
-        self:SetTrigger(true)
-        self:UseTriggerBounds(true, 24)
+        self:PhysicsInit(SOLID_OBB)
 
+        local maxs = Vector(150, 150, 100)
+        local mins = -maxs
+        self:SetCollisionBounds(mins, maxs)
+        self:DrawShadow( false )
         local phys = self:GetPhysicsObject()
-        if phys:IsValid() then
+        if IsValid( phys ) then
             phys:Wake()
             phys:SetBuoyancyRatio(0)
         end
-
         self.SpawnTime = CurTime()
         self:Detonate()
 
         self.FireTime = math.Rand(4.5, 5.5)
-    end
 
+        timer.Simple(0.1, function()
+            if not IsValid(self) then return end
+            self:AddSolidFlags(FSOLID_TRIGGER)
+            self:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
+        end)
+    end
     local owner = self:GetOwner()
     self.has_burner = nil
     if IsValid( owner ) and owner:Horde_GetGadget() == "gadget_hydrogen_burner" then
@@ -107,13 +110,19 @@ local function GetFireParticle()
 end
 
 function ENT:Think()
-    if !self.SpawnTime then self.SpawnTime = CurTime() end
-
+    if not self.SpawnTime then self.SpawnTime = CurTime() end
+    if SERVER then
+        for _, e in pairs( ents.FindInSphere( self:GetPos(), 300 ) ) do
+            if e:GetClass() == "horde_butane_can" and self:GetOwner() == e.Horde_Owner then
+                e:Detonate()
+            end
+        end
+    end
     if CLIENT then
         local emitter = ParticleEmitter(self:GetPos())
 
-        if !self:IsValid() or self:WaterLevel() > 2 then return end
-        if !IsValid(emitter) then return end
+        if not self:IsValid() or self:WaterLevel() > 2 then return end
+        if not IsValid(emitter) then return end
 
         for i = 1, 4 do
             local fire = emitter:Add(GetFireParticle(), self:GetPos() + (VectorRand() * 30))
@@ -140,7 +149,7 @@ function ENT:Think()
             fire:SetBounce(0.75)
             fire:SetNextThink( CurTime() + FrameTime() )
             fire:SetThinkFunction( function(pa)
-                if !pa then return end
+                if not pa then return end
                 local col1 = Color(255, 135, 0)
                 if self.has_burner then
                     col1 = Color(0, 135, 255)
@@ -178,7 +187,7 @@ function ENT:Think()
 end
 
 function ENT:OnRemove()
-    if !self.FireSound then return end
+    if not self.FireSound then return end
     self.FireSound:Stop()
 
     if SERVER then
@@ -189,11 +198,11 @@ function ENT:OnRemove()
 end
 
 function ENT:Detonate()
-    if !self:IsValid() then return end
+    if not self:IsValid() then return end
 
     self.Armed = true
 
-    if self.Order and self.Order != 1 then return end
+    if self.Order and self.Order ~= 1 then return end
 
     self.FireSound = CreateSound(self, "arccw_go/molotov/fire_loop_1.wav")
     self.FireSound:Play()
@@ -201,13 +210,13 @@ function ENT:Detonate()
     self.FireSound:ChangePitch(80, self.FireTime)
 
     timer.Simple(self.FireTime - 1, function()
-        if !IsValid(self) then return end
+        if not IsValid(self) then return end
 
         self.FireSound:ChangeVolume(0, 1)
     end)
 
     timer.Simple(self.FireTime, function()
-        if !IsValid(self) then return end
+        if not IsValid(self) then return end
 
         self:Remove()
     end)
