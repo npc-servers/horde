@@ -100,7 +100,7 @@ HORDE.Difficulty = {
     },
     [5] = {
         name = "VETERAN", -- Veteran difficulty, 100% mutation, extra enemies.
-        damageMultiplier = 4,
+        damageMultiplier = 2.5,
         enemyCountMultiplier = 1.4,
         rewardMultiplier = 0.3,
         healthMultiplier = 2,
