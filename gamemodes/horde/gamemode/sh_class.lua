@@ -521,8 +521,12 @@ end
 function HORDE:SaveSubclassChoices()
     local f = file.Open("horde/subclass_choices.txt", "wb", "DATA")
     for class, subclass in pairs(MySelf.Horde_subclass_choices) do
-        f:WriteULong(HORDE.classes_to_order[class])
-        f:WriteULong(HORDE.subclass_name_to_crc[subclass])
+        local class_order = HORDE.classes_to_order[class]
+        local subclass_crc = HORDE.subclass_name_to_crc[subclass]
+        if class_order and subclass_crc then
+            f:WriteULong(class_order)
+            f:WriteULong(subclass_crc)
+        end
     end
     f:Close()
 end
@@ -540,8 +544,13 @@ function HORDE:LoadSubclassChoices()
         while not f:EndOfFile() do
             local class_order = f:ReadULong()
             local subclass_order = f:ReadULong()
-            MySelf.Horde_subclass_choices[HORDE.order_to_class_name[class_order]] = HORDE.order_to_subclass_name[tostring(subclass_order)]
-            MySelf.Horde_subclasses[HORDE.order_to_class_name[class_order]] = HORDE.order_to_subclass_name[tostring(subclass_order)]
+            local class_name = HORDE.order_to_class_name[class_order]
+            local subclass_name = HORDE.order_to_subclass_name[tostring(subclass_order)]
+            -- Skip entries that no longer map to a valid class/subclass (stale or corrupt file)
+            if class_name and subclass_name then
+                MySelf.Horde_subclass_choices[class_name] = subclass_name
+                MySelf.Horde_subclasses[class_name] = subclass_name
+            end
         end
         f:Close()
 
