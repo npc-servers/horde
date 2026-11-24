@@ -1,23 +1,23 @@
 local indicators  = {}
 local on = true
 
-surface.CreateFont("Horde_Debuff", {
+surface.CreateFont( "Horde_Debuff", {
     font = "Arial",
     extended = false,
     size = ScreenScale( 10 ),
     blursize = 0,
     weight = 1000,
     antialias = true,
-})
+} )
 
-surface.CreateFont("Horde_Debuff_Shadow", {
+surface.CreateFont( "Horde_Debuff_Shadow", {
     font = "Arial",
     extended = false,
     size = ScreenScale( 10 ),
     blursize = 4,
     weight = 1000,
     antialias = true,
-})
+} )
 
 
 local function spawnIndicator( type, text, col, icon, pos, vel, ttl )
@@ -32,6 +32,7 @@ local function spawnIndicator( type, text, col, icon, pos, vel, ttl )
 	ind.life = ttl
     ind.icon = icon
 	ind.spawntime = CurTime()
+	
 	table.insert( indicators, ind )
 end
 
@@ -54,6 +55,7 @@ hook.Add( "HUDPaint", "Horde_DrawIndicators2D", function()
     if not GetConVar( "horde_enable_debuff_text" ):GetBool() then return end
 
 	if #indicators == 0 then return end
+		
 	local ind
     for i = 1, #indicators do
         ind = indicators[i]
