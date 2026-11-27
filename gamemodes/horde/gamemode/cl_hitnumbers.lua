@@ -1,57 +1,55 @@
-local indicators  = {}
+local indicators = {}
 
-surface.CreateFont("Horde_DamageNum", {
-    font = "Arial", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+surface.CreateFont( "Horde_DamageNum", {
+    font = "Arial",
     extended = false,
-    size = ScreenScale(8),
+    size = ScreenScale( 8 ),
     weight = 1000,
     antialias = true,
-})
+} )
 
-surface.CreateFont("Horde_DamageNum_Shadow", {
-    font = "Arial", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+surface.CreateFont( "Horde_DamageNum_Shadow", {
+    font = "Arial",
     extended = false,
-    size = ScreenScale(8),
+    size = ScreenScale( 8 ),
     blursize = 4,
     weight = 1000,
     antialias = true,
-})
+} )
 
-surface.CreateFont("Horde_Debuff", {
+surface.CreateFont( "Horde_Debuff", {
     font = "Arial", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
     extended = false,
-    size = ScreenScale(10),
+    size = ScreenScale( 10 ),
     blursize = 0,
     weight = 1000,
     antialias = true,
-})
+} )
 
-surface.CreateFont("Horde_Debuff_Shadow", {
-    font = "Arial", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+surface.CreateFont( "Horde_Debuff_Shadow", {
+    font = "Arial",
     extended = false,
-    size = ScreenScale(10),
+    size = ScreenScale( 10 ),
     blursize = 4,
     weight = 1000,
     antialias = true,
-})
+} )
 
+local function spawnIndicator( type, text, col, icon, pos, vel, ttl )
+    local ind = {}
 
-local function spawnIndicator(type, text, col, icon, pos, vel, ttl)
-	local ind = {}
-
-	ind.text = text
+    ind.text = text
     ind.type = type
-	ind.pos  = Vector(pos.x, pos.y, pos.z)
-	ind.vel  = Vector(vel.x, vel.y, vel.z)
-	ind.col  = Color(col.r, col.g, col.b)
-	ind.ttl       = ttl
-	ind.life      = ttl
-    ind.icon   = icon
-	ind.spawntime = CurTime()
-	table.insert(indicators, ind)
-end
+    ind.pos = Vector( pos.x, pos.y, pos.z )
+    ind.vel = Vector( vel.x, vel.y, vel.z )
+    ind.col = Color( col.r, col.g, col.b )
+    ind.ttl = ttl
+    ind.life = ttl
+    ind.icon = icon
+    ind.spawntime = CurTime()
 
-local UpOffset = Vector(0,0,15)
+    table.insert( indicators, ind )
+end
 
 local hitSndPath = "horde/player/hitsound/"
 
@@ -64,150 +62,147 @@ local function playSound( path, vol )
     end )
 end
 
-local function doHitSounds(isDead, isHeadshot)
+local function doHitSounds( isDead, isHeadshot )
     -- TODO: Add customizable damage sounds
     if isDead then
-        playSound( hitSndPath .. "kill_" .. math.random(4) .. ".wav", 5 )
+        playSound( hitSndPath .. "kill_" .. math.random( 4 ) .. ".wav", 5 )
     elseif isHeadshot then
-        playSound( hitSndPath .. "headshot_" .. math.random(6) .. ".wav", 5 )
+        playSound( hitSndPath .. "headshot_" .. math.random( 6 ) .. ".wav", 5 )
     else
-        playSound( hitSndPath .. "hit_" .. math.random(6) .. ".wav", 5 )
+        playSound( hitSndPath .. "hit_" .. math.random( 6 ) .. ".wav", 5 )
     end
 end
 
 local hitSndQueued = false
 local hitSndDead, hitSndHead = false, false
 
-local function queueHitSound(isDead, isHeadshot)
+local function queueHitSound( isDead, isHeadshot )
     hitSndDead = hitSndDead or isDead
     hitSndHead = hitSndHead or isHeadshot
 
     if hitSndQueued then return end
     hitSndQueued = true
 
-    timer.Simple(0, function()
-        doHitSounds(hitSndDead, hitSndHead)
+    timer.Simple( 0, function()
+        doHitSounds( hitSndDead, hitSndHead )
         hitSndQueued, hitSndDead, hitSndHead = false, false, false
-    end)
+    end )
 end
 
--- Called when an indicator should be created for this player.
-net.Receive("Horde_HitnumbersSpawn", function()
-	local dmg = net.ReadFloat()
-	local dmgtype = net.ReadUInt(32)
+local upOffset = Vector( 0, 0, 15 )
+
+net.Receive( "Horde_HitnumbersSpawn", function()
+    local dmg = net.ReadFloat()
+    local dmgtype = net.ReadUInt( 32 )
     local pos = net.ReadVector()
     local isDead = net.ReadBool()
     local isHeadshot = net.ReadBool()
 
-    if GetConVar("horde_enable_damage_sounds"):GetBool() then
-        queueHitSound(isDead, isHeadshot)
+    if GetConVar( "horde_enable_damage_sounds" ):GetBool() then
+        queueHitSound( isDead, isHeadshot )
     end
 
-    if not GetConVar("horde_enable_damage_numbers"):GetBool() then return end
+    if not GetConVar( "horde_enable_damage_numbers" ):GetBool() then return end
 
-	if dmg < 1 then
-		dmg = math.Round(dmg, 3)
-	else
-		dmg = math.floor(dmg)
-	end
+    if dmg < 1 then
+        dmg = math.Round( dmg, 3 )
+    else
+        dmg = math.floor( dmg )
+    end
 
-	local ttl      = 0.75
+    local ttl = 0.75
 
     local dmginfo = DamageInfo()
-    dmginfo:SetDamageType(dmgtype)
-    local horde_type = HORDE:GetDamageType(dmginfo)
+    dmginfo:SetDamageType( dmgtype )
+    local horde_type = HORDE:GetDamageType( dmginfo )
     local col = HORDE.DMG_COLOR[horde_type]
-    local icon = Material(HORDE.DMG_TYPE_ICON[horde_type], "mips smooth")
+    local icon = Material( HORDE.DMG_TYPE_ICON[horde_type], "mips smooth" )
 
-    spawnIndicator(0, tostring(dmg), col, icon, pos+UpOffset, VectorRand(), ttl)
-end)
+    spawnIndicator( 0, tostring( dmg ), col, icon, pos + upOffset, VectorRand(), ttl )
+end )
 
-net.Receive("Horde_HitnumbersDebuffSpawn", function()
-	if not GetConVar("horde_enable_debuff_text"):GetBool() then return end
+net.Receive( "Horde_HitnumbersDebuffSpawn", function()
+    if not GetConVar( "horde_enable_debuff_text" ):GetBool() then return end
 
-	-- Get damage type and amount.
-	local debuff = net.ReadUInt(32)
-	local pos   = net.ReadVector()
+    local debuff = net.ReadUInt( 32 )
+    local pos = net.ReadVector()
     local col = HORDE.STATUS_COLOR[debuff] or color_white
-    local icon = Material(HORDE.Status_Icon[debuff], "mips smooth")
-    local ttl      = 1.5
+    local icon = Material( HORDE.Status_Icon[debuff], "mips smooth" )
+    local ttl = 1.5
 
-    spawnIndicator(1, HORDE.Status_String[debuff], col, icon, pos, VectorRand(), ttl)
-end)
+    spawnIndicator( 1, HORDE.Status_String[debuff], col, icon, pos, VectorRand(), ttl )
+end )
 
-hook.Add("HUDPaint", "Horde_DrawIndicators2D", function()
-    local damageNumEnabled = GetConVar("horde_enable_damage_numbers"):GetBool()
-    local debuffTextEnabled = GetConVar("horde_enable_debuff_text"):GetBool()
+hook.Add( "HUDPaint", "Horde_DrawIndicators2D", function()
+    local damageNumEnabled = GetConVar( "horde_enable_damage_numbers" ):GetBool()
+    local debuffTextEnabled = GetConVar( "horde_enable_debuff_text" ):GetBool()
 
     if not damageNumEnabled and not debuffTextEnabled then return end
+    if #indicators == 0 then return end
 
-	if #indicators == 0 then return end
-	local ind
-    for i=1, #indicators do
+    local ind
+
+    for i = 1, #indicators do
         ind = indicators[i]
+
         cam.Start3D()
-
-        local spos = ind.pos:ToScreen()
-        local x = spos.x
-        local y = spos.y
-
+            local spos = ind.pos:ToScreen()
+            local x = spos.x
+            local y = spos.y
         cam.End3D()
 
         cam.Start2D()
+            if damageNumEnabled and ind.type == 0 then
+                surface.SetFont( "Horde_DamageNum_Shadow" )
+                local width = surface.GetTextSize( ind.text )
+                surface.SetTextColor( 0, 0, 0, 255 * ind.life )
+                surface.SetTextPos( x - ( width / 2 ), y )
+                surface.DrawText( ind.text )
 
-        if damageNumEnabled and ind.type == 0 then
-            surface.SetFont("Horde_DamageNum_Shadow")
-            local width = surface.GetTextSize(ind.text)
-            surface.SetTextColor(0, 0, 0, 255 * ind.life)
-            surface.SetTextPos(x - (width / 2), y)
-            surface.DrawText(ind.text)
+                surface.SetFont( "Horde_DamageNum" )
 
-            surface.SetFont("Horde_DamageNum")
+                surface.SetTextColor( ind.col.r, ind.col.g, ind.col.b, ind.life / ind.ttl * 255 )
+                surface.SetTextPos( x - ( width / 2 ), y )
+                surface.DrawText( ind.text )
 
-            surface.SetTextColor(ind.col.r, ind.col.g, ind.col.b, (ind.life / ind.ttl * 255))
-            surface.SetTextPos(x - (width / 2), y)
-            surface.DrawText(ind.text)
+                surface.SetMaterial( ind.icon )
+                surface.SetDrawColor( ind.col.r, ind.col.g, ind.col.b, ind.life / ind.ttl * 255 )
+                surface.DrawTexturedRect( x - ( width / 2 ) + surface.GetTextSize( ind.text ) + 5, y + ScreenScale( 1 ), ScreenScale( 6 ), ScreenScale( 6 ) )
+            elseif debuffTextEnabled then
+                surface.SetFont( "Horde_Debuff_Shadow" )
+                local width = surface.GetTextSize( ind.text )
+                surface.SetTextColor( 0, 0, 0, 255 * ind.life )
+                surface.SetTextPos( x - ( width / 2 ), y )
+                surface.DrawText( ind.text )
 
-            surface.SetMaterial(ind.icon)
-            surface.SetDrawColor(ind.col.r, ind.col.g, ind.col.b, (ind.life / ind.ttl * 255))
-            surface.DrawTexturedRect(x - (width / 2) + surface.GetTextSize(ind.text) + 5, y + ScreenScale(1), ScreenScale(6), ScreenScale(6))
-        elseif debuffTextEnabled then
-            surface.SetFont("Horde_Debuff_Shadow")
-            local width = surface.GetTextSize(ind.text)
-            surface.SetTextColor(0, 0, 0, 255 * ind.life)
-            surface.SetTextPos(x - (width / 2), y)
-            surface.DrawText(ind.text)
+                surface.SetFont( "Horde_Debuff" )
 
-            surface.SetFont("Horde_Debuff")
+                surface.SetTextColor( ind.col.r, ind.col.g, ind.col.b, ind.life / ind.ttl * 255 )
+                surface.SetTextPos( x - ( width / 2 ), y )
+                surface.DrawText( ind.text )
 
-            surface.SetTextColor(ind.col.r, ind.col.g, ind.col.b, (ind.life / ind.ttl * 255))
-            surface.SetTextPos(x - (width / 2), y)
-            surface.DrawText(ind.text)
-
-            surface.SetMaterial(ind.icon)
-            surface.SetDrawColor(ind.col.r, ind.col.g, ind.col.b, (ind.life / ind.ttl * 255))
-            surface.DrawTexturedRect(x - (width / 2) + surface.GetTextSize(ind.text) + 7, y + ScreenScale(1), ScreenScale(8), ScreenScale(8))
-        end
-
+                surface.SetMaterial( ind.icon )
+                surface.SetDrawColor( ind.col.r, ind.col.g, ind.col.b, ind.life / ind.ttl * 255 )
+                surface.DrawTexturedRect( x - ( width / 2 ) + surface.GetTextSize( ind.text ) + 7, y + ScreenScale( 1 ), ScreenScale( 8 ), ScreenScale( 8 ) )
+            end
         cam.End2D()
     end
 
-	for i=1, #indicators do
-		ind       = indicators[i]
-		ind.life  = ind.life - RealFrameTime()
-	--  ind.vel.z = math.Min(ind.vel.z - 0.05, 2)
-		--ind.vel.z = ind.vel.z - gravity
-		ind.pos   = ind.pos + Vector(0, 0, RealFrameTime() * 32)
-        ind.pos   = ind.pos + (ind.vel * RealFrameTime() * 16)
-	end
+    for i = 1, #indicators do
+        ind = indicators[i]
+        ind.life = ind.life - RealFrameTime()
+        ind.pos = ind.pos + Vector( 0, 0, RealFrameTime() * 32 )
+        ind.pos = ind.pos + ( ind.vel * RealFrameTime() * 16 )
+    end
 
-	-- Check for and remove expired hit texts.
-	local i = 1
-	while i <= #indicators do
-		if indicators[i].life < 0 then
-			table.remove(indicators, i)
-		else
-			i = i + 1
-		end
-	end
-end)
+    -- Check for and remove expired hit texts.
+    local i = 1
+
+    while i <= #indicators do
+        if indicators[i].life < 0 then
+            table.remove( indicators, i )
+        else
+            i = i + 1
+        end
+    end
+end )
