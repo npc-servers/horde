@@ -2,8 +2,6 @@ util.AddNetworkString( "Horde_HitnumbersSpawn" )
 util.AddNetworkString( "Horde_HitnumbersDebuffSpawn" )
 util.AddNetworkString( "Horde_HitSounds" )
 
-local on = true
-
 hook.Add( "PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function( target, dmginfo, took )
     if not took then return end
 	local attacker = dmginfo:GetAttacker()

@@ -1,5 +1,4 @@
 local indicators  = {}
-local on          = true
 
 surface.CreateFont("Horde_DamageNum", {
     font = "Arial", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
