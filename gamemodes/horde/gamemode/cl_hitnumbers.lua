@@ -55,23 +55,32 @@ local UpOffset = Vector(0,0,15)
 
 -- Called when an indicator should be created for this player.
 net.Receive("Horde_HitnumbersSpawn", function()
-    if GetConVar("horde_enable_damage_sounds"):GetBool() then 
-        surface.PlaySound( "horde/player/hit.wav" )
+	local dmg = net.ReadFloat()
+	local dmgtype = net.ReadUInt(32)
+    local pos = net.ReadVector()
+    local isDead = net.ReadBool()
+    local isHeadshot = net.ReadBool()
+
+    -- TODO: Add customizable damage sounds
+    if GetConVar("horde_enable_damage_sounds"):GetBool() then
+        local path = "horde/player/hitsound/"
+
+        if isDead then
+            surface.PlaySound( path .. "kill_" .. math.random(4) .. ".wav" )
+        elseif isHeadshot then
+            surface.PlaySound( path .. "headshot_" .. math.random(6) .. ".wav" )
+        else
+            surface.PlaySound( path .. "hit_" .. math.random(6) .. ".wav" )
+        end
     end
 
-	if not GetConVar("horde_enable_damage_numbers"):GetBool() then return end
-
-	-- Get damage type and amount.
-	local dmg     = net.ReadFloat()
-	local dmgtype = net.ReadUInt(32)
+    if not GetConVar("horde_enable_damage_numbers"):GetBool() then return end
 
 	if dmg < 1 then
 		dmg = math.Round(dmg, 3)
 	else
 		dmg = math.floor(dmg)
 	end
-
-	local pos   = net.ReadVector()
 
 	local ttl      = 0.75
 

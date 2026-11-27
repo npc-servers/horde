@@ -1,6 +1,10 @@
 util.AddNetworkString( "Horde_HitnumbersSpawn" )
 util.AddNetworkString( "Horde_HitnumbersDebuffSpawn" )
 
+hook.Add( "ScaleNPCDamage", "Horde_Hitmarkers_StoreHitgroup", function( npc, hitgroup )
+	npc.LastHitGroup = hitgroup
+end )
+
 hook.Add( "PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function( target, dmginfo, took )
     if not took then return end
 	local attacker = dmginfo:GetAttacker()
@@ -22,6 +26,8 @@ hook.Add( "PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function( target
 		net.WriteFloat( dmgAmount )
 		net.WriteUInt( dmgType, 32 )
 		net.WriteVector( pos )
+		net.WriteBool( target:Health() <= 0 ) -- isDead
+		net.WriteBool( target.LastHitGroup == 1 ) -- isHeadshot
 	net.Send( attacker )
 end )
 
