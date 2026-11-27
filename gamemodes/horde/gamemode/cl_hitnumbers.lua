@@ -53,6 +53,44 @@ end
 
 local UpOffset = Vector(0,0,15)
 
+local hitSndPath = "horde/player/hitsound/"
+
+local function playSound( path, vol )
+    sound.PlayFile( "sound/" .. path, "noplay", function( snd )
+        if not IsValid( snd ) then return end
+
+        snd:SetVolume( vol )
+        snd:Play()
+    end )
+end
+
+local function doHitSounds(isDead, isHeadshot)
+    -- TODO: Add customizable damage sounds
+    if isDead then
+        playSound( hitSndPath .. "kill_" .. math.random(4) .. ".wav", 5 )
+    elseif isHeadshot then
+        playSound( hitSndPath .. "headshot_" .. math.random(6) .. ".wav", 5 )
+    else
+        playSound( hitSndPath .. "hit_" .. math.random(6) .. ".wav", 5 )
+    end
+end
+
+local hitSndQueued = false
+local hitSndDead, hitSndHead = false, false
+
+local function queueHitSound(isDead, isHeadshot)
+    hitSndDead = hitSndDead or isDead
+    hitSndHead = hitSndHead or isHeadshot
+
+    if hitSndQueued then return end
+    hitSndQueued = true
+
+    timer.Simple(0, function()
+        doHitSounds(hitSndDead, hitSndHead)
+        hitSndQueued, hitSndDead, hitSndHead = false, false, false
+    end)
+end
+
 -- Called when an indicator should be created for this player.
 net.Receive("Horde_HitnumbersSpawn", function()
 	local dmg = net.ReadFloat()
@@ -61,17 +99,8 @@ net.Receive("Horde_HitnumbersSpawn", function()
     local isDead = net.ReadBool()
     local isHeadshot = net.ReadBool()
 
-    -- TODO: Add customizable damage sounds
     if GetConVar("horde_enable_damage_sounds"):GetBool() then
-        local path = "horde/player/hitsound/"
-
-        if isDead then
-            surface.PlaySound( path .. "kill_" .. math.random(4) .. ".wav" )
-        elseif isHeadshot then
-            surface.PlaySound( path .. "headshot_" .. math.random(6) .. ".wav" )
-        else
-            surface.PlaySound( path .. "hit_" .. math.random(6) .. ".wav" )
-        end
+        queueHitSound(isDead, isHeadshot)
     end
 
     if not GetConVar("horde_enable_damage_numbers"):GetBool() then return end
