@@ -1,6 +1,5 @@
 util.AddNetworkString( "Horde_HitnumbersSpawn" )
 util.AddNetworkString( "Horde_HitnumbersDebuffSpawn" )
-util.AddNetworkString( "Horde_HitSounds" )
 
 hook.Add( "PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function( target, dmginfo, took )
     if not took then return end
@@ -24,9 +23,6 @@ hook.Add( "PostEntityTakeDamage", "Horde_HitnumbersDamagePost", function( target
 		net.WriteUInt( dmgType, 32 )
 		net.WriteVector( pos )
 	net.Send( attacker )
-
-	net.Start("Horde_HitSounds")
-    net.Send( attacker )
 end )
 
 hook.Add( "Horde_PostEnemyDebuffApply", "Horde_HitnumbersDebuff", function ( target, inflictor, debuff, pos )

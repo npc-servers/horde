@@ -55,6 +55,10 @@ local UpOffset = Vector(0,0,15)
 
 -- Called when an indicator should be created for this player.
 net.Receive("Horde_HitnumbersSpawn", function()
+    if GetConVar("horde_enable_damage_sounds"):GetBool() then 
+        surface.PlaySound( "horde/player/hit.wav" )
+    end
+
 	if not GetConVar("horde_enable_damage_numbers"):GetBool() then return end
 
 	-- Get damage type and amount.
@@ -169,10 +173,3 @@ hook.Add("HUDPaint", "Horde_DrawIndicators2D", function()
 		end
 	end
 end)
-
-net.Receive( "Horde_HitSounds", function()
-    local ply = LocalPlayer()
-    if not IsValid( ply ) or not GetConVar("horde_enable_damage_sounds"):GetBool() then return end
-
-    surface.PlaySound( "horde/player/hit.wav" )
-end )
