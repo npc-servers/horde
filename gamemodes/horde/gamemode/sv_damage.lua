@@ -105,11 +105,6 @@ function HORDE:ApplyDamage(npc, hitgroup, dmginfo)
         util.BlastDamageInfo(dmg, dmginfo:GetDamagePosition(), 250)
     end
 
-    -- Play sound
-    if hitgroup == HITGROUP_HEAD then
-        sound.Play(")horde/player/headshot.ogg", npc:GetPos(), 75, math.random(90, 110))
-    end
-
     hook.Run("Horde_OnPlayerDamagePost", ply, npc, bonus, hitgroup, dmginfo)
 
     npc.Horde_Hit = ply
