@@ -65,7 +65,7 @@ end
 local function doHitSounds( isDead, isHeadshot )
     -- TODO: Add customizable damage sounds
     if isDead then
-        playSound( hitSndPath .. "kill_" .. math.random( 4 ) .. ".wav", 1 )
+        playSound( hitSndPath .. "kill_" .. math.random( 2 ) .. ".wav", 1 )
     elseif isHeadshot then
         playSound( hitSndPath .. "headshot_" .. math.random( 6 ) .. ".wav", 1 )
     else
